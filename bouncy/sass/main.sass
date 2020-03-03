@@ -1,0 +1,975 @@
+@import "vars"
+@import "fonts"
+@import "libs"
+
+::placeholder
+	color: #666
+
+::selection
+	background-color: $accent
+	color: #fff
+
+body
+	font-size: 16px
+	min-width: 320px
+	position: relative
+	line-height: 1.65
+	font-family: $default-font
+	overflow-x: hidden
+	color: $text
+	input, textarea
+		border: #e1e4e9 1px solid
+		outline: none
+		&:focus:required:invalid
+			border-color: red
+		&:required:valid
+			border-color: green
+
+.img-responsive
+	display: block
+	max-width: 100%
+	height: auto
+	&.img-width
+		width: 100%
+
+.text-center
+	text-align: center
+
+b, strong
+	font-weight: bold
+
+
+input, textarea 
+	background-color: transparent
+	border: #e1e4e9 1px solid
+	padding: 8px 20px
+	color: #e1e4e9
+	outline: none
+	&:focus, &:active
+		background-color: transparent
+		outline: none
+
+.preloader
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	width: 100%
+	height: 100vh
+	background-color: #f3f3f3
+	z-index: 100
+	background-image: url("../img/preloader.gif")
+	background-repeat: no-repeat
+	background-position: center
+
+.button
+	display: inline-block
+	border: #333b46 1px solid
+	color: #333b46
+	text-decoration: none
+	padding: 5px 25px
+	border-radius: 20px
+	text-align: center
+	position: relative
+	outline: none
+	transition: background-color .1s ease
+	cursor: pointer
+	transition: all .3s
+
+	&:focus, &:hover
+		text-decoration: none
+		color: #333b46
+	&:hover
+		border: lighten(#333b46, 30%) 1px solid
+		&::after
+			opacity: .22
+	&:active
+		background-color: rgba(0,0,0,.05)
+		&::after
+			opacity: .32
+
+	&-white
+		border: #fff 1px solid
+		color: #fff
+		&:focus, &:hover
+			text-decoration: none
+			color: #fff
+			background-color: $accent
+			border: $accent 1px solid
+	&-accent
+		background-color: $accent
+		color: #fff
+		border-radius: 0
+		text-transform: uppercase
+		&:focus, &:hover
+			text-decoration: none
+			color: #fff
+
+.sect-gray
+	background-color: #f3f3f3
+
+.sect-black
+	background-color: #000
+
+.sect-accent
+	background-color: $accent
+
+.sect-black, .sect-accent
+	&-background
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		opacity: .15
+		background-size: cover
+
+.h2
+	font-size: 35px
+	letter-spacing: 7px
+
+.h3
+	font-size: 20px
+	letter-spacing: 5px
+	color: #333b46
+	margin-bottom: 30px
+
+.h4
+	font-size: 20px
+	color: #464646
+	font-weight: 400
+	margin-bottom: 25px
+
+.h2, .h3
+	font-family: SourceSansPro, sans-serif
+	font-weight: 200
+	text-transform: uppercase
+
+header, section
+	position: relative
+	background-size: cover
+	//background-position: center
+
+section
+	padding: 70px 0
+
+.section-overlay
+	&:before
+		content: ''
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		background-color: #202224
+		opacity: .5
+		z-index: 0
+
+
+// header --------------------
+.logo
+	font-family: "BigJohn", sans-serif
+	font-size: 25px
+
+.site-header
+	position: relative
+	min-height: 600px
+	height: 100vh
+	color: #fff
+	margin: 0
+	padding-top: 30px
+	transition: all .5s
+	&:hover 
+		.header-flex
+			.flex-center
+				.header-content
+					.scroll-down
+						bottom: 0
+						opacity: 1
+		
+	.top-line
+		position: relative
+		line-height: 45px
+		nav
+			text-align: right
+		a
+			color: #fff
+			text-decoration: none
+		ul, li
+			margin: 0
+			padding: 0
+			list-style: none
+		li,
+			display: inline-block
+			a
+				width: 100%
+				height: 100%
+				padding: 6px 15px
+				border: 1px solid transparent
+				border-radius: 20px
+				transition: border .4s ease
+				&:hover
+					border: #fff 1px solid
+		
+	.header-flex
+		display: flex
+		height: 80%
+		position: relative
+		top: 0
+		
+		.flex-center
+			margin: auto
+			.header-content
+				text-align: center
+				.h2
+					margin-bottom: 20px
+					white-space: nowrap
+				.scroll-down
+					opacity: 0
+					position: absolute
+					bottom: -80px
+					font-size: 24px
+					border-radius: 20px
+					background-color: transparent
+					width: 40px
+					height: 40px
+					color: #fff
+					border: #fff 1px solid
+					text-align: center
+					line-height: 40px
+					transition: all .5s
+					margin-left: -15px
+					&:hover
+						background-color: $accent
+						border: $accent 1px solid
+
+.hamburgers
+	right: 0
+	position: absolute
+	opacity: 0
+	.hamburger-box
+		.hamburger-inner, .hamburger-inner::after, .hamburger-inner::before 
+			background-color: #fff
+			height: 2px
+			width: 38px
+			border-radius: 0px
+
+//---------------------------------------		
+
+//---------- section ipad ------------
+.s-ipad
+	p
+		font-size: 14px
+		margin-bottom: 30px
+
+.sect-center-title	
+	text-align: center
+	p
+		font-size: 14px
+		margin-bottom: 60px
+
+
+.icons
+	width: 100%
+	text-align: center
+	margin-bottom: 	60px
+	span
+		color: #fff
+		font-size: 30px
+		background-color: #81868e
+		padding: 10px
+		border-radius: 30px
+		margin: 0 10px
+		width: 50px
+		transition: all .25s
+		&:hover
+			background-color: $accent
+
+.icons-small
+	span
+		color: #fff
+		font-size: 15px
+		background-color: #000
+		padding: 10px
+		border-radius: 30px
+		margin-left: 5px
+		transition: all .25s
+		&:hover
+			background-color: $accent
+
+.s-details
+	.sect-center-title
+		span
+			&:first-child
+				background-color: $accent
+				margin-left: 0px
+		.icons
+			margin-bottom: 45px
+
+
+.accent
+	color: $accent
+
+.s-feautured-project
+	padding-bottom: 0
+	.whiskey
+		display: flex
+		flex-wrap: wrap
+		.feautured
+			position: relative
+			min-height: 320px
+			background-repeat: no-repeat
+			background-size: cover
+			filter: grayscale(100%)
+			transition: all .5s
+			&:after
+				content: ''
+				position: absolute
+				top: 0
+				left: 0
+				bottom: 0
+				right: 0
+				background-color: rgba(0,0,0,.8)
+				opacity: 1
+				transition: all .5s
+			&:hover
+				filter: grayscale(0)
+				&:after
+					opacity: 0
+			&-work
+				width: 50%
+			&-vintage, &-branding
+				width: 25%
+				background-position: center
+			.h3, span
+				color: #fff
+				margin: 0
+				transform: translate(-50%, -50%)
+				position: absolute
+				top: 50%
+				left: 50%
+				z-index: 1
+			span
+				font-size: 25px
+
+	.fold-footer
+		position: relative
+		min-height: 115px
+		&-background
+			background-position: 50% 65%
+		&-content
+			min-height: 115px
+			display: flex
+			align-items: center
+			.h4
+				color: #fff
+				margin: 0
+				white-space: nowrap
+		
+
+.s-our-services
+	padding-bottom: 100px
+	.icons
+		span
+			margin: 0
+			margin-bottom: 18px
+	
+	.skills
+		padding-top: 60px
+		color: $text
+
+		&-branding, &-web-design, &-ui
+			position: relative
+			display: inline-block
+			text-align: center
+		&-web-design
+			margin: 0 20px
+		
+.s-team-quotes
+	position: relative
+	color: #b3b3b3
+	padding-bottom: 55px
+	p
+		margin-bottom: 50px
+	h3
+		color: #f3f3f3
+	.team-quotes-background
+		filter: grayscale(100%)
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		opacity: .15
+		background-position: 20% 10%
+		background-size: cover
+	.mcbook
+		position: relative
+		color: #fff
+		.logo
+			position: absolute
+			z-index: 1
+			//margin: 0
+			transform: translate(-50%, -20%)
+			top: 50%
+			left: 53%
+		img
+			position: absolute
+			top: -110px
+			right: 0px
+			
+.s-portfolio
+
+	ul, li
+		list-style-type: none
+		padding: 0
+		margin: 0
+		text-align: center	
+	li
+		position: relative
+		display: inline-block
+		margin: 0 15px
+		cursor: pointer
+		color: #464646
+		padding-bottom: 10px
+		&:hover
+				&:after
+					content: ""
+					position: absolute
+					bottom: 0
+					left: 50%
+					width: 60%
+					height: 2px
+					margin-left: -30%
+					background: $accent
+	ul
+		margin-bottom: 50px
+		width: 100%
+		.active
+			position: relative
+			padding-bottom: 10px
+			&:after
+				content: ""
+				position: absolute
+				bottom: 0
+				left: 50%
+				width: 60%
+				height: 2px
+				margin-left: -30%
+				background: $accent
+	
+	#masonry-grid
+		margin-bottom: 20px
+
+	.grid-filter
+		margin: 0
+		padding: 0
+		padding: 40px
+		padding-left: 0
+		li
+			list-style-type: none
+			display: inline-block
+			padding: 0 20px
+			padding-left: 0
+
+	.grid-item
+		width: 25%
+		position: relative
+		padding: 5px
+		color: #b2b3b3
+		img
+			width: 100%
+		.grid-item-cont
+			position: absolute
+			top: 5px
+			left: 5px
+			bottom: 5px
+			right: 5px
+			background-color: rgba(0,0,0,.8)
+			padding-left: 40px
+			padding-right: 20px
+			opacity: 0
+			transition: all .5s
+		&:hover .grid-item-cont 
+			opacity: 1
+			padding-top: 20%
+			.h3
+				top: 15%
+			p
+				top: 37%
+			.icons-small
+				bottom: 10%
+		.h3
+			position: absolute
+			top: 5%
+			color: $accent
+			padding-bottom: 10px
+			&:after
+				content: ""
+				position: absolute
+				left: 0
+				bottom: 0
+				width: 13%
+				height: 1px
+				background: $accent
+		p
+			position: absolute
+			top: 27%
+			font-size: 12px
+		.icons-small
+			position: absolute
+			bottom: 0
+
+		
+		.h3, p, .icons-small
+			transition: all .5s
+
+
+			
+		
+			
+			
+				
+	
+			
+
+	.grid-sizer
+		width: 25%
+	
+	.portfolio-footer
+		position: relative
+		min-height: 200px
+		&-background
+			background-position: 10% 36%
+		&-content
+			min-height: 200px
+			display: flex
+			flex-flow: column wrap
+			align-items: center
+			justify-content: center
+			.h4
+				color: #fff
+				margin: 0
+				white-space: nowrap
+				margin-bottom: 20px
+			
+.s-team
+			
+	.carousel-img
+		float: left
+		position: relative
+		
+		.carousel-img-hover
+			position: absolute
+			display: flex
+			top: 10px
+			left: 10px
+			bottom: 10px
+			right: 10px
+			opacity: 0
+			transition: all .5s
+			overflow: hidden
+			align-items: center
+  		justify-content: center
+			background-color: rgba(255,255,255,.75)
+			.soc-icons 
+				margin: 0 auto
+				a
+					color: #fff
+					
+				.fa
+					min-width: 35px
+					padding: 10px
+					background-color: rgba(0,0,0,.5)
+					margin-right: 7px
+					border-radius: 100%
+
+				
+		&:hover .carousel-img-hover
+			opacity: 1
+			
+
+
+	.carousel-content
+		position: relative
+		width: 45%
+		text-align: right
+		float: right
+		padding-left: 40px
+		
+		&-title
+			position: relative
+			margin-bottom: 45px
+			&:after
+				content: ""
+				position: absolute
+				right: -40px
+				top: 5%
+				width: 4px
+				height: 48px
+				margin-left: -30%
+				background: #19bd9a
+			.h4
+				margin: 0
+			span
+				display: inline-block
+				font-family: "SourceSansPro", sans-serif
+				font-size: 14px
+				font-weight: 200
+				text-transform: uppercase
+				margin-bottom: 25px
+		p
+			font-size: 14px
+		&-skills
+			text-transform: uppercase 
+			span
+				float: left
+		.carousel-content-skill
+			margin-bottom: 25px
+			width: 100%
+			height: 5px
+			background-color: #e1e4e9
+
+
+@for $i from 1 through 100
+	.persent#{$i}
+		background-color: $accent
+		height: 100%
+		width: $i + 0%
+        
+
+.s-team-cta
+	padding: 0
+	.sect-black-background
+		filter: grayscale(100%)  
+	&-content
+			min-height: 200px
+			display: flex
+			flex-flow: column wrap
+			align-items: center
+			justify-content: center
+			.h4
+				color: #fff
+				margin: 0
+				white-space: nowrap
+				margin-bottom: 20px 
+
+
+.s-testimonials
+	.carousel-testimonials
+		padding: 40px 0
+		background-color: #fff
+		&-img
+			display: inline-block
+			margin-right: 70px
+		&-content
+			width: 75%
+			display: inline-block
+			p
+				margin-bottom: 20px
+			span
+				text-transform: uppercase
+
+.s-blog
+
+	.sect-black-background
+		filter: grayscale(100%)
+		background-position: 10% 30%
+	.video-content
+		video
+			width: 100%
+	.latest-news, .latest-video, 
+		margin-bottom: 80px
+		color: #b2b3b3
+		font-size: 14px
+		.h3
+			color: #e1e4e9
+	.visit-our-blog	
+		padding-top: 70px
+		color: #b2b3b3
+		font-size: 14px
+		.h3
+			color: #e1e4e9
+	
+	.news-content
+		width: 60%
+		padding-left: 70px
+		.h4
+			color: #fff
+			margin: 0
+		p
+			margin-bottom: 40px
+		.by
+			text-transform: uppercase
+			font-size: 14px
+			margin-bottom: 5px
+			font-family: "SourceSansPro", sans-serif
+			font-weight: 200
+		.soc-action
+			margin-bottom: 40px
+			ul
+				padding: 0
+				
+				li
+					display: inline-block
+					font-family: "SourceSansPro", sans-serif
+					font-weight: 200
+					font-size: 14px
+					color: #464646
+
+					&:before
+						content: '-'
+		.button
+			border: none
+	
+			
+.s-our-price
+	.our-price-content-wrap
+		.plans
+			position: relative
+			background-color: #fff
+			width: 28%
+			display: inline-block
+			margin: 0 20px
+			&:hover
+				.plans-title, .plans-price
+					opacity: 0
+
+				.plans-works, .plans-button 
+					opacity: 1
+				.plans-button 
+					bottom: 0
+				
+			&-title
+				font-weight: 600
+				text-transform: uppercase
+				letter-spacing: 2px
+
+			&-price
+				text-align: center
+				font-size: 20px
+				line-height: 30px
+				padding: 100px 0
+				span
+					font-family: "SourceSansPro", sans-serif
+					font-size: 42px
+					font-weight: 700
+
+			&-works
+				opacity: 0
+				position: absolute
+				background-color: #fff
+				top: 0
+				left: 0
+				width: 100%
+				height: 100%
+				ul
+					padding-top: 40px
+				li
+					list-style: none
+					margin-bottom: 7px
+
+			&-button
+				opacity: 0
+				position: absolute
+				bottom: 80%
+				width: 100%
+				span
+					vertical-align: middle
+					font-size: 30px
+					margin-top: -3px
+
+			&-title, &-button
+				background-color: $accent
+				color: #fff
+				text-align: center
+				padding: 20px 0
+				transition: all .5s
+			
+			&-price, &-works
+				transition: all .25s
+
+			
+			
+			
+
+.s-subscribe
+	.h3
+		color: #e1e4e9
+	.form-subscribe
+		position: relative
+		input
+			width: 65%
+			margin-right: 10px
+		.button
+			padding: 8px 50px
+		.form-success
+			display: none
+			position: absolute
+			top: 0
+			left: 0
+			right: 0
+			bottom: 0
+			text-transform: uppercase
+			z-index: 10
+			span
+				margin: auto
+			& ~ *
+				transition: all .5s ease
+			&.active
+				& ~ *
+					opacity: .5
+					filter: blur(10px)
+
+.s-contact-us
+	.contact-us-content-wrap
+		.contact-info
+			position: relative
+			background-color: #fff
+			width: 28%
+			display: inline-block
+			margin: 0 20px
+			text-align: center
+			&-image
+				font-size: 50px
+				color: #fff
+				padding: 40px 0
+				span
+					vertical-align: middle
+			&-content
+				text-transform: uppercase
+				font-size: 14px
+				span
+					display: inline-block
+					color: #000
+					font-size: 16px
+					padding: 15px 0
+
+
+.s-callback 
+	padding-bottom: 0
+	.form-callback
+		width: 100%
+		margin-bottom: 100px
+		.form-inputs
+			display: flex
+			justify-content: space-between
+			flex-wrap: wrap
+			
+		input
+			width: 32%
+			
+			margin-bottom: 15px
+		textarea
+			width: 100%
+			min-height: 180px
+			resize: none
+			margin-bottom: 10px
+		.button
+			width: 100%
+			padding: 8px 50px
+			border: none
+		.form-success
+			display: none
+			position: absolute
+			top: 0
+			left: 0
+			right: 0
+			bottom: 0
+			text-transform: uppercase
+			z-index: 10
+			span
+				margin: auto
+			& ~ *
+				transition: all .5s ease
+			&.active
+				& ~ *
+					opacity: .5
+					filter: blur(10px)
+
+	.map
+		position: relative
+		.find-us
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			background-color: rgba(0,0,0,.85)
+			display: flex
+			align-items: center
+			justify-content: center
+			color: #fff
+			text-transform: uppercase
+			span
+				z-index: 1000
+				background-color: $accent
+				width: 20px
+				height: 20px
+				line-height: 20px
+				text-align: center
+				border-radius: 100%
+				cursor: pointer
+				margin-left: 10px
+
+.s-footer
+	text-align: center
+	padding: 80px 0px
+	.logo
+		color: #000
+	.soc-icons
+		a
+			color: #fff
+		.fa
+			min-width: 35px
+			padding: 10px
+			border-radius: 20px
+			margin-right: 7px
+		.fa-facebook
+			background-color: #3b5998
+		.fa-twitter
+			background-color: #26a6d1
+		.fa-linkedin
+			background-color: #0e76a8
+		.fa-instagram
+			background-color: #3f729b
+		.fa-vimeo
+			background-color: #86c9ef		
+
+
+
+
+.block-overlay
+	&:before
+		content: ''
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		background-color: #151515
+		opacity: .8
+		z-index: -1
+
+.gradient-overlay
+	&:before
+		content: ''
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		background: linear-gradient(to bottom, #000, transparent)
+		z-index: 1
+
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span 
+    background: $accent
+    border: 1px $accent solid
+
+.owl-theme .owl-dots .owl-dot span
+	border: 1px $accent solid
+	background-color: transparent
+
+
+@import "media" // Always at the end

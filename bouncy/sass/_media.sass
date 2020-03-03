@@ -1,0 +1,300 @@
+@import "vars"
+
+
+/*==========  Desktop First  ==========*/
+
+// ≥1200px
++media-breakpoint-down(lg)
+	.fold-footer
+		.h4,
+			font-size: 16px
+
+	.c100
+		font-size: 95px
+
+	.s-team-quotes 
+		.mcbook 
+			.logo
+				left: 50%
+				transform: translate(-50%,50%)
+			img
+				width: 100%
+				top: -60px
+	
+	.s-our-price 
+		.our-price-content-wrap 
+			.plans	
+				width: 27%	
+
+	.s-contact-us 
+		.contact-us-content-wrap 
+			.contact-info	
+				width: 27%	
+
+// ≥992px
++media-breakpoint-down(md)
+	.my-menu
+		font-size: 12px
+
+	.s-feautured-project
+		.feautured
+			&-work
+				flex-basis: 100%
+			&-vintage, &-branding
+				flex-basis: 50%
+
+	.fold-footer
+		text-align: center
+		.h4,
+			font-size: 14px
+		.h4
+			margin-bottom: 10px !important
+	
+	.s-our-services
+		.icons
+			margin-bottom: 0px
+		.skills
+			padding-top: 20px
+			text-align: center
+			.c100
+				font-size: 120px
+
+	.portfolio-footer-content
+		.h4
+			font-size: 18px
+
+	.s-contact-us 
+		.contact-us-content-wrap 
+			.contact-info
+				vertical-align: top
+				text-align: center
+
+	
+	.s-portfolio 
+		.grid-item 
+			.grid-item-cont
+				padding-left: 15px
+				padding-right: 15px
+
+				.h3	
+					font-size: 16px
+					letter-spacing: 4px
+					&:after
+						display: none
+				p
+					font-size: 12px
+				.icons-small
+					span
+						font-size: 10px
+						padding: .5em
+// ≥768px
++media-breakpoint-down(sm)
+	.hamburgers
+		opacity: 1
+	.my-menu
+		display: none
+	
+	.button-white
+		//font-size: 12px
+	
+	.s-our-services
+		.icons
+			span
+				margin: 0px 7px 30px 7px
+		
+	.mcbook
+		display: none
+	
+	.s-portfolio 
+		ul
+			font-size: 11px
+			margin-bottom: 15px
+
+	.s-portfolio 
+		.portfolio-footer-content 
+			.h4
+				text-align: center
+				font-size: 14px
+				white-space: normal
+
+	.s-team 
+		.carousel-img
+			margin-bottom: 20px
+		.carousel-content
+			width: 100%
+			&-title
+				&:after
+					right: -15px
+
+	.s-blog 
+		.news-content
+			width: 100%
+
+	
+	.s-our-price 
+		.our-price-content-wrap 
+			.plans	
+				width: 45%	
+				margin: 0px 7px
+				margin-bottom: 20px
+				&-works 
+					ul
+						padding: 10px
+
+	.s-subscribe 
+		.form-subscribe
+			input
+				margin-bottom: 10px
+			.button
+				padding: 8px 25px
+
+	.s-contact-us 
+		.contact-us-content-wrap 
+			.contact-info	
+				width: 45%	
+				margin: 0px 7px
+				margin-bottom: 20px	
+
+	.s-callback
+		.form-callback
+			.form-inputs
+				input	
+					width: 100%	
+
+	
+// ≥576px
++media-breakpoint-down(xs)
+	header
+		background-position: center
+
+	.hamburgers
+		right: 17px
+	
+	.header-content
+		.h2
+			font-size: 25px
+
+	.ipad-wrap
+			display: none
+
+
+	.s-feautured-project
+		.feautured
+			&-work, &-vintage, &-branding
+				flex-basis: 100%
+	
+	.s-feautured-project 
+		.fold-footer
+			text-align: center
+			.fold-footer-content
+				.h4
+					text-align: center
+					font-size: 14px
+					white-space: normal
+
+	.s-our-services
+		.skills
+			.c100
+				font-size: 85px
+
+	.s-our-price 
+		.our-price-content-wrap 
+			.plans	
+				width: 85%	
+				margin: 0px auto
+				display: block
+				margin-bottom: 20px
+				&-works 
+					ul
+						padding: 7px
+	
+	.s-subscribe 
+		.form-subscribe
+			text-align: center
+			input
+				margin-bottom: 10px
+				width: 100%
+				margin-bottom: 16px
+			.button
+				padding: 8px 50px
+
+	.s-contact-us 
+		.contact-us-content-wrap 
+			.contact-info	
+				width: 85%	
+				margin: 0px auto
+				display: block
+				margin-bottom: 20px
+			
+				&-content
+					padding-bottom: 7px
+
+	.s-testimonials 
+		.carousel-testimonials-content
+			width: 100%
+			padding-left: 20px
+			padding-right: 20px
+		.carousel-testimonials-img
+			text-align: center
+			width: 100%
+			margin-bottom: 20px
+			img
+				width: 40%
+				display: inline-block
+
+	.s-team 
+		.carousel-img
+			width: 50%
+			//text-align: center
+			img
+				width: 100%
+				display: inline-block
+			&-hover
+				width: 45%
+		.carousel-content
+			width: 50%
+			padding-left: 10px
+			font-size: 10px
+			p
+				font-size: 12px
+				margin-bottom: 10px
+			.carousel-content-title 
+				margin-bottom: 0
+				.h4
+					font-size: 15px
+				span
+					font-size: 10px
+					margin-bottom: 10px
+			.carousel-content-skill
+				margin-bottom: 5px
+
+	.s-portfolio 
+		.grid-item 
+			.grid-item-cont
+				padding-left: 5px
+				padding-right: 5px
+
+				.h3	
+					font-size: 7px
+					letter-spacing: 1px
+					&:after
+						display: none
+				p
+					font-size: 5px
+				.icons-small
+					span
+						font-size: 6px
+						padding: .5em
+/*==========  Mobile First  ==========*/
+
+// ≤576px
++media-breakpoint-up(sm)
+
+// ≤768px
++media-breakpoint-up(md)
+
+// ≤992px
++media-breakpoint-up(lg)
+
+// ≤1200px
++media-breakpoint-up(xl)
