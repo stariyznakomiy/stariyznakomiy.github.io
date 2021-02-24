@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="117" height="32" viewBox="0 0 117 32">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 30px;
+        fill: #fcae61;
+        font-family: Poppins;
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        fill: #242f51;
+      }
+    </style>
+  </defs>
+  <text id="AppLab" class="cls-1" x="-0.087" y="23.111">App<tspan class="cls-2">Lab</tspan></text>
+</svg>

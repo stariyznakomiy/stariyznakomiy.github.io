@@ -1,0 +1,617 @@
+@import config
+
+
+// CUSTOM USER STYLES & IMPORTS
+
+.container
+	max-width: 1170px
+	position: relative
+	margin: 0 auto
+	padding: 0 15px
+
+.button
+	display: inline-block
+	border: none
+	color: #fff
+	text-decoration: none
+	background-color: $accent
+	padding: 15px 38px
+	font-weight: 700
+	border-radius: 50px
+	text-align: center
+	position: relative
+	outline: none
+	transition: background-color .2s ease
+	cursor: pointer
+	&:focus, &:hover
+		text-decoration: none
+		color: #fff
+	&:hover
+		background-color: lighten($accent, 10%)
+	&:active
+		background-color: darken($accent, 10%)
+			
+.logo
+	cursor: pointer
+
+.menu
+	&__list
+		&-item
+			display: inline-block
+			margin-left: 30px
+			a
+				transition: all .2s ease
+				&:hover
+					color: lighten($accent, 5%)
+				&:active
+					color: darken($accent, 5%)
+
+
+.link
+	color: $accent
+	transition: background-color .2s ease
+	&:hover
+		color: lighten($accent, 10%)
+	&:active
+		color: darken($accent, 10%)
+
+.title--red
+	color: #f55767
+
+.title--blue
+	color: #2563ff
+
+.title--green
+	color: #40975f
+
+
+.mburger
+	display: none
+	position: absolute
+	right: 0
+	color: $title !important
+
+.header
+	//height: 100vh
+	min-height: 100vh
+	position: relative
+	background-position: top, bottom
+	background-repeat: no-repeat
+	background-size: auto, contain
+	
+	&__top-line
+		padding-top: 90px
+		display: flex
+		align-items: center
+		margin-bottom: 50px
+		position: relative
+		.button
+			position: absolute
+			right: 0
+	&__menu	
+		color: $title
+		position: absolute
+		right: 225px
+	&__row
+		display: flex
+		height: 100%
+		align-items: center
+		justify-content: space-between
+		margin: 0 70px
+	&__content
+		width: 530px
+		.button
+			margin-right: 25px
+	&__phone
+		width: 430px
+		text-align: right
+		img
+			width: 90%
+		
+	&__reward
+		display: inline-block
+		color: $title
+		background-color: #e2eaed
+		border-radius: 50px
+		line-height: 16px
+		padding-right: 40px
+		margin-bottom: 10px
+		img
+			height: 100%
+			background-color: #feaa25
+			padding: 10px
+			border-radius: 50px
+			margin-right: 5px
+	&__title
+		margin-bottom: 20px
+	&__text
+		font-size: 18px
+		margin-bottom: 40px
+	
+
+
+/////////////////
+
+.companies
+	padding: 110px 30px 
+	text-align: center	
+	color: $title
+	&__title
+		margin-bottom: 20px
+	&__list-item	
+		display: inline-block
+		margin: 0 35px
+
+
+.feautures
+	padding: 50px 30px
+	&__row
+		display: flex
+	&__img
+		width: 570px
+		img
+			width: 100%
+			margin-left: -20px
+	&__content
+		width: 420px
+	&__descr
+		margin-bottom: 80px
+	&__item
+		display: flex
+		align-items: center
+		margin-bottom: 40px
+		&-img
+			margin-right: 30px
+		&-title
+			margin-bottom: 10px
+
+
+
+.jackpots
+	padding-bottom: 110px
+	&__header
+		margin-bottom: 100px
+	&__row
+		display: flex
+		width: 100%
+		//align-items: center
+		margin-left: 50px
+		margin-right: 50px
+	&__title
+		width: 500px
+		padding-right: 60px
+		font-size: 40px
+	&__descr
+		display: flex
+		align-items: center
+		padding-left: 50px
+		width: 500px
+		border-left: 1px solid #b9b9b8
+		line-height: 1.625
+	&__item
+		padding-right: 100px
+		&-img
+			margin-bottom: 30px
+		&-title
+			margin-bottom: 10px
+	
+
+.integration
+	position: relative
+	border-bottom: 1px solid #f4f4f4
+	padding-bottom: 70px
+	&__row
+		width: 100%
+		display: flex
+		justify-content: space-between
+		align-items: center
+	&__img
+		width: 50%
+		margin-left: -50px
+		img
+			max-width: 100%
+	&__content
+		width: 50%
+		padding: 0px 70px 0px 85px
+	&__title
+		margin-bottom: 17px
+	&__descr
+		margin-bottom: 35px
+		
+
+.advantages
+	padding-top: 130px
+	text-align: center
+	&__title
+		margin: 0 auto
+		width: 40%
+		margin-bottom: 25px
+		//text-align: center
+	&__descr
+		margin: 0 auto
+		width: 58%
+		//text-align: center
+		margin-bottom: 90px
+	&__content
+		margin: 0 70px
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+		&-item
+			width: 30%
+			margin-bottom: 70px
+		&-img
+			margin-bottom: 30px
+		&-title
+			margin-bottom: 10px
+
+.ultimate
+	padding-top: 100px
+	padding-bottom: 90px
+	position: relative
+	.container
+		overflow-x: visible
+	&__img
+		top: 0
+		position: absolute
+		left: 700px
+		
+	&__row
+		//display: flex
+	//	align-items: center
+		padding-left: 40px
+	&__content
+		width: 60%
+		position: relative
+	&__title
+		width: 50%
+		margin-bottom: 20px
+	&__descr
+		width: 60%
+		margin-bottom: 50px
+	&__items
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+	&__item
+		width: 40%
+		margin-bottom: 50px
+		&-img
+			margin-bottom: 30px
+		&-title
+			margin-bottom: 10px
+
+		
+		
+
+
+.tariffs
+	text-align: center
+	border-bottom: 2px solid #f4f4f4
+	padding-bottom: 100px
+	&__title
+		margin: 0 auto
+		width: 58%
+		margin-bottom: 25px
+		//text-align: center
+	&__descr
+		margin: 0 auto
+		width: 58%
+		//text-align: center
+		margin-bottom: 90px
+	
+	&__switcher
+		margin-bottom: 40px
+		&-btn
+			position: relative
+			height: 53px
+			width: 280px
+			border: 2px solid #ebebeb
+			background-color: transparent
+			border-radius: 50px
+			color: #898a8e
+			padding: 3px
+			&::after
+				content: ''
+				position: absolute
+				top: 3px
+				left: 4px
+				width: 50%
+				height: 87%
+				background-color: $accent
+				border-radius: 50px
+				z-index: -1
+				transition: left .2s ease-out 0s
+		.annualy
+			&::after
+				left: 135px
+		&-item
+			display: inline-block
+			height: 100%
+			width: 49%
+			line-height: 45px
+			border-radius: 50px
+	
+	&__items
+		display: flex
+		justify-content: center
+		align-items: flex-start
+	&__item
+		width: 33%
+		color: #898a8e
+		border-radius: 10px
+		padding-bottom: 25px
+		margin-left: 20px
+		margin-right: 20px
+		border: 2px solid #ebebeb
+		transition: box-shadow .2s ease-out
+		&:hover
+			box-shadow: 0 55px 60px rgba(0,0,0,0.1)
+			border: 2px solid #ffffff
+		&-free
+			.tariffs__item-head
+				background: linear-gradient(to bottom, #ffffff, #f4f7f9)
+		&-monthly
+			.tariffs__item-head
+				background: linear-gradient(to bottom, #ffffff, #f4f7f9 30%)
+				
+			.button
+				margin-bottom: 30px
+		&-head
+			padding-top: 65px
+			padding-bottom: 35px
+			border-radius: 10px
+			
+		&-price
+			font-size: 60px
+			color: $title
+			font-weight: 600
+			.price-period
+				font-size: 18px
+				font-weight: 400
+		&-services
+			padding-top: 40px
+			padding-bottom: 10px
+			li
+				margin-bottom: 25px
+
+
+	.switcher-active
+		//background-color: $accent
+		color: #ffffff
+		font-weight: 700
+		transition: color .3s ease-out 0s
+		
+	.button-trail
+		font-family: $poppins
+		font-weight: 500
+		display: block
+		color: $accent
+
+
+.testimonial
+	padding-top: 150px
+	&__row
+		width: 100%
+		display: flex
+	&__map
+		position: relative
+		width: 823px
+		background-repeat: no-repeat
+		background-position: center
+		background-size: contain
+		min-height: 500px
+		margin-left: -200px
+		margin-top: 80px
+		&-items
+			display: flex
+			justify-content: space-between
+			position: relative
+			height: 100%
+		&-item
+			position: relative
+			display: inline-block
+			img
+				width: 100%
+			&--1
+				left: 5%
+				top: 20%
+			&--2
+				right: 4%
+				top: 47%
+			&--3
+				top: -2%
+				left: 3%
+			&--4
+				right: 13%
+				top: 74%
+			&--5
+				right: 26%
+				top: 40%
+			&--6
+				right: 21%
+				top: 50%
+			&--7
+				right: 20%
+				top: 5%
+	
+	&__content
+		width: 50%
+	&__title
+		margin-bottom: 20px
+	&__descr
+		margin-bottom: 32px
+	&__item
+		&-rating
+			display: flex
+			margin-bottom: 20px
+		&-star
+			margin-right: 10px
+		&-title
+			margin-bottom: 23px
+		&-text
+			margin-bottom: 55px
+		&-photo
+			display: inline-block
+			margin-right: 30px
+		&-descr
+			display: inline-block
+			font-size: 18px
+			position: relative
+			top: -20px
+		&-name
+			color: $title
+			font-weight: 600
+			margin-bottom: 3px
+
+	&__arrows	
+		z-index: 1001
+		position: absolute
+		bottom: 0
+		background-color: #eff3f8
+		display: inline-block
+		width: 50px
+		height: 50px
+		text-align: center
+		line-height: 50px
+		border-radius: 50px
+		color: $accent
+		
+		
+	
+	&__arrow-left
+		right: 70px
+		cursor: pointer
+		&::after
+			content: ''
+			position: absolute
+			width: 1px
+			height: 25px
+			top: 12px
+			background-color: #e7e7e7
+			left: 60px
+	&__arrow-right
+		right: 0
+		cursor: pointer
+			
+	.arrow-inactive
+		background-color: transparent
+		color: #dee1e6
+		border: 1px solid #eff3f8
+		line-height: 50px	
+
+
+.faq
+	padding-top: 190px
+	padding-bottom: 110px
+	border-bottom: 2px solid #f4f4f4
+	&__title
+		text-align: center
+		margin: 0 auto
+		width: 58%
+		margin-bottom: 25px
+		//text-align: center
+	&__descr
+		text-align: center
+		margin: 0 auto
+		width: 58%
+		//text-align: center
+		margin-bottom: 60px
+	&__content
+		padding: 0 100px
+	&__item
+		background-color: #f5f7fa
+		margin-bottom: 10px
+		padding: 18px 50px 18px 38px
+		transition: all .5s ease
+		&-title
+			position: relative
+			cursor: pointer
+			&::before
+				content: ''
+				position: absolute
+				display: inline-block
+				width: 2px
+				height: 18px
+				background-color: $title
+				right: 8px
+				top: 5px
+				transition: all .2s ease
+			&::after
+				content: ''
+				position: absolute
+				display: inline-block
+				width: 18px
+				height: 2px
+				background-color: $title
+				right: 0
+				top: 13px
+
+		&-text
+			display: none
+		&--active
+			padding: 50px 50px 70px 38px
+			transition: all .5s ease
+			.faq__item-title
+				margin-bottom: 30px
+				&::before
+					transform: rotate(90deg)
+					transition: all .2s ease
+			.faq__item-text
+				display: block
+
+
+.download
+	padding-top: 10px
+	&__row
+		display: flex
+	&__content
+		width: 50%
+		padding-top: 90px
+	&__title
+		margin-bottom: 30px
+	&__descr
+		margin-bottom: 50px
+	&__links
+		display: flex
+		&-google
+			margin-right: 30px
+			cursor: pointer
+		&-apple
+			cursor: pointer
+	&__img
+		width: 50%
+
+
+.footer
+	background-color: #09142e
+	text-align: center
+	padding-top: 115px
+	padding-bottom: 130px
+	margin-top: -61px
+	&__logo
+		margin-bottom: 50px
+		cursor: pointer
+	&__menu
+		color: #ffffff
+		margin-bottom: 50px
+	&__social
+		font-size: 30px
+		color: #273043
+		margin-bottom: 90px
+		&-icon
+			margin-right: 5px
+			margin-left: 5px
+			cursor: pointer
+			transition: color .2s ease
+			&:hover
+				color: #ffffff
+	&__copyraight
+		opacity: .7
+
+
+
+.annually
+
+
+@import media
