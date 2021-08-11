@@ -518,7 +518,7 @@ section {
       right: 42px;
       bottom: 25px;
       width: 25px;
-      height: 555px;
+      height: 710px;
       background: url("../img/s-border-r.png"); }
       @media (max-width: 1200px) {
         .section-5 .section-5__block:before {
@@ -899,7 +899,7 @@ section {
       right: 33px;
       bottom: 21px;
       width: 25px;
-      height: 586px;
+      height: 464px;
       background: url("../img/s-border-r.png"); }
       @media (max-width: 1200px) {
         .section-7 .section-7__block:before {
@@ -1135,6 +1135,25 @@ section {
       @media (max-width: 1200px) {
         .section-8 .section-8__block:before {
           display: none; } }
+
+      @media (min-width: 767px) {
+        .section-8 .section-8__block .section-8__block-map{
+          display: block;
+        }
+        .section-8 .section-8__block .section-8__block-map-mobile{
+          display: none;
+        }    
+      }
+         
+      @media (max-width: 767px) {
+          .section-8 .section-8__block .section-8__block-map{
+            display: none;
+          }
+          .section-8 .section-8__block .section-8__block-map-mobile{
+            display: block;
+          } 
+      }
+         
     .section-8 .section-8__block .section-8__block-text {
       position: relative;
       z-index: 20;
