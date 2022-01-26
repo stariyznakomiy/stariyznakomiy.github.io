@@ -399,7 +399,7 @@ textarea.input {
   z-index: -1;
 }
 .components {
-  background: linear-gradient(180deg, #bb63bb, #2e0d3c);
+  background: linear-gradient(180deg, #e9c1e9, #c597c5);
   color: #fff;
 }
 .components__body {
@@ -505,12 +505,11 @@ textarea.input {
   max-width: 100%;
 }
 .components__button {
-  background-color: #fff;
-  color: #000;
+  color: #fff;
 }
 @media (any-hover: hover) {
   .components__button:hover {
-    background-color: #bb88c0;
+    background-color: #4e2b51;
   }
 }
 
@@ -595,7 +594,7 @@ textarea.input {
 }
 
 .reviews {
-  background: linear-gradient(180deg, #2e0d3c, #bb63bb);
+  background: linear-gradient(180deg, #c597c5, #e9c1e9);
 }
 .reviews__body {
   text-align: center;
@@ -723,7 +722,7 @@ textarea.input {
 }
 
 .promo {
-  background: linear-gradient(180deg, #bb63bb, #2e0d3c);
+  background: linear-gradient(180deg, #e9c1e9, #c597c5);
 }
 .promo__body {
   text-align: center;
@@ -776,13 +775,12 @@ textarea.input {
   margin: 0px 0px 40px 0px;
 }
 .promo__button {
-  background-color: #fff;
-  color: #000;
+  color: #fff;
   margin: 40px 0px 0px 0px;
 }
 @media (any-hover: hover) {
   .promo__button:hover {
-    background-color: #bb88c0;
+    background-color: #4e2b51;
   }
 }
 
