@@ -1,0 +1,384 @@
+@charset "UTF-8";
+@font-face {
+  font-family: RobotoRegular;
+  font-display: swap;
+  src: url("../fonts/RobotoRegular.woff2") format("woff2"), url("../fonts/RobotoRegular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+* {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  min-width: 320px;
+}
+
+body {
+  color: #282828;
+  line-height: 1;
+  font-family: "RobotoRegular";
+  font-size: 0.75rem;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input,
+button,
+textarea {
+  font-family: "RobotoRegular";
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+  color: inherit;
+  background-color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+.lock body {
+  overflow: hidden;
+  touch-action: none;
+}
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.wrapper > main {
+  flex: 1 1 auto;
+}
+.wrapper > * {
+  min-width: 0;
+}
+
+/*
+(i) Стили будут применяться ко 
+всем классам содержащим *__container
+Например header__container, main__container и т.д.
+Снипет (HTML): cnt
+*/
+[class*=__container] {
+  max-width: 46.0625rem;
+  box-sizing: content-box;
+  margin: 0 auto;
+}
+
+[class*=-ibg] {
+  position: relative;
+}
+[class*=-ibg] img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+[class*=-ibg_contain] img {
+  object-fit: contain;
+}
+
+/*
+.icon-menu {
+	display: none;
+	@media (max-width: $mobile) {
+		display: block;
+		position: relative;
+		width: rem(30);
+		height: rem(18);
+		cursor: pointer;
+		z-index: 5;
+		span,
+		&::before,
+		&::after {
+			content: "";
+			transition: all 0.3s ease 0s;
+			right: 0;
+			position: absolute;
+			width: 100%;
+			height: rem(2);
+			background-color: #000;
+		}
+		&::before {
+			top: 0;
+		}
+		&::after {
+			bottom: 0;
+		}
+		span {
+			top: calc(50% - rem(1));
+		}
+		.menu-open & {
+			span {
+				width: 0;
+			}
+			&::before,
+			&::after {
+			}
+			&::before {
+				top: calc(50% - rem(1));
+				transform: rotate(-45deg);
+			}
+			&::after {
+				bottom: calc(50% - rem(1));
+				transform: rotate(45deg);
+			}
+		}
+	}
+}
+*/
+.page__head:not(:last-child) {
+  margin: 0px 0px 25px 0px;
+}
+.page .wrapper:not(:last-child) {
+  margin: 0px 0px 25px 0px;
+}
+.page__signature {
+  padding: 13px 0px 10px 0px;
+}
+.page__signature:not(:last-child) {
+  margin: 0px 0px 25px 0px;
+}
+.separator {
+  border-bottom: 2px solid #c0c0c0;
+  margin: 23px 0px 0px 0px;
+}
+
+.head {
+  padding: 0px 0px 26px 0px;
+}
+.head__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.head__top:not(:last-child) {
+  margin: 0px 0px 19px 0px;
+}
+.head__logo img {
+  max-width: 100%;
+}
+.head__info {
+  line-height: 20px;
+  text-align: right;
+  color: #606060;
+  text-transform: uppercase;
+}
+.head__title {
+  text-align: center;
+  font-size: 20px;
+  line-height: 23px;
+}
+.head__title:not(:last-child) {
+  margin: 0px 0px 23px 0px;
+}
+.car-info {
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  column-gap: 40px;
+  line-height: 230%;
+  padding: 10px 0px 3px 0px;
+}
+.car-info__item {
+  display: flex;
+  align-items: flex-start;
+  column-gap: 6px;
+}
+.car-info__item span {
+  color: #2f784e;
+}
+
+.stage {
+  display: flex;
+  align-items: flex-start;
+  column-gap: 12px;
+}
+.stage__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+  flex: 1 0 44px;
+  border-radius: 5px;
+}
+.stage__icon-red {
+  background-color: #ff0000;
+}
+.stage__icon-green {
+  background-color: #0fa958;
+}
+.stage__icon-yellow {
+  background-color: #ffd700;
+}
+.stage__icon img {
+  width: 100%;
+  height: 100%;
+}
+.content-stage {
+  width: 100%;
+}
+.content-stage__info {
+  margin: 0px -10px;
+  display: flex;
+}
+.content-stage__info:not(:last-child) {
+  margin-bottom: 20px;
+}
+.content-stage__column {
+  padding: 0px 10px;
+  flex: 0 0 33.3334%;
+}
+.descr-stage__title {
+  font-size: 16px;
+  line-height: 19px;
+}
+.descr-stage__title:not(:last-child) {
+  margin: 0px 0px 11px 0px;
+}
+.descr-stage__list {
+  line-height: 14px;
+  color: #606060;
+}
+.descr-stage__list:not(:last-child) {
+  margin: 0px 0px 14px 0px;
+}
+.descr-stage__list ul {
+  padding: 0px 0px 0px 19px;
+}
+.descr-stage__list ul li {
+  list-style: disc;
+  margin: 7px 0px;
+}
+.descr-stage__label {
+  line-height: 14px;
+}
+.descr-stage__error {
+  font-size: 14px;
+  line-height: 16px;
+  color: #ff0000;
+}
+.descr-stage__error-servise {
+  font-size: 14px;
+  line-height: 16px;
+  color: #f7862a;
+}
+
+.table__row {
+  display: flex;
+  align-items: flex-end;
+}
+.table__row:not(:last-child) {
+  margin: 0px 0px 14px 0px;
+}
+.table__head {
+  justify-content: space-between;
+  border-bottom: 1px solid #282828;
+  padding: 0px 0px 5px 0px;
+}
+.table__head:not(:last-child) {
+  margin: 0px 0px 17px 0px;
+}
+.table__img {
+  flex: 0 0 110px;
+}
+.table__img img {
+  max-width: 100%;
+}
+.table__list-label {
+  flex: 0 0 122px;
+}
+.table__icon {
+  flex: 1 1 50%;
+  text-align: center;
+}
+
+.comment-stage {
+  display: flex;
+  column-gap: 10px;
+  align-items: flex-start;
+  background-color: #f5f5f5;
+  padding: 10px;
+}
+.comment-stage__text {
+  line-height: 20px;
+}
+
+.signature {
+  text-align: right;
+  line-height: 14px;
+}
+
+.footer__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding: 10px 0px 0px 0px;
+}
+.footer__logo {
+  flex: 0 0 152px;
+  text-align: center;
+}
+.footer__logo img {
+  max-width: 74%;
+}
+.footer__text p {
+  line-height: 14px;
+  color: #000000;
+}
+.footer__text p:not(:last-child) {
+  margin: 0px 0px 6px 0px;
+}
+@media print {
+  .wrapper {
+    page-break-inside: avoid;
+  }
+}
