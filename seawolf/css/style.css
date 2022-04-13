@@ -2752,6 +2752,9 @@ body::after {
   padding: 0px 5rem 0px 6.875rem;
   justify-content: flex-end;
 }
+.table-cart__cell span {
+  font-size: 1.125rem;
+}
 .table-cart__cell-img {
   flex: 0 0 8.75rem;
   height: 8.75rem;
@@ -2824,7 +2827,7 @@ body::after {
 .table-cart__total-text {
   text-align: left;
   font-weight: normal;
-  padding: 0px 0px 0px 2.5rem;
+  padding: 0px 6.875rem 0px 2.5rem;
 }
 .table-cart .product__list {
   margin: 0px 0px 6.25rem 0px;
