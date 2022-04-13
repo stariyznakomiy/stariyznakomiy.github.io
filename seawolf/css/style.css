@@ -2763,6 +2763,12 @@ body::after {
   align-items: center;
   justify-content: center;
 }
+.table-cart__cell-img picture {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .table-cart__cell-img img {
   max-width: 90%;
   max-height: 90%;
