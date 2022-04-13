@@ -5925,6 +5925,11 @@ PERFORMANCE OF THIS SOFTWARE.
     function documentActions(e) {
         const targetElement = e.target;
         if (targetElement.classList.contains("search-header__icon")) document.querySelector(".search-header").classList.toggle("_active"); else if (!targetElement.closest(".search-header") && document.querySelector(".search-header._active")) document.querySelector(".search-header").classList.remove("_active");
+        if (targetElement.classList.contains("table-cart__cell-checkbox")) {
+            var checkbox = document.querySelectorAll(".table-cart__cell-checkbox");
+            for (var i = 0; i < checkbox.length; i++) if (checkbox[i].classList.contains("active")) checkbox[i].classList.remove("active");
+            targetElement.classList.add("active");
+        }
     }
     window["FLS"] = true;
     isWebp();

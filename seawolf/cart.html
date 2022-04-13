@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Cart</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20220413045643">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="header__wrapp">
+			<header data-scroll="2000" class="header">
+				<button type="button" class="accessibility"><picture><source srcset="img/icons/accessibility-icon.webp" type="image/webp"><img src="img/icons/accessibility-icon.png" alt=""></picture></button>
+				<div class="header__container">
+					<div class="header__body">
+						<a href="" target="_blank" class="header__logo"><picture><source srcset="img/logo.webp" type="image/webp"><img src="img/logo.png" alt="logo"></picture></a>
+						<div class="header__search">
+							<div class="search-header">
+								<button type="button" class="search-header__icon _icon-search"></button>
+								<form action="#" class="search-header__form">
+									<button type="submit" class="search-header__button _icon-search"></button>
+									<input autocomplete="off" type="text" name="form[]" data-error="Ошибка" placeholder="חיפוש באתר" class="search-header__input">
+								</form>
+							</div>
+						</div>
+						<div class="header__socials socials">
+							<a href="#" target="_blank" class="socials__link _icon-facebook"></a>
+							<a href="#" target="_blank" class="socials__link _icon-instagram"></a>
+							<a href="#" target="_blank" class="socials__link _icon-whatsapp"></a>
+						</div>
+						<a href="#" class="header__cart-btn button-red">סל קניות</a>
+						<div class="header__menu menu">
+							<!-- <button type="button" class="menu__icon icon-menu"><span></span></button> -->
+							<nav class="menu__body">
+								<ul class="menu__list">
+									<li class="menu__item"><a href="#" class="menu__link">דף הבית</a></li>
+									<li class="menu__item"><a href="#" class="menu__link">ממליצים</a></li>
+									<li class="menu__item"><a href="#" class="menu__link">טכנולוגיות</a></li>
+									<li class="menu__item"><a href="#" class="menu__link">מאמרים</a></li>
+									<li class="menu__item">
+										<a href="#" class="menu__link">מוצרים</a>
+										<ul class="menu__sub-list">
+											<li class="menu__sub-item"><a href="#" class="menu__sub-link _icon-arrows-left-icon">סאפים סי
+													וולף</a></li>
+											<li class="menu__sub-item"><a href="#" class="menu__sub-link _icon-arrows-left-icon">סאפים אקווה
+													מרינה</a></li>
+											<li class="menu__sub-item"><a href="#" class="menu__sub-link _icon-arrows-left-icon">קיאקים
+													אקווה מרינה</a></li>
+											<li class="menu__sub-item"><a href="#" class="menu__sub-link _icon-arrows-left-icon">אביזרים
+													וציוד נלווה</a></li>
+											<li class="menu__sub-item"><a href="#" class="menu__sub-link _icon-arrows-left-icon">חבילות
+													ומבצעים</a></li>
+										</ul>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+					<div data-goto=".header" class="scroll-top _icon-alide-angle"></div>
+				</div>
+			</header>
+		</div>
+		<main class="page">
+			<div class="top-line">
+				<div class="top-line__container">
+					<div class="top-line__body">
+						<nav class="breadcrumbs">
+							<ul class="breadcrumbs__list">
+								<li class="breadcrumbs__item">
+									<a href="" class="breadcrumbs__link">דף הבית</a>
+								</li>
+								<li class="breadcrumbs__item">
+									<span class="breadcrumbs__current">קטלוג מוצרים</span>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+			<section class="page__cart cart">
+				<div class="cart__container">
+					<div class="cart__body">
+						<h1 class="cart__title h1">סל קניות</h1>
+						<div class="cart__table table-cart">
+							<div class="table-cart__list product__list">
+								<div class="table-cart__head">
+									<div class="table-cart__title">סכום ביניים</div>
+									<div class="table-cart__title">כמות</div>
+									<div class="table-cart__title">מחיר יח’</div>
+									<div class="table-cart__title">מוצר</div>
+								</div>
+								<div class="table-cart__body">
+									<div class="table-cart__row">
+										<div class="table-cart__cell product__total"><span>₪</span> 446 4</div>
+										<div class="table-cart__cell product__quantity">
+											<div class="quantity">
+												<button type="button" class="quantity__button quantity__button_minus"></button>
+												<div class="quantity__input">
+													<input autocomplete="off" type="text" name="form[]" value="1">
+												</div>
+												<button type="button" class="quantity__button quantity__button_plus"></button>
+											</div>
+										</div>
+										<div class="table-cart__cell product__price"><span>₪</span> 223 2</div>
+										<div class="table-cart__cell product">
+											<div class="table-cart__cell-text product__name">סאפ מתנפח בריז - BREEZE תוצרת אקווה
+												מרינה, בגודל 10’9
+												(300X76X12 ס”מ), דגם חדש - שנת 2022</div>
+											<div class="table-cart__cell-img product__img">
+												<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+											</div>
+											<button type="button" class="table-cart__cell-delete product__delete"></button>
+										</div>
+									</div>
+									<div class="table-cart__row">
+										<div class="table-cart__cell product__total"><span>₪</span> 446 4</div>
+										<div class="table-cart__cell product__quantity">
+											<div class="quantity">
+												<button type="button" class="quantity__button quantity__button_minus"></button>
+												<div class="quantity__input">
+													<input autocomplete="off" type="text" name="form[]" value="1">
+												</div>
+												<button type="button" class="quantity__button quantity__button_plus"></button>
+											</div>
+										</div>
+										<div class="table-cart__cell product__price"><span>₪</span> 223 2</div>
+										<div class="table-cart__cell product">
+											<div class="table-cart__cell-text product__name">סאפ מתנפח בריז - BREEZE תוצרת אקווה
+												מרינה, בגודל 10’9
+												(300X76X12 ס”מ), דגם חדש - שנת 2022</div>
+											<div class="table-cart__cell-img product__img">
+												<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+											</div>
+											<button type="button" class="table-cart__cell-delete product__delete"></button>
+										</div>
+									</div>
+									<div class="table-cart__row">
+										<div class="table-cart__cell product__total"><span>₪</span> 446 4</div>
+										<div class="table-cart__cell product__quantity">
+											<div class="quantity">
+												<button type="button" class="quantity__button quantity__button_minus"></button>
+												<div class="quantity__input">
+													<input autocomplete="off" type="text" name="form[]" value="1">
+												</div>
+												<button type="button" class="quantity__button quantity__button_plus"></button>
+											</div>
+										</div>
+										<div class="table-cart__cell product__price"><span>₪</span> 223 2</div>
+										<div class="table-cart__cell product">
+											<div class="table-cart__cell-text product__name">סאפ מתנפח בריז - BREEZE תוצרת אקווה
+												מרינה, בגודל 10’9
+												(300X76X12 ס”מ), דגם חדש - שנת 2022</div>
+											<div class="table-cart__cell-img product__img">
+												<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+											</div>
+											<button type="button" class="table-cart__cell-delete product__delete"></button>
+										</div>
+									</div>
+								</div>
+								<div class="table-cart__total">
+									<div class="table-cart__cell table-cart__total-product"><span>₪</span> 296 10</div>
+									<div class="table-cart__title table-cart__total-text">סה”כ לתשלום לפני דמי משלוח</div>
+								</div>
+							</div>
+							<div class="table-cart__list delivery__list">
+								<div class="table-cart__head">
+									<div class="table-cart__title">בחרו סוג משלוח</div>
+								</div>
+								<div class="table-cart__body">
+									<div class="table-cart__row">
+										<div class="table-cart__cell delivery__price"><span>₪</span> 60</div>
+										<div class="table-cart__cell delivery">
+											<div class="table-cart__cell-text delivery__text">
+												<div class="delivery__title">דואר שליחים</div>
+												<div class="delivery__descr">
+													בחרו סוג משלוח זה עבור: כל פריט בודד | סאפ / קיאק + עד 3 מוצרים נלווים, לא כולל
+													קולר (נשלח בחבילה נפרדת) | עד 4 מוצרים נלווים.
+													<span>מחיר לחבילה אחת</span>
+												</div>
+											</div>
+											<div class="table-cart__cell-img delivery__img">
+												<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+											</div>
+											<div class="table-cart__cell-checkbox active"></div>
+										</div>
+									</div>
+									<div class="table-cart__row">
+										<div class="table-cart__cell delivery__price"><span>₪</span> 60</div>
+										<div class="table-cart__cell delivery">
+											<div class="table-cart__cell-text delivery__text">
+												<div class="delivery__title">דואר שליחים</div>
+												<div class="delivery__descr">
+													בחרו סוג משלוח זה עבור: כל פריט בודד | סאפ / קיאק + עד 3 מוצרים נלווים, לא כולל
+													קולר (נשלח בחבילה נפרדת) | עד 4 מוצרים נלווים.
+													<span>מחיר לחבילה אחת</span>
+												</div>
+											</div>
+											<div class="table-cart__cell-img delivery__img">
+												<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+											</div>
+											<div class="table-cart__cell-checkbox"></div>
+										</div>
+									</div>
+									<div class="table-cart__row">
+										<div class="table-cart__cell delivery__price"><span>₪</span> 60</div>
+										<div class="table-cart__cell delivery">
+											<div class="table-cart__cell-text delivery__text">
+												<div class="delivery__title">דואר שליחים</div>
+												<div class="delivery__descr">
+													בחרו סוג משלוח זה עבור: כל פריט בודד | סאפ / קיאק + עד 3 מוצרים נלווים, לא כולל
+													קולר (נשלח בחבילה נפרדת) | עד 4 מוצרים נלווים.
+													<span>מחיר לחבילה אחת</span>
+												</div>
+											</div>
+											<div class="table-cart__cell-img delivery__img">
+												<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+											</div>
+											<div class="table-cart__cell-checkbox"></div>
+										</div>
+									</div>
+								</div>
+								<div class="table-cart__total">
+									<div class="table-cart__cell table-cart__total-delivery"><span>₪</span> 300</div>
+									<div class="table-cart__title table-cart__total-text">סה”כ דמי משלוח</div>
+								</div>
+							</div>
+							<div class="table-cart__total">
+								<div class="table-cart__cell table-cart__total-all"><span>₪</span> 596 10</div>
+								<div class="table-cart__title table-cart__total-text">סה”כ לתשלום כולל לפני דמי משלוח</div>
+							</div>
+						</div>
+						<div class="cart__buttons">
+							<a href="" class="cart__button-back button button-gray">המשך לקניה</a>
+							<button type="button" class="cart__button-clear button button-white">רוקן סל</button>
+							<button type="button" class="cart__button-pay button button-green">רוקן סל</button>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="page__feautures-products catalog">
+				<div class="catalog__container">
+					<div class="catalog__body">
+						<h2 class="catalog__title h2">מוצרים מומלצים</h2>
+						<div class="catalog__list">
+							<div class="catalog__item product-card">
+								<div class="product-card__head">
+									<button type="button" class="product-card__cart _icon-cart-icon"></button>
+									<a href="" class="product-card__view _icon-eye"></a>
+									<div class="product-card__img-ibg_contain">
+										<picture><source srcset="img/product/sup1.webp" type="image/webp"><img src="img/product/sup1.jpg" alt=""></picture>
+									</div>
+								</div>
+								<div class="product-card__body">
+									<div class="product-card__descr">
+										סאפ מתנפח דיאנה
+										iSUP DHYANA
+										תוצרת AQUA MARINA
+									</div>
+									<div class="product-card__price">
+										<span>₪</span> 2223
+									</div>
+								</div>
+							</div>
+							<div class="catalog__item product-card">
+								<div class="product-card__head">
+									<div class="product-card__label">מוצר חדש</div>
+									<button type="button" class="product-card__cart _icon-cart-icon"></button>
+									<a href="" class="product-card__view _icon-eye"></a>
+									<div class="product-card__img-ibg_contain">
+										<picture><source srcset="img/product/sup1.webp" type="image/webp"><img src="img/product/sup1.jpg" alt=""></picture>
+									</div>
+								</div>
+								<div class="product-card__body">
+									<div class="product-card__descr">
+										סאפ מתנפח דיאנה
+										iSUP DHYANA
+										תוצרת AQUA MARINA
+									</div>
+									<div class="product-card__price">
+										<span>₪</span> 2223
+									</div>
+								</div>
+							</div>
+							<div class="catalog__item product-card">
+								<div class="product-card__head">
+									<button type="button" class="product-card__cart _icon-cart-icon"></button>
+									<a href="" class="product-card__view _icon-eye"></a>
+									<div class="product-card__img-ibg_contain">
+										<picture><source srcset="img/product/sup1.webp" type="image/webp"><img src="img/product/sup1.jpg" alt=""></picture>
+									</div>
+								</div>
+								<div class="product-card__body">
+									<div class="product-card__descr">
+										סאפ מתנפח דיאנה
+										iSUP DHYANA
+										תוצרת AQUA MARINA
+									</div>
+									<div class="product-card__price">
+										<span>₪</span> 2223
+									</div>
+								</div>
+							</div>
+							<div class="catalog__item product-card">
+								<div class="product-card__head">
+									<div class="product-card__label">מוצר חדש</div>
+									<button type="button" class="product-card__cart _icon-cart-icon"></button>
+									<a href="" class="product-card__view _icon-eye"></a>
+									<div class="product-card__img-ibg_contain">
+										<picture><source srcset="img/product/sup1.webp" type="image/webp"><img src="img/product/sup1.jpg" alt=""></picture>
+									</div>
+								</div>
+								<div class="product-card__body">
+									<div class="product-card__descr">
+										סאפ מתנפח דיאנה
+										iSUP DHYANA
+										תוצרת AQUA MARINA
+									</div>
+									<div class="product-card__price">
+										<span>₪</span> 2223
+									</div>
+								</div>
+							</div>
+						</div>
+						<a href="" class="catalog__button button button-white _icon-arrows-left-icon">
+							<span>
+								כל המוצרים
+							</span>
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__img">
+				<picture><source srcset="img/footer-watermark-logo.webp" type="image/webp"><img src="img/footer-watermark-logo.png" alt=""></picture>
+			</div>
+			<div class="footer__container">
+				<div class="footer__body">
+					<div class="footer__top">
+						<nav class="footer__menu menu-footer">
+							<div class="menu-footer__column">
+								<div class="menu-footer__title">דף הבית</div>
+								<ul class="menu-footer__list">
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">סאפים סי וולף</a></li>
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">סאפים אקווה מרינה</a></li>
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">קיאקים אקווה מרינה</a></li>
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">אביזרים וציוד נלווה</a></li>
+								</ul>
+							</div>
+							<div class="menu-footer__column">
+								<div class="menu-footer__title">דף הבית</div>
+								<ul class="menu-footer__list">
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">סאפים סי וולף</a></li>
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">סאפים אקווה מרינה</a></li>
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">קיאקים אקווה מרינה</a></li>
+								</ul>
+							</div>
+							<div class="menu-footer__column">
+								<div class="menu-footer__title">דף הבית</div>
+								<ul class="menu-footer__list">
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">סאפים סי וולף</a></li>
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">סאפים אקווה מרינה</a></li>
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">קיאקים אקווה מרינה</a></li>
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">אביזרים וציוד נלווה</a></li>
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">חבילות ומבצעים</a></li>
+								</ul>
+							</div>
+							<div class="menu-footer__column">
+								<div class="menu-footer__title">דף הבית</div>
+								<ul class="menu-footer__list">
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">סאפים סי וולף</a></li>
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">סאפים אקווה מרינה</a></li>
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">קיאקים אקווה מרינה</a></li>
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">אביזרים וציוד נלווה</a></li>
+									<li class="menu-footer__item"><a href="" class="menu-footer__link">חבילות ומבצעים</a></li>
+								</ul>
+							</div>
+							<div class="menu-footer__column">
+								<div class="menu-footer__title">דף הבית</div>
+								<ul class="menu-footer__list">
+								</ul>
+							</div>
+						</nav>
+						<a href="" class="footer__logo">
+							<picture><source srcset="img/footer-logo.webp" type="image/webp"><img src="img/footer-logo.png" alt="logo"></picture>
+						</a>
+					</div>
+					<div class="footer__mid">
+						<div class="footer__socials socials">
+							<a href="#" target="_blank" class="socials__link _icon-facebook"></a>
+							<a href="#" target="_blank" class="socials__link _icon-instagram"></a>
+							<a href="#" target="_blank" class="socials__link _icon-whatsapp"></a>
+						</div>
+						<div class="footer__info">
+							<span class="footer__info-item">
+								פגישות ישיות בתאום מראש
+							</span>
+							<span class="footer__info-item">
+								קניון עזריאלי מודיעין, קומה -2
+							</span>
+							<span class="footer__info-item">
+								מרכז: טל’ 053-3209805
+							</span>
+							<span class="footer__info-item">
+								פתוחים כל יום 10:00-12:00
+							</span>
+							<span class="footer__info-item">
+								דרך פעמי השלום, טיילת מלון דן, צמוד לג’פניקה
+							</span>
+							<span class="footer__info-item">
+								אילת: טל‘ 053-3209806
+							</span>
+						</div>
+						<div class="footer__info-2">
+							<span class="footer__info-item">מדיניות אחריות</span>
+							<span class="footer__info-item">מדיניות החלפת והחזרת מוצר</span>
+							<span class="footer__info-item">עוגיות (COOCIES</span>
+							<span class="footer__info-item"> מדיניות פרטיות</span>
+							<span class="footer__info-item">© כל הזכויות שמורות סי וולף בע”מ</span>
+						</div>
+						<div class="footer__bot">
+							<a href="" class="footer__logo-bot">
+								<picture><source srcset="img/footer-logo-2.webp" type="image/webp"><img src="img/footer-logo-2.png" alt=""></picture>
+							</a>
+							<span class="footer__bot-item">בניית אתרים</span>
+							<span class="footer__bot-item">עיצוב אתרים</span>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+	<!-- <div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<button data-close type="button" class="popup__close">Закрыть</button>
+			<div class="popup__text">
+			</div>
+		</div>
+	</div>
+</div> -->
+
+	<div id="popup-comment" aria-hidden="true" class="popup popup-comment">
+		<div class="popup__wrapper popup-comment__wrapper">
+			<div class="popup__content popup-comment__content">
+				<button data-close type="button" class="popup__close popup-comment__close"></button>
+				<div class="popup-comment__img-ibg">
+					<picture><source srcset="img/popup/pop-up-pic.webp" type="image/webp"><img src="img/popup/pop-up-pic.jpg" alt=""></picture>
+				</div>
+				<div class="popup-comment__body">
+					<picture><source srcset="img/popup/quote.webp" type="image/webp"><img src="img/popup/quote.png" alt="" class="popup-comment__quote"></picture>
+					<div class="popup-comment__text">
+						<p>
+							סאפ מתנפח הוא חלק מהציוד של יאכטה סול. אחרי בדיקות מצאנו כי סאפ 10.6 ביסט של אקווה מרינה מתאים לנו (
+							ויש לנו כמה סאפים) מהתחלה נהנו מאוד ואין ספק שמדובר במוצר איכותי.
+						</p>
+						<p>
+							לא עברה שנה והייתה דליפת אוויר מאזור הניפוח. שלחנו צילום וידאו לדניאל מאקווה מרינה (את הטלפון שלו
+							מהשירות).
+						</p>
+						<p>
+							כבר באותו יום דניאל חזר אלינו וניסה להנחות את התיקון באמצאות חיזוק השסתום של הניפוח (אך זה לא צלח)
+							הגענו למודעין מסרנו את הסאפ שתוקן תוך יומים במקצועיות (הושאר לילה לבדיקה שלא דולף אוויר) עכשיו יכולים
+							להמשיך ולהנות מהסאפ סמוך ליאכטה סול מנמל יפו.
+						</p>
+						<p>
+							תודה לדניאל מאקווה מרינה!
+						</p>
+					</div>
+					<div class="popup-comment__username">גלגשבילי איליה</div>
+					<a href="" class="popup-comment__link">סאפ מונסטר</a>
+					<div class="popup-comment__socials slide-comments__socials">
+						<a href="" class="popup-comment__social _icon-facebook"></a>
+						<a href="" class="popup-comment__social _icon-instagram"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="popup-product" aria-hidden="true" class="popup popup-product">
+		<div class="popup__wrapper popup-product__wrapper">
+			<div class="popup__content popup-product__content">
+				<button data-close type="button" class="popup__close popup-product__close"></button>
+				<div class="popup-product__body">
+					<div class="popup-product__text">
+						<h4 class="popup-product__title h4">משוט אלומיניום SPORT III</h4>
+						<div class="popup-product__descr">
+							<p> <span>מוט אחיזה:</span>עשוי אלומיניום בעובי 1.2 מ"מ. קוטר: “1.14 (29 מ"מ)</p>
+							<p><span>להב:</span>PP מחוזק.</p>
+							<p> <span>מידה:</span>20×40 ס"מ</p>
+							<p> <span>ידית אחיזה:</span>ידית מוט T סטנדרטית.</p>
+							<p> <span>אורך:</span>175-220 ס"מ, שלושה חלקים.</p>
+							<p> <span>משקל:</span>1100 גרם (1.1 ק"ג).</p>
+						</div>
+						<a href="" class="popup-product__button button-disabled button _icon-arrows-left-icon">
+							<span> לעמוד מוצר</span></a>
+					</div>
+
+					<div class="popup-product__img">
+						<picture><source srcset="img/popup/pop-up-product-pic.webp" type="image/webp"><img src="img/popup/pop-up-product-pic.jpg" alt=""></picture>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="popup-cookies" aria-hidden="true" class="popup popup-cookies">
+		<div class="popup__wrapper popup-cookies__wrapper">
+			<div class="popup__content popup-cookies__content">
+				<button data-close type="button" class="popup__close popup-cookies__close"></button>
+				<div class="popup__text popup-cookies__text">
+					<h2 class="popup-cookies__title h2">מעקב אחר עוגיות (COOKIES)</h2>
+					<p>בהחלטתך לגלוש באתר הנך מאפשר/ת לסי וולף בע”מ (כהגדרתה במדיניות הפרטיות) שימוש בCookies, פיקסלים, תגיות
+						וטכנולוגיות דומות. אנו משתמשים בטכנולוגיות אלה כדי לאסוף מידע על המכשירים והדפדפנים שלך וללמוד על הפעילות
+						שלך על מנת להתאים אותנו לצרכים שלך כגון: הצגת מודעות בהתאמה אישית, עגלת קניות, אבטחה, שיפור האתר ותכונות
+						נוספות. אדידס עשויה לשתף נתונים אלה עם צדדים שלישיים - כולל שותפים לפרסום במדיה חברתית למטרות שיווק. אנא
+						עיינו במדיניות והודעת הפרטיות (תחת Cookies) על מנת ללמוד כיצד אנו משתמשים בנתונים שלך. אם תבחר/י להמשיך
+						לגלוש באתר אנו נסיק כי הנך מקבל/ת את תנאי השימוש, מדיניות והודעת הפרטיות באתר ואת הסכמתך זו לעיל.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js?_v=20220413045643"></script>
+</body>
+
+</html>
