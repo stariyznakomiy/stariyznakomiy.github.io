@@ -4138,7 +4138,7 @@
         });
     }
     function initSliders() {
-        if (document.querySelector(".main-top__slider")) new core(".main-top__slider", {
+        if (document.querySelector(".top__slider")) new core(".top__slider", {
             modules: [ Navigation, Pagination ],
             observer: true,
             observeParents: true,
@@ -4147,7 +4147,7 @@
             autoHeight: true,
             speed: 800,
             pagination: {
-                el: ".main-top__slider-pagination",
+                el: ".top__slider-pagination",
                 clickable: true
             },
             on: {}
@@ -5931,6 +5931,13 @@ PERFORMANCE OF THIS SOFTWARE.
             targetElement.classList.add("active");
         }
     }
+    const header = document.querySelector("header.header");
+    const script_scrollTop = document.querySelector(".scroll-top__icon");
+    document.addEventListener("windowScroll", (function(e) {
+        if (header.classList.contains("_header-scroll")) {
+            if (!script_scrollTop.classList.contains("_active")) script_scrollTop.classList.add("_active");
+        } else if (!header.classList.contains("_header-scroll")) if (script_scrollTop.classList.contains("_active")) script_scrollTop.classList.remove("_active");
+    }));
     window["FLS"] = true;
     isWebp();
     formQuantity();
