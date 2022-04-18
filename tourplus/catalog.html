@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Туры</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20220418204503">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+
+		<header data-scroll="20" class="header">
+			<div class="header__wrapper">
+				<div class="header__container">
+					<div class="header__body">
+						<a href="" class="header__logo"><img src="img/logo.svg" alt="logo"></a>
+						<div class="header__menu menu">
+							<button type="button" class="menu__icon icon-menu"><span></span></button>
+							<nav class="menu__body">
+								<ul class="menu__list">
+									<li class="menu__item"><a href="" class="menu__link">Экскурсии</a></li>
+									<li class="menu__item"><a href="" class="menu__link">О нас</a></li>
+									<li class="menu__item"><a href="" class="menu__link">Цены</a></li>
+									<li class="menu__item"><a href="" class="menu__link">Блог</a></li>
+									<li class="menu__item"><a href="" class="menu__link">Контакты</a></li>
+								</ul>
+							</nav>
+						</div>
+						<!-- <button data-da=".main__body,479.98" type="button" class="header__button button">Заказать тур</button> -->
+						<button type="button" class="header__button button">Заказать тур</button>
+					</div>
+				</div>
+			</div>
+			<div data-goto=".header" class="scroll-top"><img src="img/home/arrow-up.svg" alt=""></div>
+		</header>
+		<main class="page page__catalog">
+			<div class="catalog__header header-catalog">
+				<div class="header-catalog__bg-ibg">
+					<picture><source srcset="img/catalog/catalog-header-bg2.webp" type="image/webp"><img src="img/catalog/catalog-header-bg2.jpg" alt=""></picture>
+				</div>
+				<div class="header-catalog__container">
+					<h1 class="header-catalog__title">Наши <span>туры</span> </h1>
+				</div>
+			</div>
+			<div class="catalog">
+				<div class="catalog__container">
+
+					<div class="catalog__body">
+						<div data-tabs class="catalog__filter-top top-filter">
+							<nav data-tabs-titles class="top-filter__navigation">
+								<button type="button" class="top-filter__title _tab-active">АВТОБУСНЫЙ ТУР</button>
+								<button type="button" class="top-filter__title">ДЖИППИНГ</button>
+								<button type="button" class="top-filter__title">ЯХТИНГ</button>
+								<button type="button" class="top-filter__title">КАНЬОНИНГ</button>
+							</nav>
+							<div data-tabs-body class="top-filter__content">
+								<div class="top-filter__body">
+									<div class="top-filter__wrapper">
+										<div class="top-filter__item ">
+											<select class="filter-location">
+												<option value="1" selected>Сочи</option>
+												<option value="2">Абхазия</option>
+											</select>
+										</div>
+										<div class="top-filter__item">
+
+											<input autocomplete="off" type="text" id="filter-date" class="filter-date-bus" readonly>
+											<label for="filter-date" class="filter-date__label _icon-calendar"></label>
+										</div>
+										<div class="top-filter__item">
+											<div data-spollers class="filter-people">
+												<div class="filter-people__item">
+													<button type="button" data-spoller data-spoller-close class="filter-people__title _icon-user">1 человек
+													</button>
+													<div class="filter-people__body">
+														<div class="quantity">
+															<div class="quantity__button quantity__button_minus _icon-minus"></div>
+															<div class="quantity__input">
+																<input autocomplete="off" type="text" value="1" readonly>
+																<span class="filter-people__counter">человек</span>
+															</div>
+															<div class="quantity__button quantity__button_plus _icon-plus"></div>
+
+														</div>
+														<button data-spoller-choose class="filter-people__button button">Выбрать</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<button type="button" class="top-filter__item top-filter__button button">Отправить
+										</button>
+									</div>
+								</div>
+								<div class="top-filter__body">
+									<div class="top-filter__wrapper">
+										<div class="top-filter__item ">
+											<select class="filter-location">
+												<option value="1" selected>Сочи</option>
+												<option value="2">Абхазия</option>
+											</select>
+										</div>
+										<div class="top-filter__item">
+
+											<input autocomplete="off" type="text" id="filter-date" class="filter-date-geep" readonly>
+											<label for="filter-date" class="filter-date__label _icon-calendar"></label>
+										</div>
+										<div class="top-filter__item">
+											<div data-spollers class="filter-people">
+												<div class="filter-people__item">
+													<button type="button" data-spoller data-spoller-close class="filter-people__title _icon-user">1 человек
+													</button>
+													<div class="filter-people__body">
+														<div class="quantity">
+															<div class="quantity__button quantity__button_minus _icon-minus"></div>
+															<div class="quantity__input">
+																<input autocomplete="off" type="text" value="1" readonly>
+																<span class="filter-people__counter">человек</span>
+															</div>
+															<div class="quantity__button quantity__button_plus _icon-plus"></div>
+
+														</div>
+														<button data-spoller-choose class="filter-people__button button">Выбрать</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<button type="button" class="top-filter__item top-filter__button button">Отправить
+										</button>
+									</div>
+								</div>
+								<div class="top-filter__body">
+									<div class="top-filter__wrapper">
+										<div class="top-filter__item ">
+											<select class="filter-location">
+												<option value="1" selected>Сочи</option>
+												<option value="2">Абхазия</option>
+											</select>
+										</div>
+										<div class="top-filter__item">
+											<input autocomplete="off" type="text" id="filter-date" class="filter-date-ship" readonly>
+											<label for="filter-date" class="filter-date__label _icon-calendar"></label>
+										</div>
+										<div class="top-filter__item">
+											<div data-spollers class="filter-people">
+												<div class="filter-people__item">
+													<button type="button" data-spoller data-spoller-close class="filter-people__title _icon-user">1 человек
+													</button>
+													<div class="filter-people__body">
+														<div class="quantity">
+															<div class="quantity__button quantity__button_minus _icon-minus"></div>
+															<div class="quantity__input">
+																<input autocomplete="off" type="text" value="1" readonly>
+																<span class="filter-people__counter">человек</span>
+															</div>
+															<div class="quantity__button quantity__button_plus _icon-plus"></div>
+
+														</div>
+														<button data-spoller-choose class="filter-people__button button">Выбрать</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<button type="button" class="top-filter__item top-filter__button button">Отправить
+										</button>
+									</div>
+								</div>
+								<div class="top-filter__body">
+									<div class="top-filter__wrapper">
+										<div class="top-filter__item ">
+											<select class="filter-location">
+												<option value="1" selected>Сочи</option>
+												<option value="2">Абхазия</option>
+											</select>
+										</div>
+										<div class="top-filter__item">
+
+											<input autocomplete="off" type="text" id="filter-date" class="filter-date-can" readonly>
+											<label for="filter-date" class="filter-date__label _icon-calendar"></label>
+										</div>
+										<div class="top-filter__item">
+											<div data-spollers class="filter-people">
+												<div class="filter-people__item">
+													<button type="button" data-spoller data-spoller-close class="filter-people__title _icon-user">1 человек
+													</button>
+													<div class="filter-people__body">
+														<div class="quantity">
+															<div class="quantity__button quantity__button_minus _icon-minus"></div>
+															<div class="quantity__input">
+																<input autocomplete="off" type="text" value="1" readonly>
+																<span class="filter-people__counter">человек</span>
+															</div>
+															<div class="quantity__button quantity__button_plus _icon-plus"></div>
+
+														</div>
+														<button data-spoller-choose class="filter-people__button button">Выбрать</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<button type="button" class="top-filter__item top-filter__button button">Отправить
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div data-spollers="992" class="catalog__wrap">
+							<div class="catalog__filter filter-catalog">
+								<button type="button" data-spoller class="filter-catalog__title">Фильтры</button>
+								<div data-spollers="320" class="filter-catalog__items">
+									<div class="filter-catalog__price price-filter filter-catalog__item">
+										<button type="button" data-spoller class="price-filter__title">Стоимость</button>
+										<div data-range class="price-filter__body">
+											<div class="price-filter__inputs">
+												<input data-range-from="0" autocomplete="off" type="text" value="1600" name="form[]" class="price-filter__input">
+												<input data-range-to="10000" autocomplete="off" type="text" value="4000" name="form[]" class="price-filter__input">
+											</div>
+											<div data-range-item class="price-filter__range"></div>
+
+										</div>
+									</div>
+									<div class="filter-catalog__buttons">
+										<button type="button" class="filter-catalog__show button">Показать</button>
+										<button type="button" class="filter-catalog__reset">Сбросить фильтры</button>
+									</div>
+								</div>
+
+							</div>
+							<div class="catalog__content">
+								<div class="catalog__title">Наши экскурсии</div>
+								<div class="catalog__tours ">
+									<div class="tour-card">
+										<a href="" class="tour-card__img-ibg"><picture><source srcset="img/catalog/1.webp" type="image/webp"><img src="img/catalog/1.jpg" alt="image"></picture></a>
+										<div class="tour-card__body">
+											<div class="tour-card__category">Автобусный тур</div>
+											<div class="tour-card__title">Золотое кольцо Абхазии (из Адлера)</div>
+											<div class="tour-card__info">
+												<div class="tour-card__price">
+													<div class="tour-card__price-adoult">
+														<img src="img/catalog/icons/money.svg" alt="">
+														1 618 ₽
+														<span>Взрослый билет</span>
+													</div>
+													<div class="tour-card__price-child">
+														<img src="img/catalog/icons/money.svg" alt="">
+														1 412 ₽
+														<span>Детский билет</span>
+													</div>
+												</div>
+												<div class="tour-card__duration">
+													<img src="img/catalog/icons/clock.svg" alt="">
+													<span>2,5 часа</span>
+												</div>
+											</div>
+											<div class="tour-card__descr">
+												Вас ждет путешествие по "Золотому Кольцу Абхазии" на Мерседес Спринтер (20 мест). По
+												маршруту вас будет сопровождать профессиональный гид. Посадка на экскурсию
+												осуществляется с вашего отеля или ближайшей автобусной остановки. Пересечение
+												границы без пересадок...
+											</div>
+											<div class="tour-card__action">
+												<a href="" class="tour-card__link button">Подробнее</a>
+												<a href="" class="tour-card__favorite"><img src="img/catalog/icons/favorite.svg" alt=""></a>
+											</div>
+										</div>
+									</div>
+									<div class="tour-card">
+										<a href="" class="tour-card__img-ibg"><picture><source srcset="img/catalog/1.webp" type="image/webp"><img src="img/catalog/1.jpg" alt="image"></picture></a>
+										<div class="tour-card__body">
+											<div class="tour-card__category">Автобусный тур</div>
+											<div class="tour-card__title">Золотое кольцо Абхазии (из Адлера)</div>
+											<div class="tour-card__info">
+												<div class="tour-card__price">
+													<div class="tour-card__price-adoult">
+														<img src="img/catalog/icons/money.svg" alt="">
+														1 618 ₽
+														<span>Взрослый билет</span>
+													</div>
+													<div class="tour-card__price-child">
+														<img src="img/catalog/icons/money.svg" alt="">
+														1 412 ₽
+														<span>Детский билет</span>
+													</div>
+												</div>
+												<div class="tour-card__duration">
+													<img src="img/catalog/icons/clock.svg" alt="">
+													<span>2,5 часа</span>
+												</div>
+											</div>
+											<div class="tour-card__descr">
+												Вас ждет путешествие по "Золотому Кольцу Абхазии" на Мерседес Спринтер (20 мест). По
+												маршруту вас будет сопровождать профессиональный гид. Посадка на экскурсию
+												осуществляется с вашего отеля или ближайшей автобусной остановки. Пересечение
+												границы без пересадок...
+											</div>
+											<div class="tour-card__action">
+												<a href="" class="tour-card__link button">Подробнее</a>
+												<a href="" class="tour-card__favorite"><img src="img/catalog/icons/favorite.svg" alt=""></a>
+											</div>
+										</div>
+									</div>
+									<div class="tour-card">
+										<a href="" class="tour-card__img-ibg"><picture><source srcset="img/catalog/1.webp" type="image/webp"><img src="img/catalog/1.jpg" alt="image"></picture></a>
+										<div class="tour-card__body">
+											<div class="tour-card__category">Автобусный тур</div>
+											<div class="tour-card__title">Золотое кольцо Абхазии (из Адлера)</div>
+											<div class="tour-card__info">
+												<div class="tour-card__price">
+													<div class="tour-card__price-adoult">
+														<img src="img/catalog/icons/money.svg" alt="">
+														1 618 ₽
+														<span>Взрослый билет</span>
+													</div>
+													<div class="tour-card__price-child">
+														<img src="img/catalog/icons/money.svg" alt="">
+														1 412 ₽
+														<span>Детский билет</span>
+													</div>
+												</div>
+												<div class="tour-card__duration">
+													<img src="img/catalog/icons/clock.svg" alt="">
+													<span>2,5 часа</span>
+												</div>
+											</div>
+											<div class="tour-card__descr">
+												Вас ждет путешествие по "Золотому Кольцу Абхазии" на Мерседес Спринтер (20 мест). По
+												маршруту вас будет сопровождать профессиональный гид. Посадка на экскурсию
+												осуществляется с вашего отеля или ближайшей автобусной остановки. Пересечение
+												границы без пересадок...
+											</div>
+											<div class="tour-card__action">
+												<a href="" class="tour-card__link button">Подробнее</a>
+												<a href="" class="tour-card__favorite"><img src="img/catalog/icons/favorite.svg" alt=""></a>
+											</div>
+										</div>
+									</div>
+									<div class="tour-card">
+										<a href="" class="tour-card__img-ibg"><picture><source srcset="img/catalog/1.webp" type="image/webp"><img src="img/catalog/1.jpg" alt="image"></picture></a>
+										<div class="tour-card__body">
+											<div class="tour-card__category">Автобусный тур</div>
+											<div class="tour-card__title">Золотое кольцо Абхазии (из Адлера)</div>
+											<div class="tour-card__info">
+												<div class="tour-card__price">
+													<div class="tour-card__price-adoult">
+														<img src="img/catalog/icons/money.svg" alt="">
+														1 618 ₽
+														<span>Взрослый билет</span>
+													</div>
+													<div class="tour-card__price-child">
+														<img src="img/catalog/icons/money.svg" alt="">
+														1 412 ₽
+														<span>Детский билет</span>
+													</div>
+												</div>
+												<div class="tour-card__duration">
+													<img src="img/catalog/icons/clock.svg" alt="">
+													<span>2,5 часа</span>
+												</div>
+											</div>
+											<div class="tour-card__descr">
+												Вас ждет путешествие по "Золотому Кольцу Абхазии" на Мерседес Спринтер (20 мест). По
+												маршруту вас будет сопровождать профессиональный гид. Посадка на экскурсию
+												осуществляется с вашего отеля или ближайшей автобусной остановки. Пересечение
+												границы без пересадок...
+											</div>
+											<div class="tour-card__action">
+												<a href="" class="tour-card__link button">Подробнее</a>
+												<a href="" class="tour-card__favorite"><img src="img/catalog/icons/favorite.svg" alt=""></a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="catalog__pagging pagging">
+									<button type="button" class="pagging__arrow pagging__arrow_left">
+										<img src="img/catalog/icons/angle-left.svg" alt=""></button>
+									<ul class="pagging__list">
+										<li class="pagging__item">
+											<a href="" class="pagging__link _active">1</a>
+										</li>
+										<li class="pagging__item">
+											<a href="" class="pagging__link">2</a>
+										</li>
+										<li class="pagging__item">
+											<a href="" class="pagging__link">...</a>
+										</li>
+										<li class="pagging__item">
+											<a href="" class="pagging__link">5</a>
+										</li>
+									</ul>
+									<button type="button" class="pagging__arrow pagging__arrow_right">
+										<img src="img/catalog/icons/angle-left.svg" alt=""></button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+				<div class="footer__body">
+					<div class="footer__content">
+						<a href="" class="footer__logo"><img src="img/footer/logo.svg" alt=""></a>
+						<p class="footer__text">Все материалы предоставленные на сайте туристического оператора Toutplus носят
+							информационный характер и не являтся публичной офертой</p>
+						<div class="footer__socials">
+							<a href="" class="footer__socials-item">
+								<svg width="32" height="21" viewBox="0 0 32 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M31.3068 17.125C29.9014 14.9127 28.2567 12.8618 26.4024 11.0094C26.3687 10.9673 26.3503 10.9149 26.3503 10.861C26.3503 10.807 26.3687 10.7547 26.4024 10.7125C27.9981 8.53465 29.4082 6.22677 30.618 3.81316C30.7931 3.46778 30.8762 3.08318 30.8596 2.69635C30.843 2.30952 30.7271 1.93348 30.523 1.60441C30.337 1.26995 30.0649 0.99124 29.7351 0.79709C29.4052 0.602939 29.0295 0.500388 28.6468 0.500033H25.0843C24.6322 0.508805 24.192 0.646443 23.8155 0.896769C23.439 1.14709 23.1417 1.49971 22.9587 1.91316C21.9239 4.20166 20.6838 6.39167 19.2537 8.45628V2.63753C19.2552 2.35639 19.201 2.07773 19.0942 1.81769C18.9873 1.55764 18.8299 1.32138 18.6311 1.12258C18.4323 0.923782 18.1961 0.766395 17.936 0.659533C17.676 0.552671 17.3973 0.498458 17.1162 0.500033H11.9149C11.6121 0.504741 11.3164 0.592063 11.0596 0.752571C10.8028 0.91308 10.5947 1.14068 10.4578 1.4108C10.3209 1.68092 10.2604 1.9833 10.2828 2.2853C10.3052 2.58729 10.4097 2.87744 10.5849 3.12441L11.0599 3.78941C11.3147 4.15532 11.4514 4.59041 11.4518 5.03628V9.59628C9.88422 7.27727 8.6379 4.75666 7.7468 2.10316C7.58611 1.63557 7.2835 1.2298 6.88116 0.942416C6.47883 0.655037 5.99685 0.500386 5.50242 0.500033H2.59305C2.28392 0.50373 1.97961 0.577145 1.70281 0.714806C1.426 0.852468 1.18383 1.05083 0.99435 1.2951C0.804867 1.53937 0.672958 1.82326 0.608452 2.1256C0.543946 2.42794 0.548507 2.74095 0.621795 3.04128C2.22492 9.84566 5.58555 15.4863 9.84867 18.4788C10.1042 18.6603 10.4211 18.7334 10.7302 18.6823C11.0394 18.6311 11.3159 18.4598 11.4993 18.2057C11.591 18.0787 11.6567 17.9349 11.6927 17.7825C11.7286 17.6301 11.734 17.4721 11.7086 17.3176C11.6832 17.1631 11.6275 17.0151 11.5447 16.8822C11.4619 16.7493 11.3537 16.6341 11.2262 16.5432C7.49742 13.9307 4.52867 8.95503 3.02055 2.87503H5.5143C6.60707 6.19516 8.25318 9.30669 10.383 12.0782C10.6292 12.3927 10.9682 12.6216 11.352 12.7325C11.7357 12.8434 12.1446 12.8305 12.5205 12.6957C12.9063 12.5612 13.24 12.3088 13.4744 11.9742C13.7089 11.6396 13.8321 11.2398 13.8268 10.8313V5.03628C13.8293 4.28139 13.6415 3.53806 13.2805 2.87503H16.843V9.32316C16.8388 9.78455 16.9865 10.2345 17.2633 10.6036C17.5402 10.9728 17.9308 11.2405 18.3749 11.3657C18.8058 11.5091 19.272 11.5065 19.7013 11.3584C20.1306 11.2103 20.4991 10.9249 20.7499 10.5463C22.4366 8.13994 23.8768 5.5699 25.0487 2.87503H28.3737C27.2418 5.10049 25.9354 7.23279 24.4668 9.25191C24.0965 9.74732 23.9167 10.3594 23.9603 10.9764C24.0039 11.5934 24.268 12.1741 24.7043 12.6125C26.4363 14.3579 27.9952 16.2668 29.3593 18.3125H25.3812C24.1539 16.2811 22.5059 14.5359 20.548 13.1944C20.2543 12.9792 19.9061 12.8506 19.5429 12.8233C19.1798 12.796 18.8163 12.8711 18.4937 13.04C18.1619 13.2098 17.884 13.4686 17.6911 13.7874C17.4981 14.1062 17.3977 14.4724 17.4012 14.845V17.6713C17.4077 17.8363 17.3491 17.9972 17.238 18.1194C17.1269 18.2416 16.9723 18.3152 16.8074 18.3244H15.7862C15.4712 18.3244 15.1692 18.4495 14.9465 18.6722C14.7238 18.8949 14.5987 19.197 14.5987 19.5119C14.5987 19.8269 14.7238 20.1289 14.9465 20.3516C15.1692 20.5743 15.4712 20.6994 15.7862 20.6994H16.8074C17.2014 20.6963 17.5909 20.6154 17.9536 20.4614C18.3162 20.3074 18.6449 20.0833 18.9207 19.802C19.1966 19.5206 19.4141 19.1876 19.5609 18.8219C19.7077 18.4563 19.7809 18.0653 19.7762 17.6713V15.5694C21.2046 16.6439 22.414 17.9822 23.3387 19.5119C23.5428 19.8657 23.8348 20.1609 24.1863 20.3689C24.5379 20.5769 24.9371 20.6908 25.3455 20.6994H29.3593C29.7697 20.7004 30.1728 20.5906 30.526 20.3816C30.8793 20.1726 31.1695 19.8722 31.3662 19.5119C31.5679 19.1442 31.6687 18.7297 31.6582 18.3105C31.6478 17.8912 31.5265 17.4822 31.3068 17.125Z" fill="#BC0000" />
+								</svg>
+							</a>
+							<a href="" class="footer__socials-item">
+								<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M13.9971 0.34668C10.289 0.34668 9.82407 0.362397 8.3678 0.428842C6.91457 0.495179 5.92206 0.725949 5.05356 1.06349C4.15574 1.41241 3.39433 1.87926 2.6353 2.63828C1.87627 3.39731 1.40942 4.15872 1.0605 5.05654C0.722965 5.92499 0.492195 6.9175 0.425858 8.37073C0.359413 9.827 0.34375 10.292 0.34375 14C0.34375 17.708 0.359413 18.1729 0.425858 19.6292C0.492195 21.0824 0.722965 22.0749 1.0605 22.9434C1.40942 23.8412 1.87627 24.6026 2.6353 25.3617C3.39433 26.1207 4.15574 26.5876 5.05356 26.9365C5.92206 27.274 6.91457 27.5048 8.3678 27.5711C9.82407 27.6375 10.289 27.6533 13.9971 27.6533C17.705 27.6533 18.17 27.6375 19.6263 27.5711C21.0795 27.5048 22.072 27.274 22.9405 26.9365C23.8383 26.5876 24.5997 26.1207 25.3588 25.3617C26.1178 24.6026 26.5847 23.8412 26.9336 22.9434C27.2711 22.0749 27.5019 21.0824 27.5682 19.6292C27.6346 18.1729 27.6503 17.708 27.6503 14C27.6503 10.292 27.6346 9.827 27.5682 8.37073C27.5019 6.9175 27.2711 5.92499 26.9336 5.05654C26.5847 4.15872 26.1178 3.39731 25.3588 2.63828C24.5997 1.87926 23.8383 1.41241 22.9405 1.06349C22.072 0.725949 21.0795 0.495179 19.6263 0.428842C18.17 0.362397 17.705 0.34668 13.9971 0.34668ZM13.9971 2.80678C17.6426 2.80678 18.0745 2.82066 19.5141 2.88634C20.8453 2.9471 21.5683 3.16952 22.0494 3.35645C22.6867 3.60412 23.1415 3.90004 23.6192 4.37778C24.097 4.85553 24.3929 5.3104 24.6406 5.94765C24.8275 6.42875 25.05 7.15169 25.1107 8.48287C25.1763 9.92255 25.1903 10.3544 25.1903 14C25.1903 17.6455 25.1763 18.0774 25.1107 19.5171C25.05 20.8482 24.8275 21.5712 24.6406 22.0523C24.3929 22.6896 24.097 23.1444 23.6192 23.6221C23.1415 24.0999 22.6867 24.3958 22.0494 24.6435C21.5683 24.8305 20.8453 25.0529 19.5141 25.1136C18.0747 25.1793 17.6429 25.1932 13.9971 25.1932C10.3512 25.1932 9.91946 25.1793 8.47994 25.1136C7.14876 25.0529 6.42582 24.8305 5.94472 24.6435C5.30742 24.3958 4.8526 24.0999 4.3748 23.6221C3.89706 23.1444 3.60114 22.6896 3.35352 22.0523C3.16654 21.5712 2.94411 20.8482 2.88336 19.5171C2.81767 18.0774 2.8038 17.6455 2.8038 14C2.8038 10.3544 2.81767 9.92255 2.88336 8.48287C2.94411 7.15169 3.16654 6.42875 3.35352 5.94765C3.60114 5.3104 3.89706 4.85553 4.3748 4.37778C4.8526 3.90004 5.30742 3.60412 5.94472 3.35645C6.42582 3.16952 7.14876 2.9471 8.47994 2.88634C9.91962 2.82066 10.3515 2.80678 13.9971 2.80678Z" fill="#E59B06" />
+									<path d="M13.9955 18.551C11.482 18.551 9.44442 16.5134 9.44442 13.9999C9.44442 11.4864 11.482 9.44882 13.9955 9.44882C16.509 9.44882 18.5466 11.4864 18.5466 13.9999C18.5466 16.5134 16.509 18.551 13.9955 18.551ZM13.9955 6.98877C10.1233 6.98877 6.98438 10.1277 6.98438 13.9999C6.98438 17.8721 10.1233 21.0111 13.9955 21.0111C17.8677 21.0111 21.0067 17.8721 21.0067 13.9999C21.0067 10.1277 17.8677 6.98877 13.9955 6.98877Z" fill="#E59B06" />
+									<path d="M22.9252 6.71161C22.9252 7.61648 22.1917 8.34998 21.2868 8.34998C20.382 8.34998 19.6484 7.61648 19.6484 6.71161C19.6484 5.80674 20.382 5.07324 21.2868 5.07324C22.1917 5.07324 22.9252 5.80674 22.9252 6.71161Z" fill="#E59B06" />
+								</svg>
+							</a>
+							<a href="" class="footer__socials-item">
+								<svg width="15" height="28" viewBox="0 0 15 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M4.27646 2.52751C5.27695 1.16881 6.92908 0.225586 9.39731 0.225586H9.40121L13.1337 0.240162C13.7946 0.242741 14.329 0.779242 14.329 1.44015V5.42137C14.329 6.07681 13.8001 6.62137 13.1301 6.62137H10.4742C10.438 6.62137 10.406 6.62622 10.3835 6.6328C10.3811 6.63353 10.3789 6.63423 10.3769 6.63488C10.3684 6.65665 10.3486 6.72087 10.3486 6.85009V8.50333H13.1725C13.8837 8.50333 14.4388 9.11832 14.3663 9.82578L13.9443 13.9396C13.8815 14.5517 13.3659 15.0171 12.7505 15.0171H10.3486V26.592C10.3486 27.2702 9.79571 27.7896 9.14863 27.7896H4.2395C3.5934 27.7896 3.0395 27.2714 3.0395 26.5921V15.0171H1.71538C1.05264 15.0171 0.515381 14.4799 0.515381 13.8171V9.70333C0.515381 9.04059 1.05264 8.50333 1.71538 8.50333H3.0395V6.58339C3.0395 5.408 3.31426 3.8342 4.27646 2.52751ZM5.88693 3.71341C5.26137 4.56294 5.0395 5.66804 5.0395 6.58339V10.5033H2.51538V13.0171H5.0395V25.7896H8.34863V13.0171H12.0284L12.2863 10.5033H8.34863V6.85009C8.34863 6.11142 8.60594 5.49534 9.10378 5.08807C9.56358 4.71192 10.0987 4.62137 10.4742 4.62137H12.329V2.23704L9.39731 2.22559C9.39668 2.22559 9.39605 2.22559 9.39542 2.22559C7.5003 2.22604 6.474 2.91616 5.88693 3.71341Z" fill="#17C1BC" />
+								</svg>
+							</a>
+						</div>
+					</div>
+
+					<nav class="footer__menu menu-footer">
+						<div class="menu-footer__label footer__label">Услуги</div>
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item"><a href="" class="menu-footer__link">Экскурсии</a></li>
+							<li class="menu-footer__item"><a href="" class="menu-footer__link">О нас</a></li>
+							<li class="menu-footer__item"><a href="" class="menu-footer__link">Цены</a></li>
+							<li class="menu-footer__item"><a href="" class="menu-footer__link">Блог</a></li>
+						</ul>
+					</nav>
+					<div class="footer__contacts contacts-footer">
+						<div class="contacts-footer__label footer__label">Контакты</div>
+						<div class="contacts-footer__list">
+							<div class="contacts-footer__place"><img src="img/footer/marker.svg" alt=""> <span>354000, г.Сочи, улица
+									Конституции 100</span></div>
+							<a href="tel:7000000000" class="contacts-footer__phone"><img src="img/footer/phone.svg" alt="">
+								<span>+7 918 919 98 28</span>
+							</a>
+							<div class="contacts-footer__email"><img src="img/footer/email.svg" alt="">
+								<span>tourplustravel@gmail.com</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</footer>
+
+	</div>
+	<!-- 
+<div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<button data-close type="button" class="popup__close">Закрыть</button>
+			<div class="popup__text">
+			</div>
+		</div>
+	</div>
+</div>
+ -->
+
+	<script src="js/app.min.js?_v=20220418204503"></script>
+</body>
+
+</html>
