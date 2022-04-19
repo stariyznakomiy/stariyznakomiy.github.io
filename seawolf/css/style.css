@@ -175,6 +175,10 @@ body {
   white-space: nowrap;
   letter-spacing: -0.47px;
 }
+.button picture {
+  display: flex;
+  align-items: center;
+}
 .button span {
   position: relative;
   top: -0.125rem;
