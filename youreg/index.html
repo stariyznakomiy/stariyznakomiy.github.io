@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20220425141109">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220425142059">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,7 +83,7 @@
 				<div class="popup__body">
 					<div class="popup__title big-text">Got any questions?
 						Feel free to contact us!</div>
-					<form action="" class="popup__form">
+					<form action="#" data-dev data-popup-message="#form-message" class="popup__form">
 						<div class="popup__inputs">
 							<div class="popup__input-wrap">
 								<input required class="popup__input input" data-validate autocomplete="off" type="text" name="form[]" data-error="" placeholder="Name">
@@ -101,7 +101,19 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20220425141109"></script>
+
+	<div id="form-message" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close"><img src="img/icon-close.svg" alt=""></button>
+				<div class="popup__body">
+					<div class="popup__title big-text">We will call you back</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<script src="js/app.min.js?_v=20220425142059"></script>
 </body>
 
 </html>
