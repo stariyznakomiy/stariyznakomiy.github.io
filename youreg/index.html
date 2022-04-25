@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Главная</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20220425141109">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<div class="header__body">
+					<a href="/" class="header__logo"><img src="img/logo.svg" alt="logo"></a>
+					<div class="header__menu menu">
+
+						<nav class="menu__body">
+							<ul class="menu__list">
+								<li class="menu__item"><a href="" class="menu__link">Pracing</a></li>
+								<li class="menu__item"><a href="" class="menu__link">Who we are</a></li>
+								<li class="menu__item"><a href="" class="menu__link">FAQ</a></li>
+							</ul>
+							<div class="menu__buttons">
+								<a href="https://www.youreg.tech/sc/profile/" class="menu__button button">Log In</a>
+								<a href="https://www.youreg.tech/sc/profile/auth?state=reg" class="menu__button button button-accent">Sign Up</a>
+							</div>
+						</nav>
+					</div>
+					<a href="https://www.youreg.tech/sc/profile/" class="header__button button-small">Log In</a>
+					<button type="button" class="menu__icon icon-menu"><span></span></button>
+				</div>
+			</div>
+		</header>
+		<main class="page">
+			<section class="main">
+				<div class="main__container">
+					<div class="main__body">
+						<div class="main__content">
+							<h1 class="main__title h1">Start your <span>business</span> <br> in a few cliks</h1>
+							<div class="main__subtitle big-text">
+								<p>Simple interface.</p>
+								<p>Fast procedures.</p>
+								<p>Low cost</p>
+							</div>
+							<div class="main__buttons">
+								<a href="https://www.youreg.tech/sc/profile/auth?state=reg" class="main__button button button-accent">Let’s started</a>
+								<button data-popup="#callform" type="button" class="main__button button button-white">Need a
+									call</button>
+							</div>
+						</div>
+						<div class="main__img">
+							<img src="img/1.svg" alt="">
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+			</div>
+		</footer>
+	</div>
+	<!-- <div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<button data-close type="button" class="popup__close">Закрыть</button>
+			<div class="popup__text">
+			</div>
+		</div>
+	</div>
+</div> -->
+
+	<div id="callform" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close"><img src="img/icon-close.svg" alt=""></button>
+				<div class="popup__body">
+					<div class="popup__title big-text">Got any questions?
+						Feel free to contact us!</div>
+					<form action="" class="popup__form">
+						<div class="popup__inputs">
+							<div class="popup__input-wrap">
+								<input required class="popup__input input" data-validate autocomplete="off" type="text" name="form[]" data-error="" placeholder="Name">
+							</div>
+							<div class="popup__input-wrap">
+								<input required class="popup__input input" data-validate autocomplete="off" type="text" name="form[]" data-error="" placeholder="Contact number">
+							</div>
+						</div>
+						<div class="popup__textarea-wrap">
+							<textarea required class="popup__textarea" data-validate name="" data-error="" placeholder="Case"></textarea>
+						</div>
+						<button type="submit" class="popup__button button button-accent">Send</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js?_v=20220425141109"></script>
+</body>
+
+</html>
