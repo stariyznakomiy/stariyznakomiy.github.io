@@ -948,6 +948,26 @@
             }));
         }
     }), 0);
+    go();
+    window.addEventListener("resize", go);
+    function go() {
+        const screenWidth = window.screen.width;
+        console.log(screenWidth);
+        if (screenWidth < "1280") document.querySelector(".procedure__items").removeAttribute("data-spollers-orientation"); else if (!document.querySelector(".procedure__items").hasAttribute("data-spollers-orientation")) document.querySelector(".procedure__items").setAttribute("data-spollers-orientation", "left");
+    }
+    document.addEventListener("click", documentActions);
+    function documentActions(e) {
+        const el = e.target;
+        if (el.closest(".item-procedure")) {
+            const spollerBlock = el.closest(".item-procedure");
+            console.log(spollerBlock);
+            const spollersClose = document.querySelectorAll(".item-procedure");
+            if (spollersClose.length) spollersClose.forEach((spollerClose => {
+                spollerClose.classList.remove("_active");
+            }));
+            spollerBlock.classList.add("_active");
+        }
+    }
     window["FLS"] = true;
     isWebp();
     menuInit();
