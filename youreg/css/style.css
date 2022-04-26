@@ -1057,15 +1057,11 @@ h2,
   }
 }
 .item-procedure._active {
-  border-right: 1px solid #CED0D4;
-  border-left: 1px solid #CED0D4;
+  border: 1px solid #1D68F9;
 }
 @media (max-width: 80em) {
   .item-procedure._active {
-    border-right: none;
-    border-left: none;
-    border-top: 1px solid #CED0D4;
-    border-bottom: 1px solid #CED0D4;
+    border: 1px solid #1D68F9;
   }
 }
 .item-procedure._active ~ .item-procedure {
@@ -1088,6 +1084,9 @@ h2,
   border-radius: 50%;
   opacity: 1;
   transition: all 0.3s ease 0s;
+}
+.item-procedure__button:active {
+  transform: scale(0.8);
 }
 @media (any-hover: hover) {
   .item-procedure__button:hover {
@@ -1409,6 +1408,13 @@ h2,
   line-height: 130%;
   letter-spacing: 0.01em;
   padding: 18px 0px;
+  opacity: 1;
+  transition: all 0.2s ease 0s;
+}
+@media (any-hover: hover) {
+  .spollers-questions__title:hover {
+    opacity: 0.5;
+  }
 }
 @media (max-width: 47.99875em) {
   .spollers-questions__title {
