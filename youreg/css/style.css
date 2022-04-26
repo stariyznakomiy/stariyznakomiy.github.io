@@ -1158,7 +1158,7 @@ h2,
 
 .whyus__body {
   position: relative;
-  padding: 200px 0px 300px 0px;
+  padding: 200px 0px 350px 0px;
 }
 @media (max-width: 100em) {
   .whyus__body {
@@ -1238,7 +1238,7 @@ h2,
   position: absolute;
   top: 50%;
   right: 0px;
-  transform: translateY(-53%);
+  transform: translateY(-44%);
   width: 600px;
 }
 @media (max-width: 100em) {
