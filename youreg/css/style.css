@@ -1058,21 +1058,21 @@ h2,
 .item-procedure::after, .item-procedure::before {
   content: "";
   position: absolute;
-  width: 100%;
+  width: 20px;
   height: 1px;
   background-color: #CED0D4;
   z-index: -1;
 }
 @media (min-width: 73.125em) {
   .item-procedure::after, .item-procedure::before {
-    right: -50%;
+    right: -10px;
   }
 }
 @media (max-width: 73.125em) {
   .item-procedure::after, .item-procedure::before {
-    height: 100%;
+    height: 20px;
     width: 1px;
-    bottom: -50%;
+    bottom: -10px;
   }
 }
 @media (min-width: 73.125em) {
@@ -1132,21 +1132,21 @@ h2,
 .item-procedure._active ~ .item-procedure::after, .item-procedure._active ~ .item-procedure::before {
   content: "";
   position: absolute;
-  width: 100%;
+  width: 20px;
   height: 1px;
   background-color: #CED0D4;
   z-index: -1;
 }
 @media (min-width: 73.125em) {
   .item-procedure._active ~ .item-procedure::after, .item-procedure._active ~ .item-procedure::before {
-    left: -50%;
+    left: -10px;
   }
 }
 @media (max-width: 73.125em) {
   .item-procedure._active ~ .item-procedure::after, .item-procedure._active ~ .item-procedure::before {
-    height: 100%;
+    height: 20px;
     width: 1px;
-    top: -50%;
+    top: -10px;
   }
 }
 @media (min-width: 73.125em) {
