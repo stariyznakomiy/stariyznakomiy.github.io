@@ -1035,44 +1035,83 @@ h2,
 .procedure__items {
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #CED0D4;
-  border-bottom: 1px solid #CED0D4;
   border-radius: 14px;
 }
 @media (max-width: 73.125em) {
   .procedure__items {
     flex-wrap: wrap;
-    border-bottom: none;
-    border-top: none;
-    border-left: 1px solid #CED0D4;
-    border-right: 1px solid #CED0D4;
   }
 }
 .item-procedure {
+  position: relative;
   min-height: 214px;
   display: flex;
   justify-content: space-between;
   column-gap: 24px;
   padding: 16px 16px;
   flex: 1 1 11.112%;
-  border-left: 1px solid #CED0D4;
-  border-right: 1px solid #ffffff;
-  border-radius: 14px;
+  border: 1px solid #CED0D4;
+  border-right: none;
+  border-radius: 14px 0 0 14px;
   transition: all 0.2s ease 0s;
+}
+.item-procedure::after, .item-procedure::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #CED0D4;
+  z-index: -1;
+}
+@media (min-width: 73.125em) {
+  .item-procedure::after, .item-procedure::before {
+    right: -50%;
+  }
+}
+@media (max-width: 73.125em) {
+  .item-procedure::after, .item-procedure::before {
+    height: 100%;
+    width: 1px;
+    bottom: -50%;
+  }
+}
+@media (min-width: 73.125em) {
+  .item-procedure::before {
+    top: -1px;
+  }
+}
+@media (max-width: 73.125em) {
+  .item-procedure::before {
+    left: -1px;
+  }
+}
+@media (min-width: 73.125em) {
+  .item-procedure::after {
+    bottom: -1px;
+  }
+}
+@media (max-width: 73.125em) {
+  .item-procedure::after {
+    right: -1px;
+  }
 }
 @media (max-width: 73.125em) {
   .item-procedure {
     flex: 1 1 100%;
     min-height: auto;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid #ffffff;
-    border-top: 1px solid #CED0D4;
+    border-radius: 14px 14px 0 0;
+    border: 1px solid #CED0D4;
+    border-bottom: none;
     padding: 16px 16px;
   }
 }
 .item-procedure._active {
   border: 1px solid #1D68F9;
+  border-radius: 14px;
+  z-index: 1001;
+}
+.item-procedure._active::after, .item-procedure._active::before {
+  display: none;
 }
 @media (min-width: 73.125em) {
   .item-procedure._active {
@@ -1085,15 +1124,56 @@ h2,
   }
 }
 .item-procedure._active ~ .item-procedure {
-  border-left: 1px solid #ffffff;
-  border-right: 1px solid #CED0D4;
+  position: relative;
+  border: 1px solid #CED0D4;
+  border-left: none;
+  border-radius: 0px 14px 14px 0px;
+}
+.item-procedure._active ~ .item-procedure::after, .item-procedure._active ~ .item-procedure::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #CED0D4;
+  z-index: -1;
+}
+@media (min-width: 73.125em) {
+  .item-procedure._active ~ .item-procedure::after, .item-procedure._active ~ .item-procedure::before {
+    left: -50%;
+  }
+}
+@media (max-width: 73.125em) {
+  .item-procedure._active ~ .item-procedure::after, .item-procedure._active ~ .item-procedure::before {
+    height: 100%;
+    width: 1px;
+    top: -50%;
+  }
+}
+@media (min-width: 73.125em) {
+  .item-procedure._active ~ .item-procedure::before {
+    top: -1px;
+  }
+}
+@media (max-width: 73.125em) {
+  .item-procedure._active ~ .item-procedure::before {
+    left: -1px;
+  }
+}
+@media (min-width: 73.125em) {
+  .item-procedure._active ~ .item-procedure::after {
+    bottom: -1px;
+  }
+}
+@media (max-width: 73.125em) {
+  .item-procedure._active ~ .item-procedure::after {
+    right: -1px;
+  }
 }
 @media (max-width: 73.125em) {
   .item-procedure._active ~ .item-procedure {
-    border-right: none;
-    border-left: none;
-    border-top: 1px solid #ffffff;
-    border-bottom: 1px solid #CED0D4;
+    border: 1px solid #CED0D4;
+    border-top: none;
+    border-radius: 0 0 14px 14px;
   }
 }
 .item-procedure__button {
