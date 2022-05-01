@@ -325,8 +325,6 @@ body::after {
   pointer-events: none;
   -webkit-box-shadow: 0px 18px 20px rgba(0, 0, 0, 0.15);
           box-shadow: 0px 18px 20px rgba(0, 0, 0, 0.15);
-  -webkit-backdrop-filter: blur(45px);
-          backdrop-filter: blur(45px);
 }
 
 .popup_show {
