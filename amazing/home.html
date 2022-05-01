@@ -5,7 +5,7 @@
 	<title>Главная</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20220430052520">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220501184308">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -32,8 +32,12 @@
 <body>
 	<div class="wrapper">
 		<header class="header">
+			<div class="header__cover-ibg">
+				<img src="img/pattern/rectangle22.png" srcset="img/pattern/rectangle22@2x.svg 2x" alt="">
+			</div>
 			<div class="header__container">
 				<div class="header__body">
+
 					<button type="button" class="menu__icon icon-menu"><span></span></button>
 					<a href="/" class="header__logo"><img src="img/logo.svg" alt=""></a>
 					<div class="header__menu menu">
@@ -48,11 +52,24 @@
 								<li class="menu__item"><a href="#" class="menu__link">Скачать</a></li>
 								<li class="menu__item"><a href="#" class="menu__link">FAQ</a></li>
 								<li class="menu__item"><a href="#" class="menu__link">Поддержка</a></li>
+								<span class="menu__hover"></span>
 							</ul>
 							<div class="menu__socials socials">
-								<a href="#" class="socials__item"><img src="img/icons/youtube.svg" alt="youtube"></a>
-								<a href="#" class="socials__item"><img src="img/icons/facebook.svg" alt="facebook"></a>
-								<a href="#" class="socials__item"><img src="img/icons/instagram.svg" alt="instagram"></a>
+								<a href="#" class="socials__item">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-youtube"></use>
+									</svg>
+								</a>
+								<a href="#" class="socials__item">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-facebook"></use>
+									</svg>
+								</a>
+								<a href="#" class="socials__item">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-instagram"></use>
+									</svg>
+								</a>
 							</div>
 						</nav>
 					</div>
@@ -64,16 +81,21 @@
 			<section class="main">
 				<div class="main__cover-ibg">
 					<img src="img/pattern/rectangle22.png" srcset="img/pattern/rectangle22@2x.svg 2x" alt="">
-					<!-- <picture><source srcset="img/main-cover.webp" type="image/webp"><img src="img/main-cover.png" alt=""></picture> -->
+					<img src="img/pattern/pattern.png" srcset="img/pattern/pattern@2x.svg 2x" alt="">
 				</div>
 				<div class="main__container">
-					<div class="main__body">
-						<h1 class="main__title"><span>Расширение для автобукинга на </span> AmazonLoadBoard</h1>
-						<div class="main__subtitle">Amazing Relay - обеспечивает моментальное бронирование грузов и поиск
-							подходящих загрузок.</div>
-						<a href="#" class="main__button button">Попробовать 10 дней бесплатно</a>
+					<div class="main__wrap">
+						<div class="main__body">
+							<h1><span>Расширение для автобукинга на </span> AmazonLoadBoard</h1>
+							<p>Amazing Relay - обеспечивает моментальное бронирование грузов и поиск
+								подходящих загрузок.</p>
+							<a href="#" class="main__button button">Попробовать 10 дней бесплатно</a>
+						</div>
+						<div class="main__image">
+							<img src="img/main-img.png" srcset="img/main-img@2x.png 2x" alt="">
+						</div>
+
 					</div>
-					<picture><source srcset="img/main-img.webp, img/main-img@2x.webp 2x" type="image/webp"><img class="main__image" src="img/main-img.png" srcset="img/main-img@2x.png 2x" alt=""></picture>
 				</div>
 			</section>
 			<section class="advantages">
@@ -85,44 +107,34 @@
 						</div>
 						<div class="advantages__list">
 							<div class="advantages__item item-advantages">
-								<div class="item-advantages__wrap">
-									<picture><source srcset="img/advantages/clock.webp" type="image/webp"><img class="item-advantages__img" src="img/advantages/clock.png" alt=""></picture>
-									<span>01</span>
-									<div class="item-advantages__text">
-										<h3>Экономия времени</h3>
-										<p>Amazing Relay автоматически обновляет список загрузок и мгновенно бронирует подходящие
-											грузы
-										</p>
-									</div>
+								<img class="item-advantages__img" src="img/advantages/clock.png" srcset="img/advantages/clock@2x.png 2x" alt="">
+								<span>01</span>
+								<div class="item-advantages__text">
+									<h3>Экономия времени</h3>
+									<p>Amazing Relay автоматически обновляет список загрузок и мгновенно бронирует подходящие
+										грузы
+									</p>
 								</div>
 							</div>
 							<div class="advantages__item item-advantages">
-								<div class="item-advantages__wrap">
-									<picture><source srcset="img/advantages/play.webp" type="image/webp"><img class="item-advantages__img" src="img/advantages/play.png" alt=""></picture>
-									<span>02</span>
-									<div class="item-advantages__text">
-										<h3>Удобство пользования</h3>
-										<p>Настройте фильтры и нажмите “Старт”, Amazing Relay будет автоматически уведомлять вас о
-											соответствующих грузах и автоматически забронирует следующую загрузку. Больше не нужно
-											вручную обновлять Amazon LoadBoard и упускать дорогие грузы
-										</p>
-									</div>
+								<img class="item-advantages__img" src="img/advantages/play.png" srcset="img/advantages/play@2x.png 2x" alt="">
+								<span>02</span>
+								<div class="item-advantages__text">
+									<h3>Удобство пользования</h3>
+									<p>Настройте фильтры и нажмите “Старт”, Amazing Relay будет автоматически уведомлять вас о
+										соответствующих грузах и автоматически забронирует следующую загрузку. Больше не нужно
+										вручную обновлять Amazon LoadBoard и упускать дорогие грузы
+									</p>
 								</div>
-
-
 							</div>
 							<div class="advantages__item item-advantages">
-								<div class="item-advantages__wrap">
-									<picture><source srcset="img/advantages/gear.webp" type="image/webp"><img class="item-advantages__img" src="img/advantages/gear.png" alt=""></picture>
-									<span>03</span>
-									<div class="item-advantages__text">
-										<h3>Расширенные фильтры</h3>
-										<p>Мы добавили фильтры, которые позволяют более точно настроить поиск загрузок
-										</p>
-									</div>
+								<img class="item-advantages__img" src="img/advantages/gear.png" srcset="img/advantages/gear@2x.png 2x" alt="">
+								<span>03</span>
+								<div class="item-advantages__text">
+									<h3>Расширенные фильтры</h3>
+									<p>Мы добавили фильтры, которые позволяют более точно настроить поиск загрузок
+									</p>
 								</div>
-
-
 							</div>
 						</div>
 					</div>
@@ -136,15 +148,13 @@
 						</div>
 						<div class="functions__list">
 							<div class="functions__item item-functions">
-								<div class="item-functions__wrap">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-icon-clock"></use>
-									</svg>
-									<div class="item-functions__text">
-										<h4>Время загрузки</h4>
-										<p>Грузы находятся в разных часовых поясах, наше расширение автоматически вычисляет
-											время загрузки, форматируя часовой пояс одного региона под ваш</p>
-									</div>
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-icon-clock"></use>
+								</svg>
+								<div class="item-functions__text">
+									<h4>Время загрузки</h4>
+									<p>Грузы находятся в разных часовых поясах, наше расширение автоматически вычисляет
+										время загрузки, форматируя часовой пояс одного региона под ваш</p>
 								</div>
 								<button type="button" data-popup="#video" class="item-functions__button button-video">
 									<svg>
@@ -155,18 +165,16 @@
 								</button>
 							</div>
 							<div class="functions__item item-functions">
-								<div class="item-functions__wrap">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-icon-receipt"></use>
-									</svg>
-									<div class="item-functions__text">
-										<h4>Расчет стоимости</h4>
-										<p>Наряду с ценой за один километр или час пути наш фильтр показывает base rate, ставку
-											за те же показатели, но уже с учетом стоимости топлива и платных дорог. Таким
-											образом,
-											вы можете сразу увидеть конечную цену
-											за тот или иной показатель</p>
-									</div>
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-icon-receipt"></use>
+								</svg>
+								<div class="item-functions__text">
+									<h4>Расчет стоимости</h4>
+									<p>Наряду с ценой за один километр или час пути наш фильтр показывает base rate, ставку
+										за те же показатели, но уже с учетом стоимости топлива и платных дорог. Таким
+										образом,
+										вы можете сразу увидеть конечную цену
+										за тот или иной показатель</p>
 								</div>
 								<button type="button" data-popup="#video" class="item-functions__button button-video">
 									<svg>
@@ -177,16 +185,14 @@
 								</button>
 							</div>
 							<div class="functions__item item-functions">
-								<div class="item-functions__wrap">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-icon-notification"></use>
-									</svg>
-									<div class="item-functions__text">
-										<h4>Фокус на страницу бронирования</h4>
-										<p>Если у вас одновременно открыто много вкладок, расширение присылает звуковое
-											уведомление и автоматически переносит
-											на вкладку с найденным грузом</p>
-									</div>
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-icon-notification"></use>
+								</svg>
+								<div class="item-functions__text">
+									<h4>Фокус на страницу бронирования</h4>
+									<p>Если у вас одновременно открыто много вкладок, расширение присылает звуковое
+										уведомление и автоматически переносит
+										на вкладку с найденным грузом</p>
 								</div>
 								<button type="button" data-popup="#video" class="item-functions__button button-video">
 									<svg>
@@ -197,17 +203,16 @@
 								</button>
 							</div>
 							<div class="functions__item item-functions">
-								<div class="item-functions__wrap">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-icon-document-filter"></use>
-									</svg>
-									<div class="item-functions__text">
-										<h4>Исключение из списка неофициальных и recovery грузов</h4>
-										<p>Функция AMZN Only предполагает исключение из списка грузов, которые не перевозятся
-											между официальными локациями в Amazon.
-											На таких локациях грузоперевозчик теряет много времени. С фильтром No recoveries в
-											списках будут исключаться такие типы грузов</p>
-									</div>
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-icon-document-filter"></use>
+								</svg>
+								<div class="item-functions__text">
+									<h4>Исключение из списка неофициальных и recovery грузов</h4>
+									<p>Функция AMZN Only предполагает исключение из списка грузов, которые не перевозятся
+										между официальными локациями в Amazon.
+										На таких локациях грузоперевозчик теряет много времени. С фильтром No recoveries в
+										списках будут исключаться такие типы грузов
+									</p>
 								</div>
 								<button type="button" data-popup="#video" class="item-functions__button button-video">
 									<svg>
@@ -218,16 +223,14 @@
 								</button>
 							</div>
 							<div class="functions__item item-functions">
-								<div class="item-functions__wrap">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-icon-search-status"></use>
-									</svg>
-									<div class="item-functions__text">
-										<h4>Автоматический перезапуск поиска</h4>
-										<p>Если произошла неуспешная попытка забронировать груз, то наше расширение автоматически
-											перезапустит поиск загрузки с теми же фильтрами и найдет следующий потенциальный груз
-										</p>
-									</div>
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-icon-search-status"></use>
+								</svg>
+								<div class="item-functions__text">
+									<h4>Автоматический перезапуск поиска</h4>
+									<p>Если произошла неуспешная попытка забронировать груз, то наше расширение автоматически
+										перезапустит поиск загрузки с теми же фильтрами и найдет следующий потенциальный груз
+									</p>
 								</div>
 								<button type="button" data-popup="#video" class="item-functions__button button-video">
 									<svg>
@@ -238,16 +241,14 @@
 								</button>
 							</div>
 							<div class="functions__item item-functions">
-								<div class="item-functions__wrap">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-icon-routing-2"></use>
-									</svg>
-									<div class="item-functions__text">
-										<h4>Место загрузки и выгрузки</h4>
-										<p>Этот фильтр позволяет ограничить регион поиска груза, а также убрать локации, которые
-											вам не интересны или которые вы не будете проезжать
-										</p>
-									</div>
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-icon-routing-2"></use>
+								</svg>
+								<div class="item-functions__text">
+									<h4>Место загрузки и выгрузки</h4>
+									<p>Этот фильтр позволяет ограничить регион поиска груза, а также убрать локации, которые
+										вам не интересны или которые вы не будете проезжать
+									</p>
 								</div>
 								<button type="button" data-popup="#video" class="item-functions__button button-video">
 									<svg>
@@ -258,16 +259,14 @@
 								</button>
 							</div>
 							<div class="functions__item item-functions">
-								<div class="item-functions__wrap">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-icon-location-add"></use>
-									</svg>
-									<div class="item-functions__text">
-										<h4>Выбор числа остановок</h4>
-										<p>В одной вкладке мы можете указать максимальное число остановок одновременно в одну и
-											обе стороны. Грузы с минимальным количеством остановок хорошо оплачиваются
-										</p>
-									</div>
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-icon-location-add"></use>
+								</svg>
+								<div class="item-functions__text">
+									<h4>Выбор числа остановок</h4>
+									<p>В одной вкладке мы можете указать максимальное число остановок одновременно в одну и
+										обе стороны. Грузы с минимальным количеством остановок хорошо оплачиваются
+									</p>
 								</div>
 								<button type="button" data-popup="#video" class="item-functions__button button-video">
 									<svg>
@@ -278,17 +277,15 @@
 								</button>
 							</div>
 							<div class="functions__item item-functions">
-								<div class="item-functions__wrap">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-icon-filter-remove"></use>
-									</svg>
-									<div class="item-functions__text">
-										<h4>Отключение ненужных элементов</h4>
-										<p>Наше расширение автоматически отключает кнопки и разделы, которые не понадобятся
-											при поиске груза. Функция позволяет исключить возможность случайного сброса фильтров и
-											поиска “похожих грузов”, которые часто мало оплачиваются
-										</p>
-									</div>
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-icon-filter-remove"></use>
+								</svg>
+								<div class="item-functions__text">
+									<h4>Отключение ненужных элементов</h4>
+									<p>Наше расширение автоматически отключает кнопки и разделы, которые не понадобятся
+										при поиске груза. Функция позволяет исключить возможность случайного сброса фильтров и
+										поиска “похожих грузов”, которые часто мало оплачиваются
+									</p>
 								</div>
 								<button type="button" data-popup="#video" class="item-functions__button button-video">
 									<svg>
@@ -299,18 +296,16 @@
 								</button>
 							</div>
 							<div class="functions__item item-functions">
-								<div class="item-functions__wrap">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-icon-task"></use>
-									</svg>
-									<div class="item-functions__text">
-										<h4>Фильтр Team miles</h4>
-										<p>В Amazon часто путают грузы, рассчитанные
-											на одного или двух водителей. С фильтром Team miles вы вводите максимальный километраж,
-											который может проехать один водитель, и вам высвечивается список с потенциальными
-											поездками
-										</p>
-									</div>
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-icon-task"></use>
+								</svg>
+								<div class="item-functions__text">
+									<h4>Фильтр Team miles</h4>
+									<p>В Amazon часто путают грузы, рассчитанные
+										на одного или двух водителей. С фильтром Team miles вы вводите максимальный километраж,
+										который может проехать один водитель, и вам высвечивается список с потенциальными
+										поездками
+									</p>
 								</div>
 								<button type="button" data-popup="#video" class="item-functions__button button-video">
 									<svg>
@@ -326,17 +321,16 @@
 			</section>
 			<section class="trial">
 				<div class="trial__bg-ibg">
-					<picture><source srcset="img/pattern/pattern.webp, img/pattern/pattern@2x.webp 2x" type="image/webp"><img src="img/pattern/pattern.png" srcset="img/pattern/pattern@2x.png 2x" alt=""></picture>
+					<img src="img/pattern/pattern.png" srcset="img/pattern/pattern@2x.png 2x" alt="">
 				</div>
 				<div class="trial__container">
 					<div class="trial__body">
-						<div class="trial__title">
-							<h2>Попробуйте 10-дневный бесплатный период</h2>
-						</div>
 						<div class="trial__text">
+							<h2>Попробуйте 10-дневный бесплатный период</h2>
 							<p>Начните бронировать грузы в Amazon LoardBoard с Amazing Relay, чтобы экономить свое время и
 								зарабатывать больше денег. Нажмите ниже, чтобы начать работу с бесплатной пробной версией.</p>
 						</div>
+
 						<a href="#" class="trial__button button-white">Попробовать 10 дней бесплатно</a>
 					</div>
 				</div>
@@ -361,8 +355,8 @@
 								</div>
 							</div>
 							<div class="tarifs__cars">
-								<picture><source srcset="img/car-1.webp, img/car-1@2x.webp 2x" type="image/webp"><img src="img/car-1.png" srcset="img/car-1@2x.png 2x" alt=""></picture>
-								<picture><source srcset="img/car-2.webp, img/car-2@2x.webp 2x" type="image/webp"><img src="img/car-2.png" srcset="img/car-2@2x.png 2x" alt=""></picture>
+								<img src="img/car-1.png" data-watch data-watch-once srcset="img/car-1@2x.png 2x" alt="">
+								<img src="img/car-2.png" data-watch data-watch-once srcset="img/car-2@2x.png 2x" alt="">
 							</div>
 						</div>
 						<div class="tarifs__list list-tarifs">
@@ -380,7 +374,10 @@
 										<p><span>Бесплатно</span></p>
 									</div>
 									<button type="button" class="list-tarifs__button button">
-										<img src="img/icons/icon-arrow-down.svg" alt=""> Скачать</button>
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
+										</svg>
+										Скачать</button>
 								</div>
 								<div class="list-tarifs__col">
 									<div class="list-tarifs__name">
@@ -390,7 +387,9 @@
 										<p><span>22 500 ₽</span> /месяц</p>
 									</div>
 									<button type="button" class="list-tarifs__button button">
-										<img src="img/icons/icon-arrow-down.svg" alt=""> Скачать</button>
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
+										</svg> Скачать</button>
 								</div>
 								<div class="list-tarifs__col">
 									<div class="list-tarifs__name">
@@ -400,10 +399,18 @@
 										<p><span>32 500 ₽</span> /месяц</p>
 									</div>
 									<button disabled type="button" class="list-tarifs__button button">
-										Скоро появится</button>
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
+										</svg> Скоро появится</button>
 								</div>
 							</div>
 							<div class="list-tarifs__body">
+								<div class="list-tarifs__row">
+									<div class="list-tarifs__col"></div>
+									<div class="list-tarifs__col"></div>
+									<div class="list-tarifs__col"></div>
+									<div class="list-tarifs__col"></div>
+								</div>
 								<div class="list-tarifs__row">
 									<div class="list-tarifs__col">
 										<div class="list-tarifs__option">
@@ -731,7 +738,9 @@
 											</div>
 
 											<button type="button" class="list-tarifs__button button">
-												<img src="img/icons/icon-arrow-down.svg" alt=""> Скачать</button>
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
+												</svg> Скачать</button>
 
 										</div>
 										<div class="sliders-tarifs__slide slide-tarifs swiper-slide">
@@ -744,7 +753,9 @@
 												</div>
 											</div>
 											<button type="button" class="list-tarifs__button button">
-												<img src="img/icons/icon-arrow-down.svg" alt=""> Скачать</button>
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
+												</svg> Скачать</button>
 
 										</div>
 										<div class="sliders-tarifs__slide slide-tarifs swiper-slide">
@@ -757,6 +768,9 @@
 												</div>
 											</div>
 											<button disabled type="button" class="list-tarifs__button button">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
+												</svg>
 												Скоро</button>
 
 										</div>
@@ -1026,7 +1040,7 @@
 			<section class="faq">
 				<div class="faq__container">
 					<div class="faq__image">
-						<picture><source srcset="img/faq.webp, img/faq@2x.webp 2x" type="image/webp"><img src="img/faq.png" srcset="img/faq@2x.png 2x" alt=""></picture>
+						<img src="img/faq.png" srcset="img/faq@2x.png 2x" alt="">
 					</div>
 					<div class="faq__body">
 						<div class="faq__title">
@@ -1229,7 +1243,7 @@
 			</section>
 			<section class="contactus">
 				<div class="contactus__bg-ibg">
-					<picture><source srcset="img/pattern/pattern-form.webp, img/pattern/pattern-form@2x.webp 2x" type="image/webp"><img src="img/pattern/pattern-form.png" srcset="img/pattern/pattern-form@2x.png 2x" alt=""></picture>
+					<img src="img/pattern/pattern-form.png" srcset="img/pattern/pattern-form@2x.png 2x" alt="">
 				</div>
 
 				<div class="contactus__container">
@@ -1285,8 +1299,6 @@
 					</div>
 				</div>
 			</section>
-
-
 		</main>
 		<footer class="footer">
 			<div class="footer__container">
@@ -1365,7 +1377,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20220430052520"></script>
+	<script src="js/app.min.js?_v=20220501184308"></script>
 </body>
 
 </html>

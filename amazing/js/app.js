@@ -14,6 +14,26 @@
             document.documentElement.classList.add(className);
         }));
     }
+    let isMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function() {
+            return isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows();
+        }
+    };
     let _slideUp = (target, duration = 500, showmore = 0) => {
         if (!target.classList.contains("_slide")) {
             target.classList.add("_slide");
@@ -4903,6 +4923,32 @@
     }
     flsModules.watcher = new ScrollWatcher({});
     let addWindowScrollEvent = false;
+    function headerScroll() {
+        addWindowScrollEvent = true;
+        const header = document.querySelector("header.header");
+        const headerShow = header.hasAttribute("data-scroll-show");
+        const headerShowTimer = header.dataset.scrollShow ? header.dataset.scrollShow : 500;
+        const startPoint = header.dataset.scroll ? header.dataset.scroll : 1;
+        let scrollDirection = 0;
+        let timer;
+        document.addEventListener("windowScroll", (function(e) {
+            const scrollTop = window.scrollY;
+            clearTimeout(timer);
+            if (scrollTop >= startPoint) {
+                !header.classList.contains("_header-scroll") ? header.classList.add("_header-scroll") : null;
+                if (headerShow) {
+                    if (scrollTop > scrollDirection) header.classList.contains("_header-show") ? header.classList.remove("_header-show") : null; else !header.classList.contains("_header-show") ? header.classList.add("_header-show") : null;
+                    timer = setTimeout((() => {
+                        !header.classList.contains("_header-show") ? header.classList.add("_header-show") : null;
+                    }), headerShowTimer);
+                }
+            } else {
+                header.classList.contains("_header-scroll") ? header.classList.remove("_header-scroll") : null;
+                if (headerShow) header.classList.contains("_header-show") ? header.classList.remove("_header-show") : null;
+            }
+            scrollDirection = scrollTop <= 0 ? 0 : scrollTop;
+        }));
+    }
     setTimeout((() => {
         if (addWindowScrollEvent) {
             let windowScroll = new Event("windowScroll");
@@ -5559,6 +5605,171 @@
         if (displayHours || hours > 0) hours = `${hours}:`; else hours = "";
         return `${inverted && time > 0 ? "-" : ""}${hours}${format(mins)}:${format(secs)}`;
     }
+    !function(e, t) {
+        "object" == typeof exports && "undefined" != typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define("RangeTouch", t) : (e = e || self).RangeTouch = t();
+    }(void 0, (function() {
+        "use strict";
+        function e(e, t) {
+            for (var n = 0; n < t.length; n++) {
+                var r = t[n];
+                r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), 
+                Object.defineProperty(e, r.key, r);
+            }
+        }
+        function t(e, t, n) {
+            return t in e ? Object.defineProperty(e, t, {
+                value: n,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0
+            }) : e[t] = n, e;
+        }
+        function n(e, t) {
+            var n = Object.keys(e);
+            if (Object.getOwnPropertySymbols) {
+                var r = Object.getOwnPropertySymbols(e);
+                t && (r = r.filter((function(t) {
+                    return Object.getOwnPropertyDescriptor(e, t).enumerable;
+                }))), n.push.apply(n, r);
+            }
+            return n;
+        }
+        function r(e) {
+            for (var r = 1; r < arguments.length; r++) {
+                var i = null != arguments[r] ? arguments[r] : {};
+                r % 2 ? n(Object(i), !0).forEach((function(n) {
+                    t(e, n, i[n]);
+                })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(i)) : n(Object(i)).forEach((function(t) {
+                    Object.defineProperty(e, t, Object.getOwnPropertyDescriptor(i, t));
+                }));
+            }
+            return e;
+        }
+        var i = {
+            addCSS: !0,
+            thumbWidth: 15,
+            watch: !0
+        };
+        function u(e, t) {
+            return function() {
+                return Array.from(document.querySelectorAll(t)).includes(this);
+            }.call(e, t);
+        }
+        var o = function(e) {
+            return null != e ? e.constructor : null;
+        }, c = function(e, t) {
+            return !!(e && t && e instanceof t);
+        }, l = function(e) {
+            return null == e;
+        }, a = function(e) {
+            return o(e) === Object;
+        }, s = function(e) {
+            return o(e) === String;
+        }, f = function(e) {
+            return Array.isArray(e);
+        }, h = function(e) {
+            return c(e, NodeList);
+        }, d = s, y = f, b = h, m = function(e) {
+            return c(e, Element);
+        }, g = function(e) {
+            return c(e, Event);
+        }, p = function(e) {
+            return l(e) || (s(e) || f(e) || h(e)) && !e.length || a(e) && !Object.keys(e).length;
+        };
+        function v(e, t) {
+            if (1 > t) {
+                var n = function(e) {
+                    var t = "".concat(e).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+                    return t ? Math.max(0, (t[1] ? t[1].length : 0) - (t[2] ? +t[2] : 0)) : 0;
+                }(t);
+                return parseFloat(e.toFixed(n));
+            }
+            return Math.round(e / t) * t;
+        }
+        return function() {
+            function t(e, n) {
+                (function(e, t) {
+                    if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+                })(this, t), m(e) ? this.element = e : d(e) && (this.element = document.querySelector(e)), 
+                m(this.element) && p(this.element.rangeTouch) && (this.config = r({}, i, {}, n), 
+                this.init());
+            }
+            return n = t, c = [ {
+                key: "setup",
+                value: function(e) {
+                    var n = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : {}, o = null;
+                    if (p(e) || d(e) ? o = Array.from(document.querySelectorAll(d(e) ? e : 'input[type="range"]')) : m(e) ? o = [ e ] : b(e) ? o = Array.from(e) : y(e) && (o = e.filter(m)), 
+                    p(o)) return null;
+                    var c = r({}, i, {}, n);
+                    if (d(e) && c.watch) {
+                        var l = new MutationObserver((function(n) {
+                            Array.from(n).forEach((function(n) {
+                                Array.from(n.addedNodes).forEach((function(n) {
+                                    m(n) && u(n, e) && new t(n, c);
+                                }));
+                            }));
+                        }));
+                        l.observe(document.body, {
+                            childList: !0,
+                            subtree: !0
+                        });
+                    }
+                    return o.map((function(e) {
+                        return new t(e, n);
+                    }));
+                }
+            }, {
+                key: "enabled",
+                get: function() {
+                    return "ontouchstart" in document.documentElement;
+                }
+            } ], (o = [ {
+                key: "init",
+                value: function() {
+                    t.enabled && (this.config.addCSS && (this.element.style.userSelect = "none", this.element.style.webKitUserSelect = "none", 
+                    this.element.style.touchAction = "manipulation"), this.listeners(!0), this.element.rangeTouch = this);
+                }
+            }, {
+                key: "destroy",
+                value: function() {
+                    t.enabled && (this.config.addCSS && (this.element.style.userSelect = "", this.element.style.webKitUserSelect = "", 
+                    this.element.style.touchAction = ""), this.listeners(!1), this.element.rangeTouch = null);
+                }
+            }, {
+                key: "listeners",
+                value: function(e) {
+                    var t = this, n = e ? "addEventListener" : "removeEventListener";
+                    [ "touchstart", "touchmove", "touchend" ].forEach((function(e) {
+                        t.element[n](e, (function(e) {
+                            return t.set(e);
+                        }), !1);
+                    }));
+                }
+            }, {
+                key: "get",
+                value: function(e) {
+                    if (!t.enabled || !g(e)) return null;
+                    var n, r = e.target, i = e.changedTouches[0], u = parseFloat(r.getAttribute("min")) || 0, o = parseFloat(r.getAttribute("max")) || 100, c = parseFloat(r.getAttribute("step")) || 1, l = r.getBoundingClientRect(), a = 100 / l.width * (this.config.thumbWidth / 2) / 100;
+                    return 0 > (n = 100 / l.width * (i.clientX - l.left)) ? n = 0 : 100 < n && (n = 100), 
+                    50 > n ? n -= (100 - 2 * n) * a : 50 < n && (n += 2 * (n - 50) * a), u + v(n / 100 * (o - u), c);
+                }
+            }, {
+                key: "set",
+                value: function(e) {
+                    t.enabled && g(e) && !e.target.disabled && (e.preventDefault(), e.target.value = this.get(e), 
+                    function(e, t) {
+                        if (e && t) {
+                            var n = new Event(t, {
+                                bubbles: !0
+                            });
+                            e.dispatchEvent(n);
+                        }
+                    }(e.target, "touchend" === e.type ? "change" : "input"));
+                }
+            } ]) && e(n.prototype, o), c && e(n, c), t;
+            var n, o, c;
+        }();
+    }));
     const controls = {
         getIconUrl() {
             const url = new URL(this.config.iconUrl, window.location);
@@ -9359,32 +9570,25 @@
         }
     }
     Plyr.defaults = cloneDeep(config_defaults);
+    const plyr = Plyr;
+    const script_controls = `<button type="button" class="plyr__control plyr__control--overlaid" data-plyr="play"\naria-label="Play"><svg aria-hidden="true" focusable="false">\n   <use xlink:href="../../img/icons/icons.svg#svg-plyr-play-new"></use>\n</svg><span class="plyr__sr-only">Play</span></button>`;
+    const player = new plyr("#player", {
+        iconUrl: "../../img/icons/icons.svg",
+        iconPrefix: "svg-plyr",
+        controls: script_controls
+    });
     var script_image = document.getElementsByClassName("main__image");
     new simpleParallax(script_image, {
-        scale: 1.8,
+        scale: 1.3,
         orientation: "up",
         overflow: true
     });
-    const textsHeight = document.querySelectorAll(".item-advantages__text p");
-    textsHeight.forEach(((textHeight, index) => {
-        if (textHeight.clientHeight > 50) {
-            const textWrap = textHeight.closest(".item-advantages__wrap");
-            textWrap.classList.add("_hide");
-        }
-    }));
-    const itemFunctionsTexts = document.querySelectorAll(".item-functions__text p");
-    itemFunctionsTexts.forEach(((textHeight, index) => {
-        if (textHeight.clientHeight > 113) {
-            const textWrap = textHeight.closest(".item-functions__wrap");
-            textWrap.classList.add("_hide");
-        }
-    }));
     document.addEventListener("click", documentActions);
     function documentActions(e) {
         const el = e.target;
-        if (el.classList.contains("item-advantages__text") || el.closest(".item-advantages__text")) {
-            const textWrap = el.closest(".item-advantages__wrap");
-            if (textWrap.classList.contains("_hide")) textWrap.classList.toggle("_show");
+        if (el.closest(".item-advantages")) {
+            const itemAdvantagies = el.closest(".item-advantages");
+            if (isMobile.any()) itemAdvantagies.classList.toggle("_show");
         }
         if (el.classList.contains("item-functions__text") || el.closest(".item-functions__text")) {
             const textWrap = el.closest(".item-functions__wrap");
@@ -9393,6 +9597,42 @@
         if (el.closest("._success")) {
             const form = el.closest("._success");
             if (form.classList.contains("_success")) form.classList.remove("_success");
+        }
+        if (!el.closest(".plyr")) player.pause();
+    }
+    document.addEventListener("mouseover", menuHover);
+    function menuHover(e) {
+        const el = e.target;
+        if (el.classList.contains("menu__link")) {
+            el.closest(".menu__list").classList.add("_hover");
+            let menuHover = el.closest(".menu__list").querySelector(".menu__hover");
+            let linkWidth = el.offsetWidth;
+            var linkLeft = el.offsetLeft;
+            menuHover.style.width = linkWidth + "px";
+            menuHover.style.left = linkLeft + "px";
+        }
+        if (el.closest(".item-functions")) {
+            const itemFunctions = el.closest(".item-functions");
+            const itemFunctionsText = itemFunctions.querySelector(".item-functions__text");
+            const itemFunctionsP = itemFunctions.querySelector(".item-functions__text p");
+            let textHeightP = itemFunctionsP.offsetHeight;
+            if (textHeightP > 112) {
+                let textHeight = 155 + textHeightP;
+                itemFunctionsText.style.height = textHeight + "px";
+            }
+        }
+    }
+    document.addEventListener("mouseout", menuOut);
+    function menuOut(e) {
+        const el = e.target;
+        if (el.classList.contains("menu__link")) if (el.closest("._hover")) el.closest("._hover").classList.remove("_hover");
+        if (el.closest(".item-functions")) {
+            const itemFunctions = el.closest(".item-functions");
+            const itemFunctionsText = itemFunctions.querySelector(".item-functions__text");
+            const itemFunctionsP = itemFunctions.querySelector(".item-functions__text p");
+            itemFunctionsText.offsetHeight;
+            itemFunctionsP.offsetHeight;
+            itemFunctionsText.style.height = "190px";
         }
     }
     window["FLS"] = true;
@@ -9403,4 +9643,5 @@
         viewPass: false
     });
     formSubmit();
+    headerScroll();
 })();
