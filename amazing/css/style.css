@@ -1430,14 +1430,14 @@ h4 {
   transition: all 0.3s ease 0s;
 }
 
-.item-functions svg {
+.item-functions__icon:not(:last-child) {
+  margin: 0px 0px 29px 0px;
+}
+
+.item-functions__icon svg {
   fill: #EE7937;
   width: 90px;
   height: 90px;
-}
-
-.item-functions svg:not(:last-child) {
-  margin: 0px 0px 29px 0px;
 }
 
 .item-functions__text {
@@ -4480,7 +4480,7 @@ a.plyr__control::before {
     grid-row-gap: 55px;
   }
 
-  .item-functions svg:not(:last-child) {
+  .item-functions__icon:not(:last-child) {
     margin: 0px 0px 22px 0px;
   }
 
@@ -4927,11 +4927,11 @@ a.plyr__control::before {
     height: auto;
   }
 
-  .item-functions svg:not(:last-child) {
+  .item-functions__icon:not(:last-child) {
     margin: 0px 0px 15px 0px;
   }
 
-  .item-functions svg {
+  .item-functions__icon svg {
     width: 64px;
     height: 64px;
   }

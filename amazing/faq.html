@@ -5,7 +5,7 @@
 	<title>Amazing | FAQ</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20220504034101">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220504144818">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -615,7 +615,7 @@
 						<div class="contactus__title">
 							<h2>Свяжитесь с нами в любое время</h2>
 						</div>
-						<form data-dev action="" class="contactus__form form-contactus">
+						<form data-dev data-dev data-goto-error action="" class="contactus__form form-contactus">
 							<div class="form-contactus__success">
 								<svg>
 									<use xlink:href="img/icons/icons.svg#svg-icon-tick-circle"></use>
@@ -703,7 +703,7 @@
 						<a href="">Политика конфиденциальности</a>
 						<div class="footer__made-in">
 							<p>Made in —</p>
-							<a href="#">
+							<a data-goto=".trial" href="">
 								<svg>
 									<use xlink:href="img/icons/icons.svg#svg-madeIn"></use>
 								</svg>
@@ -729,7 +729,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20220504034101"></script>
+	<script src="js/app.min.js?_v=20220504144818"></script>
 </body>
 
 </html>
