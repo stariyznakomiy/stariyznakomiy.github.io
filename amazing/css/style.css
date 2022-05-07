@@ -1173,10 +1173,6 @@ h4 {
   margin-bottom: 80px;
 }
 
-.page__advantages .advantages__title h1 {
-  letter-spacing: -0.05em;
-}
-
 .page__advantages .functions__body {
   padding: 105px 0px 100px 0px;
 }
@@ -5167,6 +5163,10 @@ a.plyr__control::before {
 
   .page__advantages .advantages__title:not(:last-child) {
     margin-bottom: 37px;
+  }
+
+  .page__advantages .advantages__title h1 {
+    letter-spacing: -0.05em;
   }
 
   .page__advantages .functions__body {
