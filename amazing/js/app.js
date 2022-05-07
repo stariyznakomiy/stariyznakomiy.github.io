@@ -10006,9 +10006,9 @@
             iconPrefix: "svg-plyr",
             controls: script_controls
         });
-        var script_image = document.getElementsByClassName("main__image");
+        var script_image = document.getElementsByClassName("main__parallax");
         new simpleParallax(script_image, {
-            scale: 1.9,
+            scale: 1.2,
             orientation: "up",
             overflow: true
         });
@@ -10028,16 +10028,6 @@
                 if (form.classList.contains("_success")) form.classList.remove("_success");
             }
             if (!el.closest(".plyr")) player.pause();
-            if (el.closest(".additional__button")) {
-                const button = el.closest(".additional__button");
-                const row = el.closest(".additional__row");
-                const buttons = row.querySelectorAll(".additional__button");
-                buttons.forEach((button => {
-                    if (button.classList.contains("_active")) button.classList.remove("_active");
-                }));
-                if (!buttons) row.classList.remove("_active"); else row.classList.add("_active");
-                button.classList.toggle("_active");
-            }
             if (el.classList.contains("cookies__button")) el.closest(".cookies ").classList.add("_hide");
         }
         document.addEventListener("mouseover", menuHover);
