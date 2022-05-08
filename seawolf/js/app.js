@@ -4152,7 +4152,7 @@
             },
             on: {}
         });
-        if (document.querySelector(".main-comments__slider")) new core(".main-comments__slider", {
+        if (document.querySelector(".comments__slider")) new core(".comments__slider", {
             modules: [ Navigation, Pagination ],
             observer: true,
             observeParents: true,
@@ -4163,7 +4163,7 @@
             centeredSlides: true,
             loop: true,
             pagination: {
-                el: ".main-comments__dotts",
+                el: ".comments__dotts",
                 dynamicBullets: true,
                 clickable: true,
                 renderBullet: function(index, className) {
@@ -4171,8 +4171,8 @@
                 }
             },
             navigation: {
-                prevEl: ".main-comments-arrow_prev",
-                nextEl: ".main-comments-arrow_next"
+                prevEl: ".comments-arrow_prev",
+                nextEl: ".comments-arrow_next"
             },
             on: {}
         });
@@ -5929,6 +5929,27 @@ PERFORMANCE OF THIS SOFTWARE.
             var checkbox = document.querySelectorAll(".table-cart__cell-checkbox");
             for (var i = 0; i < checkbox.length; i++) if (checkbox[i].classList.contains("active")) checkbox[i].classList.remove("active");
             targetElement.classList.add("active");
+        }
+        if (targetElement.classList.contains("results-search__button")) {
+            const searchCatalog = document.querySelector(".search__catalog");
+            const searchBlog = document.querySelector(".search__blog");
+            const searchButtons = document.querySelectorAll(".results-search__button");
+            if (searchButtons) searchButtons.forEach((searchButton => {
+                if (searchButton.classList.contains("_active")) searchButton.classList.remove("_active");
+            }));
+            targetElement.classList.add("_active");
+            if (targetElement.classList.contains("results-search__all")) {
+                if (searchCatalog.classList.contains("_hide")) searchCatalog.classList.remove("_hide");
+                if (searchBlog.classList.contains("_hide")) searchBlog.classList.remove("_hide");
+            }
+            if (targetElement.classList.contains("results-search__blog")) {
+                if (!searchCatalog.classList.contains("_hide")) searchCatalog.classList.add("_hide");
+                if (searchBlog.classList.contains("_hide")) searchBlog.classList.remove("_hide");
+            }
+            if (targetElement.classList.contains("results-search__catalog")) {
+                if (searchCatalog.classList.contains("_hide")) searchCatalog.classList.remove("_hide");
+                if (!searchBlog.classList.contains("_hide")) searchBlog.classList.add("_hide");
+            }
         }
     }
     const header = document.querySelector("header.header");
