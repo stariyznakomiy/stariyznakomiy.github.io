@@ -5,7 +5,7 @@
 	<title>Amazing | Download</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20220510085329">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220511024246">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -41,11 +41,11 @@
 
 						<nav class="menu__body">
 							<ul class="menu__list">
-								<li class="menu__item"><a href="#" class="menu__link">Преимущества</a></li>
-								<li class="menu__item"><a href="#" class="menu__link">Тариф</a></li>
-								<li class="menu__item"><a href="#" class="menu__link">Скачать</a></li>
-								<li class="menu__item"><a href="#" class="menu__link">FAQ</a></li>
-								<li class="menu__item"><a href="#" class="menu__link">Поддержка</a></li>
+								<li class="menu__item"><a href="./advantages.html" class="menu__link">Преимущества</a></li>
+								<li class="menu__item"><a href="./tarif.html" class="menu__link">Тариф</a></li>
+								<li class="menu__item"><a href="./download.html" class="menu__link">Скачать</a></li>
+								<li class="menu__item"><a href="./faq.html" class="menu__link">FAQ</a></li>
+								<li class="menu__item"><a href="./contacts.html" class="menu__link">Поддержка</a></li>
 								<span class="menu__hover"></span>
 							</ul>
 							<div class="menu__socials socials">
@@ -81,12 +81,12 @@
 								<h1>Установка <br> Amazing Relay</h1>
 								<p>Amazing Relay - обеспечивает моментальное бронирование грузов и поиск подходящих загрузок.
 								</p>
-								<button type="button" class="download__button button-white">
+								<a href="#" download class="download__button button-white">
 									<svg>
 										<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
 									</svg>
 									Скачать
-								</button>
+								</a>
 							</div>
 							<div class="download__image">
 								<img src="img/filters-img.png" srcset="img/filters-img@2x.png 2x" alt="">
@@ -125,14 +125,13 @@
 				<div class="video__container">
 					<div class="video__body">
 						<div class="video__text">
-							<h2>Cмотреть видео по установке Amazing Relay</h2>
+							<h2>Cмотреть видео по установке <br> Amazing Relay</h2>
 							<p>Amazing Relay - обеспечивает моментальное бронирование грузов и поиск подходящих загрузок.</p>
 						</div>
 						<div class="video__media">
-							<video poster="files/poster2.jpg" id="player" playsinline controls>
-								<source src="files/mountains.mp4" type="video/mp4" />
-								<source src="files/mountains.webm" type="video/webm" />
-							</video>
+							<div class="plyr__video-embed" id="player">
+								<iframe src="https://www.youtube.com/embed/6wJAdfTJZUQ" allowfullscreen allowtransparency controls="0" allow="autoplay"></iframe>
+							</div>
 						</div>
 					</div>
 
@@ -141,6 +140,7 @@
 			<section class="faq">
 				<div class="faq__container">
 					<div class="faq__image">
+
 						<img data-src="img/faq.png" data-srcset="img/faq@2x.png 2x" alt="">
 					</div>
 					<div class="faq__body">
@@ -152,7 +152,35 @@
 							<div data-spollers data-one-spoller class="faq__spollers spollers-faq">
 								<div class="spollers-faq__item">
 									<button type="button" data-spoller class="spollers-faq__title _spoller-active">
-										<h4>Может ли Amazon забанить за использование этого расширения?</h4> <span></span>
+										<h4>Что я получу с 10-дневной пробной версией Amazing Relay?</h4> <span></span>
+									</button>
+									<div class="spollers-faq__body">
+										<p>
+											При разработке нашего расширения мы подумали о том, есть ли у Amazon возможность
+											обнаружения таких автобукеров, как наш. И ответ следующий: да, и скажем так, они могут
+											очень легко обнаружить это в течение первых минут использования любого автобукера. Если
+											бы мы работали в Amazon и наша цель состояла бы в том, чтобы заблокировать каждого
+											пользователя автобукера, это было бы несложно. Из этого исходит следующий вопрос:
+											почему тогда Amazon не банит пользователей автобукеров? Ответ, вероятно, сложен, и его
+											знает только Amazon.
+											Другие автобукеры обещают вам защиту от блокировки, рандомизируя скорость обновления.
+											Скорость обновления - это меньшее, о чем стоит беспокоиться, если речь идет о защите от
+											бана. Есть много других параметров, на основе которых Amazon может определить,
+											используете ли вы стороннюю программу для букинга грузов. Как и в других автобукерах в
+											наше расширение включен аналогичный рандомизатор обновления, но мы не хотим
+											акцентировать на нем внимание и отвлекать от проблемы, поскольку мы не можем
+											гарантировать, что Amazon не обнаружит, что вы используете наше расширение. Правда в
+											том, что избежать бана можно лишь одним способом - бронировать грузы вручную. Но это не
+											то, что вас интересует, не так ли? Ознакомьтесь со всеми функциями, которые делают наш
+											автобукер таким уникальным, и используйте новые возможности нашего расширения Amazing
+											Relay Autobook, которые сделают процесс бронирования грузов более быстрым и удобным.
+										</p>
+									</div>
+								</div>
+								<div class="spollers-faq__item">
+									<button type="button" data-spoller class="spollers-faq__title">
+										<h4>Нужно ли вводить свои банковские данные, чтобы воспользоваться 10-дневной пробной
+											версией?</h4> <span></span>
 									</button>
 									<div class="spollers-faq__body">
 										<p>
@@ -188,7 +216,7 @@
 								</div>
 								<div class="spollers-faq__item">
 									<button type="button" data-spoller class="spollers-faq__title">
-										<h4>Какие браузеры поддерживают Amazing Relay?</h4> <span></span>
+										<h4>Что произойдет после 10-дневного пробного периода?</h4> <span></span>
 									</button>
 									<div class="spollers-faq__body">
 										<p>
@@ -224,7 +252,7 @@
 								</div>
 								<div class="spollers-faq__item">
 									<button type="button" data-spoller class="spollers-faq__title">
-										<h4>Что такое “ценовой коэффициент”?</h4> <span></span>
+										<h4>Почему я получил сообщение “Срок действия пробной версии истек”?</h4> <span></span>
 									</button>
 									<div class="spollers-faq__body">
 										<p>
@@ -260,43 +288,8 @@
 								</div>
 								<div class="spollers-faq__item">
 									<button type="button" data-spoller class="spollers-faq__title">
-										<h4>Буферное время и коэффициент миль </h4> <span></span>
-									</button>
-									<div class="spollers-faq__body">
-										<p>
-											При разработке нашего расширения мы подумали о том, есть ли у Amazon возможность
-											обнаружения таких автобукеров, как наш. И ответ следующий: да, и скажем так, они могут
-											очень легко обнаружить это в течение первых минут использования любого автобукера. Если
-											бы
-											мы работали в Amazon и наша цель состояла бы в том, чтобы заблокировать каждого
-											пользователя автобукера, это было бы несложно. Из этого исходит следующий вопрос:
-											почему
-											тогда Amazon не банит пользователей автобукеров? Ответ, вероятно, сложен, и его знает
-											только Amazon.
-											Другие автобукеры обещают вам защиту от блокировки, рандомизируя скорость обновления.
-											Скорость обновления - это меньшее, о чем стоит беспокоиться, если речь идет о защите от
-											бана. Есть много других параметров, на основе которых Amazon может определить,
-											используете
-											ли вы стороннюю программу для букинга грузов. Как и в других автобукерах в наше
-											расширение
-											включен аналогичный рандомизатор обновления, но мы не хотим акцентировать на нем
-											внимание
-											и отвлекать от проблемы, поскольку мы не можем гарантировать, что Amazon не обнаружит,
-											что
-											вы используете наше расширение. Правда в том, что избежать бана можно лишь одним
-											способом
-											- бронировать грузы вручную. Но это не то, что вас интересует, не так ли? Ознакомьтесь
-											со
-											всеми функциями, которые делают наш автобукер таким уникальным, и используйте новые
-											возможности нашего расширения Amazing Relay Autobook, которые сделают процесс
-											бронирования
-											грузов более быстрым и удобным.
-										</p>
-									</div>
-								</div>
-								<div class="spollers-faq__item">
-									<button type="button" data-spoller class="spollers-faq__title">
-										<h4>Максимальная скорость обновления</h4> <span></span>
+										<h4>Нужно ли скачивать что-то дополнительно, чтобы использовать платную версию Amazon
+											Relay?</h4> <span></span>
 									</button>
 									<div class="spollers-faq__body">
 										<p>
@@ -416,11 +409,11 @@
 					<a href="./index.html" class="footer__logo"><img src="img/logo.svg" alt=""></a>
 					<nav class="footer__menu">
 						<ul class="footer__menu-list">
-							<li class="footer__menu-list"><a href="#" class="footer__menu-link">Преимущества</a></li>
-							<li class="footer__menu-list"><a href="#" class="footer__menu-link">Тариф</a></li>
-							<li class="footer__menu-list"><a href="#" class="footer__menu-link">Скачать</a></li>
-							<li class="footer__menu-list"><a href="#" class="footer__menu-link">FAQ</a></li>
-							<li class="footer__menu-list"><a href="#" class="footer__menu-link">Поддержка</a></li>
+							<li class="footer__menu-list"><a href="./advantages.html" class="footer__menu-link">Преимущества</a></li>
+							<li class="footer__menu-list"><a href="./tarif.html" class="footer__menu-link">Тариф</a></li>
+							<li class="footer__menu-list"><a href="./download.html" class="footer__menu-link">Скачать</a></li>
+							<li class="footer__menu-list"><a href="./faq.html" class="footer__menu-link">FAQ</a></li>
+							<li class="footer__menu-list"><a href="./contacts.html" class="footer__menu-link">Поддержка</a></li>
 						</ul>
 					</nav>
 					<div class="footer__contact">
@@ -429,17 +422,17 @@
 							<a href="">support@amazingrelay.com</a>
 						</div>
 						<div class="footer__socials socials">
-							<a href="#" class="socials__item">
+							<a href="#" class="socials__item socials__youtube">
 								<svg>
 									<use xlink:href="img/icons/icons.svg#svg-youtube"></use>
 								</svg>
 							</a>
-							<a href="#" class="socials__item">
+							<a href="#" class="socials__item socials__facebook">
 								<svg>
 									<use xlink:href="img/icons/icons.svg#svg-facebook"></use>
 								</svg>
 							</a>
-							<a href="#" class="socials__item">
+							<a href="#" class="socials__item socials__instagram">
 								<svg>
 									<use xlink:href="img/icons/icons.svg#svg-instagram"></use>
 								</svg>
@@ -480,7 +473,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20220510085329"></script>
+	<script src="js/app.min.js?_v=20220511024246"></script>
 </body>
 
 </html>

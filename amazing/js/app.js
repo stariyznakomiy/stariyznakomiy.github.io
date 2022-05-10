@@ -10000,11 +10000,10 @@
         }
         Plyr.defaults = cloneDeep(config_defaults);
         const plyr = Plyr;
-        const script_controls = `<button type="button" class="plyr__control plyr__control--overlaid" data-plyr="play"\naria-label="Play"><svg aria-hidden="true" focusable="false">\n   <use xlink:href="../../img/icons/icons.svg#svg-plyr-play-new"></use>\n</svg><span class="plyr__sr-only">Play</span></button>`;
         const player = new plyr("#player", {
             iconUrl: "../../img/icons/icons.svg",
             iconPrefix: "svg-plyr",
-            controls: script_controls
+            controls: [ "play-large", "restart", "rewind", "play", "fast-forward", "progress", "current-time", "duration", "mute", "volume", "captions", "settings", "pip", "airplay", "download", "fullscreen" ]
         });
         var script_image = document.getElementsByClassName("main__parallax");
         new simpleParallax(script_image, {
@@ -10047,7 +10046,7 @@
                 const itemFunctionsP = itemFunctions.querySelector(".item-functions__text p");
                 let textHeightP = itemFunctionsP.offsetHeight;
                 if (textHeightP > 112) {
-                    let textHeight = 155 + textHeightP;
+                    let textHeight = 112 + textHeightP;
                     itemFunctionsText.style.height = textHeight + "px";
                 }
             }
@@ -10062,7 +10061,7 @@
                 const itemFunctionsP = itemFunctions.querySelector(".item-functions__text p");
                 itemFunctionsText.offsetHeight;
                 itemFunctionsP.offsetHeight;
-                itemFunctionsText.style.height = "190px";
+                itemFunctionsText.style.height = "112px";
             }
         }
         window["FLS"] = true;
