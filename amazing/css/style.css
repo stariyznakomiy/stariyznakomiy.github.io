@@ -624,6 +624,18 @@ body::after {
   visibility: visible;
 }
 
+.popup__video .plyr {
+  border-radius: 5px;
+}
+
+.popup__video .plyr__video-wrapper {
+  border-radius: 7px;
+}
+
+.popup__video .plyr__poster {
+  background-size: cover;
+}
+
 .popup__close {
   position: absolute;
   width: 32px;
@@ -633,6 +645,7 @@ body::after {
   opacity: 0.7;
   z-index: 10;
   background-color: transparent;
+  outline: none;
 }
 
 .popup__close::before,
@@ -656,6 +669,26 @@ body::after {
   -webkit-transform: translateY(-50%) rotate(-45deg);
       -ms-transform: translateY(-50%) rotate(-45deg);
           transform: translateY(-50%) rotate(-45deg);
+}
+
+.plyr__control--overlaid {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 89px !important;
+  height: 89px !important;
+}
+
+.plyr__control--overlaid svg {
+  left: 0 !important;
+  height: 25px !important;
+  width: 25px !important;
 }
 
 [class*=-ibg] {
@@ -935,6 +968,12 @@ h4 {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
+}
+
+.menu__body .menu__icon {
+  position: absolute;
+  top: 32px;
+  left: 24px;
 }
 
 .menu__cover-ibg {
@@ -2158,14 +2197,6 @@ h4 {
   height: 100%;
 }
 
-.additional__row-top .additional__col:first-child {
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 2;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 1;
-  grid-area: 1/1/3/2;
-}
-
 .additional__row-bot {
   display: -ms-grid;
   display: grid;
@@ -2403,6 +2434,30 @@ h4 {
   min-height: 169px;
   width: 100%;
   position: relative;
+}
+
+.video__media .plyr {
+  border-radius: 15px;
+}
+
+.video__media .plyr__video-wrapper {
+  border-radius: 17px;
+}
+
+.video__media .plyr__poster {
+  background-size: cover;
+}
+
+.video__media .plyr__control--overlaid {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .faq__container {
@@ -4520,6 +4575,16 @@ a.plyr__control::before {
   }
 }
 
+@media (min-width: 70.625em) {
+  .additional__row-top .additional__col:first-child {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-area: 1/1/3/2;
+  }
+}
+
 @media (min-width: 84.25em) {
   .additional__body {
     left: 42px;
@@ -4592,6 +4657,18 @@ a.plyr__control::before {
 
   .list-tarifs__col:not(:first-child) {
     padding-left: 33px;
+  }
+}
+
+@media (max-width: 64em) {
+  .plyr__control--overlaid {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .plyr__control--overlaid svg {
+    height: 15px !important;
+    width: 15px !important;
   }
 }
 
@@ -5114,7 +5191,6 @@ a.plyr__control::before {
         -ms-flex: 0 0 20px;
             flex: 0 0 20px;
     cursor: pointer;
-    z-index: 5;
   }
 
   .icon-menu span,
@@ -5592,6 +5668,10 @@ a.plyr__control::before {
     -webkit-box-flex: 1;
         -ms-flex: 1 1 auto;
             flex: 1 1 auto;
+  }
+
+  .video__media .plyr {
+    border-radius: 7px;
   }
 
   .faq__body {

@@ -5386,666 +5386,158 @@
                 }));
             }
         }), 0);
-        const getConstructor = input => null !== input && "undefined" !== typeof input ? input.constructor : null;
-        const instanceOf = (input, constructor) => Boolean(input && constructor && input instanceof constructor);
-        const isNullOrUndefined = input => null === input || "undefined" === typeof input;
-        const is_isObject = input => getConstructor(input) === Object;
-        const isNumber = input => getConstructor(input) === Number && !Number.isNaN(input);
-        const isString = input => getConstructor(input) === String;
-        const isBoolean = input => getConstructor(input) === Boolean;
-        const isFunction = input => getConstructor(input) === Function;
-        const isArray = input => Array.isArray(input);
-        const isWeakMap = input => instanceOf(input, WeakMap);
-        const isNodeList = input => instanceOf(input, NodeList);
-        const isTextNode = input => getConstructor(input) === Text;
-        const isEvent = input => instanceOf(input, Event);
-        const isKeyboardEvent = input => instanceOf(input, KeyboardEvent);
-        const isCue = input => instanceOf(input, window.TextTrackCue) || instanceOf(input, window.VTTCue);
-        const isTrack = input => instanceOf(input, TextTrack) || !isNullOrUndefined(input) && isString(input.kind);
-        const isPromise = input => instanceOf(input, Promise) && isFunction(input.then);
-        const isElement = input => null !== input && "object" === typeof input && 1 === input.nodeType && "object" === typeof input.style && "object" === typeof input.ownerDocument;
-        const isEmpty = input => isNullOrUndefined(input) || (isString(input) || isArray(input) || isNodeList(input)) && !input.length || is_isObject(input) && !Object.keys(input).length;
-        const isUrl = input => {
-            if (instanceOf(input, window.URL)) return true;
-            if (!isString(input)) return false;
-            let string = input;
-            if (!input.startsWith("http://") || !input.startsWith("https://")) string = `http://${input}`;
-            try {
-                return !isEmpty(new URL(string).hostname);
-            } catch (_) {
-                return false;
-            }
-        };
-        const utils_is = {
-            nullOrUndefined: isNullOrUndefined,
-            object: is_isObject,
-            number: isNumber,
-            string: isString,
-            boolean: isBoolean,
-            function: isFunction,
-            array: isArray,
-            weakMap: isWeakMap,
-            nodeList: isNodeList,
-            element: isElement,
-            textNode: isTextNode,
-            event: isEvent,
-            keyboardEvent: isKeyboardEvent,
-            cue: isCue,
-            track: isTrack,
-            promise: isPromise,
-            url: isUrl,
-            empty: isEmpty
-        };
-        const transitionEndEvent = (() => {
-            const element = document.createElement("span");
-            const events = {
-                WebkitTransition: "webkitTransitionEnd",
-                MozTransition: "transitionend",
-                OTransition: "oTransitionEnd otransitionend",
-                transition: "transitionend"
-            };
-            const type = Object.keys(events).find((event => void 0 !== element.style[event]));
-            return utils_is.string(type) ? events[type] : false;
-        })();
-        function repaint(element, delay) {
-            setTimeout((() => {
-                try {
-                    element.hidden = true;
-                    element.offsetHeight;
-                    element.hidden = false;
-                } catch (_) {}
-            }), delay);
-        }
-        const browser_browser = {
-            isIE: Boolean(window.document.documentMode),
-            isEdge: window.navigator.userAgent.includes("Edge"),
-            isWebkit: "WebkitAppearance" in document.documentElement.style && !/Edge/.test(navigator.userAgent),
-            isIPhone: /(iPhone|iPod)/gi.test(navigator.platform),
-            isIos: "MacIntel" === navigator.platform && navigator.maxTouchPoints > 1 || /(iPad|iPhone|iPod)/gi.test(navigator.platform)
-        };
-        const utils_browser = browser_browser;
-        function cloneDeep(object) {
-            return JSON.parse(JSON.stringify(object));
-        }
-        function getDeep(object, path) {
-            return path.split(".").reduce(((obj, key) => obj && obj[key]), object);
-        }
-        function objects_extend(target = {}, ...sources) {
-            if (!sources.length) return target;
-            const source = sources.shift();
-            if (!utils_is.object(source)) return target;
-            Object.keys(source).forEach((key => {
-                if (utils_is.object(source[key])) {
-                    if (!Object.keys(target).includes(key)) Object.assign(target, {
-                        [key]: {}
-                    });
-                    objects_extend(target[key], source[key]);
-                } else Object.assign(target, {
-                    [key]: source[key]
-                });
-            }));
-            return objects_extend(target, ...sources);
-        }
-        function wrap(elements, wrapper) {
-            const targets = elements.length ? elements : [ elements ];
-            Array.from(targets).reverse().forEach(((element, index) => {
-                const child = index > 0 ? wrapper.cloneNode(true) : wrapper;
-                const parent = element.parentNode;
-                const sibling = element.nextSibling;
-                child.appendChild(element);
-                if (sibling) parent.insertBefore(child, sibling); else parent.appendChild(child);
-            }));
-        }
-        function setAttributes(element, attributes) {
-            if (!utils_is.element(element) || utils_is.empty(attributes)) return;
-            Object.entries(attributes).filter((([, value]) => !utils_is.nullOrUndefined(value))).forEach((([key, value]) => element.setAttribute(key, value)));
-        }
-        function createElement(type, attributes, text) {
-            const element = document.createElement(type);
-            if (utils_is.object(attributes)) setAttributes(element, attributes);
-            if (utils_is.string(text)) element.innerText = text;
-            return element;
-        }
-        function elements_insertAfter(element, target) {
-            if (!utils_is.element(element) || !utils_is.element(target)) return;
-            target.parentNode.insertBefore(element, target.nextSibling);
-        }
-        function insertElement(type, parent, attributes, text) {
-            if (!utils_is.element(parent)) return;
-            parent.appendChild(createElement(type, attributes, text));
-        }
-        function removeElement(element) {
-            if (utils_is.nodeList(element) || utils_is.array(element)) {
-                Array.from(element).forEach(removeElement);
-                return;
-            }
-            if (!utils_is.element(element) || !utils_is.element(element.parentNode)) return;
-            element.parentNode.removeChild(element);
-        }
-        function emptyElement(element) {
-            if (!utils_is.element(element)) return;
-            let {length} = element.childNodes;
-            while (length > 0) {
-                element.removeChild(element.lastChild);
-                length -= 1;
-            }
-        }
-        function replaceElement(newChild, oldChild) {
-            if (!utils_is.element(oldChild) || !utils_is.element(oldChild.parentNode) || !utils_is.element(newChild)) return null;
-            oldChild.parentNode.replaceChild(newChild, oldChild);
-            return newChild;
-        }
-        function getAttributesFromSelector(sel, existingAttributes) {
-            if (!utils_is.string(sel) || utils_is.empty(sel)) return {};
-            const attributes = {};
-            const existing = objects_extend({}, existingAttributes);
-            sel.split(",").forEach((s => {
-                const selector = s.trim();
-                const className = selector.replace(".", "");
-                const stripped = selector.replace(/[[\]]/g, "");
-                const parts = stripped.split("=");
-                const [key] = parts;
-                const value = parts.length > 1 ? parts[1].replace(/["']/g, "") : "";
-                const start = selector.charAt(0);
-                switch (start) {
-                  case ".":
-                    if (utils_is.string(existing.class)) attributes.class = `${existing.class} ${className}`; else attributes.class = className;
-                    break;
-
-                  case "#":
-                    attributes.id = selector.replace("#", "");
-                    break;
-
-                  case "[":
-                    attributes[key] = value;
-                    break;
-
-                  default:
-                    break;
-                }
-            }));
-            return objects_extend(existing, attributes);
-        }
-        function toggleHidden(element, hidden) {
-            if (!utils_is.element(element)) return;
-            let hide = hidden;
-            if (!utils_is.boolean(hide)) hide = !element.hidden;
-            element.hidden = hide;
-        }
-        function elements_toggleClass(element, className, force) {
-            if (utils_is.nodeList(element)) return Array.from(element).map((e => elements_toggleClass(e, className, force)));
-            if (utils_is.element(element)) {
-                let method = "toggle";
-                if ("undefined" !== typeof force) method = force ? "add" : "remove";
-                element.classList[method](className);
-                return element.classList.contains(className);
-            }
-            return false;
-        }
-        function elements_hasClass(element, className) {
-            return utils_is.element(element) && element.classList.contains(className);
-        }
-        function matches(element, selector) {
-            const {prototype} = Element;
-            function match() {
-                return Array.from(document.querySelectorAll(selector)).includes(this);
-            }
-            const method = prototype.matches || prototype.webkitMatchesSelector || prototype.mozMatchesSelector || prototype.msMatchesSelector || match;
-            return method.call(element, selector);
-        }
-        function elements_closest(element, selector) {
-            const {prototype} = Element;
-            function closestElement() {
-                let el = this;
-                do {
-                    if (matches.matches(el, selector)) return el;
-                    el = el.parentElement || el.parentNode;
-                } while (null !== el && 1 === el.nodeType);
-                return null;
-            }
-            const method = prototype.closest || closestElement;
-            return method.call(element, selector);
-        }
-        function getElements(selector) {
-            return this.elements.container.querySelectorAll(selector);
-        }
-        function getElement(selector) {
-            return this.elements.container.querySelector(selector);
-        }
-        function setFocus(element = null, tabFocus = false) {
-            if (!utils_is.element(element)) return;
-            element.focus({
-                preventScroll: true
-            });
-            if (tabFocus) elements_toggleClass(element, this.config.classNames.tabFocus);
-        }
-        const defaultCodecs = {
-            "audio/ogg": "vorbis",
-            "audio/wav": "1",
-            "video/webm": "vp8, vorbis",
-            "video/mp4": "avc1.42E01E, mp4a.40.2",
-            "video/ogg": "theora"
-        };
-        const support_support = {
-            audio: "canPlayType" in document.createElement("audio"),
-            video: "canPlayType" in document.createElement("video"),
-            check(type, provider, playsinline) {
-                const canPlayInline = utils_browser.isIPhone && playsinline && support_support.playsinline;
-                const api = support_support[type] || "html5" !== provider;
-                const ui = api && support_support.rangeInput && ("video" !== type || !utils_browser.isIPhone || canPlayInline);
-                return {
-                    api,
-                    ui
-                };
-            },
-            pip: (() => {
-                if (utils_browser.isIPhone) return false;
-                if (utils_is["function"](createElement("video").webkitSetPresentationMode)) return true;
-                if (document.pictureInPictureEnabled && !createElement("video").disablePictureInPicture) return true;
-                return false;
-            })(),
-            airplay: utils_is["function"](window.WebKitPlaybackTargetAvailabilityEvent),
-            playsinline: "playsInline" in document.createElement("video"),
-            mime(input) {
-                if (utils_is.empty(input)) return false;
-                const [mediaType] = input.split("/");
-                let type = input;
-                if (!this.isHTML5 || mediaType !== this.type) return false;
-                if (Object.keys(defaultCodecs).includes(type)) type += `; codecs="${defaultCodecs[input]}"`;
-                try {
-                    return Boolean(type && this.media.canPlayType(type).replace(/no/, ""));
-                } catch (_) {
-                    return false;
-                }
-            },
-            textTracks: "textTracks" in document.createElement("video"),
-            rangeInput: (() => {
-                const range = document.createElement("input");
-                range.type = "range";
-                return "range" === range.type;
-            })(),
-            touch: "ontouchstart" in document.documentElement,
-            transitions: false !== transitionEndEvent,
-            reducedMotion: "matchMedia" in window && window.matchMedia("(prefers-reduced-motion)").matches
-        };
-        const plyr_support = support_support;
-        const supportsPassiveListeners = (() => {
-            let supported = false;
-            try {
-                const options = Object.defineProperty({}, "passive", {
-                    get() {
-                        supported = true;
-                        return null;
-                    }
-                });
-                window.addEventListener("test", null, options);
-                window.removeEventListener("test", null, options);
-            } catch (_) {}
-            return supported;
-        })();
-        function toggleListener(element, event, callback, toggle = false, passive = true, capture = false) {
-            if (!element || !("addEventListener" in element) || utils_is.empty(event) || !utils_is["function"](callback)) return;
-            const events = event.split(" ");
-            let options = capture;
-            if (supportsPassiveListeners) options = {
-                passive,
-                capture
-            };
-            events.forEach((type => {
-                if (this && this.eventListeners && toggle) this.eventListeners.push({
-                    element,
-                    type,
-                    callback,
-                    options
-                });
-                element[toggle ? "addEventListener" : "removeEventListener"](type, callback, options);
-            }));
-        }
-        function events_on(element, events = "", callback, passive = true, capture = false) {
-            toggleListener.call(this, element, events, callback, true, passive, capture);
-        }
-        function events_off(element, events = "", callback, passive = true, capture = false) {
-            toggleListener.call(this, element, events, callback, false, passive, capture);
-        }
-        function events_once(element, events = "", callback, passive = true, capture = false) {
-            const onceCallback = (...args) => {
-                events_off(element, events, onceCallback, passive, capture);
-                callback.apply(this, args);
-            };
-            toggleListener.call(this, element, events, onceCallback, true, passive, capture);
-        }
-        function triggerEvent(element, type = "", bubbles = false, detail = {}) {
-            if (!utils_is.element(element) || utils_is.empty(type)) return;
-            const event = new CustomEvent(type, {
-                bubbles,
-                detail: {
-                    ...detail,
-                    plyr: this
-                }
-            });
-            element.dispatchEvent(event);
-        }
-        function unbindListeners() {
-            if (this && this.eventListeners) {
-                this.eventListeners.forEach((item => {
-                    const {element, type, callback, options} = item;
-                    element.removeEventListener(type, callback, options);
-                }));
-                this.eventListeners = [];
-            }
-        }
-        function ready() {
-            return new Promise((resolve => this.ready ? setTimeout(resolve, 0) : events_on.call(this, this.elements.container, "ready", resolve))).then((() => {}));
-        }
-        function silencePromise(value) {
-            if (utils_is.promise(value)) value.then(null, (() => {}));
-        }
-        function dedupe(array) {
-            if (!utils_is.array(array)) return array;
-            return array.filter(((item, index) => array.indexOf(item) === index));
-        }
-        function arrays_closest(array, value) {
-            if (!utils_is.array(array) || !array.length) return null;
-            return array.reduce(((prev, curr) => Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev));
-        }
-        function supportsCSS(declaration) {
-            if (!window || !window.CSS) return false;
-            return window.CSS.supports(declaration);
-        }
-        const standardRatios = [ [ 1, 1 ], [ 4, 3 ], [ 3, 4 ], [ 5, 4 ], [ 4, 5 ], [ 3, 2 ], [ 2, 3 ], [ 16, 10 ], [ 10, 16 ], [ 16, 9 ], [ 9, 16 ], [ 21, 9 ], [ 9, 21 ], [ 32, 9 ], [ 9, 32 ] ].reduce(((out, [x, y]) => ({
-            ...out,
-            [x / y]: [ x, y ]
-        })), {});
-        function validateAspectRatio(input) {
-            if (!utils_is.array(input) && (!utils_is.string(input) || !input.includes(":"))) return false;
-            const ratio = utils_is.array(input) ? input : input.split(":");
-            return ratio.map(Number).every(utils_is.number);
-        }
-        function reduceAspectRatio(ratio) {
-            if (!utils_is.array(ratio) || !ratio.every(utils_is.number)) return null;
-            const [width, height] = ratio;
-            const getDivider = (w, h) => 0 === h ? w : getDivider(h, w % h);
-            const divider = getDivider(width, height);
-            return [ width / divider, height / divider ];
-        }
-        function getAspectRatio(input) {
-            const parse = ratio => validateAspectRatio(ratio) ? ratio.split(":").map(Number) : null;
-            let ratio = parse(input);
-            if (null === ratio) ratio = parse(this.config.ratio);
-            if (null === ratio && !utils_is.empty(this.embed) && utils_is.array(this.embed.ratio)) ({ratio} = this.embed);
-            if (null === ratio && this.isHTML5) {
-                const {videoWidth, videoHeight} = this.media;
-                ratio = [ videoWidth, videoHeight ];
-            }
-            return reduceAspectRatio(ratio);
-        }
-        function setAspectRatio(input) {
-            if (!this.isVideo) return {};
-            const {wrapper} = this.elements;
-            const ratio = getAspectRatio.call(this, input);
-            if (!utils_is.array(ratio)) return {};
-            const [x, y] = reduceAspectRatio(ratio);
-            const useNative = supportsCSS(`aspect-ratio: ${x}/${y}`);
-            const padding = 100 / x * y;
-            if (useNative) wrapper.style.aspectRatio = `${x}/${y}`; else wrapper.style.paddingBottom = `${padding}%`;
-            if (this.isVimeo && !this.config.vimeo.premium && this.supported.ui) {
-                const height = 100 / this.media.offsetWidth * parseInt(window.getComputedStyle(this.media).paddingBottom, 10);
-                const offset = (height - padding) / (height / 50);
-                if (this.fullscreen.active) wrapper.style.paddingBottom = null; else this.media.style.transform = `translateY(-${offset}%)`;
-            } else if (this.isHTML5) wrapper.classList.add(this.config.classNames.videoFixedRatio);
-            return {
-                padding,
-                ratio
-            };
-        }
-        function roundAspectRatio(x, y, tolerance = .05) {
-            const ratio = x / y;
-            const closestRatio = arrays_closest(Object.keys(standardRatios), ratio);
-            if (Math.abs(closestRatio - ratio) <= tolerance) return standardRatios[closestRatio];
-            return [ x, y ];
-        }
-        function getViewportSize() {
-            const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-            const height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-            return [ width, height ];
-        }
-        const html5 = {
-            getSources() {
-                if (!this.isHTML5) return [];
-                const sources = Array.from(this.media.querySelectorAll("source"));
-                return sources.filter((source => {
-                    const type = source.getAttribute("type");
-                    if (utils_is.empty(type)) return true;
-                    return plyr_support.mime.call(this, type);
-                }));
-            },
-            getQualityOptions() {
-                if (this.config.quality.forced) return this.config.quality.options;
-                return html5.getSources.call(this).map((source => Number(source.getAttribute("size")))).filter(Boolean);
-            },
-            setup() {
-                if (!this.isHTML5) return;
-                const player = this;
-                player.options.speed = player.config.speed.options;
-                if (!utils_is.empty(this.config.ratio)) setAspectRatio.call(player);
-                Object.defineProperty(player.media, "quality", {
-                    get() {
-                        const sources = html5.getSources.call(player);
-                        const source = sources.find((s => s.getAttribute("src") === player.source));
-                        return source && Number(source.getAttribute("size"));
-                    },
-                    set(input) {
-                        if (player.quality === input) return;
-                        if (player.config.quality.forced && utils_is["function"](player.config.quality.onChange)) player.config.quality.onChange(input); else {
-                            const sources = html5.getSources.call(player);
-                            const source = sources.find((s => Number(s.getAttribute("size")) === input));
-                            if (!source) return;
-                            const {currentTime, paused, preload, readyState, playbackRate} = player.media;
-                            player.media.src = source.getAttribute("src");
-                            if ("none" !== preload || readyState) {
-                                player.once("loadedmetadata", (() => {
-                                    player.speed = playbackRate;
-                                    player.currentTime = currentTime;
-                                    if (!paused) silencePromise(player.play());
-                                }));
-                                player.media.load();
-                            }
-                        }
-                        triggerEvent.call(player, player.media, "qualitychange", false, {
-                            quality: input
-                        });
-                    }
-                });
-            },
-            cancelRequests() {
-                if (!this.isHTML5) return;
-                removeElement(html5.getSources.call(this));
-                this.media.setAttribute("src", this.config.blankVideo);
-                this.media.load();
-                this.debug.log("Cancelled network requests");
-            }
-        };
-        const plyr_html5 = html5;
-        function generateId(prefix) {
-            return `${prefix}-${Math.floor(1e4 * Math.random())}`;
-        }
-        function format(input, ...args) {
-            if (utils_is.empty(input)) return input;
-            return input.toString().replace(/{(\d+)}/g, ((match, i) => args[i].toString()));
-        }
-        function getPercentage(current, max) {
-            if (0 === current || 0 === max || Number.isNaN(current) || Number.isNaN(max)) return 0;
-            return (current / max * 100).toFixed(2);
-        }
-        const replaceAll = (input = "", find = "", replace = "") => input.replace(new RegExp(find.toString().replace(/([.*+?^=!:${}()|[\]/\\])/g, "\\$1"), "g"), replace.toString());
-        const toTitleCase = (input = "") => input.toString().replace(/\w\S*/g, (text => text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()));
-        function toPascalCase(input = "") {
-            let string = input.toString();
-            string = replaceAll(string, "-", " ");
-            string = replaceAll(string, "_", " ");
-            string = toTitleCase(string);
-            return replaceAll(string, " ", "");
-        }
-        function strings_toCamelCase(input = "") {
-            let string = input.toString();
-            string = toPascalCase(string);
-            return string.charAt(0).toLowerCase() + string.slice(1);
-        }
-        function stripHTML(source) {
-            const fragment = document.createDocumentFragment();
-            const element = document.createElement("div");
-            fragment.appendChild(element);
-            element.innerHTML = source;
-            return fragment.firstChild.innerText;
-        }
-        function getHTML(element) {
-            const wrapper = document.createElement("div");
-            wrapper.appendChild(element);
-            return wrapper.innerHTML;
-        }
-        const resources = {
-            pip: "PIP",
-            airplay: "AirPlay",
-            html5: "HTML5",
-            vimeo: "Vimeo",
-            youtube: "YouTube"
-        };
-        const i18n = {
-            get(key = "", config = {}) {
-                if (utils_is.empty(key) || utils_is.empty(config)) return "";
-                let string = getDeep(config.i18n, key);
-                if (utils_is.empty(string)) {
-                    if (Object.keys(resources).includes(key)) return resources[key];
-                    return "";
-                }
-                const replace = {
-                    "{seektime}": config.seekTime,
-                    "{title}": config.title
-                };
-                Object.entries(replace).forEach((([k, v]) => {
-                    string = replaceAll(string, k, v);
-                }));
-                return string;
-            }
-        };
-        const utils_i18n = i18n;
-        class Storage {
-            constructor(player) {
-                this.enabled = player.config.storage.enabled;
-                this.key = player.config.storage.key;
-            }
-            static get supported() {
-                try {
-                    if (!("localStorage" in window)) return false;
-                    const test = "___test";
-                    window.localStorage.setItem(test, test);
-                    window.localStorage.removeItem(test);
-                    return true;
-                } catch (_) {
-                    return false;
-                }
-            }
-            get=key => {
-                if (!Storage.supported || !this.enabled) return null;
-                const store = window.localStorage.getItem(this.key);
-                if (utils_is.empty(store)) return null;
-                const json = JSON.parse(store);
-                return utils_is.string(key) && key.length ? json[key] : json;
-            };
-            set=object => {
-                if (!Storage.supported || !this.enabled) return;
-                if (!utils_is.object(object)) return;
-                let storage = this.get();
-                if (utils_is.empty(storage)) storage = {};
-                objects_extend(storage, object);
-                try {
-                    window.localStorage.setItem(this.key, JSON.stringify(storage));
-                } catch (_) {}
-            };
-        }
-        const storage = Storage;
-        function fetch_fetch(url, responseType = "text") {
-            return new Promise(((resolve, reject) => {
-                try {
-                    const request = new XMLHttpRequest;
-                    if (!("withCredentials" in request)) return;
-                    request.addEventListener("load", (() => {
-                        if ("text" === responseType) try {
-                            resolve(JSON.parse(request.responseText));
-                        } catch (_) {
-                            resolve(request.responseText);
-                        } else resolve(request.response);
-                    }));
-                    request.addEventListener("error", (() => {
-                        throw new Error(request.status);
-                    }));
-                    request.open("GET", url, true);
-                    request.responseType = responseType;
-                    request.send();
-                } catch (error) {
-                    reject(error);
-                }
-            }));
-        }
-        function loadSprite(url, id) {
-            if (!utils_is.string(url)) return;
-            const prefix = "cache";
-            const hasId = utils_is.string(id);
-            let isCached = false;
-            const exists = () => null !== document.getElementById(id);
-            const update = (container, data) => {
-                container.innerHTML = data;
-                if (hasId && exists()) return;
-                document.body.insertAdjacentElement("afterbegin", container);
-            };
-            if (!hasId || !exists()) {
-                const useStorage = storage.supported;
-                const container = document.createElement("div");
-                container.setAttribute("hidden", "");
-                if (hasId) container.setAttribute("id", id);
-                if (useStorage) {
-                    const cached = window.localStorage.getItem(`${prefix}-${id}`);
-                    isCached = null !== cached;
-                    if (isCached) {
-                        const data = JSON.parse(cached);
-                        update(container, data.content);
-                    }
-                }
-                fetch_fetch(url).then((result => {
-                    if (utils_is.empty(result)) return;
-                    if (useStorage) try {
-                        window.localStorage.setItem(`${prefix}-${id}`, JSON.stringify({
-                            content: result
-                        }));
-                    } catch (_) {}
-                    update(container, result);
-                })).catch((() => {}));
-            }
-        }
-        const getHours = value => Math.trunc(value / 60 / 60 % 60, 10);
-        const getMinutes = value => Math.trunc(value / 60 % 60, 10);
-        const getSeconds = value => Math.trunc(value % 60, 10);
-        function formatTime(time = 0, displayHours = false, inverted = false) {
-            if (!utils_is.number(time)) return formatTime(void 0, displayHours, inverted);
-            const format = value => `0${value}`.slice(-2);
-            let hours = getHours(time);
-            const mins = getMinutes(time);
-            const secs = getSeconds(time);
-            if (displayHours || hours > 0) hours = `${hours}:`; else hours = "";
-            return `${inverted && time > 0 ? "-" : ""}${hours}${format(mins)}:${format(secs)}`;
-        }
-        !function(e, t) {
-            "object" == typeof exports && "undefined" != typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define("RangeTouch", t) : (e = e || self).RangeTouch = t();
+        "object" === typeof navigator && function(global, factory) {
+            "object" === typeof exports && "undefined" !== typeof module ? module.exports = factory() : "function" === typeof define && define.amd ? define("Plyr", factory) : (global = "undefined" !== typeof globalThis ? globalThis : global || self, 
+            global.Plyr = factory());
         }(void 0, (function() {
             "use strict";
-            function e(e, t) {
+            function _classCallCheck(instance, Constructor) {
+                if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
+            }
+            function _defineProperties(target, props) {
+                for (var i = 0; i < props.length; i++) {
+                    var descriptor = props[i];
+                    descriptor.enumerable = descriptor.enumerable || false;
+                    descriptor.configurable = true;
+                    if ("value" in descriptor) descriptor.writable = true;
+                    Object.defineProperty(target, descriptor.key, descriptor);
+                }
+            }
+            function _createClass(Constructor, protoProps, staticProps) {
+                if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+                if (staticProps) _defineProperties(Constructor, staticProps);
+                return Constructor;
+            }
+            function _defineProperty(obj, key, value) {
+                if (key in obj) Object.defineProperty(obj, key, {
+                    value,
+                    enumerable: true,
+                    configurable: true,
+                    writable: true
+                }); else obj[key] = value;
+                return obj;
+            }
+            function ownKeys(object, enumerableOnly) {
+                var keys = Object.keys(object);
+                if (Object.getOwnPropertySymbols) {
+                    var symbols = Object.getOwnPropertySymbols(object);
+                    if (enumerableOnly) symbols = symbols.filter((function(sym) {
+                        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+                    }));
+                    keys.push.apply(keys, symbols);
+                }
+                return keys;
+            }
+            function _objectSpread2(target) {
+                for (var i = 1; i < arguments.length; i++) {
+                    var source = null != arguments[i] ? arguments[i] : {};
+                    if (i % 2) ownKeys(Object(source), true).forEach((function(key) {
+                        _defineProperty(target, key, source[key]);
+                    })); else if (Object.getOwnPropertyDescriptors) Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); else ownKeys(Object(source)).forEach((function(key) {
+                        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+                    }));
+                }
+                return target;
+            }
+            function _objectWithoutPropertiesLoose(source, excluded) {
+                if (null == source) return {};
+                var target = {};
+                var sourceKeys = Object.keys(source);
+                var key, i;
+                for (i = 0; i < sourceKeys.length; i++) {
+                    key = sourceKeys[i];
+                    if (excluded.indexOf(key) >= 0) continue;
+                    target[key] = source[key];
+                }
+                return target;
+            }
+            function _objectWithoutProperties(source, excluded) {
+                if (null == source) return {};
+                var target = _objectWithoutPropertiesLoose(source, excluded);
+                var key, i;
+                if (Object.getOwnPropertySymbols) {
+                    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+                    for (i = 0; i < sourceSymbolKeys.length; i++) {
+                        key = sourceSymbolKeys[i];
+                        if (excluded.indexOf(key) >= 0) continue;
+                        if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+                        target[key] = source[key];
+                    }
+                }
+                return target;
+            }
+            function _slicedToArray(arr, i) {
+                return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+            }
+            function _toConsumableArray(arr) {
+                return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+            }
+            function _arrayWithoutHoles(arr) {
+                if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+            }
+            function _arrayWithHoles(arr) {
+                if (Array.isArray(arr)) return arr;
+            }
+            function _iterableToArray(iter) {
+                if ("undefined" !== typeof Symbol && Symbol.iterator in Object(iter)) return Array.from(iter);
+            }
+            function _iterableToArrayLimit(arr, i) {
+                if ("undefined" === typeof Symbol || !(Symbol.iterator in Object(arr))) return;
+                var _arr = [];
+                var _n = true;
+                var _d = false;
+                var _e = void 0;
+                try {
+                    for (var _s, _i = arr[Symbol.iterator](); !(_n = (_s = _i.next()).done); _n = true) {
+                        _arr.push(_s.value);
+                        if (i && _arr.length === i) break;
+                    }
+                } catch (err) {
+                    _d = true;
+                    _e = err;
+                } finally {
+                    try {
+                        if (!_n && null != _i["return"]) _i["return"]();
+                    } finally {
+                        if (_d) throw _e;
+                    }
+                }
+                return _arr;
+            }
+            function _unsupportedIterableToArray(o, minLen) {
+                if (!o) return;
+                if ("string" === typeof o) return _arrayLikeToArray(o, minLen);
+                var n = Object.prototype.toString.call(o).slice(8, -1);
+                if ("Object" === n && o.constructor) n = o.constructor.name;
+                if ("Map" === n || "Set" === n) return Array.from(o);
+                if ("Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+            }
+            function _arrayLikeToArray(arr, len) {
+                if (null == len || len > arr.length) len = arr.length;
+                for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+                return arr2;
+            }
+            function _nonIterableSpread() {
+                throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+            }
+            function _nonIterableRest() {
+                throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+            }
+            function _classCallCheck$1(e, t) {
+                if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+            }
+            function _defineProperties$1(e, t) {
                 for (var n = 0; n < t.length; n++) {
                     var r = t[n];
                     r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), 
                     Object.defineProperty(e, r.key, r);
                 }
             }
-            function t(e, t, n) {
+            function _createClass$1(e, t, n) {
+                return t && _defineProperties$1(e.prototype, t), n && _defineProperties$1(e, n), 
+                e;
+            }
+            function _defineProperty$1(e, t, n) {
                 return t in e ? Object.defineProperty(e, t, {
                     value: n,
                     enumerable: !0,
@@ -6053,7 +5545,7 @@
                     writable: !0
                 }) : e[t] = n, e;
             }
-            function n(e, t) {
+            function ownKeys$1(e, t) {
                 var n = Object.keys(e);
                 if (Object.getOwnPropertySymbols) {
                     var r = Object.getOwnPropertySymbols(e);
@@ -6063,110 +5555,106 @@
                 }
                 return n;
             }
-            function r(e) {
-                for (var r = 1; r < arguments.length; r++) {
-                    var i = null != arguments[r] ? arguments[r] : {};
-                    r % 2 ? n(Object(i), !0).forEach((function(n) {
-                        t(e, n, i[n]);
-                    })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(i)) : n(Object(i)).forEach((function(t) {
-                        Object.defineProperty(e, t, Object.getOwnPropertyDescriptor(i, t));
+            function _objectSpread2$1(e) {
+                for (var t = 1; t < arguments.length; t++) {
+                    var n = null != arguments[t] ? arguments[t] : {};
+                    t % 2 ? ownKeys$1(Object(n), !0).forEach((function(t) {
+                        _defineProperty$1(e, t, n[t]);
+                    })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n)) : ownKeys$1(Object(n)).forEach((function(t) {
+                        Object.defineProperty(e, t, Object.getOwnPropertyDescriptor(n, t));
                     }));
                 }
                 return e;
             }
-            var i = {
+            var defaults = {
                 addCSS: !0,
                 thumbWidth: 15,
                 watch: !0
             };
-            function u(e, t) {
+            function matches(e, t) {
                 return function() {
                     return Array.from(document.querySelectorAll(t)).includes(this);
                 }.call(e, t);
             }
-            var o = function(e) {
+            function trigger(e, t) {
+                if (e && t) {
+                    var n = new Event(t, {
+                        bubbles: !0
+                    });
+                    e.dispatchEvent(n);
+                }
+            }
+            var getConstructor = function getConstructor(e) {
                 return null != e ? e.constructor : null;
-            }, c = function(e, t) {
+            }, instanceOf = function instanceOf(e, t) {
                 return !!(e && t && e instanceof t);
-            }, l = function(e) {
+            }, isNullOrUndefined = function isNullOrUndefined(e) {
                 return null == e;
-            }, a = function(e) {
-                return o(e) === Object;
-            }, s = function(e) {
-                return o(e) === String;
-            }, f = function(e) {
+            }, isObject = function isObject(e) {
+                return getConstructor(e) === Object;
+            }, isNumber = function isNumber(e) {
+                return getConstructor(e) === Number && !Number.isNaN(e);
+            }, isString = function isString(e) {
+                return getConstructor(e) === String;
+            }, isBoolean = function isBoolean(e) {
+                return getConstructor(e) === Boolean;
+            }, isFunction = function isFunction(e) {
+                return getConstructor(e) === Function;
+            }, isArray = function isArray(e) {
                 return Array.isArray(e);
-            }, h = function(e) {
-                return c(e, NodeList);
-            }, d = s, y = f, b = h, m = function(e) {
-                return c(e, Element);
-            }, g = function(e) {
-                return c(e, Event);
-            }, p = function(e) {
-                return l(e) || (s(e) || f(e) || h(e)) && !e.length || a(e) && !Object.keys(e).length;
+            }, isNodeList = function isNodeList(e) {
+                return instanceOf(e, NodeList);
+            }, isElement = function isElement(e) {
+                return instanceOf(e, Element);
+            }, isEvent = function isEvent(e) {
+                return instanceOf(e, Event);
+            }, isEmpty = function isEmpty(e) {
+                return isNullOrUndefined(e) || (isString(e) || isArray(e) || isNodeList(e)) && !e.length || isObject(e) && !Object.keys(e).length;
+            }, is = {
+                nullOrUndefined: isNullOrUndefined,
+                object: isObject,
+                number: isNumber,
+                string: isString,
+                boolean: isBoolean,
+                function: isFunction,
+                array: isArray,
+                nodeList: isNodeList,
+                element: isElement,
+                event: isEvent,
+                empty: isEmpty
             };
-            function v(e, t) {
+            function getDecimalPlaces(e) {
+                var t = "".concat(e).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+                return t ? Math.max(0, (t[1] ? t[1].length : 0) - (t[2] ? +t[2] : 0)) : 0;
+            }
+            function round(e, t) {
                 if (1 > t) {
-                    var n = function(e) {
-                        var t = "".concat(e).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
-                        return t ? Math.max(0, (t[1] ? t[1].length : 0) - (t[2] ? +t[2] : 0)) : 0;
-                    }(t);
+                    var n = getDecimalPlaces(t);
                     return parseFloat(e.toFixed(n));
                 }
                 return Math.round(e / t) * t;
             }
-            return function() {
-                function t(e, n) {
-                    (function(e, t) {
-                        if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
-                    })(this, t), m(e) ? this.element = e : d(e) && (this.element = document.querySelector(e)), 
-                    m(this.element) && p(this.element.rangeTouch) && (this.config = r({}, i, {}, n), 
+            var RangeTouch = function() {
+                function e(t, n) {
+                    _classCallCheck$1(this, e), is.element(t) ? this.element = t : is.string(t) && (this.element = document.querySelector(t)), 
+                    is.element(this.element) && is.empty(this.element.rangeTouch) && (this.config = _objectSpread2$1({}, defaults, {}, n), 
                     this.init());
                 }
-                return n = t, c = [ {
-                    key: "setup",
-                    value: function(e) {
-                        var n = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : {}, o = null;
-                        if (p(e) || d(e) ? o = Array.from(document.querySelectorAll(d(e) ? e : 'input[type="range"]')) : m(e) ? o = [ e ] : b(e) ? o = Array.from(e) : y(e) && (o = e.filter(m)), 
-                        p(o)) return null;
-                        var c = r({}, i, {}, n);
-                        if (d(e) && c.watch) {
-                            var l = new MutationObserver((function(n) {
-                                Array.from(n).forEach((function(n) {
-                                    Array.from(n.addedNodes).forEach((function(n) {
-                                        m(n) && u(n, e) && new t(n, c);
-                                    }));
-                                }));
-                            }));
-                            l.observe(document.body, {
-                                childList: !0,
-                                subtree: !0
-                            });
-                        }
-                        return o.map((function(e) {
-                            return new t(e, n);
-                        }));
-                    }
-                }, {
-                    key: "enabled",
-                    get: function() {
-                        return "ontouchstart" in document.documentElement;
-                    }
-                } ], (o = [ {
+                return _createClass$1(e, [ {
                     key: "init",
-                    value: function() {
-                        t.enabled && (this.config.addCSS && (this.element.style.userSelect = "none", this.element.style.webKitUserSelect = "none", 
+                    value: function value() {
+                        e.enabled && (this.config.addCSS && (this.element.style.userSelect = "none", this.element.style.webKitUserSelect = "none", 
                         this.element.style.touchAction = "manipulation"), this.listeners(!0), this.element.rangeTouch = this);
                     }
                 }, {
                     key: "destroy",
-                    value: function() {
-                        t.enabled && (this.config.addCSS && (this.element.style.userSelect = "", this.element.style.webKitUserSelect = "", 
+                    value: function value() {
+                        e.enabled && (this.config.addCSS && (this.element.style.userSelect = "", this.element.style.webKitUserSelect = "", 
                         this.element.style.touchAction = ""), this.listeners(!1), this.element.rangeTouch = null);
                     }
                 }, {
                     key: "listeners",
-                    value: function(e) {
+                    value: function value(e) {
                         var t = this, n = e ? "addEventListener" : "removeEventListener";
                         [ "touchstart", "touchmove", "touchend" ].forEach((function(e) {
                             t.element[n](e, (function(e) {
@@ -6176,3834 +5664,5117 @@
                     }
                 }, {
                     key: "get",
-                    value: function(e) {
-                        if (!t.enabled || !g(e)) return null;
-                        var n, r = e.target, i = e.changedTouches[0], u = parseFloat(r.getAttribute("min")) || 0, o = parseFloat(r.getAttribute("max")) || 100, c = parseFloat(r.getAttribute("step")) || 1, l = r.getBoundingClientRect(), a = 100 / l.width * (this.config.thumbWidth / 2) / 100;
-                        return 0 > (n = 100 / l.width * (i.clientX - l.left)) ? n = 0 : 100 < n && (n = 100), 
-                        50 > n ? n -= (100 - 2 * n) * a : 50 < n && (n += 2 * (n - 50) * a), u + v(n / 100 * (o - u), c);
+                    value: function value(t) {
+                        if (!e.enabled || !is.event(t)) return null;
+                        var n, r = t.target, i = t.changedTouches[0], o = parseFloat(r.getAttribute("min")) || 0, s = parseFloat(r.getAttribute("max")) || 100, u = parseFloat(r.getAttribute("step")) || 1, c = r.getBoundingClientRect(), a = 100 / c.width * (this.config.thumbWidth / 2) / 100;
+                        return 0 > (n = 100 / c.width * (i.clientX - c.left)) ? n = 0 : 100 < n && (n = 100), 
+                        50 > n ? n -= (100 - 2 * n) * a : 50 < n && (n += 2 * (n - 50) * a), o + round(n / 100 * (s - o), u);
                     }
                 }, {
                     key: "set",
-                    value: function(e) {
-                        t.enabled && g(e) && !e.target.disabled && (e.preventDefault(), e.target.value = this.get(e), 
-                        function(e, t) {
-                            if (e && t) {
-                                var n = new Event(t, {
-                                    bubbles: !0
-                                });
-                                e.dispatchEvent(n);
-                            }
-                        }(e.target, "touchend" === e.type ? "change" : "input"));
+                    value: function value(t) {
+                        e.enabled && is.event(t) && !t.target.disabled && (t.preventDefault(), t.target.value = this.get(t), 
+                        trigger(t.target, "touchend" === t.type ? "change" : "input"));
                     }
-                } ]) && e(n.prototype, o), c && e(n, c), t;
-                var n, o, c;
+                } ], [ {
+                    key: "setup",
+                    value: function value(t) {
+                        var n = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : {}, r = null;
+                        if (is.empty(t) || is.string(t) ? r = Array.from(document.querySelectorAll(is.string(t) ? t : 'input[type="range"]')) : is.element(t) ? r = [ t ] : is.nodeList(t) ? r = Array.from(t) : is.array(t) && (r = t.filter(is.element)), 
+                        is.empty(r)) return null;
+                        var i = _objectSpread2$1({}, defaults, {}, n);
+                        if (is.string(t) && i.watch) {
+                            var o = new MutationObserver((function(n) {
+                                Array.from(n).forEach((function(n) {
+                                    Array.from(n.addedNodes).forEach((function(n) {
+                                        is.element(n) && matches(n, t) && new e(n, i);
+                                    }));
+                                }));
+                            }));
+                            o.observe(document.body, {
+                                childList: !0,
+                                subtree: !0
+                            });
+                        }
+                        return r.map((function(t) {
+                            return new e(t, n);
+                        }));
+                    }
+                }, {
+                    key: "enabled",
+                    get: function get() {
+                        return "ontouchstart" in document.documentElement;
+                    }
+                } ]), e;
             }();
-        }));
-        const controls = {
-            getIconUrl() {
-                const url = new URL(this.config.iconUrl, window.location);
-                const host = window.location.host ? window.location.host : window.top.location.host;
-                const cors = url.host !== host || utils_browser.isIE && !window.svg4everybody;
-                return {
-                    url: this.config.iconUrl,
-                    cors
-                };
-            },
-            findElements() {
+            var getConstructor$1 = function getConstructor(input) {
+                return null !== input && "undefined" !== typeof input ? input.constructor : null;
+            };
+            var instanceOf$1 = function instanceOf(input, constructor) {
+                return Boolean(input && constructor && input instanceof constructor);
+            };
+            var isNullOrUndefined$1 = function isNullOrUndefined(input) {
+                return null === input || "undefined" === typeof input;
+            };
+            var isObject$1 = function isObject(input) {
+                return getConstructor$1(input) === Object;
+            };
+            var isNumber$1 = function isNumber(input) {
+                return getConstructor$1(input) === Number && !Number.isNaN(input);
+            };
+            var isString$1 = function isString(input) {
+                return getConstructor$1(input) === String;
+            };
+            var isBoolean$1 = function isBoolean(input) {
+                return getConstructor$1(input) === Boolean;
+            };
+            var isFunction$1 = function isFunction(input) {
+                return getConstructor$1(input) === Function;
+            };
+            var isArray$1 = function isArray(input) {
+                return Array.isArray(input);
+            };
+            var isWeakMap = function isWeakMap(input) {
+                return instanceOf$1(input, WeakMap);
+            };
+            var isNodeList$1 = function isNodeList(input) {
+                return instanceOf$1(input, NodeList);
+            };
+            var isElement$1 = function isElement(input) {
+                return instanceOf$1(input, Element);
+            };
+            var isTextNode = function isTextNode(input) {
+                return getConstructor$1(input) === Text;
+            };
+            var isEvent$1 = function isEvent(input) {
+                return instanceOf$1(input, Event);
+            };
+            var isKeyboardEvent = function isKeyboardEvent(input) {
+                return instanceOf$1(input, KeyboardEvent);
+            };
+            var isCue = function isCue(input) {
+                return instanceOf$1(input, window.TextTrackCue) || instanceOf$1(input, window.VTTCue);
+            };
+            var isTrack = function isTrack(input) {
+                return instanceOf$1(input, TextTrack) || !isNullOrUndefined$1(input) && isString$1(input.kind);
+            };
+            var isPromise = function isPromise(input) {
+                return instanceOf$1(input, Promise) && isFunction$1(input.then);
+            };
+            var isEmpty$1 = function isEmpty(input) {
+                return isNullOrUndefined$1(input) || (isString$1(input) || isArray$1(input) || isNodeList$1(input)) && !input.length || isObject$1(input) && !Object.keys(input).length;
+            };
+            var isUrl = function isUrl(input) {
+                if (instanceOf$1(input, window.URL)) return true;
+                if (!isString$1(input)) return false;
+                var string = input;
+                if (!input.startsWith("http://") || !input.startsWith("https://")) string = "http://".concat(input);
                 try {
-                    this.elements.controls = getElement.call(this, this.config.selectors.controls.wrapper);
-                    this.elements.buttons = {
-                        play: getElements.call(this, this.config.selectors.buttons.play),
-                        pause: getElement.call(this, this.config.selectors.buttons.pause),
-                        restart: getElement.call(this, this.config.selectors.buttons.restart),
-                        rewind: getElement.call(this, this.config.selectors.buttons.rewind),
-                        fastForward: getElement.call(this, this.config.selectors.buttons.fastForward),
-                        mute: getElement.call(this, this.config.selectors.buttons.mute),
-                        pip: getElement.call(this, this.config.selectors.buttons.pip),
-                        airplay: getElement.call(this, this.config.selectors.buttons.airplay),
-                        settings: getElement.call(this, this.config.selectors.buttons.settings),
-                        captions: getElement.call(this, this.config.selectors.buttons.captions),
-                        fullscreen: getElement.call(this, this.config.selectors.buttons.fullscreen)
-                    };
-                    this.elements.progress = getElement.call(this, this.config.selectors.progress);
-                    this.elements.inputs = {
-                        seek: getElement.call(this, this.config.selectors.inputs.seek),
-                        volume: getElement.call(this, this.config.selectors.inputs.volume)
-                    };
-                    this.elements.display = {
-                        buffer: getElement.call(this, this.config.selectors.display.buffer),
-                        currentTime: getElement.call(this, this.config.selectors.display.currentTime),
-                        duration: getElement.call(this, this.config.selectors.display.duration)
-                    };
-                    if (utils_is.element(this.elements.progress)) this.elements.display.seekTooltip = this.elements.progress.querySelector(`.${this.config.classNames.tooltip}`);
-                    return true;
-                } catch (error) {
-                    this.debug.warn("It looks like there is a problem with your custom controls HTML", error);
-                    this.toggleNativeControls(true);
+                    return !isEmpty$1(new URL(string).hostname);
+                } catch (e) {
                     return false;
                 }
-            },
-            createIcon(type, attributes) {
-                const namespace = "http://www.w3.org/2000/svg";
-                const iconUrl = controls.getIconUrl.call(this);
-                const iconPath = `${!iconUrl.cors ? iconUrl.url : ""}#${this.config.iconPrefix}`;
-                const icon = document.createElementNS(namespace, "svg");
-                setAttributes(icon, objects_extend(attributes, {
-                    "aria-hidden": "true",
-                    focusable: "false"
-                }));
-                const use = document.createElementNS(namespace, "use");
-                const path = `${iconPath}-${type}`;
-                if ("href" in use) use.setAttributeNS("http://www.w3.org/1999/xlink", "href", path);
-                use.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", path);
-                icon.appendChild(use);
-                return icon;
-            },
-            createLabel(key, attr = {}) {
-                const text = utils_i18n.get(key, this.config);
-                const attributes = {
-                    ...attr,
-                    class: [ attr.class, this.config.classNames.hidden ].filter(Boolean).join(" ")
+            };
+            var is$1 = {
+                nullOrUndefined: isNullOrUndefined$1,
+                object: isObject$1,
+                number: isNumber$1,
+                string: isString$1,
+                boolean: isBoolean$1,
+                function: isFunction$1,
+                array: isArray$1,
+                weakMap: isWeakMap,
+                nodeList: isNodeList$1,
+                element: isElement$1,
+                textNode: isTextNode,
+                event: isEvent$1,
+                keyboardEvent: isKeyboardEvent,
+                cue: isCue,
+                track: isTrack,
+                promise: isPromise,
+                url: isUrl,
+                empty: isEmpty$1
+            };
+            var transitionEndEvent = function() {
+                var element = document.createElement("span");
+                var events = {
+                    WebkitTransition: "webkitTransitionEnd",
+                    MozTransition: "transitionend",
+                    OTransition: "oTransitionEnd otransitionend",
+                    transition: "transitionend"
                 };
-                return createElement("span", attributes, text);
-            },
-            createBadge(text) {
-                if (utils_is.empty(text)) return null;
-                const badge = createElement("span", {
-                    class: this.config.classNames.menu.value
-                });
-                badge.appendChild(createElement("span", {
-                    class: this.config.classNames.menu.badge
-                }, text));
-                return badge;
-            },
-            createButton(buttonType, attr) {
-                const attributes = objects_extend({}, attr);
-                let type = strings_toCamelCase(buttonType);
-                const props = {
-                    element: "button",
-                    toggle: false,
-                    label: null,
-                    icon: null,
-                    labelPressed: null,
-                    iconPressed: null
-                };
-                [ "element", "icon", "label" ].forEach((key => {
-                    if (Object.keys(attributes).includes(key)) {
-                        props[key] = attributes[key];
-                        delete attributes[key];
-                    }
-                }));
-                if ("button" === props.element && !Object.keys(attributes).includes("type")) attributes.type = "button";
-                if (Object.keys(attributes).includes("class")) {
-                    if (!attributes.class.split(" ").some((c => c === this.config.classNames.control))) objects_extend(attributes, {
-                        class: `${attributes.class} ${this.config.classNames.control}`
-                    });
-                } else attributes.class = this.config.classNames.control;
-                switch (buttonType) {
-                  case "play":
-                    props.toggle = true;
-                    props.label = "play";
-                    props.labelPressed = "pause";
-                    props.icon = "play";
-                    props.iconPressed = "pause";
-                    break;
-
-                  case "mute":
-                    props.toggle = true;
-                    props.label = "mute";
-                    props.labelPressed = "unmute";
-                    props.icon = "volume";
-                    props.iconPressed = "muted";
-                    break;
-
-                  case "captions":
-                    props.toggle = true;
-                    props.label = "enableCaptions";
-                    props.labelPressed = "disableCaptions";
-                    props.icon = "captions-off";
-                    props.iconPressed = "captions-on";
-                    break;
-
-                  case "fullscreen":
-                    props.toggle = true;
-                    props.label = "enterFullscreen";
-                    props.labelPressed = "exitFullscreen";
-                    props.icon = "enter-fullscreen";
-                    props.iconPressed = "exit-fullscreen";
-                    break;
-
-                  case "play-large":
-                    attributes.class += ` ${this.config.classNames.control}--overlaid`;
-                    type = "play";
-                    props.label = "play";
-                    props.icon = "play";
-                    break;
-
-                  default:
-                    if (utils_is.empty(props.label)) props.label = type;
-                    if (utils_is.empty(props.icon)) props.icon = buttonType;
-                }
-                const button = createElement(props.element);
-                if (props.toggle) {
-                    button.appendChild(controls.createIcon.call(this, props.iconPressed, {
-                        class: "icon--pressed"
-                    }));
-                    button.appendChild(controls.createIcon.call(this, props.icon, {
-                        class: "icon--not-pressed"
-                    }));
-                    button.appendChild(controls.createLabel.call(this, props.labelPressed, {
-                        class: "label--pressed"
-                    }));
-                    button.appendChild(controls.createLabel.call(this, props.label, {
-                        class: "label--not-pressed"
-                    }));
-                } else {
-                    button.appendChild(controls.createIcon.call(this, props.icon));
-                    button.appendChild(controls.createLabel.call(this, props.label));
-                }
-                objects_extend(attributes, getAttributesFromSelector(this.config.selectors.buttons[type], attributes));
-                setAttributes(button, attributes);
-                if ("play" === type) {
-                    if (!utils_is.array(this.elements.buttons[type])) this.elements.buttons[type] = [];
-                    this.elements.buttons[type].push(button);
-                } else this.elements.buttons[type] = button;
-                return button;
-            },
-            createRange(type, attributes) {
-                const input = createElement("input", objects_extend(getAttributesFromSelector(this.config.selectors.inputs[type]), {
-                    type: "range",
-                    min: 0,
-                    max: 100,
-                    step: .01,
-                    value: 0,
-                    autocomplete: "off",
-                    role: "slider",
-                    "aria-label": utils_i18n.get(type, this.config),
-                    "aria-valuemin": 0,
-                    "aria-valuemax": 100,
-                    "aria-valuenow": 0
-                }, attributes));
-                this.elements.inputs[type] = input;
-                controls.updateRangeFill.call(this, input);
-                RangeTouch.setup(input);
-                return input;
-            },
-            createProgress(type, attributes) {
-                const progress = createElement("progress", objects_extend(getAttributesFromSelector(this.config.selectors.display[type]), {
-                    min: 0,
-                    max: 100,
-                    value: 0,
-                    role: "progressbar",
-                    "aria-hidden": true
-                }, attributes));
-                if ("volume" !== type) {
-                    progress.appendChild(createElement("span", null, "0"));
-                    const suffixKey = {
-                        played: "played",
-                        buffer: "buffered"
-                    }[type];
-                    const suffix = suffixKey ? utils_i18n.get(suffixKey, this.config) : "";
-                    progress.innerText = `% ${suffix.toLowerCase()}`;
-                }
-                this.elements.display[type] = progress;
-                return progress;
-            },
-            createTime(type, attrs) {
-                const attributes = getAttributesFromSelector(this.config.selectors.display[type], attrs);
-                const container = createElement("div", objects_extend(attributes, {
-                    class: `${attributes.class ? attributes.class : ""} ${this.config.classNames.display.time} `.trim(),
-                    "aria-label": utils_i18n.get(type, this.config)
-                }), "00:00");
-                this.elements.display[type] = container;
-                return container;
-            },
-            bindMenuItemShortcuts(menuItem, type) {
-                events_on.call(this, menuItem, "keydown keyup", (event => {
-                    if (![ "Space", "ArrowUp", "ArrowDown", "ArrowRight" ].includes(event.key)) return;
-                    event.preventDefault();
-                    event.stopPropagation();
-                    if ("keydown" === event.type) return;
-                    const isRadioButton = matches(menuItem, '[role="menuitemradio"]');
-                    if (!isRadioButton && [ "Space", "ArrowRight" ].includes(event.key)) controls.showMenuPanel.call(this, type, true); else {
-                        let target;
-                        if ("Space" !== event.key) {
-                            if ("ArrowDown" === event.key || isRadioButton && "ArrowRight" === event.key) {
-                                target = menuItem.nextElementSibling;
-                                if (!utils_is.element(target)) target = menuItem.parentNode.firstElementChild;
-                            } else {
-                                target = menuItem.previousElementSibling;
-                                if (!utils_is.element(target)) target = menuItem.parentNode.lastElementChild;
-                            }
-                            setFocus.call(this, target, true);
-                        }
-                    }
-                }), false);
-                events_on.call(this, menuItem, "keyup", (event => {
-                    if ("Return" !== event.key) return;
-                    controls.focusFirstMenuItem.call(this, null, true);
-                }));
-            },
-            createMenuItem({value, list, type, title, badge = null, checked = false}) {
-                const attributes = getAttributesFromSelector(this.config.selectors.inputs[type]);
-                const menuItem = createElement("button", objects_extend(attributes, {
-                    type: "button",
-                    role: "menuitemradio",
-                    class: `${this.config.classNames.control} ${attributes.class ? attributes.class : ""}`.trim(),
-                    "aria-checked": checked,
-                    value
-                }));
-                const flex = createElement("span");
-                flex.innerHTML = title;
-                if (utils_is.element(badge)) flex.appendChild(badge);
-                menuItem.appendChild(flex);
-                Object.defineProperty(menuItem, "checked", {
-                    enumerable: true,
-                    get() {
-                        return "true" === menuItem.getAttribute("aria-checked");
-                    },
-                    set(check) {
-                        if (check) Array.from(menuItem.parentNode.children).filter((node => matches(node, '[role="menuitemradio"]'))).forEach((node => node.setAttribute("aria-checked", "false")));
-                        menuItem.setAttribute("aria-checked", check ? "true" : "false");
-                    }
-                });
-                this.listeners.bind(menuItem, "click keyup", (event => {
-                    if (utils_is.keyboardEvent(event) && "Space" !== event.key) return;
-                    event.preventDefault();
-                    event.stopPropagation();
-                    menuItem.checked = true;
-                    switch (type) {
-                      case "language":
-                        this.currentTrack = Number(value);
-                        break;
-
-                      case "quality":
-                        this.quality = value;
-                        break;
-
-                      case "speed":
-                        this.speed = parseFloat(value);
-                        break;
-
-                      default:
-                        break;
-                    }
-                    controls.showMenuPanel.call(this, "home", utils_is.keyboardEvent(event));
-                }), type, false);
-                controls.bindMenuItemShortcuts.call(this, menuItem, type);
-                list.appendChild(menuItem);
-            },
-            formatTime(time = 0, inverted = false) {
-                if (!utils_is.number(time)) return time;
-                const forceHours = getHours(this.duration) > 0;
-                return formatTime(time, forceHours, inverted);
-            },
-            updateTimeDisplay(target = null, time = 0, inverted = false) {
-                if (!utils_is.element(target) || !utils_is.number(time)) return;
-                target.innerText = controls.formatTime(time, inverted);
-            },
-            updateVolume() {
-                if (!this.supported.ui) return;
-                if (utils_is.element(this.elements.inputs.volume)) controls.setRange.call(this, this.elements.inputs.volume, this.muted ? 0 : this.volume);
-                if (utils_is.element(this.elements.buttons.mute)) this.elements.buttons.mute.pressed = this.muted || 0 === this.volume;
-            },
-            setRange(target, value = 0) {
-                if (!utils_is.element(target)) return;
-                target.value = value;
-                controls.updateRangeFill.call(this, target);
-            },
-            updateProgress(event) {
-                if (!this.supported.ui || !utils_is.event(event)) return;
-                let value = 0;
-                const setProgress = (target, input) => {
-                    const val = utils_is.number(input) ? input : 0;
-                    const progress = utils_is.element(target) ? target : this.elements.display.buffer;
-                    if (utils_is.element(progress)) {
-                        progress.value = val;
-                        const label = progress.getElementsByTagName("span")[0];
-                        if (utils_is.element(label)) label.childNodes[0].nodeValue = val;
-                    }
-                };
-                if (event) switch (event.type) {
-                  case "timeupdate":
-                  case "seeking":
-                  case "seeked":
-                    value = getPercentage(this.currentTime, this.duration);
-                    if ("timeupdate" === event.type) controls.setRange.call(this, this.elements.inputs.seek, value);
-                    break;
-
-                  case "playing":
-                  case "progress":
-                    setProgress(this.elements.display.buffer, 100 * this.buffered);
-                    break;
-
-                  default:
-                    break;
-                }
-            },
-            updateRangeFill(target) {
-                const range = utils_is.event(target) ? target.target : target;
-                if (!utils_is.element(range) || "range" !== range.getAttribute("type")) return;
-                if (matches(range, this.config.selectors.inputs.seek)) {
-                    range.setAttribute("aria-valuenow", this.currentTime);
-                    const currentTime = controls.formatTime(this.currentTime);
-                    const duration = controls.formatTime(this.duration);
-                    const format = utils_i18n.get("seekLabel", this.config);
-                    range.setAttribute("aria-valuetext", format.replace("{currentTime}", currentTime).replace("{duration}", duration));
-                } else if (matches(range, this.config.selectors.inputs.volume)) {
-                    const percent = 100 * range.value;
-                    range.setAttribute("aria-valuenow", percent);
-                    range.setAttribute("aria-valuetext", `${percent.toFixed(1)}%`);
-                } else range.setAttribute("aria-valuenow", range.value);
-                if (!utils_browser.isWebkit) return;
-                range.style.setProperty("--value", `${range.value / range.max * 100}%`);
-            },
-            updateSeekTooltip(event) {
-                if (!this.config.tooltips.seek || !utils_is.element(this.elements.inputs.seek) || !utils_is.element(this.elements.display.seekTooltip) || 0 === this.duration) return;
-                const tipElement = this.elements.display.seekTooltip;
-                const visible = `${this.config.classNames.tooltip}--visible`;
-                const toggle = show => elements_toggleClass(tipElement, visible, show);
-                if (this.touch) {
-                    toggle(false);
-                    return;
-                }
-                let percent = 0;
-                const clientRect = this.elements.progress.getBoundingClientRect();
-                if (utils_is.event(event)) percent = 100 / clientRect.width * (event.pageX - clientRect.left); else if (elements_hasClass(tipElement, visible)) percent = parseFloat(tipElement.style.left, 10); else return;
-                if (percent < 0) percent = 0; else if (percent > 100) percent = 100;
-                const time = this.duration / 100 * percent;
-                tipElement.innerText = controls.formatTime(time);
-                const point = this.config.markers?.points?.find((({time: t}) => t === Math.round(time)));
-                if (point) tipElement.insertAdjacentHTML("afterbegin", `${point.label}<br>`);
-                tipElement.style.left = `${percent}%`;
-                if (utils_is.event(event) && [ "mouseenter", "mouseleave" ].includes(event.type)) toggle("mouseenter" === event.type);
-            },
-            timeUpdate(event) {
-                const invert = !utils_is.element(this.elements.display.duration) && this.config.invertTime;
-                controls.updateTimeDisplay.call(this, this.elements.display.currentTime, invert ? this.duration - this.currentTime : this.currentTime, invert);
-                if (event && "timeupdate" === event.type && this.media.seeking) return;
-                controls.updateProgress.call(this, event);
-            },
-            durationUpdate() {
-                if (!this.supported.ui || !this.config.invertTime && this.currentTime) return;
-                if (this.duration >= 2 ** 32) {
-                    toggleHidden(this.elements.display.currentTime, true);
-                    toggleHidden(this.elements.progress, true);
-                    return;
-                }
-                if (utils_is.element(this.elements.inputs.seek)) this.elements.inputs.seek.setAttribute("aria-valuemax", this.duration);
-                const hasDuration = utils_is.element(this.elements.display.duration);
-                if (!hasDuration && this.config.displayDuration && this.paused) controls.updateTimeDisplay.call(this, this.elements.display.currentTime, this.duration);
-                if (hasDuration) controls.updateTimeDisplay.call(this, this.elements.display.duration, this.duration);
-                if (this.config.markers.enabled) controls.setMarkers.call(this);
-                controls.updateSeekTooltip.call(this);
-            },
-            toggleMenuButton(setting, toggle) {
-                toggleHidden(this.elements.settings.buttons[setting], !toggle);
-            },
-            updateSetting(setting, container, input) {
-                const pane = this.elements.settings.panels[setting];
-                let value = null;
-                let list = container;
-                if ("captions" === setting) value = this.currentTrack; else {
-                    value = !utils_is.empty(input) ? input : this[setting];
-                    if (utils_is.empty(value)) value = this.config[setting].default;
-                    if (!utils_is.empty(this.options[setting]) && !this.options[setting].includes(value)) {
-                        this.debug.warn(`Unsupported value of '${value}' for ${setting}`);
-                        return;
-                    }
-                    if (!this.config[setting].options.includes(value)) {
-                        this.debug.warn(`Disabled value of '${value}' for ${setting}`);
-                        return;
-                    }
-                }
-                if (!utils_is.element(list)) list = pane && pane.querySelector('[role="menu"]');
-                if (!utils_is.element(list)) return;
-                const label = this.elements.settings.buttons[setting].querySelector(`.${this.config.classNames.menu.value}`);
-                label.innerHTML = controls.getLabel.call(this, setting, value);
-                const target = list && list.querySelector(`[value="${value}"]`);
-                if (utils_is.element(target)) target.checked = true;
-            },
-            getLabel(setting, value) {
-                switch (setting) {
-                  case "speed":
-                    return 1 === value ? utils_i18n.get("normal", this.config) : `${value}&times;`;
-
-                  case "quality":
-                    if (utils_is.number(value)) {
-                        const label = utils_i18n.get(`qualityLabel.${value}`, this.config);
-                        if (!label.length) return `${value}p`;
-                        return label;
-                    }
-                    return toTitleCase(value);
-
-                  case "captions":
-                    return plyr_captions.getLabel.call(this);
-
-                  default:
-                    return null;
-                }
-            },
-            setQualityMenu(options) {
-                if (!utils_is.element(this.elements.settings.panels.quality)) return;
-                const type = "quality";
-                const list = this.elements.settings.panels.quality.querySelector('[role="menu"]');
-                if (utils_is.array(options)) this.options.quality = dedupe(options).filter((quality => this.config.quality.options.includes(quality)));
-                const toggle = !utils_is.empty(this.options.quality) && this.options.quality.length > 1;
-                controls.toggleMenuButton.call(this, type, toggle);
-                emptyElement(list);
-                controls.checkMenu.call(this);
-                if (!toggle) return;
-                const getBadge = quality => {
-                    const label = utils_i18n.get(`qualityBadge.${quality}`, this.config);
-                    if (!label.length) return null;
-                    return controls.createBadge.call(this, label);
-                };
-                this.options.quality.sort(((a, b) => {
-                    const sorting = this.config.quality.options;
-                    return sorting.indexOf(a) > sorting.indexOf(b) ? 1 : -1;
-                })).forEach((quality => {
-                    controls.createMenuItem.call(this, {
-                        value: quality,
-                        list,
-                        type,
-                        title: controls.getLabel.call(this, "quality", quality),
-                        badge: getBadge(quality)
-                    });
-                }));
-                controls.updateSetting.call(this, type, list);
-            },
-            setCaptionsMenu() {
-                if (!utils_is.element(this.elements.settings.panels.captions)) return;
-                const type = "captions";
-                const list = this.elements.settings.panels.captions.querySelector('[role="menu"]');
-                const tracks = plyr_captions.getTracks.call(this);
-                const toggle = Boolean(tracks.length);
-                controls.toggleMenuButton.call(this, type, toggle);
-                emptyElement(list);
-                controls.checkMenu.call(this);
-                if (!toggle) return;
-                const options = tracks.map(((track, value) => ({
-                    value,
-                    checked: this.captions.toggled && this.currentTrack === value,
-                    title: plyr_captions.getLabel.call(this, track),
-                    badge: track.language && controls.createBadge.call(this, track.language.toUpperCase()),
-                    list,
-                    type: "language"
-                })));
-                options.unshift({
-                    value: -1,
-                    checked: !this.captions.toggled,
-                    title: utils_i18n.get("disabled", this.config),
-                    list,
-                    type: "language"
-                });
-                options.forEach(controls.createMenuItem.bind(this));
-                controls.updateSetting.call(this, type, list);
-            },
-            setSpeedMenu() {
-                if (!utils_is.element(this.elements.settings.panels.speed)) return;
-                const type = "speed";
-                const list = this.elements.settings.panels.speed.querySelector('[role="menu"]');
-                this.options.speed = this.options.speed.filter((o => o >= this.minimumSpeed && o <= this.maximumSpeed));
-                const toggle = !utils_is.empty(this.options.speed) && this.options.speed.length > 1;
-                controls.toggleMenuButton.call(this, type, toggle);
-                emptyElement(list);
-                controls.checkMenu.call(this);
-                if (!toggle) return;
-                this.options.speed.forEach((speed => {
-                    controls.createMenuItem.call(this, {
-                        value: speed,
-                        list,
-                        type,
-                        title: controls.getLabel.call(this, "speed", speed)
-                    });
-                }));
-                controls.updateSetting.call(this, type, list);
-            },
-            checkMenu() {
-                const {buttons} = this.elements.settings;
-                const visible = !utils_is.empty(buttons) && Object.values(buttons).some((button => !button.hidden));
-                toggleHidden(this.elements.settings.menu, !visible);
-            },
-            focusFirstMenuItem(pane, tabFocus = false) {
-                if (this.elements.settings.popup.hidden) return;
-                let target = pane;
-                if (!utils_is.element(target)) target = Object.values(this.elements.settings.panels).find((p => !p.hidden));
-                const firstItem = target.querySelector('[role^="menuitem"]');
-                setFocus.call(this, firstItem, tabFocus);
-            },
-            toggleMenu(input) {
-                const {popup} = this.elements.settings;
-                const button = this.elements.buttons.settings;
-                if (!utils_is.element(popup) || !utils_is.element(button)) return;
-                const {hidden} = popup;
-                let show = hidden;
-                if (utils_is.boolean(input)) show = input; else if (utils_is.keyboardEvent(input) && "Escape" === input.key) show = false; else if (utils_is.event(input)) {
-                    const target = utils_is["function"](input.composedPath) ? input.composedPath()[0] : input.target;
-                    const isMenuItem = popup.contains(target);
-                    if (isMenuItem || !isMenuItem && input.target !== button && show) return;
-                }
-                button.setAttribute("aria-expanded", show);
-                toggleHidden(popup, !show);
-                elements_toggleClass(this.elements.container, this.config.classNames.menu.open, show);
-                if (show && utils_is.keyboardEvent(input)) controls.focusFirstMenuItem.call(this, null, true); else if (!show && !hidden) setFocus.call(this, button, utils_is.keyboardEvent(input));
-            },
-            getMenuSize(tab) {
-                const clone = tab.cloneNode(true);
-                clone.style.position = "absolute";
-                clone.style.opacity = 0;
-                clone.removeAttribute("hidden");
-                tab.parentNode.appendChild(clone);
-                const width = clone.scrollWidth;
-                const height = clone.scrollHeight;
-                removeElement(clone);
-                return {
-                    width,
-                    height
-                };
-            },
-            showMenuPanel(type = "", tabFocus = false) {
-                const target = this.elements.container.querySelector(`#plyr-settings-${this.id}-${type}`);
-                if (!utils_is.element(target)) return;
-                const container = target.parentNode;
-                const current = Array.from(container.children).find((node => !node.hidden));
-                if (plyr_support.transitions && !plyr_support.reducedMotion) {
-                    container.style.width = `${current.scrollWidth}px`;
-                    container.style.height = `${current.scrollHeight}px`;
-                    const size = controls.getMenuSize.call(this, target);
-                    const restore = event => {
-                        if (event.target !== container || ![ "width", "height" ].includes(event.propertyName)) return;
-                        container.style.width = "";
-                        container.style.height = "";
-                        events_off.call(this, container, transitionEndEvent, restore);
-                    };
-                    events_on.call(this, container, transitionEndEvent, restore);
-                    container.style.width = `${size.width}px`;
-                    container.style.height = `${size.height}px`;
-                }
-                toggleHidden(current, true);
-                toggleHidden(target, false);
-                controls.focusFirstMenuItem.call(this, target, tabFocus);
-            },
-            setDownloadUrl() {
-                const button = this.elements.buttons.download;
-                if (!utils_is.element(button)) return;
-                button.setAttribute("href", this.download);
-            },
-            create(data) {
-                const {bindMenuItemShortcuts, createButton, createProgress, createRange, createTime, setQualityMenu, setSpeedMenu, showMenuPanel} = controls;
-                this.elements.controls = null;
-                if (utils_is.array(this.config.controls) && this.config.controls.includes("play-large")) this.elements.container.appendChild(createButton.call(this, "play-large"));
-                const container = createElement("div", getAttributesFromSelector(this.config.selectors.controls.wrapper));
-                this.elements.controls = container;
-                const defaultAttributes = {
-                    class: "plyr__controls__item"
-                };
-                dedupe(utils_is.array(this.config.controls) ? this.config.controls : []).forEach((control => {
-                    if ("restart" === control) container.appendChild(createButton.call(this, "restart", defaultAttributes));
-                    if ("rewind" === control) container.appendChild(createButton.call(this, "rewind", defaultAttributes));
-                    if ("play" === control) container.appendChild(createButton.call(this, "play", defaultAttributes));
-                    if ("fast-forward" === control) container.appendChild(createButton.call(this, "fast-forward", defaultAttributes));
-                    if ("progress" === control) {
-                        const progressContainer = createElement("div", {
-                            class: `${defaultAttributes.class} plyr__progress__container`
-                        });
-                        const progress = createElement("div", getAttributesFromSelector(this.config.selectors.progress));
-                        progress.appendChild(createRange.call(this, "seek", {
-                            id: `plyr-seek-${data.id}`
-                        }));
-                        progress.appendChild(createProgress.call(this, "buffer"));
-                        if (this.config.tooltips.seek) {
-                            const tooltip = createElement("span", {
-                                class: this.config.classNames.tooltip
-                            }, "00:00");
-                            progress.appendChild(tooltip);
-                            this.elements.display.seekTooltip = tooltip;
-                        }
-                        this.elements.progress = progress;
-                        progressContainer.appendChild(this.elements.progress);
-                        container.appendChild(progressContainer);
-                    }
-                    if ("current-time" === control) container.appendChild(createTime.call(this, "currentTime", defaultAttributes));
-                    if ("duration" === control) container.appendChild(createTime.call(this, "duration", defaultAttributes));
-                    if ("mute" === control || "volume" === control) {
-                        let {volume} = this.elements;
-                        if (!utils_is.element(volume) || !container.contains(volume)) {
-                            volume = createElement("div", objects_extend({}, defaultAttributes, {
-                                class: `${defaultAttributes.class} plyr__volume`.trim()
-                            }));
-                            this.elements.volume = volume;
-                            container.appendChild(volume);
-                        }
-                        if ("mute" === control) volume.appendChild(createButton.call(this, "mute"));
-                        if ("volume" === control && !utils_browser.isIos) {
-                            const attributes = {
-                                max: 1,
-                                step: .05,
-                                value: this.config.volume
-                            };
-                            volume.appendChild(createRange.call(this, "volume", objects_extend(attributes, {
-                                id: `plyr-volume-${data.id}`
-                            })));
-                        }
-                    }
-                    if ("captions" === control) container.appendChild(createButton.call(this, "captions", defaultAttributes));
-                    if ("settings" === control && !utils_is.empty(this.config.settings)) {
-                        const wrapper = createElement("div", objects_extend({}, defaultAttributes, {
-                            class: `${defaultAttributes.class} plyr__menu`.trim(),
-                            hidden: ""
-                        }));
-                        wrapper.appendChild(createButton.call(this, "settings", {
-                            "aria-haspopup": true,
-                            "aria-controls": `plyr-settings-${data.id}`,
-                            "aria-expanded": false
-                        }));
-                        const popup = createElement("div", {
-                            class: "plyr__menu__container",
-                            id: `plyr-settings-${data.id}`,
-                            hidden: ""
-                        });
-                        const inner = createElement("div");
-                        const home = createElement("div", {
-                            id: `plyr-settings-${data.id}-home`
-                        });
-                        const menu = createElement("div", {
-                            role: "menu"
-                        });
-                        home.appendChild(menu);
-                        inner.appendChild(home);
-                        this.elements.settings.panels.home = home;
-                        this.config.settings.forEach((type => {
-                            const menuItem = createElement("button", objects_extend(getAttributesFromSelector(this.config.selectors.buttons.settings), {
-                                type: "button",
-                                class: `${this.config.classNames.control} ${this.config.classNames.control}--forward`,
-                                role: "menuitem",
-                                "aria-haspopup": true,
-                                hidden: ""
-                            }));
-                            bindMenuItemShortcuts.call(this, menuItem, type);
-                            events_on.call(this, menuItem, "click", (() => {
-                                showMenuPanel.call(this, type, false);
-                            }));
-                            const flex = createElement("span", null, utils_i18n.get(type, this.config));
-                            const value = createElement("span", {
-                                class: this.config.classNames.menu.value
-                            });
-                            value.innerHTML = data[type];
-                            flex.appendChild(value);
-                            menuItem.appendChild(flex);
-                            menu.appendChild(menuItem);
-                            const pane = createElement("div", {
-                                id: `plyr-settings-${data.id}-${type}`,
-                                hidden: ""
-                            });
-                            const backButton = createElement("button", {
-                                type: "button",
-                                class: `${this.config.classNames.control} ${this.config.classNames.control}--back`
-                            });
-                            backButton.appendChild(createElement("span", {
-                                "aria-hidden": true
-                            }, utils_i18n.get(type, this.config)));
-                            backButton.appendChild(createElement("span", {
-                                class: this.config.classNames.hidden
-                            }, utils_i18n.get("menuBack", this.config)));
-                            events_on.call(this, pane, "keydown", (event => {
-                                if ("ArrowLeft" !== event.key) return;
-                                event.preventDefault();
-                                event.stopPropagation();
-                                showMenuPanel.call(this, "home", true);
-                            }), false);
-                            events_on.call(this, backButton, "click", (() => {
-                                showMenuPanel.call(this, "home", false);
-                            }));
-                            pane.appendChild(backButton);
-                            pane.appendChild(createElement("div", {
-                                role: "menu"
-                            }));
-                            inner.appendChild(pane);
-                            this.elements.settings.buttons[type] = menuItem;
-                            this.elements.settings.panels[type] = pane;
-                        }));
-                        popup.appendChild(inner);
-                        wrapper.appendChild(popup);
-                        container.appendChild(wrapper);
-                        this.elements.settings.popup = popup;
-                        this.elements.settings.menu = wrapper;
-                    }
-                    if ("pip" === control && plyr_support.pip) container.appendChild(createButton.call(this, "pip", defaultAttributes));
-                    if ("airplay" === control && plyr_support.airplay) container.appendChild(createButton.call(this, "airplay", defaultAttributes));
-                    if ("download" === control) {
-                        const attributes = objects_extend({}, defaultAttributes, {
-                            element: "a",
-                            href: this.download,
-                            target: "_blank"
-                        });
-                        if (this.isHTML5) attributes.download = "";
-                        const {download} = this.config.urls;
-                        if (!utils_is.url(download) && this.isEmbed) objects_extend(attributes, {
-                            icon: `logo-${this.provider}`,
-                            label: this.provider
-                        });
-                        container.appendChild(createButton.call(this, "download", attributes));
-                    }
-                    if ("fullscreen" === control) container.appendChild(createButton.call(this, "fullscreen", defaultAttributes));
-                }));
-                if (this.isHTML5) setQualityMenu.call(this, plyr_html5.getQualityOptions.call(this));
-                setSpeedMenu.call(this);
-                return container;
-            },
-            inject() {
-                if (this.config.loadSprite) {
-                    const icon = controls.getIconUrl.call(this);
-                    if (icon.cors) loadSprite(icon.url, "sprite-plyr");
-                }
-                this.id = Math.floor(1e4 * Math.random());
-                let container = null;
-                this.elements.controls = null;
-                const props = {
-                    id: this.id,
-                    seektime: this.config.seekTime,
-                    title: this.config.title
-                };
-                let update = true;
-                if (utils_is["function"](this.config.controls)) this.config.controls = this.config.controls.call(this, props);
-                if (!this.config.controls) this.config.controls = [];
-                if (utils_is.element(this.config.controls) || utils_is.string(this.config.controls)) container = this.config.controls; else {
-                    container = controls.create.call(this, {
-                        id: this.id,
-                        seektime: this.config.seekTime,
-                        speed: this.speed,
-                        quality: this.quality,
-                        captions: plyr_captions.getLabel.call(this)
-                    });
-                    update = false;
-                }
-                const replace = input => {
-                    let result = input;
-                    Object.entries(props).forEach((([key, value]) => {
-                        result = replaceAll(result, `{${key}}`, value);
-                    }));
-                    return result;
-                };
-                if (update) if (utils_is.string(this.config.controls)) container = replace(container);
-                let target;
-                if (utils_is.string(this.config.selectors.controls.container)) target = document.querySelector(this.config.selectors.controls.container);
-                if (!utils_is.element(target)) target = this.elements.container;
-                const insertMethod = utils_is.element(container) ? "insertAdjacentElement" : "insertAdjacentHTML";
-                target[insertMethod]("afterbegin", container);
-                if (!utils_is.element(this.elements.controls)) controls.findElements.call(this);
-                if (!utils_is.empty(this.elements.buttons)) {
-                    const addProperty = button => {
-                        const className = this.config.classNames.controlPressed;
-                        Object.defineProperty(button, "pressed", {
-                            enumerable: true,
-                            get() {
-                                return elements_hasClass(button, className);
-                            },
-                            set(pressed = false) {
-                                elements_toggleClass(button, className, pressed);
-                            }
-                        });
-                    };
-                    Object.values(this.elements.buttons).filter(Boolean).forEach((button => {
-                        if (utils_is.array(button) || utils_is.nodeList(button)) Array.from(button).filter(Boolean).forEach(addProperty); else addProperty(button);
-                    }));
-                }
-                if (utils_browser.isEdge) repaint(target);
-                if (this.config.tooltips.controls) {
-                    const {classNames, selectors} = this.config;
-                    const selector = `${selectors.controls.wrapper} ${selectors.labels} .${classNames.hidden}`;
-                    const labels = getElements.call(this, selector);
-                    Array.from(labels).forEach((label => {
-                        elements_toggleClass(label, this.config.classNames.hidden, false);
-                        elements_toggleClass(label, this.config.classNames.tooltip, true);
-                    }));
-                }
-            },
-            setMediaMetadata() {
-                try {
-                    if ("mediaSession" in navigator) navigator.mediaSession.metadata = new window.MediaMetadata({
-                        title: this.config.mediaMetadata.title,
-                        artist: this.config.mediaMetadata.artist,
-                        album: this.config.mediaMetadata.album,
-                        artwork: this.config.mediaMetadata.artwork
-                    });
-                } catch (_) {}
-            },
-            setMarkers() {
-                if (!this.duration || this.elements.markers) return;
-                const points = this.config.markers?.points?.filter((({time}) => time > 0 && time < this.duration));
-                if (!points?.length) return;
-                const containerFragment = document.createDocumentFragment();
-                const pointsFragment = document.createDocumentFragment();
-                let tipElement = null;
-                const tipVisible = `${this.config.classNames.tooltip}--visible`;
-                const toggleTip = show => elements_toggleClass(tipElement, tipVisible, show);
-                points.forEach((point => {
-                    const markerElement = createElement("span", {
-                        class: this.config.classNames.marker
-                    }, "");
-                    const left = `${point.time / this.duration * 100}%`;
-                    if (tipElement) {
-                        markerElement.addEventListener("mouseenter", (() => {
-                            if (point.label) return;
-                            tipElement.style.left = left;
-                            tipElement.innerHTML = point.label;
-                            toggleTip(true);
-                        }));
-                        markerElement.addEventListener("mouseleave", (() => {
-                            toggleTip(false);
-                        }));
-                    }
-                    markerElement.addEventListener("click", (() => {
-                        this.currentTime = point.time;
-                    }));
-                    markerElement.style.left = left;
-                    pointsFragment.appendChild(markerElement);
-                }));
-                containerFragment.appendChild(pointsFragment);
-                if (!this.config.tooltips.seek) {
-                    tipElement = createElement("span", {
-                        class: this.config.classNames.tooltip
-                    }, "");
-                    containerFragment.appendChild(tipElement);
-                }
-                this.elements.markers = {
-                    points: pointsFragment,
-                    tip: tipElement
-                };
-                this.elements.progress.appendChild(containerFragment);
-            }
-        };
-        const plyr_controls = controls;
-        function parseUrl(input, safe = true) {
-            let url = input;
-            if (safe) {
-                const parser = document.createElement("a");
-                parser.href = url;
-                url = parser.href;
-            }
-            try {
-                return new URL(url);
-            } catch (_) {
-                return null;
-            }
-        }
-        function buildUrlParams(input) {
-            const params = new URLSearchParams;
-            if (utils_is.object(input)) Object.entries(input).forEach((([key, value]) => {
-                params.set(key, value);
-            }));
-            return params;
-        }
-        const captions = {
-            setup() {
-                if (!this.supported.ui) return;
-                if (!this.isVideo || this.isYouTube || this.isHTML5 && !plyr_support.textTracks) {
-                    if (utils_is.array(this.config.controls) && this.config.controls.includes("settings") && this.config.settings.includes("captions")) plyr_controls.setCaptionsMenu.call(this);
-                    return;
-                }
-                if (!utils_is.element(this.elements.captions)) {
-                    this.elements.captions = createElement("div", getAttributesFromSelector(this.config.selectors.captions));
-                    elements_insertAfter(this.elements.captions, this.elements.wrapper);
-                }
-                if (utils_browser.isIE && window.URL) {
-                    const elements = this.media.querySelectorAll("track");
-                    Array.from(elements).forEach((track => {
-                        const src = track.getAttribute("src");
-                        const url = parseUrl(src);
-                        if (null !== url && url.hostname !== window.location.href.hostname && [ "http:", "https:" ].includes(url.protocol)) fetch_fetch(src, "blob").then((blob => {
-                            track.setAttribute("src", window.URL.createObjectURL(blob));
-                        })).catch((() => {
-                            removeElement(track);
-                        }));
-                    }));
-                }
-                const browserLanguages = navigator.languages || [ navigator.language || navigator.userLanguage || "en" ];
-                const languages = dedupe(browserLanguages.map((language => language.split("-")[0])));
-                let language = (this.storage.get("language") || this.config.captions.language || "auto").toLowerCase();
-                if ("auto" === language) [language] = languages;
-                let active = this.storage.get("captions");
-                if (!utils_is.boolean(active)) ({active} = this.config.captions);
-                Object.assign(this.captions, {
-                    toggled: false,
-                    active,
-                    language,
-                    languages
-                });
-                if (this.isHTML5) {
-                    const trackEvents = this.config.captions.update ? "addtrack removetrack" : "removetrack";
-                    events_on.call(this, this.media.textTracks, trackEvents, captions.update.bind(this));
-                }
-                setTimeout(captions.update.bind(this), 0);
-            },
-            update() {
-                const tracks = captions.getTracks.call(this, true);
-                const {active, language, meta, currentTrackNode} = this.captions;
-                const languageExists = Boolean(tracks.find((track => track.language === language)));
-                if (this.isHTML5 && this.isVideo) tracks.filter((track => !meta.get(track))).forEach((track => {
-                    this.debug.log("Track added", track);
-                    meta.set(track, {
-                        default: "showing" === track.mode
-                    });
-                    if ("showing" === track.mode) track.mode = "hidden";
-                    events_on.call(this, track, "cuechange", (() => captions.updateCues.call(this)));
-                }));
-                if (languageExists && this.language !== language || !tracks.includes(currentTrackNode)) {
-                    captions.setLanguage.call(this, language);
-                    captions.toggle.call(this, active && languageExists);
-                }
-                if (this.elements) elements_toggleClass(this.elements.container, this.config.classNames.captions.enabled, !utils_is.empty(tracks));
-                if (utils_is.array(this.config.controls) && this.config.controls.includes("settings") && this.config.settings.includes("captions")) plyr_controls.setCaptionsMenu.call(this);
-            },
-            toggle(input, passive = true) {
-                if (!this.supported.ui) return;
-                const {toggled} = this.captions;
-                const activeClass = this.config.classNames.captions.active;
-                const active = utils_is.nullOrUndefined(input) ? !toggled : input;
-                if (active !== toggled) {
-                    if (!passive) {
-                        this.captions.active = active;
-                        this.storage.set({
-                            captions: active
-                        });
-                    }
-                    if (!this.language && active && !passive) {
-                        const tracks = captions.getTracks.call(this);
-                        const track = captions.findTrack.call(this, [ this.captions.language, ...this.captions.languages ], true);
-                        this.captions.language = track.language;
-                        captions.set.call(this, tracks.indexOf(track));
-                        return;
-                    }
-                    if (this.elements.buttons.captions) this.elements.buttons.captions.pressed = active;
-                    elements_toggleClass(this.elements.container, activeClass, active);
-                    this.captions.toggled = active;
-                    plyr_controls.updateSetting.call(this, "captions");
-                    triggerEvent.call(this, this.media, active ? "captionsenabled" : "captionsdisabled");
-                }
-                setTimeout((() => {
-                    if (active && this.captions.toggled) this.captions.currentTrackNode.mode = "hidden";
-                }));
-            },
-            set(index, passive = true) {
-                const tracks = captions.getTracks.call(this);
-                if (-1 === index) {
-                    captions.toggle.call(this, false, passive);
-                    return;
-                }
-                if (!utils_is.number(index)) {
-                    this.debug.warn("Invalid caption argument", index);
-                    return;
-                }
-                if (!(index in tracks)) {
-                    this.debug.warn("Track not found", index);
-                    return;
-                }
-                if (this.captions.currentTrack !== index) {
-                    this.captions.currentTrack = index;
-                    const track = tracks[index];
-                    const {language} = track || {};
-                    this.captions.currentTrackNode = track;
-                    plyr_controls.updateSetting.call(this, "captions");
-                    if (!passive) {
-                        this.captions.language = language;
-                        this.storage.set({
-                            language
-                        });
-                    }
-                    if (this.isVimeo) this.embed.enableTextTrack(language);
-                    triggerEvent.call(this, this.media, "languagechange");
-                }
-                captions.toggle.call(this, true, passive);
-                if (this.isHTML5 && this.isVideo) captions.updateCues.call(this);
-            },
-            setLanguage(input, passive = true) {
-                if (!utils_is.string(input)) {
-                    this.debug.warn("Invalid language argument", input);
-                    return;
-                }
-                const language = input.toLowerCase();
-                this.captions.language = language;
-                const tracks = captions.getTracks.call(this);
-                const track = captions.findTrack.call(this, [ language ]);
-                captions.set.call(this, tracks.indexOf(track), passive);
-            },
-            getTracks(update = false) {
-                const tracks = Array.from((this.media || {}).textTracks || []);
-                return tracks.filter((track => !this.isHTML5 || update || this.captions.meta.has(track))).filter((track => [ "captions", "subtitles" ].includes(track.kind)));
-            },
-            findTrack(languages, force = false) {
-                const tracks = captions.getTracks.call(this);
-                const sortIsDefault = track => Number((this.captions.meta.get(track) || {}).default);
-                const sorted = Array.from(tracks).sort(((a, b) => sortIsDefault(b) - sortIsDefault(a)));
-                let track;
-                languages.every((language => {
-                    track = sorted.find((t => t.language === language));
-                    return !track;
-                }));
-                return track || (force ? sorted[0] : void 0);
-            },
-            getCurrentTrack() {
-                return captions.getTracks.call(this)[this.currentTrack];
-            },
-            getLabel(track) {
-                let currentTrack = track;
-                if (!utils_is.track(currentTrack) && plyr_support.textTracks && this.captions.toggled) currentTrack = captions.getCurrentTrack.call(this);
-                if (utils_is.track(currentTrack)) {
-                    if (!utils_is.empty(currentTrack.label)) return currentTrack.label;
-                    if (!utils_is.empty(currentTrack.language)) return track.language.toUpperCase();
-                    return utils_i18n.get("enabled", this.config);
-                }
-                return utils_i18n.get("disabled", this.config);
-            },
-            updateCues(input) {
-                if (!this.supported.ui) return;
-                if (!utils_is.element(this.elements.captions)) {
-                    this.debug.warn("No captions element to render to");
-                    return;
-                }
-                if (!utils_is.nullOrUndefined(input) && !Array.isArray(input)) {
-                    this.debug.warn("updateCues: Invalid input", input);
-                    return;
-                }
-                let cues = input;
-                if (!cues) {
-                    const track = captions.getCurrentTrack.call(this);
-                    cues = Array.from((track || {}).activeCues || []).map((cue => cue.getCueAsHTML())).map(getHTML);
-                }
-                const content = cues.map((cueText => cueText.trim())).join("\n");
-                const changed = content !== this.elements.captions.innerHTML;
-                if (changed) {
-                    emptyElement(this.elements.captions);
-                    const caption = createElement("span", getAttributesFromSelector(this.config.selectors.caption));
-                    caption.innerHTML = content;
-                    this.elements.captions.appendChild(caption);
-                    triggerEvent.call(this, this.media, "cuechange");
-                }
-            }
-        };
-        const plyr_captions = captions;
-        const defaults_defaults = {
-            enabled: true,
-            title: "",
-            debug: false,
-            autoplay: false,
-            autopause: true,
-            playsinline: true,
-            seekTime: 10,
-            volume: 1,
-            muted: false,
-            duration: null,
-            displayDuration: true,
-            invertTime: true,
-            toggleInvert: true,
-            ratio: null,
-            clickToPlay: true,
-            hideControls: true,
-            resetOnEnd: false,
-            disableContextMenu: true,
-            loadSprite: true,
-            iconPrefix: "plyr",
-            iconUrl: "https://cdn.plyr.io/3.7.2/plyr.svg",
-            blankVideo: "https://cdn.plyr.io/static/blank.mp4",
-            quality: {
-                default: 576,
-                options: [ 4320, 2880, 2160, 1440, 1080, 720, 576, 480, 360, 240 ],
-                forced: false,
-                onChange: null
-            },
-            loop: {
-                active: false
-            },
-            speed: {
-                selected: 1,
-                options: [ .5, .75, 1, 1.25, 1.5, 1.75, 2, 4 ]
-            },
-            keyboard: {
-                focused: true,
-                global: false
-            },
-            tooltips: {
-                controls: false,
-                seek: true
-            },
-            captions: {
-                active: false,
-                language: "auto",
-                update: false
-            },
-            fullscreen: {
-                enabled: true,
-                fallback: true,
-                iosNative: false
-            },
-            storage: {
-                enabled: true,
-                key: "plyr"
-            },
-            controls: [ "play-large", "play", "progress", "current-time", "mute", "volume", "captions", "settings", "pip", "airplay", "fullscreen" ],
-            settings: [ "captions", "quality", "speed" ],
-            i18n: {
-                restart: "Restart",
-                rewind: "Rewind {seektime}s",
-                play: "Play",
-                pause: "Pause",
-                fastForward: "Forward {seektime}s",
-                seek: "Seek",
-                seekLabel: "{currentTime} of {duration}",
-                played: "Played",
-                buffered: "Buffered",
-                currentTime: "Current time",
-                duration: "Duration",
-                volume: "Volume",
-                mute: "Mute",
-                unmute: "Unmute",
-                enableCaptions: "Enable captions",
-                disableCaptions: "Disable captions",
-                download: "Download",
-                enterFullscreen: "Enter fullscreen",
-                exitFullscreen: "Exit fullscreen",
-                frameTitle: "Player for {title}",
-                captions: "Captions",
-                settings: "Settings",
-                pip: "PIP",
-                menuBack: "Go back to previous menu",
-                speed: "Speed",
-                normal: "Normal",
-                quality: "Quality",
-                loop: "Loop",
-                start: "Start",
-                end: "End",
-                all: "All",
-                reset: "Reset",
-                disabled: "Disabled",
-                enabled: "Enabled",
-                advertisement: "Ad",
-                qualityBadge: {
-                    2160: "4K",
-                    1440: "HD",
-                    1080: "HD",
-                    720: "HD",
-                    576: "SD",
-                    480: "SD"
-                }
-            },
-            urls: {
-                download: null,
-                vimeo: {
-                    sdk: "https://player.vimeo.com/api/player.js",
-                    iframe: "https://player.vimeo.com/video/{0}?{1}",
-                    api: "https://vimeo.com/api/oembed.json?url={0}"
-                },
-                youtube: {
-                    sdk: "https://www.youtube.com/iframe_api",
-                    api: "https://noembed.com/embed?url=https://www.youtube.com/watch?v={0}"
-                },
-                googleIMA: {
-                    sdk: "https://imasdk.googleapis.com/js/sdkloader/ima3.js"
-                }
-            },
-            listeners: {
-                seek: null,
-                play: null,
-                pause: null,
-                restart: null,
-                rewind: null,
-                fastForward: null,
-                mute: null,
-                volume: null,
-                captions: null,
-                download: null,
-                fullscreen: null,
-                pip: null,
-                airplay: null,
-                speed: null,
-                quality: null,
-                loop: null,
-                language: null
-            },
-            events: [ "ended", "progress", "stalled", "playing", "waiting", "canplay", "canplaythrough", "loadstart", "loadeddata", "loadedmetadata", "timeupdate", "volumechange", "play", "pause", "error", "seeking", "seeked", "emptied", "ratechange", "cuechange", "download", "enterfullscreen", "exitfullscreen", "captionsenabled", "captionsdisabled", "languagechange", "controlshidden", "controlsshown", "ready", "statechange", "qualitychange", "adsloaded", "adscontentpause", "adscontentresume", "adstarted", "adsmidpoint", "adscomplete", "adsallcomplete", "adsimpression", "adsclick" ],
-            selectors: {
-                editable: "input, textarea, select, [contenteditable]",
-                container: ".plyr",
-                controls: {
-                    container: null,
-                    wrapper: ".plyr__controls"
-                },
-                labels: "[data-plyr]",
-                buttons: {
-                    play: '[data-plyr="play"]',
-                    pause: '[data-plyr="pause"]',
-                    restart: '[data-plyr="restart"]',
-                    rewind: '[data-plyr="rewind"]',
-                    fastForward: '[data-plyr="fast-forward"]',
-                    mute: '[data-plyr="mute"]',
-                    captions: '[data-plyr="captions"]',
-                    download: '[data-plyr="download"]',
-                    fullscreen: '[data-plyr="fullscreen"]',
-                    pip: '[data-plyr="pip"]',
-                    airplay: '[data-plyr="airplay"]',
-                    settings: '[data-plyr="settings"]',
-                    loop: '[data-plyr="loop"]'
-                },
-                inputs: {
-                    seek: '[data-plyr="seek"]',
-                    volume: '[data-plyr="volume"]',
-                    speed: '[data-plyr="speed"]',
-                    language: '[data-plyr="language"]',
-                    quality: '[data-plyr="quality"]'
-                },
-                display: {
-                    currentTime: ".plyr__time--current",
-                    duration: ".plyr__time--duration",
-                    buffer: ".plyr__progress__buffer",
-                    loop: ".plyr__progress__loop",
-                    volume: ".plyr__volume--display"
-                },
-                progress: ".plyr__progress",
-                captions: ".plyr__captions",
-                caption: ".plyr__caption"
-            },
-            classNames: {
-                type: "plyr--{0}",
-                provider: "plyr--{0}",
-                video: "plyr__video-wrapper",
-                embed: "plyr__video-embed",
-                videoFixedRatio: "plyr__video-wrapper--fixed-ratio",
-                embedContainer: "plyr__video-embed__container",
-                poster: "plyr__poster",
-                posterEnabled: "plyr__poster-enabled",
-                ads: "plyr__ads",
-                control: "plyr__control",
-                controlPressed: "plyr__control--pressed",
-                playing: "plyr--playing",
-                paused: "plyr--paused",
-                stopped: "plyr--stopped",
-                loading: "plyr--loading",
-                hover: "plyr--hover",
-                tooltip: "plyr__tooltip",
-                cues: "plyr__cues",
-                marker: "plyr__progress__marker",
-                hidden: "plyr__sr-only",
-                hideControls: "plyr--hide-controls",
-                isIos: "plyr--is-ios",
-                isTouch: "plyr--is-touch",
-                uiSupported: "plyr--full-ui",
-                noTransition: "plyr--no-transition",
-                display: {
-                    time: "plyr__time"
-                },
-                menu: {
-                    value: "plyr__menu__value",
-                    badge: "plyr__badge",
-                    open: "plyr--menu-open"
-                },
-                captions: {
-                    enabled: "plyr--captions-enabled",
-                    active: "plyr--captions-active"
-                },
-                fullscreen: {
-                    enabled: "plyr--fullscreen-enabled",
-                    fallback: "plyr--fullscreen-fallback"
-                },
-                pip: {
-                    supported: "plyr--pip-supported",
-                    active: "plyr--pip-active"
-                },
-                airplay: {
-                    supported: "plyr--airplay-supported",
-                    active: "plyr--airplay-active"
-                },
-                tabFocus: "plyr__tab-focus",
-                previewThumbnails: {
-                    thumbContainer: "plyr__preview-thumb",
-                    thumbContainerShown: "plyr__preview-thumb--is-shown",
-                    imageContainer: "plyr__preview-thumb__image-container",
-                    timeContainer: "plyr__preview-thumb__time-container",
-                    scrubbingContainer: "plyr__preview-scrubbing",
-                    scrubbingContainerShown: "plyr__preview-scrubbing--is-shown"
-                }
-            },
-            attributes: {
-                embed: {
-                    provider: "data-plyr-provider",
-                    id: "data-plyr-embed-id",
-                    hash: "data-plyr-embed-hash"
-                }
-            },
-            ads: {
-                enabled: false,
-                publisherId: "",
-                tagUrl: ""
-            },
-            previewThumbnails: {
-                enabled: false,
-                src: ""
-            },
-            vimeo: {
-                byline: false,
-                portrait: false,
-                title: false,
-                speed: true,
-                transparent: false,
-                customControls: true,
-                referrerPolicy: null,
-                premium: false
-            },
-            youtube: {
-                rel: 0,
-                showinfo: 0,
-                iv_load_policy: 3,
-                modestbranding: 1,
-                customControls: true,
-                noCookie: false
-            },
-            mediaMetadata: {
-                title: "",
-                artist: "",
-                album: "",
-                artwork: []
-            },
-            markers: {
-                enabled: false,
-                points: []
-            }
-        };
-        const config_defaults = defaults_defaults;
-        const pip = {
-            active: "picture-in-picture",
-            inactive: "inline"
-        };
-        const providers = {
-            html5: "html5",
-            youtube: "youtube",
-            vimeo: "vimeo"
-        };
-        const types = {
-            audio: "audio",
-            video: "video"
-        };
-        function getProviderByUrl(url) {
-            if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtube-nocookie\.com|youtu\.?be)\/.+$/.test(url)) return providers.youtube;
-            if (/^https?:\/\/player.vimeo.com\/video\/\d{0,9}(?=\b|\/)/.test(url)) return providers.vimeo;
-            return null;
-        }
-        const noop = () => {};
-        class Console {
-            constructor(enabled = false) {
-                this.enabled = window.console && enabled;
-                if (this.enabled) this.log("Debugging enabled");
-            }
-            get log() {
-                return this.enabled ? Function.prototype.bind.call(console.log, console) : noop;
-            }
-            get warn() {
-                return this.enabled ? Function.prototype.bind.call(console.warn, console) : noop;
-            }
-            get error() {
-                return this.enabled ? Function.prototype.bind.call(console.error, console) : noop;
-            }
-        }
-        class Fullscreen {
-            constructor(player) {
-                this.player = player;
-                this.prefix = Fullscreen.prefix;
-                this.property = Fullscreen.property;
-                this.scrollPosition = {
-                    x: 0,
-                    y: 0
-                };
-                this.forceFallback = "force" === player.config.fullscreen.fallback;
-                this.player.elements.fullscreen = player.config.fullscreen.container && elements_closest(this.player.elements.container, player.config.fullscreen.container);
-                events_on.call(this.player, document, "ms" === this.prefix ? "MSFullscreenChange" : `${this.prefix}fullscreenchange`, (() => {
-                    this.onChange();
-                }));
-                events_on.call(this.player, this.player.elements.container, "dblclick", (event => {
-                    if (utils_is.element(this.player.elements.controls) && this.player.elements.controls.contains(event.target)) return;
-                    this.player.listeners.proxy(event, this.toggle, "fullscreen");
-                }));
-                events_on.call(this, this.player.elements.container, "keydown", (event => this.trapFocus(event)));
-                this.update();
-            }
-            static get native() {
-                return !!(document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled);
-            }
-            get usingNative() {
-                return Fullscreen.native && !this.forceFallback;
-            }
-            static get prefix() {
-                if (utils_is["function"](document.exitFullscreen)) return "";
-                let value = "";
-                const prefixes = [ "webkit", "moz", "ms" ];
-                prefixes.some((pre => {
-                    if (utils_is["function"](document[`${pre}ExitFullscreen`]) || utils_is["function"](document[`${pre}CancelFullScreen`])) {
-                        value = pre;
-                        return true;
-                    }
-                    return false;
-                }));
-                return value;
-            }
-            static get property() {
-                return "moz" === this.prefix ? "FullScreen" : "Fullscreen";
-            }
-            get enabled() {
-                return (Fullscreen.native || this.player.config.fullscreen.fallback) && this.player.config.fullscreen.enabled && this.player.supported.ui && this.player.isVideo;
-            }
-            get active() {
-                if (!this.enabled) return false;
-                if (!Fullscreen.native || this.forceFallback) return elements_hasClass(this.target, this.player.config.classNames.fullscreen.fallback);
-                const element = !this.prefix ? this.target.getRootNode().fullscreenElement : this.target.getRootNode()[`${this.prefix}${this.property}Element`];
-                return element && element.shadowRoot ? element === this.target.getRootNode().host : element === this.target;
-            }
-            get target() {
-                return utils_browser.isIos && this.player.config.fullscreen.iosNative ? this.player.media : this.player.elements.fullscreen || this.player.elements.container;
-            }
-            onChange=() => {
-                if (!this.enabled) return;
-                const button = this.player.elements.buttons.fullscreen;
-                if (utils_is.element(button)) button.pressed = this.active;
-                const target = this.target === this.player.media ? this.target : this.player.elements.container;
-                triggerEvent.call(this.player, target, this.active ? "enterfullscreen" : "exitfullscreen", true);
-            };
-            toggleFallback=(toggle = false) => {
-                if (toggle) this.scrollPosition = {
-                    x: window.scrollX || 0,
-                    y: window.scrollY || 0
-                }; else window.scrollTo(this.scrollPosition.x, this.scrollPosition.y);
-                document.body.style.overflow = toggle ? "hidden" : "";
-                elements_toggleClass(this.target, this.player.config.classNames.fullscreen.fallback, toggle);
-                if (utils_browser.isIos) {
-                    let viewport = document.head.querySelector('meta[name="viewport"]');
-                    const property = "viewport-fit=cover";
-                    if (!viewport) {
-                        viewport = document.createElement("meta");
-                        viewport.setAttribute("name", "viewport");
-                    }
-                    const hasProperty = utils_is.string(viewport.content) && viewport.content.includes(property);
-                    if (toggle) {
-                        this.cleanupViewport = !hasProperty;
-                        if (!hasProperty) viewport.content += `,${property}`;
-                    } else if (this.cleanupViewport) viewport.content = viewport.content.split(",").filter((part => part.trim() !== property)).join(",");
-                }
-                this.onChange();
-            };
-            trapFocus=event => {
-                if (utils_browser.isIos || !this.active || "Tab" !== event.key) return;
-                const focused = document.activeElement;
-                const focusable = getElements.call(this.player, "a[href], button:not(:disabled), input:not(:disabled), [tabindex]");
-                const [first] = focusable;
-                const last = focusable[focusable.length - 1];
-                if (focused === last && !event.shiftKey) {
-                    first.focus();
-                    event.preventDefault();
-                } else if (focused === first && event.shiftKey) {
-                    last.focus();
-                    event.preventDefault();
-                }
-            };
-            update=() => {
-                if (this.enabled) {
-                    let mode;
-                    if (this.forceFallback) mode = "Fallback (forced)"; else if (Fullscreen.native) mode = "Native"; else mode = "Fallback";
-                    this.player.debug.log(`${mode} fullscreen enabled`);
-                } else this.player.debug.log("Fullscreen not supported and fallback disabled");
-                elements_toggleClass(this.player.elements.container, this.player.config.classNames.fullscreen.enabled, this.enabled);
-            };
-            enter=() => {
-                if (!this.enabled) return;
-                if (utils_browser.isIos && this.player.config.fullscreen.iosNative) if (this.player.isVimeo) this.player.embed.requestFullscreen(); else this.target.webkitEnterFullscreen(); else if (!Fullscreen.native || this.forceFallback) this.toggleFallback(true); else if (!this.prefix) this.target.requestFullscreen({
-                    navigationUI: "hide"
-                }); else if (!utils_is.empty(this.prefix)) this.target[`${this.prefix}Request${this.property}`]();
-            };
-            exit=() => {
-                if (!this.enabled) return;
-                if (utils_browser.isIos && this.player.config.fullscreen.iosNative) {
-                    this.target.webkitExitFullscreen();
-                    silencePromise(this.player.play());
-                } else if (!Fullscreen.native || this.forceFallback) this.toggleFallback(false); else if (!this.prefix) (document.cancelFullScreen || document.exitFullscreen).call(document); else if (!utils_is.empty(this.prefix)) {
-                    const action = "moz" === this.prefix ? "Cancel" : "Exit";
-                    document[`${this.prefix}${action}${this.property}`]();
-                }
-            };
-            toggle=() => {
-                if (!this.active) this.enter(); else this.exit();
-            };
-        }
-        const fullscreen = Fullscreen;
-        function load_image_loadImage(src, minWidth = 1) {
-            return new Promise(((resolve, reject) => {
-                const image = new Image;
-                const handler = () => {
-                    delete image.onload;
-                    delete image.onerror;
-                    (image.naturalWidth >= minWidth ? resolve : reject)(image);
-                };
-                Object.assign(image, {
-                    onload: handler,
-                    onerror: handler,
-                    src
-                });
-            }));
-        }
-        const ui = {
-            addStyleHook() {
-                elements_toggleClass(this.elements.container, this.config.selectors.container.replace(".", ""), true);
-                elements_toggleClass(this.elements.container, this.config.classNames.uiSupported, this.supported.ui);
-            },
-            toggleNativeControls(toggle = false) {
-                if (toggle && this.isHTML5) this.media.setAttribute("controls", ""); else this.media.removeAttribute("controls");
-            },
-            build() {
-                this.listeners.media();
-                if (!this.supported.ui) {
-                    this.debug.warn(`Basic support only for ${this.provider} ${this.type}`);
-                    ui.toggleNativeControls.call(this, true);
-                    return;
-                }
-                if (!utils_is.element(this.elements.controls)) {
-                    plyr_controls.inject.call(this);
-                    this.listeners.controls();
-                }
-                ui.toggleNativeControls.call(this);
-                if (this.isHTML5) plyr_captions.setup.call(this);
-                this.volume = null;
-                this.muted = null;
-                this.loop = null;
-                this.quality = null;
-                this.speed = null;
-                plyr_controls.updateVolume.call(this);
-                plyr_controls.timeUpdate.call(this);
-                plyr_controls.durationUpdate.call(this);
-                ui.checkPlaying.call(this);
-                elements_toggleClass(this.elements.container, this.config.classNames.pip.supported, plyr_support.pip && this.isHTML5 && this.isVideo);
-                elements_toggleClass(this.elements.container, this.config.classNames.airplay.supported, plyr_support.airplay && this.isHTML5);
-                elements_toggleClass(this.elements.container, this.config.classNames.isIos, utils_browser.isIos);
-                elements_toggleClass(this.elements.container, this.config.classNames.isTouch, this.touch);
-                this.ready = true;
-                setTimeout((() => {
-                    triggerEvent.call(this, this.media, "ready");
-                }), 0);
-                ui.setTitle.call(this);
-                if (this.poster) ui.setPoster.call(this, this.poster, false).catch((() => {}));
-                if (this.config.duration) plyr_controls.durationUpdate.call(this);
-                if (this.config.mediaMetadata) plyr_controls.setMediaMetadata.call(this);
-            },
-            setTitle() {
-                let label = utils_i18n.get("play", this.config);
-                if (utils_is.string(this.config.title) && !utils_is.empty(this.config.title)) label += `, ${this.config.title}`;
-                Array.from(this.elements.buttons.play || []).forEach((button => {
-                    button.setAttribute("aria-label", label);
-                }));
-                if (this.isEmbed) {
-                    const iframe = getElement.call(this, "iframe");
-                    if (!utils_is.element(iframe)) return;
-                    const title = !utils_is.empty(this.config.title) ? this.config.title : "video";
-                    const format = utils_i18n.get("frameTitle", this.config);
-                    iframe.setAttribute("title", format.replace("{title}", title));
-                }
-            },
-            togglePoster(enable) {
-                elements_toggleClass(this.elements.container, this.config.classNames.posterEnabled, enable);
-            },
-            setPoster(poster, passive = true) {
-                if (passive && this.poster) return Promise.reject(new Error("Poster already set"));
-                this.media.setAttribute("data-poster", poster);
-                this.elements.poster.removeAttribute("hidden");
-                return ready.call(this).then((() => load_image_loadImage(poster))).catch((error => {
-                    if (poster === this.poster) ui.togglePoster.call(this, false);
-                    throw error;
-                })).then((() => {
-                    if (poster !== this.poster) throw new Error("setPoster cancelled by later call to setPoster");
-                })).then((() => {
-                    Object.assign(this.elements.poster.style, {
-                        backgroundImage: `url('${poster}')`,
-                        backgroundSize: ""
-                    });
-                    ui.togglePoster.call(this, true);
-                    return poster;
-                }));
-            },
-            checkPlaying(event) {
-                elements_toggleClass(this.elements.container, this.config.classNames.playing, this.playing);
-                elements_toggleClass(this.elements.container, this.config.classNames.paused, this.paused);
-                elements_toggleClass(this.elements.container, this.config.classNames.stopped, this.stopped);
-                Array.from(this.elements.buttons.play || []).forEach((target => {
-                    Object.assign(target, {
-                        pressed: this.playing
-                    });
-                    target.setAttribute("aria-label", utils_i18n.get(this.playing ? "pause" : "play", this.config));
-                }));
-                if (utils_is.event(event) && "timeupdate" === event.type) return;
-                ui.toggleControls.call(this);
-            },
-            checkLoading(event) {
-                this.loading = [ "stalled", "waiting" ].includes(event.type);
-                clearTimeout(this.timers.loading);
-                this.timers.loading = setTimeout((() => {
-                    elements_toggleClass(this.elements.container, this.config.classNames.loading, this.loading);
-                    ui.toggleControls.call(this);
-                }), this.loading ? 250 : 0);
-            },
-            toggleControls(force) {
-                const {controls: controlsElement} = this.elements;
-                if (controlsElement && this.config.hideControls) {
-                    const recentTouchSeek = this.touch && this.lastSeekTime + 2e3 > Date.now();
-                    this.toggleControls(Boolean(force || this.loading || this.paused || controlsElement.pressed || controlsElement.hover || recentTouchSeek));
-                }
-            },
-            migrateStyles() {
-                Object.values({
-                    ...this.media.style
-                }).filter((key => !utils_is.empty(key) && utils_is.string(key) && key.startsWith("--plyr"))).forEach((key => {
-                    this.elements.container.style.setProperty(key, this.media.style.getPropertyValue(key));
-                    this.media.style.removeProperty(key);
-                }));
-                if (utils_is.empty(this.media.style)) this.media.removeAttribute("style");
-            }
-        };
-        const plyr_ui = ui;
-        class Listeners {
-            constructor(player) {
-                this.player = player;
-                this.lastKey = null;
-                this.focusTimer = null;
-                this.lastKeyDown = null;
-                this.handleKey = this.handleKey.bind(this);
-                this.toggleMenu = this.toggleMenu.bind(this);
-                this.setTabFocus = this.setTabFocus.bind(this);
-                this.firstTouch = this.firstTouch.bind(this);
-            }
-            handleKey(event) {
-                const {player} = this;
-                const {elements} = player;
-                const {key, type, altKey, ctrlKey, metaKey, shiftKey} = event;
-                const pressed = "keydown" === type;
-                const repeat = pressed && key === this.lastKey;
-                if (altKey || ctrlKey || metaKey || shiftKey) return;
-                if (!key) return;
-                const seekByIncrement = increment => {
-                    player.currentTime = player.duration / 10 * increment;
-                };
-                if (pressed) {
-                    const focused = document.activeElement;
-                    if (utils_is.element(focused)) {
-                        const {editable} = player.config.selectors;
-                        const {seek} = elements.inputs;
-                        if (focused !== seek && matches(focused, editable)) return;
-                        if ("Space" === event.key && matches(focused, 'button, [role^="menuitem"]')) return;
-                    }
-                    const preventDefault = [ "Space", "ArrowLeft", "ArrowUp", "ArrowRight", "ArrowDown", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "c", "f", "k", "l", "m" ];
-                    if (preventDefault.includes(key)) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    switch (key) {
-                      case "0":
-                      case "1":
-                      case "2":
-                      case "3":
-                      case "4":
-                      case "5":
-                      case "6":
-                      case "7":
-                      case "8":
-                      case "9":
-                        if (!repeat) seekByIncrement(parseInt(key, 10));
-                        break;
-
-                      case "Space":
-                      case "k":
-                        if (!repeat) silencePromise(player.togglePlay());
-                        break;
-
-                      case "ArrowUp":
-                        player.increaseVolume(.1);
-                        break;
-
-                      case "ArrowDown":
-                        player.decreaseVolume(.1);
-                        break;
-
-                      case "m":
-                        if (!repeat) player.muted = !player.muted;
-                        break;
-
-                      case "ArrowRight":
-                        player.forward();
-                        break;
-
-                      case "ArrowLeft":
-                        player.rewind();
-                        break;
-
-                      case "f":
-                        player.fullscreen.toggle();
-                        break;
-
-                      case "c":
-                        if (!repeat) player.toggleCaptions();
-                        break;
-
-                      case "l":
-                        player.loop = !player.loop;
-                        break;
-
-                      default:
-                        break;
-                    }
-                    if ("Escape" === key && !player.fullscreen.usingNative && player.fullscreen.active) player.fullscreen.toggle();
-                    this.lastKey = key;
-                } else this.lastKey = null;
-            }
-            toggleMenu(event) {
-                plyr_controls.toggleMenu.call(this.player, event);
-            }
-            firstTouch=() => {
-                const {player} = this;
-                const {elements} = player;
-                player.touch = true;
-                elements_toggleClass(elements.container, player.config.classNames.isTouch, true);
-            };
-            setTabFocus=event => {
-                const {player} = this;
-                const {elements} = player;
-                const {key, type, timeStamp} = event;
-                clearTimeout(this.focusTimer);
-                if ("keydown" === type && "Tab" !== key) return;
-                if ("keydown" === type) this.lastKeyDown = timeStamp;
-                const removeCurrent = () => {
-                    const className = player.config.classNames.tabFocus;
-                    const current = getElements.call(player, `.${className}`);
-                    elements_toggleClass(current, className, false);
-                };
-                const wasKeyDown = timeStamp - this.lastKeyDown <= 20;
-                if ("focus" === type && !wasKeyDown) return;
-                removeCurrent();
-                if ("focusout" !== type) this.focusTimer = setTimeout((() => {
-                    const focused = document.activeElement;
-                    if (!elements.container.contains(focused)) return;
-                    elements_toggleClass(document.activeElement, player.config.classNames.tabFocus, true);
-                }), 10);
-            };
-            global=(toggle = true) => {
-                const {player} = this;
-                if (player.config.keyboard.global) toggleListener.call(player, window, "keydown keyup", this.handleKey, toggle, false);
-                toggleListener.call(player, document.body, "click", this.toggleMenu, toggle);
-                events_once.call(player, document.body, "touchstart", this.firstTouch);
-                toggleListener.call(player, document.body, "keydown focus blur focusout", this.setTabFocus, toggle, false, true);
-            };
-            container=() => {
-                const {player} = this;
-                const {config, elements, timers} = player;
-                if (!config.keyboard.global && config.keyboard.focused) events_on.call(player, elements.container, "keydown keyup", this.handleKey, false);
-                events_on.call(player, elements.container, "mousemove mouseleave touchstart touchmove enterfullscreen exitfullscreen", (event => {
-                    const {controls: controlsElement} = elements;
-                    if (controlsElement && "enterfullscreen" === event.type) {
-                        controlsElement.pressed = false;
-                        controlsElement.hover = false;
-                    }
-                    const show = [ "touchstart", "touchmove", "mousemove" ].includes(event.type);
-                    let delay = 0;
-                    if (show) {
-                        plyr_ui.toggleControls.call(player, true);
-                        delay = player.touch ? 3e3 : 2e3;
-                    }
-                    clearTimeout(timers.controls);
-                    timers.controls = setTimeout((() => plyr_ui.toggleControls.call(player, false)), delay);
-                }));
-                const setGutter = () => {
-                    if (!player.isVimeo || player.config.vimeo.premium) return;
-                    const target = elements.wrapper;
-                    const {active} = player.fullscreen;
-                    const [videoWidth, videoHeight] = getAspectRatio.call(player);
-                    const useNativeAspectRatio = supportsCSS(`aspect-ratio: ${videoWidth} / ${videoHeight}`);
-                    if (!active) {
-                        if (useNativeAspectRatio) {
-                            target.style.width = null;
-                            target.style.height = null;
-                        } else {
-                            target.style.maxWidth = null;
-                            target.style.margin = null;
-                        }
-                        return;
-                    }
-                    const [viewportWidth, viewportHeight] = getViewportSize();
-                    const overflow = viewportWidth / viewportHeight > videoWidth / videoHeight;
-                    if (useNativeAspectRatio) {
-                        target.style.width = overflow ? "auto" : "100%";
-                        target.style.height = overflow ? "100%" : "auto";
-                    } else {
-                        target.style.maxWidth = overflow ? `${viewportHeight / videoHeight * videoWidth}px` : null;
-                        target.style.margin = overflow ? "0 auto" : null;
-                    }
-                };
-                const resized = () => {
-                    clearTimeout(timers.resized);
-                    timers.resized = setTimeout(setGutter, 50);
-                };
-                events_on.call(player, elements.container, "enterfullscreen exitfullscreen", (event => {
-                    const {target} = player.fullscreen;
-                    if (target !== elements.container) return;
-                    if (!player.isEmbed && utils_is.empty(player.config.ratio)) return;
-                    setGutter();
-                    const method = "enterfullscreen" === event.type ? events_on : events_off;
-                    method.call(player, window, "resize", resized);
-                }));
-            };
-            media=() => {
-                const {player} = this;
-                const {elements} = player;
-                events_on.call(player, player.media, "timeupdate seeking seeked", (event => plyr_controls.timeUpdate.call(player, event)));
-                events_on.call(player, player.media, "durationchange loadeddata loadedmetadata", (event => plyr_controls.durationUpdate.call(player, event)));
-                events_on.call(player, player.media, "ended", (() => {
-                    if (player.isHTML5 && player.isVideo && player.config.resetOnEnd) {
-                        player.restart();
-                        player.pause();
-                    }
-                }));
-                events_on.call(player, player.media, "progress playing seeking seeked", (event => plyr_controls.updateProgress.call(player, event)));
-                events_on.call(player, player.media, "volumechange", (event => plyr_controls.updateVolume.call(player, event)));
-                events_on.call(player, player.media, "playing play pause ended emptied timeupdate", (event => plyr_ui.checkPlaying.call(player, event)));
-                events_on.call(player, player.media, "waiting canplay seeked playing", (event => plyr_ui.checkLoading.call(player, event)));
-                if (player.supported.ui && player.config.clickToPlay && !player.isAudio) {
-                    const wrapper = getElement.call(player, `.${player.config.classNames.video}`);
-                    if (!utils_is.element(wrapper)) return;
-                    events_on.call(player, elements.container, "click", (event => {
-                        const targets = [ elements.container, wrapper ];
-                        if (!targets.includes(event.target) && !wrapper.contains(event.target)) return;
-                        if (player.touch && player.config.hideControls) return;
-                        if (player.ended) {
-                            this.proxy(event, player.restart, "restart");
-                            this.proxy(event, (() => {
-                                silencePromise(player.play());
-                            }), "play");
-                        } else this.proxy(event, (() => {
-                            silencePromise(player.togglePlay());
-                        }), "play");
-                    }));
-                }
-                if (player.supported.ui && player.config.disableContextMenu) events_on.call(player, elements.wrapper, "contextmenu", (event => {
-                    event.preventDefault();
-                }), false);
-                events_on.call(player, player.media, "volumechange", (() => {
-                    player.storage.set({
-                        volume: player.volume,
-                        muted: player.muted
-                    });
-                }));
-                events_on.call(player, player.media, "ratechange", (() => {
-                    plyr_controls.updateSetting.call(player, "speed");
-                    player.storage.set({
-                        speed: player.speed
-                    });
-                }));
-                events_on.call(player, player.media, "qualitychange", (event => {
-                    plyr_controls.updateSetting.call(player, "quality", null, event.detail.quality);
-                }));
-                events_on.call(player, player.media, "ready qualitychange", (() => {
-                    plyr_controls.setDownloadUrl.call(player);
-                }));
-                const proxyEvents = player.config.events.concat([ "keyup", "keydown" ]).join(" ");
-                events_on.call(player, player.media, proxyEvents, (event => {
-                    let {detail = {}} = event;
-                    if ("error" === event.type) detail = player.media.error;
-                    triggerEvent.call(player, elements.container, event.type, true, detail);
-                }));
-            };
-            proxy=(event, defaultHandler, customHandlerKey) => {
-                const {player} = this;
-                const customHandler = player.config.listeners[customHandlerKey];
-                const hasCustomHandler = utils_is["function"](customHandler);
-                let returned = true;
-                if (hasCustomHandler) returned = customHandler.call(player, event);
-                if (false !== returned && utils_is["function"](defaultHandler)) defaultHandler.call(player, event);
-            };
-            bind=(element, type, defaultHandler, customHandlerKey, passive = true) => {
-                const {player} = this;
-                const customHandler = player.config.listeners[customHandlerKey];
-                const hasCustomHandler = utils_is["function"](customHandler);
-                events_on.call(player, element, type, (event => this.proxy(event, defaultHandler, customHandlerKey)), passive && !hasCustomHandler);
-            };
-            controls=() => {
-                const {player} = this;
-                const {elements} = player;
-                const inputEvent = utils_browser.isIE ? "change" : "input";
-                if (elements.buttons.play) Array.from(elements.buttons.play).forEach((button => {
-                    this.bind(button, "click", (() => {
-                        silencePromise(player.togglePlay());
-                    }), "play");
-                }));
-                this.bind(elements.buttons.restart, "click", player.restart, "restart");
-                this.bind(elements.buttons.rewind, "click", (() => {
-                    player.lastSeekTime = Date.now();
-                    player.rewind();
-                }), "rewind");
-                this.bind(elements.buttons.fastForward, "click", (() => {
-                    player.lastSeekTime = Date.now();
-                    player.forward();
-                }), "fastForward");
-                this.bind(elements.buttons.mute, "click", (() => {
-                    player.muted = !player.muted;
-                }), "mute");
-                this.bind(elements.buttons.captions, "click", (() => player.toggleCaptions()));
-                this.bind(elements.buttons.download, "click", (() => {
-                    triggerEvent.call(player, player.media, "download");
-                }), "download");
-                this.bind(elements.buttons.fullscreen, "click", (() => {
-                    player.fullscreen.toggle();
-                }), "fullscreen");
-                this.bind(elements.buttons.pip, "click", (() => {
-                    player.pip = "toggle";
-                }), "pip");
-                this.bind(elements.buttons.airplay, "click", player.airplay, "airplay");
-                this.bind(elements.buttons.settings, "click", (event => {
-                    event.stopPropagation();
-                    event.preventDefault();
-                    plyr_controls.toggleMenu.call(player, event);
-                }), null, false);
-                this.bind(elements.buttons.settings, "keyup", (event => {
-                    if (![ "Space", "Enter" ].includes(event.key)) return;
-                    if ("Enter" === event.key) {
-                        plyr_controls.focusFirstMenuItem.call(player, null, true);
-                        return;
-                    }
-                    event.preventDefault();
-                    event.stopPropagation();
-                    plyr_controls.toggleMenu.call(player, event);
-                }), null, false);
-                this.bind(elements.settings.menu, "keydown", (event => {
-                    if ("Escape" === event.key) plyr_controls.toggleMenu.call(player, event);
-                }));
-                this.bind(elements.inputs.seek, "mousedown mousemove", (event => {
-                    const rect = elements.progress.getBoundingClientRect();
-                    const percent = 100 / rect.width * (event.pageX - rect.left);
-                    event.currentTarget.setAttribute("seek-value", percent);
-                }));
-                this.bind(elements.inputs.seek, "mousedown mouseup keydown keyup touchstart touchend", (event => {
-                    const seek = event.currentTarget;
-                    const attribute = "play-on-seeked";
-                    if (utils_is.keyboardEvent(event) && ![ "ArrowLeft", "ArrowRight" ].includes(event.key)) return;
-                    player.lastSeekTime = Date.now();
-                    const play = seek.hasAttribute(attribute);
-                    const done = [ "mouseup", "touchend", "keyup" ].includes(event.type);
-                    if (play && done) {
-                        seek.removeAttribute(attribute);
-                        silencePromise(player.play());
-                    } else if (!done && player.playing) {
-                        seek.setAttribute(attribute, "");
-                        player.pause();
-                    }
-                }));
-                if (utils_browser.isIos) {
-                    const inputs = getElements.call(player, 'input[type="range"]');
-                    Array.from(inputs).forEach((input => this.bind(input, inputEvent, (event => repaint(event.target)))));
-                }
-                this.bind(elements.inputs.seek, inputEvent, (event => {
-                    const seek = event.currentTarget;
-                    let seekTo = seek.getAttribute("seek-value");
-                    if (utils_is.empty(seekTo)) seekTo = seek.value;
-                    seek.removeAttribute("seek-value");
-                    player.currentTime = seekTo / seek.max * player.duration;
-                }), "seek");
-                this.bind(elements.progress, "mouseenter mouseleave mousemove", (event => plyr_controls.updateSeekTooltip.call(player, event)));
-                this.bind(elements.progress, "mousemove touchmove", (event => {
-                    const {previewThumbnails} = player;
-                    if (previewThumbnails && previewThumbnails.loaded) previewThumbnails.startMove(event);
-                }));
-                this.bind(elements.progress, "mouseleave touchend click", (() => {
-                    const {previewThumbnails} = player;
-                    if (previewThumbnails && previewThumbnails.loaded) previewThumbnails.endMove(false, true);
-                }));
-                this.bind(elements.progress, "mousedown touchstart", (event => {
-                    const {previewThumbnails} = player;
-                    if (previewThumbnails && previewThumbnails.loaded) previewThumbnails.startScrubbing(event);
-                }));
-                this.bind(elements.progress, "mouseup touchend", (event => {
-                    const {previewThumbnails} = player;
-                    if (previewThumbnails && previewThumbnails.loaded) previewThumbnails.endScrubbing(event);
-                }));
-                if (utils_browser.isWebkit) Array.from(getElements.call(player, 'input[type="range"]')).forEach((element => {
-                    this.bind(element, "input", (event => plyr_controls.updateRangeFill.call(player, event.target)));
-                }));
-                if (player.config.toggleInvert && !utils_is.element(elements.display.duration)) this.bind(elements.display.currentTime, "click", (() => {
-                    if (0 === player.currentTime) return;
-                    player.config.invertTime = !player.config.invertTime;
-                    plyr_controls.timeUpdate.call(player);
-                }));
-                this.bind(elements.inputs.volume, inputEvent, (event => {
-                    player.volume = event.target.value;
-                }), "volume");
-                this.bind(elements.controls, "mouseenter mouseleave", (event => {
-                    elements.controls.hover = !player.touch && "mouseenter" === event.type;
-                }));
-                if (elements.fullscreen) Array.from(elements.fullscreen.children).filter((c => !c.contains(elements.container))).forEach((child => {
-                    this.bind(child, "mouseenter mouseleave", (event => {
-                        if (elements.controls) elements.controls.hover = !player.touch && "mouseenter" === event.type;
-                    }));
-                }));
-                this.bind(elements.controls, "mousedown mouseup touchstart touchend touchcancel", (event => {
-                    elements.controls.pressed = [ "mousedown", "touchstart" ].includes(event.type);
-                }));
-                this.bind(elements.controls, "focusin", (() => {
-                    const {config, timers} = player;
-                    elements_toggleClass(elements.controls, config.classNames.noTransition, true);
-                    plyr_ui.toggleControls.call(player, true);
-                    setTimeout((() => {
-                        elements_toggleClass(elements.controls, config.classNames.noTransition, false);
-                    }), 0);
-                    const delay = this.touch ? 3e3 : 4e3;
-                    clearTimeout(timers.controls);
-                    timers.controls = setTimeout((() => plyr_ui.toggleControls.call(player, false)), delay);
-                }));
-                this.bind(elements.inputs.volume, "wheel", (event => {
-                    const inverted = event.webkitDirectionInvertedFromDevice;
-                    const [x, y] = [ event.deltaX, -event.deltaY ].map((value => inverted ? -value : value));
-                    const direction = Math.sign(Math.abs(x) > Math.abs(y) ? x : y);
-                    player.increaseVolume(direction / 50);
-                    const {volume} = player.media;
-                    if (1 === direction && volume < 1 || -1 === direction && volume > 0) event.preventDefault();
-                }), "volume", false);
-            };
-        }
-        const listeners = Listeners;
-        function loadScript(url) {
-            return new Promise(((resolve, reject) => {
-                loadjs(url, {
-                    success: resolve,
-                    error: reject
-                });
-            }));
-        }
-        function parseId(url) {
-            if (utils_is.empty(url)) return null;
-            if (utils_is.number(Number(url))) return url;
-            const regex = /^.*(vimeo.com\/|video\/)(\d+).*/;
-            return url.match(regex) ? RegExp.$2 : url;
-        }
-        function parseHash(url) {
-            const regex = /^.*(vimeo.com\/|video\/)(\d+)(\?.*&*h=|\/)+([\d,a-f]+)/;
-            const found = url.match(regex);
-            return found && 5 === found.length ? found[4] : null;
-        }
-        function assurePlaybackState(play) {
-            if (play && !this.embed.hasPlayed) this.embed.hasPlayed = true;
-            if (this.media.paused === play) {
-                this.media.paused = !play;
-                triggerEvent.call(this, this.media, play ? "play" : "pause");
-            }
-        }
-        const vimeo = {
-            setup() {
-                const player = this;
-                elements_toggleClass(player.elements.wrapper, player.config.classNames.embed, true);
-                player.options.speed = player.config.speed.options;
-                setAspectRatio.call(player);
-                if (!utils_is.object(window.Vimeo)) loadScript(player.config.urls.vimeo.sdk).then((() => {
-                    vimeo.ready.call(player);
-                })).catch((error => {
-                    player.debug.warn("Vimeo SDK (player.js) failed to load", error);
-                })); else vimeo.ready.call(player);
-            },
-            ready() {
-                const player = this;
-                const config = player.config.vimeo;
-                const {premium, referrerPolicy, ...frameParams} = config;
-                let source = player.media.getAttribute("src");
-                let hash = "";
-                if (utils_is.empty(source)) {
-                    source = player.media.getAttribute(player.config.attributes.embed.id);
-                    hash = player.media.getAttribute(player.config.attributes.embed.hash);
-                } else hash = parseHash(source);
-                const hashParam = hash ? {
-                    h: hash
-                } : {};
-                if (premium) Object.assign(frameParams, {
-                    controls: false,
-                    sidedock: false
-                });
-                const params = buildUrlParams({
-                    loop: player.config.loop.active,
-                    autoplay: player.autoplay,
-                    muted: player.muted,
-                    gesture: "media",
-                    playsinline: !this.config.fullscreen.iosNative,
-                    ...hashParam,
-                    ...frameParams
-                });
-                const id = parseId(source);
-                const iframe = createElement("iframe");
-                const src = format(player.config.urls.vimeo.iframe, id, params);
-                iframe.setAttribute("src", src);
-                iframe.setAttribute("allowfullscreen", "");
-                iframe.setAttribute("allow", [ "autoplay", "fullscreen", "picture-in-picture", "encrypted-media", "accelerometer", "gyroscope" ].join("; "));
-                if (!utils_is.empty(referrerPolicy)) iframe.setAttribute("referrerPolicy", referrerPolicy);
-                if (premium || !config.customControls) {
-                    iframe.setAttribute("data-poster", player.poster);
-                    player.media = replaceElement(iframe, player.media);
-                } else {
-                    const wrapper = createElement("div", {
-                        class: player.config.classNames.embedContainer,
-                        "data-poster": player.poster
-                    });
-                    wrapper.appendChild(iframe);
-                    player.media = replaceElement(wrapper, player.media);
-                }
-                if (!config.customControls) fetch_fetch(format(player.config.urls.vimeo.api, src)).then((response => {
-                    if (utils_is.empty(response) || !response.thumbnail_url) return;
-                    plyr_ui.setPoster.call(player, response.thumbnail_url).catch((() => {}));
-                }));
-                player.embed = new window.Vimeo.Player(iframe, {
-                    autopause: player.config.autopause,
-                    muted: player.muted
-                });
-                player.media.paused = true;
-                player.media.currentTime = 0;
-                if (player.supported.ui) player.embed.disableTextTrack();
-                player.media.play = () => {
-                    assurePlaybackState.call(player, true);
-                    return player.embed.play();
-                };
-                player.media.pause = () => {
-                    assurePlaybackState.call(player, false);
-                    return player.embed.pause();
-                };
-                player.media.stop = () => {
-                    player.pause();
-                    player.currentTime = 0;
-                };
-                let {currentTime} = player.media;
-                Object.defineProperty(player.media, "currentTime", {
-                    get() {
-                        return currentTime;
-                    },
-                    set(time) {
-                        const {embed, media, paused, volume} = player;
-                        const restorePause = paused && !embed.hasPlayed;
-                        media.seeking = true;
-                        triggerEvent.call(player, media, "seeking");
-                        Promise.resolve(restorePause && embed.setVolume(0)).then((() => embed.setCurrentTime(time))).then((() => restorePause && embed.pause())).then((() => restorePause && embed.setVolume(volume))).catch((() => {}));
-                    }
-                });
-                let speed = player.config.speed.selected;
-                Object.defineProperty(player.media, "playbackRate", {
-                    get() {
-                        return speed;
-                    },
-                    set(input) {
-                        player.embed.setPlaybackRate(input).then((() => {
-                            speed = input;
-                            triggerEvent.call(player, player.media, "ratechange");
-                        })).catch((() => {
-                            player.options.speed = [ 1 ];
-                        }));
-                    }
-                });
-                let {volume} = player.config;
-                Object.defineProperty(player.media, "volume", {
-                    get() {
-                        return volume;
-                    },
-                    set(input) {
-                        player.embed.setVolume(input).then((() => {
-                            volume = input;
-                            triggerEvent.call(player, player.media, "volumechange");
-                        }));
-                    }
-                });
-                let {muted} = player.config;
-                Object.defineProperty(player.media, "muted", {
-                    get() {
-                        return muted;
-                    },
-                    set(input) {
-                        const toggle = utils_is.boolean(input) ? input : false;
-                        player.embed.setVolume(toggle ? 0 : player.config.volume).then((() => {
-                            muted = toggle;
-                            triggerEvent.call(player, player.media, "volumechange");
-                        }));
-                    }
-                });
-                let {loop} = player.config;
-                Object.defineProperty(player.media, "loop", {
-                    get() {
-                        return loop;
-                    },
-                    set(input) {
-                        const toggle = utils_is.boolean(input) ? input : player.config.loop.active;
-                        player.embed.setLoop(toggle).then((() => {
-                            loop = toggle;
-                        }));
-                    }
-                });
-                let currentSrc;
-                player.embed.getVideoUrl().then((value => {
-                    currentSrc = value;
-                    plyr_controls.setDownloadUrl.call(player);
-                })).catch((error => {
-                    this.debug.warn(error);
-                }));
-                Object.defineProperty(player.media, "currentSrc", {
-                    get() {
-                        return currentSrc;
-                    }
-                });
-                Object.defineProperty(player.media, "ended", {
-                    get() {
-                        return player.currentTime === player.duration;
-                    }
-                });
-                Promise.all([ player.embed.getVideoWidth(), player.embed.getVideoHeight() ]).then((dimensions => {
-                    const [width, height] = dimensions;
-                    player.embed.ratio = roundAspectRatio(width, height);
-                    setAspectRatio.call(this);
-                }));
-                player.embed.setAutopause(player.config.autopause).then((state => {
-                    player.config.autopause = state;
-                }));
-                player.embed.getVideoTitle().then((title => {
-                    player.config.title = title;
-                    plyr_ui.setTitle.call(this);
-                }));
-                player.embed.getCurrentTime().then((value => {
-                    currentTime = value;
-                    triggerEvent.call(player, player.media, "timeupdate");
-                }));
-                player.embed.getDuration().then((value => {
-                    player.media.duration = value;
-                    triggerEvent.call(player, player.media, "durationchange");
-                }));
-                player.embed.getTextTracks().then((tracks => {
-                    player.media.textTracks = tracks;
-                    plyr_captions.setup.call(player);
-                }));
-                player.embed.on("cuechange", (({cues = []}) => {
-                    const strippedCues = cues.map((cue => stripHTML(cue.text)));
-                    plyr_captions.updateCues.call(player, strippedCues);
-                }));
-                player.embed.on("loaded", (() => {
-                    player.embed.getPaused().then((paused => {
-                        assurePlaybackState.call(player, !paused);
-                        if (!paused) triggerEvent.call(player, player.media, "playing");
-                    }));
-                    if (utils_is.element(player.embed.element) && player.supported.ui) {
-                        const frame = player.embed.element;
-                        frame.setAttribute("tabindex", -1);
-                    }
-                }));
-                player.embed.on("bufferstart", (() => {
-                    triggerEvent.call(player, player.media, "waiting");
-                }));
-                player.embed.on("bufferend", (() => {
-                    triggerEvent.call(player, player.media, "playing");
-                }));
-                player.embed.on("play", (() => {
-                    assurePlaybackState.call(player, true);
-                    triggerEvent.call(player, player.media, "playing");
-                }));
-                player.embed.on("pause", (() => {
-                    assurePlaybackState.call(player, false);
-                }));
-                player.embed.on("timeupdate", (data => {
-                    player.media.seeking = false;
-                    currentTime = data.seconds;
-                    triggerEvent.call(player, player.media, "timeupdate");
-                }));
-                player.embed.on("progress", (data => {
-                    player.media.buffered = data.percent;
-                    triggerEvent.call(player, player.media, "progress");
-                    if (1 === parseInt(data.percent, 10)) triggerEvent.call(player, player.media, "canplaythrough");
-                    player.embed.getDuration().then((value => {
-                        if (value !== player.media.duration) {
-                            player.media.duration = value;
-                            triggerEvent.call(player, player.media, "durationchange");
-                        }
-                    }));
-                }));
-                player.embed.on("seeked", (() => {
-                    player.media.seeking = false;
-                    triggerEvent.call(player, player.media, "seeked");
-                }));
-                player.embed.on("ended", (() => {
-                    player.media.paused = true;
-                    triggerEvent.call(player, player.media, "ended");
-                }));
-                player.embed.on("error", (detail => {
-                    player.media.error = detail;
-                    triggerEvent.call(player, player.media, "error");
-                }));
-                if (config.customControls) setTimeout((() => plyr_ui.build.call(player)), 0);
-            }
-        };
-        const plugins_vimeo = vimeo;
-        function youtube_parseId(url) {
-            if (utils_is.empty(url)) return null;
-            const regex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-            return url.match(regex) ? RegExp.$2 : url;
-        }
-        function youtube_assurePlaybackState(play) {
-            if (play && !this.embed.hasPlayed) this.embed.hasPlayed = true;
-            if (this.media.paused === play) {
-                this.media.paused = !play;
-                triggerEvent.call(this, this.media, play ? "play" : "pause");
-            }
-        }
-        function getHost(config) {
-            if (config.noCookie) return "https://www.youtube-nocookie.com";
-            if ("http:" === window.location.protocol) return "http://www.youtube.com";
-            return;
-        }
-        const youtube = {
-            setup() {
-                elements_toggleClass(this.elements.wrapper, this.config.classNames.embed, true);
-                if (utils_is.object(window.YT) && utils_is["function"](window.YT.Player)) youtube.ready.call(this); else {
-                    const callback = window.onYouTubeIframeAPIReady;
-                    window.onYouTubeIframeAPIReady = () => {
-                        if (utils_is["function"](callback)) callback();
-                        youtube.ready.call(this);
-                    };
-                    loadScript(this.config.urls.youtube.sdk).catch((error => {
-                        this.debug.warn("YouTube API failed to load", error);
-                    }));
-                }
-            },
-            getTitle(videoId) {
-                const url = format(this.config.urls.youtube.api, videoId);
-                fetch_fetch(url).then((data => {
-                    if (utils_is.object(data)) {
-                        const {title, height, width} = data;
-                        this.config.title = title;
-                        plyr_ui.setTitle.call(this);
-                        this.embed.ratio = roundAspectRatio(width, height);
-                    }
-                    setAspectRatio.call(this);
-                })).catch((() => {
-                    setAspectRatio.call(this);
-                }));
-            },
-            ready() {
-                const player = this;
-                const config = player.config.youtube;
-                const currentId = player.media && player.media.getAttribute("id");
-                if (!utils_is.empty(currentId) && currentId.startsWith("youtube-")) return;
-                let source = player.media.getAttribute("src");
-                if (utils_is.empty(source)) source = player.media.getAttribute(this.config.attributes.embed.id);
-                const videoId = youtube_parseId(source);
-                const id = generateId(player.provider);
-                const container = createElement("div", {
-                    id,
-                    "data-poster": config.customControls ? player.poster : void 0
-                });
-                player.media = replaceElement(container, player.media);
-                if (config.customControls) {
-                    const posterSrc = s => `https://i.ytimg.com/vi/${videoId}/${s}default.jpg`;
-                    load_image_loadImage(posterSrc("maxres"), 121).catch((() => load_image_loadImage(posterSrc("sd"), 121))).catch((() => load_image_loadImage(posterSrc("hq")))).then((image => plyr_ui.setPoster.call(player, image.src))).then((src => {
-                        if (!src.includes("maxres")) player.elements.poster.style.backgroundSize = "cover";
-                    })).catch((() => {}));
-                }
-                player.embed = new window.YT.Player(player.media, {
-                    videoId,
-                    host: getHost(config),
-                    playerVars: objects_extend({}, {
-                        autoplay: player.config.autoplay ? 1 : 0,
-                        hl: player.config.hl,
-                        controls: player.supported.ui && config.customControls ? 0 : 1,
-                        disablekb: 1,
-                        playsinline: !player.config.fullscreen.iosNative ? 1 : 0,
-                        cc_load_policy: player.captions.active ? 1 : 0,
-                        cc_lang_pref: player.config.captions.language,
-                        widget_referrer: window ? window.location.href : null
-                    }, config),
-                    events: {
-                        onError(event) {
-                            if (!player.media.error) {
-                                const code = event.data;
-                                const message = {
-                                    2: "The request contains an invalid parameter value. For example, this error occurs if you specify a video ID that does not have 11 characters, or if the video ID contains invalid characters, such as exclamation points or asterisks.",
-                                    5: "The requested content cannot be played in an HTML5 player or another error related to the HTML5 player has occurred.",
-                                    100: "The video requested was not found. This error occurs when a video has been removed (for any reason) or has been marked as private.",
-                                    101: "The owner of the requested video does not allow it to be played in embedded players.",
-                                    150: "The owner of the requested video does not allow it to be played in embedded players."
-                                }[code] || "An unknown error occured";
-                                player.media.error = {
-                                    code,
-                                    message
-                                };
-                                triggerEvent.call(player, player.media, "error");
-                            }
-                        },
-                        onPlaybackRateChange(event) {
-                            const instance = event.target;
-                            player.media.playbackRate = instance.getPlaybackRate();
-                            triggerEvent.call(player, player.media, "ratechange");
-                        },
-                        onReady(event) {
-                            if (utils_is["function"](player.media.play)) return;
-                            const instance = event.target;
-                            youtube.getTitle.call(player, videoId);
-                            player.media.play = () => {
-                                youtube_assurePlaybackState.call(player, true);
-                                instance.playVideo();
-                            };
-                            player.media.pause = () => {
-                                youtube_assurePlaybackState.call(player, false);
-                                instance.pauseVideo();
-                            };
-                            player.media.stop = () => {
-                                instance.stopVideo();
-                            };
-                            player.media.duration = instance.getDuration();
-                            player.media.paused = true;
-                            player.media.currentTime = 0;
-                            Object.defineProperty(player.media, "currentTime", {
-                                get() {
-                                    return Number(instance.getCurrentTime());
-                                },
-                                set(time) {
-                                    if (player.paused && !player.embed.hasPlayed) player.embed.mute();
-                                    player.media.seeking = true;
-                                    triggerEvent.call(player, player.media, "seeking");
-                                    instance.seekTo(time);
-                                }
-                            });
-                            Object.defineProperty(player.media, "playbackRate", {
-                                get() {
-                                    return instance.getPlaybackRate();
-                                },
-                                set(input) {
-                                    instance.setPlaybackRate(input);
-                                }
-                            });
-                            let {volume} = player.config;
-                            Object.defineProperty(player.media, "volume", {
-                                get() {
-                                    return volume;
-                                },
-                                set(input) {
-                                    volume = input;
-                                    instance.setVolume(100 * volume);
-                                    triggerEvent.call(player, player.media, "volumechange");
-                                }
-                            });
-                            let {muted} = player.config;
-                            Object.defineProperty(player.media, "muted", {
-                                get() {
-                                    return muted;
-                                },
-                                set(input) {
-                                    const toggle = utils_is.boolean(input) ? input : muted;
-                                    muted = toggle;
-                                    instance[toggle ? "mute" : "unMute"]();
-                                    instance.setVolume(100 * volume);
-                                    triggerEvent.call(player, player.media, "volumechange");
-                                }
-                            });
-                            Object.defineProperty(player.media, "currentSrc", {
-                                get() {
-                                    return instance.getVideoUrl();
-                                }
-                            });
-                            Object.defineProperty(player.media, "ended", {
-                                get() {
-                                    return player.currentTime === player.duration;
-                                }
-                            });
-                            const speeds = instance.getAvailablePlaybackRates();
-                            player.options.speed = speeds.filter((s => player.config.speed.options.includes(s)));
-                            if (player.supported.ui && config.customControls) player.media.setAttribute("tabindex", -1);
-                            triggerEvent.call(player, player.media, "timeupdate");
-                            triggerEvent.call(player, player.media, "durationchange");
-                            clearInterval(player.timers.buffering);
-                            player.timers.buffering = setInterval((() => {
-                                player.media.buffered = instance.getVideoLoadedFraction();
-                                if (null === player.media.lastBuffered || player.media.lastBuffered < player.media.buffered) triggerEvent.call(player, player.media, "progress");
-                                player.media.lastBuffered = player.media.buffered;
-                                if (1 === player.media.buffered) {
-                                    clearInterval(player.timers.buffering);
-                                    triggerEvent.call(player, player.media, "canplaythrough");
-                                }
-                            }), 200);
-                            if (config.customControls) setTimeout((() => plyr_ui.build.call(player)), 50);
-                        },
-                        onStateChange(event) {
-                            const instance = event.target;
-                            clearInterval(player.timers.playing);
-                            const seeked = player.media.seeking && [ 1, 2 ].includes(event.data);
-                            if (seeked) {
-                                player.media.seeking = false;
-                                triggerEvent.call(player, player.media, "seeked");
-                            }
-                            switch (event.data) {
-                              case -1:
-                                triggerEvent.call(player, player.media, "timeupdate");
-                                player.media.buffered = instance.getVideoLoadedFraction();
-                                triggerEvent.call(player, player.media, "progress");
-                                break;
-
-                              case 0:
-                                youtube_assurePlaybackState.call(player, false);
-                                if (player.media.loop) {
-                                    instance.stopVideo();
-                                    instance.playVideo();
-                                } else triggerEvent.call(player, player.media, "ended");
-                                break;
-
-                              case 1:
-                                if (config.customControls && !player.config.autoplay && player.media.paused && !player.embed.hasPlayed) player.media.pause(); else {
-                                    youtube_assurePlaybackState.call(player, true);
-                                    triggerEvent.call(player, player.media, "playing");
-                                    player.timers.playing = setInterval((() => {
-                                        triggerEvent.call(player, player.media, "timeupdate");
-                                    }), 50);
-                                    if (player.media.duration !== instance.getDuration()) {
-                                        player.media.duration = instance.getDuration();
-                                        triggerEvent.call(player, player.media, "durationchange");
-                                    }
-                                }
-                                break;
-
-                              case 2:
-                                if (!player.muted) player.embed.unMute();
-                                youtube_assurePlaybackState.call(player, false);
-                                break;
-
-                              case 3:
-                                triggerEvent.call(player, player.media, "waiting");
-                                break;
-
-                              default:
-                                break;
-                            }
-                            triggerEvent.call(player, player.elements.container, "statechange", false, {
-                                code: event.data
-                            });
-                        }
-                    }
-                });
-            }
-        };
-        const plugins_youtube = youtube;
-        const media = {
-            setup() {
-                if (!this.media) {
-                    this.debug.warn("No media element found!");
-                    return;
-                }
-                elements_toggleClass(this.elements.container, this.config.classNames.type.replace("{0}", this.type), true);
-                elements_toggleClass(this.elements.container, this.config.classNames.provider.replace("{0}", this.provider), true);
-                if (this.isEmbed) elements_toggleClass(this.elements.container, this.config.classNames.type.replace("{0}", "video"), true);
-                if (this.isVideo) {
-                    this.elements.wrapper = createElement("div", {
-                        class: this.config.classNames.video
-                    });
-                    wrap(this.media, this.elements.wrapper);
-                    this.elements.poster = createElement("div", {
-                        class: this.config.classNames.poster
-                    });
-                    this.elements.wrapper.appendChild(this.elements.poster);
-                }
-                if (this.isHTML5) plyr_html5.setup.call(this); else if (this.isYouTube) plugins_youtube.setup.call(this); else if (this.isVimeo) plugins_vimeo.setup.call(this);
-            }
-        };
-        const plyr_media = media;
-        const destroy = instance => {
-            if (instance.manager) instance.manager.destroy();
-            if (instance.elements.displayContainer) instance.elements.displayContainer.destroy();
-            instance.elements.container.remove();
-        };
-        class Ads {
-            constructor(player) {
-                this.player = player;
-                this.config = player.config.ads;
-                this.playing = false;
-                this.initialized = false;
-                this.elements = {
-                    container: null,
-                    displayContainer: null
-                };
-                this.manager = null;
-                this.loader = null;
-                this.cuePoints = null;
-                this.events = {};
-                this.safetyTimer = null;
-                this.countdownTimer = null;
-                this.managerPromise = new Promise(((resolve, reject) => {
-                    this.on("loaded", resolve);
-                    this.on("error", reject);
-                }));
-                this.load();
-            }
-            get enabled() {
-                const {config} = this;
-                return this.player.isHTML5 && this.player.isVideo && config.enabled && (!utils_is.empty(config.publisherId) || utils_is.url(config.tagUrl));
-            }
-            load=() => {
-                if (!this.enabled) return;
-                if (!utils_is.object(window.google) || !utils_is.object(window.google.ima)) loadScript(this.player.config.urls.googleIMA.sdk).then((() => {
-                    this.ready();
-                })).catch((() => {
-                    this.trigger("error", new Error("Google IMA SDK failed to load"));
-                })); else this.ready();
-            };
-            ready=() => {
-                if (!this.enabled) destroy(this);
-                this.startSafetyTimer(12e3, "ready()");
-                this.managerPromise.then((() => {
-                    this.clearSafetyTimer("onAdsManagerLoaded()");
-                }));
-                this.listeners();
-                this.setupIMA();
-            };
-            get tagUrl() {
-                const {config} = this;
-                if (utils_is.url(config.tagUrl)) return config.tagUrl;
-                const params = {
-                    AV_PUBLISHERID: "58c25bb0073ef448b1087ad6",
-                    AV_CHANNELID: "5a0458dc28a06145e4519d21",
-                    AV_URL: window.location.hostname,
-                    cb: Date.now(),
-                    AV_WIDTH: 640,
-                    AV_HEIGHT: 480,
-                    AV_CDIM2: config.publisherId
-                };
-                const base = "https://go.aniview.com/api/adserver6/vast/";
-                return `${base}?${buildUrlParams(params)}`;
-            }
-            setupIMA=() => {
-                this.elements.container = createElement("div", {
-                    class: this.player.config.classNames.ads
-                });
-                this.player.elements.container.appendChild(this.elements.container);
-                google.ima.settings.setVpaidMode(google.ima.ImaSdkSettings.VpaidMode.ENABLED);
-                google.ima.settings.setLocale(this.player.config.ads.language);
-                google.ima.settings.setDisableCustomPlaybackForIOS10Plus(this.player.config.playsinline);
-                this.elements.displayContainer = new google.ima.AdDisplayContainer(this.elements.container, this.player.media);
-                this.loader = new google.ima.AdsLoader(this.elements.displayContainer);
-                this.loader.addEventListener(google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED, (event => this.onAdsManagerLoaded(event)), false);
-                this.loader.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, (error => this.onAdError(error)), false);
-                this.requestAds();
-            };
-            requestAds=() => {
-                const {container} = this.player.elements;
-                try {
-                    const request = new google.ima.AdsRequest;
-                    request.adTagUrl = this.tagUrl;
-                    request.linearAdSlotWidth = container.offsetWidth;
-                    request.linearAdSlotHeight = container.offsetHeight;
-                    request.nonLinearAdSlotWidth = container.offsetWidth;
-                    request.nonLinearAdSlotHeight = container.offsetHeight;
-                    request.forceNonLinearFullSlot = false;
-                    request.setAdWillPlayMuted(!this.player.muted);
-                    this.loader.requestAds(request);
-                } catch (error) {
-                    this.onAdError(error);
-                }
-            };
-            pollCountdown=(start = false) => {
-                if (!start) {
-                    clearInterval(this.countdownTimer);
-                    this.elements.container.removeAttribute("data-badge-text");
-                    return;
-                }
-                const update = () => {
-                    const time = formatTime(Math.max(this.manager.getRemainingTime(), 0));
-                    const label = `${utils_i18n.get("advertisement", this.player.config)} - ${time}`;
-                    this.elements.container.setAttribute("data-badge-text", label);
-                };
-                this.countdownTimer = setInterval(update, 100);
-            };
-            onAdsManagerLoaded=event => {
-                if (!this.enabled) return;
-                const settings = new google.ima.AdsRenderingSettings;
-                settings.restoreCustomPlaybackStateOnAdBreakComplete = true;
-                settings.enablePreloading = true;
-                this.manager = event.getAdsManager(this.player, settings);
-                this.cuePoints = this.manager.getCuePoints();
-                this.manager.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, (error => this.onAdError(error)));
-                Object.keys(google.ima.AdEvent.Type).forEach((type => {
-                    this.manager.addEventListener(google.ima.AdEvent.Type[type], (e => this.onAdEvent(e)));
-                }));
-                this.trigger("loaded");
-            };
-            addCuePoints=() => {
-                if (!utils_is.empty(this.cuePoints)) this.cuePoints.forEach((cuePoint => {
-                    if (0 !== cuePoint && -1 !== cuePoint && cuePoint < this.player.duration) {
-                        const seekElement = this.player.elements.progress;
-                        if (utils_is.element(seekElement)) {
-                            const cuePercentage = 100 / this.player.duration * cuePoint;
-                            const cue = createElement("span", {
-                                class: this.player.config.classNames.cues
-                            });
-                            cue.style.left = `${cuePercentage.toString()}%`;
-                            seekElement.appendChild(cue);
-                        }
-                    }
-                }));
-            };
-            onAdEvent=event => {
-                const {container} = this.player.elements;
-                const ad = event.getAd();
-                const adData = event.getAdData();
-                const dispatchEvent = type => {
-                    triggerEvent.call(this.player, this.player.media, `ads${type.replace(/_/g, "").toLowerCase()}`);
-                };
-                dispatchEvent(event.type);
-                switch (event.type) {
-                  case google.ima.AdEvent.Type.LOADED:
-                    this.trigger("loaded");
-                    this.pollCountdown(true);
-                    if (!ad.isLinear()) {
-                        ad.width = container.offsetWidth;
-                        ad.height = container.offsetHeight;
-                    }
-                    break;
-
-                  case google.ima.AdEvent.Type.STARTED:
-                    this.manager.setVolume(this.player.volume);
-                    break;
-
-                  case google.ima.AdEvent.Type.ALL_ADS_COMPLETED:
-                    if (this.player.ended) this.loadAds(); else this.loader.contentComplete();
-                    break;
-
-                  case google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED:
-                    this.pauseContent();
-                    break;
-
-                  case google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED:
-                    this.pollCountdown();
-                    this.resumeContent();
-                    break;
-
-                  case google.ima.AdEvent.Type.LOG:
-                    if (adData.adError) this.player.debug.warn(`Non-fatal ad error: ${adData.adError.getMessage()}`);
-                    break;
-
-                  default:
-                    break;
-                }
-            };
-            onAdError=event => {
-                this.cancel();
-                this.player.debug.warn("Ads error", event);
-            };
-            listeners=() => {
-                const {container} = this.player.elements;
-                let time;
-                this.player.on("canplay", (() => {
-                    this.addCuePoints();
-                }));
-                this.player.on("ended", (() => {
-                    this.loader.contentComplete();
-                }));
-                this.player.on("timeupdate", (() => {
-                    time = this.player.currentTime;
-                }));
-                this.player.on("seeked", (() => {
-                    const seekedTime = this.player.currentTime;
-                    if (utils_is.empty(this.cuePoints)) return;
-                    this.cuePoints.forEach(((cuePoint, index) => {
-                        if (time < cuePoint && cuePoint < seekedTime) {
-                            this.manager.discardAdBreak();
-                            this.cuePoints.splice(index, 1);
-                        }
-                    }));
-                }));
-                window.addEventListener("resize", (() => {
-                    if (this.manager) this.manager.resize(container.offsetWidth, container.offsetHeight, google.ima.ViewMode.NORMAL);
-                }));
-            };
-            play=() => {
-                const {container} = this.player.elements;
-                if (!this.managerPromise) this.resumeContent();
-                this.managerPromise.then((() => {
-                    this.manager.setVolume(this.player.volume);
-                    this.elements.displayContainer.initialize();
+                var type = Object.keys(events).find((function(event) {
+                    return void 0 !== element.style[event];
+                }));
+                return is$1.string(type) ? events[type] : false;
+            }();
+            function repaint(element, delay) {
+                setTimeout((function() {
                     try {
-                        if (!this.initialized) {
-                            this.manager.init(container.offsetWidth, container.offsetHeight, google.ima.ViewMode.NORMAL);
-                            this.manager.start();
-                        }
-                        this.initialized = true;
-                    } catch (adError) {
-                        this.onAdError(adError);
-                    }
-                })).catch((() => {}));
-            };
-            resumeContent=() => {
-                this.elements.container.style.zIndex = "";
-                this.playing = false;
-                silencePromise(this.player.media.play());
-            };
-            pauseContent=() => {
-                this.elements.container.style.zIndex = 3;
-                this.playing = true;
-                this.player.media.pause();
-            };
-            cancel=() => {
-                if (this.initialized) this.resumeContent();
-                this.trigger("error");
-                this.loadAds();
-            };
-            loadAds=() => {
-                this.managerPromise.then((() => {
-                    if (this.manager) this.manager.destroy();
-                    this.managerPromise = new Promise((resolve => {
-                        this.on("loaded", resolve);
-                        this.player.debug.log(this.manager);
-                    }));
-                    this.initialized = false;
-                    this.requestAds();
-                })).catch((() => {}));
-            };
-            trigger=(event, ...args) => {
-                const handlers = this.events[event];
-                if (utils_is.array(handlers)) handlers.forEach((handler => {
-                    if (utils_is["function"](handler)) handler.apply(this, args);
-                }));
-            };
-            on=(event, callback) => {
-                if (!utils_is.array(this.events[event])) this.events[event] = [];
-                this.events[event].push(callback);
-                return this;
-            };
-            startSafetyTimer=(time, from) => {
-                this.player.debug.log(`Safety timer invoked from: ${from}`);
-                this.safetyTimer = setTimeout((() => {
-                    this.cancel();
-                    this.clearSafetyTimer("startSafetyTimer()");
-                }), time);
-            };
-            clearSafetyTimer=from => {
-                if (!utils_is.nullOrUndefined(this.safetyTimer)) {
-                    this.player.debug.log(`Safety timer cleared from: ${from}`);
-                    clearTimeout(this.safetyTimer);
-                    this.safetyTimer = null;
-                }
-            };
-        }
-        const ads = Ads;
-        function clamp(input = 0, min = 0, max = 255) {
-            return Math.min(Math.max(input, min), max);
-        }
-        const parseVtt = vttDataString => {
-            const processedList = [];
-            const frames = vttDataString.split(/\r\n\r\n|\n\n|\r\r/);
-            frames.forEach((frame => {
-                const result = {};
-                const lines = frame.split(/\r\n|\n|\r/);
-                lines.forEach((line => {
-                    if (!utils_is.number(result.startTime)) {
-                        const matchTimes = line.match(/([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})( ?--> ?)([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})/);
-                        if (matchTimes) {
-                            result.startTime = 60 * Number(matchTimes[1] || 0) * 60 + 60 * Number(matchTimes[2]) + Number(matchTimes[3]) + Number(`0.${matchTimes[4]}`);
-                            result.endTime = 60 * Number(matchTimes[6] || 0) * 60 + 60 * Number(matchTimes[7]) + Number(matchTimes[8]) + Number(`0.${matchTimes[9]}`);
-                        }
-                    } else if (!utils_is.empty(line.trim()) && utils_is.empty(result.text)) {
-                        const lineSplit = line.trim().split("#xywh=");
-                        [result.text] = lineSplit;
-                        if (lineSplit[1]) [result.x, result.y, result.w, result.h] = lineSplit[1].split(",");
-                    }
-                }));
-                if (result.text) processedList.push(result);
-            }));
-            return processedList;
-        };
-        const fitRatio = (ratio, outer) => {
-            const targetRatio = outer.width / outer.height;
-            const result = {};
-            if (ratio > targetRatio) {
-                result.width = outer.width;
-                result.height = 1 / ratio * outer.width;
-            } else {
-                result.height = outer.height;
-                result.width = ratio * outer.height;
+                        element.hidden = true;
+                        element.offsetHeight;
+                        element.hidden = false;
+                    } catch (e) {}
+                }), delay);
             }
-            return result;
-        };
-        class PreviewThumbnails {
-            constructor(player) {
-                this.player = player;
-                this.thumbnails = [];
-                this.loaded = false;
-                this.lastMouseMoveTime = Date.now();
-                this.mouseDown = false;
-                this.loadedImages = [];
-                this.elements = {
-                    thumb: {},
-                    scrubbing: {}
-                };
-                this.load();
+            var browser = {
+                isIE: 
+                /* @cc_on!@ */
+                !!document.documentMode,
+                isEdge: window.navigator.userAgent.includes("Edge"),
+                isWebkit: "WebkitAppearance" in document.documentElement.style && !/Edge/.test(navigator.userAgent),
+                isIPhone: /(iPhone|iPod)/gi.test(navigator.platform),
+                isIos: /(iPad|iPhone|iPod)/gi.test(navigator.platform)
+            };
+            function cloneDeep(object) {
+                return JSON.parse(JSON.stringify(object));
             }
-            get enabled() {
-                return this.player.isHTML5 && this.player.isVideo && this.player.config.previewThumbnails.enabled;
+            function getDeep(object, path) {
+                return path.split(".").reduce((function(obj, key) {
+                    return obj && obj[key];
+                }), object);
             }
-            load=() => {
-                if (this.player.elements.display.seekTooltip) this.player.elements.display.seekTooltip.hidden = this.enabled;
-                if (!this.enabled) return;
-                this.getThumbnails().then((() => {
-                    if (!this.enabled) return;
-                    this.render();
-                    this.determineContainerAutoSizing();
-                    this.loaded = true;
+            function extend() {
+                var target = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
+                for (var _len = arguments.length, sources = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) sources[_key - 1] = arguments[_key];
+                if (!sources.length) return target;
+                var source = sources.shift();
+                if (!is$1.object(source)) return target;
+                Object.keys(source).forEach((function(key) {
+                    if (is$1.object(source[key])) {
+                        if (!Object.keys(target).includes(key)) Object.assign(target, _defineProperty({}, key, {}));
+                        extend(target[key], source[key]);
+                    } else Object.assign(target, _defineProperty({}, key, source[key]));
                 }));
-            };
-            getThumbnails=() => new Promise((resolve => {
-                const {src} = this.player.config.previewThumbnails;
-                if (utils_is.empty(src)) throw new Error("Missing previewThumbnails.src config attribute");
-                const sortAndResolve = () => {
-                    this.thumbnails.sort(((x, y) => x.height - y.height));
-                    this.player.debug.log("Preview thumbnails", this.thumbnails);
-                    resolve();
-                };
-                if (utils_is["function"](src)) src((thumbnails => {
-                    this.thumbnails = thumbnails;
-                    sortAndResolve();
-                })); else {
-                    const urls = utils_is.string(src) ? [ src ] : src;
-                    const promises = urls.map((u => this.getThumbnail(u)));
-                    Promise.all(promises).then(sortAndResolve);
-                }
-            }));
-            getThumbnail=url => new Promise((resolve => {
-                fetch_fetch(url).then((response => {
-                    const thumbnail = {
-                        frames: parseVtt(response),
-                        height: null,
-                        urlPrefix: ""
-                    };
-                    if (!thumbnail.frames[0].text.startsWith("/") && !thumbnail.frames[0].text.startsWith("http://") && !thumbnail.frames[0].text.startsWith("https://")) thumbnail.urlPrefix = url.substring(0, url.lastIndexOf("/") + 1);
-                    const tempImage = new Image;
-                    tempImage.onload = () => {
-                        thumbnail.height = tempImage.naturalHeight;
-                        thumbnail.width = tempImage.naturalWidth;
-                        this.thumbnails.push(thumbnail);
-                        resolve();
-                    };
-                    tempImage.src = thumbnail.urlPrefix + thumbnail.frames[0].text;
-                }));
-            }));
-            startMove=event => {
-                if (!this.loaded) return;
-                if (!utils_is.event(event) || ![ "touchmove", "mousemove" ].includes(event.type)) return;
-                if (!this.player.media.duration) return;
-                if ("touchmove" === event.type) this.seekTime = this.player.media.duration * (this.player.elements.inputs.seek.value / 100); else {
-                    const clientRect = this.player.elements.progress.getBoundingClientRect();
-                    const percentage = 100 / clientRect.width * (event.pageX - clientRect.left);
-                    this.seekTime = this.player.media.duration * (percentage / 100);
-                    if (this.seekTime < 0) this.seekTime = 0;
-                    if (this.seekTime > this.player.media.duration - 1) this.seekTime = this.player.media.duration - 1;
-                    this.mousePosX = event.pageX;
-                    this.elements.thumb.time.innerText = formatTime(this.seekTime);
-                    const point = this.player.config.markers?.points?.find((({time: t}) => t === Math.round(this.seekTime)));
-                    if (point) this.elements.thumb.time.insertAdjacentHTML("afterbegin", `${point.label}<br>`);
-                }
-                this.showImageAtCurrentTime();
-            };
-            endMove=() => {
-                this.toggleThumbContainer(false, true);
-            };
-            startScrubbing=event => {
-                if (utils_is.nullOrUndefined(event.button) || false === event.button || 0 === event.button) {
-                    this.mouseDown = true;
-                    if (this.player.media.duration) {
-                        this.toggleScrubbingContainer(true);
-                        this.toggleThumbContainer(false, true);
-                        this.showImageAtCurrentTime();
-                    }
-                }
-            };
-            endScrubbing=() => {
-                this.mouseDown = false;
-                if (Math.ceil(this.lastTime) === Math.ceil(this.player.media.currentTime)) this.toggleScrubbingContainer(false); else events_once.call(this.player, this.player.media, "timeupdate", (() => {
-                    if (!this.mouseDown) this.toggleScrubbingContainer(false);
-                }));
-            };
-            listeners=() => {
-                this.player.on("play", (() => {
-                    this.toggleThumbContainer(false, true);
-                }));
-                this.player.on("seeked", (() => {
-                    this.toggleThumbContainer(false);
-                }));
-                this.player.on("timeupdate", (() => {
-                    this.lastTime = this.player.media.currentTime;
-                }));
-            };
-            render=() => {
-                this.elements.thumb.container = createElement("div", {
-                    class: this.player.config.classNames.previewThumbnails.thumbContainer
-                });
-                this.elements.thumb.imageContainer = createElement("div", {
-                    class: this.player.config.classNames.previewThumbnails.imageContainer
-                });
-                this.elements.thumb.container.appendChild(this.elements.thumb.imageContainer);
-                const timeContainer = createElement("div", {
-                    class: this.player.config.classNames.previewThumbnails.timeContainer
-                });
-                this.elements.thumb.time = createElement("span", {}, "00:00");
-                timeContainer.appendChild(this.elements.thumb.time);
-                this.elements.thumb.imageContainer.appendChild(timeContainer);
-                if (utils_is.element(this.player.elements.progress)) this.player.elements.progress.appendChild(this.elements.thumb.container);
-                this.elements.scrubbing.container = createElement("div", {
-                    class: this.player.config.classNames.previewThumbnails.scrubbingContainer
-                });
-                this.player.elements.wrapper.appendChild(this.elements.scrubbing.container);
-            };
-            destroy=() => {
-                if (this.elements.thumb.container) this.elements.thumb.container.remove();
-                if (this.elements.scrubbing.container) this.elements.scrubbing.container.remove();
-            };
-            showImageAtCurrentTime=() => {
-                if (this.mouseDown) this.setScrubbingContainerSize(); else this.setThumbContainerSizeAndPos();
-                const thumbNum = this.thumbnails[0].frames.findIndex((frame => this.seekTime >= frame.startTime && this.seekTime <= frame.endTime));
-                const hasThumb = thumbNum >= 0;
-                let qualityIndex = 0;
-                if (!this.mouseDown) this.toggleThumbContainer(hasThumb);
-                if (!hasThumb) return;
-                this.thumbnails.forEach(((thumbnail, index) => {
-                    if (this.loadedImages.includes(thumbnail.frames[thumbNum].text)) qualityIndex = index;
-                }));
-                if (thumbNum !== this.showingThumb) {
-                    this.showingThumb = thumbNum;
-                    this.loadImage(qualityIndex);
-                }
-            };
-            loadImage=(qualityIndex = 0) => {
-                const thumbNum = this.showingThumb;
-                const thumbnail = this.thumbnails[qualityIndex];
-                const {urlPrefix} = thumbnail;
-                const frame = thumbnail.frames[thumbNum];
-                const thumbFilename = thumbnail.frames[thumbNum].text;
-                const thumbUrl = urlPrefix + thumbFilename;
-                if (!this.currentImageElement || this.currentImageElement.dataset.filename !== thumbFilename) {
-                    if (this.loadingImage && this.usingSprites) this.loadingImage.onload = null;
-                    const previewImage = new Image;
-                    previewImage.src = thumbUrl;
-                    previewImage.dataset.index = thumbNum;
-                    previewImage.dataset.filename = thumbFilename;
-                    this.showingThumbFilename = thumbFilename;
-                    this.player.debug.log(`Loading image: ${thumbUrl}`);
-                    previewImage.onload = () => this.showImage(previewImage, frame, qualityIndex, thumbNum, thumbFilename, true);
-                    this.loadingImage = previewImage;
-                    this.removeOldImages(previewImage);
-                } else {
-                    this.showImage(this.currentImageElement, frame, qualityIndex, thumbNum, thumbFilename, false);
-                    this.currentImageElement.dataset.index = thumbNum;
-                    this.removeOldImages(this.currentImageElement);
-                }
-            };
-            showImage=(previewImage, frame, qualityIndex, thumbNum, thumbFilename, newImage = true) => {
-                this.player.debug.log(`Showing thumb: ${thumbFilename}. num: ${thumbNum}. qual: ${qualityIndex}. newimg: ${newImage}`);
-                this.setImageSizeAndOffset(previewImage, frame);
-                if (newImage) {
-                    this.currentImageContainer.appendChild(previewImage);
-                    this.currentImageElement = previewImage;
-                    if (!this.loadedImages.includes(thumbFilename)) this.loadedImages.push(thumbFilename);
-                }
-                this.preloadNearby(thumbNum, true).then(this.preloadNearby(thumbNum, false)).then(this.getHigherQuality(qualityIndex, previewImage, frame, thumbFilename));
-            };
-            removeOldImages=currentImage => {
-                Array.from(this.currentImageContainer.children).forEach((image => {
-                    if ("img" !== image.tagName.toLowerCase()) return;
-                    const removeDelay = this.usingSprites ? 500 : 1e3;
-                    if (image.dataset.index !== currentImage.dataset.index && !image.dataset.deleting) {
-                        image.dataset.deleting = true;
-                        const {currentImageContainer} = this;
-                        setTimeout((() => {
-                            currentImageContainer.removeChild(image);
-                            this.player.debug.log(`Removing thumb: ${image.dataset.filename}`);
-                        }), removeDelay);
-                    }
-                }));
-            };
-            preloadNearby=(thumbNum, forward = true) => new Promise((resolve => {
-                setTimeout((() => {
-                    const oldThumbFilename = this.thumbnails[0].frames[thumbNum].text;
-                    if (this.showingThumbFilename === oldThumbFilename) {
-                        let thumbnailsClone;
-                        if (forward) thumbnailsClone = this.thumbnails[0].frames.slice(thumbNum); else thumbnailsClone = this.thumbnails[0].frames.slice(0, thumbNum).reverse();
-                        let foundOne = false;
-                        thumbnailsClone.forEach((frame => {
-                            const newThumbFilename = frame.text;
-                            if (newThumbFilename !== oldThumbFilename) if (!this.loadedImages.includes(newThumbFilename)) {
-                                foundOne = true;
-                                this.player.debug.log(`Preloading thumb filename: ${newThumbFilename}`);
-                                const {urlPrefix} = this.thumbnails[0];
-                                const thumbURL = urlPrefix + newThumbFilename;
-                                const previewImage = new Image;
-                                previewImage.src = thumbURL;
-                                previewImage.onload = () => {
-                                    this.player.debug.log(`Preloaded thumb filename: ${newThumbFilename}`);
-                                    if (!this.loadedImages.includes(newThumbFilename)) this.loadedImages.push(newThumbFilename);
-                                    resolve();
-                                };
-                            }
-                        }));
-                        if (!foundOne) resolve();
-                    }
-                }), 300);
-            }));
-            getHigherQuality=(currentQualityIndex, previewImage, frame, thumbFilename) => {
-                if (currentQualityIndex < this.thumbnails.length - 1) {
-                    let previewImageHeight = previewImage.naturalHeight;
-                    if (this.usingSprites) previewImageHeight = frame.h;
-                    if (previewImageHeight < this.thumbContainerHeight) setTimeout((() => {
-                        if (this.showingThumbFilename === thumbFilename) {
-                            this.player.debug.log(`Showing higher quality thumb for: ${thumbFilename}`);
-                            this.loadImage(currentQualityIndex + 1);
-                        }
-                    }), 300);
-                }
-            };
-            get currentImageContainer() {
-                return this.mouseDown ? this.elements.scrubbing.container : this.elements.thumb.imageContainer;
+                return extend.apply(void 0, [ target ].concat(sources));
             }
-            get usingSprites() {
-                return Object.keys(this.thumbnails[0].frames[0]).includes("w");
-            }
-            get thumbAspectRatio() {
-                if (this.usingSprites) return this.thumbnails[0].frames[0].w / this.thumbnails[0].frames[0].h;
-                return this.thumbnails[0].width / this.thumbnails[0].height;
-            }
-            get thumbContainerHeight() {
-                if (this.mouseDown) {
-                    const {height} = fitRatio(this.thumbAspectRatio, {
-                        width: this.player.media.clientWidth,
-                        height: this.player.media.clientHeight
-                    });
-                    return height;
-                }
-                if (this.sizeSpecifiedInCSS) return this.elements.thumb.imageContainer.clientHeight;
-                return Math.floor(this.player.media.clientWidth / this.thumbAspectRatio / 4);
-            }
-            get currentImageElement() {
-                return this.mouseDown ? this.currentScrubbingImageElement : this.currentThumbnailImageElement;
-            }
-            set currentImageElement(element) {
-                if (this.mouseDown) this.currentScrubbingImageElement = element; else this.currentThumbnailImageElement = element;
-            }
-            toggleThumbContainer=(toggle = false, clearShowing = false) => {
-                const className = this.player.config.classNames.previewThumbnails.thumbContainerShown;
-                this.elements.thumb.container.classList.toggle(className, toggle);
-                if (!toggle && clearShowing) {
-                    this.showingThumb = null;
-                    this.showingThumbFilename = null;
-                }
-            };
-            toggleScrubbingContainer=(toggle = false) => {
-                const className = this.player.config.classNames.previewThumbnails.scrubbingContainerShown;
-                this.elements.scrubbing.container.classList.toggle(className, toggle);
-                if (!toggle) {
-                    this.showingThumb = null;
-                    this.showingThumbFilename = null;
-                }
-            };
-            determineContainerAutoSizing=() => {
-                if (this.elements.thumb.imageContainer.clientHeight > 20 || this.elements.thumb.imageContainer.clientWidth > 20) this.sizeSpecifiedInCSS = true;
-            };
-            setThumbContainerSizeAndPos=() => {
-                const {imageContainer} = this.elements.thumb;
-                if (!this.sizeSpecifiedInCSS) {
-                    const thumbWidth = Math.floor(this.thumbContainerHeight * this.thumbAspectRatio);
-                    imageContainer.style.height = `${this.thumbContainerHeight}px`;
-                    imageContainer.style.width = `${thumbWidth}px`;
-                } else if (imageContainer.clientHeight > 20 && imageContainer.clientWidth < 20) {
-                    const thumbWidth = Math.floor(imageContainer.clientHeight * this.thumbAspectRatio);
-                    imageContainer.style.width = `${thumbWidth}px`;
-                } else if (imageContainer.clientHeight < 20 && imageContainer.clientWidth > 20) {
-                    const thumbHeight = Math.floor(imageContainer.clientWidth / this.thumbAspectRatio);
-                    imageContainer.style.height = `${thumbHeight}px`;
-                }
-                this.setThumbContainerPos();
-            };
-            setThumbContainerPos=() => {
-                const scrubberRect = this.player.elements.progress.getBoundingClientRect();
-                const containerRect = this.player.elements.container.getBoundingClientRect();
-                const {container} = this.elements.thumb;
-                const min = containerRect.left - scrubberRect.left + 10;
-                const max = containerRect.right - scrubberRect.left - container.clientWidth - 10;
-                const position = this.mousePosX - scrubberRect.left - container.clientWidth / 2;
-                const clamped = clamp(position, min, max);
-                container.style.left = `${clamped}px`;
-                container.style.setProperty("--preview-arrow-offset", `${position - clamped}px`);
-            };
-            setScrubbingContainerSize=() => {
-                const {width, height} = fitRatio(this.thumbAspectRatio, {
-                    width: this.player.media.clientWidth,
-                    height: this.player.media.clientHeight
-                });
-                this.elements.scrubbing.container.style.width = `${width}px`;
-                this.elements.scrubbing.container.style.height = `${height}px`;
-            };
-            setImageSizeAndOffset=(previewImage, frame) => {
-                if (!this.usingSprites) return;
-                const multiplier = this.thumbContainerHeight / frame.h;
-                previewImage.style.height = `${previewImage.naturalHeight * multiplier}px`;
-                previewImage.style.width = `${previewImage.naturalWidth * multiplier}px`;
-                previewImage.style.left = `-${frame.x * multiplier}px`;
-                previewImage.style.top = `-${frame.y * multiplier}px`;
-            };
-        }
-        const preview_thumbnails = PreviewThumbnails;
-        const source = {
-            insertElements(type, attributes) {
-                if (utils_is.string(attributes)) insertElement(type, this.media, {
-                    src: attributes
-                }); else if (utils_is.array(attributes)) attributes.forEach((attribute => {
-                    insertElement(type, this.media, attribute);
+            function wrap(elements, wrapper) {
+                var targets = elements.length ? elements : [ elements ];
+                Array.from(targets).reverse().forEach((function(element, index) {
+                    var child = index > 0 ? wrapper.cloneNode(true) : wrapper;
+                    var parent = element.parentNode;
+                    var sibling = element.nextSibling;
+                    child.appendChild(element);
+                    if (sibling) parent.insertBefore(child, sibling); else parent.appendChild(child);
                 }));
-            },
-            change(input) {
-                if (!getDeep(input, "sources.length")) {
-                    this.debug.warn("Invalid source format");
+            }
+            function setAttributes(element, attributes) {
+                if (!is$1.element(element) || is$1.empty(attributes)) return;
+                Object.entries(attributes).filter((function(_ref) {
+                    var _ref2 = _slicedToArray(_ref, 2), value = _ref2[1];
+                    return !is$1.nullOrUndefined(value);
+                })).forEach((function(_ref3) {
+                    var _ref4 = _slicedToArray(_ref3, 2), key = _ref4[0], value = _ref4[1];
+                    return element.setAttribute(key, value);
+                }));
+            }
+            function createElement(type, attributes, text) {
+                var element = document.createElement(type);
+                if (is$1.object(attributes)) setAttributes(element, attributes);
+                if (is$1.string(text)) element.innerText = text;
+                return element;
+            }
+            function insertAfter(element, target) {
+                if (!is$1.element(element) || !is$1.element(target)) return;
+                target.parentNode.insertBefore(element, target.nextSibling);
+            }
+            function insertElement(type, parent, attributes, text) {
+                if (!is$1.element(parent)) return;
+                parent.appendChild(createElement(type, attributes, text));
+            }
+            function removeElement(element) {
+                if (is$1.nodeList(element) || is$1.array(element)) {
+                    Array.from(element).forEach(removeElement);
                     return;
                 }
-                plyr_html5.cancelRequests.call(this);
-                this.destroy.call(this, (() => {
-                    this.options.quality = [];
-                    removeElement(this.media);
-                    this.media = null;
-                    if (utils_is.element(this.elements.container)) this.elements.container.removeAttribute("class");
-                    const {sources, type} = input;
-                    const [{provider = providers.html5, src}] = sources;
-                    const tagName = "html5" === provider ? type : "div";
-                    const attributes = "html5" === provider ? {} : {
-                        src
-                    };
-                    Object.assign(this, {
-                        provider,
-                        type,
-                        supported: plyr_support.check(type, provider, this.config.playsinline),
-                        media: createElement(tagName, attributes)
-                    });
-                    this.elements.container.appendChild(this.media);
-                    if (utils_is.boolean(input.autoplay)) this.config.autoplay = input.autoplay;
-                    if (this.isHTML5) {
-                        if (this.config.crossorigin) this.media.setAttribute("crossorigin", "");
-                        if (this.config.autoplay) this.media.setAttribute("autoplay", "");
-                        if (!utils_is.empty(input.poster)) this.poster = input.poster;
-                        if (this.config.loop.active) this.media.setAttribute("loop", "");
-                        if (this.config.muted) this.media.setAttribute("muted", "");
-                        if (this.config.playsinline) this.media.setAttribute("playsinline", "");
-                    }
-                    plyr_ui.addStyleHook.call(this);
-                    if (this.isHTML5) source.insertElements.call(this, "source", sources);
-                    this.config.title = input.title;
-                    plyr_media.setup.call(this);
-                    if (this.isHTML5) if (Object.keys(input).includes("tracks")) source.insertElements.call(this, "track", input.tracks);
-                    if (this.isHTML5 || this.isEmbed && !this.supported.ui) plyr_ui.build.call(this);
-                    if (this.isHTML5) this.media.load();
-                    if (!utils_is.empty(input.previewThumbnails)) {
-                        Object.assign(this.config.previewThumbnails, input.previewThumbnails);
-                        if (this.previewThumbnails && this.previewThumbnails.loaded) {
-                            this.previewThumbnails.destroy();
-                            this.previewThumbnails = null;
-                        }
-                        if (this.config.previewThumbnails.enabled) this.previewThumbnails = new preview_thumbnails(this);
-                    }
-                    this.fullscreen.update();
-                }), true);
+                if (!is$1.element(element) || !is$1.element(element.parentNode)) return;
+                element.parentNode.removeChild(element);
             }
-        };
-        const plyr_source = source;
-        class Plyr {
-            constructor(target, options) {
-                this.timers = {};
-                this.ready = false;
-                this.loading = false;
-                this.failed = false;
-                this.touch = plyr_support.touch;
-                this.media = target;
-                if (utils_is.string(this.media)) this.media = document.querySelectorAll(this.media);
-                if (window.jQuery && this.media instanceof jQuery || utils_is.nodeList(this.media) || utils_is.array(this.media)) this.media = this.media[0];
-                this.config = objects_extend({}, config_defaults, Plyr.defaults, options || {}, (() => {
-                    try {
-                        return JSON.parse(this.media.getAttribute("data-plyr-config"));
-                    } catch (_) {
-                        return {};
-                    }
-                })());
-                this.elements = {
-                    container: null,
-                    fullscreen: null,
-                    captions: null,
-                    buttons: {},
-                    display: {},
-                    progress: {},
-                    inputs: {},
-                    settings: {
-                        popup: null,
-                        menu: null,
-                        panels: {},
-                        buttons: {}
-                    }
-                };
-                this.captions = {
-                    active: null,
-                    currentTrack: -1,
-                    meta: new WeakMap
-                };
-                this.fullscreen = {
-                    active: false
-                };
-                this.options = {
-                    speed: [],
-                    quality: []
-                };
-                this.debug = new Console(this.config.debug);
-                this.debug.log("Config", this.config);
-                this.debug.log("Support", plyr_support);
-                if (utils_is.nullOrUndefined(this.media) || !utils_is.element(this.media)) {
-                    this.debug.error("Setup failed: no suitable element passed");
-                    return;
+            function emptyElement(element) {
+                if (!is$1.element(element)) return;
+                var length = element.childNodes.length;
+                while (length > 0) {
+                    element.removeChild(element.lastChild);
+                    length -= 1;
                 }
-                if (this.media.plyr) {
-                    this.debug.warn("Target already setup");
-                    return;
-                }
-                if (!this.config.enabled) {
-                    this.debug.error("Setup failed: disabled by config");
-                    return;
-                }
-                if (!plyr_support.check().api) {
-                    this.debug.error("Setup failed: no support");
-                    return;
-                }
-                const clone = this.media.cloneNode(true);
-                clone.autoplay = false;
-                this.elements.original = clone;
-                const type = this.media.tagName.toLowerCase();
-                let iframe = null;
-                let url = null;
-                switch (type) {
-                  case "div":
-                    iframe = this.media.querySelector("iframe");
-                    if (utils_is.element(iframe)) {
-                        url = parseUrl(iframe.getAttribute("src"));
-                        this.provider = getProviderByUrl(url.toString());
-                        this.elements.container = this.media;
-                        this.media = iframe;
-                        this.elements.container.className = "";
-                        if (url.search.length) {
-                            const truthy = [ "1", "true" ];
-                            if (truthy.includes(url.searchParams.get("autoplay"))) this.config.autoplay = true;
-                            if (truthy.includes(url.searchParams.get("loop"))) this.config.loop.active = true;
-                            if (this.isYouTube) {
-                                this.config.playsinline = truthy.includes(url.searchParams.get("playsinline"));
-                                this.config.youtube.hl = url.searchParams.get("hl");
-                            } else this.config.playsinline = true;
-                        }
-                    } else {
-                        this.provider = this.media.getAttribute(this.config.attributes.embed.provider);
-                        this.media.removeAttribute(this.config.attributes.embed.provider);
-                    }
-                    if (utils_is.empty(this.provider) || !Object.values(providers).includes(this.provider)) {
-                        this.debug.error("Setup failed: Invalid provider");
-                        return;
-                    }
-                    this.type = types.video;
-                    break;
+            }
+            function replaceElement(newChild, oldChild) {
+                if (!is$1.element(oldChild) || !is$1.element(oldChild.parentNode) || !is$1.element(newChild)) return null;
+                oldChild.parentNode.replaceChild(newChild, oldChild);
+                return newChild;
+            }
+            function getAttributesFromSelector(sel, existingAttributes) {
+                if (!is$1.string(sel) || is$1.empty(sel)) return {};
+                var attributes = {};
+                var existing = extend({}, existingAttributes);
+                sel.split(",").forEach((function(s) {
+                    var selector = s.trim();
+                    var className = selector.replace(".", "");
+                    var stripped = selector.replace(/[[\]]/g, "");
+                    var parts = stripped.split("=");
+                    var _parts = _slicedToArray(parts, 1), key = _parts[0];
+                    var value = parts.length > 1 ? parts[1].replace(/["']/g, "") : "";
+                    var start = selector.charAt(0);
+                    switch (start) {
+                      case ".":
+                        if (is$1.string(existing.class)) attributes.class = "".concat(existing.class, " ").concat(className); else attributes.class = className;
+                        break;
 
-                  case "video":
-                  case "audio":
-                    this.type = type;
-                    this.provider = providers.html5;
-                    if (this.media.hasAttribute("crossorigin")) this.config.crossorigin = true;
-                    if (this.media.hasAttribute("autoplay")) this.config.autoplay = true;
-                    if (this.media.hasAttribute("playsinline") || this.media.hasAttribute("webkit-playsinline")) this.config.playsinline = true;
-                    if (this.media.hasAttribute("muted")) this.config.muted = true;
-                    if (this.media.hasAttribute("loop")) this.config.loop.active = true;
-                    break;
+                      case "#":
+                        attributes.id = selector.replace("#", "");
+                        break;
 
-                  default:
-                    this.debug.error("Setup failed: unsupported type");
-                    return;
-                }
-                this.supported = plyr_support.check(this.type, this.provider, this.config.playsinline);
-                if (!this.supported.api) {
-                    this.debug.error("Setup failed: no support");
-                    return;
-                }
-                this.eventListeners = [];
-                this.listeners = new listeners(this);
-                this.storage = new storage(this);
-                this.media.plyr = this;
-                if (!utils_is.element(this.elements.container)) {
-                    this.elements.container = createElement("div", {
-                        tabindex: 0
-                    });
-                    wrap(this.media, this.elements.container);
-                }
-                plyr_ui.migrateStyles.call(this);
-                plyr_ui.addStyleHook.call(this);
-                plyr_media.setup.call(this);
-                if (this.config.debug) events_on.call(this, this.elements.container, this.config.events.join(" "), (event => {
-                    this.debug.log(`event: ${event.type}`);
-                }));
-                this.fullscreen = new fullscreen(this);
-                if (this.isHTML5 || this.isEmbed && !this.supported.ui) plyr_ui.build.call(this);
-                this.listeners.container();
-                this.listeners.global();
-                if (this.config.ads.enabled) this.ads = new ads(this);
-                if (this.isHTML5 && this.config.autoplay) this.once("canplay", (() => silencePromise(this.play())));
-                this.lastSeekTime = 0;
-                if (this.config.previewThumbnails.enabled) this.previewThumbnails = new preview_thumbnails(this);
-            }
-            get isHTML5() {
-                return this.provider === providers.html5;
-            }
-            get isEmbed() {
-                return this.isYouTube || this.isVimeo;
-            }
-            get isYouTube() {
-                return this.provider === providers.youtube;
-            }
-            get isVimeo() {
-                return this.provider === providers.vimeo;
-            }
-            get isVideo() {
-                return this.type === types.video;
-            }
-            get isAudio() {
-                return this.type === types.audio;
-            }
-            play=() => {
-                if (!utils_is["function"](this.media.play)) return null;
-                if (this.ads && this.ads.enabled) this.ads.managerPromise.then((() => this.ads.play())).catch((() => silencePromise(this.media.play())));
-                return this.media.play();
-            };
-            pause=() => {
-                if (!this.playing || !utils_is["function"](this.media.pause)) return null;
-                return this.media.pause();
-            };
-            get playing() {
-                return Boolean(this.ready && !this.paused && !this.ended);
-            }
-            get paused() {
-                return Boolean(this.media.paused);
-            }
-            get stopped() {
-                return Boolean(this.paused && 0 === this.currentTime);
-            }
-            get ended() {
-                return Boolean(this.media.ended);
-            }
-            togglePlay=input => {
-                const toggle = utils_is.boolean(input) ? input : !this.playing;
-                if (toggle) return this.play();
-                return this.pause();
-            };
-            stop=() => {
-                if (this.isHTML5) {
-                    this.pause();
-                    this.restart();
-                } else if (utils_is["function"](this.media.stop)) this.media.stop();
-            };
-            restart=() => {
-                this.currentTime = 0;
-            };
-            rewind=seekTime => {
-                this.currentTime -= utils_is.number(seekTime) ? seekTime : this.config.seekTime;
-            };
-            forward=seekTime => {
-                this.currentTime += utils_is.number(seekTime) ? seekTime : this.config.seekTime;
-            };
-            set currentTime(input) {
-                if (!this.duration) return;
-                const inputIsValid = utils_is.number(input) && input > 0;
-                this.media.currentTime = inputIsValid ? Math.min(input, this.duration) : 0;
-                this.debug.log(`Seeking to ${this.currentTime} seconds`);
-            }
-            get currentTime() {
-                return Number(this.media.currentTime);
-            }
-            get buffered() {
-                const {buffered} = this.media;
-                if (utils_is.number(buffered)) return buffered;
-                if (buffered && buffered.length && this.duration > 0) return buffered.end(0) / this.duration;
-                return 0;
-            }
-            get seeking() {
-                return Boolean(this.media.seeking);
-            }
-            get duration() {
-                const fauxDuration = parseFloat(this.config.duration);
-                const realDuration = (this.media || {}).duration;
-                const duration = !utils_is.number(realDuration) || realDuration === 1 / 0 ? 0 : realDuration;
-                return fauxDuration || duration;
-            }
-            set volume(value) {
-                let volume = value;
-                const max = 1;
-                const min = 0;
-                if (utils_is.string(volume)) volume = Number(volume);
-                if (!utils_is.number(volume)) volume = this.storage.get("volume");
-                if (!utils_is.number(volume)) ({volume} = this.config);
-                if (volume > max) volume = max;
-                if (volume < min) volume = min;
-                this.config.volume = volume;
-                this.media.volume = volume;
-                if (!utils_is.empty(value) && this.muted && volume > 0) this.muted = false;
-            }
-            get volume() {
-                return Number(this.media.volume);
-            }
-            increaseVolume=step => {
-                const volume = this.media.muted ? 0 : this.volume;
-                this.volume = volume + (utils_is.number(step) ? step : 0);
-            };
-            decreaseVolume=step => {
-                this.increaseVolume(-step);
-            };
-            set muted(mute) {
-                let toggle = mute;
-                if (!utils_is.boolean(toggle)) toggle = this.storage.get("muted");
-                if (!utils_is.boolean(toggle)) toggle = this.config.muted;
-                this.config.muted = toggle;
-                this.media.muted = toggle;
-            }
-            get muted() {
-                return Boolean(this.media.muted);
-            }
-            get hasAudio() {
-                if (!this.isHTML5) return true;
-                if (this.isAudio) return true;
-                return Boolean(this.media.mozHasAudio) || Boolean(this.media.webkitAudioDecodedByteCount) || Boolean(this.media.audioTracks && this.media.audioTracks.length);
-            }
-            set speed(input) {
-                let speed = null;
-                if (utils_is.number(input)) speed = input;
-                if (!utils_is.number(speed)) speed = this.storage.get("speed");
-                if (!utils_is.number(speed)) speed = this.config.speed.selected;
-                const {minimumSpeed: min, maximumSpeed: max} = this;
-                speed = clamp(speed, min, max);
-                this.config.speed.selected = speed;
-                setTimeout((() => {
-                    if (this.media) this.media.playbackRate = speed;
-                }), 0);
-            }
-            get speed() {
-                return Number(this.media.playbackRate);
-            }
-            get minimumSpeed() {
-                if (this.isYouTube) return Math.min(...this.options.speed);
-                if (this.isVimeo) return .5;
-                return .0625;
-            }
-            get maximumSpeed() {
-                if (this.isYouTube) return Math.max(...this.options.speed);
-                if (this.isVimeo) return 2;
-                return 16;
-            }
-            set quality(input) {
-                const config = this.config.quality;
-                const options = this.options.quality;
-                if (!options.length) return;
-                let quality = [ !utils_is.empty(input) && Number(input), this.storage.get("quality"), config.selected, config.default ].find(utils_is.number);
-                let updateStorage = true;
-                if (!options.includes(quality)) {
-                    const value = arrays_closest(options, quality);
-                    this.debug.warn(`Unsupported quality option: ${quality}, using ${value} instead`);
-                    quality = value;
-                    updateStorage = false;
-                }
-                config.selected = quality;
-                this.media.quality = quality;
-                if (updateStorage) this.storage.set({
-                    quality
-                });
-            }
-            get quality() {
-                return this.media.quality;
-            }
-            set loop(input) {
-                const toggle = utils_is.boolean(input) ? input : this.config.loop.active;
-                this.config.loop.active = toggle;
-                this.media.loop = toggle;
-            }
-            get loop() {
-                return Boolean(this.media.loop);
-            }
-            set source(input) {
-                plyr_source.change.call(this, input);
-            }
-            get source() {
-                return this.media.currentSrc;
-            }
-            get download() {
-                const {download} = this.config.urls;
-                return utils_is.url(download) ? download : this.source;
-            }
-            set download(input) {
-                if (!utils_is.url(input)) return;
-                this.config.urls.download = input;
-                plyr_controls.setDownloadUrl.call(this);
-            }
-            set poster(input) {
-                if (!this.isVideo) {
-                    this.debug.warn("Poster can only be set for video");
-                    return;
-                }
-                plyr_ui.setPoster.call(this, input, false).catch((() => {}));
-            }
-            get poster() {
-                if (!this.isVideo) return null;
-                return this.media.getAttribute("poster") || this.media.getAttribute("data-poster");
-            }
-            get ratio() {
-                if (!this.isVideo) return null;
-                const ratio = reduceAspectRatio(getAspectRatio.call(this));
-                return utils_is.array(ratio) ? ratio.join(":") : ratio;
-            }
-            set ratio(input) {
-                if (!this.isVideo) {
-                    this.debug.warn("Aspect ratio can only be set for video");
-                    return;
-                }
-                if (!utils_is.string(input) || !validateAspectRatio(input)) {
-                    this.debug.error(`Invalid aspect ratio specified (${input})`);
-                    return;
-                }
-                this.config.ratio = reduceAspectRatio(input);
-                setAspectRatio.call(this);
-            }
-            set autoplay(input) {
-                this.config.autoplay = utils_is.boolean(input) ? input : this.config.autoplay;
-            }
-            get autoplay() {
-                return Boolean(this.config.autoplay);
-            }
-            toggleCaptions(input) {
-                plyr_captions.toggle.call(this, input, false);
-            }
-            set currentTrack(input) {
-                plyr_captions.set.call(this, input, false);
-                plyr_captions.setup.call(this);
-            }
-            get currentTrack() {
-                const {toggled, currentTrack} = this.captions;
-                return toggled ? currentTrack : -1;
-            }
-            set language(input) {
-                plyr_captions.setLanguage.call(this, input, false);
-            }
-            get language() {
-                return (plyr_captions.getCurrentTrack.call(this) || {}).language;
-            }
-            set pip(input) {
-                if (!plyr_support.pip) return;
-                const toggle = utils_is.boolean(input) ? input : !this.pip;
-                if (utils_is["function"](this.media.webkitSetPresentationMode)) this.media.webkitSetPresentationMode(toggle ? pip.active : pip.inactive);
-                if (utils_is["function"](this.media.requestPictureInPicture)) if (!this.pip && toggle) this.media.requestPictureInPicture(); else if (this.pip && !toggle) document.exitPictureInPicture();
-            }
-            get pip() {
-                if (!plyr_support.pip) return null;
-                if (!utils_is.empty(this.media.webkitPresentationMode)) return this.media.webkitPresentationMode === pip.active;
-                return this.media === document.pictureInPictureElement;
-            }
-            setPreviewThumbnails(thumbnailSource) {
-                if (this.previewThumbnails && this.previewThumbnails.loaded) {
-                    this.previewThumbnails.destroy();
-                    this.previewThumbnails = null;
-                }
-                Object.assign(this.config.previewThumbnails, thumbnailSource);
-                if (this.config.previewThumbnails.enabled) this.previewThumbnails = new preview_thumbnails(this);
-            }
-            airplay=() => {
-                if (plyr_support.airplay) this.media.webkitShowPlaybackTargetPicker();
-            };
-            toggleControls=toggle => {
-                if (this.supported.ui && !this.isAudio) {
-                    const isHidden = elements_hasClass(this.elements.container, this.config.classNames.hideControls);
-                    const force = "undefined" === typeof toggle ? void 0 : !toggle;
-                    const hiding = elements_toggleClass(this.elements.container, this.config.classNames.hideControls, force);
-                    if (hiding && utils_is.array(this.config.controls) && this.config.controls.includes("settings") && !utils_is.empty(this.config.settings)) plyr_controls.toggleMenu.call(this, false);
-                    if (hiding !== isHidden) {
-                        const eventName = hiding ? "controlshidden" : "controlsshown";
-                        triggerEvent.call(this, this.media, eventName);
+                      case "[":
+                        attributes[key] = value;
+                        break;
                     }
-                    return !hiding;
+                }));
+                return extend(existing, attributes);
+            }
+            function toggleHidden(element, hidden) {
+                if (!is$1.element(element)) return;
+                var hide = hidden;
+                if (!is$1.boolean(hide)) hide = !element.hidden;
+                element.hidden = hide;
+            }
+            function toggleClass(element, className, force) {
+                if (is$1.nodeList(element)) return Array.from(element).map((function(e) {
+                    return toggleClass(e, className, force);
+                }));
+                if (is$1.element(element)) {
+                    var method = "toggle";
+                    if ("undefined" !== typeof force) method = force ? "add" : "remove";
+                    element.classList[method](className);
+                    return element.classList.contains(className);
                 }
                 return false;
+            }
+            function hasClass(element, className) {
+                return is$1.element(element) && element.classList.contains(className);
+            }
+            function matches$1(element, selector) {
+                var _Element = Element, prototype = _Element.prototype;
+                function match() {
+                    return Array.from(document.querySelectorAll(selector)).includes(this);
+                }
+                var method = prototype.matches || prototype.webkitMatchesSelector || prototype.mozMatchesSelector || prototype.msMatchesSelector || match;
+                return method.call(element, selector);
+            }
+            function closest(element, selector) {
+                var _Element2 = Element, prototype = _Element2.prototype;
+                function closestElement() {
+                    var el = this;
+                    do {
+                        if (matches$1.matches(el, selector)) return el;
+                        el = el.parentElement || el.parentNode;
+                    } while (null !== el && 1 === el.nodeType);
+                    return null;
+                }
+                var method = prototype.closest || closestElement;
+                return method.call(element, selector);
+            }
+            function getElements(selector) {
+                return this.elements.container.querySelectorAll(selector);
+            }
+            function getElement(selector) {
+                return this.elements.container.querySelector(selector);
+            }
+            function setFocus() {
+                var element = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null;
+                var tabFocus = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : false;
+                if (!is$1.element(element)) return;
+                element.focus({
+                    preventScroll: true
+                });
+                if (tabFocus) toggleClass(element, this.config.classNames.tabFocus);
+            }
+            var defaultCodecs = {
+                "audio/ogg": "vorbis",
+                "audio/wav": "1",
+                "video/webm": "vp8, vorbis",
+                "video/mp4": "avc1.42E01E, mp4a.40.2",
+                "video/ogg": "theora"
             };
-            on=(event, callback) => {
-                events_on.call(this, this.elements.container, event, callback);
-            };
-            once=(event, callback) => {
-                events_once.call(this, this.elements.container, event, callback);
-            };
-            off=(event, callback) => {
-                events_off(this.elements.container, event, callback);
-            };
-            destroy=(callback, soft = false) => {
-                if (!this.ready) return;
-                const done = () => {
-                    document.body.style.overflow = "";
-                    this.embed = null;
-                    if (soft) {
-                        if (Object.keys(this.elements).length) {
-                            removeElement(this.elements.buttons.play);
-                            removeElement(this.elements.captions);
-                            removeElement(this.elements.controls);
-                            removeElement(this.elements.wrapper);
-                            this.elements.buttons.play = null;
-                            this.elements.captions = null;
-                            this.elements.controls = null;
-                            this.elements.wrapper = null;
-                        }
-                        if (utils_is["function"](callback)) callback();
-                    } else {
-                        unbindListeners.call(this);
-                        plyr_html5.cancelRequests.call(this);
-                        replaceElement(this.elements.original, this.elements.container);
-                        triggerEvent.call(this, this.elements.original, "destroyed", true);
-                        if (utils_is["function"](callback)) callback.call(this.elements.original);
-                        this.ready = false;
-                        setTimeout((() => {
-                            this.elements = null;
-                            this.media = null;
-                        }), 200);
+            var support = {
+                audio: "canPlayType" in document.createElement("audio"),
+                video: "canPlayType" in document.createElement("video"),
+                check: function check(type, provider, playsinline) {
+                    var canPlayInline = browser.isIPhone && playsinline && support.playsinline;
+                    var api = support[type] || "html5" !== provider;
+                    var ui = api && support.rangeInput && ("video" !== type || !browser.isIPhone || canPlayInline);
+                    return {
+                        api,
+                        ui
+                    };
+                },
+                pip: function() {
+                    if (browser.isIPhone) return false;
+                    if (is$1.function(createElement("video").webkitSetPresentationMode)) return true;
+                    if (document.pictureInPictureEnabled && !createElement("video").disablePictureInPicture) return true;
+                    return false;
+                }(),
+                airplay: is$1.function(window.WebKitPlaybackTargetAvailabilityEvent),
+                playsinline: "playsInline" in document.createElement("video"),
+                mime: function mime(input) {
+                    if (is$1.empty(input)) return false;
+                    var _input$split = input.split("/"), _input$split2 = _slicedToArray(_input$split, 1), mediaType = _input$split2[0];
+                    var type = input;
+                    if (!this.isHTML5 || mediaType !== this.type) return false;
+                    if (Object.keys(defaultCodecs).includes(type)) type += '; codecs="'.concat(defaultCodecs[input], '"');
+                    try {
+                        return Boolean(type && this.media.canPlayType(type).replace(/no/, ""));
+                    } catch (e) {
+                        return false;
                     }
+                },
+                textTracks: "textTracks" in document.createElement("video"),
+                rangeInput: function() {
+                    var range = document.createElement("input");
+                    range.type = "range";
+                    return "range" === range.type;
+                }(),
+                touch: "ontouchstart" in document.documentElement,
+                transitions: false !== transitionEndEvent,
+                reducedMotion: "matchMedia" in window && window.matchMedia("(prefers-reduced-motion)").matches
+            };
+            var supportsPassiveListeners = function() {
+                var supported = false;
+                try {
+                    var options = Object.defineProperty({}, "passive", {
+                        get: function get() {
+                            supported = true;
+                            return null;
+                        }
+                    });
+                    window.addEventListener("test", null, options);
+                    window.removeEventListener("test", null, options);
+                } catch (e) {}
+                return supported;
+            }();
+            function toggleListener(element, event, callback) {
+                var _this = this;
+                var toggle = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : false;
+                var passive = arguments.length > 4 && void 0 !== arguments[4] ? arguments[4] : true;
+                var capture = arguments.length > 5 && void 0 !== arguments[5] ? arguments[5] : false;
+                if (!element || !("addEventListener" in element) || is$1.empty(event) || !is$1.function(callback)) return;
+                var events = event.split(" ");
+                var options = capture;
+                if (supportsPassiveListeners) options = {
+                    passive,
+                    capture
                 };
-                this.stop();
-                clearTimeout(this.timers.loading);
-                clearTimeout(this.timers.controls);
-                clearTimeout(this.timers.resized);
-                if (this.isHTML5) {
-                    plyr_ui.toggleNativeControls.call(this, true);
-                    done();
-                } else if (this.isYouTube) {
-                    clearInterval(this.timers.buffering);
-                    clearInterval(this.timers.playing);
-                    if (null !== this.embed && utils_is["function"](this.embed.destroy)) this.embed.destroy();
-                    done();
-                } else if (this.isVimeo) {
-                    if (null !== this.embed) this.embed.unload().then(done);
-                    setTimeout(done, 200);
+                events.forEach((function(type) {
+                    if (_this && _this.eventListeners && toggle) _this.eventListeners.push({
+                        element,
+                        type,
+                        callback,
+                        options
+                    });
+                    element[toggle ? "addEventListener" : "removeEventListener"](type, callback, options);
+                }));
+            }
+            function on(element) {
+                var events = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "";
+                var callback = arguments.length > 2 ? arguments[2] : void 0;
+                var passive = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : true;
+                var capture = arguments.length > 4 && void 0 !== arguments[4] ? arguments[4] : false;
+                toggleListener.call(this, element, events, callback, true, passive, capture);
+            }
+            function off(element) {
+                var events = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "";
+                var callback = arguments.length > 2 ? arguments[2] : void 0;
+                var passive = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : true;
+                var capture = arguments.length > 4 && void 0 !== arguments[4] ? arguments[4] : false;
+                toggleListener.call(this, element, events, callback, false, passive, capture);
+            }
+            function once(element) {
+                var _this2 = this;
+                var events = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "";
+                var callback = arguments.length > 2 ? arguments[2] : void 0;
+                var passive = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : true;
+                var capture = arguments.length > 4 && void 0 !== arguments[4] ? arguments[4] : false;
+                var onceCallback = function onceCallback() {
+                    off(element, events, onceCallback, passive, capture);
+                    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
+                    callback.apply(_this2, args);
+                };
+                toggleListener.call(this, element, events, onceCallback, true, passive, capture);
+            }
+            function triggerEvent(element) {
+                var type = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "";
+                var bubbles = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : false;
+                var detail = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : {};
+                if (!is$1.element(element) || is$1.empty(type)) return;
+                var event = new CustomEvent(type, {
+                    bubbles,
+                    detail: _objectSpread2(_objectSpread2({}, detail), {}, {
+                        plyr: this
+                    })
+                });
+                element.dispatchEvent(event);
+            }
+            function unbindListeners() {
+                if (this && this.eventListeners) {
+                    this.eventListeners.forEach((function(item) {
+                        var element = item.element, type = item.type, callback = item.callback, options = item.options;
+                        element.removeEventListener(type, callback, options);
+                    }));
+                    this.eventListeners = [];
+                }
+            }
+            function ready() {
+                var _this3 = this;
+                return new Promise((function(resolve) {
+                    return _this3.ready ? setTimeout(resolve, 0) : on.call(_this3, _this3.elements.container, "ready", resolve);
+                })).then((function() {}));
+            }
+            function silencePromise(value) {
+                if (is$1.promise(value)) value.then(null, (function() {}));
+            }
+            function validateRatio(input) {
+                if (!is$1.array(input) && (!is$1.string(input) || !input.includes(":"))) return false;
+                var ratio = is$1.array(input) ? input : input.split(":");
+                return ratio.map(Number).every(is$1.number);
+            }
+            function reduceAspectRatio(ratio) {
+                if (!is$1.array(ratio) || !ratio.every(is$1.number)) return null;
+                var _ratio = _slicedToArray(ratio, 2), width = _ratio[0], height = _ratio[1];
+                var getDivider = function getDivider(w, h) {
+                    return 0 === h ? w : getDivider(h, w % h);
+                };
+                var divider = getDivider(width, height);
+                return [ width / divider, height / divider ];
+            }
+            function getAspectRatio(input) {
+                var parse = function parse(ratio) {
+                    return validateRatio(ratio) ? ratio.split(":").map(Number) : null;
+                };
+                var ratio = parse(input);
+                if (null === ratio) ratio = parse(this.config.ratio);
+                if (null === ratio && !is$1.empty(this.embed) && is$1.array(this.embed.ratio)) ratio = this.embed.ratio;
+                if (null === ratio && this.isHTML5) {
+                    var _this$media = this.media, videoWidth = _this$media.videoWidth, videoHeight = _this$media.videoHeight;
+                    ratio = reduceAspectRatio([ videoWidth, videoHeight ]);
+                }
+                return ratio;
+            }
+            function setAspectRatio(input) {
+                if (!this.isVideo) return {};
+                var wrapper = this.elements.wrapper;
+                var ratio = getAspectRatio.call(this, input);
+                var _ref = is$1.array(ratio) ? ratio : [ 0, 0 ], _ref2 = _slicedToArray(_ref, 2), w = _ref2[0], h = _ref2[1];
+                var padding = 100 / w * h;
+                wrapper.style.paddingBottom = "".concat(padding, "%");
+                if (this.isVimeo && !this.config.vimeo.premium && this.supported.ui) {
+                    var height = 100 / this.media.offsetWidth * parseInt(window.getComputedStyle(this.media).paddingBottom, 10);
+                    var offset = (height - padding) / (height / 50);
+                    if (this.fullscreen.active) wrapper.style.paddingBottom = null; else this.media.style.transform = "translateY(-".concat(offset, "%)");
+                } else if (this.isHTML5) wrapper.classList.toggle(this.config.classNames.videoFixedRatio, null !== ratio);
+                return {
+                    padding,
+                    ratio
+                };
+            }
+            var html5 = {
+                getSources: function getSources() {
+                    var _this = this;
+                    if (!this.isHTML5) return [];
+                    var sources = Array.from(this.media.querySelectorAll("source"));
+                    return sources.filter((function(source) {
+                        var type = source.getAttribute("type");
+                        if (is$1.empty(type)) return true;
+                        return support.mime.call(_this, type);
+                    }));
+                },
+                getQualityOptions: function getQualityOptions() {
+                    if (this.config.quality.forced) return this.config.quality.options;
+                    return html5.getSources.call(this).map((function(source) {
+                        return Number(source.getAttribute("size"));
+                    })).filter(Boolean);
+                },
+                setup: function setup() {
+                    if (!this.isHTML5) return;
+                    var player = this;
+                    player.options.speed = player.config.speed.options;
+                    if (!is$1.empty(this.config.ratio)) setAspectRatio.call(player);
+                    Object.defineProperty(player.media, "quality", {
+                        get: function get() {
+                            var sources = html5.getSources.call(player);
+                            var source = sources.find((function(s) {
+                                return s.getAttribute("src") === player.source;
+                            }));
+                            return source && Number(source.getAttribute("size"));
+                        },
+                        set: function set(input) {
+                            if (player.quality === input) return;
+                            if (player.config.quality.forced && is$1.function(player.config.quality.onChange)) player.config.quality.onChange(input); else {
+                                var sources = html5.getSources.call(player);
+                                var source = sources.find((function(s) {
+                                    return Number(s.getAttribute("size")) === input;
+                                }));
+                                if (!source) return;
+                                var _player$media = player.media, currentTime = _player$media.currentTime, paused = _player$media.paused, preload = _player$media.preload, readyState = _player$media.readyState, playbackRate = _player$media.playbackRate;
+                                player.media.src = source.getAttribute("src");
+                                if ("none" !== preload || readyState) {
+                                    player.once("loadedmetadata", (function() {
+                                        player.speed = playbackRate;
+                                        player.currentTime = currentTime;
+                                        if (!paused) silencePromise(player.play());
+                                    }));
+                                    player.media.load();
+                                }
+                            }
+                            triggerEvent.call(player, player.media, "qualitychange", false, {
+                                quality: input
+                            });
+                        }
+                    });
+                },
+                cancelRequests: function cancelRequests() {
+                    if (!this.isHTML5) return;
+                    removeElement(html5.getSources.call(this));
+                    this.media.setAttribute("src", this.config.blankVideo);
+                    this.media.load();
+                    this.debug.log("Cancelled network requests");
                 }
             };
-            supports=type => plyr_support.mime.call(this, type);
-            static supported(type, provider, inline) {
-                return plyr_support.check(type, provider, inline);
+            function dedupe(array) {
+                if (!is$1.array(array)) return array;
+                return array.filter((function(item, index) {
+                    return array.indexOf(item) === index;
+                }));
             }
-            static loadSprite(url, id) {
-                return loadSprite(url, id);
+            function closest$1(array, value) {
+                if (!is$1.array(array) || !array.length) return null;
+                return array.reduce((function(prev, curr) {
+                    return Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev;
+                }));
             }
-            static setup(selector, options = {}) {
-                let targets = null;
-                if (utils_is.string(selector)) targets = Array.from(document.querySelectorAll(selector)); else if (utils_is.nodeList(selector)) targets = Array.from(selector); else if (utils_is.array(selector)) targets = selector.filter(utils_is.element);
-                if (utils_is.empty(targets)) return null;
-                return targets.map((t => new Plyr(t, options)));
+            function generateId(prefix) {
+                return "".concat(prefix, "-").concat(Math.floor(1e4 * Math.random()));
             }
-        }
-        Plyr.defaults = cloneDeep(config_defaults);
-        const plyr = Plyr;
-        const player = new plyr("#player", {
+            function format(input) {
+                for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) args[_key - 1] = arguments[_key];
+                if (is$1.empty(input)) return input;
+                return input.toString().replace(/{(\d+)}/g, (function(match, i) {
+                    return args[i].toString();
+                }));
+            }
+            function getPercentage(current, max) {
+                if (0 === current || 0 === max || Number.isNaN(current) || Number.isNaN(max)) return 0;
+                return (current / max * 100).toFixed(2);
+            }
+            var replaceAll = function replaceAll() {
+                var input = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+                var find = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "";
+                var replace = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "";
+                return input.replace(new RegExp(find.toString().replace(/([.*+?^=!:${}()|[\]/\\])/g, "\\$1"), "g"), replace.toString());
+            };
+            var toTitleCase = function toTitleCase() {
+                var input = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+                return input.toString().replace(/\w\S*/g, (function(text) {
+                    return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
+                }));
+            };
+            function toPascalCase() {
+                var input = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+                var string = input.toString();
+                string = replaceAll(string, "-", " ");
+                string = replaceAll(string, "_", " ");
+                string = toTitleCase(string);
+                return replaceAll(string, " ", "");
+            }
+            function toCamelCase() {
+                var input = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+                var string = input.toString();
+                string = toPascalCase(string);
+                return string.charAt(0).toLowerCase() + string.slice(1);
+            }
+            function stripHTML(source) {
+                var fragment = document.createDocumentFragment();
+                var element = document.createElement("div");
+                fragment.appendChild(element);
+                element.innerHTML = source;
+                return fragment.firstChild.innerText;
+            }
+            function getHTML(element) {
+                var wrapper = document.createElement("div");
+                wrapper.appendChild(element);
+                return wrapper.innerHTML;
+            }
+            var resources = {
+                pip: "PIP",
+                airplay: "AirPlay",
+                html5: "HTML5",
+                vimeo: "Vimeo",
+                youtube: "YouTube"
+            };
+            var i18n = {
+                get: function get() {
+                    var key = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+                    var config = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+                    if (is$1.empty(key) || is$1.empty(config)) return "";
+                    var string = getDeep(config.i18n, key);
+                    if (is$1.empty(string)) {
+                        if (Object.keys(resources).includes(key)) return resources[key];
+                        return "";
+                    }
+                    var replace = {
+                        "{seektime}": config.seekTime,
+                        "{title}": config.title
+                    };
+                    Object.entries(replace).forEach((function(_ref) {
+                        var _ref2 = _slicedToArray(_ref, 2), k = _ref2[0], v = _ref2[1];
+                        string = replaceAll(string, k, v);
+                    }));
+                    return string;
+                }
+            };
+            var Storage = function() {
+                function Storage(player) {
+                    _classCallCheck(this, Storage);
+                    this.enabled = player.config.storage.enabled;
+                    this.key = player.config.storage.key;
+                }
+                _createClass(Storage, [ {
+                    key: "get",
+                    value: function get(key) {
+                        if (!Storage.supported || !this.enabled) return null;
+                        var store = window.localStorage.getItem(this.key);
+                        if (is$1.empty(store)) return null;
+                        var json = JSON.parse(store);
+                        return is$1.string(key) && key.length ? json[key] : json;
+                    }
+                }, {
+                    key: "set",
+                    value: function set(object) {
+                        if (!Storage.supported || !this.enabled) return;
+                        if (!is$1.object(object)) return;
+                        var storage = this.get();
+                        if (is$1.empty(storage)) storage = {};
+                        extend(storage, object);
+                        window.localStorage.setItem(this.key, JSON.stringify(storage));
+                    }
+                } ], [ {
+                    key: "supported",
+                    get: function get() {
+                        try {
+                            if (!("localStorage" in window)) return false;
+                            var test = "___test";
+                            window.localStorage.setItem(test, test);
+                            window.localStorage.removeItem(test);
+                            return true;
+                        } catch (e) {
+                            return false;
+                        }
+                    }
+                } ]);
+                return Storage;
+            }();
+            function fetch(url) {
+                var responseType = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "text";
+                return new Promise((function(resolve, reject) {
+                    try {
+                        var request = new XMLHttpRequest;
+                        if (!("withCredentials" in request)) return;
+                        request.addEventListener("load", (function() {
+                            if ("text" === responseType) try {
+                                resolve(JSON.parse(request.responseText));
+                            } catch (e) {
+                                resolve(request.responseText);
+                            } else resolve(request.response);
+                        }));
+                        request.addEventListener("error", (function() {
+                            throw new Error(request.status);
+                        }));
+                        request.open("GET", url, true);
+                        request.responseType = responseType;
+                        request.send();
+                    } catch (e) {
+                        reject(e);
+                    }
+                }));
+            }
+            function loadSprite(url, id) {
+                if (!is$1.string(url)) return;
+                var prefix = "cache";
+                var hasId = is$1.string(id);
+                var isCached = false;
+                var exists = function exists() {
+                    return null !== document.getElementById(id);
+                };
+                var update = function update(container, data) {
+                    container.innerHTML = data;
+                    if (hasId && exists()) return;
+                    document.body.insertAdjacentElement("afterbegin", container);
+                };
+                if (!hasId || !exists()) {
+                    var useStorage = Storage.supported;
+                    var container = document.createElement("div");
+                    container.setAttribute("hidden", "");
+                    if (hasId) container.setAttribute("id", id);
+                    if (useStorage) {
+                        var cached = window.localStorage.getItem("".concat(prefix, "-").concat(id));
+                        isCached = null !== cached;
+                        if (isCached) {
+                            var data = JSON.parse(cached);
+                            update(container, data.content);
+                        }
+                    }
+                    fetch(url).then((function(result) {
+                        if (is$1.empty(result)) return;
+                        if (useStorage) window.localStorage.setItem("".concat(prefix, "-").concat(id), JSON.stringify({
+                            content: result
+                        }));
+                        update(container, result);
+                    })).catch((function() {}));
+                }
+            }
+            var getHours = function getHours(value) {
+                return Math.trunc(value / 60 / 60 % 60, 10);
+            };
+            var getMinutes = function getMinutes(value) {
+                return Math.trunc(value / 60 % 60, 10);
+            };
+            var getSeconds = function getSeconds(value) {
+                return Math.trunc(value % 60, 10);
+            };
+            function formatTime() {
+                var time = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0;
+                var displayHours = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : false;
+                var inverted = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : false;
+                if (!is$1.number(time)) return formatTime(void 0, displayHours, inverted);
+                var format = function format(value) {
+                    return "0".concat(value).slice(-2);
+                };
+                var hours = getHours(time);
+                var mins = getMinutes(time);
+                var secs = getSeconds(time);
+                if (displayHours || hours > 0) hours = "".concat(hours, ":"); else hours = "";
+                return "".concat(inverted && time > 0 ? "-" : "").concat(hours).concat(format(mins), ":").concat(format(secs));
+            }
+            var controls = {
+                getIconUrl: function getIconUrl() {
+                    var url = new URL(this.config.iconUrl, window.location);
+                    var cors = url.host !== window.location.host || browser.isIE && !window.svg4everybody;
+                    return {
+                        url: this.config.iconUrl,
+                        cors
+                    };
+                },
+                findElements: function findElements() {
+                    try {
+                        this.elements.controls = getElement.call(this, this.config.selectors.controls.wrapper);
+                        this.elements.buttons = {
+                            play: getElements.call(this, this.config.selectors.buttons.play),
+                            pause: getElement.call(this, this.config.selectors.buttons.pause),
+                            restart: getElement.call(this, this.config.selectors.buttons.restart),
+                            rewind: getElement.call(this, this.config.selectors.buttons.rewind),
+                            fastForward: getElement.call(this, this.config.selectors.buttons.fastForward),
+                            mute: getElement.call(this, this.config.selectors.buttons.mute),
+                            pip: getElement.call(this, this.config.selectors.buttons.pip),
+                            airplay: getElement.call(this, this.config.selectors.buttons.airplay),
+                            settings: getElement.call(this, this.config.selectors.buttons.settings),
+                            captions: getElement.call(this, this.config.selectors.buttons.captions),
+                            fullscreen: getElement.call(this, this.config.selectors.buttons.fullscreen)
+                        };
+                        this.elements.progress = getElement.call(this, this.config.selectors.progress);
+                        this.elements.inputs = {
+                            seek: getElement.call(this, this.config.selectors.inputs.seek),
+                            volume: getElement.call(this, this.config.selectors.inputs.volume)
+                        };
+                        this.elements.display = {
+                            buffer: getElement.call(this, this.config.selectors.display.buffer),
+                            currentTime: getElement.call(this, this.config.selectors.display.currentTime),
+                            duration: getElement.call(this, this.config.selectors.display.duration)
+                        };
+                        if (is$1.element(this.elements.progress)) this.elements.display.seekTooltip = this.elements.progress.querySelector(".".concat(this.config.classNames.tooltip));
+                        return true;
+                    } catch (error) {
+                        this.debug.warn("It looks like there is a problem with your custom controls HTML", error);
+                        this.toggleNativeControls(true);
+                        return false;
+                    }
+                },
+                createIcon: function createIcon(type, attributes) {
+                    var namespace = "http://www.w3.org/2000/svg";
+                    var iconUrl = controls.getIconUrl.call(this);
+                    var iconPath = "".concat(!iconUrl.cors ? iconUrl.url : "", "#").concat(this.config.iconPrefix);
+                    var icon = document.createElementNS(namespace, "svg");
+                    setAttributes(icon, extend(attributes, {
+                        "aria-hidden": "true",
+                        focusable: "false"
+                    }));
+                    var use = document.createElementNS(namespace, "use");
+                    var path = "".concat(iconPath, "-").concat(type);
+                    if ("href" in use) use.setAttributeNS("http://www.w3.org/1999/xlink", "href", path);
+                    use.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", path);
+                    icon.appendChild(use);
+                    return icon;
+                },
+                createLabel: function createLabel(key) {
+                    var attr = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+                    var text = i18n.get(key, this.config);
+                    var attributes = _objectSpread2(_objectSpread2({}, attr), {}, {
+                        class: [ attr.class, this.config.classNames.hidden ].filter(Boolean).join(" ")
+                    });
+                    return createElement("span", attributes, text);
+                },
+                createBadge: function createBadge(text) {
+                    if (is$1.empty(text)) return null;
+                    var badge = createElement("span", {
+                        class: this.config.classNames.menu.value
+                    });
+                    badge.appendChild(createElement("span", {
+                        class: this.config.classNames.menu.badge
+                    }, text));
+                    return badge;
+                },
+                createButton: function createButton(buttonType, attr) {
+                    var _this = this;
+                    var attributes = extend({}, attr);
+                    var type = toCamelCase(buttonType);
+                    var props = {
+                        element: "button",
+                        toggle: false,
+                        label: null,
+                        icon: null,
+                        labelPressed: null,
+                        iconPressed: null
+                    };
+                    [ "element", "icon", "label" ].forEach((function(key) {
+                        if (Object.keys(attributes).includes(key)) {
+                            props[key] = attributes[key];
+                            delete attributes[key];
+                        }
+                    }));
+                    if ("button" === props.element && !Object.keys(attributes).includes("type")) attributes.type = "button";
+                    if (Object.keys(attributes).includes("class")) {
+                        if (!attributes.class.split(" ").some((function(c) {
+                            return c === _this.config.classNames.control;
+                        }))) extend(attributes, {
+                            class: "".concat(attributes.class, " ").concat(this.config.classNames.control)
+                        });
+                    } else attributes.class = this.config.classNames.control;
+                    switch (buttonType) {
+                      case "play":
+                        props.toggle = true;
+                        props.label = "play";
+                        props.labelPressed = "pause";
+                        props.icon = "play";
+                        props.iconPressed = "pause";
+                        break;
+
+                      case "mute":
+                        props.toggle = true;
+                        props.label = "mute";
+                        props.labelPressed = "unmute";
+                        props.icon = "volume";
+                        props.iconPressed = "muted";
+                        break;
+
+                      case "captions":
+                        props.toggle = true;
+                        props.label = "enableCaptions";
+                        props.labelPressed = "disableCaptions";
+                        props.icon = "captions-off";
+                        props.iconPressed = "captions-on";
+                        break;
+
+                      case "fullscreen":
+                        props.toggle = true;
+                        props.label = "enterFullscreen";
+                        props.labelPressed = "exitFullscreen";
+                        props.icon = "enter-fullscreen";
+                        props.iconPressed = "exit-fullscreen";
+                        break;
+
+                      case "play-large":
+                        attributes.class += " ".concat(this.config.classNames.control, "--overlaid");
+                        type = "play";
+                        props.label = "play";
+                        props.icon = "play";
+                        break;
+
+                      default:
+                        if (is$1.empty(props.label)) props.label = type;
+                        if (is$1.empty(props.icon)) props.icon = buttonType;
+                    }
+                    var button = createElement(props.element);
+                    if (props.toggle) {
+                        button.appendChild(controls.createIcon.call(this, props.iconPressed, {
+                            class: "icon--pressed"
+                        }));
+                        button.appendChild(controls.createIcon.call(this, props.icon, {
+                            class: "icon--not-pressed"
+                        }));
+                        button.appendChild(controls.createLabel.call(this, props.labelPressed, {
+                            class: "label--pressed"
+                        }));
+                        button.appendChild(controls.createLabel.call(this, props.label, {
+                            class: "label--not-pressed"
+                        }));
+                    } else {
+                        button.appendChild(controls.createIcon.call(this, props.icon));
+                        button.appendChild(controls.createLabel.call(this, props.label));
+                    }
+                    extend(attributes, getAttributesFromSelector(this.config.selectors.buttons[type], attributes));
+                    setAttributes(button, attributes);
+                    if ("play" === type) {
+                        if (!is$1.array(this.elements.buttons[type])) this.elements.buttons[type] = [];
+                        this.elements.buttons[type].push(button);
+                    } else this.elements.buttons[type] = button;
+                    return button;
+                },
+                createRange: function createRange(type, attributes) {
+                    var input = createElement("input", extend(getAttributesFromSelector(this.config.selectors.inputs[type]), {
+                        type: "range",
+                        min: 0,
+                        max: 100,
+                        step: .01,
+                        value: 0,
+                        autocomplete: "off",
+                        role: "slider",
+                        "aria-label": i18n.get(type, this.config),
+                        "aria-valuemin": 0,
+                        "aria-valuemax": 100,
+                        "aria-valuenow": 0
+                    }, attributes));
+                    this.elements.inputs[type] = input;
+                    controls.updateRangeFill.call(this, input);
+                    RangeTouch.setup(input);
+                    return input;
+                },
+                createProgress: function createProgress(type, attributes) {
+                    var progress = createElement("progress", extend(getAttributesFromSelector(this.config.selectors.display[type]), {
+                        min: 0,
+                        max: 100,
+                        value: 0,
+                        role: "progressbar",
+                        "aria-hidden": true
+                    }, attributes));
+                    if ("volume" !== type) {
+                        progress.appendChild(createElement("span", null, "0"));
+                        var suffixKey = {
+                            played: "played",
+                            buffer: "buffered"
+                        }[type];
+                        var suffix = suffixKey ? i18n.get(suffixKey, this.config) : "";
+                        progress.innerText = "% ".concat(suffix.toLowerCase());
+                    }
+                    this.elements.display[type] = progress;
+                    return progress;
+                },
+                createTime: function createTime(type, attrs) {
+                    var attributes = getAttributesFromSelector(this.config.selectors.display[type], attrs);
+                    var container = createElement("div", extend(attributes, {
+                        class: "".concat(attributes.class ? attributes.class : "", " ").concat(this.config.classNames.display.time, " ").trim(),
+                        "aria-label": i18n.get(type, this.config)
+                    }), "00:00");
+                    this.elements.display[type] = container;
+                    return container;
+                },
+                bindMenuItemShortcuts: function bindMenuItemShortcuts(menuItem, type) {
+                    var _this2 = this;
+                    on.call(this, menuItem, "keydown keyup", (function(event) {
+                        if (![ 32, 38, 39, 40 ].includes(event.which)) return;
+                        event.preventDefault();
+                        event.stopPropagation();
+                        if ("keydown" === event.type) return;
+                        var isRadioButton = matches$1(menuItem, '[role="menuitemradio"]');
+                        if (!isRadioButton && [ 32, 39 ].includes(event.which)) controls.showMenuPanel.call(_this2, type, true); else {
+                            var target;
+                            if (32 !== event.which) {
+                                if (40 === event.which || isRadioButton && 39 === event.which) {
+                                    target = menuItem.nextElementSibling;
+                                    if (!is$1.element(target)) target = menuItem.parentNode.firstElementChild;
+                                } else {
+                                    target = menuItem.previousElementSibling;
+                                    if (!is$1.element(target)) target = menuItem.parentNode.lastElementChild;
+                                }
+                                setFocus.call(_this2, target, true);
+                            }
+                        }
+                    }), false);
+                    on.call(this, menuItem, "keyup", (function(event) {
+                        if (13 !== event.which) return;
+                        controls.focusFirstMenuItem.call(_this2, null, true);
+                    }));
+                },
+                createMenuItem: function createMenuItem(_ref) {
+                    var _this3 = this;
+                    var value = _ref.value, list = _ref.list, type = _ref.type, title = _ref.title, _ref$badge = _ref.badge, badge = void 0 === _ref$badge ? null : _ref$badge, _ref$checked = _ref.checked, checked = void 0 === _ref$checked ? false : _ref$checked;
+                    var attributes = getAttributesFromSelector(this.config.selectors.inputs[type]);
+                    var menuItem = createElement("button", extend(attributes, {
+                        type: "button",
+                        role: "menuitemradio",
+                        class: "".concat(this.config.classNames.control, " ").concat(attributes.class ? attributes.class : "").trim(),
+                        "aria-checked": checked,
+                        value
+                    }));
+                    var flex = createElement("span");
+                    flex.innerHTML = title;
+                    if (is$1.element(badge)) flex.appendChild(badge);
+                    menuItem.appendChild(flex);
+                    Object.defineProperty(menuItem, "checked", {
+                        enumerable: true,
+                        get: function get() {
+                            return "true" === menuItem.getAttribute("aria-checked");
+                        },
+                        set: function set(check) {
+                            if (check) Array.from(menuItem.parentNode.children).filter((function(node) {
+                                return matches$1(node, '[role="menuitemradio"]');
+                            })).forEach((function(node) {
+                                return node.setAttribute("aria-checked", "false");
+                            }));
+                            menuItem.setAttribute("aria-checked", check ? "true" : "false");
+                        }
+                    });
+                    this.listeners.bind(menuItem, "click keyup", (function(event) {
+                        if (is$1.keyboardEvent(event) && 32 !== event.which) return;
+                        event.preventDefault();
+                        event.stopPropagation();
+                        menuItem.checked = true;
+                        switch (type) {
+                          case "language":
+                            _this3.currentTrack = Number(value);
+                            break;
+
+                          case "quality":
+                            _this3.quality = value;
+                            break;
+
+                          case "speed":
+                            _this3.speed = parseFloat(value);
+                            break;
+                        }
+                        controls.showMenuPanel.call(_this3, "home", is$1.keyboardEvent(event));
+                    }), type, false);
+                    controls.bindMenuItemShortcuts.call(this, menuItem, type);
+                    list.appendChild(menuItem);
+                },
+                formatTime: function formatTime$1() {
+                    var time = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0;
+                    var inverted = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : false;
+                    if (!is$1.number(time)) return time;
+                    var forceHours = getHours(this.duration) > 0;
+                    return formatTime(time, forceHours, inverted);
+                },
+                updateTimeDisplay: function updateTimeDisplay() {
+                    var target = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null;
+                    var time = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0;
+                    var inverted = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : false;
+                    if (!is$1.element(target) || !is$1.number(time)) return;
+                    target.innerText = controls.formatTime(time, inverted);
+                },
+                updateVolume: function updateVolume() {
+                    if (!this.supported.ui) return;
+                    if (is$1.element(this.elements.inputs.volume)) controls.setRange.call(this, this.elements.inputs.volume, this.muted ? 0 : this.volume);
+                    if (is$1.element(this.elements.buttons.mute)) this.elements.buttons.mute.pressed = this.muted || 0 === this.volume;
+                },
+                setRange: function setRange(target) {
+                    var value = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0;
+                    if (!is$1.element(target)) return;
+                    target.value = value;
+                    controls.updateRangeFill.call(this, target);
+                },
+                updateProgress: function updateProgress(event) {
+                    var _this4 = this;
+                    if (!this.supported.ui || !is$1.event(event)) return;
+                    var value = 0;
+                    var setProgress = function setProgress(target, input) {
+                        var val = is$1.number(input) ? input : 0;
+                        var progress = is$1.element(target) ? target : _this4.elements.display.buffer;
+                        if (is$1.element(progress)) {
+                            progress.value = val;
+                            var label = progress.getElementsByTagName("span")[0];
+                            if (is$1.element(label)) label.childNodes[0].nodeValue = val;
+                        }
+                    };
+                    if (event) switch (event.type) {
+                      case "timeupdate":
+                      case "seeking":
+                      case "seeked":
+                        value = getPercentage(this.currentTime, this.duration);
+                        if ("timeupdate" === event.type) controls.setRange.call(this, this.elements.inputs.seek, value);
+                        break;
+
+                      case "playing":
+                      case "progress":
+                        setProgress(this.elements.display.buffer, 100 * this.buffered);
+                        break;
+                    }
+                },
+                updateRangeFill: function updateRangeFill(target) {
+                    var range = is$1.event(target) ? target.target : target;
+                    if (!is$1.element(range) || "range" !== range.getAttribute("type")) return;
+                    if (matches$1(range, this.config.selectors.inputs.seek)) {
+                        range.setAttribute("aria-valuenow", this.currentTime);
+                        var currentTime = controls.formatTime(this.currentTime);
+                        var duration = controls.formatTime(this.duration);
+                        var format = i18n.get("seekLabel", this.config);
+                        range.setAttribute("aria-valuetext", format.replace("{currentTime}", currentTime).replace("{duration}", duration));
+                    } else if (matches$1(range, this.config.selectors.inputs.volume)) {
+                        var percent = 100 * range.value;
+                        range.setAttribute("aria-valuenow", percent);
+                        range.setAttribute("aria-valuetext", "".concat(percent.toFixed(1), "%"));
+                    } else range.setAttribute("aria-valuenow", range.value);
+                    if (!browser.isWebkit) return;
+                    range.style.setProperty("--value", "".concat(range.value / range.max * 100, "%"));
+                },
+                updateSeekTooltip: function updateSeekTooltip(event) {
+                    var _this5 = this;
+                    if (!this.config.tooltips.seek || !is$1.element(this.elements.inputs.seek) || !is$1.element(this.elements.display.seekTooltip) || 0 === this.duration) return;
+                    var visible = "".concat(this.config.classNames.tooltip, "--visible");
+                    var toggle = function toggle(show) {
+                        return toggleClass(_this5.elements.display.seekTooltip, visible, show);
+                    };
+                    if (this.touch) {
+                        toggle(false);
+                        return;
+                    }
+                    var percent = 0;
+                    var clientRect = this.elements.progress.getBoundingClientRect();
+                    if (is$1.event(event)) percent = 100 / clientRect.width * (event.pageX - clientRect.left); else if (hasClass(this.elements.display.seekTooltip, visible)) percent = parseFloat(this.elements.display.seekTooltip.style.left, 10); else return;
+                    if (percent < 0) percent = 0; else if (percent > 100) percent = 100;
+                    controls.updateTimeDisplay.call(this, this.elements.display.seekTooltip, this.duration / 100 * percent);
+                    this.elements.display.seekTooltip.style.left = "".concat(percent, "%");
+                    if (is$1.event(event) && [ "mouseenter", "mouseleave" ].includes(event.type)) toggle("mouseenter" === event.type);
+                },
+                timeUpdate: function timeUpdate(event) {
+                    var invert = !is$1.element(this.elements.display.duration) && this.config.invertTime;
+                    controls.updateTimeDisplay.call(this, this.elements.display.currentTime, invert ? this.duration - this.currentTime : this.currentTime, invert);
+                    if (event && "timeupdate" === event.type && this.media.seeking) return;
+                    controls.updateProgress.call(this, event);
+                },
+                durationUpdate: function durationUpdate() {
+                    if (!this.supported.ui || !this.config.invertTime && this.currentTime) return;
+                    if (this.duration >= Math.pow(2, 32)) {
+                        toggleHidden(this.elements.display.currentTime, true);
+                        toggleHidden(this.elements.progress, true);
+                        return;
+                    }
+                    if (is$1.element(this.elements.inputs.seek)) this.elements.inputs.seek.setAttribute("aria-valuemax", this.duration);
+                    var hasDuration = is$1.element(this.elements.display.duration);
+                    if (!hasDuration && this.config.displayDuration && this.paused) controls.updateTimeDisplay.call(this, this.elements.display.currentTime, this.duration);
+                    if (hasDuration) controls.updateTimeDisplay.call(this, this.elements.display.duration, this.duration);
+                    controls.updateSeekTooltip.call(this);
+                },
+                toggleMenuButton: function toggleMenuButton(setting, toggle) {
+                    toggleHidden(this.elements.settings.buttons[setting], !toggle);
+                },
+                updateSetting: function updateSetting(setting, container, input) {
+                    var pane = this.elements.settings.panels[setting];
+                    var value = null;
+                    var list = container;
+                    if ("captions" === setting) value = this.currentTrack; else {
+                        value = !is$1.empty(input) ? input : this[setting];
+                        if (is$1.empty(value)) value = this.config[setting].default;
+                        if (!is$1.empty(this.options[setting]) && !this.options[setting].includes(value)) {
+                            this.debug.warn("Unsupported value of '".concat(value, "' for ").concat(setting));
+                            return;
+                        }
+                        if (!this.config[setting].options.includes(value)) {
+                            this.debug.warn("Disabled value of '".concat(value, "' for ").concat(setting));
+                            return;
+                        }
+                    }
+                    if (!is$1.element(list)) list = pane && pane.querySelector('[role="menu"]');
+                    if (!is$1.element(list)) return;
+                    var label = this.elements.settings.buttons[setting].querySelector(".".concat(this.config.classNames.menu.value));
+                    label.innerHTML = controls.getLabel.call(this, setting, value);
+                    var target = list && list.querySelector('[value="'.concat(value, '"]'));
+                    if (is$1.element(target)) target.checked = true;
+                },
+                getLabel: function getLabel(setting, value) {
+                    switch (setting) {
+                      case "speed":
+                        return 1 === value ? i18n.get("normal", this.config) : "".concat(value, "&times;");
+
+                      case "quality":
+                        if (is$1.number(value)) {
+                            var label = i18n.get("qualityLabel.".concat(value), this.config);
+                            if (!label.length) return "".concat(value, "p");
+                            return label;
+                        }
+                        return toTitleCase(value);
+
+                      case "captions":
+                        return captions.getLabel.call(this);
+
+                      default:
+                        return null;
+                    }
+                },
+                setQualityMenu: function setQualityMenu(options) {
+                    var _this6 = this;
+                    if (!is$1.element(this.elements.settings.panels.quality)) return;
+                    var type = "quality";
+                    var list = this.elements.settings.panels.quality.querySelector('[role="menu"]');
+                    if (is$1.array(options)) this.options.quality = dedupe(options).filter((function(quality) {
+                        return _this6.config.quality.options.includes(quality);
+                    }));
+                    var toggle = !is$1.empty(this.options.quality) && this.options.quality.length > 1;
+                    controls.toggleMenuButton.call(this, type, toggle);
+                    emptyElement(list);
+                    controls.checkMenu.call(this);
+                    if (!toggle) return;
+                    var getBadge = function getBadge(quality) {
+                        var label = i18n.get("qualityBadge.".concat(quality), _this6.config);
+                        if (!label.length) return null;
+                        return controls.createBadge.call(_this6, label);
+                    };
+                    this.options.quality.sort((function(a, b) {
+                        var sorting = _this6.config.quality.options;
+                        return sorting.indexOf(a) > sorting.indexOf(b) ? 1 : -1;
+                    })).forEach((function(quality) {
+                        controls.createMenuItem.call(_this6, {
+                            value: quality,
+                            list,
+                            type,
+                            title: controls.getLabel.call(_this6, "quality", quality),
+                            badge: getBadge(quality)
+                        });
+                    }));
+                    controls.updateSetting.call(this, type, list);
+                },
+                setCaptionsMenu: function setCaptionsMenu() {
+                    var _this7 = this;
+                    if (!is$1.element(this.elements.settings.panels.captions)) return;
+                    var type = "captions";
+                    var list = this.elements.settings.panels.captions.querySelector('[role="menu"]');
+                    var tracks = captions.getTracks.call(this);
+                    var toggle = Boolean(tracks.length);
+                    controls.toggleMenuButton.call(this, type, toggle);
+                    emptyElement(list);
+                    controls.checkMenu.call(this);
+                    if (!toggle) return;
+                    var options = tracks.map((function(track, value) {
+                        return {
+                            value,
+                            checked: _this7.captions.toggled && _this7.currentTrack === value,
+                            title: captions.getLabel.call(_this7, track),
+                            badge: track.language && controls.createBadge.call(_this7, track.language.toUpperCase()),
+                            list,
+                            type: "language"
+                        };
+                    }));
+                    options.unshift({
+                        value: -1,
+                        checked: !this.captions.toggled,
+                        title: i18n.get("disabled", this.config),
+                        list,
+                        type: "language"
+                    });
+                    options.forEach(controls.createMenuItem.bind(this));
+                    controls.updateSetting.call(this, type, list);
+                },
+                setSpeedMenu: function setSpeedMenu() {
+                    var _this8 = this;
+                    if (!is$1.element(this.elements.settings.panels.speed)) return;
+                    var type = "speed";
+                    var list = this.elements.settings.panels.speed.querySelector('[role="menu"]');
+                    this.options.speed = this.options.speed.filter((function(o) {
+                        return o >= _this8.minimumSpeed && o <= _this8.maximumSpeed;
+                    }));
+                    var toggle = !is$1.empty(this.options.speed) && this.options.speed.length > 1;
+                    controls.toggleMenuButton.call(this, type, toggle);
+                    emptyElement(list);
+                    controls.checkMenu.call(this);
+                    if (!toggle) return;
+                    this.options.speed.forEach((function(speed) {
+                        controls.createMenuItem.call(_this8, {
+                            value: speed,
+                            list,
+                            type,
+                            title: controls.getLabel.call(_this8, "speed", speed)
+                        });
+                    }));
+                    controls.updateSetting.call(this, type, list);
+                },
+                checkMenu: function checkMenu() {
+                    var buttons = this.elements.settings.buttons;
+                    var visible = !is$1.empty(buttons) && Object.values(buttons).some((function(button) {
+                        return !button.hidden;
+                    }));
+                    toggleHidden(this.elements.settings.menu, !visible);
+                },
+                focusFirstMenuItem: function focusFirstMenuItem(pane) {
+                    var tabFocus = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : false;
+                    if (this.elements.settings.popup.hidden) return;
+                    var target = pane;
+                    if (!is$1.element(target)) target = Object.values(this.elements.settings.panels).find((function(p) {
+                        return !p.hidden;
+                    }));
+                    var firstItem = target.querySelector('[role^="menuitem"]');
+                    setFocus.call(this, firstItem, tabFocus);
+                },
+                toggleMenu: function toggleMenu(input) {
+                    var popup = this.elements.settings.popup;
+                    var button = this.elements.buttons.settings;
+                    if (!is$1.element(popup) || !is$1.element(button)) return;
+                    var hidden = popup.hidden;
+                    var show = hidden;
+                    if (is$1.boolean(input)) show = input; else if (is$1.keyboardEvent(input) && 27 === input.which) show = false; else if (is$1.event(input)) {
+                        var target = is$1.function(input.composedPath) ? input.composedPath()[0] : input.target;
+                        var isMenuItem = popup.contains(target);
+                        if (isMenuItem || !isMenuItem && input.target !== button && show) return;
+                    }
+                    button.setAttribute("aria-expanded", show);
+                    toggleHidden(popup, !show);
+                    toggleClass(this.elements.container, this.config.classNames.menu.open, show);
+                    if (show && is$1.keyboardEvent(input)) controls.focusFirstMenuItem.call(this, null, true); else if (!show && !hidden) setFocus.call(this, button, is$1.keyboardEvent(input));
+                },
+                getMenuSize: function getMenuSize(tab) {
+                    var clone = tab.cloneNode(true);
+                    clone.style.position = "absolute";
+                    clone.style.opacity = 0;
+                    clone.removeAttribute("hidden");
+                    tab.parentNode.appendChild(clone);
+                    var width = clone.scrollWidth;
+                    var height = clone.scrollHeight;
+                    removeElement(clone);
+                    return {
+                        width,
+                        height
+                    };
+                },
+                showMenuPanel: function showMenuPanel() {
+                    var _this9 = this;
+                    var type = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+                    var tabFocus = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : false;
+                    var target = this.elements.container.querySelector("#plyr-settings-".concat(this.id, "-").concat(type));
+                    if (!is$1.element(target)) return;
+                    var container = target.parentNode;
+                    var current = Array.from(container.children).find((function(node) {
+                        return !node.hidden;
+                    }));
+                    if (support.transitions && !support.reducedMotion) {
+                        container.style.width = "".concat(current.scrollWidth, "px");
+                        container.style.height = "".concat(current.scrollHeight, "px");
+                        var size = controls.getMenuSize.call(this, target);
+                        var restore = function restore(event) {
+                            if (event.target !== container || ![ "width", "height" ].includes(event.propertyName)) return;
+                            container.style.width = "";
+                            container.style.height = "";
+                            off.call(_this9, container, transitionEndEvent, restore);
+                        };
+                        on.call(this, container, transitionEndEvent, restore);
+                        container.style.width = "".concat(size.width, "px");
+                        container.style.height = "".concat(size.height, "px");
+                    }
+                    toggleHidden(current, true);
+                    toggleHidden(target, false);
+                    controls.focusFirstMenuItem.call(this, target, tabFocus);
+                },
+                setDownloadUrl: function setDownloadUrl() {
+                    var button = this.elements.buttons.download;
+                    if (!is$1.element(button)) return;
+                    button.setAttribute("href", this.download);
+                },
+                create: function create(data) {
+                    var _this10 = this;
+                    var bindMenuItemShortcuts = controls.bindMenuItemShortcuts, createButton = controls.createButton, createProgress = controls.createProgress, createRange = controls.createRange, createTime = controls.createTime, setQualityMenu = controls.setQualityMenu, setSpeedMenu = controls.setSpeedMenu, showMenuPanel = controls.showMenuPanel;
+                    this.elements.controls = null;
+                    if (is$1.array(this.config.controls) && this.config.controls.includes("play-large")) this.elements.container.appendChild(createButton.call(this, "play-large"));
+                    var container = createElement("div", getAttributesFromSelector(this.config.selectors.controls.wrapper));
+                    this.elements.controls = container;
+                    var defaultAttributes = {
+                        class: "plyr__controls__item"
+                    };
+                    dedupe(is$1.array(this.config.controls) ? this.config.controls : []).forEach((function(control) {
+                        if ("restart" === control) container.appendChild(createButton.call(_this10, "restart", defaultAttributes));
+                        if ("rewind" === control) container.appendChild(createButton.call(_this10, "rewind", defaultAttributes));
+                        if ("play" === control) container.appendChild(createButton.call(_this10, "play", defaultAttributes));
+                        if ("fast-forward" === control) container.appendChild(createButton.call(_this10, "fast-forward", defaultAttributes));
+                        if ("progress" === control) {
+                            var progressContainer = createElement("div", {
+                                class: "".concat(defaultAttributes.class, " plyr__progress__container")
+                            });
+                            var progress = createElement("div", getAttributesFromSelector(_this10.config.selectors.progress));
+                            progress.appendChild(createRange.call(_this10, "seek", {
+                                id: "plyr-seek-".concat(data.id)
+                            }));
+                            progress.appendChild(createProgress.call(_this10, "buffer"));
+                            if (_this10.config.tooltips.seek) {
+                                var tooltip = createElement("span", {
+                                    class: _this10.config.classNames.tooltip
+                                }, "00:00");
+                                progress.appendChild(tooltip);
+                                _this10.elements.display.seekTooltip = tooltip;
+                            }
+                            _this10.elements.progress = progress;
+                            progressContainer.appendChild(_this10.elements.progress);
+                            container.appendChild(progressContainer);
+                        }
+                        if ("current-time" === control) container.appendChild(createTime.call(_this10, "currentTime", defaultAttributes));
+                        if ("duration" === control) container.appendChild(createTime.call(_this10, "duration", defaultAttributes));
+                        if ("mute" === control || "volume" === control) {
+                            var volume = _this10.elements.volume;
+                            if (!is$1.element(volume) || !container.contains(volume)) {
+                                volume = createElement("div", extend({}, defaultAttributes, {
+                                    class: "".concat(defaultAttributes.class, " plyr__volume").trim()
+                                }));
+                                _this10.elements.volume = volume;
+                                container.appendChild(volume);
+                            }
+                            if ("mute" === control) volume.appendChild(createButton.call(_this10, "mute"));
+                            if ("volume" === control && !browser.isIos) {
+                                var attributes = {
+                                    max: 1,
+                                    step: .05,
+                                    value: _this10.config.volume
+                                };
+                                volume.appendChild(createRange.call(_this10, "volume", extend(attributes, {
+                                    id: "plyr-volume-".concat(data.id)
+                                })));
+                            }
+                        }
+                        if ("captions" === control) container.appendChild(createButton.call(_this10, "captions", defaultAttributes));
+                        if ("settings" === control && !is$1.empty(_this10.config.settings)) {
+                            var wrapper = createElement("div", extend({}, defaultAttributes, {
+                                class: "".concat(defaultAttributes.class, " plyr__menu").trim(),
+                                hidden: ""
+                            }));
+                            wrapper.appendChild(createButton.call(_this10, "settings", {
+                                "aria-haspopup": true,
+                                "aria-controls": "plyr-settings-".concat(data.id),
+                                "aria-expanded": false
+                            }));
+                            var popup = createElement("div", {
+                                class: "plyr__menu__container",
+                                id: "plyr-settings-".concat(data.id),
+                                hidden: ""
+                            });
+                            var inner = createElement("div");
+                            var home = createElement("div", {
+                                id: "plyr-settings-".concat(data.id, "-home")
+                            });
+                            var menu = createElement("div", {
+                                role: "menu"
+                            });
+                            home.appendChild(menu);
+                            inner.appendChild(home);
+                            _this10.elements.settings.panels.home = home;
+                            _this10.config.settings.forEach((function(type) {
+                                var menuItem = createElement("button", extend(getAttributesFromSelector(_this10.config.selectors.buttons.settings), {
+                                    type: "button",
+                                    class: "".concat(_this10.config.classNames.control, " ").concat(_this10.config.classNames.control, "--forward"),
+                                    role: "menuitem",
+                                    "aria-haspopup": true,
+                                    hidden: ""
+                                }));
+                                bindMenuItemShortcuts.call(_this10, menuItem, type);
+                                on.call(_this10, menuItem, "click", (function() {
+                                    showMenuPanel.call(_this10, type, false);
+                                }));
+                                var flex = createElement("span", null, i18n.get(type, _this10.config));
+                                var value = createElement("span", {
+                                    class: _this10.config.classNames.menu.value
+                                });
+                                value.innerHTML = data[type];
+                                flex.appendChild(value);
+                                menuItem.appendChild(flex);
+                                menu.appendChild(menuItem);
+                                var pane = createElement("div", {
+                                    id: "plyr-settings-".concat(data.id, "-").concat(type),
+                                    hidden: ""
+                                });
+                                var backButton = createElement("button", {
+                                    type: "button",
+                                    class: "".concat(_this10.config.classNames.control, " ").concat(_this10.config.classNames.control, "--back")
+                                });
+                                backButton.appendChild(createElement("span", {
+                                    "aria-hidden": true
+                                }, i18n.get(type, _this10.config)));
+                                backButton.appendChild(createElement("span", {
+                                    class: _this10.config.classNames.hidden
+                                }, i18n.get("menuBack", _this10.config)));
+                                on.call(_this10, pane, "keydown", (function(event) {
+                                    if (37 !== event.which) return;
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                    showMenuPanel.call(_this10, "home", true);
+                                }), false);
+                                on.call(_this10, backButton, "click", (function() {
+                                    showMenuPanel.call(_this10, "home", false);
+                                }));
+                                pane.appendChild(backButton);
+                                pane.appendChild(createElement("div", {
+                                    role: "menu"
+                                }));
+                                inner.appendChild(pane);
+                                _this10.elements.settings.buttons[type] = menuItem;
+                                _this10.elements.settings.panels[type] = pane;
+                            }));
+                            popup.appendChild(inner);
+                            wrapper.appendChild(popup);
+                            container.appendChild(wrapper);
+                            _this10.elements.settings.popup = popup;
+                            _this10.elements.settings.menu = wrapper;
+                        }
+                        if ("pip" === control && support.pip) container.appendChild(createButton.call(_this10, "pip", defaultAttributes));
+                        if ("airplay" === control && support.airplay) container.appendChild(createButton.call(_this10, "airplay", defaultAttributes));
+                        if ("download" === control) {
+                            var _attributes = extend({}, defaultAttributes, {
+                                element: "a",
+                                href: _this10.download,
+                                target: "_blank"
+                            });
+                            if (_this10.isHTML5) _attributes.download = "";
+                            var download = _this10.config.urls.download;
+                            if (!is$1.url(download) && _this10.isEmbed) extend(_attributes, {
+                                icon: "logo-".concat(_this10.provider),
+                                label: _this10.provider
+                            });
+                            container.appendChild(createButton.call(_this10, "download", _attributes));
+                        }
+                        if ("fullscreen" === control) container.appendChild(createButton.call(_this10, "fullscreen", defaultAttributes));
+                    }));
+                    if (this.isHTML5) setQualityMenu.call(this, html5.getQualityOptions.call(this));
+                    setSpeedMenu.call(this);
+                    return container;
+                },
+                inject: function inject() {
+                    var _this11 = this;
+                    if (this.config.loadSprite) {
+                        var icon = controls.getIconUrl.call(this);
+                        if (icon.cors) loadSprite(icon.url, "sprite-plyr");
+                    }
+                    this.id = Math.floor(1e4 * Math.random());
+                    var container = null;
+                    this.elements.controls = null;
+                    var props = {
+                        id: this.id,
+                        seektime: this.config.seekTime,
+                        title: this.config.title
+                    };
+                    var update = true;
+                    if (is$1.function(this.config.controls)) this.config.controls = this.config.controls.call(this, props);
+                    if (!this.config.controls) this.config.controls = [];
+                    if (is$1.element(this.config.controls) || is$1.string(this.config.controls)) container = this.config.controls; else {
+                        container = controls.create.call(this, {
+                            id: this.id,
+                            seektime: this.config.seekTime,
+                            speed: this.speed,
+                            quality: this.quality,
+                            captions: captions.getLabel.call(this)
+                        });
+                        update = false;
+                    }
+                    var replace = function replace(input) {
+                        var result = input;
+                        Object.entries(props).forEach((function(_ref2) {
+                            var _ref3 = _slicedToArray(_ref2, 2), key = _ref3[0], value = _ref3[1];
+                            result = replaceAll(result, "{".concat(key, "}"), value);
+                        }));
+                        return result;
+                    };
+                    if (update) if (is$1.string(this.config.controls)) container = replace(container);
+                    var target;
+                    if (is$1.string(this.config.selectors.controls.container)) target = document.querySelector(this.config.selectors.controls.container);
+                    if (!is$1.element(target)) target = this.elements.container;
+                    var insertMethod = is$1.element(container) ? "insertAdjacentElement" : "insertAdjacentHTML";
+                    target[insertMethod]("afterbegin", container);
+                    if (!is$1.element(this.elements.controls)) controls.findElements.call(this);
+                    if (!is$1.empty(this.elements.buttons)) {
+                        var addProperty = function addProperty(button) {
+                            var className = _this11.config.classNames.controlPressed;
+                            Object.defineProperty(button, "pressed", {
+                                enumerable: true,
+                                get: function get() {
+                                    return hasClass(button, className);
+                                },
+                                set: function set() {
+                                    var pressed = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : false;
+                                    toggleClass(button, className, pressed);
+                                }
+                            });
+                        };
+                        Object.values(this.elements.buttons).filter(Boolean).forEach((function(button) {
+                            if (is$1.array(button) || is$1.nodeList(button)) Array.from(button).filter(Boolean).forEach(addProperty); else addProperty(button);
+                        }));
+                    }
+                    if (browser.isEdge) repaint(target);
+                    if (this.config.tooltips.controls) {
+                        var _this$config = this.config, classNames = _this$config.classNames, selectors = _this$config.selectors;
+                        var selector = "".concat(selectors.controls.wrapper, " ").concat(selectors.labels, " .").concat(classNames.hidden);
+                        var labels = getElements.call(this, selector);
+                        Array.from(labels).forEach((function(label) {
+                            toggleClass(label, _this11.config.classNames.hidden, false);
+                            toggleClass(label, _this11.config.classNames.tooltip, true);
+                        }));
+                    }
+                }
+            };
+            function parseUrl(input) {
+                var safe = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : true;
+                var url = input;
+                if (safe) {
+                    var parser = document.createElement("a");
+                    parser.href = url;
+                    url = parser.href;
+                }
+                try {
+                    return new URL(url);
+                } catch (e) {
+                    return null;
+                }
+            }
+            function buildUrlParams(input) {
+                var params = new URLSearchParams;
+                if (is$1.object(input)) Object.entries(input).forEach((function(_ref) {
+                    var _ref2 = _slicedToArray(_ref, 2), key = _ref2[0], value = _ref2[1];
+                    params.set(key, value);
+                }));
+                return params;
+            }
+            var captions = {
+                setup: function setup() {
+                    if (!this.supported.ui) return;
+                    if (!this.isVideo || this.isYouTube || this.isHTML5 && !support.textTracks) {
+                        if (is$1.array(this.config.controls) && this.config.controls.includes("settings") && this.config.settings.includes("captions")) controls.setCaptionsMenu.call(this);
+                        return;
+                    }
+                    if (!is$1.element(this.elements.captions)) {
+                        this.elements.captions = createElement("div", getAttributesFromSelector(this.config.selectors.captions));
+                        insertAfter(this.elements.captions, this.elements.wrapper);
+                    }
+                    if (browser.isIE && window.URL) {
+                        var elements = this.media.querySelectorAll("track");
+                        Array.from(elements).forEach((function(track) {
+                            var src = track.getAttribute("src");
+                            var url = parseUrl(src);
+                            if (null !== url && url.hostname !== window.location.href.hostname && [ "http:", "https:" ].includes(url.protocol)) fetch(src, "blob").then((function(blob) {
+                                track.setAttribute("src", window.URL.createObjectURL(blob));
+                            })).catch((function() {
+                                removeElement(track);
+                            }));
+                        }));
+                    }
+                    var browserLanguages = navigator.languages || [ navigator.language || navigator.userLanguage || "en" ];
+                    var languages = dedupe(browserLanguages.map((function(language) {
+                        return language.split("-")[0];
+                    })));
+                    var language = (this.storage.get("language") || this.config.captions.language || "auto").toLowerCase();
+                    if ("auto" === language) {
+                        var _languages = _slicedToArray(languages, 1);
+                        language = _languages[0];
+                    }
+                    var active = this.storage.get("captions");
+                    if (!is$1.boolean(active)) active = this.config.captions.active;
+                    Object.assign(this.captions, {
+                        toggled: false,
+                        active,
+                        language,
+                        languages
+                    });
+                    if (this.isHTML5) {
+                        var trackEvents = this.config.captions.update ? "addtrack removetrack" : "removetrack";
+                        on.call(this, this.media.textTracks, trackEvents, captions.update.bind(this));
+                    }
+                    setTimeout(captions.update.bind(this), 0);
+                },
+                update: function update() {
+                    var _this = this;
+                    var tracks = captions.getTracks.call(this, true);
+                    var _this$captions = this.captions, active = _this$captions.active, language = _this$captions.language, meta = _this$captions.meta, currentTrackNode = _this$captions.currentTrackNode;
+                    var languageExists = Boolean(tracks.find((function(track) {
+                        return track.language === language;
+                    })));
+                    if (this.isHTML5 && this.isVideo) tracks.filter((function(track) {
+                        return !meta.get(track);
+                    })).forEach((function(track) {
+                        _this.debug.log("Track added", track);
+                        meta.set(track, {
+                            default: "showing" === track.mode
+                        });
+                        if ("showing" === track.mode) track.mode = "hidden";
+                        on.call(_this, track, "cuechange", (function() {
+                            return captions.updateCues.call(_this);
+                        }));
+                    }));
+                    if (languageExists && this.language !== language || !tracks.includes(currentTrackNode)) {
+                        captions.setLanguage.call(this, language);
+                        captions.toggle.call(this, active && languageExists);
+                    }
+                    toggleClass(this.elements.container, this.config.classNames.captions.enabled, !is$1.empty(tracks));
+                    if (is$1.array(this.config.controls) && this.config.controls.includes("settings") && this.config.settings.includes("captions")) controls.setCaptionsMenu.call(this);
+                },
+                toggle: function toggle(input) {
+                    var _this2 = this;
+                    var passive = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : true;
+                    if (!this.supported.ui) return;
+                    var toggled = this.captions.toggled;
+                    var activeClass = this.config.classNames.captions.active;
+                    var active = is$1.nullOrUndefined(input) ? !toggled : input;
+                    if (active !== toggled) {
+                        if (!passive) {
+                            this.captions.active = active;
+                            this.storage.set({
+                                captions: active
+                            });
+                        }
+                        if (!this.language && active && !passive) {
+                            var tracks = captions.getTracks.call(this);
+                            var track = captions.findTrack.call(this, [ this.captions.language ].concat(_toConsumableArray(this.captions.languages)), true);
+                            this.captions.language = track.language;
+                            captions.set.call(this, tracks.indexOf(track));
+                            return;
+                        }
+                        if (this.elements.buttons.captions) this.elements.buttons.captions.pressed = active;
+                        toggleClass(this.elements.container, activeClass, active);
+                        this.captions.toggled = active;
+                        controls.updateSetting.call(this, "captions");
+                        triggerEvent.call(this, this.media, active ? "captionsenabled" : "captionsdisabled");
+                    }
+                    setTimeout((function() {
+                        if (active && _this2.captions.toggled) _this2.captions.currentTrackNode.mode = "hidden";
+                    }));
+                },
+                set: function set(index) {
+                    var passive = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : true;
+                    var tracks = captions.getTracks.call(this);
+                    if (-1 === index) {
+                        captions.toggle.call(this, false, passive);
+                        return;
+                    }
+                    if (!is$1.number(index)) {
+                        this.debug.warn("Invalid caption argument", index);
+                        return;
+                    }
+                    if (!(index in tracks)) {
+                        this.debug.warn("Track not found", index);
+                        return;
+                    }
+                    if (this.captions.currentTrack !== index) {
+                        this.captions.currentTrack = index;
+                        var track = tracks[index];
+                        var _ref = track || {}, language = _ref.language;
+                        this.captions.currentTrackNode = track;
+                        controls.updateSetting.call(this, "captions");
+                        if (!passive) {
+                            this.captions.language = language;
+                            this.storage.set({
+                                language
+                            });
+                        }
+                        if (this.isVimeo) this.embed.enableTextTrack(language);
+                        triggerEvent.call(this, this.media, "languagechange");
+                    }
+                    captions.toggle.call(this, true, passive);
+                    if (this.isHTML5 && this.isVideo) captions.updateCues.call(this);
+                },
+                setLanguage: function setLanguage(input) {
+                    var passive = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : true;
+                    if (!is$1.string(input)) {
+                        this.debug.warn("Invalid language argument", input);
+                        return;
+                    }
+                    var language = input.toLowerCase();
+                    this.captions.language = language;
+                    var tracks = captions.getTracks.call(this);
+                    var track = captions.findTrack.call(this, [ language ]);
+                    captions.set.call(this, tracks.indexOf(track), passive);
+                },
+                getTracks: function getTracks() {
+                    var _this3 = this;
+                    var update = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : false;
+                    var tracks = Array.from((this.media || {}).textTracks || []);
+                    return tracks.filter((function(track) {
+                        return !_this3.isHTML5 || update || _this3.captions.meta.has(track);
+                    })).filter((function(track) {
+                        return [ "captions", "subtitles" ].includes(track.kind);
+                    }));
+                },
+                findTrack: function findTrack(languages) {
+                    var _this4 = this;
+                    var force = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : false;
+                    var tracks = captions.getTracks.call(this);
+                    var sortIsDefault = function sortIsDefault(track) {
+                        return Number((_this4.captions.meta.get(track) || {}).default);
+                    };
+                    var sorted = Array.from(tracks).sort((function(a, b) {
+                        return sortIsDefault(b) - sortIsDefault(a);
+                    }));
+                    var track;
+                    languages.every((function(language) {
+                        track = sorted.find((function(t) {
+                            return t.language === language;
+                        }));
+                        return !track;
+                    }));
+                    return track || (force ? sorted[0] : void 0);
+                },
+                getCurrentTrack: function getCurrentTrack() {
+                    return captions.getTracks.call(this)[this.currentTrack];
+                },
+                getLabel: function getLabel(track) {
+                    var currentTrack = track;
+                    if (!is$1.track(currentTrack) && support.textTracks && this.captions.toggled) currentTrack = captions.getCurrentTrack.call(this);
+                    if (is$1.track(currentTrack)) {
+                        if (!is$1.empty(currentTrack.label)) return currentTrack.label;
+                        if (!is$1.empty(currentTrack.language)) return track.language.toUpperCase();
+                        return i18n.get("enabled", this.config);
+                    }
+                    return i18n.get("disabled", this.config);
+                },
+                updateCues: function updateCues(input) {
+                    if (!this.supported.ui) return;
+                    if (!is$1.element(this.elements.captions)) {
+                        this.debug.warn("No captions element to render to");
+                        return;
+                    }
+                    if (!is$1.nullOrUndefined(input) && !Array.isArray(input)) {
+                        this.debug.warn("updateCues: Invalid input", input);
+                        return;
+                    }
+                    var cues = input;
+                    if (!cues) {
+                        var track = captions.getCurrentTrack.call(this);
+                        cues = Array.from((track || {}).activeCues || []).map((function(cue) {
+                            return cue.getCueAsHTML();
+                        })).map(getHTML);
+                    }
+                    var content = cues.map((function(cueText) {
+                        return cueText.trim();
+                    })).join("\n");
+                    var changed = content !== this.elements.captions.innerHTML;
+                    if (changed) {
+                        emptyElement(this.elements.captions);
+                        var caption = createElement("span", getAttributesFromSelector(this.config.selectors.caption));
+                        caption.innerHTML = content;
+                        this.elements.captions.appendChild(caption);
+                        triggerEvent.call(this, this.media, "cuechange");
+                    }
+                }
+            };
+            var defaults$1 = {
+                enabled: true,
+                title: "",
+                debug: false,
+                autoplay: false,
+                autopause: true,
+                playsinline: true,
+                seekTime: 10,
+                volume: 1,
+                muted: false,
+                duration: null,
+                displayDuration: true,
+                invertTime: true,
+                toggleInvert: true,
+                ratio: null,
+                clickToPlay: true,
+                hideControls: true,
+                resetOnEnd: false,
+                disableContextMenu: true,
+                loadSprite: true,
+                iconPrefix: "plyr",
+                iconUrl: "https://cdn.plyr.io/3.6.3/plyr.svg",
+                blankVideo: "https://cdn.plyr.io/static/blank.mp4",
+                quality: {
+                    default: 576,
+                    options: [ 4320, 2880, 2160, 1440, 1080, 720, 576, 480, 360, 240 ],
+                    forced: false,
+                    onChange: null
+                },
+                loop: {
+                    active: false
+                },
+                speed: {
+                    selected: 1,
+                    options: [ .5, .75, 1, 1.25, 1.5, 1.75, 2, 4 ]
+                },
+                keyboard: {
+                    focused: true,
+                    global: false
+                },
+                tooltips: {
+                    controls: false,
+                    seek: true
+                },
+                captions: {
+                    active: false,
+                    language: "auto",
+                    update: false
+                },
+                fullscreen: {
+                    enabled: true,
+                    fallback: true,
+                    iosNative: false
+                },
+                storage: {
+                    enabled: true,
+                    key: "plyr"
+                },
+                controls: [ "play-large", "play", "progress", "current-time", "mute", "volume", "captions", "settings", "pip", "airplay", "fullscreen" ],
+                settings: [ "captions", "quality", "speed" ],
+                i18n: {
+                    restart: "Restart",
+                    rewind: "Rewind {seektime}s",
+                    play: "Play",
+                    pause: "Pause",
+                    fastForward: "Forward {seektime}s",
+                    seek: "Seek",
+                    seekLabel: "{currentTime} of {duration}",
+                    played: "Played",
+                    buffered: "Buffered",
+                    currentTime: "Current time",
+                    duration: "Duration",
+                    volume: "Volume",
+                    mute: "Mute",
+                    unmute: "Unmute",
+                    enableCaptions: "Enable captions",
+                    disableCaptions: "Disable captions",
+                    download: "Download",
+                    enterFullscreen: "Enter fullscreen",
+                    exitFullscreen: "Exit fullscreen",
+                    frameTitle: "Player for {title}",
+                    captions: "Captions",
+                    settings: "Settings",
+                    pip: "PIP",
+                    menuBack: "Go back to previous menu",
+                    speed: "Speed",
+                    normal: "Normal",
+                    quality: "Quality",
+                    loop: "Loop",
+                    start: "Start",
+                    end: "End",
+                    all: "All",
+                    reset: "Reset",
+                    disabled: "Disabled",
+                    enabled: "Enabled",
+                    advertisement: "Ad",
+                    qualityBadge: {
+                        2160: "4K",
+                        1440: "HD",
+                        1080: "HD",
+                        720: "HD",
+                        576: "SD",
+                        480: "SD"
+                    }
+                },
+                urls: {
+                    download: null,
+                    vimeo: {
+                        sdk: "https://player.vimeo.com/api/player.js",
+                        iframe: "https://player.vimeo.com/video/{0}?{1}",
+                        api: "https://vimeo.com/api/oembed.json?url={0}"
+                    },
+                    youtube: {
+                        sdk: "https://www.youtube.com/iframe_api",
+                        api: "https://noembed.com/embed?url=https://www.youtube.com/watch?v={0}"
+                    },
+                    googleIMA: {
+                        sdk: "https://imasdk.googleapis.com/js/sdkloader/ima3.js"
+                    }
+                },
+                listeners: {
+                    seek: null,
+                    play: null,
+                    pause: null,
+                    restart: null,
+                    rewind: null,
+                    fastForward: null,
+                    mute: null,
+                    volume: null,
+                    captions: null,
+                    download: null,
+                    fullscreen: null,
+                    pip: null,
+                    airplay: null,
+                    speed: null,
+                    quality: null,
+                    loop: null,
+                    language: null
+                },
+                events: [ "ended", "progress", "stalled", "playing", "waiting", "canplay", "canplaythrough", "loadstart", "loadeddata", "loadedmetadata", "timeupdate", "volumechange", "play", "pause", "error", "seeking", "seeked", "emptied", "ratechange", "cuechange", "download", "enterfullscreen", "exitfullscreen", "captionsenabled", "captionsdisabled", "languagechange", "controlshidden", "controlsshown", "ready", "statechange", "qualitychange", "adsloaded", "adscontentpause", "adscontentresume", "adstarted", "adsmidpoint", "adscomplete", "adsallcomplete", "adsimpression", "adsclick" ],
+                selectors: {
+                    editable: "input, textarea, select, [contenteditable]",
+                    container: ".plyr",
+                    controls: {
+                        container: null,
+                        wrapper: ".plyr__controls"
+                    },
+                    labels: "[data-plyr]",
+                    buttons: {
+                        play: '[data-plyr="play"]',
+                        pause: '[data-plyr="pause"]',
+                        restart: '[data-plyr="restart"]',
+                        rewind: '[data-plyr="rewind"]',
+                        fastForward: '[data-plyr="fast-forward"]',
+                        mute: '[data-plyr="mute"]',
+                        captions: '[data-plyr="captions"]',
+                        download: '[data-plyr="download"]',
+                        fullscreen: '[data-plyr="fullscreen"]',
+                        pip: '[data-plyr="pip"]',
+                        airplay: '[data-plyr="airplay"]',
+                        settings: '[data-plyr="settings"]',
+                        loop: '[data-plyr="loop"]'
+                    },
+                    inputs: {
+                        seek: '[data-plyr="seek"]',
+                        volume: '[data-plyr="volume"]',
+                        speed: '[data-plyr="speed"]',
+                        language: '[data-plyr="language"]',
+                        quality: '[data-plyr="quality"]'
+                    },
+                    display: {
+                        currentTime: ".plyr__time--current",
+                        duration: ".plyr__time--duration",
+                        buffer: ".plyr__progress__buffer",
+                        loop: ".plyr__progress__loop",
+                        volume: ".plyr__volume--display"
+                    },
+                    progress: ".plyr__progress",
+                    captions: ".plyr__captions",
+                    caption: ".plyr__caption"
+                },
+                classNames: {
+                    type: "plyr--{0}",
+                    provider: "plyr--{0}",
+                    video: "plyr__video-wrapper",
+                    embed: "plyr__video-embed",
+                    videoFixedRatio: "plyr__video-wrapper--fixed-ratio",
+                    embedContainer: "plyr__video-embed__container",
+                    poster: "plyr__poster",
+                    posterEnabled: "plyr__poster-enabled",
+                    ads: "plyr__ads",
+                    control: "plyr__control",
+                    controlPressed: "plyr__control--pressed",
+                    playing: "plyr--playing",
+                    paused: "plyr--paused",
+                    stopped: "plyr--stopped",
+                    loading: "plyr--loading",
+                    hover: "plyr--hover",
+                    tooltip: "plyr__tooltip",
+                    cues: "plyr__cues",
+                    hidden: "plyr__sr-only",
+                    hideControls: "plyr--hide-controls",
+                    isIos: "plyr--is-ios",
+                    isTouch: "plyr--is-touch",
+                    uiSupported: "plyr--full-ui",
+                    noTransition: "plyr--no-transition",
+                    display: {
+                        time: "plyr__time"
+                    },
+                    menu: {
+                        value: "plyr__menu__value",
+                        badge: "plyr__badge",
+                        open: "plyr--menu-open"
+                    },
+                    captions: {
+                        enabled: "plyr--captions-enabled",
+                        active: "plyr--captions-active"
+                    },
+                    fullscreen: {
+                        enabled: "plyr--fullscreen-enabled",
+                        fallback: "plyr--fullscreen-fallback"
+                    },
+                    pip: {
+                        supported: "plyr--pip-supported",
+                        active: "plyr--pip-active"
+                    },
+                    airplay: {
+                        supported: "plyr--airplay-supported",
+                        active: "plyr--airplay-active"
+                    },
+                    tabFocus: "plyr__tab-focus",
+                    previewThumbnails: {
+                        thumbContainer: "plyr__preview-thumb",
+                        thumbContainerShown: "plyr__preview-thumb--is-shown",
+                        imageContainer: "plyr__preview-thumb__image-container",
+                        timeContainer: "plyr__preview-thumb__time-container",
+                        scrubbingContainer: "plyr__preview-scrubbing",
+                        scrubbingContainerShown: "plyr__preview-scrubbing--is-shown"
+                    }
+                },
+                attributes: {
+                    embed: {
+                        provider: "data-plyr-provider",
+                        id: "data-plyr-embed-id"
+                    }
+                },
+                ads: {
+                    enabled: false,
+                    publisherId: "",
+                    tagUrl: ""
+                },
+                previewThumbnails: {
+                    enabled: false,
+                    src: ""
+                },
+                vimeo: {
+                    byline: false,
+                    portrait: false,
+                    title: false,
+                    speed: true,
+                    transparent: false,
+                    customControls: true,
+                    referrerPolicy: null,
+                    premium: false
+                },
+                youtube: {
+                    rel: 0,
+                    showinfo: 0,
+                    iv_load_policy: 3,
+                    modestbranding: 1,
+                    customControls: true,
+                    noCookie: false
+                }
+            };
+            var pip = {
+                active: "picture-in-picture",
+                inactive: "inline"
+            };
+            var providers = {
+                html5: "html5",
+                youtube: "youtube",
+                vimeo: "vimeo"
+            };
+            var types = {
+                audio: "audio",
+                video: "video"
+            };
+            function getProviderByUrl(url) {
+                if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtube-nocookie\.com|youtu\.?be)\/.+$/.test(url)) return providers.youtube;
+                if (/^https?:\/\/player.vimeo.com\/video\/\d{0,9}(?=\b|\/)/.test(url)) return providers.vimeo;
+                return null;
+            }
+            var noop = function noop() {};
+            var Console = function() {
+                function Console() {
+                    var enabled = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : false;
+                    _classCallCheck(this, Console);
+                    this.enabled = window.console && enabled;
+                    if (this.enabled) this.log("Debugging enabled");
+                }
+                _createClass(Console, [ {
+                    key: "log",
+                    get: function get() {
+                        return this.enabled ? Function.prototype.bind.call(console.log, console) : noop;
+                    }
+                }, {
+                    key: "warn",
+                    get: function get() {
+                        return this.enabled ? Function.prototype.bind.call(console.warn, console) : noop;
+                    }
+                }, {
+                    key: "error",
+                    get: function get() {
+                        return this.enabled ? Function.prototype.bind.call(console.error, console) : noop;
+                    }
+                } ]);
+                return Console;
+            }();
+            var Fullscreen = function() {
+                function Fullscreen(player) {
+                    var _this = this;
+                    _classCallCheck(this, Fullscreen);
+                    this.player = player;
+                    this.prefix = Fullscreen.prefix;
+                    this.property = Fullscreen.property;
+                    this.scrollPosition = {
+                        x: 0,
+                        y: 0
+                    };
+                    this.forceFallback = "force" === player.config.fullscreen.fallback;
+                    this.player.elements.fullscreen = player.config.fullscreen.container && closest(this.player.elements.container, player.config.fullscreen.container);
+                    on.call(this.player, document, "ms" === this.prefix ? "MSFullscreenChange" : "".concat(this.prefix, "fullscreenchange"), (function() {
+                        _this.onChange();
+                    }));
+                    on.call(this.player, this.player.elements.container, "dblclick", (function(event) {
+                        if (is$1.element(_this.player.elements.controls) && _this.player.elements.controls.contains(event.target)) return;
+                        _this.player.listeners.proxy(event, _this.toggle, "fullscreen");
+                    }));
+                    on.call(this, this.player.elements.container, "keydown", (function(event) {
+                        return _this.trapFocus(event);
+                    }));
+                    this.update();
+                }
+                _createClass(Fullscreen, [ {
+                    key: "onChange",
+                    value: function onChange() {
+                        if (!this.enabled) return;
+                        var button = this.player.elements.buttons.fullscreen;
+                        if (is$1.element(button)) button.pressed = this.active;
+                        var target = this.target === this.player.media ? this.target : this.player.elements.container;
+                        triggerEvent.call(this.player, target, this.active ? "enterfullscreen" : "exitfullscreen", true);
+                    }
+                }, {
+                    key: "toggleFallback",
+                    value: function toggleFallback() {
+                        var toggle = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : false;
+                        if (toggle) this.scrollPosition = {
+                            x: window.scrollX || 0,
+                            y: window.scrollY || 0
+                        }; else window.scrollTo(this.scrollPosition.x, this.scrollPosition.y);
+                        document.body.style.overflow = toggle ? "hidden" : "";
+                        toggleClass(this.target, this.player.config.classNames.fullscreen.fallback, toggle);
+                        if (browser.isIos) {
+                            var viewport = document.head.querySelector('meta[name="viewport"]');
+                            var property = "viewport-fit=cover";
+                            if (!viewport) {
+                                viewport = document.createElement("meta");
+                                viewport.setAttribute("name", "viewport");
+                            }
+                            var hasProperty = is$1.string(viewport.content) && viewport.content.includes(property);
+                            if (toggle) {
+                                this.cleanupViewport = !hasProperty;
+                                if (!hasProperty) viewport.content += ",".concat(property);
+                            } else if (this.cleanupViewport) viewport.content = viewport.content.split(",").filter((function(part) {
+                                return part.trim() !== property;
+                            })).join(",");
+                        }
+                        this.onChange();
+                    }
+                }, {
+                    key: "trapFocus",
+                    value: function trapFocus(event) {
+                        if (browser.isIos || !this.active || "Tab" !== event.key || 9 !== event.keyCode) return;
+                        var focused = document.activeElement;
+                        var focusable = getElements.call(this.player, "a[href], button:not(:disabled), input:not(:disabled), [tabindex]");
+                        var _focusable = _slicedToArray(focusable, 1), first = _focusable[0];
+                        var last = focusable[focusable.length - 1];
+                        if (focused === last && !event.shiftKey) {
+                            first.focus();
+                            event.preventDefault();
+                        } else if (focused === first && event.shiftKey) {
+                            last.focus();
+                            event.preventDefault();
+                        }
+                    }
+                }, {
+                    key: "update",
+                    value: function update() {
+                        if (this.enabled) {
+                            var mode;
+                            if (this.forceFallback) mode = "Fallback (forced)"; else if (Fullscreen.native) mode = "Native"; else mode = "Fallback";
+                            this.player.debug.log("".concat(mode, " fullscreen enabled"));
+                        } else this.player.debug.log("Fullscreen not supported and fallback disabled");
+                        toggleClass(this.player.elements.container, this.player.config.classNames.fullscreen.enabled, this.enabled);
+                    }
+                }, {
+                    key: "enter",
+                    value: function enter() {
+                        if (!this.enabled) return;
+                        if (browser.isIos && this.player.config.fullscreen.iosNative) this.target.webkitEnterFullscreen(); else if (!Fullscreen.native || this.forceFallback) this.toggleFallback(true); else if (!this.prefix) this.target.requestFullscreen({
+                            navigationUI: "hide"
+                        }); else if (!is$1.empty(this.prefix)) this.target["".concat(this.prefix, "Request").concat(this.property)]();
+                    }
+                }, {
+                    key: "exit",
+                    value: function exit() {
+                        if (!this.enabled) return;
+                        if (browser.isIos && this.player.config.fullscreen.iosNative) {
+                            this.target.webkitExitFullscreen();
+                            silencePromise(this.player.play());
+                        } else if (!Fullscreen.native || this.forceFallback) this.toggleFallback(false); else if (!this.prefix) (document.cancelFullScreen || document.exitFullscreen).call(document); else if (!is$1.empty(this.prefix)) {
+                            var action = "moz" === this.prefix ? "Cancel" : "Exit";
+                            document["".concat(this.prefix).concat(action).concat(this.property)]();
+                        }
+                    }
+                }, {
+                    key: "toggle",
+                    value: function toggle() {
+                        if (!this.active) this.enter(); else this.exit();
+                    }
+                }, {
+                    key: "usingNative",
+                    get: function get() {
+                        return Fullscreen.native && !this.forceFallback;
+                    }
+                }, {
+                    key: "enabled",
+                    get: function get() {
+                        return (Fullscreen.native || this.player.config.fullscreen.fallback) && this.player.config.fullscreen.enabled && this.player.supported.ui && this.player.isVideo;
+                    }
+                }, {
+                    key: "active",
+                    get: function get() {
+                        if (!this.enabled) return false;
+                        if (!Fullscreen.native || this.forceFallback) return hasClass(this.target, this.player.config.classNames.fullscreen.fallback);
+                        var element = !this.prefix ? document.fullscreenElement : document["".concat(this.prefix).concat(this.property, "Element")];
+                        return element && element.shadowRoot ? element === this.target.getRootNode().host : element === this.target;
+                    }
+                }, {
+                    key: "target",
+                    get: function get() {
+                        return browser.isIos && this.player.config.fullscreen.iosNative ? this.player.media : this.player.elements.fullscreen || this.player.elements.container;
+                    }
+                } ], [ {
+                    key: "native",
+                    get: function get() {
+                        return !!(document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled);
+                    }
+                }, {
+                    key: "prefix",
+                    get: function get() {
+                        if (is$1.function(document.exitFullscreen)) return "";
+                        var value = "";
+                        var prefixes = [ "webkit", "moz", "ms" ];
+                        prefixes.some((function(pre) {
+                            if (is$1.function(document["".concat(pre, "ExitFullscreen")]) || is$1.function(document["".concat(pre, "CancelFullScreen")])) {
+                                value = pre;
+                                return true;
+                            }
+                            return false;
+                        }));
+                        return value;
+                    }
+                }, {
+                    key: "property",
+                    get: function get() {
+                        return "moz" === this.prefix ? "FullScreen" : "Fullscreen";
+                    }
+                } ]);
+                return Fullscreen;
+            }();
+            function loadImage(src) {
+                var minWidth = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 1;
+                return new Promise((function(resolve, reject) {
+                    var image = new Image;
+                    var handler = function handler() {
+                        delete image.onload;
+                        delete image.onerror;
+                        (image.naturalWidth >= minWidth ? resolve : reject)(image);
+                    };
+                    Object.assign(image, {
+                        onload: handler,
+                        onerror: handler,
+                        src
+                    });
+                }));
+            }
+            var ui = {
+                addStyleHook: function addStyleHook() {
+                    toggleClass(this.elements.container, this.config.selectors.container.replace(".", ""), true);
+                    toggleClass(this.elements.container, this.config.classNames.uiSupported, this.supported.ui);
+                },
+                toggleNativeControls: function toggleNativeControls() {
+                    var toggle = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : false;
+                    if (toggle && this.isHTML5) this.media.setAttribute("controls", ""); else this.media.removeAttribute("controls");
+                },
+                build: function build() {
+                    var _this = this;
+                    this.listeners.media();
+                    if (!this.supported.ui) {
+                        this.debug.warn("Basic support only for ".concat(this.provider, " ").concat(this.type));
+                        ui.toggleNativeControls.call(this, true);
+                        return;
+                    }
+                    if (!is$1.element(this.elements.controls)) {
+                        controls.inject.call(this);
+                        this.listeners.controls();
+                    }
+                    ui.toggleNativeControls.call(this);
+                    if (this.isHTML5) captions.setup.call(this);
+                    this.volume = null;
+                    this.muted = null;
+                    this.loop = null;
+                    this.quality = null;
+                    this.speed = null;
+                    controls.updateVolume.call(this);
+                    controls.timeUpdate.call(this);
+                    ui.checkPlaying.call(this);
+                    toggleClass(this.elements.container, this.config.classNames.pip.supported, support.pip && this.isHTML5 && this.isVideo);
+                    toggleClass(this.elements.container, this.config.classNames.airplay.supported, support.airplay && this.isHTML5);
+                    toggleClass(this.elements.container, this.config.classNames.isIos, browser.isIos);
+                    toggleClass(this.elements.container, this.config.classNames.isTouch, this.touch);
+                    this.ready = true;
+                    setTimeout((function() {
+                        triggerEvent.call(_this, _this.media, "ready");
+                    }), 0);
+                    ui.setTitle.call(this);
+                    if (this.poster) ui.setPoster.call(this, this.poster, false).catch((function() {}));
+                    if (this.config.duration) controls.durationUpdate.call(this);
+                },
+                setTitle: function setTitle() {
+                    var label = i18n.get("play", this.config);
+                    if (is$1.string(this.config.title) && !is$1.empty(this.config.title)) label += ", ".concat(this.config.title);
+                    Array.from(this.elements.buttons.play || []).forEach((function(button) {
+                        button.setAttribute("aria-label", label);
+                    }));
+                    if (this.isEmbed) {
+                        var iframe = getElement.call(this, "iframe");
+                        if (!is$1.element(iframe)) return;
+                        var title = !is$1.empty(this.config.title) ? this.config.title : "video";
+                        var format = i18n.get("frameTitle", this.config);
+                        iframe.setAttribute("title", format.replace("{title}", title));
+                    }
+                },
+                togglePoster: function togglePoster(enable) {
+                    toggleClass(this.elements.container, this.config.classNames.posterEnabled, enable);
+                },
+                setPoster: function setPoster(poster) {
+                    var _this2 = this;
+                    var passive = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : true;
+                    if (passive && this.poster) return Promise.reject(new Error("Poster already set"));
+                    this.media.setAttribute("data-poster", poster);
+                    this.elements.poster.removeAttribute("hidden");
+                    return ready.call(this).then((function() {
+                        return loadImage(poster);
+                    })).catch((function(err) {
+                        if (poster === _this2.poster) ui.togglePoster.call(_this2, false);
+                        throw err;
+                    })).then((function() {
+                        if (poster !== _this2.poster) throw new Error("setPoster cancelled by later call to setPoster");
+                    })).then((function() {
+                        Object.assign(_this2.elements.poster.style, {
+                            backgroundImage: "url('".concat(poster, "')"),
+                            backgroundSize: ""
+                        });
+                        ui.togglePoster.call(_this2, true);
+                        return poster;
+                    }));
+                },
+                checkPlaying: function checkPlaying(event) {
+                    var _this3 = this;
+                    toggleClass(this.elements.container, this.config.classNames.playing, this.playing);
+                    toggleClass(this.elements.container, this.config.classNames.paused, this.paused);
+                    toggleClass(this.elements.container, this.config.classNames.stopped, this.stopped);
+                    Array.from(this.elements.buttons.play || []).forEach((function(target) {
+                        Object.assign(target, {
+                            pressed: _this3.playing
+                        });
+                        target.setAttribute("aria-label", i18n.get(_this3.playing ? "pause" : "play", _this3.config));
+                    }));
+                    if (is$1.event(event) && "timeupdate" === event.type) return;
+                    ui.toggleControls.call(this);
+                },
+                checkLoading: function checkLoading(event) {
+                    var _this4 = this;
+                    this.loading = [ "stalled", "waiting" ].includes(event.type);
+                    clearTimeout(this.timers.loading);
+                    this.timers.loading = setTimeout((function() {
+                        toggleClass(_this4.elements.container, _this4.config.classNames.loading, _this4.loading);
+                        ui.toggleControls.call(_this4);
+                    }), this.loading ? 250 : 0);
+                },
+                toggleControls: function toggleControls(force) {
+                    var controlsElement = this.elements.controls;
+                    if (controlsElement && this.config.hideControls) {
+                        var recentTouchSeek = this.touch && this.lastSeekTime + 2e3 > Date.now();
+                        this.toggleControls(Boolean(force || this.loading || this.paused || controlsElement.pressed || controlsElement.hover || recentTouchSeek));
+                    }
+                },
+                migrateStyles: function migrateStyles() {
+                    var _this5 = this;
+                    Object.values(_objectSpread2({}, this.media.style)).filter((function(key) {
+                        return !is$1.empty(key) && is$1.string(key) && key.startsWith("--plyr");
+                    })).forEach((function(key) {
+                        _this5.elements.container.style.setProperty(key, _this5.media.style.getPropertyValue(key));
+                        _this5.media.style.removeProperty(key);
+                    }));
+                    if (is$1.empty(this.media.style)) this.media.removeAttribute("style");
+                }
+            };
+            var Listeners = function() {
+                function Listeners(player) {
+                    _classCallCheck(this, Listeners);
+                    this.player = player;
+                    this.lastKey = null;
+                    this.focusTimer = null;
+                    this.lastKeyDown = null;
+                    this.handleKey = this.handleKey.bind(this);
+                    this.toggleMenu = this.toggleMenu.bind(this);
+                    this.setTabFocus = this.setTabFocus.bind(this);
+                    this.firstTouch = this.firstTouch.bind(this);
+                }
+                _createClass(Listeners, [ {
+                    key: "handleKey",
+                    value: function handleKey(event) {
+                        var player = this.player;
+                        var elements = player.elements;
+                        var code = event.keyCode ? event.keyCode : event.which;
+                        var pressed = "keydown" === event.type;
+                        var repeat = pressed && code === this.lastKey;
+                        if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+                        if (!is$1.number(code)) return;
+                        var seekByKey = function seekByKey() {
+                            player.currentTime = player.duration / 10 * (code - 48);
+                        };
+                        if (pressed) {
+                            var focused = document.activeElement;
+                            if (is$1.element(focused)) {
+                                var editable = player.config.selectors.editable;
+                                var seek = elements.inputs.seek;
+                                if (focused !== seek && matches$1(focused, editable)) return;
+                                if (32 === event.which && matches$1(focused, 'button, [role^="menuitem"]')) return;
+                            }
+                            var preventDefault = [ 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 54, 56, 57, 67, 70, 73, 75, 76, 77, 79 ];
+                            if (preventDefault.includes(code)) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            switch (code) {
+                              case 48:
+                              case 49:
+                              case 50:
+                              case 51:
+                              case 52:
+                              case 53:
+                              case 54:
+                              case 55:
+                              case 56:
+                              case 57:
+                                if (!repeat) seekByKey();
+                                break;
+
+                              case 32:
+                              case 75:
+                                if (!repeat) silencePromise(player.togglePlay());
+                                break;
+
+                              case 38:
+                                player.increaseVolume(.1);
+                                break;
+
+                              case 40:
+                                player.decreaseVolume(.1);
+                                break;
+
+                              case 77:
+                                if (!repeat) player.muted = !player.muted;
+                                break;
+
+                              case 39:
+                                player.forward();
+                                break;
+
+                              case 37:
+                                player.rewind();
+                                break;
+
+                              case 70:
+                                player.fullscreen.toggle();
+                                break;
+
+                              case 67:
+                                if (!repeat) player.toggleCaptions();
+                                break;
+
+                              case 76:
+                                player.loop = !player.loop;
+                                break;
+                            }
+                            if (27 === code && !player.fullscreen.usingNative && player.fullscreen.active) player.fullscreen.toggle();
+                            this.lastKey = code;
+                        } else this.lastKey = null;
+                    }
+                }, {
+                    key: "toggleMenu",
+                    value: function toggleMenu(event) {
+                        controls.toggleMenu.call(this.player, event);
+                    }
+                }, {
+                    key: "firstTouch",
+                    value: function firstTouch() {
+                        var player = this.player;
+                        var elements = player.elements;
+                        player.touch = true;
+                        toggleClass(elements.container, player.config.classNames.isTouch, true);
+                    }
+                }, {
+                    key: "setTabFocus",
+                    value: function setTabFocus(event) {
+                        var player = this.player;
+                        var elements = player.elements;
+                        clearTimeout(this.focusTimer);
+                        if ("keydown" === event.type && 9 !== event.which) return;
+                        if ("keydown" === event.type) this.lastKeyDown = event.timeStamp;
+                        var removeCurrent = function removeCurrent() {
+                            var className = player.config.classNames.tabFocus;
+                            var current = getElements.call(player, ".".concat(className));
+                            toggleClass(current, className, false);
+                        };
+                        var wasKeyDown = event.timeStamp - this.lastKeyDown <= 20;
+                        if ("focus" === event.type && !wasKeyDown) return;
+                        removeCurrent();
+                        if ("focusout" !== event.type) this.focusTimer = setTimeout((function() {
+                            var focused = document.activeElement;
+                            if (!elements.container.contains(focused)) return;
+                            toggleClass(document.activeElement, player.config.classNames.tabFocus, true);
+                        }), 10);
+                    }
+                }, {
+                    key: "global",
+                    value: function global() {
+                        var toggle = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : true;
+                        var player = this.player;
+                        if (player.config.keyboard.global) toggleListener.call(player, window, "keydown keyup", this.handleKey, toggle, false);
+                        toggleListener.call(player, document.body, "click", this.toggleMenu, toggle);
+                        once.call(player, document.body, "touchstart", this.firstTouch);
+                        toggleListener.call(player, document.body, "keydown focus blur focusout", this.setTabFocus, toggle, false, true);
+                    }
+                }, {
+                    key: "container",
+                    value: function container() {
+                        var player = this.player;
+                        var config = player.config, elements = player.elements, timers = player.timers;
+                        if (!config.keyboard.global && config.keyboard.focused) on.call(player, elements.container, "keydown keyup", this.handleKey, false);
+                        on.call(player, elements.container, "mousemove mouseleave touchstart touchmove enterfullscreen exitfullscreen", (function(event) {
+                            var controlsElement = elements.controls;
+                            if (controlsElement && "enterfullscreen" === event.type) {
+                                controlsElement.pressed = false;
+                                controlsElement.hover = false;
+                            }
+                            var show = [ "touchstart", "touchmove", "mousemove" ].includes(event.type);
+                            var delay = 0;
+                            if (show) {
+                                ui.toggleControls.call(player, true);
+                                delay = player.touch ? 3e3 : 2e3;
+                            }
+                            clearTimeout(timers.controls);
+                            timers.controls = setTimeout((function() {
+                                return ui.toggleControls.call(player, false);
+                            }), delay);
+                        }));
+                        var setGutter = function setGutter(ratio, padding, toggle) {
+                            if (!player.isVimeo || player.config.vimeo.premium) return;
+                            var target = player.elements.wrapper.firstChild;
+                            var _ratio = _slicedToArray(ratio, 2), y = _ratio[1];
+                            var _getAspectRatio$call = getAspectRatio.call(player), _getAspectRatio$call2 = _slicedToArray(_getAspectRatio$call, 2), videoX = _getAspectRatio$call2[0], videoY = _getAspectRatio$call2[1];
+                            target.style.maxWidth = toggle ? "".concat(y / videoY * videoX, "px") : null;
+                            target.style.margin = toggle ? "0 auto" : null;
+                        };
+                        var setPlayerSize = function setPlayerSize(measure) {
+                            if (!measure) return setAspectRatio.call(player);
+                            var rect = elements.container.getBoundingClientRect();
+                            var width = rect.width, height = rect.height;
+                            return setAspectRatio.call(player, "".concat(width, ":").concat(height));
+                        };
+                        var resized = function resized() {
+                            clearTimeout(timers.resized);
+                            timers.resized = setTimeout(setPlayerSize, 50);
+                        };
+                        on.call(player, elements.container, "enterfullscreen exitfullscreen", (function(event) {
+                            var _player$fullscreen = player.fullscreen, target = _player$fullscreen.target, usingNative = _player$fullscreen.usingNative;
+                            if (target !== elements.container) return;
+                            if (!player.isEmbed && is$1.empty(player.config.ratio)) return;
+                            var isEnter = "enterfullscreen" === event.type;
+                            var _setPlayerSize = setPlayerSize(isEnter), padding = _setPlayerSize.padding, ratio = _setPlayerSize.ratio;
+                            setGutter(ratio, padding, isEnter);
+                            if (isEnter) setTimeout((function() {
+                                return repaint(elements.container);
+                            }), 100);
+                            if (!usingNative) if (isEnter) on.call(player, window, "resize", resized); else off.call(player, window, "resize", resized);
+                        }));
+                    }
+                }, {
+                    key: "media",
+                    value: function media() {
+                        var _this = this;
+                        var player = this.player;
+                        var elements = player.elements;
+                        on.call(player, player.media, "timeupdate seeking seeked", (function(event) {
+                            return controls.timeUpdate.call(player, event);
+                        }));
+                        on.call(player, player.media, "durationchange loadeddata loadedmetadata", (function(event) {
+                            return controls.durationUpdate.call(player, event);
+                        }));
+                        on.call(player, player.media, "ended", (function() {
+                            if (player.isHTML5 && player.isVideo && player.config.resetOnEnd) {
+                                player.restart();
+                                player.pause();
+                            }
+                        }));
+                        on.call(player, player.media, "progress playing seeking seeked", (function(event) {
+                            return controls.updateProgress.call(player, event);
+                        }));
+                        on.call(player, player.media, "volumechange", (function(event) {
+                            return controls.updateVolume.call(player, event);
+                        }));
+                        on.call(player, player.media, "playing play pause ended emptied timeupdate", (function(event) {
+                            return ui.checkPlaying.call(player, event);
+                        }));
+                        on.call(player, player.media, "waiting canplay seeked playing", (function(event) {
+                            return ui.checkLoading.call(player, event);
+                        }));
+                        if (player.supported.ui && player.config.clickToPlay && !player.isAudio) {
+                            var wrapper = getElement.call(player, ".".concat(player.config.classNames.video));
+                            if (!is$1.element(wrapper)) return;
+                            on.call(player, elements.container, "click", (function(event) {
+                                var targets = [ elements.container, wrapper ];
+                                if (!targets.includes(event.target) && !wrapper.contains(event.target)) return;
+                                if (player.touch && player.config.hideControls) return;
+                                if (player.ended) {
+                                    _this.proxy(event, player.restart, "restart");
+                                    _this.proxy(event, (function() {
+                                        silencePromise(player.play());
+                                    }), "play");
+                                } else _this.proxy(event, (function() {
+                                    silencePromise(player.togglePlay());
+                                }), "play");
+                            }));
+                        }
+                        if (player.supported.ui && player.config.disableContextMenu) on.call(player, elements.wrapper, "contextmenu", (function(event) {
+                            event.preventDefault();
+                        }), false);
+                        on.call(player, player.media, "volumechange", (function() {
+                            player.storage.set({
+                                volume: player.volume,
+                                muted: player.muted
+                            });
+                        }));
+                        on.call(player, player.media, "ratechange", (function() {
+                            controls.updateSetting.call(player, "speed");
+                            player.storage.set({
+                                speed: player.speed
+                            });
+                        }));
+                        on.call(player, player.media, "qualitychange", (function(event) {
+                            controls.updateSetting.call(player, "quality", null, event.detail.quality);
+                        }));
+                        on.call(player, player.media, "ready qualitychange", (function() {
+                            controls.setDownloadUrl.call(player);
+                        }));
+                        var proxyEvents = player.config.events.concat([ "keyup", "keydown" ]).join(" ");
+                        on.call(player, player.media, proxyEvents, (function(event) {
+                            var _event$detail = event.detail, detail = void 0 === _event$detail ? {} : _event$detail;
+                            if ("error" === event.type) detail = player.media.error;
+                            triggerEvent.call(player, elements.container, event.type, true, detail);
+                        }));
+                    }
+                }, {
+                    key: "proxy",
+                    value: function proxy(event, defaultHandler, customHandlerKey) {
+                        var player = this.player;
+                        var customHandler = player.config.listeners[customHandlerKey];
+                        var hasCustomHandler = is$1.function(customHandler);
+                        var returned = true;
+                        if (hasCustomHandler) returned = customHandler.call(player, event);
+                        if (false !== returned && is$1.function(defaultHandler)) defaultHandler.call(player, event);
+                    }
+                }, {
+                    key: "bind",
+                    value: function bind(element, type, defaultHandler, customHandlerKey) {
+                        var _this2 = this;
+                        var passive = arguments.length > 4 && void 0 !== arguments[4] ? arguments[4] : true;
+                        var player = this.player;
+                        var customHandler = player.config.listeners[customHandlerKey];
+                        var hasCustomHandler = is$1.function(customHandler);
+                        on.call(player, element, type, (function(event) {
+                            return _this2.proxy(event, defaultHandler, customHandlerKey);
+                        }), passive && !hasCustomHandler);
+                    }
+                }, {
+                    key: "controls",
+                    value: function controls$1() {
+                        var _this3 = this;
+                        var player = this.player;
+                        var elements = player.elements;
+                        var inputEvent = browser.isIE ? "change" : "input";
+                        if (elements.buttons.play) Array.from(elements.buttons.play).forEach((function(button) {
+                            _this3.bind(button, "click", (function() {
+                                silencePromise(player.togglePlay());
+                            }), "play");
+                        }));
+                        this.bind(elements.buttons.restart, "click", player.restart, "restart");
+                        this.bind(elements.buttons.rewind, "click", (function() {
+                            player.lastSeekTime = Date.now();
+                            player.rewind();
+                        }), "rewind");
+                        this.bind(elements.buttons.fastForward, "click", (function() {
+                            player.lastSeekTime = Date.now();
+                            player.forward();
+                        }), "fastForward");
+                        this.bind(elements.buttons.mute, "click", (function() {
+                            player.muted = !player.muted;
+                        }), "mute");
+                        this.bind(elements.buttons.captions, "click", (function() {
+                            return player.toggleCaptions();
+                        }));
+                        this.bind(elements.buttons.download, "click", (function() {
+                            triggerEvent.call(player, player.media, "download");
+                        }), "download");
+                        this.bind(elements.buttons.fullscreen, "click", (function() {
+                            player.fullscreen.toggle();
+                        }), "fullscreen");
+                        this.bind(elements.buttons.pip, "click", (function() {
+                            player.pip = "toggle";
+                        }), "pip");
+                        this.bind(elements.buttons.airplay, "click", player.airplay, "airplay");
+                        this.bind(elements.buttons.settings, "click", (function(event) {
+                            event.stopPropagation();
+                            event.preventDefault();
+                            controls.toggleMenu.call(player, event);
+                        }), null, false);
+                        this.bind(elements.buttons.settings, "keyup", (function(event) {
+                            var code = event.which;
+                            if (![ 13, 32 ].includes(code)) return;
+                            if (13 === code) {
+                                controls.focusFirstMenuItem.call(player, null, true);
+                                return;
+                            }
+                            event.preventDefault();
+                            event.stopPropagation();
+                            controls.toggleMenu.call(player, event);
+                        }), null, false);
+                        this.bind(elements.settings.menu, "keydown", (function(event) {
+                            if (27 === event.which) controls.toggleMenu.call(player, event);
+                        }));
+                        this.bind(elements.inputs.seek, "mousedown mousemove", (function(event) {
+                            var rect = elements.progress.getBoundingClientRect();
+                            var percent = 100 / rect.width * (event.pageX - rect.left);
+                            event.currentTarget.setAttribute("seek-value", percent);
+                        }));
+                        this.bind(elements.inputs.seek, "mousedown mouseup keydown keyup touchstart touchend", (function(event) {
+                            var seek = event.currentTarget;
+                            var code = event.keyCode ? event.keyCode : event.which;
+                            var attribute = "play-on-seeked";
+                            if (is$1.keyboardEvent(event) && 39 !== code && 37 !== code) return;
+                            player.lastSeekTime = Date.now();
+                            var play = seek.hasAttribute(attribute);
+                            var done = [ "mouseup", "touchend", "keyup" ].includes(event.type);
+                            if (play && done) {
+                                seek.removeAttribute(attribute);
+                                silencePromise(player.play());
+                            } else if (!done && player.playing) {
+                                seek.setAttribute(attribute, "");
+                                player.pause();
+                            }
+                        }));
+                        if (browser.isIos) {
+                            var inputs = getElements.call(player, 'input[type="range"]');
+                            Array.from(inputs).forEach((function(input) {
+                                return _this3.bind(input, inputEvent, (function(event) {
+                                    return repaint(event.target);
+                                }));
+                            }));
+                        }
+                        this.bind(elements.inputs.seek, inputEvent, (function(event) {
+                            var seek = event.currentTarget;
+                            var seekTo = seek.getAttribute("seek-value");
+                            if (is$1.empty(seekTo)) seekTo = seek.value;
+                            seek.removeAttribute("seek-value");
+                            player.currentTime = seekTo / seek.max * player.duration;
+                        }), "seek");
+                        this.bind(elements.progress, "mouseenter mouseleave mousemove", (function(event) {
+                            return controls.updateSeekTooltip.call(player, event);
+                        }));
+                        this.bind(elements.progress, "mousemove touchmove", (function(event) {
+                            var previewThumbnails = player.previewThumbnails;
+                            if (previewThumbnails && previewThumbnails.loaded) previewThumbnails.startMove(event);
+                        }));
+                        this.bind(elements.progress, "mouseleave touchend click", (function() {
+                            var previewThumbnails = player.previewThumbnails;
+                            if (previewThumbnails && previewThumbnails.loaded) previewThumbnails.endMove(false, true);
+                        }));
+                        this.bind(elements.progress, "mousedown touchstart", (function(event) {
+                            var previewThumbnails = player.previewThumbnails;
+                            if (previewThumbnails && previewThumbnails.loaded) previewThumbnails.startScrubbing(event);
+                        }));
+                        this.bind(elements.progress, "mouseup touchend", (function(event) {
+                            var previewThumbnails = player.previewThumbnails;
+                            if (previewThumbnails && previewThumbnails.loaded) previewThumbnails.endScrubbing(event);
+                        }));
+                        if (browser.isWebkit) Array.from(getElements.call(player, 'input[type="range"]')).forEach((function(element) {
+                            _this3.bind(element, "input", (function(event) {
+                                return controls.updateRangeFill.call(player, event.target);
+                            }));
+                        }));
+                        if (player.config.toggleInvert && !is$1.element(elements.display.duration)) this.bind(elements.display.currentTime, "click", (function() {
+                            if (0 === player.currentTime) return;
+                            player.config.invertTime = !player.config.invertTime;
+                            controls.timeUpdate.call(player);
+                        }));
+                        this.bind(elements.inputs.volume, inputEvent, (function(event) {
+                            player.volume = event.target.value;
+                        }), "volume");
+                        this.bind(elements.controls, "mouseenter mouseleave", (function(event) {
+                            elements.controls.hover = !player.touch && "mouseenter" === event.type;
+                        }));
+                        if (elements.fullscreen) Array.from(elements.fullscreen.children).filter((function(c) {
+                            return !c.contains(elements.container);
+                        })).forEach((function(child) {
+                            _this3.bind(child, "mouseenter mouseleave", (function(event) {
+                                elements.controls.hover = !player.touch && "mouseenter" === event.type;
+                            }));
+                        }));
+                        this.bind(elements.controls, "mousedown mouseup touchstart touchend touchcancel", (function(event) {
+                            elements.controls.pressed = [ "mousedown", "touchstart" ].includes(event.type);
+                        }));
+                        this.bind(elements.controls, "focusin", (function() {
+                            var config = player.config, timers = player.timers;
+                            toggleClass(elements.controls, config.classNames.noTransition, true);
+                            ui.toggleControls.call(player, true);
+                            setTimeout((function() {
+                                toggleClass(elements.controls, config.classNames.noTransition, false);
+                            }), 0);
+                            var delay = _this3.touch ? 3e3 : 4e3;
+                            clearTimeout(timers.controls);
+                            timers.controls = setTimeout((function() {
+                                return ui.toggleControls.call(player, false);
+                            }), delay);
+                        }));
+                        this.bind(elements.inputs.volume, "wheel", (function(event) {
+                            var inverted = event.webkitDirectionInvertedFromDevice;
+                            var _map = [ event.deltaX, -event.deltaY ].map((function(value) {
+                                return inverted ? -value : value;
+                            })), _map2 = _slicedToArray(_map, 2), x = _map2[0], y = _map2[1];
+                            var direction = Math.sign(Math.abs(x) > Math.abs(y) ? x : y);
+                            player.increaseVolume(direction / 50);
+                            var volume = player.media.volume;
+                            if (1 === direction && volume < 1 || -1 === direction && volume > 0) event.preventDefault();
+                        }), "volume", false);
+                    }
+                } ]);
+                return Listeners;
+            }();
+            "undefined" !== typeof globalThis ? globalThis : "undefined" !== typeof window ? window : "undefined" !== typeof global ? global : "undefined" !== typeof self && self;
+            function createCommonjsModule(fn, module) {
+                return module = {
+                    exports: {}
+                }, fn(module, module.exports), module.exports;
+            }
+            var loadjs_umd = createCommonjsModule((function(module, exports) {
+                (function(root, factory) {
+                    module.exports = factory();
+                })(0, (function() {
+                    var devnull = function devnull() {}, bundleIdCache = {}, bundleResultCache = {}, bundleCallbackQueue = {};
+                    function subscribe(bundleIds, callbackFn) {
+                        bundleIds = bundleIds.push ? bundleIds : [ bundleIds ];
+                        var fn, bundleId, r, q, depsNotFound = [], i = bundleIds.length, numWaiting = i;
+                        fn = function fn(bundleId, pathsNotFound) {
+                            if (pathsNotFound.length) depsNotFound.push(bundleId);
+                            numWaiting--;
+                            if (!numWaiting) callbackFn(depsNotFound);
+                        };
+                        while (i--) {
+                            bundleId = bundleIds[i];
+                            r = bundleResultCache[bundleId];
+                            if (r) {
+                                fn(bundleId, r);
+                                continue;
+                            }
+                            q = bundleCallbackQueue[bundleId] = bundleCallbackQueue[bundleId] || [];
+                            q.push(fn);
+                        }
+                    }
+                    function publish(bundleId, pathsNotFound) {
+                        if (!bundleId) return;
+                        var q = bundleCallbackQueue[bundleId];
+                        bundleResultCache[bundleId] = pathsNotFound;
+                        if (!q) return;
+                        while (q.length) {
+                            q[0](bundleId, pathsNotFound);
+                            q.splice(0, 1);
+                        }
+                    }
+                    function executeCallbacks(args, depsNotFound) {
+                        if (args.call) args = {
+                            success: args
+                        };
+                        if (depsNotFound.length) (args.error || devnull)(depsNotFound); else (args.success || devnull)(args);
+                    }
+                    function loadFile(path, callbackFn, args, numTries) {
+                        var isLegacyIECss, e, doc = document, async = args.async, maxTries = (args.numRetries || 0) + 1, beforeCallbackFn = args.before || devnull, pathname = path.replace(/[\?|#].*$/, ""), pathStripped = path.replace(/^(css|img)!/, "");
+                        numTries = numTries || 0;
+                        if (/(^css!|\.css$)/.test(pathname)) {
+                            e = doc.createElement("link");
+                            e.rel = "stylesheet";
+                            e.href = pathStripped;
+                            isLegacyIECss = "hideFocus" in e;
+                            if (isLegacyIECss && e.relList) {
+                                isLegacyIECss = 0;
+                                e.rel = "preload";
+                                e.as = "style";
+                            }
+                        } else if (/(^img!|\.(png|gif|jpg|svg|webp)$)/.test(pathname)) {
+                            e = doc.createElement("img");
+                            e.src = pathStripped;
+                        } else {
+                            e = doc.createElement("script");
+                            e.src = path;
+                            e.async = void 0 === async ? true : async;
+                        }
+                        e.onload = e.onerror = e.onbeforeload = function(ev) {
+                            var result = ev.type[0];
+                            if (isLegacyIECss) try {
+                                if (!e.sheet.cssText.length) result = "e";
+                            } catch (x) {
+                                if (18 != x.code) result = "e";
+                            }
+                            if ("e" == result) {
+                                numTries += 1;
+                                if (numTries < maxTries) return loadFile(path, callbackFn, args, numTries);
+                            } else if ("preload" == e.rel && "style" == e.as) return e.rel = "stylesheet";
+                            callbackFn(path, result, ev.defaultPrevented);
+                        };
+                        if (false !== beforeCallbackFn(path, e)) doc.head.appendChild(e);
+                    }
+                    function loadFiles(paths, callbackFn, args) {
+                        paths = paths.push ? paths : [ paths ];
+                        var fn, i, numWaiting = paths.length, x = numWaiting, pathsNotFound = [];
+                        fn = function fn(path, result, defaultPrevented) {
+                            if ("e" == result) pathsNotFound.push(path);
+                            if ("b" == result) if (defaultPrevented) pathsNotFound.push(path); else return;
+                            numWaiting--;
+                            if (!numWaiting) callbackFn(pathsNotFound);
+                        };
+                        for (i = 0; i < x; i++) loadFile(paths[i], fn, args);
+                    }
+                    function loadjs(paths, arg1, arg2) {
+                        var bundleId, args;
+                        if (arg1 && arg1.trim) bundleId = arg1;
+                        args = (bundleId ? arg2 : arg1) || {};
+                        if (bundleId) if (bundleId in bundleIdCache) throw "LoadJS"; else bundleIdCache[bundleId] = true;
+                        function loadFn(resolve, reject) {
+                            loadFiles(paths, (function(pathsNotFound) {
+                                executeCallbacks(args, pathsNotFound);
+                                if (resolve) executeCallbacks({
+                                    success: resolve,
+                                    error: reject
+                                }, pathsNotFound);
+                                publish(bundleId, pathsNotFound);
+                            }), args);
+                        }
+                        if (args.returnPromise) return new Promise(loadFn); else loadFn();
+                    }
+                    loadjs.ready = function ready(deps, args) {
+                        subscribe(deps, (function(depsNotFound) {
+                            executeCallbacks(args, depsNotFound);
+                        }));
+                        return loadjs;
+                    };
+                    loadjs.done = function done(bundleId) {
+                        publish(bundleId, []);
+                    };
+                    loadjs.reset = function reset() {
+                        bundleIdCache = {};
+                        bundleResultCache = {};
+                        bundleCallbackQueue = {};
+                    };
+                    loadjs.isDefined = function isDefined(bundleId) {
+                        return bundleId in bundleIdCache;
+                    };
+                    return loadjs;
+                }));
+            }));
+            function loadScript(url) {
+                return new Promise((function(resolve, reject) {
+                    loadjs_umd(url, {
+                        success: resolve,
+                        error: reject
+                    });
+                }));
+            }
+            function parseId(url) {
+                if (is$1.empty(url)) return null;
+                if (is$1.number(Number(url))) return url;
+                var regex = /^.*(vimeo.com\/|video\/)(\d+).*/;
+                return url.match(regex) ? RegExp.$2 : url;
+            }
+            function assurePlaybackState(play) {
+                if (play && !this.embed.hasPlayed) this.embed.hasPlayed = true;
+                if (this.media.paused === play) {
+                    this.media.paused = !play;
+                    triggerEvent.call(this, this.media, play ? "play" : "pause");
+                }
+            }
+            var vimeo = {
+                setup: function setup() {
+                    var player = this;
+                    toggleClass(player.elements.wrapper, player.config.classNames.embed, true);
+                    player.options.speed = player.config.speed.options;
+                    setAspectRatio.call(player);
+                    if (!is$1.object(window.Vimeo)) loadScript(player.config.urls.vimeo.sdk).then((function() {
+                        vimeo.ready.call(player);
+                    })).catch((function(error) {
+                        player.debug.warn("Vimeo SDK (player.js) failed to load", error);
+                    })); else vimeo.ready.call(player);
+                },
+                ready: function ready() {
+                    var _this = this;
+                    var player = this;
+                    var config = player.config.vimeo;
+                    var premium = config.premium, referrerPolicy = config.referrerPolicy, frameParams = _objectWithoutProperties(config, [ "premium", "referrerPolicy" ]);
+                    if (premium) Object.assign(frameParams, {
+                        controls: false,
+                        sidedock: false
+                    });
+                    var params = buildUrlParams(_objectSpread2({
+                        loop: player.config.loop.active,
+                        autoplay: player.autoplay,
+                        muted: player.muted,
+                        gesture: "media",
+                        playsinline: !this.config.fullscreen.iosNative
+                    }, frameParams));
+                    var source = player.media.getAttribute("src");
+                    if (is$1.empty(source)) source = player.media.getAttribute(player.config.attributes.embed.id);
+                    var id = parseId(source);
+                    var iframe = createElement("iframe");
+                    var src = format(player.config.urls.vimeo.iframe, id, params);
+                    iframe.setAttribute("src", src);
+                    iframe.setAttribute("allowfullscreen", "");
+                    iframe.setAttribute("allow", "autoplay,fullscreen,picture-in-picture");
+                    if (!is$1.empty(referrerPolicy)) iframe.setAttribute("referrerPolicy", referrerPolicy);
+                    if (premium || !config.customControls) {
+                        iframe.setAttribute("data-poster", player.poster);
+                        player.media = replaceElement(iframe, player.media);
+                    } else {
+                        var wrapper = createElement("div", {
+                            class: player.config.classNames.embedContainer,
+                            "data-poster": player.poster
+                        });
+                        wrapper.appendChild(iframe);
+                        player.media = replaceElement(wrapper, player.media);
+                    }
+                    if (!config.customControls) fetch(format(player.config.urls.vimeo.api, src)).then((function(response) {
+                        if (is$1.empty(response) || !response.thumbnail_url) return;
+                        ui.setPoster.call(player, response.thumbnail_url).catch((function() {}));
+                    }));
+                    player.embed = new window.Vimeo.Player(iframe, {
+                        autopause: player.config.autopause,
+                        muted: player.muted
+                    });
+                    player.media.paused = true;
+                    player.media.currentTime = 0;
+                    if (player.supported.ui) player.embed.disableTextTrack();
+                    player.media.play = function() {
+                        assurePlaybackState.call(player, true);
+                        return player.embed.play();
+                    };
+                    player.media.pause = function() {
+                        assurePlaybackState.call(player, false);
+                        return player.embed.pause();
+                    };
+                    player.media.stop = function() {
+                        player.pause();
+                        player.currentTime = 0;
+                    };
+                    var currentTime = player.media.currentTime;
+                    Object.defineProperty(player.media, "currentTime", {
+                        get: function get() {
+                            return currentTime;
+                        },
+                        set: function set(time) {
+                            var embed = player.embed, media = player.media, paused = player.paused, volume = player.volume;
+                            var restorePause = paused && !embed.hasPlayed;
+                            media.seeking = true;
+                            triggerEvent.call(player, media, "seeking");
+                            Promise.resolve(restorePause && embed.setVolume(0)).then((function() {
+                                return embed.setCurrentTime(time);
+                            })).then((function() {
+                                return restorePause && embed.pause();
+                            })).then((function() {
+                                return restorePause && embed.setVolume(volume);
+                            })).catch((function() {}));
+                        }
+                    });
+                    var speed = player.config.speed.selected;
+                    Object.defineProperty(player.media, "playbackRate", {
+                        get: function get() {
+                            return speed;
+                        },
+                        set: function set(input) {
+                            player.embed.setPlaybackRate(input).then((function() {
+                                speed = input;
+                                triggerEvent.call(player, player.media, "ratechange");
+                            })).catch((function() {
+                                player.options.speed = [ 1 ];
+                            }));
+                        }
+                    });
+                    var volume = player.config.volume;
+                    Object.defineProperty(player.media, "volume", {
+                        get: function get() {
+                            return volume;
+                        },
+                        set: function set(input) {
+                            player.embed.setVolume(input).then((function() {
+                                volume = input;
+                                triggerEvent.call(player, player.media, "volumechange");
+                            }));
+                        }
+                    });
+                    var muted = player.config.muted;
+                    Object.defineProperty(player.media, "muted", {
+                        get: function get() {
+                            return muted;
+                        },
+                        set: function set(input) {
+                            var toggle = is$1.boolean(input) ? input : false;
+                            player.embed.setVolume(toggle ? 0 : player.config.volume).then((function() {
+                                muted = toggle;
+                                triggerEvent.call(player, player.media, "volumechange");
+                            }));
+                        }
+                    });
+                    var loop = player.config.loop;
+                    Object.defineProperty(player.media, "loop", {
+                        get: function get() {
+                            return loop;
+                        },
+                        set: function set(input) {
+                            var toggle = is$1.boolean(input) ? input : player.config.loop.active;
+                            player.embed.setLoop(toggle).then((function() {
+                                loop = toggle;
+                            }));
+                        }
+                    });
+                    var currentSrc;
+                    player.embed.getVideoUrl().then((function(value) {
+                        currentSrc = value;
+                        controls.setDownloadUrl.call(player);
+                    })).catch((function(error) {
+                        _this.debug.warn(error);
+                    }));
+                    Object.defineProperty(player.media, "currentSrc", {
+                        get: function get() {
+                            return currentSrc;
+                        }
+                    });
+                    Object.defineProperty(player.media, "ended", {
+                        get: function get() {
+                            return player.currentTime === player.duration;
+                        }
+                    });
+                    Promise.all([ player.embed.getVideoWidth(), player.embed.getVideoHeight() ]).then((function(dimensions) {
+                        var _dimensions = _slicedToArray(dimensions, 2), width = _dimensions[0], height = _dimensions[1];
+                        player.embed.ratio = [ width, height ];
+                        setAspectRatio.call(_this);
+                    }));
+                    player.embed.setAutopause(player.config.autopause).then((function(state) {
+                        player.config.autopause = state;
+                    }));
+                    player.embed.getVideoTitle().then((function(title) {
+                        player.config.title = title;
+                        ui.setTitle.call(_this);
+                    }));
+                    player.embed.getCurrentTime().then((function(value) {
+                        currentTime = value;
+                        triggerEvent.call(player, player.media, "timeupdate");
+                    }));
+                    player.embed.getDuration().then((function(value) {
+                        player.media.duration = value;
+                        triggerEvent.call(player, player.media, "durationchange");
+                    }));
+                    player.embed.getTextTracks().then((function(tracks) {
+                        player.media.textTracks = tracks;
+                        captions.setup.call(player);
+                    }));
+                    player.embed.on("cuechange", (function(_ref) {
+                        var _ref$cues = _ref.cues, cues = void 0 === _ref$cues ? [] : _ref$cues;
+                        var strippedCues = cues.map((function(cue) {
+                            return stripHTML(cue.text);
+                        }));
+                        captions.updateCues.call(player, strippedCues);
+                    }));
+                    player.embed.on("loaded", (function() {
+                        player.embed.getPaused().then((function(paused) {
+                            assurePlaybackState.call(player, !paused);
+                            if (!paused) triggerEvent.call(player, player.media, "playing");
+                        }));
+                        if (is$1.element(player.embed.element) && player.supported.ui) {
+                            var frame = player.embed.element;
+                            frame.setAttribute("tabindex", -1);
+                        }
+                    }));
+                    player.embed.on("bufferstart", (function() {
+                        triggerEvent.call(player, player.media, "waiting");
+                    }));
+                    player.embed.on("bufferend", (function() {
+                        triggerEvent.call(player, player.media, "playing");
+                    }));
+                    player.embed.on("play", (function() {
+                        assurePlaybackState.call(player, true);
+                        triggerEvent.call(player, player.media, "playing");
+                    }));
+                    player.embed.on("pause", (function() {
+                        assurePlaybackState.call(player, false);
+                    }));
+                    player.embed.on("timeupdate", (function(data) {
+                        player.media.seeking = false;
+                        currentTime = data.seconds;
+                        triggerEvent.call(player, player.media, "timeupdate");
+                    }));
+                    player.embed.on("progress", (function(data) {
+                        player.media.buffered = data.percent;
+                        triggerEvent.call(player, player.media, "progress");
+                        if (1 === parseInt(data.percent, 10)) triggerEvent.call(player, player.media, "canplaythrough");
+                        player.embed.getDuration().then((function(value) {
+                            if (value !== player.media.duration) {
+                                player.media.duration = value;
+                                triggerEvent.call(player, player.media, "durationchange");
+                            }
+                        }));
+                    }));
+                    player.embed.on("seeked", (function() {
+                        player.media.seeking = false;
+                        triggerEvent.call(player, player.media, "seeked");
+                    }));
+                    player.embed.on("ended", (function() {
+                        player.media.paused = true;
+                        triggerEvent.call(player, player.media, "ended");
+                    }));
+                    player.embed.on("error", (function(detail) {
+                        player.media.error = detail;
+                        triggerEvent.call(player, player.media, "error");
+                    }));
+                    if (config.customControls) setTimeout((function() {
+                        return ui.build.call(player);
+                    }), 0);
+                }
+            };
+            function parseId$1(url) {
+                if (is$1.empty(url)) return null;
+                var regex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+                return url.match(regex) ? RegExp.$2 : url;
+            }
+            function assurePlaybackState$1(play) {
+                if (play && !this.embed.hasPlayed) this.embed.hasPlayed = true;
+                if (this.media.paused === play) {
+                    this.media.paused = !play;
+                    triggerEvent.call(this, this.media, play ? "play" : "pause");
+                }
+            }
+            function getHost(config) {
+                if (config.noCookie) return "https://www.youtube-nocookie.com";
+                if ("http:" === window.location.protocol) return "http://www.youtube.com";
+                return;
+            }
+            var youtube = {
+                setup: function setup() {
+                    var _this = this;
+                    toggleClass(this.elements.wrapper, this.config.classNames.embed, true);
+                    if (is$1.object(window.YT) && is$1.function(window.YT.Player)) youtube.ready.call(this); else {
+                        var callback = window.onYouTubeIframeAPIReady;
+                        window.onYouTubeIframeAPIReady = function() {
+                            if (is$1.function(callback)) callback();
+                            youtube.ready.call(_this);
+                        };
+                        loadScript(this.config.urls.youtube.sdk).catch((function(error) {
+                            _this.debug.warn("YouTube API failed to load", error);
+                        }));
+                    }
+                },
+                getTitle: function getTitle(videoId) {
+                    var _this2 = this;
+                    var url = format(this.config.urls.youtube.api, videoId);
+                    fetch(url).then((function(data) {
+                        if (is$1.object(data)) {
+                            var title = data.title, height = data.height, width = data.width;
+                            _this2.config.title = title;
+                            ui.setTitle.call(_this2);
+                            _this2.embed.ratio = [ width, height ];
+                        }
+                        setAspectRatio.call(_this2);
+                    })).catch((function() {
+                        setAspectRatio.call(_this2);
+                    }));
+                },
+                ready: function ready() {
+                    var player = this;
+                    var config = player.config.youtube;
+                    var currentId = player.media && player.media.getAttribute("id");
+                    if (!is$1.empty(currentId) && currentId.startsWith("youtube-")) return;
+                    var source = player.media.getAttribute("src");
+                    if (is$1.empty(source)) source = player.media.getAttribute(this.config.attributes.embed.id);
+                    var videoId = parseId$1(source);
+                    var id = generateId(player.provider);
+                    var container = createElement("div", {
+                        id,
+                        "data-poster": config.customControls ? player.poster : void 0
+                    });
+                    player.media = replaceElement(container, player.media);
+                    if (config.customControls) {
+                        var posterSrc = function posterSrc(s) {
+                            return "https://i.ytimg.com/vi/".concat(videoId, "/").concat(s, "default.jpg");
+                        };
+                        loadImage(posterSrc("maxres"), 121).catch((function() {
+                            return loadImage(posterSrc("sd"), 121);
+                        })).catch((function() {
+                            return loadImage(posterSrc("hq"));
+                        })).then((function(image) {
+                            return ui.setPoster.call(player, image.src);
+                        })).then((function(src) {
+                            if (!src.includes("maxres")) player.elements.poster.style.backgroundSize = "cover";
+                        })).catch((function() {}));
+                    }
+                    player.embed = new window.YT.Player(player.media, {
+                        videoId,
+                        host: getHost(config),
+                        playerVars: extend({}, {
+                            autoplay: player.config.autoplay ? 1 : 0,
+                            hl: player.config.hl,
+                            controls: player.supported.ui && config.customControls ? 0 : 1,
+                            disablekb: 1,
+                            playsinline: !player.config.fullscreen.iosNative ? 1 : 0,
+                            cc_load_policy: player.captions.active ? 1 : 0,
+                            cc_lang_pref: player.config.captions.language,
+                            widget_referrer: window ? window.location.href : null
+                        }, config),
+                        events: {
+                            onError: function onError(event) {
+                                if (!player.media.error) {
+                                    var code = event.data;
+                                    var message = {
+                                        2: "The request contains an invalid parameter value. For example, this error occurs if you specify a video ID that does not have 11 characters, or if the video ID contains invalid characters, such as exclamation points or asterisks.",
+                                        5: "The requested content cannot be played in an HTML5 player or another error related to the HTML5 player has occurred.",
+                                        100: "The video requested was not found. This error occurs when a video has been removed (for any reason) or has been marked as private.",
+                                        101: "The owner of the requested video does not allow it to be played in embedded players.",
+                                        150: "The owner of the requested video does not allow it to be played in embedded players."
+                                    }[code] || "An unknown error occured";
+                                    player.media.error = {
+                                        code,
+                                        message
+                                    };
+                                    triggerEvent.call(player, player.media, "error");
+                                }
+                            },
+                            onPlaybackRateChange: function onPlaybackRateChange(event) {
+                                var instance = event.target;
+                                player.media.playbackRate = instance.getPlaybackRate();
+                                triggerEvent.call(player, player.media, "ratechange");
+                            },
+                            onReady: function onReady(event) {
+                                if (is$1.function(player.media.play)) return;
+                                var instance = event.target;
+                                youtube.getTitle.call(player, videoId);
+                                player.media.play = function() {
+                                    assurePlaybackState$1.call(player, true);
+                                    instance.playVideo();
+                                };
+                                player.media.pause = function() {
+                                    assurePlaybackState$1.call(player, false);
+                                    instance.pauseVideo();
+                                };
+                                player.media.stop = function() {
+                                    instance.stopVideo();
+                                };
+                                player.media.duration = instance.getDuration();
+                                player.media.paused = true;
+                                player.media.currentTime = 0;
+                                Object.defineProperty(player.media, "currentTime", {
+                                    get: function get() {
+                                        return Number(instance.getCurrentTime());
+                                    },
+                                    set: function set(time) {
+                                        if (player.paused && !player.embed.hasPlayed) player.embed.mute();
+                                        player.media.seeking = true;
+                                        triggerEvent.call(player, player.media, "seeking");
+                                        instance.seekTo(time);
+                                    }
+                                });
+                                Object.defineProperty(player.media, "playbackRate", {
+                                    get: function get() {
+                                        return instance.getPlaybackRate();
+                                    },
+                                    set: function set(input) {
+                                        instance.setPlaybackRate(input);
+                                    }
+                                });
+                                var volume = player.config.volume;
+                                Object.defineProperty(player.media, "volume", {
+                                    get: function get() {
+                                        return volume;
+                                    },
+                                    set: function set(input) {
+                                        volume = input;
+                                        instance.setVolume(100 * volume);
+                                        triggerEvent.call(player, player.media, "volumechange");
+                                    }
+                                });
+                                var muted = player.config.muted;
+                                Object.defineProperty(player.media, "muted", {
+                                    get: function get() {
+                                        return muted;
+                                    },
+                                    set: function set(input) {
+                                        var toggle = is$1.boolean(input) ? input : muted;
+                                        muted = toggle;
+                                        instance[toggle ? "mute" : "unMute"]();
+                                        instance.setVolume(100 * volume);
+                                        triggerEvent.call(player, player.media, "volumechange");
+                                    }
+                                });
+                                Object.defineProperty(player.media, "currentSrc", {
+                                    get: function get() {
+                                        return instance.getVideoUrl();
+                                    }
+                                });
+                                Object.defineProperty(player.media, "ended", {
+                                    get: function get() {
+                                        return player.currentTime === player.duration;
+                                    }
+                                });
+                                var speeds = instance.getAvailablePlaybackRates();
+                                player.options.speed = speeds.filter((function(s) {
+                                    return player.config.speed.options.includes(s);
+                                }));
+                                if (player.supported.ui && config.customControls) player.media.setAttribute("tabindex", -1);
+                                triggerEvent.call(player, player.media, "timeupdate");
+                                triggerEvent.call(player, player.media, "durationchange");
+                                clearInterval(player.timers.buffering);
+                                player.timers.buffering = setInterval((function() {
+                                    player.media.buffered = instance.getVideoLoadedFraction();
+                                    if (null === player.media.lastBuffered || player.media.lastBuffered < player.media.buffered) triggerEvent.call(player, player.media, "progress");
+                                    player.media.lastBuffered = player.media.buffered;
+                                    if (1 === player.media.buffered) {
+                                        clearInterval(player.timers.buffering);
+                                        triggerEvent.call(player, player.media, "canplaythrough");
+                                    }
+                                }), 200);
+                                if (config.customControls) setTimeout((function() {
+                                    return ui.build.call(player);
+                                }), 50);
+                            },
+                            onStateChange: function onStateChange(event) {
+                                var instance = event.target;
+                                clearInterval(player.timers.playing);
+                                var seeked = player.media.seeking && [ 1, 2 ].includes(event.data);
+                                if (seeked) {
+                                    player.media.seeking = false;
+                                    triggerEvent.call(player, player.media, "seeked");
+                                }
+                                switch (event.data) {
+                                  case -1:
+                                    triggerEvent.call(player, player.media, "timeupdate");
+                                    player.media.buffered = instance.getVideoLoadedFraction();
+                                    triggerEvent.call(player, player.media, "progress");
+                                    break;
+
+                                  case 0:
+                                    assurePlaybackState$1.call(player, false);
+                                    if (player.media.loop) {
+                                        instance.stopVideo();
+                                        instance.playVideo();
+                                    } else triggerEvent.call(player, player.media, "ended");
+                                    break;
+
+                                  case 1:
+                                    if (config.customControls && !player.config.autoplay && player.media.paused && !player.embed.hasPlayed) player.media.pause(); else {
+                                        assurePlaybackState$1.call(player, true);
+                                        triggerEvent.call(player, player.media, "playing");
+                                        player.timers.playing = setInterval((function() {
+                                            triggerEvent.call(player, player.media, "timeupdate");
+                                        }), 50);
+                                        if (player.media.duration !== instance.getDuration()) {
+                                            player.media.duration = instance.getDuration();
+                                            triggerEvent.call(player, player.media, "durationchange");
+                                        }
+                                    }
+                                    break;
+
+                                  case 2:
+                                    if (!player.muted) player.embed.unMute();
+                                    assurePlaybackState$1.call(player, false);
+                                    break;
+
+                                  case 3:
+                                    triggerEvent.call(player, player.media, "waiting");
+                                    break;
+                                }
+                                triggerEvent.call(player, player.elements.container, "statechange", false, {
+                                    code: event.data
+                                });
+                            }
+                        }
+                    });
+                }
+            };
+            var media = {
+                setup: function setup() {
+                    if (!this.media) {
+                        this.debug.warn("No media element found!");
+                        return;
+                    }
+                    toggleClass(this.elements.container, this.config.classNames.type.replace("{0}", this.type), true);
+                    toggleClass(this.elements.container, this.config.classNames.provider.replace("{0}", this.provider), true);
+                    if (this.isEmbed) toggleClass(this.elements.container, this.config.classNames.type.replace("{0}", "video"), true);
+                    if (this.isVideo) {
+                        this.elements.wrapper = createElement("div", {
+                            class: this.config.classNames.video
+                        });
+                        wrap(this.media, this.elements.wrapper);
+                        this.elements.poster = createElement("div", {
+                            class: this.config.classNames.poster,
+                            hidden: ""
+                        });
+                        this.elements.wrapper.appendChild(this.elements.poster);
+                    }
+                    if (this.isHTML5) html5.setup.call(this); else if (this.isYouTube) youtube.setup.call(this); else if (this.isVimeo) vimeo.setup.call(this);
+                }
+            };
+            var destroy = function destroy(instance) {
+                if (instance.manager) instance.manager.destroy();
+                if (instance.elements.displayContainer) instance.elements.displayContainer.destroy();
+                instance.elements.container.remove();
+            };
+            var Ads = function() {
+                function Ads(player) {
+                    var _this = this;
+                    _classCallCheck(this, Ads);
+                    this.player = player;
+                    this.config = player.config.ads;
+                    this.playing = false;
+                    this.initialized = false;
+                    this.elements = {
+                        container: null,
+                        displayContainer: null
+                    };
+                    this.manager = null;
+                    this.loader = null;
+                    this.cuePoints = null;
+                    this.events = {};
+                    this.safetyTimer = null;
+                    this.countdownTimer = null;
+                    this.managerPromise = new Promise((function(resolve, reject) {
+                        _this.on("loaded", resolve);
+                        _this.on("error", reject);
+                    }));
+                    this.load();
+                }
+                _createClass(Ads, [ {
+                    key: "load",
+                    value: function load() {
+                        var _this2 = this;
+                        if (!this.enabled) return;
+                        if (!is$1.object(window.google) || !is$1.object(window.google.ima)) loadScript(this.player.config.urls.googleIMA.sdk).then((function() {
+                            _this2.ready();
+                        })).catch((function() {
+                            _this2.trigger("error", new Error("Google IMA SDK failed to load"));
+                        })); else this.ready();
+                    }
+                }, {
+                    key: "ready",
+                    value: function ready() {
+                        var _this3 = this;
+                        if (!this.enabled) destroy(this);
+                        this.startSafetyTimer(12e3, "ready()");
+                        this.managerPromise.then((function() {
+                            _this3.clearSafetyTimer("onAdsManagerLoaded()");
+                        }));
+                        this.listeners();
+                        this.setupIMA();
+                    }
+                }, {
+                    key: "setupIMA",
+                    value: function setupIMA() {
+                        var _this4 = this;
+                        this.elements.container = createElement("div", {
+                            class: this.player.config.classNames.ads
+                        });
+                        this.player.elements.container.appendChild(this.elements.container);
+                        google.ima.settings.setVpaidMode(google.ima.ImaSdkSettings.VpaidMode.ENABLED);
+                        google.ima.settings.setLocale(this.player.config.ads.language);
+                        google.ima.settings.setDisableCustomPlaybackForIOS10Plus(this.player.config.playsinline);
+                        this.elements.displayContainer = new google.ima.AdDisplayContainer(this.elements.container, this.player.media);
+                        this.loader = new google.ima.AdsLoader(this.elements.displayContainer);
+                        this.loader.addEventListener(google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED, (function(event) {
+                            return _this4.onAdsManagerLoaded(event);
+                        }), false);
+                        this.loader.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, (function(error) {
+                            return _this4.onAdError(error);
+                        }), false);
+                        this.requestAds();
+                    }
+                }, {
+                    key: "requestAds",
+                    value: function requestAds() {
+                        var container = this.player.elements.container;
+                        try {
+                            var request = new google.ima.AdsRequest;
+                            request.adTagUrl = this.tagUrl;
+                            request.linearAdSlotWidth = container.offsetWidth;
+                            request.linearAdSlotHeight = container.offsetHeight;
+                            request.nonLinearAdSlotWidth = container.offsetWidth;
+                            request.nonLinearAdSlotHeight = container.offsetHeight;
+                            request.forceNonLinearFullSlot = false;
+                            request.setAdWillPlayMuted(!this.player.muted);
+                            this.loader.requestAds(request);
+                        } catch (e) {
+                            this.onAdError(e);
+                        }
+                    }
+                }, {
+                    key: "pollCountdown",
+                    value: function pollCountdown() {
+                        var _this5 = this;
+                        var start = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : false;
+                        if (!start) {
+                            clearInterval(this.countdownTimer);
+                            this.elements.container.removeAttribute("data-badge-text");
+                            return;
+                        }
+                        var update = function update() {
+                            var time = formatTime(Math.max(_this5.manager.getRemainingTime(), 0));
+                            var label = "".concat(i18n.get("advertisement", _this5.player.config), " - ").concat(time);
+                            _this5.elements.container.setAttribute("data-badge-text", label);
+                        };
+                        this.countdownTimer = setInterval(update, 100);
+                    }
+                }, {
+                    key: "onAdsManagerLoaded",
+                    value: function onAdsManagerLoaded(event) {
+                        var _this6 = this;
+                        if (!this.enabled) return;
+                        var settings = new google.ima.AdsRenderingSettings;
+                        settings.restoreCustomPlaybackStateOnAdBreakComplete = true;
+                        settings.enablePreloading = true;
+                        this.manager = event.getAdsManager(this.player, settings);
+                        this.cuePoints = this.manager.getCuePoints();
+                        this.manager.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, (function(error) {
+                            return _this6.onAdError(error);
+                        }));
+                        Object.keys(google.ima.AdEvent.Type).forEach((function(type) {
+                            _this6.manager.addEventListener(google.ima.AdEvent.Type[type], (function(e) {
+                                return _this6.onAdEvent(e);
+                            }));
+                        }));
+                        this.trigger("loaded");
+                    }
+                }, {
+                    key: "addCuePoints",
+                    value: function addCuePoints() {
+                        var _this7 = this;
+                        if (!is$1.empty(this.cuePoints)) this.cuePoints.forEach((function(cuePoint) {
+                            if (0 !== cuePoint && -1 !== cuePoint && cuePoint < _this7.player.duration) {
+                                var seekElement = _this7.player.elements.progress;
+                                if (is$1.element(seekElement)) {
+                                    var cuePercentage = 100 / _this7.player.duration * cuePoint;
+                                    var cue = createElement("span", {
+                                        class: _this7.player.config.classNames.cues
+                                    });
+                                    cue.style.left = "".concat(cuePercentage.toString(), "%");
+                                    seekElement.appendChild(cue);
+                                }
+                            }
+                        }));
+                    }
+                }, {
+                    key: "onAdEvent",
+                    value: function onAdEvent(event) {
+                        var _this8 = this;
+                        var container = this.player.elements.container;
+                        var ad = event.getAd();
+                        var adData = event.getAdData();
+                        var dispatchEvent = function dispatchEvent(type) {
+                            triggerEvent.call(_this8.player, _this8.player.media, "ads".concat(type.replace(/_/g, "").toLowerCase()));
+                        };
+                        dispatchEvent(event.type);
+                        switch (event.type) {
+                          case google.ima.AdEvent.Type.LOADED:
+                            this.trigger("loaded");
+                            this.pollCountdown(true);
+                            if (!ad.isLinear()) {
+                                ad.width = container.offsetWidth;
+                                ad.height = container.offsetHeight;
+                            }
+                            break;
+
+                          case google.ima.AdEvent.Type.STARTED:
+                            this.manager.setVolume(this.player.volume);
+                            break;
+
+                          case google.ima.AdEvent.Type.ALL_ADS_COMPLETED:
+                            if (this.player.ended) this.loadAds(); else this.loader.contentComplete();
+                            break;
+
+                          case google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED:
+                            this.pauseContent();
+                            break;
+
+                          case google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED:
+                            this.pollCountdown();
+                            this.resumeContent();
+                            break;
+
+                          case google.ima.AdEvent.Type.LOG:
+                            if (adData.adError) this.player.debug.warn("Non-fatal ad error: ".concat(adData.adError.getMessage()));
+                            break;
+                        }
+                    }
+                }, {
+                    key: "onAdError",
+                    value: function onAdError(event) {
+                        this.cancel();
+                        this.player.debug.warn("Ads error", event);
+                    }
+                }, {
+                    key: "listeners",
+                    value: function listeners() {
+                        var _this9 = this;
+                        var container = this.player.elements.container;
+                        var time;
+                        this.player.on("canplay", (function() {
+                            _this9.addCuePoints();
+                        }));
+                        this.player.on("ended", (function() {
+                            _this9.loader.contentComplete();
+                        }));
+                        this.player.on("timeupdate", (function() {
+                            time = _this9.player.currentTime;
+                        }));
+                        this.player.on("seeked", (function() {
+                            var seekedTime = _this9.player.currentTime;
+                            if (is$1.empty(_this9.cuePoints)) return;
+                            _this9.cuePoints.forEach((function(cuePoint, index) {
+                                if (time < cuePoint && cuePoint < seekedTime) {
+                                    _this9.manager.discardAdBreak();
+                                    _this9.cuePoints.splice(index, 1);
+                                }
+                            }));
+                        }));
+                        window.addEventListener("resize", (function() {
+                            if (_this9.manager) _this9.manager.resize(container.offsetWidth, container.offsetHeight, google.ima.ViewMode.NORMAL);
+                        }));
+                    }
+                }, {
+                    key: "play",
+                    value: function play() {
+                        var _this10 = this;
+                        var container = this.player.elements.container;
+                        if (!this.managerPromise) this.resumeContent();
+                        this.managerPromise.then((function() {
+                            _this10.manager.setVolume(_this10.player.volume);
+                            _this10.elements.displayContainer.initialize();
+                            try {
+                                if (!_this10.initialized) {
+                                    _this10.manager.init(container.offsetWidth, container.offsetHeight, google.ima.ViewMode.NORMAL);
+                                    _this10.manager.start();
+                                }
+                                _this10.initialized = true;
+                            } catch (adError) {
+                                _this10.onAdError(adError);
+                            }
+                        })).catch((function() {}));
+                    }
+                }, {
+                    key: "resumeContent",
+                    value: function resumeContent() {
+                        this.elements.container.style.zIndex = "";
+                        this.playing = false;
+                        silencePromise(this.player.media.play());
+                    }
+                }, {
+                    key: "pauseContent",
+                    value: function pauseContent() {
+                        this.elements.container.style.zIndex = 3;
+                        this.playing = true;
+                        this.player.media.pause();
+                    }
+                }, {
+                    key: "cancel",
+                    value: function cancel() {
+                        if (this.initialized) this.resumeContent();
+                        this.trigger("error");
+                        this.loadAds();
+                    }
+                }, {
+                    key: "loadAds",
+                    value: function loadAds() {
+                        var _this11 = this;
+                        this.managerPromise.then((function() {
+                            if (_this11.manager) _this11.manager.destroy();
+                            _this11.managerPromise = new Promise((function(resolve) {
+                                _this11.on("loaded", resolve);
+                                _this11.player.debug.log(_this11.manager);
+                            }));
+                            _this11.initialized = false;
+                            _this11.requestAds();
+                        })).catch((function() {}));
+                    }
+                }, {
+                    key: "trigger",
+                    value: function trigger(event) {
+                        var _this12 = this;
+                        for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) args[_key - 1] = arguments[_key];
+                        var handlers = this.events[event];
+                        if (is$1.array(handlers)) handlers.forEach((function(handler) {
+                            if (is$1.function(handler)) handler.apply(_this12, args);
+                        }));
+                    }
+                }, {
+                    key: "on",
+                    value: function on(event, callback) {
+                        if (!is$1.array(this.events[event])) this.events[event] = [];
+                        this.events[event].push(callback);
+                        return this;
+                    }
+                }, {
+                    key: "startSafetyTimer",
+                    value: function startSafetyTimer(time, from) {
+                        var _this13 = this;
+                        this.player.debug.log("Safety timer invoked from: ".concat(from));
+                        this.safetyTimer = setTimeout((function() {
+                            _this13.cancel();
+                            _this13.clearSafetyTimer("startSafetyTimer()");
+                        }), time);
+                    }
+                }, {
+                    key: "clearSafetyTimer",
+                    value: function clearSafetyTimer(from) {
+                        if (!is$1.nullOrUndefined(this.safetyTimer)) {
+                            this.player.debug.log("Safety timer cleared from: ".concat(from));
+                            clearTimeout(this.safetyTimer);
+                            this.safetyTimer = null;
+                        }
+                    }
+                }, {
+                    key: "enabled",
+                    get: function get() {
+                        var config = this.config;
+                        return this.player.isHTML5 && this.player.isVideo && config.enabled && (!is$1.empty(config.publisherId) || is$1.url(config.tagUrl));
+                    }
+                }, {
+                    key: "tagUrl",
+                    get: function get() {
+                        var config = this.config;
+                        if (is$1.url(config.tagUrl)) return config.tagUrl;
+                        var params = {
+                            AV_PUBLISHERID: "58c25bb0073ef448b1087ad6",
+                            AV_CHANNELID: "5a0458dc28a06145e4519d21",
+                            AV_URL: window.location.hostname,
+                            cb: Date.now(),
+                            AV_WIDTH: 640,
+                            AV_HEIGHT: 480,
+                            AV_CDIM2: config.publisherId
+                        };
+                        var base = "https://go.aniview.com/api/adserver6/vast/";
+                        return "".concat(base, "?").concat(buildUrlParams(params));
+                    }
+                } ]);
+                return Ads;
+            }();
+            var parseVtt = function parseVtt(vttDataString) {
+                var processedList = [];
+                var frames = vttDataString.split(/\r\n\r\n|\n\n|\r\r/);
+                frames.forEach((function(frame) {
+                    var result = {};
+                    var lines = frame.split(/\r\n|\n|\r/);
+                    lines.forEach((function(line) {
+                        if (!is$1.number(result.startTime)) {
+                            var matchTimes = line.match(/([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})( ?--> ?)([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})/);
+                            if (matchTimes) {
+                                result.startTime = 60 * Number(matchTimes[1] || 0) * 60 + 60 * Number(matchTimes[2]) + Number(matchTimes[3]) + Number("0.".concat(matchTimes[4]));
+                                result.endTime = 60 * Number(matchTimes[6] || 0) * 60 + 60 * Number(matchTimes[7]) + Number(matchTimes[8]) + Number("0.".concat(matchTimes[9]));
+                            }
+                        } else if (!is$1.empty(line.trim()) && is$1.empty(result.text)) {
+                            var lineSplit = line.trim().split("#xywh=");
+                            var _lineSplit = _slicedToArray(lineSplit, 1);
+                            result.text = _lineSplit[0];
+                            if (lineSplit[1]) {
+                                var _lineSplit$1$split = lineSplit[1].split(",");
+                                var _lineSplit$1$split2 = _slicedToArray(_lineSplit$1$split, 4);
+                                result.x = _lineSplit$1$split2[0];
+                                result.y = _lineSplit$1$split2[1];
+                                result.w = _lineSplit$1$split2[2];
+                                result.h = _lineSplit$1$split2[3];
+                            }
+                        }
+                    }));
+                    if (result.text) processedList.push(result);
+                }));
+                return processedList;
+            };
+            var fitRatio = function fitRatio(ratio, outer) {
+                var targetRatio = outer.width / outer.height;
+                var result = {};
+                if (ratio > targetRatio) {
+                    result.width = outer.width;
+                    result.height = 1 / ratio * outer.width;
+                } else {
+                    result.height = outer.height;
+                    result.width = ratio * outer.height;
+                }
+                return result;
+            };
+            var PreviewThumbnails = function() {
+                function PreviewThumbnails(player) {
+                    _classCallCheck(this, PreviewThumbnails);
+                    this.player = player;
+                    this.thumbnails = [];
+                    this.loaded = false;
+                    this.lastMouseMoveTime = Date.now();
+                    this.mouseDown = false;
+                    this.loadedImages = [];
+                    this.elements = {
+                        thumb: {},
+                        scrubbing: {}
+                    };
+                    this.load();
+                }
+                _createClass(PreviewThumbnails, [ {
+                    key: "load",
+                    value: function load() {
+                        var _this = this;
+                        if (this.player.elements.display.seekTooltip) this.player.elements.display.seekTooltip.hidden = this.enabled;
+                        if (!this.enabled) return;
+                        this.getThumbnails().then((function() {
+                            if (!_this.enabled) return;
+                            _this.render();
+                            _this.determineContainerAutoSizing();
+                            _this.loaded = true;
+                        }));
+                    }
+                }, {
+                    key: "getThumbnails",
+                    value: function getThumbnails() {
+                        var _this2 = this;
+                        return new Promise((function(resolve) {
+                            var src = _this2.player.config.previewThumbnails.src;
+                            if (is$1.empty(src)) throw new Error("Missing previewThumbnails.src config attribute");
+                            var sortAndResolve = function sortAndResolve() {
+                                _this2.thumbnails.sort((function(x, y) {
+                                    return x.height - y.height;
+                                }));
+                                _this2.player.debug.log("Preview thumbnails", _this2.thumbnails);
+                                resolve();
+                            };
+                            if (is$1.function(src)) src((function(thumbnails) {
+                                _this2.thumbnails = thumbnails;
+                                sortAndResolve();
+                            })); else {
+                                var urls = is$1.string(src) ? [ src ] : src;
+                                var promises = urls.map((function(u) {
+                                    return _this2.getThumbnail(u);
+                                }));
+                                Promise.all(promises).then(sortAndResolve);
+                            }
+                        }));
+                    }
+                }, {
+                    key: "getThumbnail",
+                    value: function getThumbnail(url) {
+                        var _this3 = this;
+                        return new Promise((function(resolve) {
+                            fetch(url).then((function(response) {
+                                var thumbnail = {
+                                    frames: parseVtt(response),
+                                    height: null,
+                                    urlPrefix: ""
+                                };
+                                if (!thumbnail.frames[0].text.startsWith("/") && !thumbnail.frames[0].text.startsWith("http://") && !thumbnail.frames[0].text.startsWith("https://")) thumbnail.urlPrefix = url.substring(0, url.lastIndexOf("/") + 1);
+                                var tempImage = new Image;
+                                tempImage.onload = function() {
+                                    thumbnail.height = tempImage.naturalHeight;
+                                    thumbnail.width = tempImage.naturalWidth;
+                                    _this3.thumbnails.push(thumbnail);
+                                    resolve();
+                                };
+                                tempImage.src = thumbnail.urlPrefix + thumbnail.frames[0].text;
+                            }));
+                        }));
+                    }
+                }, {
+                    key: "startMove",
+                    value: function startMove(event) {
+                        if (!this.loaded) return;
+                        if (!is$1.event(event) || ![ "touchmove", "mousemove" ].includes(event.type)) return;
+                        if (!this.player.media.duration) return;
+                        if ("touchmove" === event.type) this.seekTime = this.player.media.duration * (this.player.elements.inputs.seek.value / 100); else {
+                            var clientRect = this.player.elements.progress.getBoundingClientRect();
+                            var percentage = 100 / clientRect.width * (event.pageX - clientRect.left);
+                            this.seekTime = this.player.media.duration * (percentage / 100);
+                            if (this.seekTime < 0) this.seekTime = 0;
+                            if (this.seekTime > this.player.media.duration - 1) this.seekTime = this.player.media.duration - 1;
+                            this.mousePosX = event.pageX;
+                            this.elements.thumb.time.innerText = formatTime(this.seekTime);
+                        }
+                        this.showImageAtCurrentTime();
+                    }
+                }, {
+                    key: "endMove",
+                    value: function endMove() {
+                        this.toggleThumbContainer(false, true);
+                    }
+                }, {
+                    key: "startScrubbing",
+                    value: function startScrubbing(event) {
+                        if (is$1.nullOrUndefined(event.button) || false === event.button || 0 === event.button) {
+                            this.mouseDown = true;
+                            if (this.player.media.duration) {
+                                this.toggleScrubbingContainer(true);
+                                this.toggleThumbContainer(false, true);
+                                this.showImageAtCurrentTime();
+                            }
+                        }
+                    }
+                }, {
+                    key: "endScrubbing",
+                    value: function endScrubbing() {
+                        var _this4 = this;
+                        this.mouseDown = false;
+                        if (Math.ceil(this.lastTime) === Math.ceil(this.player.media.currentTime)) this.toggleScrubbingContainer(false); else once.call(this.player, this.player.media, "timeupdate", (function() {
+                            if (!_this4.mouseDown) _this4.toggleScrubbingContainer(false);
+                        }));
+                    }
+                }, {
+                    key: "listeners",
+                    value: function listeners() {
+                        var _this5 = this;
+                        this.player.on("play", (function() {
+                            _this5.toggleThumbContainer(false, true);
+                        }));
+                        this.player.on("seeked", (function() {
+                            _this5.toggleThumbContainer(false);
+                        }));
+                        this.player.on("timeupdate", (function() {
+                            _this5.lastTime = _this5.player.media.currentTime;
+                        }));
+                    }
+                }, {
+                    key: "render",
+                    value: function render() {
+                        this.elements.thumb.container = createElement("div", {
+                            class: this.player.config.classNames.previewThumbnails.thumbContainer
+                        });
+                        this.elements.thumb.imageContainer = createElement("div", {
+                            class: this.player.config.classNames.previewThumbnails.imageContainer
+                        });
+                        this.elements.thumb.container.appendChild(this.elements.thumb.imageContainer);
+                        var timeContainer = createElement("div", {
+                            class: this.player.config.classNames.previewThumbnails.timeContainer
+                        });
+                        this.elements.thumb.time = createElement("span", {}, "00:00");
+                        timeContainer.appendChild(this.elements.thumb.time);
+                        this.elements.thumb.container.appendChild(timeContainer);
+                        if (is$1.element(this.player.elements.progress)) this.player.elements.progress.appendChild(this.elements.thumb.container);
+                        this.elements.scrubbing.container = createElement("div", {
+                            class: this.player.config.classNames.previewThumbnails.scrubbingContainer
+                        });
+                        this.player.elements.wrapper.appendChild(this.elements.scrubbing.container);
+                    }
+                }, {
+                    key: "destroy",
+                    value: function destroy() {
+                        if (this.elements.thumb.container) this.elements.thumb.container.remove();
+                        if (this.elements.scrubbing.container) this.elements.scrubbing.container.remove();
+                    }
+                }, {
+                    key: "showImageAtCurrentTime",
+                    value: function showImageAtCurrentTime() {
+                        var _this6 = this;
+                        if (this.mouseDown) this.setScrubbingContainerSize(); else this.setThumbContainerSizeAndPos();
+                        var thumbNum = this.thumbnails[0].frames.findIndex((function(frame) {
+                            return _this6.seekTime >= frame.startTime && _this6.seekTime <= frame.endTime;
+                        }));
+                        var hasThumb = thumbNum >= 0;
+                        var qualityIndex = 0;
+                        if (!this.mouseDown) this.toggleThumbContainer(hasThumb);
+                        if (!hasThumb) return;
+                        this.thumbnails.forEach((function(thumbnail, index) {
+                            if (_this6.loadedImages.includes(thumbnail.frames[thumbNum].text)) qualityIndex = index;
+                        }));
+                        if (thumbNum !== this.showingThumb) {
+                            this.showingThumb = thumbNum;
+                            this.loadImage(qualityIndex);
+                        }
+                    }
+                }, {
+                    key: "loadImage",
+                    value: function loadImage() {
+                        var _this7 = this;
+                        var qualityIndex = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0;
+                        var thumbNum = this.showingThumb;
+                        var thumbnail = this.thumbnails[qualityIndex];
+                        var urlPrefix = thumbnail.urlPrefix;
+                        var frame = thumbnail.frames[thumbNum];
+                        var thumbFilename = thumbnail.frames[thumbNum].text;
+                        var thumbUrl = urlPrefix + thumbFilename;
+                        if (!this.currentImageElement || this.currentImageElement.dataset.filename !== thumbFilename) {
+                            if (this.loadingImage && this.usingSprites) this.loadingImage.onload = null;
+                            var previewImage = new Image;
+                            previewImage.src = thumbUrl;
+                            previewImage.dataset.index = thumbNum;
+                            previewImage.dataset.filename = thumbFilename;
+                            this.showingThumbFilename = thumbFilename;
+                            this.player.debug.log("Loading image: ".concat(thumbUrl));
+                            previewImage.onload = function() {
+                                return _this7.showImage(previewImage, frame, qualityIndex, thumbNum, thumbFilename, true);
+                            };
+                            this.loadingImage = previewImage;
+                            this.removeOldImages(previewImage);
+                        } else {
+                            this.showImage(this.currentImageElement, frame, qualityIndex, thumbNum, thumbFilename, false);
+                            this.currentImageElement.dataset.index = thumbNum;
+                            this.removeOldImages(this.currentImageElement);
+                        }
+                    }
+                }, {
+                    key: "showImage",
+                    value: function showImage(previewImage, frame, qualityIndex, thumbNum, thumbFilename) {
+                        var newImage = arguments.length > 5 && void 0 !== arguments[5] ? arguments[5] : true;
+                        this.player.debug.log("Showing thumb: ".concat(thumbFilename, ". num: ").concat(thumbNum, ". qual: ").concat(qualityIndex, ". newimg: ").concat(newImage));
+                        this.setImageSizeAndOffset(previewImage, frame);
+                        if (newImage) {
+                            this.currentImageContainer.appendChild(previewImage);
+                            this.currentImageElement = previewImage;
+                            if (!this.loadedImages.includes(thumbFilename)) this.loadedImages.push(thumbFilename);
+                        }
+                        this.preloadNearby(thumbNum, true).then(this.preloadNearby(thumbNum, false)).then(this.getHigherQuality(qualityIndex, previewImage, frame, thumbFilename));
+                    }
+                }, {
+                    key: "removeOldImages",
+                    value: function removeOldImages(currentImage) {
+                        var _this8 = this;
+                        Array.from(this.currentImageContainer.children).forEach((function(image) {
+                            if ("img" !== image.tagName.toLowerCase()) return;
+                            var removeDelay = _this8.usingSprites ? 500 : 1e3;
+                            if (image.dataset.index !== currentImage.dataset.index && !image.dataset.deleting) {
+                                image.dataset.deleting = true;
+                                var currentImageContainer = _this8.currentImageContainer;
+                                setTimeout((function() {
+                                    currentImageContainer.removeChild(image);
+                                    _this8.player.debug.log("Removing thumb: ".concat(image.dataset.filename));
+                                }), removeDelay);
+                            }
+                        }));
+                    }
+                }, {
+                    key: "preloadNearby",
+                    value: function preloadNearby(thumbNum) {
+                        var _this9 = this;
+                        var forward = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : true;
+                        return new Promise((function(resolve) {
+                            setTimeout((function() {
+                                var oldThumbFilename = _this9.thumbnails[0].frames[thumbNum].text;
+                                if (_this9.showingThumbFilename === oldThumbFilename) {
+                                    var thumbnailsClone;
+                                    if (forward) thumbnailsClone = _this9.thumbnails[0].frames.slice(thumbNum); else thumbnailsClone = _this9.thumbnails[0].frames.slice(0, thumbNum).reverse();
+                                    var foundOne = false;
+                                    thumbnailsClone.forEach((function(frame) {
+                                        var newThumbFilename = frame.text;
+                                        if (newThumbFilename !== oldThumbFilename) if (!_this9.loadedImages.includes(newThumbFilename)) {
+                                            foundOne = true;
+                                            _this9.player.debug.log("Preloading thumb filename: ".concat(newThumbFilename));
+                                            var urlPrefix = _this9.thumbnails[0].urlPrefix;
+                                            var thumbURL = urlPrefix + newThumbFilename;
+                                            var previewImage = new Image;
+                                            previewImage.src = thumbURL;
+                                            previewImage.onload = function() {
+                                                _this9.player.debug.log("Preloaded thumb filename: ".concat(newThumbFilename));
+                                                if (!_this9.loadedImages.includes(newThumbFilename)) _this9.loadedImages.push(newThumbFilename);
+                                                resolve();
+                                            };
+                                        }
+                                    }));
+                                    if (!foundOne) resolve();
+                                }
+                            }), 300);
+                        }));
+                    }
+                }, {
+                    key: "getHigherQuality",
+                    value: function getHigherQuality(currentQualityIndex, previewImage, frame, thumbFilename) {
+                        var _this10 = this;
+                        if (currentQualityIndex < this.thumbnails.length - 1) {
+                            var previewImageHeight = previewImage.naturalHeight;
+                            if (this.usingSprites) previewImageHeight = frame.h;
+                            if (previewImageHeight < this.thumbContainerHeight) setTimeout((function() {
+                                if (_this10.showingThumbFilename === thumbFilename) {
+                                    _this10.player.debug.log("Showing higher quality thumb for: ".concat(thumbFilename));
+                                    _this10.loadImage(currentQualityIndex + 1);
+                                }
+                            }), 300);
+                        }
+                    }
+                }, {
+                    key: "toggleThumbContainer",
+                    value: function toggleThumbContainer() {
+                        var toggle = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : false;
+                        var clearShowing = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : false;
+                        var className = this.player.config.classNames.previewThumbnails.thumbContainerShown;
+                        this.elements.thumb.container.classList.toggle(className, toggle);
+                        if (!toggle && clearShowing) {
+                            this.showingThumb = null;
+                            this.showingThumbFilename = null;
+                        }
+                    }
+                }, {
+                    key: "toggleScrubbingContainer",
+                    value: function toggleScrubbingContainer() {
+                        var toggle = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : false;
+                        var className = this.player.config.classNames.previewThumbnails.scrubbingContainerShown;
+                        this.elements.scrubbing.container.classList.toggle(className, toggle);
+                        if (!toggle) {
+                            this.showingThumb = null;
+                            this.showingThumbFilename = null;
+                        }
+                    }
+                }, {
+                    key: "determineContainerAutoSizing",
+                    value: function determineContainerAutoSizing() {
+                        if (this.elements.thumb.imageContainer.clientHeight > 20 || this.elements.thumb.imageContainer.clientWidth > 20) this.sizeSpecifiedInCSS = true;
+                    }
+                }, {
+                    key: "setThumbContainerSizeAndPos",
+                    value: function setThumbContainerSizeAndPos() {
+                        if (!this.sizeSpecifiedInCSS) {
+                            var thumbWidth = Math.floor(this.thumbContainerHeight * this.thumbAspectRatio);
+                            this.elements.thumb.imageContainer.style.height = "".concat(this.thumbContainerHeight, "px");
+                            this.elements.thumb.imageContainer.style.width = "".concat(thumbWidth, "px");
+                        } else if (this.elements.thumb.imageContainer.clientHeight > 20 && this.elements.thumb.imageContainer.clientWidth < 20) {
+                            var _thumbWidth = Math.floor(this.elements.thumb.imageContainer.clientHeight * this.thumbAspectRatio);
+                            this.elements.thumb.imageContainer.style.width = "".concat(_thumbWidth, "px");
+                        } else if (this.elements.thumb.imageContainer.clientHeight < 20 && this.elements.thumb.imageContainer.clientWidth > 20) {
+                            var thumbHeight = Math.floor(this.elements.thumb.imageContainer.clientWidth / this.thumbAspectRatio);
+                            this.elements.thumb.imageContainer.style.height = "".concat(thumbHeight, "px");
+                        }
+                        this.setThumbContainerPos();
+                    }
+                }, {
+                    key: "setThumbContainerPos",
+                    value: function setThumbContainerPos() {
+                        var seekbarRect = this.player.elements.progress.getBoundingClientRect();
+                        var plyrRect = this.player.elements.container.getBoundingClientRect();
+                        var container = this.elements.thumb.container;
+                        var minVal = plyrRect.left - seekbarRect.left + 10;
+                        var maxVal = plyrRect.right - seekbarRect.left - container.clientWidth - 10;
+                        var previewPos = this.mousePosX - seekbarRect.left - container.clientWidth / 2;
+                        if (previewPos < minVal) previewPos = minVal;
+                        if (previewPos > maxVal) previewPos = maxVal;
+                        container.style.left = "".concat(previewPos, "px");
+                    }
+                }, {
+                    key: "setScrubbingContainerSize",
+                    value: function setScrubbingContainerSize() {
+                        var _fitRatio = fitRatio(this.thumbAspectRatio, {
+                            width: this.player.media.clientWidth,
+                            height: this.player.media.clientHeight
+                        }), width = _fitRatio.width, height = _fitRatio.height;
+                        this.elements.scrubbing.container.style.width = "".concat(width, "px");
+                        this.elements.scrubbing.container.style.height = "".concat(height, "px");
+                    }
+                }, {
+                    key: "setImageSizeAndOffset",
+                    value: function setImageSizeAndOffset(previewImage, frame) {
+                        if (!this.usingSprites) return;
+                        var multiplier = this.thumbContainerHeight / frame.h;
+                        previewImage.style.height = "".concat(previewImage.naturalHeight * multiplier, "px");
+                        previewImage.style.width = "".concat(previewImage.naturalWidth * multiplier, "px");
+                        previewImage.style.left = "-".concat(frame.x * multiplier, "px");
+                        previewImage.style.top = "-".concat(frame.y * multiplier, "px");
+                    }
+                }, {
+                    key: "enabled",
+                    get: function get() {
+                        return this.player.isHTML5 && this.player.isVideo && this.player.config.previewThumbnails.enabled;
+                    }
+                }, {
+                    key: "currentImageContainer",
+                    get: function get() {
+                        if (this.mouseDown) return this.elements.scrubbing.container;
+                        return this.elements.thumb.imageContainer;
+                    }
+                }, {
+                    key: "usingSprites",
+                    get: function get() {
+                        return Object.keys(this.thumbnails[0].frames[0]).includes("w");
+                    }
+                }, {
+                    key: "thumbAspectRatio",
+                    get: function get() {
+                        if (this.usingSprites) return this.thumbnails[0].frames[0].w / this.thumbnails[0].frames[0].h;
+                        return this.thumbnails[0].width / this.thumbnails[0].height;
+                    }
+                }, {
+                    key: "thumbContainerHeight",
+                    get: function get() {
+                        if (this.mouseDown) {
+                            var _fitRatio2 = fitRatio(this.thumbAspectRatio, {
+                                width: this.player.media.clientWidth,
+                                height: this.player.media.clientHeight
+                            }), height = _fitRatio2.height;
+                            return height;
+                        }
+                        if (this.sizeSpecifiedInCSS) return this.elements.thumb.imageContainer.clientHeight;
+                        return Math.floor(this.player.media.clientWidth / this.thumbAspectRatio / 4);
+                    }
+                }, {
+                    key: "currentImageElement",
+                    get: function get() {
+                        if (this.mouseDown) return this.currentScrubbingImageElement;
+                        return this.currentThumbnailImageElement;
+                    },
+                    set: function set(element) {
+                        if (this.mouseDown) this.currentScrubbingImageElement = element; else this.currentThumbnailImageElement = element;
+                    }
+                } ]);
+                return PreviewThumbnails;
+            }();
+            var source = {
+                insertElements: function insertElements(type, attributes) {
+                    var _this = this;
+                    if (is$1.string(attributes)) insertElement(type, this.media, {
+                        src: attributes
+                    }); else if (is$1.array(attributes)) attributes.forEach((function(attribute) {
+                        insertElement(type, _this.media, attribute);
+                    }));
+                },
+                change: function change(input) {
+                    var _this2 = this;
+                    if (!getDeep(input, "sources.length")) {
+                        this.debug.warn("Invalid source format");
+                        return;
+                    }
+                    html5.cancelRequests.call(this);
+                    this.destroy.call(this, (function() {
+                        _this2.options.quality = [];
+                        removeElement(_this2.media);
+                        _this2.media = null;
+                        if (is$1.element(_this2.elements.container)) _this2.elements.container.removeAttribute("class");
+                        var sources = input.sources, type = input.type;
+                        var _sources = _slicedToArray(sources, 1), _sources$ = _sources[0], _sources$$provider = _sources$.provider, provider = void 0 === _sources$$provider ? providers.html5 : _sources$$provider, src = _sources$.src;
+                        var tagName = "html5" === provider ? type : "div";
+                        var attributes = "html5" === provider ? {} : {
+                            src
+                        };
+                        Object.assign(_this2, {
+                            provider,
+                            type,
+                            supported: support.check(type, provider, _this2.config.playsinline),
+                            media: createElement(tagName, attributes)
+                        });
+                        _this2.elements.container.appendChild(_this2.media);
+                        if (is$1.boolean(input.autoplay)) _this2.config.autoplay = input.autoplay;
+                        if (_this2.isHTML5) {
+                            if (_this2.config.crossorigin) _this2.media.setAttribute("crossorigin", "");
+                            if (_this2.config.autoplay) _this2.media.setAttribute("autoplay", "");
+                            if (!is$1.empty(input.poster)) _this2.poster = input.poster;
+                            if (_this2.config.loop.active) _this2.media.setAttribute("loop", "");
+                            if (_this2.config.muted) _this2.media.setAttribute("muted", "");
+                            if (_this2.config.playsinline) _this2.media.setAttribute("playsinline", "");
+                        }
+                        ui.addStyleHook.call(_this2);
+                        if (_this2.isHTML5) source.insertElements.call(_this2, "source", sources);
+                        _this2.config.title = input.title;
+                        media.setup.call(_this2);
+                        if (_this2.isHTML5) if (Object.keys(input).includes("tracks")) source.insertElements.call(_this2, "track", input.tracks);
+                        if (_this2.isHTML5 || _this2.isEmbed && !_this2.supported.ui) ui.build.call(_this2);
+                        if (_this2.isHTML5) _this2.media.load();
+                        if (!is$1.empty(input.previewThumbnails)) {
+                            Object.assign(_this2.config.previewThumbnails, input.previewThumbnails);
+                            if (_this2.previewThumbnails && _this2.previewThumbnails.loaded) {
+                                _this2.previewThumbnails.destroy();
+                                _this2.previewThumbnails = null;
+                            }
+                            if (_this2.config.previewThumbnails.enabled) _this2.previewThumbnails = new PreviewThumbnails(_this2);
+                        }
+                        _this2.fullscreen.update();
+                    }), true);
+                }
+            };
+            function clamp() {
+                var input = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0;
+                var min = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0;
+                var max = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 255;
+                return Math.min(Math.max(input, min), max);
+            }
+            var Plyr = function() {
+                function Plyr(target, options) {
+                    var _this = this;
+                    _classCallCheck(this, Plyr);
+                    this.timers = {};
+                    this.ready = false;
+                    this.loading = false;
+                    this.failed = false;
+                    this.touch = support.touch;
+                    this.media = target;
+                    if (is$1.string(this.media)) this.media = document.querySelectorAll(this.media);
+                    if (window.jQuery && this.media instanceof jQuery || is$1.nodeList(this.media) || is$1.array(this.media)) this.media = this.media[0];
+                    this.config = extend({}, defaults$1, Plyr.defaults, options || {}, function() {
+                        try {
+                            return JSON.parse(_this.media.getAttribute("data-plyr-config"));
+                        } catch (e) {
+                            return {};
+                        }
+                    }());
+                    this.elements = {
+                        container: null,
+                        fullscreen: null,
+                        captions: null,
+                        buttons: {},
+                        display: {},
+                        progress: {},
+                        inputs: {},
+                        settings: {
+                            popup: null,
+                            menu: null,
+                            panels: {},
+                            buttons: {}
+                        }
+                    };
+                    this.captions = {
+                        active: null,
+                        currentTrack: -1,
+                        meta: new WeakMap
+                    };
+                    this.fullscreen = {
+                        active: false
+                    };
+                    this.options = {
+                        speed: [],
+                        quality: []
+                    };
+                    this.debug = new Console(this.config.debug);
+                    this.debug.log("Config", this.config);
+                    this.debug.log("Support", support);
+                    if (is$1.nullOrUndefined(this.media) || !is$1.element(this.media)) {
+                        this.debug.error("Setup failed: no suitable element passed");
+                        return;
+                    }
+                    if (this.media.plyr) {
+                        this.debug.warn("Target already setup");
+                        return;
+                    }
+                    if (!this.config.enabled) {
+                        this.debug.error("Setup failed: disabled by config");
+                        return;
+                    }
+                    if (!support.check().api) {
+                        this.debug.error("Setup failed: no support");
+                        return;
+                    }
+                    var clone = this.media.cloneNode(true);
+                    clone.autoplay = false;
+                    this.elements.original = clone;
+                    var type = this.media.tagName.toLowerCase();
+                    var iframe = null;
+                    var url = null;
+                    switch (type) {
+                      case "div":
+                        iframe = this.media.querySelector("iframe");
+                        if (is$1.element(iframe)) {
+                            url = parseUrl(iframe.getAttribute("src"));
+                            this.provider = getProviderByUrl(url.toString());
+                            this.elements.container = this.media;
+                            this.media = iframe;
+                            this.elements.container.className = "";
+                            if (url.search.length) {
+                                var truthy = [ "1", "true" ];
+                                if (truthy.includes(url.searchParams.get("autoplay"))) this.config.autoplay = true;
+                                if (truthy.includes(url.searchParams.get("loop"))) this.config.loop.active = true;
+                                if (this.isYouTube) {
+                                    this.config.playsinline = truthy.includes(url.searchParams.get("playsinline"));
+                                    this.config.youtube.hl = url.searchParams.get("hl");
+                                } else this.config.playsinline = true;
+                            }
+                        } else {
+                            this.provider = this.media.getAttribute(this.config.attributes.embed.provider);
+                            this.media.removeAttribute(this.config.attributes.embed.provider);
+                        }
+                        if (is$1.empty(this.provider) || !Object.keys(providers).includes(this.provider)) {
+                            this.debug.error("Setup failed: Invalid provider");
+                            return;
+                        }
+                        this.type = types.video;
+                        break;
+
+                      case "video":
+                      case "audio":
+                        this.type = type;
+                        this.provider = providers.html5;
+                        if (this.media.hasAttribute("crossorigin")) this.config.crossorigin = true;
+                        if (this.media.hasAttribute("autoplay")) this.config.autoplay = true;
+                        if (this.media.hasAttribute("playsinline") || this.media.hasAttribute("webkit-playsinline")) this.config.playsinline = true;
+                        if (this.media.hasAttribute("muted")) this.config.muted = true;
+                        if (this.media.hasAttribute("loop")) this.config.loop.active = true;
+                        break;
+
+                      default:
+                        this.debug.error("Setup failed: unsupported type");
+                        return;
+                    }
+                    this.supported = support.check(this.type, this.provider, this.config.playsinline);
+                    if (!this.supported.api) {
+                        this.debug.error("Setup failed: no support");
+                        return;
+                    }
+                    this.eventListeners = [];
+                    this.listeners = new Listeners(this);
+                    this.storage = new Storage(this);
+                    this.media.plyr = this;
+                    if (!is$1.element(this.elements.container)) {
+                        this.elements.container = createElement("div", {
+                            tabindex: 0
+                        });
+                        wrap(this.media, this.elements.container);
+                    }
+                    ui.migrateStyles.call(this);
+                    ui.addStyleHook.call(this);
+                    media.setup.call(this);
+                    if (this.config.debug) on.call(this, this.elements.container, this.config.events.join(" "), (function(event) {
+                        _this.debug.log("event: ".concat(event.type));
+                    }));
+                    this.fullscreen = new Fullscreen(this);
+                    if (this.isHTML5 || this.isEmbed && !this.supported.ui) ui.build.call(this);
+                    this.listeners.container();
+                    this.listeners.global();
+                    if (this.config.ads.enabled) this.ads = new Ads(this);
+                    if (this.isHTML5 && this.config.autoplay) this.once("canplay", (function() {
+                        return silencePromise(_this.play());
+                    }));
+                    this.lastSeekTime = 0;
+                    if (this.config.previewThumbnails.enabled) this.previewThumbnails = new PreviewThumbnails(this);
+                }
+                _createClass(Plyr, [ {
+                    key: "play",
+                    value: function play() {
+                        var _this2 = this;
+                        if (!is$1.function(this.media.play)) return null;
+                        if (this.ads && this.ads.enabled) this.ads.managerPromise.then((function() {
+                            return _this2.ads.play();
+                        })).catch((function() {
+                            return silencePromise(_this2.media.play());
+                        }));
+                        return this.media.play();
+                    }
+                }, {
+                    key: "pause",
+                    value: function pause() {
+                        if (!this.playing || !is$1.function(this.media.pause)) return null;
+                        return this.media.pause();
+                    }
+                }, {
+                    key: "togglePlay",
+                    value: function togglePlay(input) {
+                        var toggle = is$1.boolean(input) ? input : !this.playing;
+                        if (toggle) return this.play();
+                        return this.pause();
+                    }
+                }, {
+                    key: "stop",
+                    value: function stop() {
+                        if (this.isHTML5) {
+                            this.pause();
+                            this.restart();
+                        } else if (is$1.function(this.media.stop)) this.media.stop();
+                    }
+                }, {
+                    key: "restart",
+                    value: function restart() {
+                        this.currentTime = 0;
+                    }
+                }, {
+                    key: "rewind",
+                    value: function rewind(seekTime) {
+                        this.currentTime -= is$1.number(seekTime) ? seekTime : this.config.seekTime;
+                    }
+                }, {
+                    key: "forward",
+                    value: function forward(seekTime) {
+                        this.currentTime += is$1.number(seekTime) ? seekTime : this.config.seekTime;
+                    }
+                }, {
+                    key: "increaseVolume",
+                    value: function increaseVolume(step) {
+                        var volume = this.media.muted ? 0 : this.volume;
+                        this.volume = volume + (is$1.number(step) ? step : 0);
+                    }
+                }, {
+                    key: "decreaseVolume",
+                    value: function decreaseVolume(step) {
+                        this.increaseVolume(-step);
+                    }
+                }, {
+                    key: "toggleCaptions",
+                    value: function toggleCaptions(input) {
+                        captions.toggle.call(this, input, false);
+                    }
+                }, {
+                    key: "airplay",
+                    value: function airplay() {
+                        if (support.airplay) this.media.webkitShowPlaybackTargetPicker();
+                    }
+                }, {
+                    key: "toggleControls",
+                    value: function toggleControls(toggle) {
+                        if (this.supported.ui && !this.isAudio) {
+                            var isHidden = hasClass(this.elements.container, this.config.classNames.hideControls);
+                            var force = "undefined" === typeof toggle ? void 0 : !toggle;
+                            var hiding = toggleClass(this.elements.container, this.config.classNames.hideControls, force);
+                            if (hiding && is$1.array(this.config.controls) && this.config.controls.includes("settings") && !is$1.empty(this.config.settings)) controls.toggleMenu.call(this, false);
+                            if (hiding !== isHidden) {
+                                var eventName = hiding ? "controlshidden" : "controlsshown";
+                                triggerEvent.call(this, this.media, eventName);
+                            }
+                            return !hiding;
+                        }
+                        return false;
+                    }
+                }, {
+                    key: "on",
+                    value: function on$1(event, callback) {
+                        on.call(this, this.elements.container, event, callback);
+                    }
+                }, {
+                    key: "once",
+                    value: function once$1(event, callback) {
+                        once.call(this, this.elements.container, event, callback);
+                    }
+                }, {
+                    key: "off",
+                    value: function off$1(event, callback) {
+                        off(this.elements.container, event, callback);
+                    }
+                }, {
+                    key: "destroy",
+                    value: function destroy(callback) {
+                        var _this3 = this;
+                        var soft = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : false;
+                        if (!this.ready) return;
+                        var done = function done() {
+                            document.body.style.overflow = "";
+                            _this3.embed = null;
+                            if (soft) {
+                                if (Object.keys(_this3.elements).length) {
+                                    removeElement(_this3.elements.buttons.play);
+                                    removeElement(_this3.elements.captions);
+                                    removeElement(_this3.elements.controls);
+                                    removeElement(_this3.elements.wrapper);
+                                    _this3.elements.buttons.play = null;
+                                    _this3.elements.captions = null;
+                                    _this3.elements.controls = null;
+                                    _this3.elements.wrapper = null;
+                                }
+                                if (is$1.function(callback)) callback();
+                            } else {
+                                unbindListeners.call(_this3);
+                                html5.cancelRequests.call(_this3);
+                                replaceElement(_this3.elements.original, _this3.elements.container);
+                                triggerEvent.call(_this3, _this3.elements.original, "destroyed", true);
+                                if (is$1.function(callback)) callback.call(_this3.elements.original);
+                                _this3.ready = false;
+                                setTimeout((function() {
+                                    _this3.elements = null;
+                                    _this3.media = null;
+                                }), 200);
+                            }
+                        };
+                        this.stop();
+                        clearTimeout(this.timers.loading);
+                        clearTimeout(this.timers.controls);
+                        clearTimeout(this.timers.resized);
+                        if (this.isHTML5) {
+                            ui.toggleNativeControls.call(this, true);
+                            done();
+                        } else if (this.isYouTube) {
+                            clearInterval(this.timers.buffering);
+                            clearInterval(this.timers.playing);
+                            if (null !== this.embed && is$1.function(this.embed.destroy)) this.embed.destroy();
+                            done();
+                        } else if (this.isVimeo) {
+                            if (null !== this.embed) this.embed.unload().then(done);
+                            setTimeout(done, 200);
+                        }
+                    }
+                }, {
+                    key: "supports",
+                    value: function supports(type) {
+                        return support.mime.call(this, type);
+                    }
+                }, {
+                    key: "isHTML5",
+                    get: function get() {
+                        return this.provider === providers.html5;
+                    }
+                }, {
+                    key: "isEmbed",
+                    get: function get() {
+                        return this.isYouTube || this.isVimeo;
+                    }
+                }, {
+                    key: "isYouTube",
+                    get: function get() {
+                        return this.provider === providers.youtube;
+                    }
+                }, {
+                    key: "isVimeo",
+                    get: function get() {
+                        return this.provider === providers.vimeo;
+                    }
+                }, {
+                    key: "isVideo",
+                    get: function get() {
+                        return this.type === types.video;
+                    }
+                }, {
+                    key: "isAudio",
+                    get: function get() {
+                        return this.type === types.audio;
+                    }
+                }, {
+                    key: "playing",
+                    get: function get() {
+                        return Boolean(this.ready && !this.paused && !this.ended);
+                    }
+                }, {
+                    key: "paused",
+                    get: function get() {
+                        return Boolean(this.media.paused);
+                    }
+                }, {
+                    key: "stopped",
+                    get: function get() {
+                        return Boolean(this.paused && 0 === this.currentTime);
+                    }
+                }, {
+                    key: "ended",
+                    get: function get() {
+                        return Boolean(this.media.ended);
+                    }
+                }, {
+                    key: "currentTime",
+                    set: function set(input) {
+                        if (!this.duration) return;
+                        var inputIsValid = is$1.number(input) && input > 0;
+                        this.media.currentTime = inputIsValid ? Math.min(input, this.duration) : 0;
+                        this.debug.log("Seeking to ".concat(this.currentTime, " seconds"));
+                    },
+                    get: function get() {
+                        return Number(this.media.currentTime);
+                    }
+                }, {
+                    key: "buffered",
+                    get: function get() {
+                        var buffered = this.media.buffered;
+                        if (is$1.number(buffered)) return buffered;
+                        if (buffered && buffered.length && this.duration > 0) return buffered.end(0) / this.duration;
+                        return 0;
+                    }
+                }, {
+                    key: "seeking",
+                    get: function get() {
+                        return Boolean(this.media.seeking);
+                    }
+                }, {
+                    key: "duration",
+                    get: function get() {
+                        var fauxDuration = parseFloat(this.config.duration);
+                        var realDuration = (this.media || {}).duration;
+                        var duration = !is$1.number(realDuration) || realDuration === 1 / 0 ? 0 : realDuration;
+                        return fauxDuration || duration;
+                    }
+                }, {
+                    key: "volume",
+                    set: function set(value) {
+                        var volume = value;
+                        var max = 1;
+                        var min = 0;
+                        if (is$1.string(volume)) volume = Number(volume);
+                        if (!is$1.number(volume)) volume = this.storage.get("volume");
+                        if (!is$1.number(volume)) volume = this.config.volume;
+                        if (volume > max) volume = max;
+                        if (volume < min) volume = min;
+                        this.config.volume = volume;
+                        this.media.volume = volume;
+                        if (!is$1.empty(value) && this.muted && volume > 0) this.muted = false;
+                    },
+                    get: function get() {
+                        return Number(this.media.volume);
+                    }
+                }, {
+                    key: "muted",
+                    set: function set(mute) {
+                        var toggle = mute;
+                        if (!is$1.boolean(toggle)) toggle = this.storage.get("muted");
+                        if (!is$1.boolean(toggle)) toggle = this.config.muted;
+                        this.config.muted = toggle;
+                        this.media.muted = toggle;
+                    },
+                    get: function get() {
+                        return Boolean(this.media.muted);
+                    }
+                }, {
+                    key: "hasAudio",
+                    get: function get() {
+                        if (!this.isHTML5) return true;
+                        if (this.isAudio) return true;
+                        return Boolean(this.media.mozHasAudio) || Boolean(this.media.webkitAudioDecodedByteCount) || Boolean(this.media.audioTracks && this.media.audioTracks.length);
+                    }
+                }, {
+                    key: "speed",
+                    set: function set(input) {
+                        var _this4 = this;
+                        var speed = null;
+                        if (is$1.number(input)) speed = input;
+                        if (!is$1.number(speed)) speed = this.storage.get("speed");
+                        if (!is$1.number(speed)) speed = this.config.speed.selected;
+                        var min = this.minimumSpeed, max = this.maximumSpeed;
+                        speed = clamp(speed, min, max);
+                        this.config.speed.selected = speed;
+                        setTimeout((function() {
+                            _this4.media.playbackRate = speed;
+                        }), 0);
+                    },
+                    get: function get() {
+                        return Number(this.media.playbackRate);
+                    }
+                }, {
+                    key: "minimumSpeed",
+                    get: function get() {
+                        if (this.isYouTube) return Math.min.apply(Math, _toConsumableArray(this.options.speed));
+                        if (this.isVimeo) return .5;
+                        return .0625;
+                    }
+                }, {
+                    key: "maximumSpeed",
+                    get: function get() {
+                        if (this.isYouTube) return Math.max.apply(Math, _toConsumableArray(this.options.speed));
+                        if (this.isVimeo) return 2;
+                        return 16;
+                    }
+                }, {
+                    key: "quality",
+                    set: function set(input) {
+                        var config = this.config.quality;
+                        var options = this.options.quality;
+                        if (!options.length) return;
+                        var quality = [ !is$1.empty(input) && Number(input), this.storage.get("quality"), config.selected, config.default ].find(is$1.number);
+                        var updateStorage = true;
+                        if (!options.includes(quality)) {
+                            var value = closest$1(options, quality);
+                            this.debug.warn("Unsupported quality option: ".concat(quality, ", using ").concat(value, " instead"));
+                            quality = value;
+                            updateStorage = false;
+                        }
+                        config.selected = quality;
+                        this.media.quality = quality;
+                        if (updateStorage) this.storage.set({
+                            quality
+                        });
+                    },
+                    get: function get() {
+                        return this.media.quality;
+                    }
+                }, {
+                    key: "loop",
+                    set: function set(input) {
+                        var toggle = is$1.boolean(input) ? input : this.config.loop.active;
+                        this.config.loop.active = toggle;
+                        this.media.loop = toggle;
+                    },
+                    get: function get() {
+                        return Boolean(this.media.loop);
+                    }
+                }, {
+                    key: "source",
+                    set: function set(input) {
+                        source.change.call(this, input);
+                    },
+                    get: function get() {
+                        return this.media.currentSrc;
+                    }
+                }, {
+                    key: "download",
+                    get: function get() {
+                        var download = this.config.urls.download;
+                        return is$1.url(download) ? download : this.source;
+                    },
+                    set: function set(input) {
+                        if (!is$1.url(input)) return;
+                        this.config.urls.download = input;
+                        controls.setDownloadUrl.call(this);
+                    }
+                }, {
+                    key: "poster",
+                    set: function set(input) {
+                        if (!this.isVideo) {
+                            this.debug.warn("Poster can only be set for video");
+                            return;
+                        }
+                        ui.setPoster.call(this, input, false).catch((function() {}));
+                    },
+                    get: function get() {
+                        if (!this.isVideo) return null;
+                        return this.media.getAttribute("poster") || this.media.getAttribute("data-poster");
+                    }
+                }, {
+                    key: "ratio",
+                    get: function get() {
+                        if (!this.isVideo) return null;
+                        var ratio = reduceAspectRatio(getAspectRatio.call(this));
+                        return is$1.array(ratio) ? ratio.join(":") : ratio;
+                    },
+                    set: function set(input) {
+                        if (!this.isVideo) {
+                            this.debug.warn("Aspect ratio can only be set for video");
+                            return;
+                        }
+                        if (!is$1.string(input) || !validateRatio(input)) {
+                            this.debug.error("Invalid aspect ratio specified (".concat(input, ")"));
+                            return;
+                        }
+                        this.config.ratio = input;
+                        setAspectRatio.call(this);
+                    }
+                }, {
+                    key: "autoplay",
+                    set: function set(input) {
+                        var toggle = is$1.boolean(input) ? input : this.config.autoplay;
+                        this.config.autoplay = toggle;
+                    },
+                    get: function get() {
+                        return Boolean(this.config.autoplay);
+                    }
+                }, {
+                    key: "currentTrack",
+                    set: function set(input) {
+                        captions.set.call(this, input, false);
+                    },
+                    get: function get() {
+                        var _this$captions = this.captions, toggled = _this$captions.toggled, currentTrack = _this$captions.currentTrack;
+                        return toggled ? currentTrack : -1;
+                    }
+                }, {
+                    key: "language",
+                    set: function set(input) {
+                        captions.setLanguage.call(this, input, false);
+                    },
+                    get: function get() {
+                        return (captions.getCurrentTrack.call(this) || {}).language;
+                    }
+                }, {
+                    key: "pip",
+                    set: function set(input) {
+                        if (!support.pip) return;
+                        var toggle = is$1.boolean(input) ? input : !this.pip;
+                        if (is$1.function(this.media.webkitSetPresentationMode)) this.media.webkitSetPresentationMode(toggle ? pip.active : pip.inactive);
+                        if (is$1.function(this.media.requestPictureInPicture)) if (!this.pip && toggle) this.media.requestPictureInPicture(); else if (this.pip && !toggle) document.exitPictureInPicture();
+                    },
+                    get: function get() {
+                        if (!support.pip) return null;
+                        if (!is$1.empty(this.media.webkitPresentationMode)) return this.media.webkitPresentationMode === pip.active;
+                        return this.media === document.pictureInPictureElement;
+                    }
+                } ], [ {
+                    key: "supported",
+                    value: function supported(type, provider, inline) {
+                        return support.check(type, provider, inline);
+                    }
+                }, {
+                    key: "loadSprite",
+                    value: function loadSprite$1(url, id) {
+                        return loadSprite(url, id);
+                    }
+                }, {
+                    key: "setup",
+                    value: function setup(selector) {
+                        var options = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+                        var targets = null;
+                        if (is$1.string(selector)) targets = Array.from(document.querySelectorAll(selector)); else if (is$1.nodeList(selector)) targets = Array.from(selector); else if (is$1.array(selector)) targets = selector.filter(is$1.element);
+                        if (is$1.empty(targets)) return null;
+                        return targets.map((function(t) {
+                            return new Plyr(t, options);
+                        }));
+                    }
+                } ]);
+                return Plyr;
+            }();
+            Plyr.defaults = cloneDeep(defaults$1);
+            return Plyr;
+        }));
+        const player = new Plyr("#player", {
             iconUrl: "../../img/icons/icons.svg",
-            iconPrefix: "svg-plyr",
-            controls: [ "play-large", "restart", "rewind", "play", "fast-forward", "progress", "current-time", "duration", "mute", "volume", "captions", "settings", "pip", "airplay", "download", "fullscreen" ]
+            iconPrefix: "svg-plyr"
+        });
+        const player2 = new Plyr("#youtube-1", {
+            iconUrl: "../../img/icons/icons.svg",
+            iconPrefix: "svg-plyr"
         });
         var script_image = document.getElementsByClassName("main__parallax");
         new simpleParallax(script_image, {
@@ -10026,7 +10797,10 @@
                 const form = el.closest("._success");
                 if (form.classList.contains("_success")) form.classList.remove("_success");
             }
-            if (!el.closest(".plyr")) player.pause();
+            if (!el.closest(".plyr")) {
+                player.pause();
+                player2.pause();
+            }
             if (el.classList.contains("cookies__button")) el.closest(".cookies ").classList.add("_hide");
         }
         document.addEventListener("mouseover", menuHover);
