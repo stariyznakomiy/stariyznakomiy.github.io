@@ -5968,6 +5968,10 @@ a.plyr__control::before {
        -moz-column-gap: 10px;
             column-gap: 10px;
   }
+
+  .main__image img {
+    top: 5%;
+  }
 }
 
 @media (any-hover: hover) {

@@ -10768,14 +10768,8 @@
             Plyr.defaults = cloneDeep(defaults$1);
             return Plyr;
         }));
-        const player = new Plyr("#player", {
-            iconUrl: "../../img/icons/icons.svg",
-            iconPrefix: "svg-plyr"
-        });
-        const player2 = new Plyr("#youtube-1", {
-            iconUrl: "../../img/icons/icons.svg",
-            iconPrefix: "svg-plyr"
-        });
+        const player = new Plyr("#player", {});
+        const player2 = new Plyr("#youtube-1", {});
         var script_image = document.getElementsByClassName("main__parallax");
         new simpleParallax(script_image, {
             scale: 1.2,
