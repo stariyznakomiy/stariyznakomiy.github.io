@@ -2630,8 +2630,6 @@ h4 {
           flex: 1 0 50%;
   max-width: 721px;
   background-color: #0E242C;
-  -webkit-backdrop-filter: blur(250px);
-          backdrop-filter: blur(250px);
   border-radius: 15px;
   padding: 45px 45px 49px;
 }
