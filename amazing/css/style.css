@@ -846,7 +846,6 @@ h4 {
   width: 100%;
   z-index: 100;
   min-height: 105px;
-  height: 1px;
 }
 
 .header._header-scroll {
@@ -896,6 +895,7 @@ h4 {
      -moz-column-gap: 30px;
           column-gap: 30px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 105px;
 }
 
 .header__logo {
@@ -5044,6 +5044,7 @@ a.plyr__control::before {
   }
 
   .header__body {
+    min-height: 73px;
     -webkit-column-gap: 18px;
        -moz-column-gap: 18px;
             column-gap: 18px;
