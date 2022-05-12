@@ -3502,6 +3502,12 @@ body::after {
     margin: 2.4375rem 0px 0px 0px;
   }
 }
+@media (max-width: 29.99875em) {
+  .catalog__button {
+    padding: 0.5rem 0;
+    width: 100%;
+  }
+}
 .catalog__button span {
   position: relative;
   top: -0.125rem;
