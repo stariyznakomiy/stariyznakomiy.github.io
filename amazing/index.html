@@ -5,7 +5,7 @@
 	<title>Amazing</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20220511145406">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220512163206">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -84,7 +84,7 @@
 							<h1><span>Расширение <br> для автобукинга на </span> AmazonLoadBoard</h1>
 							<p>Amazing Relay - обеспечивает моментальное бронирование грузов и поиск
 								подходящих загрузок.</p>
-							<a href="#" download class="main__button button">
+							<a href="index.html" download class="main__button button">
 								<svg>
 									<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
 								</svg>
@@ -356,7 +356,7 @@
 			</section>
 			<section class="trial">
 				<div class="trial__bg-ibg">
-					<img data-src="img/pattern/pattern.png" data-srcset="img/pattern/pattern@2x.png 2x" alt="">
+					<img data-src="img/pattern/pattern.png" data-src="img/pattern/pattern@2x.png 2x" alt="">
 				</div>
 				<div class="trial__container">
 					<div class="trial__body">
@@ -366,7 +366,7 @@
 								зарабатывать больше денег. Нажмите ниже, чтобы начать работу с бесплатной пробной версией.</p>
 						</div>
 
-						<a href="#" download class="trial__button button-white">
+						<a href="index.html" download class="trial__button button-white">
 							<svg>
 								<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
 							</svg>
@@ -377,7 +377,7 @@
 			<section class="tarifs">
 				<div class=" tarifs__container">
 					<div class="tarifs__body">
-						<div class="tarifs__head" data-watch data-watch-once data-watch-threshold="1">
+						<div class="tarifs__head" data-watch data-watch-once data-watch-threshold="0.9">
 							<div class="tarifs__content">
 								<div class="tarifs__text ">
 									<h2>Мы напрямую связаны <br>
@@ -409,7 +409,7 @@
 									<div class="list-tarifs__price">
 										<p><span>Бесплатно</span></p>
 									</div>
-									<a href="#" download class="list-tarifs__button button">
+									<a href="index.html" download class="list-tarifs__button button">
 										<svg>
 											<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
 										</svg>
@@ -422,7 +422,7 @@
 									<div class="list-tarifs__price">
 										<p><span>22 500 ₽</span> /месяц</p>
 									</div>
-									<a href="#" download class="list-tarifs__button button">
+									<a href="index.html" download class="list-tarifs__button button">
 										<svg>
 											<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
 										</svg> Скачать</a>
@@ -773,7 +773,7 @@
 												</div>
 											</div>
 
-											<a href="#" download class="list-tarifs__button button">
+											<a href="index.html" download class="list-tarifs__button button">
 												<svg>
 													<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
 												</svg> Скачать</a>
@@ -788,7 +788,7 @@
 													<p><span>22 500 ₽</span> /месяц</p>
 												</div>
 											</div>
-											<a href="#" download class="list-tarifs__button button">
+											<a href="index.html" download class="list-tarifs__button button">
 												<svg>
 													<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
 												</svg> Скачать</a>
@@ -1471,16 +1471,16 @@
 			<div class="popup__content">
 				<button data-close type="button" class="popup__close"></button>
 				<div class="popup__video">
-					<video poster="files/poster.jpg" id="player" playsinline controls>
-						<source src="files/mountains.mp4" type="video/mp4" />
-						<source src="files/mountains.webm" type="video/webm" />
+					<video class="lazy" data-src="files/mountains.mp4" data-poster="files/poster.jpg" id="player" playsinline controls>
+						<source data-src="files/mountains.mp4" type="video/mp4" />
+						<source data-src="files/mountains.webm" type="video/webm" />
 						<!-- Субтитры являются необязательными -->
 					</video>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20220511145406"></script>
+	<script src="js/app.min.js?_v=20220512163206"></script>
 </body>
 
 </html>

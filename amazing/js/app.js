@@ -10776,6 +10776,9 @@
             orientation: "up",
             overflow: true
         });
+        window.addEventListener("resize", (function() {
+            if (window.screen.availWidth > 768) menuClose();
+        }));
         document.addEventListener("click", documentActions);
         function documentActions(e) {
             const el = e.target;

@@ -5,7 +5,7 @@
 	<title>Amazing | Tarif</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20220511145406">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220512163206">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -90,7 +90,7 @@
 									<div class="list-tarifs__price">
 										<p><span>Бесплатно</span></p>
 									</div>
-									<a href="#" download class="list-tarifs__button button">
+									<a href="index.html" download class="list-tarifs__button button">
 										<svg>
 											<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
 										</svg>
@@ -103,7 +103,7 @@
 									<div class="list-tarifs__price">
 										<p><span>22 500 ₽</span> /месяц</p>
 									</div>
-									<a href="#" download class="list-tarifs__button button">
+									<a href="index.html" download class="list-tarifs__button button">
 										<svg>
 											<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
 										</svg> Скачать</a>
@@ -454,7 +454,7 @@
 												</div>
 											</div>
 
-											<a href="#" download class="list-tarifs__button button">
+											<a href="index.html" download class="list-tarifs__button button">
 												<svg>
 													<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
 												</svg> Скачать</a>
@@ -469,7 +469,7 @@
 													<p><span>22 500 ₽</span> /месяц</p>
 												</div>
 											</div>
-											<a href="#" download class="list-tarifs__button button">
+											<a href="index.html" download class="list-tarifs__button button">
 												<svg>
 													<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
 												</svg> Скачать</a>
@@ -766,7 +766,7 @@
 								зарабатывать больше денег. Нажмите ниже, чтобы начать работу с бесплатной пробной версией.</p>
 						</div>
 
-						<a href="#" download class="trial__button button-white">
+						<a href="index.html" download class="trial__button button-white">
 							<svg>
 								<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
 							</svg>Скачать</a>
@@ -836,16 +836,16 @@
 			<div class="popup__content">
 				<button data-close type="button" class="popup__close"></button>
 				<div class="popup__video">
-					<video poster="files/poster.jpg" id="player" playsinline controls>
-						<source src="files/mountains.mp4" type="video/mp4" />
-						<source src="files/mountains.webm" type="video/webm" />
+					<video class="lazy" data-src="files/mountains.mp4" data-poster="files/poster.jpg" id="player" playsinline controls>
+						<source data-src="files/mountains.mp4" type="video/mp4" />
+						<source data-src="files/mountains.webm" type="video/webm" />
 						<!-- Субтитры являются необязательными -->
 					</video>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20220511145406"></script>
+	<script src="js/app.min.js?_v=20220512163206"></script>
 </body>
 
 </html>

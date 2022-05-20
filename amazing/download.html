@@ -5,7 +5,7 @@
 	<title>Amazing | Download</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20220511145406">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220512163206">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -82,7 +82,7 @@
 								<h1>Установка <br> Amazing Relay</h1>
 								<p>Amazing Relay - обеспечивает моментальное бронирование грузов и поиск подходящих загрузок.
 								</p>
-								<a href="#" download class="download__button button-white">
+								<a href=img/car-1.png" download class="download__button button-white">
 									<svg>
 										<use xlink:href="img/icons/icons.svg#svg-icon-arrow-down"></use>
 									</svg>
@@ -131,7 +131,7 @@
 						</div>
 						<div class="video__media">
 							<div class="plyr__video-embed" id="youtube-1">
-								<iframe src="https://www.youtube.com/embed/6wJAdfTJZUQ" allowfullscreen allowtransparency allow="autoplay"></iframe>
+								<iframe src="https://www.youtube.com/embed/bTqVqk7FSmY?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1" allowfullscreen allowtransparency allow="autoplay"></iframe>
 							</div>
 						</div>
 					</div>
@@ -465,16 +465,16 @@
 			<div class="popup__content">
 				<button data-close type="button" class="popup__close"></button>
 				<div class="popup__video">
-					<video poster="files/poster.jpg" id="player" playsinline controls>
-						<source src="files/mountains.mp4" type="video/mp4" />
-						<source src="files/mountains.webm" type="video/webm" />
+					<video class="lazy" data-src="files/mountains.mp4" data-poster="files/poster.jpg" id="player" playsinline controls>
+						<source data-src="files/mountains.mp4" type="video/mp4" />
+						<source data-src="files/mountains.webm" type="video/webm" />
 						<!-- Субтитры являются необязательными -->
 					</video>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20220511145406"></script>
+	<script src="js/app.min.js?_v=20220512163206"></script>
 </body>
 
 </html>
