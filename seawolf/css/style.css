@@ -3429,7 +3429,7 @@ p {
 .gallery-main__image {
   position: relative;
   display: block;
-  padding-bottom: 101%;
+  padding-bottom: 100%;
   overflow: hidden;
 }
 .gallery-main__image::before {
