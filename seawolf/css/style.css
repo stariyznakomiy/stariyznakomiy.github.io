@@ -3124,7 +3124,7 @@ p {
   left: 3px;
 }
 .main-packages__price:not(:last-child) {
-  margin: 0px 0px 14px 0px;
+  margin: 0px 0px 15px 0px;
 }
 .main-packages__price span {
   font-weight: 800;
@@ -3268,7 +3268,7 @@ p {
   margin: 6.25rem 0px 0px 0px;
   align-items: center;
   margin: 6.25rem 0px 0px 0px;
-  column-gap: 0.4375rem;
+  column-gap: 0.3125rem;
   padding: 0px 32px;
 }
 .main-packages__button-bot::before {
