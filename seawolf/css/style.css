@@ -2864,7 +2864,7 @@ p {
   font-weight: 600;
 }
 .page__main-products .catalog__button {
-  padding: 0 2.25625rem;
+  padding: 0 37.3px 0px 37.3px;
 }
 .page__main-packages {
   margin: 0px 0px 12.5rem 0px;
@@ -3892,7 +3892,7 @@ p {
   padding: 0.5rem 4.375rem;
   align-items: center;
   margin: 4.9375rem 0px 0px 0px;
-  column-gap: 0.4375rem;
+  column-gap: 0.25rem;
 }
 .catalog__button::before {
   font-size: 0.75rem;
