@@ -4685,8 +4685,11 @@
         function stickyBlockItem(stickyParent, stickyConfig) {
             const stickyBlockItem = stickyParent.querySelector("[data-sticky-item]");
             const headerHeight = stickyConfig.header;
+            console.log(headerHeight);
             const offsetTop = headerHeight + stickyConfig.top;
-            const startPoint = stickyBlockItem.getBoundingClientRect().top + scrollY - offsetTop - 356;
+            console.log(offsetTop);
+            const startPoint = stickyBlockItem.getBoundingClientRect().top;
+            console.log(startPoint);
             document.addEventListener("windowScroll", stickyBlockActions);
             function stickyBlockActions(e) {
                 const endPoint = stickyParent.offsetHeight + stickyParent.getBoundingClientRect().top + scrollY - (offsetTop + stickyBlockItem.offsetHeight + stickyConfig.bottom);

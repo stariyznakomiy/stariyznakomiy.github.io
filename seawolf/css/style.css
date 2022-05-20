@@ -2740,6 +2740,9 @@ p {
   margin-top: -0.4em;
   margin-bottom: -0.2333333333em;
 }
+.slide-top__button {
+  padding: 0.625rem 2.3125rem;
+}
 .slide-top__button:not(:first-child) {
   margin-top: 3.75rem;
 }
@@ -2942,7 +2945,7 @@ p {
   position: relative;
   display: flex;
   justify-content: center;
-  min-height: 26.4375rem;
+  min-height: 26.375rem;
   padding: 0px 0.9375rem;
   border-bottom: 2px solid #c71529;
 }
@@ -2977,6 +2980,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  top: -3px;
 }
 @media (max-width: 47.99875em) {
   .item-main-categories__content {
