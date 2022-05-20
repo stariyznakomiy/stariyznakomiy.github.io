@@ -307,9 +307,9 @@ textarea.input {
   content: "";
   position: relative;
   top: 4px;
-  flex: 0 0 20px;
-  width: 20px;
-  height: 20px;
+  flex: 0 0 21px;
+  width: 21px;
+  height: 21px;
   border: 1px solid #c0c0c0;
 }
 .checkbox__text {
