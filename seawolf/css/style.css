@@ -1126,22 +1126,19 @@ p {
   column-gap: 1.25rem;
 }
 .socials__link {
-  font-size: 1.375rem;
-  color: #fff;
   flex: 0 0 2rem;
   height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #fff;
-  background-color: rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease 0s;
 }
 @media (any-hover: hover) {
-  .socials__link:hover {
-    color: #c71529;
-    border-color: #c71529;
+  .socials__link:hover .st1 {
+    fill: #c71529;
   }
+}
+.socials__link .st1 {
+  transition: all 0.3s ease 0s;
 }
 
 .scroll-top {
@@ -1715,16 +1712,11 @@ p {
   visibility: visible;
 }
 .search-header__icon {
-  font-size: 1.375rem;
-  color: #fff;
   flex: 0 0 2rem;
   height: 2rem;
-  border: 1px solid #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease 0s;
 }
 @media (any-hover: hover) {
   .search-header__icon:hover {
@@ -1763,22 +1755,19 @@ p {
   }
 }
 .search-header__button {
-  font-size: 1.375rem;
-  color: #fff;
   flex: 0 0 2rem;
   height: 2rem;
-  border: 1px solid #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease 0s;
 }
 @media (any-hover: hover) {
-  .search-header__button:hover {
-    color: #c71529;
-    border-color: #c71529;
+  .search-header__button:hover svg .st1 {
+    fill: #c71529;
   }
+}
+.search-header__button svg .st1 {
+  transition: fill 0.3s ease 0s;
 }
 .search-header__input {
   outline: none;
