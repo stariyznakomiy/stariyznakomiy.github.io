@@ -2369,6 +2369,7 @@ p {
   justify-content: flex-end;
   column-gap: 1.25rem;
   z-index: 1;
+  min-height: 26px;
 }
 .top .swiper-pagination-bullet {
   cursor: pointer;
@@ -4918,7 +4919,7 @@ p {
 }
 .comments__controls {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: center;
   position: relative;
 }
@@ -4928,7 +4929,7 @@ p {
 .comments__arrows {
   position: absolute;
   display: flex;
-  width: 26.25rem;
+  width: 21rem;
   justify-content: space-between;
   font-size: 3.0625rem;
 }
@@ -4940,14 +4941,26 @@ p {
 .comments__arrow {
   background-color: #fff;
   z-index: 1;
-}
-.comments__arrow::before {
+  display: flex;
+  align-items: flex-end;
+  column-gap: 10px;
   color: #c0c0c0;
-  transition: all 0.3s ease 0s;
+}
+.comments__arrow::after {
+  content: url(../img/points.svg);
+  position: relative;
+  bottom: 1px;
+  height: 49px;
+}
+.comments__arrow svg {
+  width: 37px;
+  height: 47px;
+  fill: #c0c0c0;
+  transition: fill 0.3s ease 0s;
 }
 @media (any-hover: hover) {
-  .comments__arrow:hover::before {
-    color: #000;
+  .comments__arrow:hover svg {
+    fill: #000;
   }
 }
 @media (max-width: 47.99875em) {
@@ -4957,12 +4970,17 @@ p {
   }
 }
 .comments .comments-arrow_next {
-  transform: rotate(180deg);
+  flex-direction: row-reverse;
+}
+.comments__dotts-wrap {
+  width: 190px;
+  overflow: hidden;
 }
 .comments__dotts {
   display: flex;
   overflow: hidden;
   height: 54px;
+  width: 190px !important;
 }
 @media (min-width: 79.25em) {
   .comments__dotts {
@@ -4973,6 +4991,8 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
   flex: 0 0 3.0625rem;
   height: 3.0625rem;
   border: 1px solid #c0c0c0;

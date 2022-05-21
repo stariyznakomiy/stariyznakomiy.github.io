@@ -4688,8 +4688,9 @@
             console.log(headerHeight);
             const offsetTop = headerHeight + stickyConfig.top;
             console.log(offsetTop);
-            const startPoint = stickyBlockItem.getBoundingClientRect().top;
+            const startPoint = stickyBlockItem.getBoundingClientRect().top + scrollY - offsetTop;
             console.log(startPoint);
+            console.log(scrollY);
             document.addEventListener("windowScroll", stickyBlockActions);
             function stickyBlockActions(e) {
                 const endPoint = stickyParent.offsetHeight + stickyParent.getBoundingClientRect().top + scrollY - (offsetTop + stickyBlockItem.offsetHeight + stickyConfig.bottom);
