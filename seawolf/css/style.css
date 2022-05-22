@@ -2031,7 +2031,13 @@ p {
 .footer__body {
   position: relative;
   color: #fff;
+  z-index: 2;
   padding: 6.25rem 0 9.375rem;
+}
+@media (max-width: 87.5em) {
+  .footer__body {
+    padding: 9.375rem 0 9.375rem;
+  }
 }
 .footer__top {
   display: flex;
@@ -2195,13 +2201,12 @@ p {
 }
 .menu-footer__column {
   text-align: right;
-  flex: 1 1 15%;
+  flex: 1 1 30%;
 }
 @media (max-width: 64em) {
   .menu-footer__column {
     flex: 1 1 30%;
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
   }
 }
