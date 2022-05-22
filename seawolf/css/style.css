@@ -3562,16 +3562,6 @@ p {
     row-gap: 1.25rem;
   }
 }
-@media (max-width: 47.99875em) {
-  .details-contacts {
-    padding: 3.125rem 1.875rem 3.75rem 1.875rem;
-  }
-}
-@media (max-width: 29.99875em) {
-  .details-contacts {
-    padding: 3.125rem 0.9375rem 3.75rem 0.9375rem;
-  }
-}
 .details-contacts__title {
   position: relative;
   padding-left: 2.5rem;
@@ -4523,6 +4513,11 @@ p {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
+}
+@media (max-width: 29.99875em) {
+  .item-post__content {
+    padding: 1.875rem 0px 0px;
+  }
 }
 .item-post__link:not(:last-child) {
   margin: 0px 0px 1.875rem 0px;
