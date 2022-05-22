@@ -3484,6 +3484,16 @@ p {
     transform: scale3d(1.1, 1.1, 1.1);
   }
 }
+@media (max-width: 47.99875em) {
+  .gallery-main__image:nth-child(n+9) {
+    display: none;
+  }
+}
+@media (max-width: 29.99875em) {
+  .gallery-main__image:nth-child(n+7) {
+    display: none;
+  }
+}
 .gallery-main__image img {
   position: absolute;
   width: 100%;
