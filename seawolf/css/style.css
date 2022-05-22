@@ -4514,11 +4514,6 @@ p {
   flex-direction: column;
   align-items: center;
 }
-@media (max-width: 29.99875em) {
-  .item-post__content {
-    padding: 1.875rem 0px 0px;
-  }
-}
 .item-post__link:not(:last-child) {
   margin: 0px 0px 1.875rem 0px;
 }
