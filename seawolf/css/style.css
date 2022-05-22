@@ -4952,20 +4952,12 @@ p {
   justify-content: center;
   position: relative;
 }
-.comments span {
-  flex: 1 0 50px;
-}
 .comments__arrows {
   position: absolute;
   display: flex;
   width: 21rem;
   justify-content: space-between;
   font-size: 3.0625rem;
-}
-@media (max-width: 32.5em) {
-  .comments__arrows {
-    width: 100%;
-  }
 }
 .comments__arrow {
   background-color: #fff;
@@ -4992,27 +4984,25 @@ p {
     fill: #000;
   }
 }
-@media (max-width: 47.99875em) {
-  .comments__arrow {
-    width: 3.125rem;
-    height: 3.125rem;
-  }
-}
 .comments .comments-arrow_next {
   flex-direction: row-reverse;
 }
 .comments__dotts-wrap {
-  width: 190px;
   overflow: hidden;
+}
+@media (min-width: 79.25em) {
+  .comments__dotts-wrap {
+    width: 190px;
+  }
 }
 .comments__dotts {
   display: flex;
   overflow: hidden;
   height: 54px;
-  width: 190px !important;
 }
 @media (min-width: 79.25em) {
   .comments__dotts {
+    width: 190px !important;
     justify-content: center;
   }
 }
