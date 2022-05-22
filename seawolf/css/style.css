@@ -4514,6 +4514,11 @@ p {
   flex-direction: column;
   align-items: center;
 }
+@media (max-width: 29.99875em) {
+  .item-post__content {
+    padding: 1.875rem 0px 0px;
+  }
+}
 .item-post__link:not(:last-child) {
   margin: 0px 0px 1.875rem 0px;
 }
@@ -4537,14 +4542,10 @@ p {
 .item-post__text:not(:last-child) {
   margin-bottom: 1.875rem;
 }
-@media (max-width: 47.99875em) {
-  .item-post__text {
-    font-size: 1.25rem;
-  }
-}
 @media (max-width: 29.99875em) {
   .item-post__text {
     padding: 0px 0.1875rem;
+    padding: 0px 30px;
   }
 }
 .item-post__button {
