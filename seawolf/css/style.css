@@ -4224,6 +4224,11 @@ hr {
   font-size: 18px;
   font-weight: 700;
 }
+@media (max-width: 47.99875em) {
+  .cart__table-delivery .cart__table-item {
+    justify-content: flex-end;
+  }
+}
 @media (max-width: 61.99875em) {
   .cart__table-delivery .cart__table-item .cart__table-sum {
     display: flex;
@@ -4236,16 +4241,21 @@ hr {
   text-align: center;
   font-weight: 600;
 }
-@media (max-width: 47.99875em) {
-  .cart__table-title {
-    display: none;
-  }
-}
 .cart__table-title .cart__table-name {
   justify-content: center;
 }
 @media (max-width: 61.99875em) {
   .cart__table-title .cart__table-sum {
+    display: none;
+  }
+}
+@media (max-width: 47.99875em) {
+  .cart__table-title .cart__table-quantity {
+    display: none;
+  }
+}
+@media (max-width: 47.99875em) {
+  .cart__table-title .cart__table-price {
     display: none;
   }
 }
