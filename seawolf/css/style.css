@@ -1444,59 +1444,62 @@ p {
 }
 
 .share {
-  max-width: 20.625rem;
+  max-width: 20.6875rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  column-gap: 0.9375rem;
-  row-gap: 0.9375rem;
+  column-gap: 1.25rem;
+  row-gap: 1.25rem;
 }
 .share__button {
   flex: 1 0 25%;
-  text-align: right;
-  border: 1px solid #c0c0c0;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0px 0px 0px 0.9375rem;
-  font-size: 1.125rem;
-  color: #c0c0c0;
-  letter-spacing: -0.3px;
-  transition: all 0.3s ease 0s;
+  border: 1px solid #c0c0c0;
+  transition: border 0.3s ease 0s;
 }
 @media (any-hover: hover) {
   .share__button:hover {
     border: 1px solid #c71529;
-    color: #c71529;
   }
   .share__button:hover span {
+    color: #c71529;
+  }
+  .share__button:hover i {
     border-left: 1px solid #c71529;
   }
 }
 .share__button span {
-  flex: 0 0 2rem;
-  height: 2rem;
-  width: 2rem;
+  flex: 0 0 64px;
   display: flex;
-  font-size: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+  left: 4px;
+  top: -1px;
+  font-size: 1.125rem;
+  font-weight: normal;
+  color: #c0c0c0;
+  letter-spacing: -0.3px;
+  transition: border 0.3s ease 0s, color 0.3s ease 0s;
+}
+.share__button i {
+  flex: 0 0 30px;
+  height: 30px;
+  padding-left: 1px;
+  display: flex;
   align-items: center;
   justify-content: center;
   border-left: 1px solid #c0c0c0;
   color: #c71529;
-  margin: 0px 0px 0px 10px;
-  transition: all 0.3s ease 0s;
+  transition: border 0.3s ease 0s;
+  font-size: 1.4375rem;
 }
 .share__link {
-  text-align: right;
-  border: 1px solid #c0c0c0;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding: 0px 0px 0px 10px;
-  font-size: 1.125rem;
-  color: #c0c0c0;
+  border: 1px solid #c0c0c0;
   flex: 1 1 100%;
-  letter-spacing: -0.3px;
   transition: all 0.3s ease 0s;
 }
 @media (any-hover: hover) {
@@ -1505,26 +1508,38 @@ p {
     color: #c71529;
   }
   .share__link:hover span {
+    color: #c71529;
+  }
+  .share__link:hover i {
     border-left: 1px solid #c71529;
   }
 }
 .share__link span {
-  flex: 0 0 2rem;
-  height: 2rem;
-  width: 2rem;
-  font-size: 1.25rem;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  padding-right: 10px;
+  position: relative;
+  top: -1px;
+  font-size: 1.125rem;
+  font-weight: normal;
+  color: #c0c0c0;
+  letter-spacing: -0.3px;
+  transition: border 0.3s ease 0s, color 0.3s ease 0s;
+}
+.share__link i {
+  flex: 0 0 31px;
+  height: 30px;
+  padding-left: 1px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-left: 1px solid #c0c0c0;
   color: #c71529;
-  margin: 0px 0px 0px 10px;
-  transition: all 0.3s ease 0s;
-}
-@media (max-width: 22.1875em) {
-  .share__link span {
-    min-height: 3.125rem;
-  }
+  transition: border 0.3s ease 0s;
+  font-size: 1.4375rem;
 }
 
 .cookies {
@@ -5008,37 +5023,36 @@ hr {
 }
 @media (max-width: 61.99875em) {
   .page__thankyou {
-    margin: 0px 0px 6.25rem 0px;
+    margin: 0px 0px 9.375rem 0px;
   }
 }
 
 .thankyou__top:not(:last-child) {
-  margin: 0px 0px 8.3125rem 0px;
+  margin: 0px 0px 6.25rem 0px;
 }
-@media (max-width: 61.99875em) {
-  .thankyou__top:not(:last-child) {
-    margin: 0px 0px 3.75rem 0px;
-  }
+.thankyou__top .top__content {
+  margin-bottom: 1px;
 }
 .thankyou__title {
   direction: rtl;
   text-align: center;
-  display: block;
+  justify-content: center;
+}
+.thankyou__title .h1 {
+  margin-top: -0.2847222222em;
+  margin-bottom: -0.1319444444em;
   letter-spacing: -1.4px;
   line-height: 1;
-}
-.thankyou__title:not(:last-child) {
-  margin: 0px 0px 3.125rem 0px;
 }
 .thankyou__share {
   margin: 0 auto;
 }
 .thankyou__share:not(:last-child) {
-  margin-bottom: 6.25rem;
+  margin-bottom: 12.5rem;
 }
 @media (max-width: 61.99875em) {
   .thankyou__share:not(:last-child) {
-    margin-bottom: 6.25rem;
+    margin-bottom: 9.375rem;
   }
 }
 .thankyou__recommended-products {
@@ -5049,6 +5063,8 @@ hr {
 }
 .thankyou__recommended-products .catalog__button {
   padding: 0px 2.25rem;
+  font-weight: normal;
+  min-height: 51px;
 }
 
 .page__comments {
