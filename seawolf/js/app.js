@@ -6498,9 +6498,12 @@ PERFORMANCE OF THIS SOFTWARE.
     function documentActions(e) {
         const targetElement = e.target;
         if (targetElement.classList.contains("search-header__icon")) document.querySelector(".search-header").classList.toggle("_active"); else if (!targetElement.closest(".search-header") && document.querySelector(".search-header._active")) document.querySelector(".search-header").classList.remove("_active");
-        if (targetElement.classList.contains("table-cart__cell-checkbox")) {
-            var checkbox = document.querySelectorAll(".table-cart__cell-checkbox");
-            for (var i = 0; i < checkbox.length; i++) if (checkbox[i].classList.contains("active")) checkbox[i].classList.remove("active");
+        if (targetElement.closest(".cart__table-checkbox span")) {
+            var checkbox = document.querySelectorAll(".cart__table-checkbox");
+            for (var i = 0; i < checkbox.length; i++) if (checkbox[i].querySelector("span").classList.contains("active")) {
+                checkbox[i].querySelector("span").classList.remove("active");
+                console.log(checkbox[i]);
+            }
             targetElement.classList.add("active");
         }
         if (targetElement.classList.contains("results-search__button")) {

@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20220523134631">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220523191458">
 
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
@@ -232,190 +232,217 @@
 						<div class="cart__title text-block-h1">
 							<h1 class=" h1">סל קניות</h1>
 						</div>
-						<div class="cart__table table-cart">
-							<div class="table-cart__list product__list">
-								<div class="table-cart__head">
-									<div class="table-cart__title">סכום ביניים</div>
-									<div class="table-cart__title">כמות</div>
-									<div class="table-cart__title">מחיר יח’</div>
-									<div class="table-cart__title">מוצר</div>
-								</div>
-								<div class="table-cart__body">
-									<div class="table-cart__row">
-										<div class="table-cart__cell product__total">
-											<p><span>₪</span> 4 464</p>
-										</div>
-										<div class="table-cart__cell product__quantity">
-											<div class="quantity">
-												<button type="button" class="quantity__button quantity__button_minus"></button>
-												<div class="quantity__input">
-													<input autocomplete="off" type="text" name="form[]" value="1">
-												</div>
-												<button type="button" class="quantity__button quantity__button_plus"></button>
-											</div>
-										</div>
-										<div class="table-cart__cell product__price">
-											<p><span>₪</span> 2 232</p>
-										</div>
-										<div class="table-cart__cell product">
-											<div class="table-cart__cell-text product__name">
-												סאפ מתנפח בריז - BREEZE תוצרת אקווה מרינה, בגודל 10’9
-												(300X76X12 ס”מ), דגם חדש - שנת 2022
-											</div>
-											<div class="table-cart__cell-img product__img">
-												<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
-											</div>
-											<button type="button" class="table-cart__cell-delete product__delete"></button>
-										</div>
-									</div>
-									<div class="table-cart__row">
-										<div class="table-cart__cell product__total">
-											<p><span>₪</span> 4 464</p>
-										</div>
-										<div class="table-cart__cell product__quantity">
-											<div class="quantity">
-												<button type="button" class="quantity__button quantity__button_minus"></button>
-												<div class="quantity__input">
-													<input autocomplete="off" type="text" name="form[]" value="1">
-												</div>
-												<button type="button" class="quantity__button quantity__button_plus"></button>
-											</div>
-										</div>
-										<div class="table-cart__cell product__price">
-											<p><span>₪</span> 2 232</p>
-										</div>
-										<div class="table-cart__cell product">
-											<div class="table-cart__cell-text product__name">סאפ מתנפח בריז - BREEZE תוצרת אקווה
-												מרינה, בגודל 10’9
-												(300X76X12 ס”מ), דגם חדש - שנת 2022</div>
-											<div class="table-cart__cell-img product__img">
-												<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
-											</div>
-											<button type="button" class="table-cart__cell-delete product__delete"></button>
-										</div>
-									</div>
-									<div class="table-cart__row">
-										<div class="table-cart__cell product__total">
-											<p><span>₪</span> 4 464</p>
-										</div>
-										<div class="table-cart__cell product__quantity">
-											<div class="quantity">
-												<button type="button" class="quantity__button quantity__button_minus"></button>
-												<div class="quantity__input">
-													<input autocomplete="off" type="text" name="form[]" value="1">
-												</div>
-												<button type="button" class="quantity__button quantity__button_plus"></button>
-											</div>
-										</div>
-										<div class="table-cart__cell product__price">
-											<p><span>₪</span> 2 232</p>
-										</div>
-										<div class="table-cart__cell product">
-											<div class="table-cart__cell-text product__name">סאפ מתנפח בריז - BREEZE תוצרת אקווה
-												מרינה, בגודל 10’9
-												(300X76X12 ס”מ), דגם חדש - שנת 2022</div>
-											<div class="table-cart__cell-img product__img">
-												<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
-											</div>
-											<button type="button" class="table-cart__cell-delete product__delete"></button>
-										</div>
-									</div>
-
-								</div>
-								<div class="table-cart__total">
-									<div class="table-cart__cell table-cart__total-product">
-										<p><span>₪</span> 10 296</p>
-									</div>
-									<div class="table-cart__title table-cart__total-text"><span>סה”כ לתשלום לפני דמי משלוח</span>
-									</div>
-								</div>
+						<div class="cart__table">
+							<div class="cart__table-title">
+								<div class="cart__table-sum">סכום ביניים</div>
+								<div class="cart__table-quantity">כמות</div>
+								<div class="cart__table-price">מחיר יח’</div>
+								<div class="cart__table-name">מוצר</div>
+								<div class="cart__table-remove"></div>
 							</div>
-							<div class="table-cart__list delivery__list">
-								<div class="table-cart__head">
-									<div class="table-cart__title">בחרו סוג משלוח</div>
-								</div>
-								<div class="table-cart__body">
-									<div class="table-cart__row">
-										<div class="table-cart__cell delivery__price">
-											<p><span>₪</span> 60</p>
-										</div>
-										<div class="table-cart__cell delivery">
-											<div class="table-cart__cell-text delivery__text">
-												<div class="delivery__title">דואר שליחים</div>
-												<div class="delivery__descr">
-													בחרו סוג משלוח זה עבור: כל פריט בודד | סאפ / קיאק + עד 3 מוצרים נלווים, לא כולל
-													קולר (נשלח בחבילה נפרדת) | עד 4 מוצרים נלווים.
-													<span>מחיר לחבילה אחת</span>
-												</div>
-											</div>
-											<div class="table-cart__cell-img delivery__img">
-												<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
-											</div>
-											<div class="table-cart__cell-checkbox active"></div>
+							<div class="cart__list">
+								<div class="cart__table-item">
+									<div class="cart__table-sum">
+										<div>
+											<small>₪</small><span>4 446</span>
 										</div>
 									</div>
-									<div class="table-cart__row">
-										<div class="table-cart__cell delivery__price">
-											<p><span>₪</span> 60</p>
-										</div>
-										<div class="table-cart__cell delivery">
-											<div class="table-cart__cell-text delivery__text">
-												<div class="delivery__title">דואר שליחים</div>
-												<div class="delivery__descr">
-													בחרו סוג משלוח זה עבור: כל פריט בודד | סאפ / קיאק + עד 3 מוצרים נלווים, לא כולל
-													קולר (נשלח בחבילה נפרדת) | עד 4 מוצרים נלווים.
-													<span>מחיר לחבילה אחת</span>
-												</div>
+									<div class="cart__table-quantity">
+										<div class="quantity">
+											<button type="button" class="quantity__button quantity__button_minus"></button>
+											<div class="quantity__input">
+												<input autocomplete="off" type="text" name="form[]" value="1">
 											</div>
-											<div class="table-cart__cell-img delivery__img">
-												<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
-											</div>
-											<div class="table-cart__cell-checkbox"></div>
+											<button type="button" class="quantity__button quantity__button_plus"></button>
 										</div>
 									</div>
-									<div class="table-cart__row">
-										<div class="table-cart__cell delivery__price">
-											<p><span>₪</span> 60</p>
-										</div>
-										<div class="table-cart__cell delivery">
-											<div class="table-cart__cell-text delivery__text">
-												<div class="delivery__title">דואר שליחים</div>
-												<div class="delivery__descr">
-													בחרו סוג משלוח זה עבור: כל פריט בודד | סאפ / קיאק + עד 3 מוצרים נלווים, לא כולל
-													קולר (נשלח בחבילה נפרדת) | עד 4 מוצרים נלווים.
-													<span>מחיר לחבילה אחת</span>
-												</div>
-											</div>
-											<div class="table-cart__cell-img delivery__img">
-												<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
-											</div>
-											<div class="table-cart__cell-checkbox"></div>
+									<div class="cart__table-price">
+										<div>
+											<small>₪</small><span>2 223</span>
 										</div>
 									</div>
-
-								</div>
-								<div class="table-cart__total">
-									<div class="table-cart__cell table-cart__total-delivery">
-										<p><span>₪</span> 300</p>
+									<div class="cart__table-name">
+										<div class="cart__table-text">סאפ מתנפח בריז - BREEZE תוצרת אקווה מרינה, בגודל 10’9
+											(300X76X12 ס”מ), דגם חדש - שנת 2022</div>
+										<div class="cart__table-img">
+											<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+										</div>
 									</div>
-									<div class="table-cart__title table-cart__total-text">סה”כ דמי משלוח</div>
+									<div class="cart__table-remove"><span></span></div>
 								</div>
-							</div>
-							<div class="table-cart__total">
-								<div class="table-cart__cell table-cart__total-all">
-									<p><span>₪</span> 10 596</p>
+								<hr>
+								<div class="cart__table-item">
+									<div class="cart__table-sum">
+										<div>
+											<small>₪</small><span>4 446</span>
+										</div>
+									</div>
+									<div class="cart__table-quantity">
+										<div class="quantity">
+											<button type="button" class="quantity__button quantity__button_minus"></button>
+											<div class="quantity__input">
+												<input autocomplete="off" type="text" name="form[]" value="1">
+											</div>
+											<button type="button" class="quantity__button quantity__button_plus"></button>
+										</div>
+									</div>
+									<div class="cart__table-price">
+										<div>
+											<small>₪</small><span>2 223</span>
+										</div>
+									</div>
+									<div class="cart__table-name">
+										<div class="cart__table-text">סאפ מתנפח בריז - BREEZE תוצרת אקווה מרינה, בגודל 10’9
+											(300X76X12 ס”מ), דגם חדש - שנת 2022</div>
+										<div class="cart__table-img">
+											<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+										</div>
+									</div>
+									<div class="cart__table-remove"><span></span></div>
 								</div>
-								<div class="table-cart__title table-cart__total-text">סה”כ לתשלום כולל לפני דמי משלוח</div>
+								<hr>
+								<div class="cart__table-item">
+									<div class="cart__table-sum">
+										<div>
+											<small>₪</small><span>4 446</span>
+										</div>
+									</div>
+									<div class="cart__table-quantity">
+										<div class="quantity">
+											<button type="button" class="quantity__button quantity__button_minus"></button>
+											<div class="quantity__input">
+												<input autocomplete="off" type="text" name="form[]" value="1">
+											</div>
+											<button type="button" class="quantity__button quantity__button_plus"></button>
+										</div>
+									</div>
+									<div class="cart__table-price">
+										<div>
+											<small>₪</small><span>2 223</span>
+										</div>
+									</div>
+									<div class="cart__table-name">
+										<div class="cart__table-text">סאפ מתנפח בריז - BREEZE תוצרת אקווה מרינה, בגודל 10’9
+											(300X76X12 ס”מ), דגם חדש - שנת 2022</div>
+										<div class="cart__table-img">
+											<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+										</div>
+									</div>
+									<div class="cart__table-remove"><span></span></div>
+								</div>
+								<hr>
+								<div class="cart__table-total">
+									<div class="cart__table-sum">
+										<div>
+											<small>₪</small><span>10 296</span>
+										</div>
+									</div>
+									<div class="cart__table-total-text">
+										<span>סה”כ לתשלום לפני דמי משל וח</span>
+									</div>
+								</div>
+								<hr>
 							</div>
 						</div>
+						<div class="cart__table cart__table-delivery">
+							<div class="cart__table-title">
+								<div class="cart__table-delivery">בחרו סוג משלוח</div>
+							</div>
+							<div class="cart__list">
+								<div class="cart__table-item">
+									<div class="cart__table-sum">
+										<div>
+											<small>₪</small><span>60</span>
+										</div>
+									</div>
+									<div class="cart__table-name">
+										<div class="cart__table-text">
+											<h4>דואר שליחים</h4>
+											<div> <b>בחרו סוג משלוח זה עבור:</b>כל פריט בודד | סאפ / קיאק + עד 3 מוצרים נלווים, לא
+												כולל קולר (נשלח בחבילה נפרדת) | עד 4 מוצרים נלווים.
+											</div>
+											<span>מחיר לחבילה אחת</span>
+										</div>
+										<div class="cart__table-img">
+											<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+										</div>
+									</div>
+									<div class="cart__table-checkbox"><span class="active"></span></div>
+								</div>
+								<hr>
+								<div class="cart__table-item">
+									<div class="cart__table-sum">
+										<div>
+											<small>₪</small><span>60</span>
+										</div>
+									</div>
+									<div class="cart__table-name">
+										<div class="cart__table-text">
+											<h4>דואר שליחים</h4>
+											<div> <b>בחרו סוג משלוח זה עבור:</b>כל פריט בודד | סאפ / קיאק + עד 3 מוצרים נלווים, לא
+												כולל קולר (נשלח בחבילה נפרדת) | עד 4 מוצרים נלווים.
+											</div>
+											<span>מחיר לחבילה אחת</span>
+										</div>
+										<div class="cart__table-img">
+											<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+										</div>
+									</div>
+									<div class="cart__table-checkbox"><span class=""></span></div>
+								</div>
+								<hr>
+								<div class="cart__table-item">
+									<div class="cart__table-sum">
+										<div>
+											<small>₪</small><span>60</span>
+										</div>
+									</div>
+									<div class="cart__table-name">
+										<div class="cart__table-text">
+											<h4>דואר שליחים</h4>
+											<div> <b>בחרו סוג משלוח זה עבור:</b>כל פריט בודד | סאפ / קיאק + עד 3 מוצרים נלווים, לא
+												כולל קולר (נשלח בחבילה נפרדת) | עד 4 מוצרים נלווים.
+											</div>
+											<span>מחיר לחבילה אחת</span>
+										</div>
+										<div class="cart__table-img">
+											<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+										</div>
+									</div>
+									<div class="cart__table-checkbox"><span class=""></span></div>
+								</div>
+								<hr>
+								<div class="cart__table-total">
+									<div class="cart__table-sum">
+										<div>
+											<small>₪</small><span>300</span>
+										</div>
+									</div>
+									<div class="cart__table-total-text">
+										<span>סה”כ דמי משלוח</span>
+									</div>
+
+								</div>
+								<hr>
+							</div>
+						</div>
+						<div class="cart__table-total">
+							<div class="cart__table-sum">
+								<div>
+									<small>₪</small><span>10 596</span>
+								</div>
+							</div>
+							<div class="cart__table-total-text">
+								<span>סה”כ לתשלום כולל לפני דמי משלוח</span>
+							</div>
+						</div>
+						<hr>
 						<div class="cart__buttons">
 							<a href="" class="cart__button-back button button-gray"><span>המשך לקניה</span> </a>
 							<button type="button" class="cart__button-clear button button-white"><span>רוקן סל</span> </button>
 							<button type="button" data-popup="#popup-order" class="cart__button-pay button button-green"><span>לתשלום</span></button>
 						</div>
 					</div>
-
-
 				</div>
 			</section>
 			<section class="page__feautures-products catalog">
@@ -1030,7 +1057,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20220523134631"></script>
+	<script src="js/app.min.js?_v=20220523191458"></script>
 </body>
 
 </html>
