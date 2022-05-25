@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-	<title>Sea Wolf | Content</title>
+	<title>Sea Wolf | Cart</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
@@ -34,7 +34,7 @@
 </head>
 
 <body>
-	<div data-sticky class="wrapper">
+	<div class="wrapper">
 		<header data-scroll="2000" class="header">
 			<button type="button" class="accessibility"><picture><source srcset="img/icons/accessibility-icon.webp" type="image/webp"><img src="img/icons/accessibility-icon.png" alt=""></picture></button>
 			<div class="header__container">
@@ -206,11 +206,8 @@
 			</div>
 		</header>
 		<main class="page">
-			<div class="content__top top">
+			<section class="cart__top top">
 				<div class="top__content">
-					<div class="top__cover-ibg">
-						<picture><source srcset="img/page-top-bg.webp" type="image/webp"><img src="img/page-top-bg.jpg" alt=""></picture>
-					</div>
 				</div>
 				<div class="top-line">
 					<div class="top-line__container">
@@ -221,252 +218,396 @@
 										<a href="" class="breadcrumbs__link">דף הבית</a>
 									</li>
 									<li class="breadcrumbs__item">
-										<span class="breadcrumbs__current">אודות סי וולף</span>
+										<span class="breadcrumbs__current">סל קניות</span>
 									</li>
 								</ul>
 							</nav>
 						</div>
 					</div>
 				</div>
-				<div data-sticky-item class="main-cart">
-					<div class="main-cart__container">
-						<div class="main-cart__body">
-							<div class="main-cart__cart">
-								<a href="#" class="main-cart__icon">
-									<span>2</span>
-									<picture><source srcset="img/icons/cart-icon.webp" type="image/webp"><img src="img/icons/cart-icon.png" alt="cart"></picture>
-								</a>
-								<div class="main-cart__price"><span>₪</span> 3752</div>
-								<div class="main-cart__content">
-									<ul class="main-cart__list list-main-cart">
-										<li class="list-main-cart__item">
-											<div class="list-main-cart__delete"></div>
-											<div class="list-main-cart__body">
-												<div class="list-main-cart__quantity quantity-main quantity">
-													<div class="quantity-main__top">
-														<div class="quantity-main__buttons">
-															<button type="button" class="quantity-main__button quantity__button quantity__button_plus"></button>
-															<button type="button" class="quantity-main__button quantity__button quantity__button_minus"></button>
-														</div>
-														<a href="#" class="quantity-main__name">
-															<span>סאפ מתנפח דריפט מסוג דייג</span>
-															<span>10”10 - iSUP DRIFT FOR FISHING,</span>
-															<span>תוצרת AQUA MARINA עורך 330 ...</span>
-														</a>
-													</div>
-													<div class="quantity-main__actions">
-														<div class="quantity-main__price">
-															<span>₪</span> 3582
-														</div>
-														<div class="quantity-main__input">
-															<span>x </span>
-															<input autocomplete="off" class="quantity__input-input" type="text" name="form[]" value="1">
-														</div>
-													</div>
+			</section>
+			<section class="page__cart cart">
+				<div class="cart__container">
+					<div class="cart__body">
+						<div class="cart__title text-block-h1">
+							<h1 class=" h1">סל קניות</h1>
+						</div>
+						<form class="cart__form" action="" method="post">
+							<table class="cart__table" cellspacing="0">
+								<thead>
+									<tr>
+										<th class="cart__table-subtotal">סכום ביניים</th>
+										<th class="cart__table-quantity">כמות</th>
+										<th class="cart__table-price">מחיר יח’</th>
+										<th class="cart__table-name">מוצר</th>
+										<th class="cart__table-remove">&nbsp;</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="cart__table-item">
+										<td class="cart__table-subtotal" data-title="סכום ביניים">
+											<span class="cart__table-amount amount">
+												<small>₪</small>
+												4 446
+											</span>
+										</td>
+										<td class="cart__table-quantity" data-title="כמות">
+											<div class="quantity">
+												<button type="button" class="quantity__button quantity__button_minus"></button>
+												<div class="quantity__input">
+													<input autocomplete="off" type="text" name="form[]" value="1">
 												</div>
+												<button type="button" class="quantity__button quantity__button_plus"></button>
 											</div>
-											<a href="#" class="list-main-cart__image-ibg"><picture><source srcset="img/product/sup1.webp" type="image/webp"><img src="img/product/sup1.jpg" alt=""></picture></a>
-										</li>
-										<li class="list-main-cart__item">
-											<div class="list-main-cart__delete"></div>
-											<div class="list-main-cart__body">
-												<div class="list-main-cart__quantity quantity-main quantity">
-													<div class="quantity-main__top">
-														<div class="quantity-main__buttons">
-															<button type="button" class="quantity-main__button quantity__button quantity__button_plus"></button>
-															<button type="button" class="quantity-main__button quantity__button quantity__button_minus"></button>
-														</div>
-														<a href="#" class="quantity-main__name">
-															<span>סאפ מתנפח דריפט מסוג דייג</span>
-															<span>10”10 - iSUP DRIFT FOR FISHING,</span>
-															<span>תוצרת AQUA MARINA עורך 330 ...</span>
-														</a>
-													</div>
-													<div class="quantity-main__actions">
-														<div class="quantity-main__price">
-															<span>₪</span> 3582
-														</div>
-														<div class="quantity-main__input">
-															<span>x </span>
-															<input autocomplete="off" class="quantity__input-input" type="text" name="form[]" value="1">
-														</div>
-													</div>
-												</div>
-											</div>
-											<a href="#" class="list-main-cart__image-ibg"><picture><source srcset="img/product/sup1.webp" type="image/webp"><img src="img/product/sup1.jpg" alt=""></picture></a>
-										</li>
-									</ul>
-									<div class="main-cart__buttons">
-										<a href="#" class="main-cart__button button button-green">לתשלום</a>
-										<a href="#" class="main-cart__button button button-gray">לסל קניות</a>
+										</td>
+										<td class="cart__table-price" data-title="מחיר יח’">
+											<span class="cart__table-amount amount">
+												<small>₪</small>
+												4 446
+											</span>
+										</td>
+
+										<td class="cart__table-name" data-title="מוצר">
+											<a href="#">
+												<span>סאפ מתנפח בריז - BREEZE תוצרת אקווה מרינה, בגודל 10’9
+													(300X76X12 ס”מ), דגם חדש - שנת 2022</span>
+												<picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+											</a>
+										</td>
+										<td class="cart__table-remove">
+											<span></span>
+										</td>
+									</tr>
+
+									<!-- <tr>
+                              <td colspan="6" class="actions">
+                                 <div class="coupon">
+                                    <label for="coupon_code">Coupon:</label> <input type="text" name="coupon_code"
+                                       class="input-text" id="coupon_code" value="" placeholder="Coupon code"> <button
+                                       type="submit" class="button" name="apply_coupon" value="Apply coupon">Apply
+                                       coupon</button>
+                                 </div>
+                                 <button type="submit" class="button" name="update_cart" value="Update cart" disabled=""
+                                    aria-disabled="true">Update cart</button>
+                                 <input type="hidden" id="woocommerce-cart-nonce" name="woocommerce-cart-nonce"
+                                    value="e228849c6c"><input type="hidden" name="_wp_http_referer"
+                                    value="/ecommerce-plus/cart/">
+                              </td>
+                           </tr> -->
+								</tbody>
+							</table>
+						</form>
+						<!-- <div class="cart__table">
+                     <div class="cart__table-title">
+                        <div class="cart__table-sum">סכום ביניים</div>
+                        <div class="cart__table-quantity">כמות</div>
+                        <div class="cart__table-price">מחיר יח’</div>
+                        <div class="cart__table-name">מוצר</div>
+                        <div class="cart__table-remove"></div>
+                     </div>
+                     <div class="cart__list">
+                        <div class="cart__table-item">
+                           <div class="cart__table-sum">
+                              <div>
+                                 <small>₪</small><span>4 446</span>
+                              </div>
+                           </div>
+                           <div class="cart__table-quantity">
+                              <div class="quantity">
+                                 <button type="button" class="quantity__button quantity__button_minus"></button>
+                                 <div class="quantity__input">
+                                    <input autocomplete="off" type="text" name="form[]" value="1">
+                                 </div>
+                                 <button type="button" class="quantity__button quantity__button_plus"></button>
+                              </div>
+                           </div>
+                           <div class="cart__table-price">
+                              <div>
+                                 <small>₪</small><span>2 223</span>
+                              </div>
+                           </div>
+                           <div class="cart__table-name">
+                              <div class="cart__table-text">סאפ מתנפח בריז - BREEZE תוצרת אקווה מרינה, בגודל 10’9
+                                 (300X76X12 ס”מ), דגם חדש - שנת 2022</div>
+                              <div class="cart__table-img">
+                                 <picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+                              </div>
+                           </div>
+                           <div class="cart__table-remove"><span></span></div>
+                        </div>
+                        <hr>
+                        <div class="cart__table-item">
+                           <div class="cart__table-sum">
+                              <div>
+                                 <small>₪</small><span>4 446</span>
+                              </div>
+                           </div>
+                           <div class="cart__table-quantity">
+                              <div class="quantity">
+                                 <button type="button" class="quantity__button quantity__button_minus"></button>
+                                 <div class="quantity__input">
+                                    <input autocomplete="off" type="text" name="form[]" value="1">
+                                 </div>
+                                 <button type="button" class="quantity__button quantity__button_plus"></button>
+                              </div>
+                           </div>
+                           <div class="cart__table-price">
+                              <div>
+                                 <small>₪</small><span>2 223</span>
+                              </div>
+                           </div>
+                           <div class="cart__table-name">
+                              <div class="cart__table-text">סאפ מתנפח בריז - BREEZE תוצרת אקווה מרינה, בגודל 10’9
+                                 (300X76X12 ס”מ), דגם חדש - שנת 2022</div>
+                              <div class="cart__table-img">
+                                 <picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+                              </div>
+                           </div>
+                           <div class="cart__table-remove"><span></span></div>
+                        </div>
+                        <hr>
+                        <div class="cart__table-item">
+                           <div class="cart__table-sum">
+                              <div>
+                                 <small>₪</small><span>4 446</span>
+                              </div>
+                           </div>
+                           <div class="cart__table-quantity">
+                              <div class="quantity">
+                                 <button type="button" class="quantity__button quantity__button_minus"></button>
+                                 <div class="quantity__input">
+                                    <input autocomplete="off" type="text" name="form[]" value="1">
+                                 </div>
+                                 <button type="button" class="quantity__button quantity__button_plus"></button>
+                              </div>
+                           </div>
+                           <div class="cart__table-price">
+                              <div>
+                                 <small>₪</small><span>2 223</span>
+                              </div>
+                           </div>
+                           <div class="cart__table-name">
+                              <div class="cart__table-text">סאפ מתנפח בריז - BREEZE תוצרת אקווה מרינה, בגודל 10’9
+                                 (300X76X12 ס”מ), דגם חדש - שנת 2022</div>
+                              <div class="cart__table-img">
+                                 <picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+                              </div>
+                           </div>
+                           <div class="cart__table-remove"><span></span></div>
+                        </div>
+                        <hr>
+                        <div class="cart__table-total">
+                           <div class="cart__table-sum">
+                              <div>
+                                 <small>₪</small><span>10 296</span>
+                              </div>
+                           </div>
+                           <div class="cart__table-total-text">
+                              <span>סה”כ לתשלום לפני דמי משל וח</span>
+                           </div>
+                        </div>
+                        <hr>
+                     </div>
+                  </div>
+                  <div class="cart__table cart__table-delivery">
+                     <div class="cart__table-title">
+                        <div class="cart__table-delivery">בחרו סוג משלוח</div>
+                     </div>
+                     <div class="cart__list">
+                        <div class="cart__table-item">
+                           <div class="cart__table-sum">
+                              <div>
+                                 <small>₪</small><span>60</span>
+                              </div>
+                           </div>
+                           <div class="cart__table-name">
+                              <div class="cart__table-text">
+                                 <h4>דואר שליחים</h4>
+                                 <div> <b>בחרו סוג משלוח זה עבור:</b>כל פריט בודד | סאפ / קיאק + עד 3 מוצרים נלווים, לא
+                                    כולל קולר (נשלח בחבילה נפרדת) | עד 4 מוצרים נלווים.
+                                 </div>
+                                 <span>מחיר לחבילה אחת</span>
+                              </div>
+                              <div class="cart__table-img">
+                                 <picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+                              </div>
+                           </div>
+                           <div class="cart__table-checkbox"><span class="active"></span></div>
+                        </div>
+                        <hr>
+                        <div class="cart__table-item">
+                           <div class="cart__table-sum">
+                              <div>
+                                 <small>₪</small><span>60</span>
+                              </div>
+                           </div>
+                           <div class="cart__table-name">
+                              <div class="cart__table-text">
+                                 <h4>דואר שליחים</h4>
+                                 <div> <b>בחרו סוג משלוח זה עבור:</b>כל פריט בודד | סאפ / קיאק + עד 3 מוצרים נלווים, לא
+                                    כולל קולר (נשלח בחבילה נפרדת) | עד 4 מוצרים נלווים.
+                                 </div>
+                                 <span>מחיר לחבילה אחת</span>
+                              </div>
+                              <div class="cart__table-img">
+                                 <picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+                              </div>
+                           </div>
+                           <div class="cart__table-checkbox"><span class=""></span></div>
+                        </div>
+                        <hr>
+                        <div class="cart__table-item">
+                           <div class="cart__table-sum">
+                              <div>
+                                 <small>₪</small><span>60</span>
+                              </div>
+                           </div>
+                           <div class="cart__table-name">
+                              <div class="cart__table-text">
+                                 <h4>דואר שליחים</h4>
+                                 <div> <b>בחרו סוג משלוח זה עבור:</b>כל פריט בודד | סאפ / קיאק + עד 3 מוצרים נלווים, לא
+                                    כולל קולר (נשלח בחבילה נפרדת) | עד 4 מוצרים נלווים.
+                                 </div>
+                                 <span>מחיר לחבילה אחת</span>
+                              </div>
+                              <div class="cart__table-img">
+                                 <picture><source srcset="img/product/sup2.webp" type="image/webp"><img src="img/product/sup2.jpg" alt=""></picture>
+                              </div>
+                           </div>
+                           <div class="cart__table-checkbox"><span class=""></span></div>
+                        </div>
+                        <hr>
+                        <div class="cart__table-total">
+                           <div class="cart__table-sum">
+                              <div>
+                                 <small>₪</small><span>300</span>
+                              </div>
+                           </div>
+                           <div class="cart__table-total-text">
+                              <span>סה”כ דמי משלוח</span>
+                           </div>
+
+                        </div>
+                        <hr>
+                     </div>
+                  </div>
+                  <div class="cart__table-total">
+                     <div class="cart__table-sum">
+                        <div>
+                           <small>₪</small><span>10 596</span>
+                        </div>
+                     </div>
+                     <div class="cart__table-total-text">
+                        <span>סה”כ לתשלום כולל לפני דמי משלוח</span>
+                     </div>
+                  </div>
+                  <hr>
+                  <div class="cart__buttons">
+                     <a href="" class="cart__button-back button button-gray"><span>המשך לקניה</span> </a>
+                     <button type="button" class="cart__button-clear button button-white"><span>רוקן סל</span> </button>
+                     <button type="button" data-popup="#popup-order"
+                        class="cart__button-pay button button-green"><span>לתשלום</span></button>
+                  </div> -->
+					</div>
+				</div>
+			</section>
+			<section class="page__feautures-products catalog">
+				<div class="catalog__container">
+					<div class="catalog__body">
+						<div class="catalog__title text-block-h2">
+							<h2 class="h2">מוצרים מומלצים</h2>
+						</div>
+						<div class="catalog__list">
+							<div class="catalog__item product-item">
+								<div class="product-item__head">
+									<button type="button" class="product-item__cart _icon-cart-icon"></button>
+									<a href="" class="product-item__view _icon-eye"></a>
+									<div class="product-item__img-ibg_contain">
+										<picture><source srcset="img/product/sup1.webp" type="image/webp"><img src="img/product/sup1.jpg" alt=""></picture>
+									</div>
+								</div>
+								<div class="product-item__body">
+									<div class="product-item__title text-block-h3">
+										<h3 class="h3">
+											סאפ מתנפח דיאנה<br>
+											iSUP DHYANA<br>
+											AQUA MARINA תוצרת
+										</h3>
+									</div>
+									<div class="product-item__price">
+										<span>₪</span> <span>2223</span>
+									</div>
+								</div>
+							</div>
+							<div class="catalog__item product-item">
+								<div class="product-item__head">
+									<button type="button" class="product-item__cart _icon-cart-icon"></button>
+									<a href="" class="product-item__view _icon-eye"></a>
+									<div class="product-item__img-ibg_contain">
+										<picture><source srcset="img/product/sup1.webp" type="image/webp"><img src="img/product/sup1.jpg" alt=""></picture>
+									</div>
+								</div>
+								<div class="product-item__body">
+									<div class="product-item__title text-block-h3">
+										<h3 class="h3">
+											סאפ מתנפח דיאנה<br>
+											iSUP DHYANA<br>
+											AQUA MARINA תוצרת
+										</h3>
+									</div>
+									<div class="product-item__price">
+										<span>₪</span> <span>2223</span>
+									</div>
+								</div>
+							</div>
+							<div class="catalog__item product-item">
+								<div class="product-item__head">
+									<button type="button" class="product-item__cart _icon-cart-icon"></button>
+									<a href="" class="product-item__view _icon-eye"></a>
+									<div class="product-item__img-ibg_contain">
+										<picture><source srcset="img/product/sup1.webp" type="image/webp"><img src="img/product/sup1.jpg" alt=""></picture>
+									</div>
+								</div>
+								<div class="product-item__body">
+									<div class="product-item__title text-block-h3">
+										<h3 class="h3">
+											סאפ מתנפח דיאנה<br>
+											iSUP DHYANA<br>
+											AQUA MARINA תוצרת
+										</h3>
+									</div>
+									<div class="product-item__price">
+										<span>₪</span> <span>2223</span>
+									</div>
+								</div>
+							</div>
+							<div class="catalog__item product-item">
+								<div class="product-item__head">
+									<button type="button" class="product-item__cart _icon-cart-icon"></button>
+									<a href="" class="product-item__view _icon-eye"></a>
+									<div class="product-item__img-ibg_contain">
+										<picture><source srcset="img/product/sup1.webp" type="image/webp"><img src="img/product/sup1.jpg" alt=""></picture>
+									</div>
+								</div>
+								<div class="product-item__body">
+									<div class="product-item__title text-block-h3">
+										<h3 class="h3">
+											סאפ מתנפח דיאנה<br>
+											iSUP DHYANA<br>
+											AQUA MARINA תוצרת
+										</h3>
+									</div>
+									<div class="product-item__price">
+										<span>₪</span> <span>2223</span>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-			<section class="page__content content">
-				<div class="content__container">
-					<div class="content__row">
-						<div class="content__sidebar sidebar left-sidebar"></div>
-						<div class="content__body">
-							<div class="text-block-h1">
-								<h1 class="content__title h1">אודות סי וולף</h1>
-							</div>
-							<div class="content__post post">
-								<div class="text-block-p">
-									<p>
-										חברת אקווה מרינה מתמחה בייצור ושיווק סאפים וקיאקים מתנפחים איכותיים ורב תחומיים ובמגוון
-										מוצרי
-										ספורט ימי אחרים, ופועלת בשוק העולמי משנת 2002. מתוך מגוון דגמי סאפים שונים ומגוונים בחרנו
-										במיוחד בשבילכם את הדגמים הכי פופולרים,בישראל ניתן לרכוש של אחד ממגוון הדגמים הנעים בין
-										גדלים
-										שונים של לוחות סאפ מתנפחים ומקולקציות שונות בין אם אתם מתחילים או מתקדמים, לשימושים של
-										גלישת
-										גלים, דייג, טיולים, יוגה ועוד.
-										<br>
-										<br>
-										וחתירה ברמה עולמית ובמחירים הטובים בישראל וכמובן לבצע קנייה בטוחה עם אחריות דרך יבואן רשמי
-										ומענה בעת הצורך ואפילו נסיון לפני קנייה בחנות המרכזית שלנו באילת. חברת אקווה מרינה מתמחה
-										בייצור ושיווק סאפים וקיאקים מתנפחים איכותיים ורב תחומיים ובמגוון מוצרי ספורט ימי אחרים,
-										ופועלת בשוק העולמי משנת 2002. מתוך מגוון דגמי סאפים שונים ומגוונים בחרנו במיוחד בשבילכם את
-										הדגמים הכי פופולרים, איכותיים ושימושיים במחיר הכי טוב בישראל עם אחריות מיבואן רשמי ב-2
-										נקודות
-										שונות בארץ: בדרום ובמרכז.
-									</p>
-								</div>
-								<div class="text-block-h2">
-									<h2 class="h2">יבוא ושיווק אקווה מרינה</h2>
-								</div>
-								<div class="text-block-p">
-									<p>
-										ממש כאן אצלנו בישראל ניתן לרכוש של אחד ממגוון הדגמים הנעים בין גדלים שונים של לוחות סאפ
-										מתנפחים ומקולקציות שונות מתנפחים מ-5 דגמים איכותיים ומגוון אביזרים נלווים כמו משאבות
-										חשמליות
-										איכותיות, משוטים מתקדמים, מתאמי מצלמות וקומפרסור, ועוד. שמחים להציג ולבשר כי אתנו, תקבלו
-										את
-										האפשרות להנות מחווית גלישה וחתירה ברמה עולמית ובמחירים הטובים בישראל וכמובן לבצע קנייה
-										בטוחה
-										עם אחריות דרך יבואן.
-									</p>
-								</div>
-								<div class="post__media">
-									<picture><source srcset="img/content/video.webp" type="image/webp"><img src="img/content/video.jpg" alt=""></picture>
-								</div>
-								<div class="text-block-h3">
-									<h3 class="h3">כניסה לשוק</h3>
-								</div>
-								<div class="text-block-p">
-									<p>
-										ופועלת בשוק העולמי משנת 2002. מתוך מגוון דגמי סאפים שונים ומגוונים בחרנו במיוחד בשבילכם את
-										הדגמים הכי פופולרים. ממש כאן אצלנו בישראל ניתן לרכוש של אחד ממגוון הדגמים הנעים בין גדלים
-										שונים של לוחות סאפ מתנפחים ומקולקציות שונות בין אם אתם מתחילים או מתקדמים, לשימושים של
-										גלישת
-										גלים, דייג, טיולים, יוגה ועוד.חברת אקווה מרינה מתמחה בייצור ושיווק סאפים וקיאקים מתנפחים
-										איכותיים ורב תחומיים ובמגוון מוצרי ספורט ימי אחרים, ופועלת בשוק העולמי משנת 2002. מתוך
-										מגוון
-										דגמי סאפים שונים ומגוונים בחרנו במיוחד בשבילכם את הדגמים הכי פופולרים,בישראל ניתן לרכוש של
-										אחד ממגוון הדגמים הנעים בין גדלים שונים של לוחות סאפ מתנפחים ומקולקציות שונות בין אם אתם
-										מתחילים או מתקדמים, לשימושים של גלישת גלים, דייג, טיולים, יוגה ועוד.
-										<br>
-										<br>
-										וחתירה ברמה עולמית ובמחירים הטובים בישראל וכמובן לבצע קנייה בטוחה עם אחריות דרך יבואן רשמי
-										ומענה בעת הצורך ואפילו נסיון לפני קנייה בחנות המרכזית שלנו באילת. חברת אקווה מרינה מתמחה
-										בייצור ושיווק סאפים וקיאקים מתנפחים איכותיים ורב תחומיים ובמגוון מוצרי ספורט ימי אחרים,
-										ופועלת בשוק העולמי משנת 2002. מתוך מגוון דגמי סאפים שונים ומגוונים בחרנו במיוחד בשבילכם את
-										הדגמים הכי פופולרים, איכותיים ושימושיים במחיר הכי טוב בישראל עם אחריות מיבואן רשמי ב-2
-										נקודות
-										שונות בארץ: בדרום ובמרכז.
-									</p>
-								</div>
-								<div class="text-block-h4">
-									<h4 class="h4">תחילת הדרך</h4>
-								</div>
-								<div class="text-block-p">
-									<p>
-										מתוך מגוון דגמי סאפים שונים ומגוונים בחרנו במיוחד בשבילכם את הדגמים הכי פופולרים,בישראל
-										ניתן
-										לרכוש של אחד ממגוון הדגמים הנעים בין גדלים שונים של לוחות סאפ מתנפחים ומקולקציות שונות בין
-										אם
-										אתם מתחילים או מתקדמים, לשימושים של גלישת גלים, דייג, טיולים, יוגה ועוד. וחתירה ברמה
-										עולמית
-										ובמחירים הטובים בישראל וכמובן לבצע קנייה בטוחה עם אחריות דרך יבואן רשמי ומענה בעת הצורך
-										ואפילו נסיון לפני קנייה בחנות המרכזית שלנו באילת. חברת אקווה מרינה מתמחה בייצור ושיווק
-										סאפים
-										וקיאקים מתנפחים איכותיים ורב תחומיים ובמגוון מוצרי ספורט ימי אחרים, ופועלת בשוק העולמי
-										משנת
-										2002. מתוך מגוון דגמי סאפים שונים ומגוונים בחרנו במיוחד בשבילכם את הדגמים הכי פופולרים,
-										איכותיים ושימושיים במחיר הכי טוב בישראל עם אחריות מיבואן רשמי ב-2 נקודות שונות בארץ: בדרום
-										ובמרכז.
-									</p>
-								</div>
-								<div class="text-block-h4">
-									<h4 class="h4">תחילת הדרך</h4>
-								</div>
-								<div class="text-block-p">
-									<p>
-										מתוך מגוון דגמי סאפים שונים ומגוונים בחרנו במיוחד בשבילכם את הדגמים הכי פופולרים,בישראל
-										ניתן
-										לרכוש של אחד ממגוון הדגמים הנעים בין גדלים שונים של לוחות סאפ מתנפחים ומקולקציות שונות בין
-										אם
-										אתם מתחילים או מתקדמים, לשימושים של גלישת גלים, דייג, טיולים, יוגה ועוד. וחתירה ברמה
-										עולמית
-										ובמחירים הטובים בישראל וכמובן לבצע קנייה בטוחה עם אחריות דרך יבואן רשמי ומענה בעת הצורך
-										ואפילו נסיון לפני קנייה בחנות המרכזית שלנו באילת.
-									</p>
-								</div>
-
-								<div class="text-block-h2">
-									<h2 class="h2">סי וולף - מותג חדש בעולם
-										הסאפים המתנפחים</h2>
-								</div>
-
-								<div class="post__media">
-									<picture><source srcset="img/content/pic.webp" type="image/webp"><img src="img/content/pic.jpg" alt=""></picture>
-								</div>
-
-								<div class="text-block-p">
-									<p>
-										דגמי סאפים שונים ומגוונים בחרנו במיוחד בשבילכם את הדגמים הכי פופולרים,בישראל ניתן לרכוש של
-										אחד ממגוון הדגמים הנעים בין גדלים שונים של לוחות סאפ מתנפחים ומקולקציות שונות בין אם אתם
-										מתחילים או מתקדמים, לשימושים של גלישת גלים, דייג, טיולים, יוגה ועוד.
-									</p>
-								</div>
-								<div class="text-block-h3">
-									<h3 class="content__h3 h3">איך זה קרה?</h3>
-								</div>
-								<div class="text-block-p">
-									<p>
-										יבואן רשמי ומענה בעת הצורך ואפילו נסיון לפני קנייה בחנות המרכזית שלנו באילת. חברת אקווה
-										מרינה
-										מתמחה בייצור ושיווק סאפים וקיאקים מתנפחים איכותיים ורב תחומיים ובמגוון מוצרי ספורט ימי
-										אחרים,
-										ופועלת בשוק העולמי משנת 2002. מתוך מגוון דגמי סאפים שונים ומגוונים בחרנו במיוחד בשבילכם את
-										הדגמים הכי פופולרים, איכותיים ושימושיים במחיר הכי טוב בישראל עם אחריות מיבואן רשמי ב-2
-										נקודות
-										שונות בארץ: בדרום ובמרכז.
-
-									</p>
-								</div>
-								<div class="text-block-h3">
-									<h3 class="content__h3 h3">לאן זה הולך?</h3>
-								</div>
-								<div class="text-block-p">
-									<p>
-										מתוך מגוון דגמי סאפים שונים ומגוונים בחרנו במיוחד בשבילכם את הדגמים הכי פופולרים,בישראל
-										ניתן
-										לרכוש של אחד ממגוון הדגמים הנעים בין גדלים שונים של לוחות סאפ מתנפחים ומקולקציות שונות בין
-										אם
-										אתם מתחילים או מתקדמים, לשימושים של גלישת גלים, דייג, טיולים, יוגה ועוד. וחתירה ברמה
-										עולמית
-										ובמחירים הטובים בישראל וכמובן לבצע קנייה בטוחה עם אחריות דרך יבואן רשמי ומענה בעת הצורך
-										ואפילו נסיון לפני קנייה בחנות המרכזית שלנו באילת.
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="content__sidebar sidebar right-sidebar"></div>
+						<a href="" class="catalog__button button button-white _icon-arrows-left-icon">
+							<span>
+								כל המוצרים
+							</span>
+						</a>
 					</div>
 				</div>
 			</section>
@@ -704,7 +845,6 @@
 			</div>
 
 		</footer>
-
 	</div>
 	<!-- <div id="popup" aria-hidden="true" class="popup">
 	<div class="popup__wrapper">
