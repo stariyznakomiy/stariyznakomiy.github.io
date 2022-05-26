@@ -3134,7 +3134,7 @@ hr {
 }
 @media (max-width: 47.99875em) {
   .item-main-categories__button:not(:first-child) {
-    margin: 0px 0px 0px 0px;
+    margin: 40px 0px 0px 0px;
   }
 }
 .item-main-categories__button span {
