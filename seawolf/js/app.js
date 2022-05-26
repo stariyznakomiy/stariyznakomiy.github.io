@@ -4578,6 +4578,21 @@
                     prevEl: ".gallery-product__arrow-prev",
                     nextEl: ".gallery-product__arrow-next"
                 },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1
+                    },
+                    480: {
+                        slidesPerView: 2
+                    },
+                    600: {
+                        slidesPerView: 3,
+                        direction: "horizontal"
+                    },
+                    768: {
+                        direction: "vertical"
+                    }
+                },
                 on: {}
             });
             new core(".gallery-product__slider", {
