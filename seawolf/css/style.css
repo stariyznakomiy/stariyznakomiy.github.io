@@ -4080,7 +4080,7 @@ hr {
 }
 @media (max-width: 75em) {
   .catalog__top-sidebar:not(:last-child) {
-    margin: 0px 0px 9.375rem 0px;
+    margin: 0px 0px 3.75rem 0px;
   }
 }
 @media (max-width: 61.99875em) {
