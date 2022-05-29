@@ -4656,6 +4656,9 @@ hr {
 .cart__table-item .cart__table-quantity .quantity {
   margin: 0;
 }
+.cart__table-item .cart__table-price {
+  font-weight: normal;
+}
 @media (max-width: 61.99875em) {
   .cart__table-item .cart__table-price {
     order: 2;
