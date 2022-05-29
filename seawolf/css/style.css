@@ -4730,12 +4730,13 @@ hr {
   }
 }
 .cart__table-text {
+  font-weight: normal;
   direction: rtl;
   margin-right: 22px;
   position: relative;
   top: -3px;
   line-height: 1.0833333333;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.5px;
 }
 @media (min-width: 61.99875em) {
   .cart__table-text {
