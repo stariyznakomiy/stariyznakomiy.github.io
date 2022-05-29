@@ -2157,7 +2157,7 @@ hr {
   .footer__top {
     flex-direction: column-reverse;
     text-align: center;
-    row-gap: 3.75rem;
+    row-gap: 6.25rem;
   }
 }
 .footer__menu {
