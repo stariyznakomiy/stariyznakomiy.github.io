@@ -883,10 +883,12 @@ h2,
 .spollers-register__title {
   flex: 1 1 auto;
   text-align: left;
-  max-width: 90%;
   line-height: 130%;
+  display: flex;
+  align-items: center;
 }
 .spollers-register__title p {
+  flex: 1 1 auto;
   line-height: 130%;
 }
 .spollers-register__title p:not(:last-child) {
@@ -913,7 +915,7 @@ h2,
     opacity: 0.5;
   }
 }
-.spollers-register__icon._spoller-active {
+._spoller-active .spollers-register__icon {
   transform: rotate(180deg);
 }
 .spollers-register__body {
@@ -1178,26 +1180,45 @@ h2,
   }
 }
 .item-procedure__button {
-  flex: 0 0 48px;
-  height: 48px;
+  flex: 1 0 48px;
+  height: 100%;
   font-size: 28px;
   color: #ffffff;
-  background-color: #1D68F9;
-  border-radius: 50%;
+  display: flex;
+  align-items: flex-start;
   opacity: 1;
   transition: all 0.3s ease 0s;
 }
-.item-procedure__button:active {
+.item-procedure__button span {
+  position: relative;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: #1D68F9;
+  border-radius: 50%;
+  transition: all 0.2s ease 0s;
+  z-index: -1;
+}
+@media (max-width: 47.99875em) {
+  .item-procedure__button span {
+    width: 32px;
+    height: 32px;
+  }
+}
+.item-procedure__button:active span {
   transform: scale(0.8);
 }
 @media (any-hover: hover) {
-  .item-procedure__button:hover {
+  .item-procedure__button:hover span {
     opacity: 0.5;
   }
 }
 @media (max-width: 47.99875em) {
   .item-procedure__button {
-    flex: 0 0 32px;
+    flex: 1 0 32px;
     height: 32px;
     font-size: 24px;
   }
