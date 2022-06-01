@@ -2884,6 +2884,11 @@ hr {
     justify-content: center;
   }
 }
+.slide-top__button span {
+  position: relative;
+  top: -3px;
+  right: 1px;
+}
 
 .main-phone {
   display: flex;
