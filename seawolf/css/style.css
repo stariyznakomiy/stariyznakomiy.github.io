@@ -931,6 +931,9 @@ body::after {
 .popup-write__form .form__button {
   max-width: 100%;
 }
+.popup-write .form__inputs:not(:last-child) {
+  margin: 0px 0px 20px 0px;
+}
 
 [class*=-ibg] {
   position: relative;
@@ -2315,6 +2318,7 @@ hr {
 .menu-footer__link {
   justify-content: flex-start;
   transition: all 0.3s ease 0s;
+  margin: 0px 0px 2.5rem 0px;
 }
 .menu-footer__link:not(:last-child) {
   margin: 0px 0px 2.5rem 0px;
@@ -2677,6 +2681,9 @@ hr {
 .quantity-main__button {
   height: 1.3125rem;
   flex: 1 1 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   cursor: pointer;
   border: 1px solid #c0c0c0;
@@ -2685,13 +2692,12 @@ hr {
 .quantity-main__button::before, .quantity-main__button::after {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%);
+  top: auto;
+  left: auto;
   transition: all 0.3s ease 0s;
-  margin: 0px 0px 0px -4.5px;
+  margin: 0;
   background-color: #c0c0c0;
-  width: 9px;
+  width: 11px;
   height: 3px;
 }
 @media (any-hover: hover) {
@@ -2701,9 +2707,6 @@ hr {
   .quantity-main__button:hover::before, .quantity-main__button:hover::after {
     background-color: #c71529;
   }
-}
-.quantity-main__button.quantity__button_plus::before {
-  transform: rotate(-90deg) translate(15%);
 }
 .quantity-main__button.quantity__button_minus {
   position: relative;
@@ -2789,12 +2792,18 @@ hr {
   margin: 0px 13px 0px 10px;
   font-size: 0.4375rem;
   position: relative;
-  top: 2px;
+  top: 3px;
 }
 @media (max-width: 47.99875em) {
   .breadcrumbs__item {
     font-size: 1.125rem;
   }
+}
+.breadcrumbs a {
+  text-decoration: underline;
+}
+.breadcrumbs a:visited {
+  text-decoration: underline;
 }
 .breadcrumbs__link {
   color: #fff;
@@ -2802,7 +2811,7 @@ hr {
 }
 @media (any-hover: hover) {
   .breadcrumbs__link:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
 }
 .breadcrumbs__current {
@@ -3291,7 +3300,7 @@ hr {
   left: 3px;
 }
 .main-packages__price:not(:last-child) {
-  margin: 0px 0px 15px 0px;
+  margin: 0px 0px 16px 0px;
 }
 .main-packages__price span {
   font-weight: 800;
@@ -3870,6 +3879,8 @@ hr {
   border-right: 1px solid #c0c0c0;
 }
 .form .input__upload-span {
+  position: relative;
+  top: -3px;
   flex: 1 1 auto;
   padding-right: 23px;
   font-weight: 300;
@@ -4471,6 +4482,19 @@ hr {
 }
 .cart__table-quantity .quantity__input {
   flex: 0 0 52px;
+  overflow: hidden;
+}
+.cart__table-quantity .quantity__input input {
+  position: relative;
+  top: -2px;
+}
+.cart__table-quantity .quantity__button_minus {
+  position: relative;
+  top: -1px;
+}
+.cart__table-quantity .quantity__button_plus {
+  position: relative;
+  top: -1px;
 }
 .cart__table-price {
   flex: 0 0 14.7%;
@@ -4799,6 +4823,21 @@ hr {
     flex-direction: column-reverse;
     row-gap: 4px;
     justify-content: flex-start;
+  }
+}
+@supports (padding-left: clamp( 0rem , -2.34375rem  +  7.5vw , 5.625rem )) {
+  .cart__table-total .cart__table-sum {
+    padding-left: clamp( 0rem , -2.34375rem  +  7.5vw , 5.625rem );
+  }
+}
+@supports not (padding-left: clamp( 0rem , -2.34375rem  +  7.5vw , 5.625rem )) {
+  .cart__table-total .cart__table-sum {
+    padding-left: calc(0rem + 5.625 * (100vw - 31.25rem) / 75);
+  }
+}
+@media (max-width: 61.99875em) {
+  .cart__table-total .cart__table-sum {
+    padding-left: 0;
   }
 }
 @media (max-width: 47.99875em) {
@@ -5912,8 +5951,10 @@ hr {
 .product__col {
   min-width: 0;
 }
-.product__col:last-child {
-  grid-row: 1;
+@media (max-width: 75em) {
+  .product__col:last-child {
+    grid-row: 1;
+  }
 }
 .product__item {
   min-width: 0;
@@ -6051,6 +6092,10 @@ hr {
 .instruction-product__title {
   direction: rtl;
 }
+.instruction-product__video {
+  border: 1px solid #c0c0c0;
+}
+
 @media (min-width: 47.99875em) {
   .posts-product .blog__list {
     display: block;
@@ -6459,7 +6504,6 @@ hr {
   font-weight: 800;
   column-gap: 0.3125rem;
   position: relative;
-  top: -4px;
 }
 .product-price small {
   font-size: 1.875rem;
@@ -6484,7 +6528,7 @@ hr {
 
 .actions-product {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   column-gap: 30px;
   row-gap: 30px;
@@ -6609,6 +6653,7 @@ hr {
 }
 .table-characteristics__label::before {
   position: relative;
+  top: 1px;
   font-weight: 800;
   color: #c71529;
   font-size: 0.75rem;
@@ -6623,6 +6668,7 @@ hr {
   column-gap: 0.8125rem;
 }
 .table-characteristics__value span {
+  direction: rtl;
   position: relative;
   right: -19px;
   text-align: right;
