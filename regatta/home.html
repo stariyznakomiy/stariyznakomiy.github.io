@@ -6,14 +6,15 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.css?_v=20220704155339">
+	<link rel="stylesheet" href="css/style.css?_v=20220708012023">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-	<div class="wrapper">
+
+	<div class="wrapper wrapper--main">
 
 		<header data-scroll="200" class="header">
 			<div class="header__wrapper">
@@ -81,63 +82,62 @@
 				</div>
 			</div>
 		</header>
-		<main class="page">
+		<main class="page page--main">
+			<div id="hero-moving" class="hero__moving">
+				<span id="hero-moving__span"></span>
+			</div>
 			<div class="hero">
 				<h1 class="visually-hidden"> Regatta consult парус вашего бизнеса</h1>
 				<div class="hero__body">
-
 					<div class="hero__list swiper">
 						<div class="hero__list-wrapper swiper-wrapper">
-							<div class="hero__item hero__item--1 item-hero swiper-slide">
+							<div class="hero__item item-hero item-hero--1 swiper-slide">
+								<div class="item-hero__cover"></div>
 								<h3 class="">Юридические услуги</h3>
 								<p>Но сторонники тоталитаризма в науке, превозмогая сложившуюся непростую экономическую
 									ситуацию, целой серии независимых исследований.</p>
 								<div class="item-hero__bot">
 									<span>01</span>
-									<a href="#" class="item-hero__link">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-arrowRight"></use>
+									<button type="button" class="item-hero__link btn-animate">
+										<svg class="" width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+											<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
 										</svg>
-									</a>
+									</button>
 								</div>
-
 							</div>
-							<div class="hero__item hero__item--2 item-hero swiper-slide">
+							<div class="hero__item item-hero item-hero--2 swiper-slide">
+								<div class="item-hero__cover"></div>
 								<h3 class="">Бухгалтерские услуги</h3>
 								<p>Но сторонники тоталитаризма в науке, превозмогая сложившуюся непростую экономическую
 									ситуацию, целой серии независимых исследований.</p>
 								<div class="item-hero__bot">
 									<span>02</span>
-									<a href="#" class="item-hero__link">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-arrowRight"></use>
+									<button type="button" class="item-hero__link btn-animate">
+										<svg class="" width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+											<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
 										</svg>
-									</a>
+									</button>
 								</div>
-
 							</div>
-							<div class="hero__item hero__item--3 item-hero swiper-slide">
+							<div class="hero__item item-hero item-hero--3 swiper-slide">
+								<div class="item-hero__cover"></div>
 								<h3 class="">Кадровые услуги</h3>
 								<p>Но сторонники тоталитаризма в науке, превозмогая сложившуюся непростую экономическую
 									ситуацию, целой серии независимых исследований.</p>
 								<div class="item-hero__bot">
 									<span>03</span>
-									<a href="#" class="item-hero__link">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-arrowRight"></use>
+									<button type="button" class="item-hero__link btn-animate">
+										<svg class="" width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+											<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
 										</svg>
-									</a>
+									</button>
 								</div>
-
 							</div>
 						</div>
 					</div>
 					<div class="hero__slider swiper">
-						<div id="moving-div" class="">
-							<span></span>
-						</div>
 						<div class="hero__wrapper swiper-wrapper">
-							<div class="hero__slide slide-hero slide-hero--1 swiper-slide" data-color="#9DB2A1" style="background-image: url(img/scales.png);">
+							<div class="hero__slide slide-hero slide-hero--1 swiper-slide">
 								<h2>Юридические услуги</h2>
 								<span></span>
 								<p>Наиболее важным аспектом в ведении бизнеса занимает место своевременной сдачи отчетности. ТОО
@@ -145,113 +145,77 @@
 									Consult" предоставляет полноценный и качественный спектр услуг в области бухгалтерского
 									и налогового учета.</p>
 								<div class="slide-hero__buttons">
-									<a href="#" class="slide-hero__btn btn">
+									<a href="#" class="slide-hero__btn btn btn-animate">
+										<div class="slide-hero__btn-cover 1"></div>
 										<span>Читать подробнее</span>
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-arrowRight"></use>
-										</svg>
-										<span class="btn__hover"><span></span></span>
-									</a>
-									<a href="#" class="slide-hero__btn">Записаться на приём</a>
-								</div>
-							</div>
-							<div class="hero__slide slide-hero slide-hero--2 swiper-slide" data-color="#A19DB2" style="background-image: url(img/books.png);">
-								<h2>Бухгалтерские услуги</h2>
-								<p>
-									Наиболее важным аспектом в ведении бизнеса занимает место своевременной сдачи отчетности. ТОО
-									"Regatta
-									Consult" предоставляет полноценный и качественный спектр услуг в области бухгалтерского
-									и налогового учета.
-								</p>
-								<div class="slide-hero__buttons">
-									<a href="#" class="slide-hero__btn btn">
-										<span>Читать подробнее</span>
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-arrowRight"></use>
-										</svg>
-									</a>
-									<a href="#" class="slide-hero__btn">Записаться на приём</a>
-								</div>
-							</div>
-							<div class="hero__slide slide-hero slide-hero--3 swiper-slide" data-color="#BB8D8D" style="background-image: url(img/people.png);">
-								<h2>Кадровые услуги</h2>
-								<p>
-									Наиболее важным аспектом в ведении бизнеса занимает место своевременной сдачи отчетности. ТОО
-									"Regatta
-									Consult" предоставляет полноценный и качественный спектр услуг в области бухгалтерского
-									и налогового учета.
-								</p>
-								<div class="slide-hero__buttons">
-									<a href="#" class="slide-hero__btn btn">
-										<span>Читать подробнее</span>
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-arrowRight"></use>
+										<svg width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+											<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
 										</svg>
 
 									</a>
 									<a href="#" class="slide-hero__btn">Записаться на приём</a>
 								</div>
+								<div id="slide-hero__animate--1" class="slide-hero__animate"></div>
+							</div>
+							<div class="hero__slide slide-hero slide-hero--2 swiper-slide">
+								<h2>Бухгалтерские услуги</h2>
+								<p>Наиболее важным аспектом в ведении бизнеса занимает место своевременной сдачи отчетности. ТОО
+									"Regatta
+									Consult" предоставляет полноценный и качественный спектр услуг в области бухгалтерского
+									и налогового учета.</p>
+								<div class="slide-hero__buttons">
+									<a href="#" class="slide-hero__btn btn btn-animate">
+										<div class="slide-hero__btn-cover 2"></div>
+										<span>Читать подробнее</span>
+										<svg width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+											<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
+										</svg>
+									</a>
+									<a href="#" class="slide-hero__btn">Записаться на приём</a>
+								</div>
+								<div id="slide-hero__animate--2" class="slide-hero__animate"></div>
+							</div>
+							<div class="hero__slide slide-hero slide-hero--3 swiper-slide">
+								<h2>Кадровые услуги</h2>
+								<p>Наиболее важным аспектом в ведении бизнеса занимает место своевременной сдачи отчетности. ТОО
+									"Regatta
+									Consult" предоставляет полноценный и качественный спектр услуг в области бухгалтерского
+									и налогового учета.</p>
+								<div class="slide-hero__buttons">
+									<a href="#" class="slide-hero__btn btn btn-animate">
+										<div class="slide-hero__btn-cover 3"></div>
+										<span>Читать подробнее</span>
+										<svg width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+											<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
+										</svg>
+
+									</a>
+									<a href="#" class="slide-hero__btn">Записаться на приём</a>
+								</div>
+								<div id="slide-hero__animate--3" class="slide-hero__animate"></div>
 							</div>
 						</div>
 						<div class="hero__controlls">
 							<div class="hero__pagination"></div>
 							<div class="hero__arrows">
-								<div class="hero__arrow hero__arrow-prev">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-arrowLeft"></use>
+								<button type="button" class="hero__arrow hero__arrow-prev btn-animate">
+									<svg width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+										<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
 									</svg>
-								</div>
-								<div class="hero__arrow hero__arrow-next">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-arrowRight"></use>
+								</button>
+								<button type="button" class="hero__arrow hero__arrow-next btn-animate">
+									<svg width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+										<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
 									</svg>
-								</div>
+								</button>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="hero__whiteus writeus" style="background-image: url(img/writeus-bg.png);">
-					<div class="writeus__top">
-						<button class="writeus__open">Написать нам</button>
-						<div class="writeus__icon">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#svg-mouseScroll"></use>
-							</svg>
-						</div>
-						<a href="mailto:" class="writeus__email">kanatm@regatta.kz</a>
-					</div>
-					<div class="writeus__body">
-						<div class="writeus__content">
-							<h2>Написать нам</h2>
-							<p>В рамках спецификации современных стандартов, стремящиеся вытеснить традиционное производство,
-								нанотехнологии функционально разнесены на независимые элементы.</p>
-						</div>
-						<form action="" class="writeus__form">
-							<div class="writeus__inputs">
-								<input autocomplete="off" type="text" name="form[]" data-error="Ошибка" placeholder="Имя" class="writeus__input input">
-								<input autocomplete="off" type="text" name="form[]" data-error="Ошибка" placeholder="Номер телефона" class="writeus__input input">
-								<input autocomplete="off" type="text" name="form[]" data-error="Ошибка" placeholder="Сообщение (Не обязательно)" class="writeus__input input">
-							</div>
-							<button type="submit" class="writeus__button"> <span>Отправить</span>
-								<svg>
-									<use xlink:href="img/icons/icons.svg#svg-arrowRight"></use>
-								</svg>
-							</button>
-						</form>
-					</div>
-					<div class="writeus__footer">
-						<span class="writeus__copyright">© 2022 Все права защищены</span>
-						<a href="#" class="writeus__ruso">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#svg-ruso"></use>
-							</svg>
-						</a>
 					</div>
 				</div>
 			</div>
 		</main>
-		<!-- <!-- page__writeus  -->
-		<section data-showmore class="writeus" data-bg="img/request-bg.jpg">
+		<!-- page__writeus  -->
+		<section data-showmore class="writeus" data-bg="img/request-bg.jpg" data-bg-hidpi="img/request-bg@2x.jpg">
 			<div class="writeus__more">
 				<button hidden data-showmore-button type="button" data-goto-top="100" data-goto=".writeus__form" class="writeus__open">Написать
 					нам</button>
@@ -274,7 +238,7 @@
 						<div class="form__inputs">
 							<input data-required data-validate autocomplete="off" type="text" name="form[]" data-error="" placeholder="Имя" class="form__input input">
 							<input data-required data-validate autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Номер телефона" class="form__input input">
-							<input autocomplete="off" type="text" name="form[]" data-error="Ошибка" placeholder="Сообщение (Не обязательно)" class="form__input input">
+							<input autocomplete="off" type="text" name="form[]" data-error="" placeholder="Сообщение (Не обязательно)" class="form__input input">
 						</div>
 						<button type="submit" class="form__button btn-animate"> <span>Отправить</span>
 							<svg class="" width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
@@ -303,7 +267,7 @@
 				</footer>
 			</div>
 		</section>
-		<!-- page__writeus end --> -->
+		<!-- page__writeus end -->
 	</div>
 	<!-- <div id="popup" aria-hidden="true" class="popup">
 	<div class="popup__wrapper">
@@ -315,9 +279,8 @@
 		</div>
 	</div>
 </div> -->
-	<!-- <!-- <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU&_v=20220704155339" type="text/javascript">
-</script> --> -->
-	<script src="js/app.min.js?_v=20220704155339"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&_v=20220708012023" defer></script>
+	<script src="js/app.min.js?_v=20220708012023"></script>
 </body>
 
 </html>
