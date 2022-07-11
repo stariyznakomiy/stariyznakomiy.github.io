@@ -25116,21 +25116,21 @@ PERFORMANCE OF THIS SOFTWARE.
                 renderer: "svg",
                 loop: false,
                 autoplay: true,
-                path: "../../files/scale.json"
+                path: "files/scale.json"
             });
             heroSlide2 = lottie.loadAnimation({
                 container: document.querySelector("#slide-hero__animate--2"),
                 renderer: "svg",
                 loop: false,
                 autoplay: true,
-                path: "../../files/book.json"
+                path: "files/book.json"
             });
             heroSlide3 = lottie.loadAnimation({
                 container: document.querySelector("#slide-hero__animate--3"),
                 renderer: "svg",
                 loop: false,
                 autoplay: true,
-                path: "../../files/people.json"
+                path: "files/people.json"
             });
         }), 1e3);
         document.addEventListener("click", documentActionsClick);
