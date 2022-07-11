@@ -19620,6 +19620,7 @@
                 slidesPerView: 1,
                 spaceBetween: 0,
                 speed: 800,
+                simulateTouch: false,
                 effect: "fade",
                 fadeEffect: {
                     crossFade: true
@@ -24601,9 +24602,84 @@ PERFORMANCE OF THIS SOFTWARE.
         gsap.registerPlugin(CSSPlugin);
         var gsapWithCSS = gsap.registerPlugin(CSSPlugin) || gsap;
         gsapWithCSS.core.Tween;
-        document.querySelector(".slide-hero h2");
-        document.querySelector(".slide-hero p");
-        document.querySelector(".slide-hero__buttons");
+        function split(el) {
+            el.innerHTML = el.textContent.replace(/(\S*)/g, (m => `<div class="word">` + m.replace(/(-|#|@)?\S(-|#|@)?/g, "<div class='letter'>$&</div>") + `</div>`));
+            return el;
+        }
+        function animateSlide(title, text, buttons) {
+            setTimeout((() => {
+                let splitTitle = split(title);
+                let lettersTitle = splitTitle.querySelectorAll(".letter");
+                let splitText = split(text);
+                let lettersText = splitText.querySelectorAll(".letter");
+                var tl = gsapWithCSS.timeline();
+                lettersTitle.forEach((letter => {
+                    tl.from(letter, {
+                        opacity: 0,
+                        duration: .05,
+                        ease: "linear"
+                    });
+                    return tl;
+                }));
+                lettersText.forEach((letter => {
+                    tl.from(letter, {
+                        opacity: 0,
+                        duration: .01,
+                        ease: "linear"
+                    });
+                    return tl;
+                }));
+                tl.from(buttons, {
+                    opacity: 0,
+                    x: "-100px",
+                    duration: 1
+                });
+            }), 1e3);
+        }
+        document.addEventListener("click", (e => {
+            const el = e.target;
+            if (el.closest(".item-hero--1")) {
+                const itemHero = document.querySelector(".slide-hero--1");
+                const itemHeroTitle = itemHero.querySelector("h2");
+                const itemHeroText = itemHero.querySelector("p");
+                const itemHeroButtons = itemHero.querySelector(".slide-hero__buttons");
+                animateSlide(itemHeroTitle, itemHeroText, itemHeroButtons);
+            }
+            if (el.closest(".item-hero--2")) {
+                const itemHero = document.querySelector(".slide-hero--2");
+                const itemHeroTitle = itemHero.querySelector("h2");
+                const itemHeroText = itemHero.querySelector("p");
+                const itemHeroButtons = itemHero.querySelector(".slide-hero__buttons");
+                animateSlide(itemHeroTitle, itemHeroText, itemHeroButtons);
+            }
+            if (el.closest(".item-hero--3")) {
+                const itemHero = document.querySelector(".slide-hero--3");
+                const itemHeroTitle = itemHero.querySelector("h2");
+                const itemHeroText = itemHero.querySelector("p");
+                const itemHeroButtons = itemHero.querySelector(".slide-hero__buttons");
+                animateSlide(itemHeroTitle, itemHeroText, itemHeroButtons);
+            }
+            if (el.closest(".hero__arrow")) {
+                const heroSlider = document.querySelector(".hero__slider");
+                const heroSlide = heroSlider.querySelector(".swiper-slide-active");
+                if (heroSlide.classList.contains("slide-hero--1")) {
+                    const itemHeroTitle = heroSlide.querySelector("h2");
+                    const itemHeroText = heroSlide.querySelector("p");
+                    const itemHeroButtons = heroSlide.querySelector(".slide-hero__buttons");
+                    animateSlide(itemHeroTitle, itemHeroText, itemHeroButtons);
+                } else if (heroSlide.classList.contains("slide-hero--2")) {
+                    const itemHeroTitle = heroSlide.querySelector("h2");
+                    const itemHeroText = heroSlide.querySelector("p");
+                    const itemHeroButtons = heroSlide.querySelector(".slide-hero__buttons");
+                    animateSlide(itemHeroTitle, itemHeroText, itemHeroButtons);
+                } else if (heroSlide.classList.contains("slide-hero--3")) {
+                    const itemHeroTitle = heroSlide.querySelector("h2");
+                    const itemHeroText = heroSlide.querySelector("p");
+                    const itemHeroButtons = heroSlide.querySelector(".slide-hero__buttons");
+                    animateSlide(itemHeroTitle, itemHeroText, itemHeroButtons);
+                }
+            }
+        }));
         if (document.querySelector(".page--main")) {
             let mouseX, mouseY, posX, posY;
             const heroBody = document.querySelector(".hero__body");
@@ -24654,10 +24730,9 @@ PERFORMANCE OF THIS SOFTWARE.
                 }));
                 heroSliderButton.addEventListener("mousemove", (e => {
                     var box = heroSliderButton.getBoundingClientRect();
-                    let top = box.top;
-                    let left = box.left;
-                    let x = e.pageX, y = e.pageY;
-                    console.log(`${x - left}:${y - top}`);
+                    box.top;
+                    box.left;
+                    e.pageX, e.pageY;
                 }));
             }));
             mouseX = 0, mouseY = 0, posX = 0, posY = 0;
@@ -25034,29 +25109,30 @@ PERFORMANCE OF THIS SOFTWARE.
             return EllipsisClass;
         })();
         var lottie = __webpack_require__(248);
+        var heroSlide1, heroSlide2, heroSlide3;
         setTimeout((() => {
-            lottie.loadAnimation({
+            heroSlide1 = lottie.loadAnimation({
                 container: document.querySelector("#slide-hero__animate--1"),
                 renderer: "svg",
                 loop: false,
                 autoplay: true,
                 path: "../../files/scale.json"
             });
-            lottie.loadAnimation({
+            heroSlide2 = lottie.loadAnimation({
                 container: document.querySelector("#slide-hero__animate--2"),
                 renderer: "svg",
                 loop: false,
                 autoplay: true,
                 path: "../../files/book.json"
             });
-            lottie.loadAnimation({
+            heroSlide3 = lottie.loadAnimation({
                 container: document.querySelector("#slide-hero__animate--3"),
                 renderer: "svg",
                 loop: false,
                 autoplay: true,
                 path: "../../files/people.json"
             });
-        }), 2e3);
+        }), 1e3);
         document.addEventListener("click", documentActionsClick);
         function documentActionsClick(e) {
             const el = e.target;
@@ -25072,20 +25148,43 @@ PERFORMANCE OF THIS SOFTWARE.
             }
             if (el.classList.contains("writeus__open")) el.closest(".writeus").classList.toggle("writeus--active");
             if (!el.closest(".header")) if (document.documentElement.classList.contains("menu-open")) menuClose();
-            if (el.closest(".item-hero--1")) {
-                heroSlide1.goToAndPlay(1, .3);
+            if (el.closest(".item-hero--1")) setTimeout((() => {
+                heroSlide1.stop();
+                heroSlide1.play();
                 heroSlide2.stop();
                 heroSlide3.stop();
-            }
-            if (el.closest(".item-hero--2")) {
+            }), 1e3);
+            if (el.closest(".item-hero--2")) setTimeout((() => {
                 heroSlide1.stop();
+                heroSlide2.stop();
                 heroSlide2.play();
                 heroSlide3.stop();
-            }
-            if (el.closest(".item-hero--3")) {
+            }), 1e3);
+            if (el.closest(".item-hero--3")) setTimeout((() => {
                 heroSlide1.stop();
                 heroSlide2.stop();
+                heroSlide3.stop();
                 heroSlide3.play();
+            }), 1e3);
+            if (el.closest(".hero__arrow")) {
+                const heroSlider = document.querySelector(".hero__slider");
+                const heroSlide = heroSlider.querySelector(".swiper-slide-active");
+                if (heroSlide.classList.contains("slide-hero--1")) setTimeout((() => {
+                    heroSlide1.stop();
+                    heroSlide1.play();
+                    heroSlide2.stop();
+                    heroSlide3.stop();
+                }), 1e3); else if (heroSlide.classList.contains("slide-hero--2")) setTimeout((() => {
+                    heroSlide1.stop();
+                    heroSlide2.stop();
+                    heroSlide2.play();
+                    heroSlide3.stop();
+                }), 1e3); else if (heroSlide.classList.contains("slide-hero--3")) setTimeout((() => {
+                    heroSlide1.stop();
+                    heroSlide2.stop();
+                    heroSlide3.stop();
+                    heroSlide3.play();
+                }), 1e3);
             }
         }
         const header = document.querySelector("header.header");
@@ -25104,7 +25203,6 @@ PERFORMANCE OF THIS SOFTWARE.
         });
         var script_elements = document.querySelectorAll(".text-clamp");
         ellipsis.add(script_elements);
-        document.querySelector(".item-team__content");
         function initMap() {
             const uluru = {
                 lat: -25.344,
