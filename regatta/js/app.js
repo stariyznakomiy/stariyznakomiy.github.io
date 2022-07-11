@@ -19630,7 +19630,9 @@
                 pagination: {
                     el: ".hero__pagination",
                     type: "fraction",
-                    clickable: true
+                    clickable: true,
+                    formatFractionCurrent: addZero,
+                    formatFractionTotal: addZero
                 },
                 navigation: {
                     nextEl: ".hero__arrow-next",
@@ -19638,6 +19640,9 @@
                 },
                 on: {}
             });
+            function addZero(num) {
+                return num > 9 ? num : "0" + num;
+            }
             if (document.querySelector(".statistics__list")) new core(".statistics__list", {
                 modules: [ Navigation, freeMode ],
                 slidesPerView: "auto",
@@ -24601,6 +24606,7 @@ PERFORMANCE OF THIS SOFTWARE.
         document.querySelector(".slide-hero__buttons");
         if (document.querySelector(".page--main")) {
             let mouseX, mouseY, posX, posY;
+            const heroBody = document.querySelector(".hero__body");
             const heroSlider = document.querySelector(".hero__slider");
             const body = document.querySelector("body");
             const page = document.querySelector("main");
@@ -24616,11 +24622,11 @@ PERFORMANCE OF THIS SOFTWARE.
                     if (heroSlide.classList.contains("slide-hero--1")) sliderCursorSpan.style.backgroundColor = "#9DB2A1"; else if (heroSlide.classList.contains("slide-hero--2")) sliderCursorSpan.style.backgroundColor = "#A19DB2"; else if (heroSlide.classList.contains("slide-hero--3")) sliderCursorSpan.style.backgroundColor = "#BB8D8D";
                 }
             }
-            heroSlider.addEventListener("mouseover", (e => {
+            heroBody.addEventListener("mouseover", (e => {
                 let el = e.target;
                 if (!el.closest(".btn")) sliderCursor.classList.add("_active");
             }));
-            heroSlider.addEventListener("mouseout", (() => {
+            heroBody.addEventListener("mouseout", (() => {
                 sliderCursor.classList.remove("_active");
             }));
             body.addEventListener("mousemove", (e => {
@@ -24633,6 +24639,9 @@ PERFORMANCE OF THIS SOFTWARE.
                 }));
                 heroItem.addEventListener("mouseout", (() => {
                     heroItemCover.classList.remove("_active");
+                }));
+                heroItem.addEventListener("mousemove", (() => {
+                    sliderCursor.classList.remove("_active");
                 }));
             }));
             heroSliderButtons.forEach((heroSliderButton => {
@@ -25031,21 +25040,21 @@ PERFORMANCE OF THIS SOFTWARE.
                 renderer: "svg",
                 loop: false,
                 autoplay: true,
-                path: "../../files/book.json"
+                path: "../../files/scale.json"
             });
             lottie.loadAnimation({
                 container: document.querySelector("#slide-hero__animate--2"),
                 renderer: "svg",
                 loop: false,
                 autoplay: true,
-                path: "../../files/scale.json"
+                path: "../../files/book.json"
             });
             lottie.loadAnimation({
                 container: document.querySelector("#slide-hero__animate--3"),
                 renderer: "svg",
                 loop: false,
                 autoplay: true,
-                path: "../../files/scale.json"
+                path: "../../files/people.json"
             });
         }), 2e3);
         document.addEventListener("click", documentActionsClick);
