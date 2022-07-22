@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20220722131612">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220722153535">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,23 +80,33 @@
 										<div class="item-account__img">
 											<img data-src="img/products/5.png" data-srcset="img/products/5@2x.png 2x" alt="">
 										</div>
-										<div class="item-account__product">
-											<p class="item-account__name">Копмьют.</p>
-											<p class="item-account__q"> 1 шт.</p>
+										<div class="item-account__info">
+											<div class="item-account__product">
+												<p class="item-account__name">Копмьют.</p>
+												<p class="item-account__q"> 1 шт.</p>
+											</div>
+											<div class="item-account__status">
+												<div class="item-account__label">статус</div>
+												<div class="item-account__del-status">Доставлен</div>
+											</div>
 										</div>
-										<div class="item-account__label">статус</div>
-										<div class="item-account__del-status">Доставлен</div>
 									</div>
 								</div>
 								<div class="account-tabs__list">
 									<div class="account-tabs__item item-account">
-										<img data-src="img/products/4.png" data-srcset="img/products/4@2x.png 2x" alt="" class="item-account__img">
-										<div class="item-account__product">
-											<p class="item-account__name">Белый ху.</p>
-											<p class="item-account__q"> 1 шт.</p>
+										<div class="item-account__img">
+											<img data-src="img/products/4.png" data-srcset="img/products/4@2x.png 2x" alt="">
 										</div>
-										<div class="item-account__label">Ожидаемая дата доставки</div>
-										<div class="item-account__date">29.6.2022</div>
+										<div class="item-account__info">
+											<div class="item-account__product">
+												<p class="item-account__name">Белый ху.</p>
+												<p class="item-account__q"> 1 шт.</p>
+											</div>
+											<div class="item-account__status">
+												<div class="item-account__label item-account__label-date">Ожидаемая дата доставки</div>
+												<div class="item-account__date">29.6.2022</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -110,39 +120,49 @@
 									<div class="item-cart__img">
 										<img data-src="img/products/5.png" data-srcset="img/products/5@2x.png" alt="">
 									</div>
-									<div class="item-cart__product">K&K 7000</div>
-									<div class="item-cart__quantity quantity">
-										<button type="button" class="quantity__button quantity__button_minus"></button>
-										<div class="quantity__input">
-											<input autocomplete="off" type="text" name="form[]" value="1">
+									<div class="item-cart__info">
+										<div class="item-cart__product">K&K 7000</div>
+										<div class="item-cart__meta">
+											<div class="item-cart__quantity quantity">
+												<button type="button" class="quantity__button quantity__button_minus"></button>
+												<div class="quantity__input">
+													<input autocomplete="off" type="text" name="form[]" value="1">
+												</div>
+												<button type="but ton" class="quantity__button quantity__button_plus"></button>
+											</div>
+											<div class="item-cart__price">159 990 ₽</div>
+											<button type="button" class="item-cart__remove">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-close"></use>
+												</svg>
+											</button>
 										</div>
-										<button type="but ton" class="quantity__button quantity__button_plus"></button>
+
 									</div>
-									<div class="item-cart__price">159 990 ₽</div>
-									<button type="button" class="item-cart__remove">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-close"></use>
-										</svg>
-									</button>
 								</div>
 								<div class="cart-list__item item-cart">
 									<div class="item-cart__img">
 										<img data-src="img/products/4.png" data-srcset="img/products/4@2x.png" alt="">
 									</div>
-									<div class="item-cart__product">Белый худи</div>
-									<div class="item-cart__quantity quantity">
-										<button type="button" class="quantity__button quantity__button_minus"></button>
-										<div class="quantity__input">
-											<input autocomplete="off" type="text" name="form[]" value="1">
+									<div class="item-cart__info">
+										<div class="item-cart__product">Белый худи</div>
+										<div class="item-cart__meta">
+											<div class="item-cart__quantity quantity">
+												<button type="button" class="quantity__button quantity__button_minus"></button>
+												<div class="quantity__input">
+													<input autocomplete="off" type="text" name="form[]" value="1">
+												</div>
+												<button type="but ton" class="quantity__button quantity__button_plus"></button>
+											</div>
+											<div class="item-cart__price">4 900 ₽</div>
+											<button type="button" class="item-cart__remove">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-close"></use>
+												</svg>
+											</button>
 										</div>
-										<button type="but ton" class="quantity__button quantity__button_plus"></button>
+
 									</div>
-									<div class="item-cart__price">4 900 ₽</div>
-									<button type="button" class="item-cart__remove">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-close"></use>
-										</svg>
-									</button>
 								</div>
 							</div>
 							<div class="cart__checkout">
@@ -151,7 +171,6 @@
 								<a href="#" class="cart__checkout-link">ОФОРМИТЬ ЗАКАЗ</a>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</section>
@@ -216,7 +235,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20220722131612"></script>
+	<script src="js/app.min.js?_v=20220722153535"></script>
 </body>
 
 </html>
