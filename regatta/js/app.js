@@ -24917,7 +24917,7 @@ PERFORMANCE OF THIS SOFTWARE.
         } ];
         function mapAdd() {
             let tag = document.createElement("script");
-            tag.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAbyUodKR9Owiar7Fet_Q1lAsBQ4b5MIow&callback=initMap&v=weekly";
+            tag.src = "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&v=weekly";
             let firstScriptTag = document.getElementsByTagName("script")[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         }
