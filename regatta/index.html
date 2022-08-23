@@ -1,190 +1,322 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 
 <head>
+	<title>Regatta</title>
 	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="css/style.css?_v=20220817135841">
+	<link rel="shortcut icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/favicon/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="img/favicon/apple-touch-icon-60x60.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/favicon/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="img/favicon/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/favicon/apple-touch-icon-152x152.png" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-196x196.png" sizes="196x196" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-96x96.png" sizes="96x96" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" sizes="16x16" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-128.png" sizes="128x128" />
+	<meta name="application-name" content="&nbsp;" />
+	<meta name="msapplication-TileColor" content="#FFFFFF" />
+	<meta name="msapplication-TileImage" content="img/favicon/mstile-144x144.png" />
+	<meta name="msapplication-square70x70logo" content="img/favicon/mstile-70x70.png" />
+	<meta name="msapplication-square150x150logo" content="img/favicon/mstile-150x150.png" />
+	<meta name="msapplication-wide310x150logo" content="img/favicon/mstile-310x150.png" />
+	<meta name="msapplication-square310x310logo" content="img/favicon/mstile-310x310.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Верстка «regatta»</title>
 </head>
 
-<body>
-	<div class="rootpage">
-		<h1>Верстка «regatta»</h1>
-		<div class="rootpage__info">
-			Особенности проекта
-		</div>
-		<h2>Готовые страницы:</h2>
-		<ol class="rootpage__list">
-			<li><a target="_blank" href="home.html">Главная</a></li>
-			<li><a target="_blank" href="service-ur.html">Юридические услуги</a></li>
-			<li><a target="_blank" href="service-buh.html">Бухгалтерские услуги</a></li>
-			<li><a target="_blank" href="service-cadr.html">Кадровые услуги</a></li>
-			<li><a target="_blank" href="about.html">О компании</a></li>
-			<li><a target="_blank" href="pro-bono.html">Pro Bono</a></li>
-			<li><a target="_blank" href="pro-bono-detal.html">Pro Bono подробнее</a></li>
-			<li><a target="_blank" href="team.html">Команда</a></li>
-			<li><a target="_blank" href="blog.html">Публикации все</a></li>
-			<li><a target="_blank" href="blog-detal.html">Публикация</a></li>
-			<li><a target="_blank" href="career.html">Карьера</a></li>
-			<li><a target="_blank" href="contact.html">Контакты</a></li>
-		</ol>
-		<h2>Попапы:</h2>
-		<ol class="rootpage__list">
-			<li><a target="_blank" href="home.html#"></a></li>
-		</ol>
-		<div class="rootpage__tnx">
-			<h2>Спасибо за заказ!</h2>
-			<p>Буду рад (а) хорошему отзыву.</p>
-			<p>Обращайтесь еще!</p>
-		</div>
-		<div class="rootpage__contacts">
-			<h2>Мои контакты:</h2>
-			<p>Почта: <a href="mailto:email@gmail.com">email@gmail.com</a></p>
-			<p>Телефон: <a href="tel:8800800800">8 800 800 800</a></p>
-			<p>Соц. сеть: <a href="">ссылка на соц. сеть</a></p>
-		</div>
+<body class="body--main">
+
+	<div class="wrapper wrapper--main">
+
+		<header data-scroll="200" class="header">
+			<button type="button" class="header__close icon-menu">
+				<svg>
+					<use xlink:href="img/icons/icons.svg#svg-close"></use>
+				</svg>
+			</button>
+			<div class="header__wrapper">
+				<div class="header__top">
+					<a data-da=".header__top,580,2" href="/index.html" class="header__logo">
+						<img src="img/logo.svg" alt="Логотип Regatta">
+					</a>
+					<a href="/index.html" class="header__logo-small">
+						<img src="img/logo-small.svg" alt="Логотип Regatta">
+					</a>
+					<div class="header__switch lang-switch">
+						<button class="lang-switch__current">
+							<span>RU</span>
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-angleDown"></use>
+							</svg>
+						</button>
+						<ul class="lang-switch__list">
+							<li class="lang-switch__item"><a href="#" class="lang-switch__link">RU</a></li>
+							<li class="lang-switch__item"><a href="#" class="lang-switch__link">EN</a></li>
+							<li class="lang-switch__item"><a href="#" class="lang-switch__link">TR</a></li>
+							<li class="lang-switch__item"><a href="#" class="lang-switch__link">KZ</a></li>
+						</ul>
+					</div>
+
+				</div>
+				<div class="header__menu menu">
+					<button data-da=".header__top,580,1" type="button" class="menu__icon icon-menu">
+						<svg>
+							<use xlink:href="img/icons/icons.svg#svg-menu-tablet"></use>
+						</svg>
+					</button>
+					<nav class="menu__body">
+						<p class="menu__tagline">
+							<span>Парус Вашего бизнеса</span>
+
+						</p>
+						<div class="menu__wrap">
+							<ul class="menu__list">
+								<li class="menu__item"><a href="service-ur.html" class="menu__link menu__link--main">Юридические услуги</a></li>
+								<li class="menu__item"><a href="service-buh.html" class="menu__link menu__link--main">Бухгалтерские услуги</a></li>
+								<li class="menu__item"><a href="service-cadr.html" class="menu__link menu__link--main">Кадровые услуги</a></li>
+								<li class="menu__item"><a href="about.html" class="menu__link">О компании</a></li>
+								<li class="menu__item"><a href="pro-bono.html" class="menu__link">Pro Bono</a></li>
+								<li class="menu__item"><a href="team.html" class="menu__link">Команда</a></li>
+								<li class="menu__item"><a href="career.html" class="menu__link">Карьера</a></li>
+								<li class="menu__item"><a href="blog.html" class="menu__link">Публикации</a></li>
+								<li class="menu__item"><a href="contact.html" class="menu__link">Контакты</a></li>
+							</ul>
+							<div class="menu__phone phone">
+								<a href="tel:" class="phone__number">+7 (701) 722-62-11</a>
+								<a href="tel:" class="phone__number">+7 (727) 356-11-01</a>
+							</div>
+							<div class="menu__social social">
+								<a href="#" class="social__link">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-linkedin"></use>
+									</svg>
+								</a>
+								<a href="#" class="social__link">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-youtube"></use>
+									</svg>
+								</a>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</header>
+		<main class="page page--main">
+			<div id="hero-moving" class="hero__moving">
+				<span id="hero-moving__span"></span>
+			</div>
+			<div class="hero">
+				<h1 class="visually-hidden"> Regatta consult парус вашего бизнеса</h1>
+				<div class="hero__body">
+					<div class="hero__list swiper">
+						<div class="hero__list-wrapper swiper-wrapper">
+							<div class="hero__item item-hero item-hero--1 swiper-slide">
+								<div class="item-hero__cover"></div>
+								<div class="item-hero__icon">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-scale"></use>
+									</svg>
+								</div>
+								<h3 class="">Юридические услуги</h3>
+								<p>Но сторонники тоталитаризма в науке, превозмогая сложившуюся непростую экономическую
+									ситуацию, целой серии независимых исследований.</p>
+								<div class="item-hero__bot">
+									<span>01</span>
+									<button type="button" class="item-hero__link btn-animate">
+										<svg class="" width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+											<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
+										</svg>
+									</button>
+								</div>
+
+							</div>
+							<div class="hero__item item-hero item-hero--2 swiper-slide">
+								<div class="item-hero__cover"></div>
+								<div class="item-hero__icon">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-book"></use>
+									</svg>
+								</div>
+								<h3 class="">Бухгалтерские услуги</h3>
+								<p>Но сторонники тоталитаризма в науке, превозмогая сложившуюся непростую экономическую
+									ситуацию, целой серии независимых исследований.</p>
+								<div class="item-hero__bot">
+									<span>02</span>
+									<button type="button" class="item-hero__link btn-animate">
+										<svg class="" width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+											<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
+										</svg>
+									</button>
+								</div>
+							</div>
+							<div class="hero__item item-hero item-hero--3 swiper-slide">
+								<div class="item-hero__cover"></div>
+								<div class="item-hero__icon">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-people"></use>
+									</svg>
+								</div>
+								<h3 class="">Кадровые услуги</h3>
+								<p>Но сторонники тоталитаризма в науке, превозмогая сложившуюся непростую экономическую
+									ситуацию, целой серии независимых исследований.</p>
+								<div class="item-hero__bot">
+									<span>03</span>
+									<button type="button" class="item-hero__link btn-animate">
+										<svg class="" width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+											<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
+										</svg>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="hero__slider swiper">
+						<div class="hero__wrapper swiper-wrapper">
+							<div class="hero__slide slide-hero slide-hero--1 swiper-slide">
+								<h2>Юридические услуги</h2>
+								<span></span>
+								<p>Наиболее важным аспектом в ведении бизнеса занимает место своевременной сдачи отчетности. ТОО "Regatta Consult" предоставляет полноценный и качественный
+									спектр услуг в области бухгалтерского и налогового учета.</p>
+								<div class="slide-hero__buttons">
+									<a href="service-ur.html" class="slide-hero__btn btn btn-animate">
+										<div class="slide-hero__btn-cover 1"></div>
+										<span>Читать подробнее</span>
+										<svg width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+											<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
+										</svg>
+									</a>
+									<div class="slide-hero__btn-wrap">
+										<button type="button" data-goto-speed="1000" data-goto-top="60" data-goto=".writeus__form" class="slide-hero__btn">Записаться на приём</button>
+									</div>
+								</div>
+								<div id="slide-hero__animate--1" class="slide-hero__animate"></div>
+							</div>
+							<div class="hero__slide slide-hero slide-hero--2 swiper-slide">
+								<h2>Бухгалтерские услуги</h2>
+								<p>Наиболее важным аспектом в ведении бизнеса занимает место своевременной сдачи отчетности. ТОО "Regatta Consult" предоставляет полноценный и качественный
+									спектр услуг в области бухгалтерского и налогового учета.</p>
+								<div class="slide-hero__buttons">
+									<a href="service-buh.html" class="slide-hero__btn btn btn-animate">
+										<div class="slide-hero__btn-cover 2"></div>
+										<span>Читать подробнее</span>
+										<svg width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+											<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
+										</svg>
+									</a>
+									<div class="slide-hero__btn-wrap">
+										<button type="button" data-goto-speed="1000" data-goto-top="60" data-goto=".writeus__form" class="slide-hero__btn">Записаться на приём</button>
+									</div>
+								</div>
+								<div id="slide-hero__animate--2" class="slide-hero__animate"></div>
+							</div>
+							<div class="hero__slide slide-hero slide-hero--3 swiper-slide">
+								<h2>Кадровые услуги</h2>
+								<p>Наиболее важным аспектом в ведении бизнеса занимает место своевременной сдачи отчетности. ТОО "Regatta Consult" предоставляет полноценный и качественный
+									спектр услуг в области бухгалтерского и налогового учета.</p>
+								<div class="slide-hero__buttons">
+									<a href="service-cadr.html" class="slide-hero__btn btn btn-animate">
+										<div class="slide-hero__btn-cover 3"></div>
+										<span>Читать подробнее</span>
+										<svg width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+											<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
+										</svg>
+									</a>
+									<div class="slide-hero__btn-wrap">
+										<button type="button" data-goto-speed="1000" data-goto-top="60" data-goto=".writeus__form" class="slide-hero__btn">Записаться на приём</button>
+									</div>
+								</div>
+								<div id="slide-hero__animate--3" class="slide-hero__animate"></div>
+							</div>
+						</div>
+						<div class="hero__controlls">
+							<div class="hero__pagination"></div>
+							<div class="hero__arrows">
+								<button type="button" class="hero__arrow hero__arrow-prev btn-animate">
+									<svg width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+										<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
+									</svg>
+								</button>
+								<button type="button" class="hero__arrow hero__arrow-next btn-animate">
+									<svg width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+										<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
+									</svg>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<!-- page__writeus  -->
+		<section class="writeus" data-watch data-scroll="10" data-bg="img/writeus-bg.png" data-bg-hidpi="img/writeus-bg@2x.png">
+			<div class="writeus__more">
+				<button data-goto-speed="1000" data-goto-top="60" data-goto=".writeus__form" type="button" class="writeus__open">Написать
+					нам</button>
+				<div class="writeus__icon">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-mouseScroll"></use>
+					</svg>
+				</div>
+				<a href="mailto:kanatm@regatta.kz" class="writeus__email">kanatm@regatta.kz</a>
+			</div>
+			<div class="writeus__form form">
+				<div class="form__body">
+
+					<div class="form__title">
+						<h2>Написать нам</h2>
+						<button type="button" class="form__close">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-close"></use>
+							</svg>
+						</button>
+					</div>
+					<div class="form__text">
+						<p>В рамках спецификации современных стандартов, стремящиеся вытеснить традиционное
+							производство,
+							нанотехнологии функционально разнесены на независимые элементы.</p>
+					</div>
+					<form action="">
+						<div class="form__inputs">
+							<input data-required data-validate autocomplete="off" type="text" name="form[]" data-error="" placeholder="Имя" class="form__input input">
+							<input data-required data-validate autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Номер телефона" class="form__input input">
+							<input autocomplete="off" type="text" name="form[]" data-error="" placeholder="Сообщение (Не обязательно)" class="form__input input">
+						</div>
+						<button type="submit" class="form__button btn-animate"> <span>Отправить</span>
+							<svg class="" width="46" height="12" viewBox="0 0 46 12" xmlns="http://www.w3.org/2000/svg">
+								<path d="M39.6264 0L38.4517 1.2L42.2609 5.09116H0.5V6.78822H42.379L38.4517 10.8L39.6264 12L45.5 6.00001L39.6264 0Z" />
+							</svg>
+						</button>
+					</form>
+				</div>
+				<footer class="footer">
+					<div class="footer__copyright">
+						<span>© 2022 Все права защищены</span>
+					</div>
+					<div class="footer__ruso">
+						<span>Сделано в</span>
+						<a target="_blank" rel="noopener" rel="noreferrer" href="https://rusodot.ru/">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-ruso"></use>
+							</svg>
+						</a>
+					</div>
+					<div data-goto-top="0" data-goto-speed="1000" data-goto=".page" class="scroll-top">
+						<svg>
+							<use xlink:href="img/icons/icons.svg#svg-arrowRight"></use>
+						</svg>
+					</div>
+				</footer>
+			</div>
+		</section>
 	</div>
+	<script src="js/app.min.js?_v=20220817135841"></script>
 </body>
-<style>
-	@charset "UTF-8";
-	@import url("https://fonts.googleapis.com/css?family=Montserrat:regular,700&display=swap");
-
-	*,
-	*::before,
-	*::after {
-		padding: 0px;
-		margin: 0px;
-		border: 0px;
-		box-sizing: border-box;
-	}
-
-	html,
-	body {
-		height: 100%;
-		margin: 0;
-		padding: 0;
-		min-width: 320px;
-		width: 100%;
-		color: #fff;
-		background-color: #5e5373;
-	}
-
-	body {
-		font-family: Montserrat;
-		font-size: 100%;
-		line-height: 1;
-		font-size: 1rem;
-	}
-
-	a {
-		text-decoration: underline;
-		color: #ebe691
-	}
-
-	a:visited {
-		text-decoration: underline;
-		color: #aaa768;
-	}
-
-	a:hover {
-		text-decoration: none;
-	}
-
-	ul li {
-		list-style: none;
-	}
-
-	img {
-		vertical-align: top;
-	}
-
-	.wrapper {
-		width: 100%;
-		min-height: 100%;
-		overflow: hidden;
-	}
-
-	.rootpage {
-		padding: 30px;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-	}
-
-	@media (max-width: 767px) {
-		.rootpage {
-			padding: 30px 15px;
-		}
-	}
-
-	h1 {
-		color: #ebe691;
-		font-size: 2.5rem;
-		margin: 0px 0px 1.25rem 0px;
-	}
-
-	@media (max-width: 767px) {
-		h1 {
-			font-size: 1.85rem;
-			margin: 0px 0px 1.25rem 0px;
-		}
-	}
-
-	h2 {
-		color: #ebe691;
-		font-size: 1.25rem;
-		margin: 0px 0px 1rem 0px;
-	}
-
-	@media (max-width: 767px) {
-		h2 {
-			font-size: 1.125rem;
-			margin: 0px 0px 1rem 0px;
-		}
-	}
-
-	.rootpage__info {
-		line-height: 140%;
-		margin: 0px 0px 1.5rem 0px;
-	}
-
-	.rootpage__list {
-		margin: 0px 0px 2.25rem 1.25rem;
-	}
-
-	.rootpage__list li:not(:last-child) {
-		margin: 0px 0px 15px 0px;
-	}
-
-	.rootpage__contacts,
-	.rootpage__tnx {
-		border-radius: 200px;
-		padding: 20px 65px;
-		line-height: 140%;
-	}
-
-	@media (max-width: 767px) {
-
-		.rootpage__contacts,
-		.rootpage__tnx {
-			border-radius: 40px;
-			padding: 20px;
-		}
-	}
-
-	.rootpage__contacts {
-		background: #32b5a4;
-
-	}
-
-	.rootpage__contacts a {
-		color: #ebe691;
-	}
-
-	.rootpage__tnx {
-		background: #c22d63;
-		margin: 0px 0px 1rem 0px;
-	}
-</style>
 
 </html>
