@@ -1,171 +1,523 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 
 <head>
+	<title>HF</title>
 	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220804165750">
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/favicon/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="img/favicon/apple-touch-icon-60x60.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/favicon/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="img/favicon/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/favicon/apple-touch-icon-152x152.png" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-196x196.png" sizes="196x196" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-96x96.png" sizes="96x96" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" sizes="16x16" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-128.png" sizes="128x128" />
+	<meta name="application-name" content="&nbsp;" />
+	<meta name="msapplication-TileColor" content="#FFFFFF" />
+	<meta name="msapplication-TileImage" content="img/favicon/mstile-144x144.png" />
+	<meta name="msapplication-square70x70logo" content="img/favicon/mstile-70x70.png" />
+	<meta name="msapplication-square150x150logo" content="img/favicon/mstile-150x150.png" />
+	<meta name="msapplication-wide310x150logo" content="img/favicon/mstile-310x150.png" />
+	<meta name="msapplication-square310x310logo" content="img/favicon/mstile-310x310.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Верстка «hf»</title>
 </head>
 
 <body>
-	<div class="rootpage">
-		<h1>Верстка «hf»</h1>
+	<div class="wrapper wrapper-black">
+		<header class="header header-black">
+			<div class="header-black__body">
+				<div class="header-black__top">
+					<a href="index.html" class="header-black__logo"><img src="img/logo-white.svg" alt="Логотип HF"></a>
+					<div class="header-black__menu menu">
+						<nav class="menu__body">
+							<ul class="menu__list">
+								<li class="menu__item"><a href="#" class="menu__link">НОВОСТИ</a></li>
+								<li class="menu__item"><a href="#" class="menu__link">КОМАНДА</a></li>
+								<li class="menu__item"><a href="#" class="menu__link">ТУРНИРЫ</a></li>
+								<li class="menu__item"><a href="#" class="menu__link">ПАРТНЕРЫ</a></li>
+								<li class="menu__item"><a href="#" class="menu__link">КОНТАКТЫ</a></li>
+								<li class="menu__item"><a href="#" class="menu__link">МАГАЗИН</a></li>
+							</ul>
+						</nav>
+					</div>
+					<div class="header-black__right">
+						<button type="button" class="menu__icon icon-menu"><span></span></button>
+						<button data-popup="#popup-login" type="button" class="header-black__login-icon">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-user"></use>
+							</svg>
+						</button>
+					</div>
+				</div>
+				<div class="header-black__partners">
+					<img data-src="img/partners/k&k.png" data-srcset="img/partners/k&k@2x.png 2x" alt="Логотип K&K">
+					<img data-src="img/partners/joker-gaming.png" data-srcset="img/partners/joker-gaming@2x.png 2x" alt="Логотип Joker Gaming">
+					<img data-src="img/partners/k&k.png" data-srcset="img/partners/k&k@2x.png 2x" alt="Логотип K&K">
+					<img data-src="img/partners/joker-gaming.png" data-srcset="img/partners/joker-gaming@2x.png 2x" alt="Логотип Joker Gaming">
+					<img data-src="img/partners/k&k.png" data-srcset="img/partners/k&k@2x.png 2x" alt="Логотип K&K">
+					<img data-src="img/partners/joker-gaming.png" data-srcset="img/partners/joker-gaming@2x.png 2x" alt="Логотип Joker Gaming">
+				</div>
+			</div>
+		</header>
+		<main class="page">
+			<!-- main-top -->
+			<section class="main-top">
+				<div class="main-top__container">
+					<div class="main-top__body">
+						<div class="main-top__news">
+							<div class="main-top__img">
+								<img data-src="img/news/top-news.jpg" data-srcset="img/news/top-news@2x.jpg 2x" alt="Изображение новости на главной">
+							</div>
+							<div class="main-top__title">
+								<h3>The International 2022 Пройдет в Сингапуре, вход доступен только прошедшим вакцинацию.</h3>
+							</div>
+						</div>
+						<div class="main-top__history top-history">
+							<div class="top-history__title">
+								<h2>ИСТОРИЯ МАТЧЕЙ</h2>
+							</div>
+							<div class="top-history__list">
+								<div class="top-history__game">
+									<img src="img/games/dota-2.svg" alt="dota 2">
+								</div>
+								<div class="top-history__result"><span>Победа</span><span>Поб</span></div>
+								<div class="top-history__score"><span>2</span>:<span>0</span></div>
+								<div class="top-history__rival-team"><span>KA4KANAR.</span></div>
+								<div class="top-history__event">
+									<div class="top-history__date"><span>23.4.2022</span></div>
+									<div class="top-history__event-name"><span>D2CL SEASON 11</span></div>
+								</div>
 
-		<h2>Готовые страницы:</h2>
-		<ol class="rootpage__list">
-			<li><a target="_blank" href="home.html">Главная</a></li>
-			<li><a target="_blank" href="news.html">Новости</a></li>
-			<li><a target="_blank" href="post.html">Пример новости</a></li>
-			<li><a target="_blank" href="teams.html">Команды</a></li>
-			<li><a target="_blank" href="tournaments.html">Турниры</a></li>
-			<li><a target="_blank" href="partners.html">Партнеры</a></li>
-			<li><a target="_blank" href="feedback.html">Обратная связь</a></li>
-			<li><a target="_blank" href="registration.html">Регистрация</a></li>
-			<li><a target="_blank" href="account.html">Личный кабинет</a></li>
-		</ol>
-		<!-- <h2>Попапы:</h2>
-		<ol class="rootpage__list">
-			<li><a target="_blank" href="home.html#"></a></li>
-		</ol> -->
+								<div class="top-history__game">
+									<img src="img/games/cs-go.svg" alt="CS:GO">
+								</div>
+								<div class="top-history__result"><span>Победа</span><span>Поб</span></div>
+								<div class="top-history__score"><span>2</span>:<span>0</span></div>
+								<div class="top-history__rival-team"><span>Insilio</span></div>
+								<div class="top-history__event">
+									<div class="top-history__date"><span>21.4.2022</span></div>
+									<div class="top-history__event-name"><span>ESEA E-LEAGUE</span></div>
+								</div>
+
+								<div class="top-history__game">
+									<img src="img/games/cs-go.svg" alt="CS:GO">
+								</div>
+								<div class="top-history__result"><span>Победа</span><span>Поб</span></div>
+								<div class="top-history__score"><span>2</span>:<span>1</span></div>
+								<div class="top-history__rival-team"><span>QUAZAR</span></div>
+								<div class="top-history__event">
+									<div class="top-history__date"><span>14.4.2022</span></div>
+									<div class="top-history__event-name"><span>ESEA E-LEAGUE</span></div>
+								</div>
+
+								<div class="top-history__game">
+									<img src="img/games/valorant.svg" alt="Valorant">
+								</div>
+								<div class="top-history__result"><span>ПОРАЖЕНИЕ</span><span>Пор</span></div>
+								<div class="top-history__score"><span>0</span>:<span>2</span></div>
+								<div class="top-history__rival-team"><span>unravel</span></div>
+								<div class="top-history__event">
+									<div class="top-history__date"><span>12.4.2022</span></div>
+									<div class="top-history__event-name"><span>VLR SEASON 1</span></div>
+								</div>
+
+								<div class="top-history__game">
+									<img src="img/games/valorant.svg" alt="Valorant">
+								</div>
+								<div class="top-history__result"><span>ПОБЕДА</span><span>Поб</span></div>
+								<div class="top-history__score"><span>2</span>:<span>1</span></div>
+								<div class="top-history__rival-team"><span>WYLDE</span></div>
+								<div class="top-history__event">
+									<div class="top-history__date"><span>11.4.2022</span></div>
+									<div class="top-history__event-name"><span>VLR SEASON 1</span></div>
+								</div>
+
+								<div class="top-history__game">
+									<img src="img/games/cs-go.svg" alt="CS:GO">
+								</div>
+								<div class="top-history__result"><span>ПОРАЖЕНИЕ</span><span>Пор</span></div>
+								<div class="top-history__score"><span>1</span>:<span>2</span></div>
+								<div class="top-history__rival-team"><span>K23</span></div>
+								<div class="top-history__event">
+									<div class="top-history__date"><span>8.4.2022</span></div>
+									<div class="top-history__event-name"><span>ESEA E-LEAGUE</span></div>
+								</div>
+
+								<div class="top-history__game">
+									<img src="img/games/dota-2.svg" alt="dota 2">
+								</div>
+								<div class="top-history__result"><span>ПОРАЖЕНИЕ</span><span>Пор</span></div>
+								<div class="top-history__score"><span>0</span>:<span>2</span></div>
+								<div class="top-history__rival-team"><span>11Monkeyz</span></div>
+								<div class="top-history__event">
+									<div class="top-history__date"><span>3.4.2022</span></div>
+									<div class="top-history__event-name"><span>D2CL SEASON 11</span></div>
+								</div>
+
+								<div class="top-history__game">
+									<img src="img/games/dota-2.svg" alt="dota 2">
+								</div>
+								<div class="top-history__result"><span>ПОБЕДА</span><span>Поб</span></div>
+								<div class="top-history__score"><span>2</span>:<span>1</span></div>
+								<div class="top-history__rival-team"><span>Hydra</span></div>
+								<div class="top-history__event">
+									<div class="top-history__date"><span>1.4.2022</span></div>
+									<div class="top-history__event-name"><span>D2CL SEASON 11</span></div>
+								</div>
+
+								<div class="top-history__game">
+									<img src="img/games/valorant.svg" alt="Valorant">
+								</div>
+								<div class="top-history__result"><span>ПОБЕДА</span><span>Поб</span></div>
+								<div class="top-history__score"><span>2</span>:<span>1</span></div>
+								<div class="top-history__rival-team"><span>Entropy</span></div>
+								<div class="top-history__event">
+									<div class="top-history__date"><span>27.3.2022</span></div>
+									<div class="top-history__event-name"><span>VLR SEASON 1</span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- main-top end -->
+
+			<!-- main-clothes -->
+			<div class="main-clothes">
+				<div class="main-clothes__container">
+					<div class="main-clothes__body">
+						<div class="main-clothes__list">
+							<div class="main-clothes__item item-main-clothes">
+								<div class="item-main-clothes__img">
+									<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="clothes 1">
+								</div>
+								<div class="item-main-clothes__bot">
+									<a href="#" class="item-main-clothes__link">СМОТРЕТЬ</a>
+									<span class="item-main-clothes__price">3999₽</span>
+								</div>
+							</div>
+							<div class="main-clothes__item item-main-clothes">
+								<div class="item-main-clothes__img">
+									<img data-src="img/products/2.png" data-srcset="img/products/2@2x.png 2x" alt="clothes 2">
+								</div>
+								<div class="item-main-clothes__bot">
+									<a href="#" class="item-main-clothes__link">СМОТРЕТЬ</a>
+									<span class="item-main-clothes__price">2499₽</span>
+								</div>
+							</div>
+							<div class="main-clothes__item item-main-clothes">
+								<div class="item-main-clothes__img">
+									<img data-src="img/products/3.png" data-srcset="img/products/3@2x.png 2x" alt="clothes 3">
+								</div>
+								<div class="item-main-clothes__bot">
+									<a href="#" class="item-main-clothes__link">СМОТРЕТЬ</a>
+									<span class="item-main-clothes__price">3999₽</span>
+								</div>
+							</div>
+						</div>
+						<a href="" class="main-clothes__link">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-angles-right"></use>
+							</svg>
+							<span>БОЛЬШЕ ТОВАРОВ</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- main-clothes end -->
+
+			<!-- main-news -->
+			<div class="main-news news" data-bg="img/smoke-bg.png">
+				<div class="news__container">
+					<div class="news__list">
+						<div class="news__item item-news">
+							<div class="item-news__img">
+								<img data-src="img/news/1.jpg" data-srcset="img/news/1@2x.jpg" alt="">
+							</div>
+							<div class="item-news__body">
+								<div class="item-news__title">
+									<h2>Lorem Ipsum</h2>
+									<span class="item-news__date">14.2.2022</span>
+								</div>
+								<div class="item-news__text">
+									<p>Lorem Ipsum is simply dummy text of the
+										printing and typesetting industry. Lorem
+										Ipsum has been the industry's standard
+										dummy text ever since the 1500s</p>
+									<a href="#" class="item-news__link">ЧИТАТЬ</a>
+								</div>
+							</div>
+
+						</div>
+						<div class="news__item item-news">
+							<div class="item-news__img">
+								<img data-src="img/news/2.jpg" data-srcset="img/news/2@2x.jpg" alt="">
+							</div>
+							<div class="item-news__body">
+								<div class="item-news__title">
+									<h2>Lorem Ipsum</h2>
+									<span class="item-news__date">14.2.2022</span>
+								</div>
+								<div class="item-news__text">
+									<p>Lorem Ipsum is simply dummy text of the
+										printing and typesetting industry. Lorem
+										Ipsum has been the industry's standard
+										dummy text ever since the 1500s</p>
+									<a href="#" class="item-news__link">ЧИТАТЬ</a>
+								</div>
+							</div>
+
+						</div>
+						<div class="news__item item-news">
+							<div class="item-news__img">
+								<img data-src="img/news/3.jpg" data-srcset="img/news/3@2x.jpg" alt="">
+							</div>
+							<div class="item-news__body">
+								<div class="item-news__title">
+									<h2>Lorem Ipsum</h2>
+									<span class="item-news__date">14.2.2022</span>
+								</div>
+								<div class="item-news__text">
+									<p>Lorem Ipsum is simply dummy text of the
+										printing and typesetting industry. Lorem
+										Ipsum has been the industry's standard
+										dummy text ever since the 1500s</p>
+									<a href="#" class="item-news__link">ЧИТАТЬ</a>
+								</div>
+							</div>
+
+						</div>
+						<div class="news__item item-news">
+							<div class="item-news__img">
+								<img data-src="img/news/4.jpg" data-srcset="img/news/4@2x.jpg" alt="">
+							</div>
+							<div class="item-news__body">
+								<div class="item-news__title">
+									<h2>Lorem Ipsum</h2>
+									<span class="item-news__date">14.2.2022</span>
+								</div>
+								<div class="item-news__text">
+									<p>Lorem Ipsum is simply dummy text of the
+										printing and typesetting industry. Lorem
+										Ipsum has been the industry's standard
+										dummy text ever since the 1500s</p>
+									<a href="#" class="item-news__link">ЧИТАТЬ</a>
+								</div>
+							</div>
+
+						</div>
+						<div class="news__item item-news">
+							<div class="item-news__img">
+								<img data-src="img/news/5.jpg" data-srcset="img/news/5@2x.jpg" alt="">
+							</div>
+							<div class="item-news__body">
+								<div class="item-news__title">
+									<h2>Lorem Ipsum</h2>
+									<span class="item-news__date">14.2.2022</span>
+								</div>
+								<div class="item-news__text">
+									<p>Lorem Ipsum is simply dummy text of the
+										printing and typesetting industry. Lorem
+										Ipsum has been the industry's standard
+										dummy text ever since the 1500s</p>
+									<a href="#" class="item-news__link">ЧИТАТЬ</a>
+								</div>
+							</div>
+
+						</div>
+						<div class="news__item item-news">
+							<div class="item-news__img">
+								<img data-src="img/news/6.jpg" data-srcset="img/news/6@2x.jpg" alt="">
+							</div>
+							<div class="item-news__body">
+								<div class="item-news__title">
+									<h2>Lorem Ipsum</h2>
+									<span class="item-news__date">14.2.2022</span>
+								</div>
+								<div class="item-news__text">
+									<p>Lorem Ipsum is simply dummy text of the
+										printing and typesetting industry. Lorem
+										Ipsum has been the industry's standard
+										dummy text ever since the 1500s</p>
+									<a href="#" class="item-news__link">ЧИТАТЬ</a>
+								</div>
+							</div>
+
+						</div>
+						<div class="news__item item-news">
+							<div class="item-news__img">
+								<img data-src="img/news/7.jpg" data-srcset="img/news/7@2x.jpg" alt="">
+							</div>
+							<div class="item-news__body">
+								<div class="item-news__title">
+									<h2>Lorem Ipsum</h2>
+									<span class="item-news__date">14.2.2022</span>
+								</div>
+								<div class="item-news__text">
+									<p>Lorem Ipsum is simply dummy text of the
+										printing and typesetting industry. Lorem
+										Ipsum has been the industry's standard
+										dummy text ever since the 1500s</p>
+									<a href="#" class="item-news__link">ЧИТАТЬ</a>
+								</div>
+							</div>
+
+						</div>
+						<div class="news__item item-news">
+							<div class="item-news__img">
+								<img data-src="img/news/8.jpg" data-srcset="img/news/8@2x.jpg" alt="">
+							</div>
+							<div class="item-news__body">
+								<div class="item-news__title">
+									<h2>Lorem Ipsum</h2>
+									<span class="item-news__date">14.2.2022</span>
+								</div>
+								<div class="item-news__text">
+									<p>Lorem Ipsum is simply dummy text of the
+										printing and typesetting industry. Lorem
+										Ipsum has been the industry's standard
+										dummy text ever since the 1500s</p>
+									<a href="#" class="item-news__link">ЧИТАТЬ</a>
+								</div>
+							</div>
+
+						</div>
+						<div class="news__item-more item-news">
+							<a href="#" class="item-news__more">БОЛЬШЕ НОВОСТЕЙ</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- main-news end -->
+
+			<!-- main-pc -->
+			<div class="main-pc">
+				<div class="main-pc__container">
+					<div class="main-pc__body">
+						<div class="main-pc__list">
+							<div class="main-pc__item item-main-pc">
+								<div class="item-main-pc__img">
+									<img data-src="img/products/pc/1.png" data-srcset="img/products/pc/1@2x.png 2x" alt="">
+								</div>
+								<span class="item-main-pc__price">129 990₽</span>
+								<a href="#" class="item-main-pc__link">СМОТРЕТЬ</a>
+							</div>
+							<div class="main-pc__item item-main-pc">
+								<div class="item-main-pc__img">
+									<img data-src="img/products/pc/1.png" data-srcset="img/products/pc/1@2x.png 2x" alt="">
+								</div>
+								<span class="item-main-pc__price">159 990₽</span>
+								<a href="#" class="item-main-pc__link">СМОТРЕТЬ</a>
+							</div>
+							<div class="main-pc__item item-main-pc">
+								<div class="item-main-pc__img">
+									<img data-src="img/products/pc/1.png" data-srcset="img/products/pc/1@2x.png 2x" alt="">
+								</div>
+								<span class="item-main-pc__price">189 990₽</span>
+								<a href="#" class="item-main-pc__link">СМОТРЕТЬ</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="#" class="main-pc__link">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-angles-right"></use>
+					</svg>
+					<span>СОБРАТЬ ПК</span>
+				</a>
+			</div>
+			<!-- main-pc end -->
+
+			<!-- main-bot -->
+			<div class="main-bot">
+				<div class="main-bot__text">
+					<span>КОМАНДЫ</span>
+					<span>КOМАНДЫ</span>
+				</div>
+				<div class="main-bot__container">
+					<div class="main-bot__body">
+						<div class="main-bot__item">
+							<img src="img/games/dota-2-big.svg" alt="dota 2">
+						</div>
+						<div class="main-bot__item">
+							<img src="img/games/cs-go-big.svg" alt="cs:go">
+						</div>
+						<div class="main-bot__item">
+							<img src="img/games/valorant-big.svg" alt="valorant">
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- main-bot end -->
+		</main>
+		<footer class="footer-black">
+			<div class="footer-black__container">
+				<div class="footer-black__body">
+					<a href="index.html" class="footer-black__logo"><img data-src="img/logo-white-footer.svg" alt="Логотип HF"></a>
+					<div class="footer-black__menu menu-footer-black">
+						<ul class="menu-footer-black__list">
+							<li class="menu-footer-black__item"><a href="#" class="menu-footer-black__link">Мазагин</a></li>
+							<li class="menu-footer-black__item"><a href="#" class="menu-footer-black__link">Новости</a></li>
+							<li class="menu-footer-black__item"><a href="#" class="menu-footer-black__link">Команда</a></li>
+							<li class="menu-footer-black__item"><a href="#" class="menu-footer-black__link">Турниры</a></li>
+							<li class="menu-footer-black__item"><a href="#" class="menu-footer-black__link">Партнеры</a></li>
+							<li class="menu-footer-black__item"><a href="#" class="menu-footer-black__link">Контакты</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="footer-black__bot">
+					<div class="footer-black__copy">© Copyright HF 2021 All rights reserved</div>
+					<span>|</span>
+					<a href="#" class="footer-black__policy">Политика конфиденциальности</a>
+				</div>
+		</footer>
+		<!-- <div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<button data-close type="button" class="popup__close">Закрыть</button>
+			<div class="popup__text">
+				Text
+			</div>
+		</div>
 	</div>
+</div> -->
+
+
+		<div id="popup-login" aria-hidden="true" class="popup popup-login">
+			<div class="popup__wrapper popup-login__wrapper">
+				<div class="popup__content popup-login__content">
+					<button data-close type="button" class="popup__close popup-login__close">
+						<svg>
+							<use xlink:href="img/icons/icons.svg#svg-close"></use>
+						</svg>
+					</button>
+					<div class="popup-login__body">
+						<form data-dev class="popup-login__form form form-login">
+							<div class="form__inputs">
+								<label for="login-email" class="form__label">E-Mail</label>
+								<input id="login-email" data-required data-validate autocomplete="off" type="email" name="form[]" data-error="" placeholder="" class="form__input input">
+								<label for="login-password" class="form__label">Пароль</label>
+								<input id="login-password" data-required data-validate autocomplete="off" type="text" name="form[]" data-error="" placeholder="" class=" form__input input">
+							</div>
+
+							<a href="reset-password.html" class="form__link form__link-pass">Забыли пароль?</a>
+							<button type="submit" class="form__button">ВОЙТИ</button>
+							<a href="registration.html" class="form__link form__link-create">Создать аккаунт</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js?_v=20220804165750"></script>
 </body>
-<style>
-	@charset "UTF-8";
-	@import url("https://fonts.googleapis.com/css?family=Montserrat:regular,700&display=swap");
-
-	*,
-	*::before,
-	*::after {
-		padding: 0px;
-		margin: 0px;
-		border: 0px;
-		box-sizing: border-box;
-	}
-
-	html,
-	body {
-		height: 100%;
-		margin: 0;
-		padding: 0;
-		min-width: 320px;
-		width: 100%;
-		color: #000;
-		background-color: #fff;
-	}
-
-	body {
-		font-family: Montserrat;
-		font-size: 100%;
-		line-height: 1;
-		font-size: 1rem;
-	}
-
-	a {
-		text-decoration: underline;
-		color: #000
-	}
-
-	a:visited {
-		text-decoration: underline;
-		color: #000;
-	}
-
-	a:hover {
-		text-decoration: none;
-	}
-
-	ul li {
-		list-style: none;
-	}
-
-	img {
-		vertical-align: top;
-	}
-
-	.wrapper {
-		width: 100%;
-		min-height: 100%;
-		overflow: hidden;
-	}
-
-	.rootpage {
-		padding: 30px;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-	}
-
-	@media (max-width: 767px) {
-		.rootpage {
-			padding: 30px 15px;
-		}
-	}
-
-	h1 {
-		color: #000;
-		font-size: 2.5rem;
-		margin: 0px 0px 1.25rem 0px;
-	}
-
-	@media (max-width: 767px) {
-		h1 {
-			font-size: 1.85rem;
-			margin: 0px 0px 1.25rem 0px;
-		}
-	}
-
-	h2 {
-		color: #000;
-		font-size: 1.25rem;
-		margin: 0px 0px 1rem 0px;
-	}
-
-	@media (max-width: 767px) {
-		h2 {
-			font-size: 1.125rem;
-			margin: 0px 0px 1rem 0px;
-		}
-	}
-
-	.rootpage__info {
-		line-height: 140%;
-		margin: 0px 0px 1.5rem 0px;
-	}
-
-	.rootpage__list {
-		margin: 0px 0px 2.25rem 1.25rem;
-	}
-
-	.rootpage__list li:not(:last-child) {
-		margin: 0px 0px 15px 0px;
-	}
-
-	.rootpage__contacts,
-	.rootpage__tnx {
-		border-radius: 200px;
-		padding: 20px 65px;
-		line-height: 140%;
-	}
-
-	@media (max-width: 767px) {
-
-		.rootpage__contacts,
-		.rootpage__tnx {
-			border-radius: 40px;
-			padding: 20px;
-		}
-	}
-
-	.rootpage__contacts {}
-
-	.rootpage__contacts a {
-		color: #000;
-	}
-
-	.rootpage__tnx {
-
-		margin: 0px 0px 1rem 0px;
-	}
-</style>
 
 </html>

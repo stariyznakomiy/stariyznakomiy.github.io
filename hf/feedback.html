@@ -5,10 +5,27 @@
 	<title>HF | Обратная связь</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20220722153535">
-	<link rel="shortcut icon" href="favicon.ico">
-	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20220804165750">
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/favicon/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="img/favicon/apple-touch-icon-60x60.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/favicon/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="img/favicon/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/favicon/apple-touch-icon-152x152.png" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-196x196.png" sizes="196x196" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-96x96.png" sizes="96x96" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" sizes="16x16" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-128.png" sizes="128x128" />
+	<meta name="application-name" content="&nbsp;" />
+	<meta name="msapplication-TileColor" content="#FFFFFF" />
+	<meta name="msapplication-TileImage" content="img/favicon/mstile-144x144.png" />
+	<meta name="msapplication-square70x70logo" content="img/favicon/mstile-70x70.png" />
+	<meta name="msapplication-square150x150logo" content="img/favicon/mstile-150x150.png" />
+	<meta name="msapplication-wide310x150logo" content="img/favicon/mstile-310x150.png" />
+	<meta name="msapplication-square310x310logo" content="img/favicon/mstile-310x310.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -82,21 +99,21 @@
 						<div class="feedback__title">
 							<h2>Обратная связь</h2>
 						</div>
-						<form action="" class="feedback__form form-black">
+						<form data-dev action="" class="feedback__form form-black">
 							<div class="form-black__top">
 								<div class="form-black__inputs">
 									<div class="form-black__inputs-top">
-										<input autocomplete="off" type="text" name="form[]" data-error="" placeholder="Имя" class="form-black__input input">
-										<input autocomplete="off" type="text" name="form[]" data-error="" placeholder="Фамилия" class="form-black__input input">
+										<input data-required data-validate autocomplete="off" type="text" name="form[]" data-error="" placeholder="Имя" class="form-black__input input">
+										<input data-required data-validate autocomplete="off" type="text" name="form[]" data-error="" placeholder="Фамилия" class="form-black__input input">
 									</div>
-									<input autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Телефон" class="form-black__input input">
-									<input autocomplete="off" type="email" name="form[]" data-error="" placeholder="E-Mail" class="form-black__input input">
+									<input data-required data-validate autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Телефон" class="form-black__input input">
+									<input data-required="email" data-validate autocomplete="off" type="email" name="form[]" data-error="" placeholder="E-Mail" class="form-black__input input">
 								</div>
 								<div class="form-black__text">
 									<p>Если у вас есть какое-то предложение или вопрос для нашей организации, то оставьте свое сообщение в форму обратной связи и мы свяжемся с вами.</p>
 								</div>
 							</div>
-							<textarea autocomplete="off" type="text" name="form[]" placeholder="Ваш вопрос или предложение" class="form-black__textarea textarea"></textarea>
+							<textarea data-required data-validate autocomplete="off" type="text" name="form[]" placeholder="Ваш вопрос или предложение" class="form-black__textarea textarea"></textarea>
 							<button type="submit" class="form-black__button">Отправить</button>
 						</form>
 					</div>
@@ -116,7 +133,6 @@
 							<li class="menu-footer-black__item"><a href="#" class="menu-footer-black__link">Партнеры</a></li>
 							<li class="menu-footer-black__item"><a href="#" class="menu-footer-black__link">Контакты</a></li>
 						</ul>
-						</d>
 					</div>
 				</div>
 				<div class="footer-black__bot">
@@ -146,24 +162,24 @@
 						</svg>
 					</button>
 					<div class="popup-login__body">
-						<form class="popup-login__form form form-login">
+						<form data-dev class="popup-login__form form form-login">
 							<div class="form__inputs">
-								<span class="form__label">E-Mail</span>
-								<input autocomplete="off" type="email" name="form[]" data-error="Ошибка" placeholder="" class="form__input input">
-								<span class="form__label">Пароль</span>
-								<input autocomplete="off" type="text" name="form[]" data-error="Ошибка" placeholder="" class="form__input input">
+								<label for="login-email" class="form__label">E-Mail</label>
+								<input id="login-email" data-required data-validate autocomplete="off" type="email" name="form[]" data-error="" placeholder="" class="form__input input">
+								<label for="login-password" class="form__label">Пароль</label>
+								<input id="login-password" data-required data-validate autocomplete="off" type="text" name="form[]" data-error="" placeholder="" class=" form__input input">
 							</div>
 
-							<a href="#" class="form__link form__link-pass">Забыли пароль?</a>
+							<a href="reset-password.html" class="form__link form__link-pass">Забыли пароль?</a>
 							<button type="submit" class="form__button">ВОЙТИ</button>
-							<a href="#" class="form__link form__link-create">Создать аккаунт</a>
+							<a href="registration.html" class="form__link form__link-create">Создать аккаунт</a>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20220722153535"></script>
+	<script src="js/app.min.js?_v=20220804165750"></script>
 </body>
 
 </html>
