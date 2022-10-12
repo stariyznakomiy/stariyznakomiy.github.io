@@ -1,0 +1,14 @@
+<svg width="140" height="94" viewBox="0 0 140 94" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="1" y="1" width="138" height="92" rx="11" stroke="black" stroke-width="2"/>
+<rect x="14" y="14" width="33" height="25" rx="3" stroke="black" stroke-width="2"/>
+<rect x="24" y="21" width="13" height="11" rx="3" stroke="black" stroke-width="2"/>
+<path d="M14 26.5H24" stroke="black" stroke-width="2"/>
+<path d="M37 26.5H47" stroke="black" stroke-width="2"/>
+<path d="M14 71H34" stroke="black" stroke-width="2" stroke-linecap="round"/>
+<path d="M44 71H64" stroke="black" stroke-width="2" stroke-linecap="round"/>
+<path d="M74 71H94" stroke="black" stroke-width="2" stroke-linecap="round"/>
+<path d="M104 71H124" stroke="black" stroke-width="2" stroke-linecap="round"/>
+<path d="M115 14C117.295 14.7668 119.323 16.4565 120.77 18.8069C122.216 21.1574 123 24.0373 123 27C123 29.9627 122.216 32.8426 120.77 35.1931C119.323 37.5435 117.295 39.2332 115 40" stroke="black" stroke-width="2" stroke-linecap="round"/>
+<path d="M110 20C111.434 20.4129 112.702 21.3227 113.606 22.5883C114.51 23.854 115 25.4047 115 27C115 28.5953 114.51 30.146 113.606 31.4117C112.702 32.6773 111.434 33.5871 110 34" stroke="black" stroke-width="2" stroke-linecap="round"/>
+<circle cx="106" cy="27" r="2" stroke="black" stroke-width="2"/>
+</svg>
