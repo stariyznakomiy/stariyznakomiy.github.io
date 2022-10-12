@@ -12241,6 +12241,18 @@ a.plyr__control::before {
   }
 }
 
+@media (min-width: 64em) {
+  .product-card__buy {
+    min-width: auto;
+    padding: 5px 7px;
+  }
+
+  .product-card__one-click {
+    min-width: auto;
+    padding: 5px 7px;
+  }
+}
+
 @media (min-width: 1280px) {
   .main-advantages {
     padding: 94px 0 24px;
