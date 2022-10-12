@@ -14996,6 +14996,31 @@
                 $("#call-back").addClass("open");
                 $(".popup-wrap").addClass("open");
             }));
+            $(".get-vacancy").click((function() {
+                $("body").addClass("popup-open");
+                $("#vacancy").addClass("open");
+                $(".popup-wrap").addClass("open");
+            }));
+            $(".get-question").click((function() {
+                $("body").addClass("popup-open");
+                $("#popup-question").addClass("open");
+                $(".popup-wrap").addClass("open");
+            }));
+            $(".kz-product-card__one-click").click((function() {
+                $("body").addClass("popup-open");
+                $("#buy-click").addClass("open");
+                $(".popup-wrap").addClass("open");
+            }));
+            $(".product-card__one-click").click((function() {
+                $("body").addClass("popup-open");
+                $("#buy-click").addClass("open");
+                $(".popup-wrap").addClass("open");
+            }));
+            $(".location").click((function() {
+                $("body").addClass("popup-open");
+                $("#popup-city").addClass("open");
+                $(".popup-wrap").addClass("open");
+            }));
             $(document).mouseup((function(e) {
                 var container = $(".popup");
                 if (0 === container.has(e.target).length) {
@@ -15032,14 +15057,22 @@
             $(".faq__item .icon").click((function() {
                 const parent = $(this).parents(".faq__item");
                 const items = $(".faq__item .answer");
-                items.each((function() {
-                    if ("block" === $(this).css("display")) {
-                        $(this).parents(".faq__item").toggleClass("active");
-                        $(this).slideToggle();
-                    }
-                }));
-                parent.toggleClass("active");
-                parent.find(".answer").slideToggle();
+                if (!parent.hasClass("active")) {
+                    items.each((function() {
+                        if ("block" === $(this).css("display")) {
+                            $(this).parents(".faq__item").toggleClass("active");
+                            $(this).slideToggle();
+                        }
+                    }));
+                    parent.toggleClass("active");
+                    parent.find(".answer").slideToggle();
+                    return;
+                }
+                if (parent.hasClass("active")) {
+                    parent.toggleClass("active");
+                    parent.find(".answer").slideToggle();
+                    return;
+                }
             }));
             $(".aside_category-body").css("display", "none");
             $(".aside_category-block-title").click((function() {
@@ -15049,8 +15082,23 @@
             }));
             $(".vacancies__item-title").click((function() {
                 const parent = $(this).parents(".vacancies__item");
-                parent.toggleClass("active");
-                parent.find(".vacancies__item-body").slideToggle();
+                const items = $(".vacancies__item .vacancies__item-body");
+                if (!parent.hasClass("active")) {
+                    items.each((function() {
+                        if ("block" === $(this).css("display")) {
+                            $(this).parents(".vacancies__item").toggleClass("active");
+                            $(this).slideToggle();
+                        }
+                    }));
+                    parent.toggleClass("active");
+                    parent.find(".vacancies__item-body").slideToggle();
+                    return;
+                }
+                if (parent.hasClass("active")) {
+                    parent.toggleClass("active");
+                    parent.find(".vacancies__item-body").slideToggle();
+                    return;
+                }
             }));
             $(".aside_category-facts-title").click((function() {
                 const parent = $(this).parents(".aside_category-facts-item");

@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.css?_v=20221012144218">
+	<link rel="stylesheet" href="css/style.css?_v=20221013020234">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -90,6 +90,13 @@
 											</svg>
 										</button>
 									</form>
+									<!-- <div class="header-search__result" style="display: block; opacity: 1;">
+								<div class="header-search__result-container" style="display: block;">
+									<div class="header-search__empty">
+										Ничего не найдено
+									</div>
+								</div>
+							</div> -->
 								</div>
 							</div>
 							<div class="center-block__bottom">
@@ -198,9 +205,9 @@
 							<ul class="account__menu-list">
 								<li class="account__menu-item"><a href="#" class="account__menu-link ">Мой кабинет</a></li>
 								<li class="account__menu-item"><a href="#" class="account__menu-link">Текущие заказы</a></li>
-								<li class="account__menu-item"><a href="#" class="account__menu-link">Личные данные</a></li>
+								<li class="account__menu-item"><a href="#" class="account__menu-link current">Личные данные</a></li>
 								<li class="account__menu-item"><a href="#" class="account__menu-link">Сменить пароль</a></li>
-								<li class="account__menu-item"><a href="#" class="account__menu-link current">История заказов</a></li>
+								<li class="account__menu-item"><a href="#" class="account__menu-link">История заказов</a></li>
 								<li class="account__menu-item"><a href="#" class="account__menu-link">Корзина</a></li>
 								<li class="account__menu-item"><a href="#" class="account__menu-link">Подписки</a></li>
 								<li class="account__menu-item"><a href="#" class="account__menu-link">Контакты</a></li>
@@ -437,7 +444,7 @@
 				<div data-role="basket-item-list" class="bx-basket-item-list">
 					<div id="bx_basketFKauiIproducts" class="basket-popup__list">
 						<div class="basket-popup__item">
-							<div class="img" style="background-image: url(/upload/resize_cache/iblock/235/70_70_1/235a61ae7cc45c9b2b680e4f0c7ea3b8.jpg)">
+							<div class="img" style="background-image: url(img/products/product-1.png)">
 								<a href="/catalog/product/kapusta_morskaya_sushenaya_koreyskoe_barbekyu_sibuki/"></a>
 							</div>
 							<div class="info">
@@ -477,6 +484,70 @@
 			</div>
 		</div>
 
+		<div class="popup" id="buy-click">
+			<div class="close-wrap">
+				<div class="close">
+					<svg>
+						<use href="#close"></use>
+					</svg>
+				</div>
+			</div>
+			<div class="popup__form form">
+				<div class="form__title">Заполните форму
+					и мы Вам перезвоним</div>
+				<form id="form-buy-click">
+					<div id="" class="bx-basket bx-opener">
+						<!--'start_frame_cache_bx_basketFKauiI'-->
+						<div data-role="basket-item-list" class="bx-basket-item-list">
+							<div id="bx_basketFKauiIproducts" class="basket-popup__list">
+								<div class="basket-popup__item">
+									<div class="img" style="background-image: url(img/products/product-1.png)">
+										<a href="/catalog/product/kapusta_morskaya_sushenaya_koreyskoe_barbekyu_sibuki/"></a>
+									</div>
+									<div class="info">
+										<div class="name">
+											<a href="/catalog/product/kapusta_morskaya_sushenaya_koreyskoe_barbekyu_sibuki/">
+												Капуста морская сушеная Корейское барбекю, Сибуки </a>
+										</div>
+										<div class="price-and-count">
+											<div class="count">
+												<div class="minus" onclick="bx_basketFKauiI.setQuantity(37525, 1)">
+													–
+												</div>
+												<input type="text" value="2" onchange="bx_basketFKauiI.setQuantity(37525, this.value);">
+												<div class="plus" onclick="bx_basketFKauiI.setQuantity(37525, 3)">
+													+
+												</div>
+											</div>
+											<div class="price">
+												116 ₽ </div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--'end_frame_cache_bx_basketFKauiI'-->
+					</div>
+					<div class="form__group">
+						<input placeholder="+7 (   )  -  -" data-mask="phone" name="PHONE" type="tel" required="">
+					</div>
+					<div class="form__group">
+						<button type="submit" class="btn_green">заказать звонок</button>
+					</div>
+					<div class="form__group">
+						<div class="custom-control custom-checkbox checkbox">
+							<input type="checkbox" class="custom-control-input checkbox__input" id="buy-click-check" required="">
+							<label class="custom-control-label checkbox__label" for="buy-click-check">
+								<span class="checkbox__text">
+									Я согласен на обработку <a href="/politika-konfidentsialnosti/" target="_blank"></a> персональных данных </a> при нажатии кнопки “Заказать звонок”
+								</span>
+							</label>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
 		<div class="popup" id="call-back">
 			<div class="close-wrap">
 				<div class="close">
@@ -496,12 +567,52 @@
 						<input placeholder="Телефон" placeholder="+7 (   )  -  -" data-mask="phone" name="PHONE" type="tel" required="">
 					</div>
 					<div class="form__group">
-						<button type="submit" class="btn_green">заказть звонок</button>
+						<button type="submit" class="btn_green">заказать звонок</button>
 					</div>
 					<div class="form__group">
 						<div class="custom-control custom-checkbox checkbox">
 							<input type="checkbox" class="custom-control-input checkbox__input" id="callback-check" required="">
 							<label class="custom-control-label checkbox__label" for="callback-check">
+								<span class="checkbox__text">
+									Я согласен на обработку <a href="/politika-konfidentsialnosti/" target="_blank"></a> персональных данных </a> при нажатии кнопки “Заказать звонок”
+								</span>
+							</label>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="popup" id="vacancy">
+			<div class="close-wrap">
+				<div class="close">
+					<svg>
+						<use href="#close"></use>
+					</svg>
+				</div>
+			</div>
+			<div class="popup__form form">
+				<div class="form__title">Откликнуться на вакансию</div>
+				<form id="form-vacancy">
+					<div class="form__group">
+						<input name="NAME" type="text" placeholder="Ваше имя" required="">
+					</div>
+					<div class="form__group">
+						<input placeholder="Ваш возраст" name="AGE" type="text" required="">
+					</div>
+					<div class="form__group">
+						<label for="custom-file-upload">
+							<p><span class="js-value">Загрузить резюме</span></p>
+							<input name="FILE" type="file" value="1" id="custom-file-upload">
+						</label>
+					</div>
+					<div class="form__group">
+						<button type="submit" class="btn_green">отправить</button>
+					</div>
+					<div class="form__group">
+						<div class="custom-control custom-checkbox checkbox">
+							<input type="checkbox" class="custom-control-input checkbox__input" id="vacancy-check" required="">
+							<label class="custom-control-label checkbox__label" for="vacancy-check">
 								<span class="checkbox__text">
 									Я согласен на обработку <a href="/politika-konfidentsialnosti/" target="_blank"></a> персональных данных </a> при нажатии кнопки “Отправить”
 								</span>
@@ -511,6 +622,106 @@
 				</form>
 			</div>
 		</div>
+
+		<div class="popup" id="popup-question">
+			<div class="close-wrap">
+				<div class="close">
+					<svg>
+						<use href="#close"></use>
+					</svg>
+				</div>
+			</div>
+			<div class="popup__form form">
+				<div class="form__title">Заполните форму
+					и мы Вам перезвоним</div>
+				<form id="form-question">
+					<div class="form__group">
+						<input name="NAME" type="text" placeholder="Ваше имя" required="">
+					</div>
+					<div class="form__group">
+						<textarea name="COMMENT" placeholder="Ваш вопрос"></textarea>
+					</div>
+					<div class="form__group">
+						<button type="submit" class="btn_green">задать вопрос</button>
+					</div>
+					<div class="form__group">
+						<div class="custom-control custom-checkbox checkbox">
+							<input type="checkbox" class="custom-control-input checkbox__input" id="question-check" required="">
+							<label class="custom-control-label checkbox__label" for="question-check">
+								<span class="checkbox__text">
+									Я согласен на обработку <a href="/politika-konfidentsialnosti/" target="_blank"></a> персональных данных </a> при нажатии кнопки “Задать вопрос”
+								</span>
+							</label>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="popup popup-city" id="popup-city">
+			<!-- <div class="close-wrap">
+			<div class="close">
+				<svg>
+					<use href="#close"></use>
+				</svg>
+			</div>
+		</div> -->
+			<div class="popup-city__head">
+				<p>Ваш город: <span>Санкт-Петербург?</span></p>
+				<button type="button" class="btn_green close">Да</button>
+			</div>
+			<div class="popup__form сity-search">
+				<form id="form-city" class="сity-search__form" autocomplete="off" action="/search/" method="get">
+					<input class="сity-search__input" type="search" name="q" placeholder="Ваш город" data-action="/ajax/search.php">
+					<button class="сity-search__reset" type="reset">
+						<svg>
+							<use href="#search"></use>
+						</svg>
+					</button>
+				</form>
+				<div class="сity-search__result">
+					<span>Поиск по адресу, назаванию или почтовому индексу</span>
+					<div class="сity-search__result-container">
+						<div class="сity-search__list">
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item current"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hidden">
 		<symbol id="geo" viewBox="0 0 16 16" fill="none">
@@ -614,10 +825,10 @@
 			<rect x="0.100586" y="17.0713" width="24" height="4" transform="rotate(-45 0.100586 17.0713)" fill="currentColor"></rect>
 		</symbol>
 	</svg>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js?_v=20221012144218"></script>
-	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js?_v=20221012144218"></script>
-	<script src="https://api-maps.yandex.ru/2.1/?apikey=adb15ee0-ec3f-4f52-9a7a-ba657ff64bbb&lang=ru_RU&_v=20221012144218"></script>
-	<script src="js/app.min.js?_v=20221012144218"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js?_v=20221013020234"></script>
+	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js?_v=20221013020234"></script>
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=adb15ee0-ec3f-4f52-9a7a-ba657ff64bbb&lang=ru_RU&_v=20221013020234"></script>
+	<script src="js/app.min.js?_v=20221013020234"></script>
 </body>
 
 </html>
