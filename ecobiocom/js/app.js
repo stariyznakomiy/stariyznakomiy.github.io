@@ -13521,14 +13521,14 @@
                 });
                 var glyphIcon = new ymaps.Placemark([ 59.89769956422329, 30.512033499999973 ], {
                     iconCaption: "Магазин «Компас Здоровья»",
-                    balloonContent: "<div class='icon-content'><div class='image' style='background-image: url(img/shops/shop.png)'></div><div class='address'><span class='title'>Адрес</span><span class='value'>м. улица Дыбенко Кудрово, Европейский пр. д. 3</span></div><div class='work-time'><span class='title'>Режим работы</span><span class='value'>Ежедневно с 8:00 до 20:00</span></div><div class='phone'><span class='title'>Телефон</span><span class='value'>+7 (900) 00-00-00</span></div></div>"
+                    balloonContent: "<div class='icon-content'><div class='icon-content__image' style='background-image: url(img/shops/shop.png)'></div><div class='icon-content__wrap'><div class='icon-content__address'><span class='icon-content__title'>Адрес</span><span class='icon-content__value'>м. улица Дыбенко Кудрово, Европейский пр. д. 3</span></div><div class='icon-content__work-time'><span class='icon-content__title'>Режим работы</span><span class='icon-content__value'>Ежедневно с 8:00 до 20:00</span></div><div class='icon-content__phone'><span class='icon-content__title'>Телефон</span><span class='icon-content__value'>+7 (900) 00-00-00</span></div></div></div>"
                 }, {
                     preset: "islands#greenIcon"
                 });
                 myMap.geoObjects.add(glyphIcon);
                 glyphIcon = new ymaps.Placemark([ 59.89769956422329, 30.512033499999973 ], {
                     iconCaption: "Магазин «Компас Здоровья»",
-                    balloonContent: "<div class='icon-content'><div class='image' style='background-image: url(img/shops/shop.png)'></div><div class='address'><span class='title'>Адрес</span><span class='value'>м. улица Дыбенко Кудрово, Европейский пр. д. 3</span></div><div class='work-time'><span class='title'>Режим работы</span><span class='value'>Ежедневно с 8:00 до 20:00</span></div><div class='phone'><span class='title'>Телефон</span><span class='value'>+7 (900) 00-00-00</span></div></div>"
+                    balloonContent: "<div class='icon-content'><div class='icon-content__image' style='background-image: url(img/shops/shop.png)'></div><div class='icon-content__wrap'><div class='icon-content__address'><span class='icon-content__title'>Адрес</span><span class='icon-content__value'>м. улица Дыбенко Кудрово, Европейский пр. д. 3</span></div><div class='icon-content__work-time'><span class='icon-content__title'>Режим работы</span><span class='icon-content__value'>Ежедневно с 8:00 до 20:00</span></div><div class='icon-content__phone'><span class='icon-content__title'>Телефон</span><span class='icon-content__value'>+7 (900) 00-00-00</span></div></div></div>"
                 }, {
                     preset: "islands#greenIcon"
                 });
