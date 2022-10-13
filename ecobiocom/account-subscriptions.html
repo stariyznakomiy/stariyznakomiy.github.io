@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.css?_v=20221013020234">
+	<link rel="stylesheet" href="css/style.css?_v=20221013162904">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -471,6 +471,103 @@
 			</div>
 		</div>
 
+		<div class="popup" id="popup-review">
+			<div class="close-wrap">
+				<div class="close">
+					<svg>
+						<use href="#close"></use>
+					</svg>
+				</div>
+			</div>
+			<div class="popup__form form">
+				<div class="form__title">Заполните форму
+					и мы Вам перезвоним</div>
+				<div class="reviews__form">
+					<div class="reviews__form-title">Уважаемый посетитель</div>
+					<div class="reviews__form-text">
+						Если у Вас еще остались вопросы, можете задать их через форму обратной связи.
+						Мы ответим на указанный e-mail.
+					</div>
+					<form id="form-reviews">
+						<div class="form__group">
+							<textarea name="REVIEW" placeholder="Отзыв"></textarea>
+						</div>
+						<div class="form__group">
+							<input name="NAME" type="text" placeholder="Ваше имя" required="">
+						</div>
+						<div class="form__group">
+							<input placeholder="Ваш возраст" name="AGE" type="text" required="">
+						</div>
+						<div class="form__group">
+							<input name="EMAIL" type="email" placeholder="Email" required="">
+						</div>
+						<div class="form__group form__group-flex">
+							<span>Ваша оценка</span>
+							<div class="kz-star-rating">
+								<fieldset class="kz-star-rating__row">
+									<svg width="0" height="0" xmlns:xlink="http://www.w3.org/1999/xlink">
+										<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 23" id="star" xmlns:xlink="http://www.w3.org/1999/xlink">
+											<path d="M12.5 0l2.806 8.637h9.082l-7.347 5.338 2.806 8.638-7.347-5.338-7.347 5.338 2.806-8.638L.612 8.637h9.082L12.5 0z"></path>
+										</symbol>
+									</svg>
+									<input type="radio" id="star5298" name="rating" value="5" checked="" required=""><label for="star5298" title="Прекрасно - 5 звезд">
+										<svg class="icon">
+											<use xlink:href="img/icons/icons.svg#svg-star"></use>
+										</svg>
+									</label><input type="radio" id="star4298" name="rating" value="4"><label for="star4298" title="Хорошо - 4 звезды">
+										<svg class="icon">
+											<use xlink:href="img/icons/icons.svg#svg-star"></use>
+										</svg>
+									</label><input type="radio" id="star3298" name="rating" value="3"><label for="star3298" title="Так себе - 3 звезды">
+										<svg class="icon">
+											<use xlink:href="img/icons/icons.svg#svg-star"></use>
+										</svg>
+									</label><input type="radio" id="star2298" name="rating" value="2"><label for="star2298" title="Плохо - 2 звезды">
+										<svg class="icon">
+											<use xlink:href="img/icons/icons.svg#svg-star"></use>
+										</svg>
+									</label><input type="radio" id="star1298" name="rating" value="1"><label for="star1298" title="Ужасно - 1 звезда">
+										<svg class="icon">
+											<use xlink:href="img/icons/icons.svg#svg-star"></use>
+										</svg>
+									</label>
+								</fieldset>
+							</div>
+						</div>
+
+						<div class="form__group">
+							<label for="custom-file-upload">
+								<p><span class="js-value">Загрузить фото</span></p>
+								<input name="FILE" type="file" value="1" id="custom-file-upload">
+							</label>
+						</div>
+
+						<input type="hidden" name="DETAIL_PAGE_URL" value="/reviews/">
+
+						<div class="form__group">
+							<button type="submit" class="btn_green">Отправить</button>
+						</div>
+
+						<div class="form__group">
+							<div class="custom-control custom-checkbox checkbox">
+								<input type="checkbox" class="custom-control-input checkbox__input" id="review-check" required="">
+								<label class="custom-control-label checkbox__label" for="review-check">
+									<span class="checkbox__text">
+										Я согласен на обработку <a href="/politika-konfidentsialnosti/" target="_blank"></a> персональных данных </a> при нажатии кнопки “Отправить”
+									</span>
+								</label>
+							</div>
+						</div>
+
+						<div class="form__success">
+							<p>Наш менеджер свяжется с вами</p>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+
 		<div class="popup" id="buy-click">
 			<div class="close-wrap">
 				<div class="close">
@@ -516,7 +613,7 @@
 						<!--'end_frame_cache_bx_basketFKauiI'-->
 					</div>
 					<div class="form__group">
-						<input placeholder="+7 (   )  -  -" data-mask="phone" name="PHONE" type="tel" required="">
+						<input type="text" name="phone" placeholder="+7 (   )  -  -" required="" maxlength="16">
 					</div>
 					<div class="form__group">
 						<button type="submit" class="btn_green">заказать звонок</button>
@@ -546,12 +643,12 @@
 			<div class="popup__form form">
 				<div class="form__title">Заполните форму
 					и мы Вам перезвоним</div>
-				<form id="callback">
+				<form id="callback" action="" data-dev>
 					<div class="form__group">
-						<input name="NAME" type="text" placeholder="Имя" required="">
+						<input data-required name="NAME" type="text" placeholder="Имя" required="">
 					</div>
 					<div class="form__group">
-						<input placeholder="Телефон" placeholder="+7 (   )  -  -" data-mask="phone" name="PHONE" type="tel" required="">
+						<input type="text" name="phone" placeholder="+7 (   )  -  -" required="" maxlength="16">
 					</div>
 					<div class="form__group">
 						<button type="submit" class="btn_green">заказать звонок</button>
@@ -565,6 +662,9 @@
 								</span>
 							</label>
 						</div>
+					</div>
+					<div class="form__success">
+						<p>Наш менеджер свяжется с вами</p>
 					</div>
 				</form>
 			</div>
@@ -606,6 +706,9 @@
 							</label>
 						</div>
 					</div>
+					<div class="form__success">
+						<p>Наш менеджер свяжется с вами</p>
+					</div>
 				</form>
 			</div>
 		</div>
@@ -641,6 +744,9 @@
 							</label>
 						</div>
 					</div>
+					<div class="form__success">
+						<p>Наш менеджер свяжется с вами</p>
+					</div>
 				</form>
 			</div>
 		</div>
@@ -657,56 +763,39 @@
 				<p>Ваш город: <span>Санкт-Петербург?</span></p>
 				<button type="button" class="btn_green close">Да</button>
 			</div>
-			<div class="popup__form сity-search">
-				<form id="form-city" class="сity-search__form" autocomplete="off" action="/search/" method="get">
-					<input class="сity-search__input" type="search" name="q" placeholder="Ваш город" data-action="/ajax/search.php">
-					<button class="сity-search__reset" type="reset">
-						<svg>
-							<use href="#search"></use>
-						</svg>
-					</button>
-				</form>
-				<div class="сity-search__result">
-					<span>Поиск по адресу, назаванию или почтовому индексу</span>
-					<div class="сity-search__result-container">
-						<div class="сity-search__list">
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item current"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
-							<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
 
-						</div>
-					</div>
-				</div>
+			<form id="form-city" class="popup__form сity-search__form" autocomplete="off" action="/search/" method="get">
+				<input class="сity-search__input" type="search" name="q" placeholder="Ваш город" data-action="/ajax/search.php">
+				<button class="сity-search__reset" type="reset">
+					<svg>
+						<use href="#search"></use>
+					</svg>
+				</button>
+			</form>
+			<span>Поиск по адресу, назаванию или почтовому индексу</span>
+			<div class="сity-search__list">
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item current"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
+				<div class="сity-search__list-item"><a href="#">Санкт-Петербург</a></div>
 			</div>
+
 		</div>
 
 	</div>
@@ -812,10 +901,10 @@
 			<rect x="0.100586" y="17.0713" width="24" height="4" transform="rotate(-45 0.100586 17.0713)" fill="currentColor"></rect>
 		</symbol>
 	</svg>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js?_v=20221013020234"></script>
-	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js?_v=20221013020234"></script>
-	<script src="https://api-maps.yandex.ru/2.1/?apikey=adb15ee0-ec3f-4f52-9a7a-ba657ff64bbb&lang=ru_RU&_v=20221013020234"></script>
-	<script src="js/app.min.js?_v=20221013020234"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js?_v=20221013162904"></script>
+	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js?_v=20221013162904"></script>
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=adb15ee0-ec3f-4f52-9a7a-ba657ff64bbb&lang=ru_RU&_v=20221013162904"></script>
+	<script src="js/app.min.js?_v=20221013162904"></script>
 </body>
 
 </html>
