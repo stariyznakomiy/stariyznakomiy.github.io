@@ -15156,6 +15156,10 @@
                 $("#popup-review").addClass("open");
                 $(".popup-wrap").addClass("open");
             }));
+            $(".popular-expressions__item").click((function() {
+                $(".popular-expressions__item").removeClass("active");
+                $(this).addClass("active");
+            }));
             $(document).mouseup((function(e) {
                 var container = $(".popup");
                 if (0 === container.has(e.target).length) {
