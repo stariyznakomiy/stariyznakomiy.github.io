@@ -8662,6 +8662,19 @@ footer .footer-bottom .developer svg {
   margin-right: 24px;
 }
 
+.single-page__content > h2 {
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000000;
+  text-align: left;
+}
+
+.single-page__content > h2:not(:last-child) {
+  margin-bottom: 24px;
+}
+
 .single-page__content p {
   font-weight: 300;
 }
@@ -10092,6 +10105,7 @@ footer .footer-bottom .developer svg {
           flex: 0 1 50%;
 }
 
+.page-delivery__item-col > h2,
 .page-delivery__item-col > span {
   font-weight: 700;
   font-size: 24px;
@@ -10715,7 +10729,7 @@ footer .footer-bottom .developer svg {
           justify-content: center;
 }
 
-.page-404 h1 {
+.page-404 span {
   font-family: "Montserrat";
   font-weight: 200;
   font-size: 150px;
@@ -14631,7 +14645,7 @@ a.plyr__control::before {
     padding-top: 70px;
   }
 
-  .page-404 h1 {
+  .page-404 span {
     margin-right: 0;
     font-size: 90px;
   }
@@ -14940,6 +14954,7 @@ a.plyr__control::before {
     padding: 0px 0px;
   }
 
+  .page-delivery__item-col > h2,
   .page-delivery__item-col > span {
     font-size: 20px;
   }
