@@ -15200,11 +15200,6 @@
                 $("#buy-click").addClass("open");
                 $(".popup-wrap").addClass("open");
             }));
-            $(".product-card__one-click").click((function() {
-                $("body").addClass("popup-open");
-                $("#buy-click").addClass("open");
-                $(".popup-wrap").addClass("open");
-            }));
             $(".location").click((function() {
                 $("body").addClass("popup-open");
                 $("#popup-city").addClass("open");
@@ -15228,6 +15223,16 @@
                     $("body").removeClass("popup-open");
                     $(".popup").removeClass("open");
                     $(".popup-wrap").removeClass("open");
+                }
+            }));
+            $(".header-search__input").keyup((function() {
+                let value = $(".header-search__input").val();
+                if (value) {
+                    $(".header-search__result").css("display", "block");
+                    $(".header-search__result").css("opacity", "1");
+                } else if (!value) {
+                    $(".header-search__result").css("display", "none");
+                    $(".header-search__result").css("opacity", "0");
                 }
             }));
             $(".popup .close").click((function() {
