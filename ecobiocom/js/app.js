@@ -15173,7 +15173,7 @@
             $(".hamburger-menu").click((function() {
                 $(this).toggleClass("open");
                 $(".main-header__navigation").toggleClass("open");
-                $("body").toggleClass("popup-open");
+                $("body").toggleClass("menu-open");
             }));
             $(".main-header__action--cart").click((function() {
                 $("body").addClass("popup-open");
@@ -15290,6 +15290,10 @@
             $('[name="DELIVERY"]').click((function() {
                 const deliveryFields = $(".delivery_fields");
                 deliveryFields.toggleClass("active");
+            }));
+            $(".main-header__burger").click((function() {
+                $(this).toggleClass("open");
+                $(".menu-categories").toggleClass("open");
             }));
             $(".aside_category-body").css("display", "none");
             $(".aside_category-block-title").click((function() {

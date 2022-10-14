@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.css?_v=20221014175512">
+	<link rel="stylesheet" href="css/style.css?_v=20221014225251">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -103,9 +103,15 @@
 								<div class="main-header__navigation">
 									<div class="main-header__menu">
 										<div class="catalog-hover main-header__menu-item">
-											<a href=""><svg>
+											<button class="main-header__burger" type="button">
+												<svg>
 													<use href="#nav"></use>
-												</svg>Каталог</a>
+												</svg>
+												<svg>
+													<use href="#close"></use>
+												</svg>
+											</button>
+											<a href="">Каталог</a>
 											<div class="desktop-catalog">
 											</div>
 										</div>
@@ -128,6 +134,135 @@
 											<a href="">БРЕНДЫ</a>
 										</div>
 									</div>
+									<nav class="main-header__menu-categories menu-categories">
+
+										<ul class="menu-categories__list">
+											<li class="menu-categories__item">
+												<a href="#" class="menu-categories__link">LifeStyle</a>
+												<ul class="menu-categories__submenu">
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">LifeStyle</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Zero waste</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Постное</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без глютена</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без лактозы</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без сахара</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для веганов</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для вегетарианцев</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для кето диеты</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для палео диеты</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+												</ul>
+											</li>
+											<li class="menu-categories__item">
+												<a href="#" class="menu-categories__link">Здоровое питание</a>
+												<ul class="menu-categories__submenu">
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">LifeStyle</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Zero waste</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Постное</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без глютена</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без лактозы</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без сахара</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для веганов</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для вегетарианцев</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для кето диеты</a></li>
+												</ul>
+											</li>
+											<li class="menu-categories__item">
+												<a href="#" class="menu-categories__link">Подарки</a>
+												<ul class="menu-categories__submenu">
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">LifeStyle</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Zero waste</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Постное</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без глютена</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без лактозы</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без сахара</a></li>
+												</ul>
+											</li>
+											<li class="menu-categories__item">
+												<a href="#" class="menu-categories__link">Натуральная косметика</a>
+												<ul class="menu-categories__submenu">
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">LifeStyle</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Zero waste</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Постное</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без глютена</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без лактозы</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без сахара</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для веганов</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для вегетарианцев</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для кето диеты</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для палео диеты</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+												</ul>
+											</li>
+											<li class="menu-categories__item">
+												<a href="#" class="menu-categories__link">Для дома</a>
+												<ul class="menu-categories__submenu">
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">LifeStyle</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Zero waste</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Постное</a></li>
+												</ul>
+											</li>
+											<li class="menu-categories__item">
+												<a href="#" class="menu-categories__link">Витамины и добавки</a>
+												<ul class="menu-categories__submenu">
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">LifeStyle</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Zero waste</a></li>
+												</ul>
+											</li>
+											<li class="menu-categories__item">
+												<a href="#" class="menu-categories__link">Спортивное питание</a>
+												<ul class="menu-categories__submenu">
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">LifeStyle</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Zero waste</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Постное</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без глютена</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без лактозы</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без сахара</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для веганов</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для вегетарианцев</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для кето диеты</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для палео диеты</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+												</ul>
+											</li>
+											<li class="menu-categories__item">
+												<a href="#" class="menu-categories__link">Хорошее здоровье</a>
+												<ul class="menu-categories__submenu">
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">LifeStyle</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Zero waste</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Постное</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без глютена</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без лактозы</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Без сахара</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для веганов</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для вегетарианцев</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для кето диеты</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для палео диеты</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+													<li class="menu-categories__submenu-item"><a href="#" class="menu-categories__submenu-link">Для поста</a></li>
+												</ul>
+											</li>
+										</ul>
+										<div class="menu-categories__img">
+											<img data-src="img/menu-img.png" data-srcset="img/menu-img@2x.png 2x" alt="">
+										</div>
+									</nav>
 								</div>
 							</div>
 						</div>
@@ -962,10 +1097,10 @@
 			<rect x="0.100586" y="17.0713" width="24" height="4" transform="rotate(-45 0.100586 17.0713)" fill="currentColor"></rect>
 		</symbol>
 	</svg>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js?_v=20221014175512"></script>
-	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js?_v=20221014175512"></script>
-	<script src="https://api-maps.yandex.ru/2.1/?apikey=adb15ee0-ec3f-4f52-9a7a-ba657ff64bbb&lang=ru_RU&_v=20221014175512"></script>
-	<script src="js/app.min.js?_v=20221014175512"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js?_v=20221014225251"></script>
+	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js?_v=20221014225251"></script>
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=adb15ee0-ec3f-4f52-9a7a-ba657ff64bbb&lang=ru_RU&_v=20221014225251"></script>
+	<script src="js/app.min.js?_v=20221014225251"></script>
 </body>
 
 </html>
