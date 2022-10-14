@@ -3127,7 +3127,7 @@ body::after {
   margin-bottom: 10px;
 }
 
-.kz-product-card__other a {
+.kz-product-card__other a:last-child {
   font-weight: 700;
   margin-left: 8px;
 }
@@ -6557,9 +6557,18 @@ footer .footer-bottom .developer svg {
   margin-bottom: 0;
 }
 
-.category_page .title span {
+.category_page-tip {
   position: relative;
-  top: 2px;
+}
+
+.category_page-tip.active .category_page-tip-body {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.category_page-tip-button {
+  position: relative;
+  top: 0px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -6581,6 +6590,41 @@ footer .footer-bottom .developer svg {
   font-weight: 300;
   font-size: 24px;
   color: #000000;
+}
+
+.category_page-tip-body {
+  position: absolute;
+  top: 100%;
+  width: 300px;
+  padding: 16px;
+  text-align: left;
+  background-color: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.25);
+  -webkit-transition: opacity 0.3s ease 0s;
+  -o-transition: opacity 0.3s ease 0s;
+  transition: opacity 0.3s ease 0s;
+}
+
+@supports (left: clamp( -18.125rem , -23.3977272909rem  +  26.3636364545vw , 0.0000000625rem )) {
+  .category_page-tip-body {
+    left: clamp( -18.125rem , -23.3977272909rem  +  26.3636364545vw , 0.0000000625rem );
+  }
+}
+
+@supports not (left: clamp( -18.125rem , -23.3977272909rem  +  26.3636364545vw , 0.0000000625rem )) {
+  .category_page-tip-body {
+    left: calc(-18.125rem + 18.1250000625 * (100vw - 20rem) / 68.75);
+  }
+}
+
+.category_page-tip-body p {
+  font-family: "Montserrat";
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 120%;
 }
 
 .category_page_wrapper {
@@ -7785,6 +7829,7 @@ footer .footer-bottom .developer svg {
 
 #COURIER {
   margin-bottom: 24px;
+  display: none;
 }
 
 .form_radio input[type=radio] {
@@ -7921,6 +7966,35 @@ footer .footer-bottom .developer svg {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.delivery_fields .bx-yandex-view-layout {
+  margin-bottom: 16px;
+}
+
+.delivery_fields .store-address {
+  margin-bottom: 16px;
+}
+
+.delivery_fields .store-address span {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.delivery_fields .store-address svg {
+  width: 16px;
+  height: 16px;
+}
+
+.delivery_fields .store-address p:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.delivery_fields .btn_green {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  padding: 0px 16px;
 }
 
 .delivery_block {
@@ -8588,19 +8662,6 @@ footer .footer-bottom .developer svg {
   margin-right: 24px;
 }
 
-.single-page__content h2 {
-  font-family: "Montserrat";
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 22px;
-  color: #000000;
-  text-align: left;
-}
-
-.single-page__content h2:not(:last-child) {
-  margin-bottom: 24px;
-}
-
 .single-page__content p {
   font-weight: 300;
 }
@@ -8611,15 +8672,6 @@ footer .footer-bottom .developer svg {
 
 .single-page__text:not(:last-child) {
   margin-bottom: 80px;
-}
-
-.single-page__text .single-page__products-title {
-  font-family: "Montserrat";
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 22px;
-  color: #000000;
-  padding-top: 16px;
 }
 
 .single-page__img {
@@ -8650,27 +8702,17 @@ footer .footer-bottom .developer svg {
   max-width: 570px;
 }
 
-.single-page__right li {
+.single-page__list li:not(:last-child) {
+  margin-bottom: 24px;
+}
+
+.single-page__list a {
   font-weight: 700;
   font-size: 16px;
   line-height: 140%;
-}
-
-.single-page__right li:not(:last-child) {
-  margin-bottom: 24px;
-}
-
-.single-page__bot h2 {
-  font-family: "Montserrat";
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 22px;
-  color: #000000;
-  text-align: left;
-}
-
-.single-page__bot h2:not(:last-child) {
-  margin-bottom: 24px;
+  -webkit-transition: color 0.3s ease 0s;
+  -o-transition: color 0.3s ease 0s;
+  transition: color 0.3s ease 0s;
 }
 
 .single-page__bot p {
@@ -8686,6 +8728,20 @@ footer .footer-bottom .developer svg {
 }
 
 .single-page__products-title {
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000000;
+  padding-top: 16px;
+  text-align: left;
+}
+
+.single-page__products-title:not(:last-child) {
+  margin-bottom: 24px;
+}
+
+.single-page__products-title-big {
   font-family: "OldStandardTT";
   font-weight: 700;
   font-size: 36px;
@@ -8693,7 +8749,7 @@ footer .footer-bottom .developer svg {
   color: #000000;
 }
 
-.single-page__products-title:not(:last-child) {
+.single-page__products-title-big:not(:last-child) {
   margin-bottom: 24px;
 }
 
@@ -13819,19 +13875,25 @@ a.plyr__control::before {
   }
 
   .single-page__body {
-    display: block;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
   }
 
   .single-page__content {
     max-width: none;
     margin-right: 0;
-    margin-bottom: 40px;
   }
 }
 
 @media (max-width: 74.9375em) {
   .help-page__image {
     margin-bottom: 24px;
+  }
+
+  .single-page__right {
+    margin-bottom: 40px;
   }
 
   .blog__body {
@@ -13915,6 +13977,10 @@ a.plyr__control::before {
 
   .products-collection .page-title {
     font-size: 2.25rem;
+  }
+
+  .category_page-tip-button {
+    top: -5px;
   }
 
   .category_page_wrapper {
@@ -14292,7 +14358,7 @@ a.plyr__control::before {
     grid-template-columns: 1fr;
   }
 
-  .category_page .title span {
+  .category_page-tip {
     display: none;
   }
 
@@ -14370,7 +14436,7 @@ a.plyr__control::before {
     font-size: 2rem;
   }
 
-  .single-page__products-title {
+  .single-page__products-title-big {
     font-size: 2rem;
     margin-bottom: 40px;
   }
@@ -14811,7 +14877,7 @@ a.plyr__control::before {
     font-size: 1.5rem;
   }
 
-  .single-page__products-title {
+  .single-page__products-title-big {
     font-size: 1.5rem;
   }
 
@@ -15075,6 +15141,10 @@ a.plyr__control::before {
 
   .glossary-page__sort a:hover {
     color: #3e5d57;
+  }
+
+  .single-page__list a:hover {
+    color: #7bb58e;
   }
 
   .bx-authform-formgroup-buttons .text-success:hover {
