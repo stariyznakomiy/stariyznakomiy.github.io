@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Карточка товара</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="css/style.css?_v=20221028023634">
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/favicon/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="img/favicon/apple-touch-icon-60x60.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/favicon/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="img/favicon/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/favicon/apple-touch-icon-152x152.png" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-196x196.png" sizes="196x196" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-96x96.png" sizes="96x96" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" sizes="16x16" />
+	<link rel="icon" type="image/png" href="img/favicon/favicon-128.png" sizes="128x128" />
+	<meta name="application-name" content="&nbsp;" />
+	<meta name="msapplication-TileColor" content="#FFFFFF" />
+	<meta name="msapplication-TileImage" content="img/favicon/mstile-144x144.png" />
+	<meta name="msapplication-square70x70logo" content="img/favicon/mstile-70x70.png" />
+	<meta name="msapplication-square150x150logo" content="img/favicon/mstile-150x150.png" />
+	<meta name="msapplication-wide310x150logo" content="img/favicon/mstile-310x150.png" />
+	<meta name="msapplication-square310x310logo" content="img/favicon/mstile-310x310.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__wrapper">
+				<div class="header__top">
+					<a href="#" class="header__logo"><img src="img/logo.svg" alt=""></a>
+					<div class="header__contact">
+						<a href="tel:+78332220040" class="header__phone">+7 (8332) 22-00-40</a>
+						<div class="header__socials">
+							<a href="#" class="header__socials-item socials-item">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-telegram"></use>
+								</svg>
+							</a>
+							<a href="#" class="header__socials-item socials-item">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-whatsapp"></use>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div class="header__actions">
+						<button type="button" class="header__actions-icon icon-menu"><span></span></button>
+						<div class="header__menu-categories menu">
+							<nav class="menu__body" data-bg-set="url('img/menu-bg.png') 1x, url('img/menu-bg@2x.png') 2x">
+								<button type="button" class="menu__close">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-close"></use>
+									</svg>
+								</button>
+								<div class="menu__wrap">
+									<div class="menu__label">Для душа и ванны</div>
+									<ul class="menu__list">
+										<li class="menu__item"><a href="#" class="menu__link">Гели</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Скрабы</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Мыло</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Соли</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Масла</a></li>
+									</ul>
+								</div>
+								<div class="menu__wrap">
+									<div class="menu__label">Для рук</div>
+									<ul class="menu__list">
+										<li class="menu__item"><a href="#" class="menu__link">Гели</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Скрабы</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Мыло</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Соли</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Масла</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Молочко</a></li>
+									</ul>
+								</div>
+								<div class="menu__wrap">
+									<div class="menu__label">Солнце</div>
+									<ul class="menu__list">
+										<li class="menu__item"><a href="#" class="menu__link">Солнцезащитные</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">После загара</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Для детей</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Для усиления</a></li>
+									</ul>
+								</div>
+								<div class="menu__wrap">
+									<div class="menu__label">Уход за телом</div>
+									<ul class="menu__list">
+										<li class="menu__item"><a href="#" class="menu__link">Кремы</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Гели</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Масла</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Молочко</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Наборы для ухода</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Спреи</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Бальзамы</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Лосьоны</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Маски</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Пилинги</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Эмульсии</a></li>
+									</ul>
+								</div>
+								<div class="menu__wrap">
+									<div class="menu__label">Бренды</div>
+									<ul class="menu__list">
+										<li class="menu__item"><a href="#" class="menu__link">Кремы</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Гели</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Масла</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Молочко</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Наборы для ухода</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Спреи</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Бальзамы</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Лосьоны</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Маски</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Пилинги</a></li>
+										<li class="menu__item"><a href="#" class="menu__link">Эмульсии</a></li>
+									</ul>
+								</div>
+							</nav>
+						</div>
+						<button type="button" class="header__actions-icon header__search-icon">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-search"></use>
+							</svg>
+						</button>
+						<div class="header__search search-header">
+							<div class="search-header__body">
+								<form class="search-header__form" action="">
+									<input class="search-header__input" autocomplete="off" type="text" name="form[]" data-error="Ошибка" placeholder="Что вы ищете?">
+									<button type="submit" class="search-header__button btn-purple">найти</button>
+								</form>
+								<button type="button" class="search-header__close">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-close"></use>
+									</svg>
+								</button>
+							</div>
+							<div class="search-header__results">
+								<div class="search-header__results-container">
+									<div class="search-header__results-empty">
+										Ничего не найдено
+									</div>
+									<div class="search-header__list">
+										<div class="search-header__item">
+											<div class="search-header__item-image">
+												<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ и масло макадамии NATURE 150 мл">
+											</div>
+											<div class="search-header__item-info">
+												<a href="/catalog/product/gidrolat_naturalnyy_rozy_levrana/" class="search-header__item-name">Гидролат натуральный Розы, Levrana</a>
+												<div class="search-header__item-price">2950 ₽</div>
+											</div>
+										</div>
+										<div class="search-header__item">
+											<div class="search-header__item-image">
+												<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ и масло макадамии NATURE 150 мл">
+											</div>
+											<div class="search-header__item-info">
+												<a href="/catalog/product/gidrolat_naturalnyy_rozy_levrana/" class="search-header__item-name">Гидролат натуральный Розы, Levrana</a>
+												<div class="search-header__item-price">2950 ₽</div>
+											</div>
+										</div>
+										<div class="search-header__item">
+											<div class="search-header__item-image">
+												<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ и масло макадамии NATURE 150 мл">
+											</div>
+											<div class="search-header__item-info">
+												<a href="/catalog/product/gidrolat_naturalnyy_rozy_levrana/" class="search-header__item-name">Гидролат натуральный Розы, Levrana</a>
+												<div class="search-header__item-price">2950 ₽</div>
+											</div>
+										</div>
+										<div class="search-header__item">
+											<div class="search-header__item-image">
+												<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ и масло макадамии NATURE 150 мл">
+											</div>
+											<div class="search-header__item-info">
+												<a href="/catalog/product/gidrolat_naturalnyy_rozy_levrana/" class="search-header__item-name">Гидролат натуральный Розы, Levrana</a>
+												<div class="search-header__item-price">2950 ₽</div>
+											</div>
+										</div>
+										<div class="search-header__item">
+											<div class="search-header__item-image">
+												<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ и масло макадамии NATURE 150 мл">
+											</div>
+											<div class="search-header__item-info">
+												<a href="/catalog/product/gidrolat_naturalnyy_rozy_levrana/" class="search-header__item-name">Гидролат натуральный Розы, Levrana</a>
+												<div class="search-header__item-price">2950 ₽</div>
+											</div>
+										</div>
+										<div class="search-header__item">
+											<div class="search-header__item-image">
+												<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ и масло макадамии NATURE 150 мл">
+											</div>
+											<div class="search-header__item-info">
+												<a href="/catalog/product/gidrolat_naturalnyy_rozy_levrana/" class="search-header__item-name">Гидролат натуральный Розы, Levrana</a>
+												<div class="search-header__item-price">2950 ₽</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<a href="#" class="header__actions-icon header__favorites">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-favorite"></use>
+							</svg>
+						</a>
+						<a href="#" class="header__actions-icon header__cart">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-cart"></use>
+							</svg>
+						</a>
+						<a href="#" class="header__actions-icon header__account">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-user"></use>
+							</svg>
+						</a>
+					</div>
+				</div>
+				<div class="header__side-menu side-menu">
+					<ul class="side-menu__list">
+						<li class="side-menu__item"><a href="#" class="side-menu__link">Уход за лицом</a></li>
+						<li class="side-menu__item"><a href="#" class="side-menu__link">Уход за телом</a></li>
+						<li class="side-menu__item"><a href="#" class="side-menu__link">Инъекционные препараты</a></li>
+						<li class="side-menu__item"><a href="#" class="side-menu__link">Пилинги</a></li>
+						<li class="side-menu__item"><a href="#" class="side-menu__link">Средства для загара</a></li>
+						<li class="side-menu__item"><a href="#" class="side-menu__link">РАСПРОДАЖА</a></li>
+					</ul>
+				</div>
+				<div class="header__side-offer side-offer">
+					<div class="side-offer__product-week">
+						<div class="side-offer__title">ТОВАР НЕДЕЛИ</div>
+						<div class="side-offer__img">
+							<img data-src="img/product-of-the-week.png" data-srcset="img/product-of-the-week@2x.png 2x" alt="Topaz Biomatrix 3 мл">
+						</div>
+						<a href="#" class="side-offer__name">Topaz Biomatrix 3 мл</a>
+						<div class="side-offer__price">4 500.00 ₽</div>
+						<button type="button" class="side-offer__button btn-purple">купить</button>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main class="page">
+			<div class="page__header page-header">
+				<div class="page-header__container">
+					<div class="page-header__top">
+						<div class="page-header__top-wrap">
+							<button type="button" data-popup="#popup-location" class="page-header__item location">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-marker"></use>
+								</svg>
+								<span>Киров</span>
+							</button>
+							<div class="page-header__item page-header__address">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-flag"></use>
+								</svg>
+								<span>Киров, Свободы, 110</span>
+							</div>
+							<div class="page-header__item page-header__work-hours">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-clock"></use>
+								</svg>
+								<span>Пн-Пт с 9.00 - 19.00, Сб с 10.00 - 14.00</span>
+							</div>
+							<button data-popup="#popup-call" class="page-header__button btn-purple">ЗАПИСЬ К КОСМЕТОЛОГУ</button>
+						</div>
+					</div>
+					<nav class="page-header__menu">
+						<ul class="page-header__menu-list">
+							<li class="page-header__menu-item"><a href="#" class="page-header__menu-link">О компании</a></li>
+							<li class="page-header__menu-item"><a href="#" class="page-header__menu-link">Услуги клиники</a></li>
+							<li class="page-header__menu-item"><a href="#" class="page-header__menu-link">Блог</a></li>
+							<li class="page-header__menu-item"><a href="#" class="page-header__menu-link">Доставка</a></li>
+							<li class="page-header__menu-item"><a href="#" class="page-header__menu-link">Оплата</a></li>
+							<li class="page-header__menu-item"><a href="#" class="page-header__menu-link">Контакты</a></li>
+							<li class="page-header__menu-item"><a href="#" class="page-header__menu-link">Обучение</a></li>
+							<li class="page-header__menu-item"><a href="#" class="page-header__menu-link">Отзывы</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<div class="action-buttons">
+				<button type="button" class="action-buttons__button btn-green-svg">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-calendar"></use>
+					</svg>
+				</button>
+				<button type="button" class="action-buttons__button btn-pirple-svg">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-hat"></use>
+					</svg>
+				</button>
+			</div>
+			<div class="page__wrap">
+
+				<!-- breadcrumbs -->
+				<div class="breadcrumbs">
+					<div class="breadcrumbs__container">
+						<ul class="breadcrumbs__list">
+							<li class="breadcrumbs__item">
+								<a href="#" class="breadcrumbs__link">
+									<span>Главная</span>
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-arrow-right-2"></use>
+									</svg>
+								</a>
+							</li>
+							<li class="breadcrumbs__item"><span>Карточка товара</span></li>
+						</ul>
+					</div>
+				</div>
+				<!-- breadcrumbs end -->
+
+				<!-- product-card -->
+				<section class="product-card">
+					<div class="product-card__container">
+						<div class="product-card__wrap">
+							<div class="product-card__col">
+								<div class="product-card__gallery">
+									<div class="product-card__thumbs">
+										<button type="button" class="product-card__arrow product-card__arrow-prev">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-arrow-left"></use>
+											</svg>
+										</button>
+										<div class="product-card__thumbs-list swiper">
+											<div class="product-card__thumbs-wrapper swiper-wrapper">
+												<div class="product-card__thumbs-item swiper-slide">
+													<div class="product-card__thumbs-img">
+														<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+													</div>
+												</div>
+												<div class="product-card__thumbs-item swiper-slide">
+													<div class="product-card__thumbs-img">
+														<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+													</div>
+												</div>
+												<div class="product-card__thumbs-item swiper-slide">
+													<div class="product-card__thumbs-img">
+														<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+													</div>
+												</div>
+												<div class="product-card__thumbs-item swiper-slide">
+													<div class="product-card__thumbs-img">
+														<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+													</div>
+												</div>
+												<div class="product-card__thumbs-item swiper-slide">
+													<div class="product-card__thumbs-img">
+														<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+													</div>
+												</div>
+												<div class="product-card__thumbs-item swiper-slide">
+													<div class="product-card__thumbs-img">
+														<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+													</div>
+												</div>
+
+											</div>
+										</div>
+										<button type="button" class="product-card__arrow product-card__arrow-next">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-arrow-left"></use>
+											</svg>
+										</button>
+									</div>
+									<div class="product-card__slider swiper">
+										<div class="product-card__wrapper swiper-wrapper">
+											<div class="product-card__slide swiper-slide">
+												<div class="product-card__img">
+													<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+												</div>
+											</div>
+											<div class="product-card__slide swiper-slide">
+												<div class="product-card__img">
+													<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+												</div>
+											</div>
+											<div class="product-card__slide swiper-slide">
+												<div class="product-card__img">
+													<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+												</div>
+											</div>
+											<div class="product-card__slide swiper-slide">
+												<div class="product-card__img">
+													<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+												</div>
+											</div>
+											<div class="product-card__slide swiper-slide">
+												<div class="product-card__img">
+													<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+												</div>
+											</div>
+											<div class="product-card__slide swiper-slide">
+												<div class="product-card__img">
+													<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+												</div>
+											</div>
+										</div>
+										<button type="button" class="product-card__favorite-add favorite-add">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
+											</svg>
+										</button>
+										<div class="product-card__labels product-labels">
+											<div class="product-labels__item new">Новинка</div>
+											<div class="product-labels__item hit">ХИТ</div>
+											<div class="product-labels__item sale">Акция</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="product-card__col">
+								<div class="product-card__info">
+									<div class="product-card__descr">
+										<h1 class="product-card__name">Пенка очищающая с алоэ и масло макадамии NATURE 150 мл</h1>
+										<div class="product-card__vendor-code">Арт: <span>KT009BU</span></div>
+										<div class="product-card__stat">
+											<div class="product-card__rating rating">
+												<fieldset class="rating__row">
+													<input type="radio" value="5" disabled="">
+													<label title="Прекрасно - 5 звезд">
+														<svg class="icon">
+															<use xlink:href="img/icons/icons.svg#svg-star"></use>
+														</svg>
+													</label>
+													<input type="radio" checked="" value="4" disabled="">
+													<label title="Хорошо - 4 звезды">
+														<svg class="icon">
+															<use xlink:href="img/icons/icons.svg#svg-star"></use>
+														</svg>
+													</label>
+													<input type="radio" value="3" disabled="">
+													<label title="Так себе - 3 звезды">
+														<svg class="icon">
+															<use xlink:href="img/icons/icons.svg#svg-star"></use>
+														</svg>
+													</label>
+													<input type="radio" value="2" disabled="">
+													<label title="Плохо - 2 звезды">
+														<svg class="icon">
+															<use xlink:href="img/icons/icons.svg#svg-star"></use>
+														</svg>
+													</label>
+													<input type="radio" value="1" disabled="">
+													<label title="Ужасно - 1 звезда">
+														<svg class="icon">
+															<use xlink:href="img/icons/icons.svg#svg-star"></use>
+														</svg>
+													</label>
+												</fieldset>
+											</div>
+											<a href="#" class="product-card__review-link">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-review"></use>
+												</svg>
+												<span>1352</span>
+											</a>
+										</div>
+										<div class="product-card__price">
+											<span class="product-card__price-new">2950 ₽</span>
+											<span class="product-card__price-old">2150 ₽</span>
+											<div class="product-card__discount">-1100₽</div>
+										</div>
+										<div class="product-card__options">
+											<div class="product-card__options-name">Объём:</div>
+											<div class="product-card__options-items">
+												<div class="product-card__options-item">
+													<input hidden id="opt_1" class="product-card__options-input" checked type="radio" value="1" name="vol">
+													<label for="opt_1" class="product-card__options-label"><span class="product-card__options-text">500 мл</span></label>
+												</div>
+												<div class="product-card__options-item">
+													<input hidden id="opt_2" class="product-card__options-input" type="radio" value="2" name="vol">
+													<label for="opt_2" class="product-card__options-label"><span class="product-card__options-text">250 мл</span></label>
+												</div>
+												<div class="product-card__options-item">
+													<input hidden id="opt_3" class="product-card__options-input" type="radio" value="3" name="vol">
+													<label for="opt_3" class="product-card__options-label"><span class="product-card__options-text">100 мл</span></label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="product-card__info-right">
+										<div class="product-card__brand">
+											<img data-src="img/brands/6.png" data-srcset="img/brands/6@2x.png 2x" alt="">
+										</div>
+										<button type="button" class="product-card__ask">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-question"></use>
+											</svg>
+											<span>Задать вопрос косметологу</span>
+										</button>
+									</div>
+								</div>
+								<div class="product-card__actions">
+									<div data-quantity class="product-card__quantity quantity">
+										<button data-quantity-minus type="button" class="quantity__button quantity__button_minus"></button>
+										<div class="quantity__input">
+											<input readonly data-quantity-value autocomplete="off" type="text" name="form[]" value="1">
+										</div>
+										<button data-quantity-plus type="button" class="quantity__button quantity__button_plus"></button>
+									</div>
+									<div class="product-card__buttons">
+										<button type="button" class="product-card__button btn-purple">в корзину</button>
+										<button type="button" data-popup="#popup-one-click" class="product-card__button btn-one-click">купить в 1 клик</button>
+									</div>
+								</div>
+								<div class="product-card__details">
+									<div class="product-card__details-row">
+										<div class="product-card__details-item">
+											<div class="product-card__details-label"><b>Бренд:</b></div>
+											<div class="product-card__details-value">Sothys (Франция)</div>
+										</div>
+										<div class="product-card__details-item">
+											<div class="product-card__details-label"> <b>Линия:</b></div>
+											<div class="product-card__details-value">Средства для очищения кожи лица Sothys </div>
+										</div>
+										<div class="product-card__details-item">
+											<div class="product-card__details-label"><b>Объём упаковки:</b></div>
+											<div class="product-card__details-value">500 мл</div>
+										</div>
+									</div>
+									<div class="product-card__details-row">
+										<div class="product-card__details-item">
+											<div class="product-card__details-title">Самовывоз</div>
+											<div class="product-card__details-value">г. Киров, ул Свободы, 110</div>
+											<div class="product-card__details-price"><b>Цена:</b> <span>БЕСПЛАТНО</span></div>
+										</div>
+										<div class="product-card__details-item">
+											<div class="product-card__details-title">Постамат</div>
+											<div class="product-card__details-value">Доставка заказа в постаматы компании СДЭК</div>
+											<div class="product-card__details-term"><b>Срок:</b> 3-4 дня <br> с момента отправления</div>
+											<div class="product-card__details-price"><b>Цена:</b> от 219 ₽</div>
+										</div>
+										<div class="product-card__details-item">
+											<div class="product-card__details-title">Курьерская доставка</div>
+											<div class="product-card__details-value">Курьерская доставка Доставка заказа курьером компании СДЭК</div>
+											<div class="product-card__details-term"><b>Срок:</b> 3-4 дня <br> с момента отправления</div>
+											<div class="product-card__details-price"><b>Цена:</b> 357 ₽ <br> от 3600 ₽ <span>БЕСПЛАТНО</span></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- product-card end -->
+
+				<!-- product-tabs -->
+				<section class="product-tabs">
+					<div class="product-tabs__container">
+						<div data-tabs="767.98" class="product-tabs__wrap">
+							<nav data-tabs-titles class="product-tabs__navigation">
+								<button type="button" class="product-tabs__title _tab-active" data-text="Описание">Описание</button>
+								<button type="button" class="product-tabs__title" data-text="Применение">Применение</button>
+								<button type="button" class="product-tabs__title" data-text="Отзывы">Отзывы</button>
+								<button type="button" class="product-tabs__title" data-text="Доставка">Доставка</button>
+								<button type="button" class="product-tabs__title" data-text="Оплата">Оплата</button>
+							</nav>
+							<div data-tabs-body class="product-tabs__content">
+								<div class="product-tabs__body">
+									<div class="product-tabs__description product-description">
+										<div class="product-description__col">
+											<p>In nulla posuere sollicitudin aliquam ultrices sagittis orci a. Cursus eget nunc scelerisque viverra mauris in. Habitant morbi tristique
+												senectus
+												et netus et malesuada fames ac. A condimentum vitae sapien pellentesque habitant. Velit euismod in pellentesque massa placerat duis ultricies
+												lacus. Ornare suspendisse sed nisi lacus sed viverra tellus in hac. Laoreet non curabitur gravida arcu ac tortor dignissim convallis. Volutpat
+												maecenas volutpat blandit aliquam etiam erat velit scelerisque in. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. At
+												lectus
+												urna duis convallis convallis tellus. Vel risus commodo viverra maecenas accumsan lacus vel. Adipiscing bibendum est ultricies integer quis
+												auctor
+												elit sed. Tempor orci dapibus ultrices in iaculis nunc. Sem fringilla ut morbi tincidunt augue interdum velit euismod in.</p>
+											<img data-src="img/product-description/1.png" data-srcset="img/product-description/1@2x.png 2x" alt="">
+										</div>
+										<div class="product-description__col">
+											<img data-src="img/product-description/2.png" data-srcset="img/product-description/2@2x.png 2x" alt="">
+											<p>Cursus eget nunc scelerisque viverra mauris in. Nulla facilisi etiam dignissim diam. Iaculis at erat pellentesque adipiscing commodo elit.
+												Lectus
+												magna fringilla urna porttitor rhoncus. Nunc sed velit dignissim sodales ut eu sem integer vitae. Imperdiet proin fermentum leo vel orci porta.
+												Est
+												ullamcorper eget nulla facilisi etiam dignissim diam. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Dignissim
+												sodales
+												ut eu sem integer vitae justo eget magna. Facilisis leo vel fringilla est ullamcorper. Viverra vitae congue eu consequat ac felis donec et odio.
+												Quisque non tellus orci ac auctor augue mauris augue neque.</p>
+										</div>
+									</div>
+								</div>
+								<div class="product-tabs__body">
+								</div>
+								<div class="product-tabs__body">
+									<div class="product-tabs__reviews main-reviews__body">
+										<div class="main-reviews__list">
+											<div class="main-reviews__item">
+												<div class="main-reviews__item-avatar">
+													<img data-src="img/avatars/1.png" alt="" data-ll-status="loaded" class="entered _lazy-loaded" src="img/avatars/1.png">
+												</div>
+												<div class="main-reviews__item-name">Маргарита</div>
+												<div class="main-reviews__item-rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<div class="main-reviews__item-date">08 апреля 2020</div>
+												<div data-showmore="" class="main-reviews__item-text">
+													<div data-showmore-content="100" class="" style="height: 100px; overflow: hidden;">
+														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+															minim
+															veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+															minim
+															veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+													</div>
+													<button data-showmore-button="" type="button" class="main-reviews__item-more"><span>Читать</span><span>Скрыть</span></button>
+												</div>
+											</div>
+											<div class="main-reviews__item">
+												<div class="main-reviews__item-avatar">
+													<img data-src="img/avatars/2.png" alt="" data-ll-status="loaded" class="entered _lazy-loaded" src="img/avatars/2.png">
+												</div>
+												<div class="main-reviews__item-name">Варвара</div>
+												<div class="main-reviews__item-rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<div class="main-reviews__item-date">08 апреля 2020</div>
+												<div data-showmore="" class="main-reviews__item-text">
+													<div data-showmore-content="100" class="" style="">
+														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+															minim
+															veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+													</div>
+													<button hidden="" data-showmore-button="" type="button" class="main-reviews__item-more"><span>Читать</span><span>Скрыть</span></button>
+												</div>
+											</div>
+											<div class="main-reviews__item">
+												<div class="main-reviews__item-avatar">
+													<img data-src="img/avatars/3.png" alt="" data-ll-status="loaded" class="entered _lazy-loaded" src="img/avatars/3.png">
+												</div>
+												<div class="main-reviews__item-name">Агрипина</div>
+												<div class="main-reviews__item-rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<div class="main-reviews__item-date">08 апреля 2020</div>
+												<div data-showmore="" class="main-reviews__item-text">
+													<div data-showmore-content="100" class="" style="height: 100px; overflow: hidden;">
+														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+															minim
+															veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+														<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+															minim
+															veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+													</div>
+													<button data-showmore-button="" type="button" class="main-reviews__item-more">
+														<span>Читать</span>
+														<span>Скрыть</span>
+													</button>
+												</div>
+											</div>
+										</div>
+										<a href="#" class="main-reviews__button btn-purple">все отзывы</a>
+									</div>
+								</div>
+								<div class="product-tabs__body">
+								</div>
+								<div class="product-tabs__body">
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- product-tabs end -->
+
+				<!-- like-products -->
+				<section class="like-products">
+					<div class="like-products__container">
+						<div class="like-products__title section-title">
+							<h2>Вам понравятся</h2>
+						</div>
+						<div class="products-collection__items">
+							<article class="products-collection__item product-item">
+								<div class="product-item__body">
+									<div class="product-item__top">
+										<button type="button" class="product-item__favorite-add favorite-add">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
+											</svg>
+										</button>
+										<div class="product-item__labels">
+											<div class="product-item__label new">Новинка</div>
+											<div class="product-item__label hit">ХИТ</div>
+											<div class="product-item__label sale">Акция</div>
+										</div>
+										<a href="#" class="product-item__image">
+											<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
+											и масло макадамии NATURE 150 мл">
+										</a>
+									</div>
+									<div class="product-item__info">
+										<div class="product-item__info-wrap">
+											<div class="product-item__info-top">
+												<div class="product-item__vendor-code">Арт: KT009BU</div>
+												<div class="product-item__rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<a href="#" class="product-item__review-link">
+													<svg>
+														<use xlink:href="img/icons/icons.svg#svg-review"></use>
+													</svg>
+													<span>1352</span>
+												</a>
+											</div>
+											<div class="product-item__description">
+												<a href="#" class="product-item__name">
+													Пенка очищающая с алоэ <br>
+													и масло макадамии NATURE 150 мл
+												</a>
+												<div class="product-item__brand">
+													<span>Бренд: </span><a href="#">PURE GREEN</a>
+												</div>
+											</div>
+
+											<div class="product-item__price">
+												<span class="product-item__price-new">2950 ₽</span>
+												<span class="product-item__price-old">2150 ₽</span>
+												<div class="product-item__discount">-1100₽</div>
+											</div>
+										</div>
+										<div class="product-item__info-buttons">
+											<button type="button" class="product-item__buy btn-purple">В корзину</button>
+											<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
+												</svg>
+											</button>
+										</div>
+									</div>
+								</div>
+							</article>
+							<article class="products-collection__item product-item">
+								<div class="product-item__body">
+									<div class="product-item__top">
+										<button type="button" class="product-item__favorite-add favorite-add">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
+											</svg>
+										</button>
+										<div class="product-item__labels">
+											<div class="product-item__label hit">ХИТ</div>
+										</div>
+										<a href="#" class="product-item__image">
+											<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
+											и масло макадамии NATURE 150 мл">
+										</a>
+									</div>
+									<div class="product-item__info">
+										<div class="product-item__info-wrap">
+											<div class="product-item__info-top">
+												<div class="product-item__vendor-code">Арт: KT009BU</div>
+												<div class="product-item__rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<a href="#" class="product-item__review-link">
+													<svg>
+														<use xlink:href="img/icons/icons.svg#svg-review"></use>
+													</svg>
+													<span>1352</span>
+												</a>
+											</div>
+											<div class="product-item__description">
+												<a href="#" class="product-item__name">
+													Пенка очищающая с алоэ <br>
+													и масло макадамии NATURE 150 мл
+												</a>
+												<div class="product-item__brand">
+													<span>Бренд: </span><a href="#">PURE GREEN</a>
+												</div>
+											</div>
+
+											<div class="product-item__price">
+												<span class="product-item__price-new">2950 ₽</span>
+												<span class="product-item__price-old">2150 ₽</span>
+												<div class="product-item__discount">-1100₽</div>
+											</div>
+										</div>
+										<div class="product-item__info-buttons">
+											<button type="button" class="product-item__buy btn-purple">В корзину</button>
+											<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
+												</svg>
+											</button>
+										</div>
+									</div>
+								</div>
+							</article>
+							<article class="products-collection__item product-item">
+								<div class="product-item__body">
+									<div class="product-item__top">
+										<button type="button" class="product-item__favorite-add favorite-add">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
+											</svg>
+										</button>
+										<div class="product-item__labels">
+											<div class="product-item__label new">Новинка</div>
+											<div class="product-item__label hit">ХИТ</div>
+											<div class="product-item__label sale">Акция</div>
+										</div>
+										<a href="#" class="product-item__image">
+											<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
+											и масло макадамии NATURE 150 мл">
+										</a>
+									</div>
+									<div class="product-item__info">
+										<div class="product-item__info-wrap">
+											<div class="product-item__info-top">
+												<div class="product-item__vendor-code">Арт: KT009BU</div>
+												<div class="product-item__rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<a href="#" class="product-item__review-link">
+													<svg>
+														<use xlink:href="img/icons/icons.svg#svg-review"></use>
+													</svg>
+													<span>1352</span>
+												</a>
+											</div>
+											<div class="product-item__description">
+												<a href="#" class="product-item__name">
+													Пенка очищающая с алоэ <br>
+													и масло макадамии NATURE 150 мл
+												</a>
+												<div class="product-item__brand">
+													<span>Бренд: </span><a href="#">PURE GREEN</a>
+												</div>
+											</div>
+
+											<div class="product-item__price">
+												<span class="product-item__price-new">2950 ₽</span>
+												<span class="product-item__price-old">2150 ₽</span>
+												<div class="product-item__discount">-1100₽</div>
+											</div>
+										</div>
+										<div class="product-item__info-buttons">
+											<button type="button" class="product-item__buy btn-purple">В корзину</button>
+											<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
+												</svg>
+											</button>
+										</div>
+									</div>
+								</div>
+							</article>
+							<article class="products-collection__item product-item">
+								<div class="product-item__body">
+									<div class="product-item__top">
+										<button type="button" class="product-item__favorite-add favorite-add">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
+											</svg>
+										</button>
+										<div class="product-item__labels">
+											<div class="product-item__label hit">ХИТ</div>
+										</div>
+										<a href="#" class="product-item__image">
+											<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
+											и масло макадамии NATURE 150 мл">
+										</a>
+									</div>
+									<div class="product-item__info">
+										<div class="product-item__info-wrap">
+											<div class="product-item__info-top">
+												<div class="product-item__vendor-code">Арт: KT009BU</div>
+												<div class="product-item__rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<a href="#" class="product-item__review-link">
+													<svg>
+														<use xlink:href="img/icons/icons.svg#svg-review"></use>
+													</svg>
+													<span>1352</span>
+												</a>
+											</div>
+											<div class="product-item__description">
+												<a href="#" class="product-item__name">
+													Пенка очищающая с алоэ <br>
+													и масло макадамии NATURE 150 мл
+												</a>
+												<div class="product-item__brand">
+													<span>Бренд: </span><a href="#">PURE GREEN</a>
+												</div>
+											</div>
+
+											<div class="product-item__price">
+												<span class="product-item__price-new">2950 ₽</span>
+												<span class="product-item__price-old">2150 ₽</span>
+												<div class="product-item__discount">-1100₽</div>
+											</div>
+										</div>
+										<div class="product-item__info-buttons">
+											<button type="button" class="product-item__buy btn-purple">В корзину</button>
+											<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
+												</svg>
+											</button>
+										</div>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+				</section>
+				<!-- like-products end -->
+
+				<section class="text-block">
+					<div class="text-block__container">
+						<div class="text-block__title section-title">
+							<h2>Заголовок</h2>
+						</div>
+						<div class="text-block__body">
+							<div class="text-block__col">
+								<p>In nulla posuere sollicitudin aliquam ultrices sagittis orci a. Cursus eget nunc scelerisque viverra mauris in. Habitant morbi tristique senectus et
+									netus et malesuada fames ac. A condimentum vitae sapien pellentesque habitant. Velit euismod in pellentesque massa placerat duis ultricies lacus. Ornare
+									suspendisse sed nisi lacus sed viverra tellus in hac. Laoreet non curabitur gravida arcu ac tortor dignissim convallis. Volutpat maecenas volutpat
+									blandit aliquam etiam erat velit scelerisque in. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. At lectus urna duis convallis
+									convallis tellus. Vel risus commodo viverra maecenas accumsan lacus vel. Adipiscing bibendum est ultricies integer quis auctor elit sed. Tempor orci
+									dapibus ultrices in iaculis nunc. Sem fringilla ut morbi tincidunt augue interdum velit euismod in.</p>
+							</div>
+							<div class="text-block__col">
+								<p>Cursus eget nunc scelerisque viverra mauris in. Nulla facilisi etiam dignissim diam. Iaculis at erat pellentesque adipiscing commodo elit. Lectus magna
+									fringilla urna porttitor rhoncus. Nunc sed velit dignissim sodales ut eu sem integer vitae. Imperdiet proin fermentum leo vel orci porta. Est ullamcorper
+									eget nulla facilisi etiam dignissim diam. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Dignissim sodales ut eu sem integer
+									vitae justo eget magna. Facilisis leo vel fringilla est ullamcorper. Viverra vitae congue eu consequat ac felis donec et odio. Quisque non tellus orci ac
+									auctor augue mauris augue neque.</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+			</div>
+			<footer class="footer" data-bg-set="url('img/green-bg.png') 1x, url('img/green-bg@2x.png') 2x">
+				<div class="footer__container">
+					<div class="footer__body">
+						<div class="footer__menu">
+							<div class="footer__menu-title">Каталог</div>
+							<ul class="footer__menu-list">
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Бальзамы </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Капсулы</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Концентраты</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Кремы для лица</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Лосьоны</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Маски</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Молочко</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Муссы </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Очищающие гели для лица </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Патчи </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Сыворотки</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Тоники для лица </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Эксфолианты</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Бальзамы </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Капсулы</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Концентраты</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Кремы для лица</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Лосьоны</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Маски</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Молочко</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Муссы </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Очищающие гели для лица </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Патчи </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Сыворотки</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Тоники для лица </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Эксфолианты</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Бальзамы </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Капсулы</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Концентраты</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Кремы для лица</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Лосьоны</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Маски</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Молочко</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Муссы </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Очищающие гели для лица </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Патчи </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Сыворотки</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Тоники для лица </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Эксфолианты</a></li>
+							</ul>
+						</div>
+						<div class="footer__menu">
+							<div class="footer__menu-title">О компании</div>
+							<ul class="footer__menu-list">
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">О нас </a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Обучение</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Доставка</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Оплата</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Гарантия</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Отзывы</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Реквизиты</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Вакансии</a></li>
+							</ul>
+						</div>
+						<div class="footer__menu">
+							<div class="footer__menu-title">Интересное</div>
+							<ul class="footer__menu-list">
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Новости</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Статьи</a></li>
+								<li class="footer__menu-item"><a href="#" class="footer__menu-link">Вопрос-Ответ</a></li>
+							</ul>
+							<div class="footer__socials">
+								<a href="#" class="footer__socials-link socials-item">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-telegram"></use>
+									</svg>
+								</a>
+								<a href="#" class="footer__socials-link socials-item">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-vk"></use>
+									</svg>
+								</a>
+								<a href="#" class="footer__socials-link socials-item">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-youtube"></use>
+									</svg>
+								</a>
+								<a href="#" class="footer__socials-link socials-item">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-insta"></use>
+									</svg>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="footer__bot">
+						<div class="footer__copy">© 2022. Все права защищены. </div>
+						<div class="footer__spec-links">
+							<a href="#">Карта сайта</a>
+							<a href="#">Публичная оферта</a>
+						</div>
+						<a href="#" class="footer__dev">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-dev"></use>
+							</svg>
+						</a>
+					</div>
+					<div class="footer__cookies cookies">
+						<div class="cookies__container">
+							<div class="cookies__body">
+								<p>Мы используем файлы cookie. Пользуясь настоящим веб-сайтом, Вы даете свое согласие на использование файлов cookies. Узнать подробнее</p>
+								<button type="button" class="cookies__button">ок</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</main>
+	</div>
+	<!-- popup call -->
+	<div id="popup-call" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__body">
+					<div class="popup__title">Заполните форму <br> и мы Вам перезвоним</div>
+					<form action="" data-dev class="popup__form form">
+						<div class="form__inputs">
+							<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="form__input input">
+							<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон" class="form__input input">
+						</div>
+						<button type="submit" class="form__button btn-purple">заказать звонок</button>
+						<div class="form__checkbox">
+							<input data-required id="call_1" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="call_1" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки “Заказать
+									звонок”</span></label>
+						</div>
+					</form>
+					<div class="popup__form-success">
+						<p>Наш менеджер свяжется с вами</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup call end -->
+
+	<!-- popup location -->
+	<div id="popup-location" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content city-popup">
+				<div class="city-popup__head">
+					<p>Ваш город: <span>Санкт-Петербург?</span></p>
+					<button data-close type="button" class="city-popup__button btn-purple-fill">Да</button>
+				</div>
+				<form action="" class="city-popup__form">
+					<input autocomplete="off" type="text" name="form[]" data-error="Ошибка" placeholder="Ваш город" class="city-popup__input">
+					<button class="city-popup__icon" type="submit">
+						<svg>
+							<use xlink:href="img/icons/icons.svg#svg-search"></use>
+						</svg>
+					</button>
+				</form>
+				<span>Поиск по адресу, назаванию или почтовому индексу</span>
+				<div class="city-popup__list">
+					<div class="city-popup__list-item"><a href="#">Москва </a></div>
+					<div class="city-popup__list-item current"><span>Санкт-Петербург</span></div>
+					<div class="city-popup__list-item"><a href="#">Дубай </a></div>
+					<div class="city-popup__list-item"><a href="#">Токио </a></div>
+					<div class="city-popup__list-item"><a href="#">Лондон</a></div>
+					<div class="city-popup__list-item"><a href="#">Рим</a></div>
+					<div class="city-popup__list-item"><a href="#">Москва </a></div>
+					<div class="city-popup__list-item"><a href="#">Санкт-Петербург</a></div>
+					<div class="city-popup__list-item"><a href="#">Дубай </a></div>
+					<div class="city-popup__list-item"><a href="#">Токио </a></div>
+					<div class="city-popup__list-item"><a href="#">Лондон</a></div>
+					<div class="city-popup__list-item"><a href="#">Рим</a></div>
+					<div class="city-popup__list-item"><a href="#">Москва </a></div>
+					<div class="city-popup__list-item"><a href="#">Санкт-Петербург</a></div>
+					<div class="city-popup__list-item"><a href="#">Дубай </a></div>
+					<div class="city-popup__list-item"><a href="#">Токио </a></div>
+					<div class="city-popup__list-item"><a href="#">Лондон</a></div>
+					<div class="city-popup__list-item"><a href="#">Рим</a></div>
+					<div class="city-popup__list-item"><a href="#">Москва </a></div>
+					<div class="city-popup__list-item"><a href="#">Санкт-Петербург</a></div>
+					<div class="city-popup__list-item"><a href="#">Дубай </a></div>
+					<div class="city-popup__list-item"><a href="#">Токио </a></div>
+					<div class="city-popup__list-item"><a href="#">Лондон</a></div>
+					<div class="city-popup__list-item"><a href="#">Рим</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup location end -->
+
+	<!-- popup one click -->
+	<div id="popup-one-click" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__body">
+					<div class="popup__title">Заполните форму <br> и мы Вам перезвоним</div>
+					<div class="popup__product-list">
+						<div class="popup__product-item">
+							<div class="popup__product-img">
+								<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+							</div>
+							<div class="popup__product-body">
+								<a href="#" class="popup__product-name">Пенка очищающая с алоэ и масло макадамии NATURE 150 мл</a>
+								<div class="popup__product-bot">
+									<div data-quantity class="popup__product-quantity quantity">
+										<button data-quantity-minus type="button" class="quantity__button quantity__button_minus"></button>
+										<div class="quantity__input">
+											<input readonly data-quantity-value autocomplete="off" type="text" name="form[]" value="1">
+										</div>
+										<button data-quantity-plus type="button" class="quantity__button quantity__button_plus"></button>
+									</div>
+									<div class="popup__product-price">2950 ₽</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<form action="" data-dev class="popup__form form">
+						<div class="form__inputs">
+							<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон" class="form__input input">
+						</div>
+						<button type="submit" class="form__button btn-purple">заказать звонок</button>
+						<div class="form__checkbox">
+							<input data-required id="one-click_1" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="one-click_1" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки “Заказать
+									звонок”</span></label>
+						</div>
+					</form>
+					<div class="popup__form-success">
+						<p>Наш менеджер свяжется с вами</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup one click end -->
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ&_v=20221028023634>&lang=ru_RU"></script>
+	<script src="js/app.min.js?_v=20221028023634"></script>
+</body>
+
+</html>
