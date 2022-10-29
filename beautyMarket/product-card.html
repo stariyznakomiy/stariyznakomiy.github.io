@@ -5,7 +5,7 @@
 	<title>Карточка товара</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.css?_v=20221028023634">
+	<link rel="stylesheet" href="css/style.css?_v=20221029033120">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -296,7 +296,7 @@
 					</svg>
 				</button>
 			</div>
-			<div class="page__wrap">
+			<div class="page__wrap" data-bg-set="url('img/green-bg.png') 1x, url('img/green-bg@2x.png') 2x">
 
 				<!-- breadcrumbs -->
 				<div class="breadcrumbs">
@@ -489,7 +489,7 @@
 										<div class="product-card__brand">
 											<img data-src="img/brands/6.png" data-srcset="img/brands/6@2x.png 2x" alt="">
 										</div>
-										<button type="button" class="product-card__ask">
+										<button data-popup="#popup-question" type="button" class="product-card__ask">
 											<svg>
 												<use xlink:href="img/icons/icons.svg#svg-question"></use>
 											</svg>
@@ -591,6 +591,31 @@
 									</div>
 								</div>
 								<div class="product-tabs__body">
+									<div class="product-tabs__application product-description">
+										<div class="product-description__col">
+											<p>In nulla posuere sollicitudin aliquam ultrices sagittis orci a. Cursus eget nunc scelerisque viverra mauris in. Habitant morbi tristique
+												senectus
+												et netus et malesuada fames ac. A condimentum vitae sapien pellentesque habitant. Velit euismod in pellentesque massa placerat duis ultricies
+												lacus. Ornare suspendisse sed nisi lacus sed viverra tellus in hac. Laoreet non curabitur gravida arcu ac tortor dignissim convallis. Volutpat
+												maecenas volutpat blandit aliquam etiam erat velit scelerisque in. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. At
+												lectus
+												urna duis convallis convallis tellus. Vel risus commodo viverra maecenas accumsan lacus vel. Adipiscing bibendum est ultricies integer quis
+												auctor
+												elit sed. Tempor orci dapibus ultrices in iaculis nunc. Sem fringilla ut morbi tincidunt augue interdum velit euismod in.</p>
+											<img data-src="img/product-description/1.png" data-srcset="img/product-description/1@2x.png 2x" alt="">
+										</div>
+										<div class="product-description__col">
+											<img data-src="img/product-description/2.png" data-srcset="img/product-description/2@2x.png 2x" alt="">
+											<p>Cursus eget nunc scelerisque viverra mauris in. Nulla facilisi etiam dignissim diam. Iaculis at erat pellentesque adipiscing commodo elit.
+												Lectus
+												magna fringilla urna porttitor rhoncus. Nunc sed velit dignissim sodales ut eu sem integer vitae. Imperdiet proin fermentum leo vel orci porta.
+												Est
+												ullamcorper eget nulla facilisi etiam dignissim diam. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Dignissim
+												sodales
+												ut eu sem integer vitae justo eget magna. Facilisis leo vel fringilla est ullamcorper. Viverra vitae congue eu consequat ac felis donec et odio.
+												Quisque non tellus orci ac auctor augue mauris augue neque.</p>
+										</div>
+									</div>
 								</div>
 								<div class="product-tabs__body">
 									<div class="product-tabs__reviews main-reviews__body">
@@ -756,8 +781,64 @@
 									</div>
 								</div>
 								<div class="product-tabs__body">
+									<div class="product-tabs__delivery">
+										<div class="text-block__body">
+											<div class="text-block__col">
+												<p>In nulla posuere sollicitudin aliquam ultrices sagittis orci a. Cursus eget nunc scelerisque viverra mauris in. Habitant morbi tristique
+													senectus et
+													netus et malesuada fames ac. A condimentum vitae sapien pellentesque habitant. Velit euismod in pellentesque massa placerat duis ultricies
+													lacus. Ornare
+													suspendisse sed nisi lacus sed viverra tellus in hac. Laoreet non curabitur gravida arcu ac tortor dignissim convallis. Volutpat maecenas
+													volutpat
+													blandit aliquam etiam erat velit scelerisque in. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. At lectus urna duis
+													convallis
+													convallis tellus. Vel risus commodo viverra maecenas accumsan lacus vel. Adipiscing bibendum est ultricies integer quis auctor elit sed.
+													Tempor orci
+													dapibus ultrices in iaculis nunc. Sem fringilla ut morbi tincidunt augue interdum velit euismod in.</p>
+											</div>
+											<div class="text-block__col">
+												<p>Cursus eget nunc scelerisque viverra mauris in. Nulla facilisi etiam dignissim diam. Iaculis at erat pellentesque adipiscing commodo elit.
+													Lectus magna
+													fringilla urna porttitor rhoncus. Nunc sed velit dignissim sodales ut eu sem integer vitae. Imperdiet proin fermentum leo vel orci porta. Est
+													ullamcorper
+													eget nulla facilisi etiam dignissim diam. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Dignissim sodales ut eu
+													sem integer
+													vitae justo eget magna. Facilisis leo vel fringilla est ullamcorper. Viverra vitae congue eu consequat ac felis donec et odio. Quisque non
+													tellus orci ac
+													auctor augue mauris augue neque.</p>
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="product-tabs__body">
+									<div class="product-tabs__payment">
+										<div class="text-block__body">
+											<div class="text-block__col">
+												<p>In nulla posuere sollicitudin aliquam ultrices sagittis orci a. Cursus eget nunc scelerisque viverra mauris in. Habitant morbi tristique
+													senectus et
+													netus et malesuada fames ac. A condimentum vitae sapien pellentesque habitant. Velit euismod in pellentesque massa placerat duis ultricies
+													lacus. Ornare
+													suspendisse sed nisi lacus sed viverra tellus in hac. Laoreet non curabitur gravida arcu ac tortor dignissim convallis. Volutpat maecenas
+													volutpat
+													blandit aliquam etiam erat velit scelerisque in. Quis ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. At lectus urna duis
+													convallis
+													convallis tellus. Vel risus commodo viverra maecenas accumsan lacus vel. Adipiscing bibendum est ultricies integer quis auctor elit sed.
+													Tempor orci
+													dapibus ultrices in iaculis nunc. Sem fringilla ut morbi tincidunt augue interdum velit euismod in.</p>
+											</div>
+											<div class="text-block__col">
+												<p>Cursus eget nunc scelerisque viverra mauris in. Nulla facilisi etiam dignissim diam. Iaculis at erat pellentesque adipiscing commodo elit.
+													Lectus magna
+													fringilla urna porttitor rhoncus. Nunc sed velit dignissim sodales ut eu sem integer vitae. Imperdiet proin fermentum leo vel orci porta. Est
+													ullamcorper
+													eget nulla facilisi etiam dignissim diam. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Dignissim sodales ut eu
+													sem integer
+													vitae justo eget magna. Facilisis leo vel fringilla est ullamcorper. Viverra vitae congue eu consequat ac felis donec et odio. Quisque non
+													tellus orci ac
+													auctor augue mauris augue neque.</p>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -1263,10 +1344,12 @@
 						</a>
 					</div>
 					<div class="footer__cookies cookies">
-						<div class="cookies__container">
-							<div class="cookies__body">
-								<p>Мы используем файлы cookie. Пользуясь настоящим веб-сайтом, Вы даете свое согласие на использование файлов cookies. Узнать подробнее</p>
-								<button type="button" class="cookies__button">ок</button>
+						<div class="cookies__wrap">
+							<div class="cookies__container">
+								<div class="cookies__body">
+									<p>Мы используем файлы cookie. Пользуясь настоящим веб-сайтом, Вы даете свое согласие на использование файлов cookies. <a href="#">Узнать подробнее</a> </p>
+									<button type="button" class="cookies__button">ок</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -1287,8 +1370,12 @@
 					<div class="popup__title">Заполните форму <br> и мы Вам перезвоним</div>
 					<form action="" data-dev class="popup__form form">
 						<div class="form__inputs">
-							<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="form__input input">
-							<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон" class="form__input input">
+							<div class="form__input-wrap">
+								<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="form__input input">
+							</div>
+							<div class="form__input-wrap">
+								<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон" class="form__input input">
+							</div>
 						</div>
 						<button type="submit" class="form__button btn-purple">заказать звонок</button>
 						<div class="form__checkbox">
@@ -1305,6 +1392,42 @@
 		</div>
 	</div>
 	<!-- popup call end -->
+
+	<!-- popup question -->
+	<div id="popup-question" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__body">
+					<div class="popup__title">Заполните форму <br> и мы Вам перезвоним</div>
+					<form action="" data-dev class="popup__form form">
+						<div class="form__inputs">
+							<div class="form__input-wrap">
+								<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="form__input input">
+							</div>
+							<div class="form__input-wrap">
+								<textarea placeholder="Ваш отзыв" class="input"></textarea>
+							</div>
+						</div>
+						<button type="submit" class="form__button btn-purple">задать вопрос</button>
+						<div class="form__checkbox">
+							<input data-required id="call_1" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="call_1" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки “Задать
+									вопрос”</span></label>
+						</div>
+					</form>
+					<div class="popup__form-success">
+						<p>Наш менеджер свяжется с вами</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup question end -->
 
 	<!-- popup location -->
 	<div id="popup-location" aria-hidden="true" class="popup">
@@ -1387,7 +1510,9 @@
 					</div>
 					<form action="" data-dev class="popup__form form">
 						<div class="form__inputs">
-							<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон" class="form__input input">
+							<div class="form__input-wrap">
+								<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон" class="form__input input">
+							</div>
 						</div>
 						<button type="submit" class="form__button btn-purple">заказать звонок</button>
 						<div class="form__checkbox">
@@ -1404,8 +1529,8 @@
 		</div>
 	</div>
 	<!-- popup one click end -->
-	<script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ&_v=20221028023634>&lang=ru_RU"></script>
-	<script src="js/app.min.js?_v=20221028023634"></script>
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ&_v=20221029033120>&lang=ru_RU"></script>
+	<script src="js/app.min.js?_v=20221029033120"></script>
 </body>
 
 </html>

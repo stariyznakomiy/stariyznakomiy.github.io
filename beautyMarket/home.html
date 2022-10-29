@@ -5,7 +5,7 @@
 	<title>Главная</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.css?_v=20221028023634">
+	<link rel="stylesheet" href="css/style.css?_v=20221029033120">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -296,9 +296,9 @@
 					</svg>
 				</button>
 			</div>
-			<div class="page__wrap">
+			<div class="page__wrap" data-bg-set="url('img/green-bg.png') 1x, url('img/green-bg@2x.png') 2x">
 				<!-- main slider -->
-				<section class="main-slider" data-bg-set="url('img/green-bg.png') 1x, url('img/green-bg@2x.png') 2x">
+				<section class="main-slider">
 					<div class="main-slider__container swiper">
 						<div class="main-slider__wrapper swiper-wrapper">
 							<div class="main-slider__slide swiper-slide">
@@ -1752,20 +1752,20 @@
 					<div class="promotions__container">
 						<div class="promotions__body">
 							<div class="promotions__item">
-								<div class="promotions__item-bg" data-bg-set="url('img/promotions/bg-1.png') 1x, url('img/promotions/bg-1@2x.png') 2x"></div>
+								<div class="promotions__img">
+									<img data-src="img/promotions/bg-11.png" data-srcset="img/promotions/bg-11@2x.png 2x" alt="">
+								</div>
 								<div class="promotions__item-info info-promotion">
 									<div class="info-promotion__title">NERRO HC</div>
 									<div class="info-promotion__descr">Гиалуроновая кислота 0,8%
 										(8 мг/ 1мл) M.W. 3100 кДа</div>
 									<div class="info-promotion__price">0 000 ₽</div>
 								</div>
-								<div class="promotions__item-img">
-
-									<img data-src="img/promotions/1.png" data-srcset="img/promotions/1@2x.png 2x" alt="">
-								</div>
 							</div>
 							<div class="promotions__item">
-								<div class="promotions__item-bg" data-bg-set="url('img/promotions/bg-2.png') 1x, url('img/promotions/bg-2@2x.png') 2x"></div>
+								<div class="promotions__img">
+									<img data-src="img/promotions/bg-22.png" data-srcset="img/promotions/bg-22@2x.png 2x" alt="">
+								</div>
 								<div class="promotions__item-info info-promotion">
 									<div class="info-promotion__title">БИО КРЕМ</div>
 									<div class="info-promotion__subtitle">ALPINE ORGANICS 50 МЛ</div>
@@ -1774,11 +1774,11 @@
 										КОСТОЧКИ</div>
 									<div class="info-promotion__price">1 680 ₽</div>
 								</div>
-								<div class="promotions__item-img">
-									<img data-src="img/promotions/2.png" data-srcset="img/promotions/2@2x.png 2x" alt="">
-								</div>
 							</div>
 							<div class="promotions__item">
+								<div class="promotions__img">
+									<img data-src="img/promotions/bg-33.png" data-srcset="img/promotions/bg-33@2x.png 2x" alt="">
+								</div>
 								<div class="promotions__item-info info-promotion">
 									<div class="info-promotion__title">АЛЬГИНАТНАЯ
 										МАСКА</div>
@@ -1787,11 +1787,11 @@
 										КОЖИ /ANTI COUPEROSE MASK</div>
 									<div class="info-promotion__price">1 680 ₽</div>
 								</div>
-								<div class="promotions__item-img">
-									<img data-src="img/promotions/3.png" data-srcset="img/promotions/3@2x.png 2x" alt="">
-								</div>
 							</div>
 							<div class="promotions__item">
+								<div class="promotions__img">
+									<img data-src="img/promotions/bg-44.png" data-srcset="img/promotions/bg-44@2x.png 2x" alt="">
+								</div>
 								<div class="promotions__item-info info-promotion">
 									<div class="info-promotion__title">АМПУЛЬНЫЙ
 										КОНЦЕНТРАТ</div>
@@ -1799,9 +1799,6 @@
 									<div class="info-promotion__descr">С ЭФФЕКТОМ СИЯНИЯ
 										“ПОЛЕТ ЗВЕЗДЫ”</div>
 									<div class="info-promotion__price">1 680 ₽</div>
-								</div>
-								<div class="promotions__item-img">
-									<img data-src="img/promotions/4.png" data-srcset="img/promotions/4@2x.png 2x" alt="">
 								</div>
 							</div>
 						</div>
@@ -1961,7 +1958,9 @@
 							</div>
 							<div class="has-question__form">
 								<form data-dev action="" class="form">
-									<input data-required autocomplete="off" type="email" name="form[]" data-error="" placeholder="Email" class="form__input input">
+									<div class="form__input-wrap">
+										<input data-required autocomplete="off" type="email" name="form[]" data-error="" placeholder="Email" class="form__input input">
+									</div>
 									<button type="submit" class="form__button btn-purple-fill">Отправить</button>
 									<p class="form__agree-text">Нажимая «Подписаться», я соглашаюсь c обработкой персональных данных на условиях <a href="@">Политики конфиденциальности.</a>
 									</p>
@@ -2120,10 +2119,12 @@
 						</a>
 					</div>
 					<div class="footer__cookies cookies">
-						<div class="cookies__container">
-							<div class="cookies__body">
-								<p>Мы используем файлы cookie. Пользуясь настоящим веб-сайтом, Вы даете свое согласие на использование файлов cookies. Узнать подробнее</p>
-								<button type="button" class="cookies__button">ок</button>
+						<div class="cookies__wrap">
+							<div class="cookies__container">
+								<div class="cookies__body">
+									<p>Мы используем файлы cookie. Пользуясь настоящим веб-сайтом, Вы даете свое согласие на использование файлов cookies. <a href="#">Узнать подробнее</a> </p>
+									<button type="button" class="cookies__button">ок</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -2144,8 +2145,12 @@
 					<div class="popup__title">Заполните форму <br> и мы Вам перезвоним</div>
 					<form action="" data-dev class="popup__form form">
 						<div class="form__inputs">
-							<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="form__input input">
-							<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон" class="form__input input">
+							<div class="form__input-wrap">
+								<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="form__input input">
+							</div>
+							<div class="form__input-wrap">
+								<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон" class="form__input input">
+							</div>
 						</div>
 						<button type="submit" class="form__button btn-purple">заказать звонок</button>
 						<div class="form__checkbox">
@@ -2162,6 +2167,42 @@
 		</div>
 	</div>
 	<!-- popup call end -->
+
+	<!-- popup question -->
+	<div id="popup-question" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__body">
+					<div class="popup__title">Заполните форму <br> и мы Вам перезвоним</div>
+					<form action="" data-dev class="popup__form form">
+						<div class="form__inputs">
+							<div class="form__input-wrap">
+								<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="form__input input">
+							</div>
+							<div class="form__input-wrap">
+								<textarea placeholder="Ваш отзыв" class="input"></textarea>
+							</div>
+						</div>
+						<button type="submit" class="form__button btn-purple">задать вопрос</button>
+						<div class="form__checkbox">
+							<input data-required id="call_1" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="call_1" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки “Задать
+									вопрос”</span></label>
+						</div>
+					</form>
+					<div class="popup__form-success">
+						<p>Наш менеджер свяжется с вами</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup question end -->
 
 	<!-- popup location -->
 	<div id="popup-location" aria-hidden="true" class="popup">
@@ -2244,7 +2285,9 @@
 					</div>
 					<form action="" data-dev class="popup__form form">
 						<div class="form__inputs">
-							<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон" class="form__input input">
+							<div class="form__input-wrap">
+								<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон" class="form__input input">
+							</div>
 						</div>
 						<button type="submit" class="form__button btn-purple">заказать звонок</button>
 						<div class="form__checkbox">
@@ -2261,8 +2304,8 @@
 		</div>
 	</div>
 	<!-- popup one click end -->
-	<script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ&_v=20221028023634>&lang=ru_RU"></script>
-	<script src="js/app.min.js?_v=20221028023634"></script>
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ&_v=20221029033120>&lang=ru_RU"></script>
+	<script src="js/app.min.js?_v=20221029033120"></script>
 </body>
 
 </html>

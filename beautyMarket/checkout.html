@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-	<title>Поиск</title>
+	<title>Оформление заказа</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="css/style.css?_v=20221029033120">
@@ -296,7 +296,7 @@
 					</svg>
 				</button>
 			</div>
-			<div class="page__wrap">
+			<div class="page__wrap" data-bg-set="url('img/green-bg.png') 1x, url('img/green-bg@2x.png') 2x">
 
 				<!-- breadcrumbs -->
 				<div class="breadcrumbs">
@@ -310,772 +310,541 @@
 									</svg>
 								</a>
 							</li>
-							<li class="breadcrumbs__item"><span>Поиск</span></li>
+							<li class="breadcrumbs__item"><span>Оформление заказа</span></li>
 						</ul>
 					</div>
 				</div>
 				<!-- breadcrumbs end -->
 
-				<!-- page-search -->
-				<section class="page-search">
-					<div class="page-search__container">
-						<div class="page-search__title section-title">
-							<h1>Поиск</h1>
+				<!-- checkout -->
+				<section class="checkout">
+					<div class="checkout__container">
+						<div class="checkout__title section-title">
+							<h1>Оформление заказа</h1>
 						</div>
-						<div class="page-search__body">
-							<div class="page-search__results">
-								<span>Результат поиска по “уход”</span>
-								<span>Найдено 237</span>
-							</div>
-							<div class="products-collection__items">
-								<article class="products-collection__item product-item">
-									<div class="product-item__body">
-										<div class="product-item__top">
-											<button type="button" class="product-item__favorite-add favorite-add">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
-												</svg>
-											</button>
-											<div class="product-item__labels">
-												<div class="product-item__label new">Новинка</div>
-												<div class="product-item__label hit">ХИТ</div>
-												<div class="product-item__label sale">Акция</div>
+						<div class="checkout__body">
+							<form action="" class="checkout__form form">
+								<div class="form__body">
+									<div class="form__group">
+										<div class="form__title">Информация о покупателе</div>
+										<div class="form__inputs">
+											<div class="form__input-wrap">
+												<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="" class="form__input input">
+												<div class="form__input-label">Фамилия Имя Отчество</div>
 											</div>
-											<a href="#" class="product-item__image">
-												<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
-												и масло макадамии NATURE 150 мл">
-											</a>
-										</div>
-										<div class="product-item__info">
-											<div class="product-item__info-wrap">
-												<div class="product-item__info-top">
-													<div class="product-item__vendor-code">Арт: KT009BU</div>
-													<div class="product-item__rating rating">
-														<fieldset class="rating__row">
-															<input type="radio" value="5" disabled="">
-															<label title="Прекрасно - 5 звезд">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" checked="" value="4" disabled="">
-															<label title="Хорошо - 4 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="3" disabled="">
-															<label title="Так себе - 3 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="2" disabled="">
-															<label title="Плохо - 2 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="1" disabled="">
-															<label title="Ужасно - 1 звезда">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-														</fieldset>
-													</div>
-													<a href="#" class="product-item__review-link">
-														<svg>
-															<use xlink:href="img/icons/icons.svg#svg-review"></use>
-														</svg>
-														<span>1352</span>
-													</a>
-												</div>
-												<div class="product-item__description">
-													<a href="#" class="product-item__name">
-														Пенка очищающая с алоэ <br>
-														и масло макадамии NATURE 150 мл
-													</a>
-													<div class="product-item__brand">
-														<span>Бренд: </span><a href="#">PURE GREEN</a>
-													</div>
-												</div>
-
-												<div class="product-item__price">
-													<span class="product-item__price-new">2950 ₽</span>
-													<span class="product-item__price-old">2150 ₽</span>
-													<div class="product-item__discount">-1100₽</div>
-												</div>
+											<div class="form__input-wrap">
+												<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="" class="form__input input">
+												<div class="form__input-label">Введите мобильный номер телефона*</div>
 											</div>
-											<div class="product-item__info-buttons">
-												<button type="button" class="product-item__buy btn-purple">В корзину</button>
-												<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
-													<svg>
-														<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
-													</svg>
-												</button>
+											<div class="form__input-wrap">
+												<input data-required="email" autocomplete="off" type="email" name="form[]" data-error="" placeholder="" class="form__input input">
+												<div class="form__input-label">Введите адрес эл. почты для получения чека и уведомлений</div>
 											</div>
 										</div>
 									</div>
-								</article>
-								<article class="products-collection__item product-item">
-									<div class="product-item__body">
-										<div class="product-item__top">
-											<button type="button" class="product-item__favorite-add favorite-add">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
-												</svg>
-											</button>
-											<div class="product-item__labels">
-												<div class="product-item__label hit">ХИТ</div>
-											</div>
-											<a href="#" class="product-item__image">
-												<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
-												и масло макадамии NATURE 150 мл">
-											</a>
-										</div>
-										<div class="product-item__info">
-											<div class="product-item__info-wrap">
-												<div class="product-item__info-top">
-													<div class="product-item__vendor-code">Арт: KT009BU</div>
-													<div class="product-item__rating rating">
-														<fieldset class="rating__row">
-															<input type="radio" value="5" disabled="">
-															<label title="Прекрасно - 5 звезд">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" checked="" value="4" disabled="">
-															<label title="Хорошо - 4 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="3" disabled="">
-															<label title="Так себе - 3 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="2" disabled="">
-															<label title="Плохо - 2 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="1" disabled="">
-															<label title="Ужасно - 1 звезда">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-														</fieldset>
-													</div>
-													<a href="#" class="product-item__review-link">
-														<svg>
-															<use xlink:href="img/icons/icons.svg#svg-review"></use>
-														</svg>
-														<span>1352</span>
-													</a>
-												</div>
-												<div class="product-item__description">
-													<a href="#" class="product-item__name">
-														Пенка очищающая с алоэ <br>
-														и масло макадамии NATURE 150 мл
-													</a>
-													<div class="product-item__brand">
-														<span>Бренд: </span><a href="#">PURE GREEN</a>
-													</div>
-												</div>
-
-												<div class="product-item__price">
-													<span class="product-item__price-new">2950 ₽</span>
-													<span class="product-item__price-old">2150 ₽</span>
-													<div class="product-item__discount">-1100₽</div>
-												</div>
-											</div>
-											<div class="product-item__info-buttons">
-												<button type="button" class="product-item__buy btn-purple">В корзину</button>
-												<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
-													<svg>
-														<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
+									<div class="form__group">
+										<div class="form__title">Доставка</div>
+										<div class="form__text">Выберите область/регион для вычисления стоимости доставки</div>
+										<select data-class-modif="_form" name="form[]" class="form">
+											<option value="1" selected>Москва</option>
+											<option value="2">Санкт-Петербург</option>
+											<option value="3">Пушкин</option>
+											<option value="4">Петергоф</option>
+											<option value="5">Красное село</option>
+											<option value="6">Ломоносов</option>
+											<option value="7">Крондштат</option>
+											<option value="8">Сестрорецк</option>
+											<option value="9">Павловск</option>
+											<option value="10">Зеленогорск</option>
+										</select>
+										<div class="form__options form-options">
+											<div class="form-options__item">
+												<input hidden id="del_1" class="form-options__input" checked type="radio" value="1" name="checkout-delivery">
+												<label for="del_1" class="form-options__label">
+													<svg class="form-options__icon">
+														<use xlink:href="img/icons/icons.svg#svg-del-1"></use>
 													</svg>
-												</button>
+													<span class="form-options__text">Почтой России - 459 ₽</span>
+												</label>
+											</div>
+											<div class="form-options__item">
+												<input hidden id="del_2" class="form-options__input" type="radio" value="2" name="checkout-delivery">
+												<label for="del_2" class="form-options__label">
+													<svg class="form-options__icon">
+														<use xlink:href="img/icons/icons.svg#svg-del-2"></use>
+													</svg>
+													<span class="form-options__text">Курьер СДЭК - 849 ₽</span>
+												</label>
+											</div>
+											<div class="form-options__item">
+												<input hidden id="del_3" class="form-options__input" type="radio" value="3" name="checkout-delivery">
+												<label for="del_3" class="form-options__label">
+													<svg class="form-options__icon">
+														<use xlink:href="img/icons/icons.svg#svg-del-3"></use>
+													</svg>
+													<span class="form-options__text">Курьером
+														Почты России (EMS) - 349 ₽</span>
+												</label>
+											</div>
+											<div class="form-options__item">
+												<input hidden id="del_4" class="form-options__input" type="radio" value="4" name="checkout-delivery">
+												<label for="del_4" class="form-options__label">
+													<svg class="form-options__icon">
+														<use xlink:href="img/icons/icons.svg#svg-del-4"></use>
+													</svg>
+													<span class="form-options__text">ПЭК - 1200 ₽</span>
+												</label>
+											</div>
+										</div>
+										<div class="form__subtitle">Укажите адрес доставки</div>
+										<div class="form__inputs">
+											<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="" class="form__input input">
+										</div>
+									</div>
+									<div class="form__group">
+										<div class="form__title">Оплата</div>
+										<div class="form__options form-options">
+											<div class="form-options__item">
+												<input hidden id="pay_1" class="form-options__input" checked type="radio" value="1" name="checkout-payment">
+												<label for="pay_1" class="form-options__label">
+													<svg class="form-options__icon">
+														<use xlink:href="img/icons/icons.svg#svg-pay-1"></use>
+													</svg>
+													<span class="form-options__text">Банковской картой онлайн</span>
+												</label>
+											</div>
+											<div class="form-options__item">
+												<input hidden id="pay_2" class="form-options__input" type="radio" value="2" name="checkout-payment">
+												<label for="pay_2" class="form-options__label">
+													<svg class="form-options__icon">
+														<use xlink:href="img/icons/icons.svg#svg-pay-1"></use>
+													</svg>
+													<span class="form-options__text">Картой при получении</span>
+												</label>
+											</div>
+											<div class="form-options__item">
+												<input hidden id="pay_3" class="form-options__input" type="radio" value="3" name="checkout-payment">
+												<label for="pay_3" class="form-options__label">
+													<svg class="form-options__icon">
+														<use xlink:href="img/icons/icons.svg#svg-pay-2"></use>
+													</svg>
+													<span class="form-options__text">Наличными</span>
+												</label>
+											</div>
+											<div class="form-options__item">
+												<input hidden id="pay_4" class="form-options__input" type="radio" value="4" name="checkout-payment">
+												<label for="pay_4" class="form-options__label">
+													<svg class="form-options__icon">
+														<use xlink:href="img/icons/icons.svg#svg-pay-3"></use>
+													</svg>
+													<span class="form-options__text">Оплата по реквизитам</span>
+												</label>
 											</div>
 										</div>
 									</div>
-								</article>
-								<article class="products-collection__item product-item">
-									<div class="product-item__body">
-										<div class="product-item__top">
-											<button type="button" class="product-item__favorite-add favorite-add">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
-												</svg>
-											</button>
-											<div class="product-item__labels">
-												<div class="product-item__label new">Новинка</div>
-												<div class="product-item__label hit">ХИТ</div>
-												<div class="product-item__label sale">Акция</div>
-											</div>
-											<a href="#" class="product-item__image">
-												<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
-												и масло макадамии NATURE 150 мл">
-											</a>
-										</div>
-										<div class="product-item__info">
-											<div class="product-item__info-wrap">
-												<div class="product-item__info-top">
-													<div class="product-item__vendor-code">Арт: KT009BU</div>
-													<div class="product-item__rating rating">
-														<fieldset class="rating__row">
-															<input type="radio" value="5" disabled="">
-															<label title="Прекрасно - 5 звезд">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" checked="" value="4" disabled="">
-															<label title="Хорошо - 4 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="3" disabled="">
-															<label title="Так себе - 3 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="2" disabled="">
-															<label title="Плохо - 2 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="1" disabled="">
-															<label title="Ужасно - 1 звезда">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-														</fieldset>
-													</div>
-													<a href="#" class="product-item__review-link">
-														<svg>
-															<use xlink:href="img/icons/icons.svg#svg-review"></use>
-														</svg>
-														<span>1352</span>
-													</a>
-												</div>
-												<div class="product-item__description">
-													<a href="#" class="product-item__name">
-														Пенка очищающая с алоэ <br>
-														и масло макадамии NATURE 150 мл
-													</a>
-													<div class="product-item__brand">
-														<span>Бренд: </span><a href="#">PURE GREEN</a>
-													</div>
-												</div>
-
-												<div class="product-item__price">
-													<span class="product-item__price-new">2950 ₽</span>
-													<span class="product-item__price-old">2150 ₽</span>
-													<div class="product-item__discount">-1100₽</div>
-												</div>
-											</div>
-											<div class="product-item__info-buttons">
-												<button type="button" class="product-item__buy btn-purple">В корзину</button>
-												<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
-													<svg>
-														<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
-													</svg>
-												</button>
-											</div>
+									<div class="form__group">
+										<div class="form__title">Комментарий к заказу</div>
+										<div class="form__inputs">
+											<textarea placeholder="Расскажите о пожеланиях к заказу или как улучшить работу сайта" class="form__textarea input"></textarea>
 										</div>
 									</div>
-								</article>
-								<article class="products-collection__item product-item">
-									<div class="product-item__body">
-										<div class="product-item__top">
-											<button type="button" class="product-item__favorite-add favorite-add">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
-												</svg>
-											</button>
-											<div class="product-item__labels">
-												<div class="product-item__label hit">ХИТ</div>
-											</div>
-											<a href="#" class="product-item__image">
-												<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
-												и масло макадамии NATURE 150 мл">
-											</a>
-										</div>
-										<div class="product-item__info">
-											<div class="product-item__info-wrap">
-												<div class="product-item__info-top">
-													<div class="product-item__vendor-code">Арт: KT009BU</div>
-													<div class="product-item__rating rating">
-														<fieldset class="rating__row">
-															<input type="radio" value="5" disabled="">
-															<label title="Прекрасно - 5 звезд">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" checked="" value="4" disabled="">
-															<label title="Хорошо - 4 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="3" disabled="">
-															<label title="Так себе - 3 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="2" disabled="">
-															<label title="Плохо - 2 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="1" disabled="">
-															<label title="Ужасно - 1 звезда">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-														</fieldset>
-													</div>
-													<a href="#" class="product-item__review-link">
-														<svg>
-															<use xlink:href="img/icons/icons.svg#svg-review"></use>
-														</svg>
-														<span>1352</span>
-													</a>
-												</div>
-												<div class="product-item__description">
-													<a href="#" class="product-item__name">
-														Пенка очищающая с алоэ <br>
-														и масло макадамии NATURE 150 мл
-													</a>
-													<div class="product-item__brand">
-														<span>Бренд: </span><a href="#">PURE GREEN</a>
-													</div>
-												</div>
-
-												<div class="product-item__price">
-													<span class="product-item__price-new">2950 ₽</span>
-													<span class="product-item__price-old">2150 ₽</span>
-													<div class="product-item__discount">-1100₽</div>
-												</div>
-											</div>
-											<div class="product-item__info-buttons">
-												<button type="button" class="product-item__buy btn-purple">В корзину</button>
-												<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
-													<svg>
-														<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
-													</svg>
-												</button>
-											</div>
+								</div>
+								<div class="form__total">
+									<div class="form__total-row">
+										<div class="form__total-label">Сумма товаров</div>
+										<div class="form__price">
+											<div class="form__price-old">1660 ₽</div>1660 ₽
 										</div>
 									</div>
-								</article>
-								<article class="products-collection__item product-item">
-									<div class="product-item__body">
-										<div class="product-item__top">
-											<button type="button" class="product-item__favorite-add favorite-add">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
-												</svg>
-											</button>
-											<div class="product-item__labels">
-												<div class="product-item__label new">Новинка</div>
-												<div class="product-item__label hit">ХИТ</div>
-												<div class="product-item__label sale">Акция</div>
-											</div>
-											<a href="#" class="product-item__image">
-												<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
-												и масло макадамии NATURE 150 мл">
-											</a>
-										</div>
-										<div class="product-item__info">
-											<div class="product-item__info-wrap">
-												<div class="product-item__info-top">
-													<div class="product-item__vendor-code">Арт: KT009BU</div>
-													<div class="product-item__rating rating">
-														<fieldset class="rating__row">
-															<input type="radio" value="5" disabled="">
-															<label title="Прекрасно - 5 звезд">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" checked="" value="4" disabled="">
-															<label title="Хорошо - 4 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="3" disabled="">
-															<label title="Так себе - 3 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="2" disabled="">
-															<label title="Плохо - 2 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="1" disabled="">
-															<label title="Ужасно - 1 звезда">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-														</fieldset>
-													</div>
-													<a href="#" class="product-item__review-link">
-														<svg>
-															<use xlink:href="img/icons/icons.svg#svg-review"></use>
-														</svg>
-														<span>1352</span>
-													</a>
-												</div>
-												<div class="product-item__description">
-													<a href="#" class="product-item__name">
-														Пенка очищающая с алоэ <br>
-														и масло макадамии NATURE 150 мл
-													</a>
-													<div class="product-item__brand">
-														<span>Бренд: </span><a href="#">PURE GREEN</a>
-													</div>
-												</div>
-
-												<div class="product-item__price">
-													<span class="product-item__price-new">2950 ₽</span>
-													<span class="product-item__price-old">2150 ₽</span>
-													<div class="product-item__discount">-1100₽</div>
-												</div>
-											</div>
-											<div class="product-item__info-buttons">
-												<button type="button" class="product-item__buy btn-purple">В корзину</button>
-												<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
-													<svg>
-														<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
-													</svg>
-												</button>
-											</div>
-										</div>
+									<div class="form__total-row">
+										<div class="form__total-label">Доставка</div>
+										<div class="form__price">+660 ₽</div>
 									</div>
-								</article>
-								<article class="products-collection__item product-item">
-									<div class="product-item__body">
-										<div class="product-item__top">
-											<button type="button" class="product-item__favorite-add favorite-add">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
-												</svg>
-											</button>
-											<div class="product-item__labels">
-												<div class="product-item__label hit">ХИТ</div>
-											</div>
-											<a href="#" class="product-item__image">
-												<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
-												и масло макадамии NATURE 150 мл">
-											</a>
-										</div>
-										<div class="product-item__info">
-											<div class="product-item__info-wrap">
-												<div class="product-item__info-top">
-													<div class="product-item__vendor-code">Арт: KT009BU</div>
-													<div class="product-item__rating rating">
-														<fieldset class="rating__row">
-															<input type="radio" value="5" disabled="">
-															<label title="Прекрасно - 5 звезд">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" checked="" value="4" disabled="">
-															<label title="Хорошо - 4 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="3" disabled="">
-															<label title="Так себе - 3 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="2" disabled="">
-															<label title="Плохо - 2 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="1" disabled="">
-															<label title="Ужасно - 1 звезда">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-														</fieldset>
-													</div>
-													<a href="#" class="product-item__review-link">
-														<svg>
-															<use xlink:href="img/icons/icons.svg#svg-review"></use>
-														</svg>
-														<span>1352</span>
-													</a>
-												</div>
-												<div class="product-item__description">
-													<a href="#" class="product-item__name">
-														Пенка очищающая с алоэ <br>
-														и масло макадамии NATURE 150 мл
-													</a>
-													<div class="product-item__brand">
-														<span>Бренд: </span><a href="#">PURE GREEN</a>
-													</div>
-												</div>
-
-												<div class="product-item__price">
-													<span class="product-item__price-new">2950 ₽</span>
-													<span class="product-item__price-old">2150 ₽</span>
-													<div class="product-item__discount">-1100₽</div>
-												</div>
-											</div>
-											<div class="product-item__info-buttons">
-												<button type="button" class="product-item__buy btn-purple">В корзину</button>
-												<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
-													<svg>
-														<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
-													</svg>
-												</button>
-											</div>
-										</div>
+									<div class="form__total-row">
+										<div class="form__total-label">Итоговая скидка</div>
+										<div class="form__price">-66 ₽</div>
 									</div>
-								</article>
-								<article class="products-collection__item product-item">
-									<div class="product-item__body">
-										<div class="product-item__top">
-											<button type="button" class="product-item__favorite-add favorite-add">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
-												</svg>
-											</button>
-											<div class="product-item__labels">
-												<div class="product-item__label new">Новинка</div>
-												<div class="product-item__label hit">ХИТ</div>
-												<div class="product-item__label sale">Акция</div>
-											</div>
-											<a href="#" class="product-item__image">
-												<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
-												и масло макадамии NATURE 150 мл">
-											</a>
-										</div>
-										<div class="product-item__info">
-											<div class="product-item__info-wrap">
-												<div class="product-item__info-top">
-													<div class="product-item__vendor-code">Арт: KT009BU</div>
-													<div class="product-item__rating rating">
-														<fieldset class="rating__row">
-															<input type="radio" value="5" disabled="">
-															<label title="Прекрасно - 5 звезд">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" checked="" value="4" disabled="">
-															<label title="Хорошо - 4 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="3" disabled="">
-															<label title="Так себе - 3 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="2" disabled="">
-															<label title="Плохо - 2 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="1" disabled="">
-															<label title="Ужасно - 1 звезда">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-														</fieldset>
-													</div>
-													<a href="#" class="product-item__review-link">
-														<svg>
-															<use xlink:href="img/icons/icons.svg#svg-review"></use>
-														</svg>
-														<span>1352</span>
-													</a>
-												</div>
-												<div class="product-item__description">
-													<a href="#" class="product-item__name">
-														Пенка очищающая с алоэ <br>
-														и масло макадамии NATURE 150 мл
-													</a>
-													<div class="product-item__brand">
-														<span>Бренд: </span><a href="#">PURE GREEN</a>
-													</div>
-												</div>
-
-												<div class="product-item__price">
-													<span class="product-item__price-new">2950 ₽</span>
-													<span class="product-item__price-old">2150 ₽</span>
-													<div class="product-item__discount">-1100₽</div>
-												</div>
-											</div>
-											<div class="product-item__info-buttons">
-												<button type="button" class="product-item__buy btn-purple">В корзину</button>
-												<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
-													<svg>
-														<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
-													</svg>
-												</button>
-											</div>
-										</div>
+									<div class="form__total-row">
+										<div class="form__total-label">ИТОГО</div>
+										<div class="form__price form__price-total">1660 ₽</div>
 									</div>
-								</article>
-								<article class="products-collection__item product-item">
-									<div class="product-item__body">
-										<div class="product-item__top">
-											<button type="button" class="product-item__favorite-add favorite-add">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
-												</svg>
-											</button>
-											<div class="product-item__labels">
-												<div class="product-item__label hit">ХИТ</div>
-											</div>
-											<a href="#" class="product-item__image">
-												<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
-												и масло макадамии NATURE 150 мл">
-											</a>
-										</div>
-										<div class="product-item__info">
-											<div class="product-item__info-wrap">
-												<div class="product-item__info-top">
-													<div class="product-item__vendor-code">Арт: KT009BU</div>
-													<div class="product-item__rating rating">
-														<fieldset class="rating__row">
-															<input type="radio" value="5" disabled="">
-															<label title="Прекрасно - 5 звезд">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" checked="" value="4" disabled="">
-															<label title="Хорошо - 4 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="3" disabled="">
-															<label title="Так себе - 3 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="2" disabled="">
-															<label title="Плохо - 2 звезды">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-															<input type="radio" value="1" disabled="">
-															<label title="Ужасно - 1 звезда">
-																<svg class="icon">
-																	<use xlink:href="img/icons/icons.svg#svg-star"></use>
-																</svg>
-															</label>
-														</fieldset>
-													</div>
-													<a href="#" class="product-item__review-link">
-														<svg>
-															<use xlink:href="img/icons/icons.svg#svg-review"></use>
-														</svg>
-														<span>1352</span>
-													</a>
-												</div>
-												<div class="product-item__description">
-													<a href="#" class="product-item__name">
-														Пенка очищающая с алоэ <br>
-														и масло макадамии NATURE 150 мл
-													</a>
-													<div class="product-item__brand">
-														<span>Бренд: </span><a href="#">PURE GREEN</a>
-													</div>
-												</div>
-
-												<div class="product-item__price">
-													<span class="product-item__price-new">2950 ₽</span>
-													<span class="product-item__price-old">2150 ₽</span>
-													<div class="product-item__discount">-1100₽</div>
-												</div>
-											</div>
-											<div class="product-item__info-buttons">
-												<button type="button" class="product-item__buy btn-purple">В корзину</button>
-												<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
-													<svg>
-														<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
-													</svg>
-												</button>
-											</div>
-										</div>
-									</div>
-								</article>
-							</div>
-							<div class="pagging">
-								<ul class="pagging__list">
-									<li class="pagging__item">
-										<a href="" class="pagging__link">1</a>
-									</li>
-									<li class="pagging__item">
-										<a href="" class="pagging__link">2</a>
-									</li>
-									<li class="pagging__item">
-										<a href="" class="pagging__link">3</a>
-									</li>
-									<li class="pagging__item">
-										<a href="" class="pagging__link _active">4</a>
-									</li>
-									<li class="pagging__item">
-										<a href="" class="pagging__link">5</a>
-									</li>
-									<li class="pagging__item">
-										<a href="" class="pagging__link">...</a>
-									</li>
-									<li class="pagging__item">
-										<a href="" class="pagging__link">8</a>
-									</li>
-									<li class="pagging__item">
-										<a href="" class="pagging__link">9</a>
-									</li>
-									<li class="pagging__item">
-										<a href="" class="pagging__link">10</a>
-									</li>
-								</ul>
-							</div>
+								</div>
+								<button type="submit" class="form__button btn-purple-fill">оформить заказ</button>
+								<div class="form__checkbox form__checkbox-checkout">
+									<input data-required="" id="call_1" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+									<label for="call_1" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен с условиями предоставления услуг и обработкой
+											моих персональных данных при нажатии "Оформить заказ"</span></label>
+								</div>
+							</form>
 						</div>
 					</div>
 				</section>
-				<!-- page-search end -->
+				<!-- checkout end -->
+
+				<!-- popuplar-products -->
+				<section class="page-checkout__popuplar-products popuplar-products">
+					<div class="popuplar-products__container">
+						<div class="products-collection__items">
+							<article class="products-collection__item product-item">
+								<div class="product-item__body">
+									<div class="product-item__top">
+										<button type="button" class="product-item__favorite-add favorite-add">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
+											</svg>
+										</button>
+										<div class="product-item__labels">
+											<div class="product-item__label new">Новинка</div>
+											<div class="product-item__label hit">ХИТ</div>
+											<div class="product-item__label sale">Акция</div>
+										</div>
+										<a href="#" class="product-item__image">
+											<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
+											и масло макадамии NATURE 150 мл">
+										</a>
+									</div>
+									<div class="product-item__info">
+										<div class="product-item__info-wrap">
+											<div class="product-item__info-top">
+												<div class="product-item__vendor-code">Арт: KT009BU</div>
+												<div class="product-item__rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<a href="#" class="product-item__review-link">
+													<svg>
+														<use xlink:href="img/icons/icons.svg#svg-review"></use>
+													</svg>
+													<span>1352</span>
+												</a>
+											</div>
+											<div class="product-item__description">
+												<a href="#" class="product-item__name">
+													Пенка очищающая с алоэ <br>
+													и масло макадамии NATURE 150 мл
+												</a>
+												<div class="product-item__brand">
+													<span>Бренд: </span><a href="#">PURE GREEN</a>
+												</div>
+											</div>
+
+											<div class="product-item__price">
+												<span class="product-item__price-new">2950 ₽</span>
+												<span class="product-item__price-old">2150 ₽</span>
+												<div class="product-item__discount">-1100₽</div>
+											</div>
+										</div>
+										<div class="product-item__info-buttons">
+											<button type="button" class="product-item__buy btn-purple">В корзину</button>
+											<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
+												</svg>
+											</button>
+										</div>
+									</div>
+								</div>
+							</article>
+							<article class="products-collection__item product-item">
+								<div class="product-item__body">
+									<div class="product-item__top">
+										<button type="button" class="product-item__favorite-add favorite-add">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
+											</svg>
+										</button>
+										<div class="product-item__labels">
+											<div class="product-item__label hit">ХИТ</div>
+										</div>
+										<a href="#" class="product-item__image">
+											<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
+											и масло макадамии NATURE 150 мл">
+										</a>
+									</div>
+									<div class="product-item__info">
+										<div class="product-item__info-wrap">
+											<div class="product-item__info-top">
+												<div class="product-item__vendor-code">Арт: KT009BU</div>
+												<div class="product-item__rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<a href="#" class="product-item__review-link">
+													<svg>
+														<use xlink:href="img/icons/icons.svg#svg-review"></use>
+													</svg>
+													<span>1352</span>
+												</a>
+											</div>
+											<div class="product-item__description">
+												<a href="#" class="product-item__name">
+													Пенка очищающая с алоэ <br>
+													и масло макадамии NATURE 150 мл
+												</a>
+												<div class="product-item__brand">
+													<span>Бренд: </span><a href="#">PURE GREEN</a>
+												</div>
+											</div>
+
+											<div class="product-item__price">
+												<span class="product-item__price-new">2950 ₽</span>
+												<span class="product-item__price-old">2150 ₽</span>
+												<div class="product-item__discount">-1100₽</div>
+											</div>
+										</div>
+										<div class="product-item__info-buttons">
+											<button type="button" class="product-item__buy btn-purple">В корзину</button>
+											<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
+												</svg>
+											</button>
+										</div>
+									</div>
+								</div>
+							</article>
+							<article class="products-collection__item product-item">
+								<div class="product-item__body">
+									<div class="product-item__top">
+										<button type="button" class="product-item__favorite-add favorite-add">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
+											</svg>
+										</button>
+										<div class="product-item__labels">
+											<div class="product-item__label new">Новинка</div>
+											<div class="product-item__label hit">ХИТ</div>
+											<div class="product-item__label sale">Акция</div>
+										</div>
+										<a href="#" class="product-item__image">
+											<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
+											и масло макадамии NATURE 150 мл">
+										</a>
+									</div>
+									<div class="product-item__info">
+										<div class="product-item__info-wrap">
+											<div class="product-item__info-top">
+												<div class="product-item__vendor-code">Арт: KT009BU</div>
+												<div class="product-item__rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<a href="#" class="product-item__review-link">
+													<svg>
+														<use xlink:href="img/icons/icons.svg#svg-review"></use>
+													</svg>
+													<span>1352</span>
+												</a>
+											</div>
+											<div class="product-item__description">
+												<a href="#" class="product-item__name">
+													Пенка очищающая с алоэ <br>
+													и масло макадамии NATURE 150 мл
+												</a>
+												<div class="product-item__brand">
+													<span>Бренд: </span><a href="#">PURE GREEN</a>
+												</div>
+											</div>
+
+											<div class="product-item__price">
+												<span class="product-item__price-new">2950 ₽</span>
+												<span class="product-item__price-old">2150 ₽</span>
+												<div class="product-item__discount">-1100₽</div>
+											</div>
+										</div>
+										<div class="product-item__info-buttons">
+											<button type="button" class="product-item__buy btn-purple">В корзину</button>
+											<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
+												</svg>
+											</button>
+										</div>
+									</div>
+								</div>
+							</article>
+							<article class="products-collection__item product-item">
+								<div class="product-item__body">
+									<div class="product-item__top">
+										<button type="button" class="product-item__favorite-add favorite-add">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
+											</svg>
+										</button>
+										<div class="product-item__labels">
+											<div class="product-item__label hit">ХИТ</div>
+										</div>
+										<a href="#" class="product-item__image">
+											<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
+											и масло макадамии NATURE 150 мл">
+										</a>
+									</div>
+									<div class="product-item__info">
+										<div class="product-item__info-wrap">
+											<div class="product-item__info-top">
+												<div class="product-item__vendor-code">Арт: KT009BU</div>
+												<div class="product-item__rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<a href="#" class="product-item__review-link">
+													<svg>
+														<use xlink:href="img/icons/icons.svg#svg-review"></use>
+													</svg>
+													<span>1352</span>
+												</a>
+											</div>
+											<div class="product-item__description">
+												<a href="#" class="product-item__name">
+													Пенка очищающая с алоэ <br>
+													и масло макадамии NATURE 150 мл
+												</a>
+												<div class="product-item__brand">
+													<span>Бренд: </span><a href="#">PURE GREEN</a>
+												</div>
+											</div>
+
+											<div class="product-item__price">
+												<span class="product-item__price-new">2950 ₽</span>
+												<span class="product-item__price-old">2150 ₽</span>
+												<div class="product-item__discount">-1100₽</div>
+											</div>
+										</div>
+										<div class="product-item__info-buttons">
+											<button type="button" class="product-item__buy btn-purple">В корзину</button>
+											<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
+												</svg>
+											</button>
+										</div>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+				</section>
+				<!-- popuplar-products end -->
 
 			</div>
 			<footer class="footer" data-bg-set="url('img/green-bg.png') 1x, url('img/green-bg@2x.png') 2x">

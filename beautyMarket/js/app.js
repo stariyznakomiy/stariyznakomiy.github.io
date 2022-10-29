@@ -8497,6 +8497,7 @@
                     if (product.dataset.category === tabFilter) product.classList.add("_active");
                 }));
             }
+            if (el.classList.contains("cookies__button")) el.closest(".cookies").classList.add("_hide");
         }
         const searchInput = document.querySelector(".search-header__input");
         const searchResults = document.querySelector(".search-header__results");
