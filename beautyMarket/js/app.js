@@ -4182,9 +4182,10 @@
             if (options.viewPass) document.addEventListener("click", (function(e) {
                 let targetElement = e.target;
                 if (targetElement.closest('[class*="__viewpass"]')) {
-                    let inputType = targetElement.classList.contains("_viewpass-active") ? "password" : "text";
-                    targetElement.parentElement.querySelector("input").setAttribute("type", inputType);
-                    targetElement.classList.toggle("_viewpass-active");
+                    let button = targetElement.closest('[class*="__viewpass"]');
+                    let inputType = button.classList.contains("_viewpass-active") ? "password" : "text";
+                    button.parentElement.querySelector("input").setAttribute("type", inputType);
+                    button.classList.toggle("_viewpass-active");
                 }
             }));
             if (options.autoHeight) {
@@ -4273,6 +4274,46 @@
                 return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(formRequiredItem.value);
             }
         };
+        const formFile = document.getElementById("form-file");
+        const formImage = document.getElementById("form-file-image");
+        const formPreview = document.getElementById("form-preview");
+        const formImagePreview = document.getElementById("form-preview-image");
+        if (formFile) formFile.addEventListener("change", (() => {
+            formPreview.innerHTML = "";
+            const files = formFile.files;
+            for (let i = 0; i < files.length; i++) uploadFile(files[i]);
+        }));
+        if (formImage) formImage.addEventListener("change", (() => {
+            const files = formImage.files;
+            for (let i = 0; i < files.length; i++) uploadImage(files[0]);
+        }));
+        function uploadFile(file) {
+            if (![ "image/jpeg", "image/png", "application/pdf" ].includes(file.type)) {
+                alert("Разрешены только файлы с расширением jpg, png, pdf");
+                formFile.value = "";
+                return;
+            }
+            var reader = new FileReader;
+            reader.onload = function() {
+                const template = `\n\t\t<div class="form__preview-file">\n\t\t\t<span>${file.name}</span>\n\t\t\t<img src="img/icons/check2.svg" alt="">\n\t\t</div>\n\t\t`;
+                formPreview.insertAdjacentHTML("beforeend", template);
+            };
+        }
+        function uploadImage(file) {
+            if (![ "image/jpeg", "image/png" ].includes(file.type)) {
+                alert("Разрешены только файлы с расширением jpg, png");
+                formImage.value = "";
+                return;
+            }
+            var reader = new FileReader;
+            reader.readAsDataURL(file);
+            reader.onload = function(e) {
+                formImagePreview.innerHTML = `<img src="${e.target.result}" alt="Фото">`;
+            };
+            reader.onerror = function(e) {
+                alert("Ошибка");
+            };
+        }
         function formSubmit() {
             const forms = document.forms;
             if (forms.length) for (const form of forms) {
@@ -8498,12 +8539,38 @@
                 }));
             }
             if (el.classList.contains("cookies__button")) el.closest(".cookies").classList.add("_hide");
+            if (el.classList.contains("form__tab")) {
+                const tabs = el.closest(".form__tabs").querySelectorAll(".form__tab");
+                const form = el.closest(".form");
+                tabs.forEach((tab => {
+                    if (tab.classList.contains("_active")) tab.classList.remove("_active");
+                }));
+                el.classList.add("_active");
+                if ("tel" === el.dataset.tab) {
+                    form.querySelector('[data-inp="tel"]').classList.remove("_hide");
+                    form.querySelector('[data-inp="email"]').classList.add("_hide");
+                }
+                if ("email" === el.dataset.tab) {
+                    form.querySelector('[data-inp="email"]').classList.remove("_hide");
+                    form.querySelector('[data-inp="tel"]').classList.add("_hide");
+                }
+            }
         }
         const searchInput = document.querySelector(".search-header__input");
         const searchResults = document.querySelector(".search-header__results");
         searchInput.addEventListener("input", (function() {
             if ("" != this.value) searchResults.classList.add("_active");
             if ("" === this.value) searchResults.classList.remove("_active");
+        }));
+        document.querySelectorAll(".input").forEach((input => {
+            input.addEventListener("input", (function(e) {
+                if ("" != input.value) input.classList.add("_form-active"); else if ("" === input.value) input.classList.remove("_form-active");
+            }));
+        }));
+        document.querySelectorAll(".form__data input").forEach((input => {
+            input.addEventListener("input", (function(e) {
+                if ("" != input.value) input.closest(".form__data").querySelector(".form__data-icons").classList.add("_active"); else if ("" === input.value) input.closest(".form__data").querySelector(".form__data-icons").classList.remove("_active");
+            }));
         }));
         let map = document.querySelector("#map");
         if (map) {
@@ -8534,7 +8601,7 @@
         spollers();
         tabs();
         formFieldsInit({
-            viewPass: false,
+            viewPass: true,
             autoHeight: false
         });
         formSubmit();

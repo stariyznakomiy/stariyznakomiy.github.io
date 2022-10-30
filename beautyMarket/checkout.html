@@ -5,7 +5,7 @@
 	<title>Оформление заказа</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.css?_v=20221029033120">
+	<link rel="stylesheet" href="css/style.css?_v=20221030031550">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -323,7 +323,7 @@
 							<h1>Оформление заказа</h1>
 						</div>
 						<div class="checkout__body">
-							<form action="" class="checkout__form form">
+							<form action="" data-dev class="checkout__form form">
 								<div class="form__body">
 									<div class="form__group">
 										<div class="form__title">Информация о покупателе</div>
@@ -469,7 +469,9 @@
 										<div class="form__price form__price-total">1660 ₽</div>
 									</div>
 								</div>
-								<button type="submit" class="form__button btn-purple-fill">оформить заказ</button>
+								<div class="form__actions">
+									<button type="submit" class="form__button btn-purple-fill">оформить заказ</button>
+								</div>
 								<div class="form__checkbox form__checkbox-checkout">
 									<input data-required="" id="call_1" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
 									<label for="call_1" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен с условиями предоставления услуг и обработкой
@@ -984,7 +986,9 @@
 								<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон" class="form__input input">
 							</div>
 						</div>
-						<button type="submit" class="form__button btn-purple">заказать звонок</button>
+						<div class="form__actions">
+							<button type="submit" class="form__button btn-purple">заказать звонок</button>
+						</div>
 						<div class="form__checkbox">
 							<input data-required id="call_1" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
 							<label for="call_1" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки “Заказать
@@ -1020,7 +1024,9 @@
 								<textarea placeholder="Ваш отзыв" class="input"></textarea>
 							</div>
 						</div>
-						<button type="submit" class="form__button btn-purple">задать вопрос</button>
+						<div class="form__actions">
+							<button type="submit" class="form__button btn-purple">задать вопрос</button>
+						</div>
 						<div class="form__checkbox">
 							<input data-required id="call_1" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
 							<label for="call_1" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки “Задать
@@ -1121,7 +1127,9 @@
 								<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон" class="form__input input">
 							</div>
 						</div>
-						<button type="submit" class="form__button btn-purple">заказать звонок</button>
+						<div class="form__actions">
+							<button type="submit" class="form__button btn-purple">заказать звонок</button>
+						</div>
 						<div class="form__checkbox">
 							<input data-required id="one-click_1" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
 							<label for="one-click_1" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки “Заказать
@@ -1136,8 +1144,8 @@
 		</div>
 	</div>
 	<!-- popup one click end -->
-	<script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ&_v=20221029033120>&lang=ru_RU"></script>
-	<script src="js/app.min.js?_v=20221029033120"></script>
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ&_v=20221030031550>&lang=ru_RU"></script>
+	<script src="js/app.min.js?_v=20221030031550"></script>
 </body>
 
 </html>
