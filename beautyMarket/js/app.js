@@ -4275,17 +4275,11 @@
             }
         };
         const formFile = document.getElementById("form-file");
-        const formImage = document.getElementById("form-file-image");
         const formPreview = document.getElementById("form-preview");
-        const formImagePreview = document.getElementById("form-preview-image");
         if (formFile) formFile.addEventListener("change", (() => {
             formPreview.innerHTML = "";
             const files = formFile.files;
             for (let i = 0; i < files.length; i++) uploadFile(files[i]);
-        }));
-        if (formImage) formImage.addEventListener("change", (() => {
-            const files = formImage.files;
-            for (let i = 0; i < files.length; i++) uploadImage(files[0]);
         }));
         function uploadFile(file) {
             if (![ "image/jpeg", "image/png", "application/pdf" ].includes(file.type)) {
@@ -4294,11 +4288,41 @@
                 return;
             }
             var reader = new FileReader;
+            reader.readAsDataURL(file);
             reader.onload = function() {
                 const template = `\n\t\t<div class="form__preview-file">\n\t\t\t<span>${file.name}</span>\n\t\t\t<img src="img/icons/check2.svg" alt="">\n\t\t</div>\n\t\t`;
                 formPreview.insertAdjacentHTML("beforeend", template);
             };
         }
+        const popupFile = document.getElementById("popup-file");
+        const popupImage = document.getElementById("popup-preview");
+        if (popupFile) popupFile.addEventListener("change", (() => {
+            popupImage.innerHTML = "";
+            const files = popupFile.files;
+            for (let i = 0; i < files.length; i++) uploadPopup(files[i]);
+        }));
+        function uploadPopup(file) {
+            if (![ "image/jpeg", "image/png" ].includes(file.type)) {
+                alert("Разрешены только файлы с расширением jpg, png");
+                formFile.value = "";
+                return;
+            }
+            var reader = new FileReader;
+            reader.readAsDataURL(file);
+            reader.onload = function(e) {
+                const template = `\n\t\t<div><img src="${e.target.result}" alt="Фото"></div>\n\t\t`;
+                popupImage.insertAdjacentHTML("beforeend", template);
+            };
+            reader.onerror = function(e) {
+                alert("Ошибка");
+            };
+        }
+        const formImage = document.getElementById("form-file-image");
+        const formImagePreview = document.getElementById("form-preview-image");
+        if (formImage) formImage.addEventListener("change", (() => {
+            const files = formImage.files;
+            for (let i = 0; i < files.length; i++) uploadImage(files[0]);
+        }));
         function uploadImage(file) {
             if (![ "image/jpeg", "image/png" ].includes(file.type)) {
                 alert("Разрешены только файлы с расширением jpg, png");

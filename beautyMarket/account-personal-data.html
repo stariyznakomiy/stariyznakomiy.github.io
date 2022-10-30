@@ -5,7 +5,7 @@
 	<title>Личные данные</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.css?_v=20221030031550">
+	<link rel="stylesheet" href="css/style.css?_v=20221030184109">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -396,11 +396,11 @@
 													<div class="form__inputs">
 														<div class="form__input-wrap">
 															<div class="form__data">
-																<input autocomplete="off" type="text" name="form[]" data-error="" value="" placeholder="Не указано" class="data-input">
-																<div class="form__data-icons">
+																<input id="data-4" autocomplete="off" type="text" name="form[]" data-error="" value="" placeholder="Не указано" class="data-input">
+																<label for="data-4" class="form__data-icons">
 																	<img src="img/icons/pensil.svg" alt="">
 																	<img src="img/icons/check2.svg" alt="">
-																</div>
+																</label>
 															</div>
 														</div>
 													</div>
@@ -417,11 +417,11 @@
 													<div class="form__inputs">
 														<div class="form__input-wrap">
 															<div class="form__data">
-																<input autocomplete="off" type="tel" name="form[]" data-error="" value="8 953 948 23 85" placeholder="Не указано" class="data-input">
-																<div class="form__data-icons _active">
+																<input id="data-5" autocomplete="off" type="tel" name="form[]" data-error="" value="8 953 948 23 85" placeholder="Не указано" class="data-input">
+																<label for="data-5" class="form__data-icons _active">
 																	<img src="img/icons/pensil.svg" alt="">
 																	<img src="img/icons/check2.svg" alt="">
-																</div>
+																</label>
 															</div>
 														</div>
 													</div>
@@ -459,7 +459,7 @@
 															<div class="form__data-label">Введите старый пароль</div>
 															<div class="form__data">
 																<div>
-																	<input data-required autocomplete="off" type="password" name="form[]" data-error="" value="12345" placeholder="" class="input">
+																	<input id="data-6" data-required autocomplete="off" type="password" name="form[]" data-error="" value="12345" placeholder="" class="input">
 																	<button type="button" class="form__viewpass">
 																		<svg>
 																			<use xlink:href="img/icons/icons.svg#svg-viewer-1"></use>
@@ -469,17 +469,17 @@
 																		</svg>
 																	</button>
 																</div>
-																<div class="form__data-icons _active">
+																<label for="data-6" class="form__data-icons _active">
 																	<img src="img/icons/pensil.svg" alt="">
 																	<img src="img/icons/check2.svg" alt="">
-																</div>
+																</label>
 															</div>
 														</div>
 														<div class="form__input-wrap">
 															<div class="form__data-label">Введите новый пароль</div>
 															<div class="form__data">
 																<div>
-																	<input data-required autocomplete="off" type="password" name="form[]" data-error="" value="12345" placeholder="" class="input">
+																	<input id="data-7" data-required autocomplete="off" type="password" name="form[]" data-error="" value="12345" placeholder="" class="input">
 																	<button type="button" class="form__viewpass">
 																		<svg>
 																			<use xlink:href="img/icons/icons.svg#svg-viewer-1"></use>
@@ -490,10 +490,10 @@
 																	</button>
 																</div>
 
-																<div class="form__data-icons _active">
+																<label for="data-7" class="form__data-icons _active">
 																	<img src="img/icons/pensil.svg" alt="">
 																	<img src="img/icons/check2.svg" alt="">
-																</div>
+																</label>
 															</div>
 														</div>
 													</div>
@@ -690,8 +690,8 @@
 							<button type="submit" class="form__button btn-purple">задать вопрос</button>
 						</div>
 						<div class="form__checkbox">
-							<input data-required id="call_1" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
-							<label for="call_1" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки “Задать
+							<input data-required id="call_122" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="call_122" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки “Задать
 									вопрос”</span></label>
 						</div>
 					</form>
@@ -703,6 +703,97 @@
 		</div>
 	</div>
 	<!-- popup question end -->
+
+	<!-- popup review -->
+	<div id="popup-review" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__body">
+					<div class="popup__title"><span>Уважаемый посетитель</span>
+						<div class="popup__subtitle">
+							Если у Вас еще остались вопросы, можете задать их через форму обратной связи.
+							Мы ответим на указанный e-mail.
+						</div>
+					</div>
+
+					<form action="" data-dev class="popup__form form">
+						<div class="form__inputs">
+							<div class="form__input-wrap">
+								<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="form__input input">
+							</div>
+							<div class="form__input-wrap">
+								<input data-required autocomplete="off" type="num" name="form[]" data-error="" placeholder="Ваш возраст" class="form__input input">
+							</div>
+							<div class="form__input-wrap">
+								<input data-required autocomplete="off" type="email" name="form[]" data-error="" placeholder="Email" class="form__input input">
+							</div>
+							<div class="form__input-wrap">
+								<textarea placeholder="Ваш отзыв" class="input"></textarea>
+							</div>
+						</div>
+						<div class="popup__rating rating">
+							<span>Ваша оценка</span>
+							<fieldset class="rating__row">
+								<input type="radio" id="rat-5" value="5" name="rating" checked="" required="">
+								<label for="rat-5" title="Прекрасно - 5 звезд">
+									<svg class="icon">
+										<use xlink:href="img/icons/icons.svg#svg-star"></use>
+									</svg>
+								</label>
+								<input type="radio" id="rat-4" checked="" value="4" name="rating">
+								<label for="rat-4" title="Хорошо - 4 звезды">
+									<svg class="icon">
+										<use xlink:href="img/icons/icons.svg#svg-star"></use>
+									</svg>
+								</label>
+								<input type="radio" id="rat-3" value="3" name="rating">
+								<label for="rat-3" title="Так себе - 3 звезды">
+									<svg class="icon">
+										<use xlink:href="img/icons/icons.svg#svg-star"></use>
+									</svg>
+								</label>
+								<input type="radio" id="rat-2" value="2" name="rating">
+								<label for="rat-2" title="Плохо - 2 звезды">
+									<svg class="icon">
+										<use xlink:href="img/icons/icons.svg#svg-star"></use>
+									</svg>
+								</label>
+								<input type="radio" id="rat-1" value="1" name="rating">
+								<label for="rat-1" title="Ужасно - 1 звезда">
+									<svg class="icon">
+										<use xlink:href="img/icons/icons.svg#svg-star"></use>
+									</svg>
+								</label>
+							</fieldset>
+						</div>
+						<div class="form__input-wrap">
+							<input multiple id="popup-file" accept=".jpg, .png" type="file" class="form__input-file">
+							<label for="popup-file" class="form__file-label">Загрузить фото</label>
+						</div>
+						<div id="popup-preview" class="form__preview-images">
+						</div>
+						<div class="form__actions">
+							<button type="submit" class="form__button btn-purple">задать вопрос</button>
+						</div>
+						<div class="form__checkbox">
+							<input data-required id="call_144" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="call_144" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки “Задать
+									вопрос”</span></label>
+						</div>
+					</form>
+					<div class="popup__form-success">
+						<p>Наш менеджер свяжется с вами</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup review end -->
 
 	<!-- popup location -->
 	<div id="popup-location" aria-hidden="true" class="popup">
@@ -793,8 +884,8 @@
 							<button type="submit" class="form__button btn-purple">заказать звонок</button>
 						</div>
 						<div class="form__checkbox">
-							<input data-required id="one-click_1" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
-							<label for="one-click_1" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки “Заказать
+							<input data-required id="one-click_155" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="one-click_155" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки “Заказать
 									звонок”</span></label>
 						</div>
 					</form>
@@ -806,8 +897,8 @@
 		</div>
 	</div>
 	<!-- popup one click end -->
-	<script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ&_v=20221030031550>&lang=ru_RU"></script>
-	<script src="js/app.min.js?_v=20221030031550"></script>
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ&_v=20221030184109>&lang=ru_RU"></script>
+	<script src="js/app.min.js?_v=20221030184109"></script>
 </body>
 
 </html>
