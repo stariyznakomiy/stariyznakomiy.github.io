@@ -8457,6 +8457,21 @@
                 },
                 on: {}
             });
+            if (document.querySelector(".training__tags-list")) new core(".training__tags-list", {
+                modules: [ Navigation, freeMode ],
+                observer: true,
+                observeParents: true,
+                slidesPerView: "auto",
+                spaceBetween: 0,
+                autoHeight: false,
+                speed: 800,
+                freeMode: true,
+                navigation: {
+                    prevEl: ".training__tags-arrow-prev",
+                    nextEl: ".training__tags-arrow-next"
+                },
+                on: {}
+            });
             if (document.querySelector(".product-card__slider")) {
                 const thumbsSwiper = new core(".product-card__thumbs-list", {
                     modules: [ Navigation, Thumb, freeMode ],

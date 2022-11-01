@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-	<title>Вход | Регистрация</title>
+	<title>Спасибо за заказ</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="css/style.css?_v=20221101143848">
@@ -310,84 +310,110 @@
 									</svg>
 								</a>
 							</li>
-							<li class="breadcrumbs__item"><span>Личный кабинет</span></li>
+							<li class="breadcrumbs__item"><span>Спасибо за заказ</span></li>
 						</ul>
 					</div>
 				</div>
 				<!-- breadcrumbs end -->
 
-				<!-- account-enter -->
-				<section class="account-enter">
-					<div class="account-enter__container">
-						<div class="account-enter__title section-title">
-							<h1>Личный кабинет</h1>
+				<!-- checkout-success -->
+				<section class="checkout-success">
+					<div class="checkout-success__container">
+						<div class="checkout-success__title section-title">
+							<h1>Спасибо за заказ</h1>
 						</div>
-						<div class="account-enter__body">
-							<div class="account-enter__col">
-								<div class="account-enter__form">
-									<div class="account-enter__form-title">Если вы ранее уже регистрировались на сайте</div>
-									<form action="" data-dev class="form">
-										<div class="form__text-phone">Введите email или телефон <br>
-											без пробелов начиная с +7, пример: +79003001020</div>
-										<div class="form__inputs">
-											<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Email или телефон" class="form__input input">
-										</div>
-										<div class="form__text">Введите пароль</div>
-										<div class="form__inputs">
-											<input data-required autocomplete="off" type="password" name="form[]" data-error="" placeholder="" class="form__input input">
-										</div>
-										<div class="form__actions">
-											<button type="submit" class="form__button btn-purple">Войти</button>
-											<a href="#" class="form__link-pass">Забыли пароль?</a>
-										</div>
-									</form>
+						<div class="checkout-success__body">
+							<div class="checkout-success__descr">
+								<div class="checkout-success__descr-item" data-bg-set="url('img/slider-icon/5.svg') 1x">
+									<p>Ожидайте, наш менеджер позвонит Вам завтра с 8:00 до 10:00 по московскому времени.
+										Если вы пропустили звонок, то просто перезвоните нам по номеру 8 (800) 000-00-00 или ожидайте повторного звонка.</p>
+								</div>
+								<div class="checkout-success__descr-item" data-bg-set="url('img/slider-icon/6.svg') 1x">
+									<p>Изменения в статусе заказа мы будем отправлять на ваш электронный адрес и по смс. Так же за состоянием заказа вы можете следить из своего личного
+										кабинета (профиль - заказы).</p>
+								</div>
+								<div class="checkout-success__descr-item" data-bg-set="url('img/slider-icon/7.svg') 1x">
+									<p>Если у вас есть уточняющие вопросы
+										позвоните по номеру 8 (800) 000-00-00
+										или напишите нам на info@site.ru</p>
 								</div>
 							</div>
-							<div class="account-enter__col">
-								<div class="account-enter__form">
-									<div class="account-enter__form-title">Если вы впервые на сайте
-										пройдите регистрацию</div>
-									<form action="" data-dev class="form">
-										<div class="form__tabs">
-											<button type="button" class="form__tab _active" data-text="По телефону" data-tab="tel">По телефону</button>
-											<button type="button" class="form__tab" data-text="По email" data-tab="email">По email</button>
+							<div class="checkout-success__order">
+								<h3 class="checkout-success__order-title">Информация о вашем заказе</h3>
+								<table class="checkout-success__table cart-table">
+									<tbody>
+										<tr class="cart-table__item">
+											<td class="cart-table__item-img">
+												<a href="#"><img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt=""></a>
+											</td>
+											<td class="cart-table__item-name">
+												<a href="#">Пенка очищающая с алоэ и масло макадамии NATURE 150 мл</a>
+											</td>
+											<td class="cart-table__item-quantity">
+												<span>1шт</span>
+											</td>
+											<td class="cart-table__item-price">
+												2950 ₽
+											</td>
+										</tr>
+										<tr class="cart-table__item">
+											<td class="cart-table__item-img">
+												<a href="#"><img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt=""></a>
+											</td>
+											<td class="cart-table__item-name">
+												<a href="#">Пенка очищающая с алоэ и масло макадамии NATURE 150 мл</a>
+											</td>
+											<td class="cart-table__item-quantity">
+												<span>1шт</span>
+											</td>
+											<td class="cart-table__item-price">
+												2950 ₽
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="checkout-success__info">
+									<div class="checkout-success__info-row">
+										<div class="checkout-success__info-col">
+											<div class="checkout-success__info-label">Получатель:</div>
+											<div class="checkout-success__info-value">ООО “Предприниматель”</div>
 										</div>
-										<div class="form__inputs">
-											<div class="form__input-wrap">
-												<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="form__input input">
-											</div>
-											<div class="form__input-wrap" data-inp="tel">
-												<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон" class="form__input input">
-											</div>
-											<div class="form__input-wrap _hide" data-inp="email">
-												<input data-required="email" autocomplete="off" type="email" name="form[]" data-error="" placeholder="Ваш email" class="form__input input">
-											</div>
-											<div class="form__options options">
-												<div class="options__item">
-													<input hidden id="form_1" class="options__input" checked type="radio" value="1" name="form">
-													<label for="form_1" class="options__label"><span class="options__text">Покупатели</span></label>
-												</div>
-												<div class="options__item">
-													<input hidden id="form_2" class="options__input" type="radio" value="2" name="form">
-													<label for="form_2" class="options__label"><span class="options__text">Косметолог</span></label>
-												</div>
-											</div>
+										<div class="checkout-success__info-col">
+											<div class="checkout-success__info-label">Контактный телефон </div>
+											<div class="checkout-success__info-value">+79002300230</div>
 										</div>
-										<div class="form__actions">
-											<button type="submit" class="form__button btn-purple">Зарегистрироваться</button>
+									</div>
+									<div class="checkout-success__info-row">
+										<div class="checkout-success__info-col">
+											<div class="checkout-success__info-label">Адрес</div>
+											<div class="checkout-success__info-value">Россия, Область, Город, Улица</div>
 										</div>
-										<div class="form__checkbox">
-											<input data-required="" id="call_1" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
-											<label for="call_1" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен с условиями предоставления услуг и обработкой моих
-													персональных данных при нажатии “Зарегистрироваться"</span></label>
+									</div>
+									<div class="checkout-success__info-row">
+										<div class="checkout-success__info-col">
+											<div class="checkout-success__info-label">Способ доставки</div>
+											<div class="checkout-success__info-value">Почтой России</div>
 										</div>
-									</form>
+										<div class="checkout-success__info-col">
+											<div class="checkout-success__info-label">Способ оплаты</div>
+											<div class="checkout-success__info-value">Наложеный платёж</div>
+										</div>
+										<div class="checkout-success__info-col">
+											<div class="checkout-success__info-label">Статус оплаты</div>
+											<div class="checkout-success__info-value">Не оплачено</div>
+										</div>
+									</div>
 								</div>
+								<div class="checkout-success__print">
+									<span>Вы можете распечатать эту информацию.</span>
+									<a href="#" class="checkout-success__button btn-purple">распечатать</a>
+								</div>
+
 							</div>
 						</div>
 					</div>
 				</section>
-				<!-- account-enter end -->
+				<!-- checkout-success end -->
 
 			</div>
 			<footer class="footer" data-bg-set="url('img/green-bg.png') 1x, url('img/green-bg@2x.png') 2x">
