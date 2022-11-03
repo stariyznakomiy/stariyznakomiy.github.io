@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-	<title>Личные данные</title>
+	<title>Отзывы</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="css/style.css?_v=20221104020545">
@@ -310,204 +310,537 @@
 									</svg>
 								</a>
 							</li>
-							<li class="breadcrumbs__item"><span>Личный кабинет</span></li>
+							<li class="breadcrumbs__item"><span>Отзывы</span></li>
 						</ul>
 					</div>
 				</div>
 				<!-- breadcrumbs end -->
 
-				<!-- account-enter -->
-				<section class="account">
-					<div class="account__container">
-						<div class="account__wrap">
-							<div class="account__menu">
-								<ul class="account__menu-list">
-									<li class="account__menu-item">
-										<a href="#" class="account__menu-link">Профиль</a>
-										<ul class="account__menu-sublist">
-											<li class="account__menu-sublist-item"><a href="#" class="account__menu-sublist-link">Личный кабинет</a></li>
-											<li class="account__menu-sublist-item"><a href="#" class="account__menu-sublist-link">Мои данные</a></li>
-										</ul>
-									</li>
-									<li class="account__menu-item">
-										<a href="#" class="account__menu-link">Работа с заказом</a>
-										<ul class="account__menu-sublist">
-											<li class="account__menu-sublist-item"><a href="#" class="account__menu-sublist-link">Мои заказы</a></li>
-											<li class="account__menu-sublist-item"><a href="#" class="account__menu-sublist-link">Мои доставки</a></li>
-										</ul>
-									</li>
-									<li class="account__menu-item"><a href="#" class="account__menu-link">Проффессионалам</a></li>
-									<li class="account__menu-item"><a href="#" class="account__menu-link">Сертификаты</a></li>
-									<li class="account__menu-item"><a href="#" class="account__menu-link">Выход</a></li>
-								</ul>
-							</div>
-							<div class="account__body">
-								<div class="account__profile-data">
-									<div class="account__profile-col">
-										<div class="account__profile-sticker profile-sticker">
-											<h3 class="profile-sticker__title">Персональные данные</h3>
-											<div class="profile-sticker__body">
-												<form action="" class="profile-sticker__form form">
-													<div class="form__inputs">
-														<div class="form__input-wrap">
-															<div class="form__data-avatar">
-																<input id="form-file-image" accept=".jpg, .png" type="file" class="form__input-file">
-																<label for="form-file-image" class="form__img-label">
-																	<svg>
-																		<use xlink:href="img/icons/icons.svg#svg-camera"></use>
+				<!-- reviews -->
+				<section class="reviews">
+					<div class="reviews__container">
+						<div class="reviews__title section-title">
+							<h1>Отзывы</h1>
+						</div>
+						<div class="reviews__body">
+							<div class="reviews__content">
+								<ul class="reviews__list">
+									<li class="reviews__item">
+										<article class="review">
+											<div class="review__wrap">
+												<div class="review__right">
+													<div class="review__avatar">
+														<img data-src="img/avatars/1.png" data-srcset="img/avatars/1.png 2x" alt="avatar">
+													</div>
+													<div class="review__info">
+														<div class="review__date">20.11.2021 в 16:43</div>
+														<div class="review__name">Маргарита</div>
+														<div class="review__rating rating">
+															<fieldset class="rating__row">
+																<input type="radio" value="5" disabled="">
+																<label title="Прекрасно - 5 звезд">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
 																	</svg>
 																</label>
-																<div id="form-preview-image" class="form__preview-image">
-																	<img src="img/avatars/4.png" srcset="img/avatars/4@2x.png 2x" alt="">
-																</div>
-															</div>
-															<div class="form__data form__data-row">
-																<input id="data-1" data-required autocomplete="off" type="text" name="form[]" data-error="" value="Опарин Артём Эдуардович" placeholder="Фамилия Имя Отчество" class="data-input">
-																<label for="data-1" class="form__data-icons _active">
-																	<img src="img/icons/pensil.svg" alt="">
-																	<img src="img/icons/check2.svg" alt="">
+																<input type="radio" checked="" value="4" disabled="">
+																<label title="Хорошо - 4 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
 																</label>
-															</div>
-															<div class="form__data form__data-row">
-																<input id="data-2" autocomplete="off" type="text" name="form[]" data-error="" value="" placeholder="Дата рождения	не указано" class="data-input">
-																<label for="data-2" class="form__data-icons">
-																	<img src="img/icons/pensil.svg" alt="">
-																	<img src="img/icons/check2.svg" alt="">
+																<input type="radio" value="3" disabled="">
+																<label title="Так себе - 3 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
 																</label>
-															</div>
-															<div class="form__data form__data-row">
-																<input id="data-3" autocomplete="off" type="text" name="form[]" data-error="" value="" placeholder="Пол не указано" class="data-input">
-																<label for="data-3" class="form__data-icons">
-																	<img src="img/icons/pensil.svg" alt="">
-																	<img src="img/icons/check2.svg" alt="">
+																<input type="radio" value="2" disabled="">
+																<label title="Плохо - 2 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
 																</label>
-															</div>
+																<input type="radio" value="1" disabled="">
+																<label title="Ужасно - 1 звезда">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+															</fieldset>
 														</div>
 													</div>
-													<button type="submit" class="profile-sticker__button btn-purple">изменить</button>
-												</form>
-											</div>
-										</div>
-										<div class="account__profile-sticker profile-sticker">
-											<h3 class="profile-sticker__title">Адрес доставки</h3>
-											<div class="profile-sticker__body">
-												<form action="" class="profile-sticker__form form">
-													<div class="form__inputs">
-														<div class="form__input-wrap">
-															<div class="form__data">
-																<input id="data-4" autocomplete="off" type="text" name="form[]" data-error="" value="" placeholder="Не указано" class="data-input">
-																<label for="data-4" class="form__data-icons">
-																	<img src="img/icons/pensil.svg" alt="">
-																	<img src="img/icons/check2.svg" alt="">
-																</label>
-															</div>
-														</div>
-													</div>
-													<button type="submit" class="profile-sticker__button btn-purple">изменить</button>
-												</form>
-											</div>
-										</div>
-									</div>
-									<div class="account__profile-col">
-										<div class="account__profile-sticker profile-sticker">
-											<h3 class="profile-sticker__title">Номер мобильного телефона</h3>
-											<div class="profile-sticker__body">
-												<form action="" class="profile-sticker__form form">
-													<div class="form__inputs">
-														<div class="form__input-wrap">
-															<div class="form__data">
-																<input id="data-5" autocomplete="off" type="tel" name="form[]" data-error="" value="8 953 948 23 85" placeholder="Не указано" class="data-input">
-																<label for="data-5" class="form__data-icons _active">
-																	<img src="img/icons/pensil.svg" alt="">
-																	<img src="img/icons/check2.svg" alt="">
-																</label>
-															</div>
-														</div>
-													</div>
-													<button type="submit" class="profile-sticker__button btn-purple">изменить</button>
-												</form>
-											</div>
-										</div>
-										<div class="account__profile-sticker profile-sticker">
-											<h3 class="profile-sticker__title">Адрес электронной почты</h3>
-											<div class="profile-sticker__body">
-												<form action="" class="profile-sticker__form form">
-													<div class="form__inputs">
-														<div class="form__input-wrap">
-															<div class="form__data">
-																<input autocomplete="off" type="email" name="form[]" data-error="" value="rustle_92@yandex.ru" placeholder="Не указано" class="data-input">
-																<div class="form__data-icons">
-																	<span>Не подтверждён</span>
-																	<span>Подтверждён</span>
-																</div>
-															</div>
-														</div>
-													</div>
-													<button type="submit" class="profile-sticker__button btn-purple">изменить</button>
-												</form>
-											</div>
-										</div>
-									</div>
-									<div class="account__profile-col">
-										<div class="account__profile-sticker profile-sticker">
-											<h3 class="profile-sticker__title">Пароль</h3>
-											<div class="profile-sticker__body">
-												<form data-dev action="" class="profile-sticker__form form">
-													<div class="form__inputs">
-														<div class="form__input-wrap">
-															<div class="form__data-label">Введите старый пароль</div>
-															<div class="form__data">
-																<div>
-																	<input id="data-6" data-required autocomplete="off" type="password" name="form[]" data-error="" value="12345" placeholder="" class="input">
-																	<button type="button" class="form__viewpass">
-																		<svg>
-																			<use xlink:href="img/icons/icons.svg#svg-viewer-1"></use>
-																		</svg>
-																		<svg>
-																			<use xlink:href="img/icons/icons.svg#svg-viewer-2"></use>
-																		</svg>
-																	</button>
-																</div>
-																<label for="data-6" class="form__data-icons _active">
-																	<img src="img/icons/pensil.svg" alt="">
-																	<img src="img/icons/check2.svg" alt="">
-																</label>
-															</div>
-														</div>
-														<div class="form__input-wrap">
-															<div class="form__data-label">Введите новый пароль</div>
-															<div class="form__data">
-																<div>
-																	<input id="data-7" data-required autocomplete="off" type="password" name="form[]" data-error="" value="12345" placeholder="" class="input">
-																	<button type="button" class="form__viewpass">
-																		<svg>
-																			<use xlink:href="img/icons/icons.svg#svg-viewer-1"></use>
-																		</svg>
-																		<svg>
-																			<use xlink:href="img/icons/icons.svg#svg-viewer-2"></use>
-																		</svg>
-																	</button>
-																</div>
+												</div>
+												<div class="review__text">
+													<p>
+														Sit amet nisl suscipit adipiscing bibendum est ultricies. Ultrices eros in cursus turpis. Elementum sagittis vitae et leo duis. Ac turpis
+														egestas integer eget aliquet nibh praesent tristique. Egestas diam in arcu cursus euismod quis viverra nibh. Donec pretium vulputate
+														sapien
+														nec sagittis aliquam malesuada. Feugiat nibh sed pulvinar proin gravida hendrerit. Nulla porttitor massa id neque aliquam vestibulum.
+													</p>
+													<div class="review__images">
+														<div class="review__img">
 
-																<label for="data-7" class="form__data-icons _active">
-																	<img src="img/icons/pensil.svg" alt="">
-																	<img src="img/icons/check2.svg" alt="">
-																</label>
-															</div>
 														</div>
 													</div>
-													<button type="submit" class="profile-sticker__button btn-purple">изменить</button>
-												</form>
+												</div>
+											</div>
+										</article>
+										<ul class="reviews__children">
+											<li class="reviews__item">
+												<article class="review">
+													<div class="review__top">
+														<div class="review__avatar">
+															<img data-src="img/avatars/5.png" data-srcset="img/avatars/5.png 2x" alt="avatar">
+														</div>
+														<div class="review__info">
+															<div class="review__name">Менеджер Алина</div>
+														</div>
+													</div>
+													<div class="review__text">
+														<p>
+															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+														</p>
+													</div>
+												</article>
+											</li>
+										</ul>
+									</li>
+									<li class="reviews__item">
+										<article class="review">
+											<div class="review__wrap">
+												<div class="review__right">
+													<div class="review__avatar">
+														<img data-src="img/avatars/2.png" data-srcset="img/avatars/2.png 2x" alt="avatar">
+													</div>
+													<div class="review__info">
+														<div class="review__date">20.11.2021 в 16:43</div>
+														<div class="review__name">Варвара</div>
+														<div class="review__rating rating">
+															<fieldset class="rating__row">
+																<input type="radio" value="5" disabled="">
+																<label title="Прекрасно - 5 звезд">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" checked="" value="4" disabled="">
+																<label title="Хорошо - 4 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="3" disabled="">
+																<label title="Так себе - 3 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="2" disabled="">
+																<label title="Плохо - 2 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="1" disabled="">
+																<label title="Ужасно - 1 звезда">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+															</fieldset>
+														</div>
+													</div>
+												</div>
+												<div class="review__text">
+													<p>
+														Sit amet nisl suscipit adipiscing bibendum est ultricies. Ultrices eros in cursus turpis. Elementum sagittis vitae et leo duis. Ac turpis
+														egestas integer eget aliquet nibh praesent tristique. Egestas diam in arcu cursus euismod quis viverra nibh.
+													</p>
+													<div class="review__images">
+														<div class="review__img">
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</article>
+									</li>
+									<li class="reviews__item">
+										<article class="review">
+											<div class="review__wrap">
+												<div class="review__right">
+													<div class="review__avatar">
+														<img data-src="img/avatars/3.png" data-srcset="img/avatars/3.png 2x" alt="avatar">
+													</div>
+													<div class="review__info">
+														<div class="review__date">20.11.2021 в 16:43</div>
+														<div class="review__name">Агрипина</div>
+														<div class="review__rating rating">
+															<fieldset class="rating__row">
+																<input type="radio" value="5" disabled="">
+																<label title="Прекрасно - 5 звезд">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" checked="" value="4" disabled="">
+																<label title="Хорошо - 4 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="3" disabled="">
+																<label title="Так себе - 3 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="2" disabled="">
+																<label title="Плохо - 2 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="1" disabled="">
+																<label title="Ужасно - 1 звезда">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+															</fieldset>
+														</div>
+													</div>
+												</div>
+												<div class="review__text">
+													<p>
+														Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+														minim
+														veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Sit amet nisl suscipit adipiscing bibendum est
+														ultricies. Ultrices eros in cursus turpis. Elementum sagittis vitae et leo duis. Ac turpis egestas integer eget aliquet nibh praesent
+														tristique. Egestas diam in arcu cursus euismod quis viverra nibh.
+													</p>
+													<div class="review__images">
+														<div class="review__img">
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</article>
+									</li>
+									<li class="reviews__item">
+										<article class="review">
+											<div class="review__wrap">
+												<div class="review__right">
+													<div class="review__avatar">
+														<img data-src="img/avatars/1.png" data-srcset="img/avatars/1.png 2x" alt="avatar">
+													</div>
+													<div class="review__info">
+														<div class="review__date">20.11.2021 в 16:43</div>
+														<div class="review__name">Маргарита</div>
+														<div class="review__rating rating">
+															<fieldset class="rating__row">
+																<input type="radio" value="5" disabled="">
+																<label title="Прекрасно - 5 звезд">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" checked="" value="4" disabled="">
+																<label title="Хорошо - 4 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="3" disabled="">
+																<label title="Так себе - 3 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="2" disabled="">
+																<label title="Плохо - 2 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="1" disabled="">
+																<label title="Ужасно - 1 звезда">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+															</fieldset>
+														</div>
+													</div>
+												</div>
+												<div class="review__text">
+													<p>
+														Sit amet nisl suscipit adipiscing bibendum est ultricies. Ultrices eros in cursus turpis. Elementum sagittis vitae et leo duis. Ac turpis
+														egestas integer eget aliquet nibh praesent tristique. Egestas diam in arcu cursus euismod quis viverra nibh. Donec pretium vulputate
+														sapien
+														nec sagittis aliquam malesuada. Feugiat nibh sed pulvinar proin gravida hendrerit. Nulla porttitor massa id neque aliquam vestibulum.
+													</p>
+													<div class="review__images">
+														<div class="review__img">
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</article>
+										<ul class="reviews__children">
+											<li class="reviews__item">
+												<article class="review">
+													<div class="review__top">
+														<div class="review__avatar">
+															<img data-src="img/avatars/5.png" data-srcset="img/avatars/5.png 2x" alt="avatar">
+														</div>
+														<div class="review__info">
+															<div class="review__name">Менеджер Алина</div>
+														</div>
+													</div>
+													<div class="review__text">
+														<p>
+															Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+														</p>
+													</div>
+												</article>
+											</li>
+										</ul>
+									</li>
+									<li class="reviews__item">
+										<article class="review">
+											<div class="review__wrap">
+												<div class="review__right">
+													<div class="review__avatar">
+														<img data-src="img/avatars/2.png" data-srcset="img/avatars/2.png 2x" alt="avatar">
+													</div>
+													<div class="review__info">
+														<div class="review__date">20.11.2021 в 16:43</div>
+														<div class="review__name">Варвара</div>
+														<div class="review__rating rating">
+															<fieldset class="rating__row">
+																<input type="radio" value="5" disabled="">
+																<label title="Прекрасно - 5 звезд">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" checked="" value="4" disabled="">
+																<label title="Хорошо - 4 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="3" disabled="">
+																<label title="Так себе - 3 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="2" disabled="">
+																<label title="Плохо - 2 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="1" disabled="">
+																<label title="Ужасно - 1 звезда">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+															</fieldset>
+														</div>
+													</div>
+												</div>
+												<div class="review__text">
+													<p>
+														Sit amet nisl suscipit adipiscing bibendum est ultricies. Ultrices eros in cursus turpis. Elementum sagittis vitae et leo duis. Ac turpis
+														egestas integer eget aliquet nibh praesent tristique. Egestas diam in arcu cursus euismod quis viverra nibh.
+													</p>
+													<div class="review__images">
+														<div class="review__img">
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</article>
+									</li>
+									<li class="reviews__item">
+										<article class="review">
+											<div class="review__wrap">
+												<div class="review__right">
+													<div class="review__avatar">
+														<img data-src="img/avatars/3.png" data-srcset="img/avatars/3.png 2x" alt="avatar">
+													</div>
+													<div class="review__info">
+														<div class="review__date">20.11.2021 в 16:43</div>
+														<div class="review__name">Агрипина</div>
+														<div class="review__rating rating">
+															<fieldset class="rating__row">
+																<input type="radio" value="5" disabled="">
+																<label title="Прекрасно - 5 звезд">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" checked="" value="4" disabled="">
+																<label title="Хорошо - 4 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="3" disabled="">
+																<label title="Так себе - 3 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="2" disabled="">
+																<label title="Плохо - 2 звезды">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+																<input type="radio" value="1" disabled="">
+																<label title="Ужасно - 1 звезда">
+																	<svg class="icon">
+																		<use xlink:href="img/icons/icons.svg#svg-star"></use>
+																	</svg>
+																</label>
+															</fieldset>
+														</div>
+													</div>
+												</div>
+												<div class="review__text">
+													<p>
+														Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+														minim
+														veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Sit amet nisl suscipit adipiscing bibendum est
+														ultricies. Ultrices eros in cursus turpis. Elementum sagittis vitae et leo duis. Ac turpis egestas integer eget aliquet nibh praesent
+														tristique. Egestas diam in arcu cursus euismod quis viverra nibh.
+													</p>
+													<div class="review__images">
+														<div class="review__img">
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</article>
+									</li>
+								</ul>
+								<div class="reviews__pagging pagging">
+									<ul class="pagging__list">
+										<li class="pagging__item">
+											<a href="" class="pagging__link">1</a>
+										</li>
+										<li class="pagging__item">
+											<a href="" class="pagging__link">2</a>
+										</li>
+										<li class="pagging__item">
+											<a href="" class="pagging__link">3</a>
+										</li>
+										<li class="pagging__item">
+											<a href="" class="pagging__link _active">4</a>
+										</li>
+										<li class="pagging__item">
+											<a href="" class="pagging__link">5</a>
+										</li>
+										<li class="pagging__item">
+											<a href="" class="pagging__link">...</a>
+										</li>
+										<li class="pagging__item">
+											<a href="" class="pagging__link">8</a>
+										</li>
+										<li class="pagging__item">
+											<a href="" class="pagging__link">9</a>
+										</li>
+										<li class="pagging__item">
+											<a href="" class="pagging__link">10</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="reviews__col">
+								<div class="reviews__col-title">Отзывы о нас на площадках</div>
+								<div class="reviews__sites">
+									<a href="" class="reviews__sites-item">
+										<div class="reviews__sites-img">
+											<img data-src="img/sites/1.png" data-srcset="img/sites/1@2x.png 2x" alt="Отзовик">
+										</div>
+										<span>Отзовик</span>
+									</a>
+									<a href="" class="reviews__sites-item">
+										<div class="reviews__sites-img">
+											<img data-src="img/sites/2.png" data-srcset="img/sites/2@2x.png 2x" alt="PRO">
+										</div>
+										<span>PRO</span>
+									</a>
+									<a href="" class="reviews__sites-item">
+										<div class="reviews__sites-img">
+											<img data-src="img/sites/3.png" data-srcset="img/sites/3@2x.png 2x" alt="IRecommend.ru">
+										</div>
+
+										<span>IRecommend.ru</span>
+									</a>
+									<a href="" class="reviews__sites-item">
+										<div class="reviews__sites-img">
+											<img data-src="img/sites/4.png" data-srcset="img/sites/4@2x.png 2x" alt="Zoon">
+										</div>
+										<span>Zoon</span>
+									</a>
+									<a href="" class="reviews__sites-item">
+										<div class="reviews__sites-img">
+											<img data-src="img/sites/5.png" data-srcset="img/sites/5@2x.png 2x" alt="YELL">
+										</div>
+										<span>YELL</span>
+									</a>
+								</div>
+								<div class="reviews__form">
+									<div class="reviews__form-title">Уважаемый посетитель</div>
+									<div class="reviews__form-text">
+										Если у Вас еще остались вопросы, можете задать их через форму обратной связи.
+										Мы ответим на указанный e-mail.
+									</div>
+									<form action="" data-dev class="form">
+										<div class="form__inputs">
+											<div class="form__input-wrap">
+												<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="form__input input">
+											</div>
+											<div class="form__input-wrap">
+												<input data-required autocomplete="off" type="num" name="form[]" data-error="" placeholder="Ваш возраст" class="form__input input">
+											</div>
+											<div class="form__input-wrap">
+												<input data-required autocomplete="off" type="email" name="form[]" data-error="" placeholder="Email" class="form__input input">
 											</div>
 										</div>
-									</div>
+										<div class="form__input-wrap">
+											<input multiple id="popup-file-review" data-file-img accept=".jpg, .png" type="file" class="form__input-file">
+											<label for="popup-file-review" class="form__file-label">Загрузить фото</label>
+										</div>
+										<div data-file-preview class="form__preview-images">
+										</div>
+										<div class="form__actions">
+											<button type="submit" class="form__button btn-purple">отправить</button>
+										</div>
+										<div class="form__checkbox">
+											<input data-required id="call_1" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+											<label for="call_1" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки
+													“отправить”</span></label>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</section>
-				<!-- account-enter end -->
+				<!-- reviews end -->
+
 
 			</div>
 			<footer class="footer" data-bg-set="url('img/green-bg.png') 1x, url('img/green-bg@2x.png') 2x">

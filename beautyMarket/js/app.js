@@ -4294,29 +4294,32 @@
                 formPreview.insertAdjacentHTML("beforeend", template);
             };
         }
-        const popupFile = document.getElementById("popup-file");
-        const popupImage = document.getElementById("popup-preview");
-        if (popupFile) popupFile.addEventListener("change", (() => {
-            popupImage.innerHTML = "";
-            const files = popupFile.files;
-            for (let i = 0; i < files.length; i++) uploadPopup(files[i]);
-        }));
-        function uploadPopup(file) {
-            if (![ "image/jpeg", "image/png" ].includes(file.type)) {
-                alert("Разрешены только файлы с расширением jpg, png");
-                formFile.value = "";
-                return;
+        const popupFile = document.querySelectorAll("[data-file-img]");
+        if (popupFile) popupFile.forEach((item => {
+            const popupImage = item.closest(".form").querySelector("[data-file-preview]");
+            item.addEventListener("change", (() => {
+                popupImage.innerHTML = "";
+                const files = item.files;
+                for (let i = 0; i < files.length; i++) uploadPopup(files[i]);
+            }));
+            function uploadPopup(file) {
+                console.log("sdasd");
+                if (![ "image/jpeg", "image/png" ].includes(file.type)) {
+                    alert("Разрешены только файлы с расширением jpg, png");
+                    formFile.value = "";
+                    return;
+                }
+                var reader = new FileReader;
+                reader.readAsDataURL(file);
+                reader.onload = function(e) {
+                    const template = `\n\t\t\t\t<div><img src="${e.target.result}" alt="Фото"></div>\n\t\t\t\t`;
+                    popupImage.insertAdjacentHTML("beforeend", template);
+                };
+                reader.onerror = function(e) {
+                    alert("Ошибка");
+                };
             }
-            var reader = new FileReader;
-            reader.readAsDataURL(file);
-            reader.onload = function(e) {
-                const template = `\n\t\t<div><img src="${e.target.result}" alt="Фото"></div>\n\t\t`;
-                popupImage.insertAdjacentHTML("beforeend", template);
-            };
-            reader.onerror = function(e) {
-                alert("Ошибка");
-            };
-        }
+        }));
         const formImage = document.getElementById("form-file-image");
         const formImagePreview = document.getElementById("form-preview-image");
         if (formImage) formImage.addEventListener("change", (() => {
@@ -8472,6 +8475,21 @@
                 },
                 on: {}
             });
+            if (document.querySelector(".like-news__tags-list")) new core(".like-news__tags-list", {
+                modules: [ Navigation, freeMode ],
+                observer: true,
+                observeParents: true,
+                slidesPerView: "auto",
+                spaceBetween: 0,
+                autoHeight: false,
+                speed: 800,
+                freeMode: true,
+                navigation: {
+                    prevEl: ".like-news__tags-arrow-prev",
+                    nextEl: ".like-news__tags-arrow-next"
+                },
+                on: {}
+            });
             if (document.querySelector(".product-card__slider")) {
                 const thumbsSwiper = new core(".product-card__thumbs-list", {
                     modules: [ Navigation, Thumb, freeMode ],
@@ -8594,6 +8612,50 @@
                     form.querySelector('[data-inp="tel"]').classList.add("_hide");
                 }
             }
+            if (el.closest(".sort-options__title")) {
+                const sort = el.closest(".sort-options");
+                sort.classList.toggle("_active");
+            }
+            if (el.closest(".sort-options__label")) {
+                const label = el.closest(".sort-options__label");
+                label.querySelector("span").textContent;
+                const sort = el.closest(".sort-options");
+                const title = sort.querySelector(".sort-options__title span");
+                if (sort.classList.contains("_active")) sort.classList.remove("_active");
+                title.textContent = label.querySelector("span").textContent;
+            }
+            if (el.closest(".quantity-options__title")) {
+                const sort = el.closest(".quantity-options");
+                sort.classList.toggle("_active");
+            }
+            if (el.closest(".quantity-options__label")) {
+                const label = el.closest(".quantity-options__label");
+                label.querySelector("span").textContent;
+                const sort = el.closest(".quantity-options");
+                const title = sort.querySelector(".quantity-options__title span");
+                if (sort.classList.contains("_active")) sort.classList.remove("_active");
+                title.textContent = label.querySelector("span").textContent;
+            }
+        }
+        const sortInputs = document.querySelectorAll(".sort-options input");
+        if (sortInputs) {
+            const optTitle = document.querySelector(".sort-options__title span");
+            sortInputs.forEach((input => {
+                if (input.checked) {
+                    const text = input.nextElementSibling.querySelector("span").textContent;
+                    optTitle.textContent = text;
+                }
+            }));
+        }
+        const quantityInputs = document.querySelectorAll(".quantity-options input");
+        if (quantityInputs) {
+            const optTitle = document.querySelector(".quantity-options__title span");
+            quantityInputs.forEach((input => {
+                if (input.checked) {
+                    const text = input.nextElementSibling.querySelector("span").textContent;
+                    optTitle.textContent = text;
+                }
+            }));
         }
         const searchInput = document.querySelector(".search-header__input");
         const searchResults = document.querySelector(".search-header__results");

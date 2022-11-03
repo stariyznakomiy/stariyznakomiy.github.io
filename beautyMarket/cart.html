@@ -5,7 +5,7 @@
 	<title>Корзина</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.css?_v=20221101143848">
+	<link rel="stylesheet" href="css/style.css?_v=20221104020545">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -1032,10 +1032,10 @@
 							</fieldset>
 						</div>
 						<div class="form__input-wrap">
-							<input multiple id="popup-file" accept=".jpg, .png" type="file" class="form__input-file">
+							<input multiple id="popup-file" data-file-img accept=".jpg, .png" type="file" class="form__input-file">
 							<label for="popup-file" class="form__file-label">Загрузить фото</label>
 						</div>
-						<div id="popup-preview" class="form__preview-images">
+						<div id="popup-preview" data-file-preview class="form__preview-images">
 						</div>
 						<div class="form__actions">
 							<button type="submit" class="form__button btn-purple">задать вопрос</button>
@@ -1054,6 +1054,51 @@
 		</div>
 	</div>
 	<!-- popup review end -->
+
+	<!-- popup vacancy -->
+	<div id="popup-vacancy" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__body">
+					<div class="popup__title">Откликнуться на ваансию</div>
+
+					<form action="" data-dev class="popup__form form">
+						<div class="form__inputs">
+							<div class="form__input-wrap">
+								<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="form__input input">
+							</div>
+							<div class="form__input-wrap">
+								<input data-required autocomplete="off" type="num" name="form[]" data-error="" placeholder="Ваш возраст" class="form__input input">
+							</div>
+							<div class="form__input-wrap">
+								<input multiple id="popup-file-vac" data-file-img accept=".jpg, .png" type="file" class="form__input-file">
+								<label for="popup-file-vac" class="form__file-label">Загрузить фото</label>
+							</div>
+						</div>
+						<div id="popup-preview-vac" data-file-preview class="form__preview-images">
+						</div>
+						<div class="form__actions">
+							<button type="submit" class="form__button btn-purple">отправить</button>
+						</div>
+						<div class="form__checkbox">
+							<input data-required id="vac_144" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="vac_144" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки
+									“отправить”</span></label>
+						</div>
+					</form>
+					<div class="popup__form-success">
+						<p>Наш менеджер свяжется с вами</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup vacancy end -->
 
 	<!-- popup location -->
 	<div id="popup-location" aria-hidden="true" class="popup">
@@ -1157,8 +1202,8 @@
 		</div>
 	</div>
 	<!-- popup one click end -->
-	<script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ&_v=20221101143848>&lang=ru_RU"></script>
-	<script src="js/app.min.js?_v=20221101143848"></script>
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ&_v=20221104020545>&lang=ru_RU"></script>
+	<script src="js/app.min.js?_v=20221104020545"></script>
 </body>
 
 </html>

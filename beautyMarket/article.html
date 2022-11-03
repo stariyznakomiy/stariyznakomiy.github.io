@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-	<title>Личные данные</title>
+	<title>Статья</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="css/style.css?_v=20221104020545">
@@ -310,204 +310,647 @@
 									</svg>
 								</a>
 							</li>
-							<li class="breadcrumbs__item"><span>Личный кабинет</span></li>
+							<li class="breadcrumbs__item"><span>Статья</span></li>
 						</ul>
 					</div>
 				</div>
 				<!-- breadcrumbs end -->
 
-				<!-- account-enter -->
-				<section class="account">
-					<div class="account__container">
-						<div class="account__wrap">
-							<div class="account__menu">
-								<ul class="account__menu-list">
-									<li class="account__menu-item">
-										<a href="#" class="account__menu-link">Профиль</a>
-										<ul class="account__menu-sublist">
-											<li class="account__menu-sublist-item"><a href="#" class="account__menu-sublist-link">Личный кабинет</a></li>
-											<li class="account__menu-sublist-item"><a href="#" class="account__menu-sublist-link">Мои данные</a></li>
-										</ul>
-									</li>
-									<li class="account__menu-item">
-										<a href="#" class="account__menu-link">Работа с заказом</a>
-										<ul class="account__menu-sublist">
-											<li class="account__menu-sublist-item"><a href="#" class="account__menu-sublist-link">Мои заказы</a></li>
-											<li class="account__menu-sublist-item"><a href="#" class="account__menu-sublist-link">Мои доставки</a></li>
-										</ul>
-									</li>
-									<li class="account__menu-item"><a href="#" class="account__menu-link">Проффессионалам</a></li>
-									<li class="account__menu-item"><a href="#" class="account__menu-link">Сертификаты</a></li>
-									<li class="account__menu-item"><a href="#" class="account__menu-link">Выход</a></li>
-								</ul>
+				<!-- article -->
+				<section class="article">
+					<div class="article__container">
+						<div class="article__title section-title">
+							<h1>Статья заголовок</h1>
+						</div>
+						<div data-tabs class="article__body">
+							<div class="article__head">
+								<div class="article__author">Автор: Артем Опарин</div>
+								<div class="article__views">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-viewer-1"></use>
+									</svg>
+									<span>158</span>
+								</div>
+								<div class="article__rating rating">
+									<span>Рейтинг</span>
+									<fieldset class="rating__row">
+										<input type="radio" value="5" disabled="">
+										<label title="Прекрасно - 5 звезд">
+											<svg class="icon">
+												<use xlink:href="img/icons/icons.svg#svg-star"></use>
+											</svg>
+										</label>
+										<input type="radio" checked="" value="4" disabled="">
+										<label title="Хорошо - 4 звезды">
+											<svg class="icon">
+												<use xlink:href="img/icons/icons.svg#svg-star"></use>
+											</svg>
+										</label>
+										<input type="radio" value="3" disabled="">
+										<label title="Так себе - 3 звезды">
+											<svg class="icon">
+												<use xlink:href="img/icons/icons.svg#svg-star"></use>
+											</svg>
+										</label>
+										<input type="radio" value="2" disabled="">
+										<label title="Плохо - 2 звезды">
+											<svg class="icon">
+												<use xlink:href="img/icons/icons.svg#svg-star"></use>
+											</svg>
+										</label>
+										<input type="radio" value="1" disabled="">
+										<label title="Ужасно - 1 звезда">
+											<svg class="icon">
+												<use xlink:href="img/icons/icons.svg#svg-star"></use>
+											</svg>
+										</label>
+									</fieldset>
+								</div>
 							</div>
-							<div class="account__body">
-								<div class="account__profile-data">
-									<div class="account__profile-col">
-										<div class="account__profile-sticker profile-sticker">
-											<h3 class="profile-sticker__title">Персональные данные</h3>
-											<div class="profile-sticker__body">
-												<form action="" class="profile-sticker__form form">
-													<div class="form__inputs">
-														<div class="form__input-wrap">
-															<div class="form__data-avatar">
-																<input id="form-file-image" accept=".jpg, .png" type="file" class="form__input-file">
-																<label for="form-file-image" class="form__img-label">
-																	<svg>
-																		<use xlink:href="img/icons/icons.svg#svg-camera"></use>
-																	</svg>
-																</label>
-																<div id="form-preview-image" class="form__preview-image">
-																	<img src="img/avatars/4.png" srcset="img/avatars/4@2x.png 2x" alt="">
-																</div>
-															</div>
-															<div class="form__data form__data-row">
-																<input id="data-1" data-required autocomplete="off" type="text" name="form[]" data-error="" value="Опарин Артём Эдуардович" placeholder="Фамилия Имя Отчество" class="data-input">
-																<label for="data-1" class="form__data-icons _active">
-																	<img src="img/icons/pensil.svg" alt="">
-																	<img src="img/icons/check2.svg" alt="">
-																</label>
-															</div>
-															<div class="form__data form__data-row">
-																<input id="data-2" autocomplete="off" type="text" name="form[]" data-error="" value="" placeholder="Дата рождения	не указано" class="data-input">
-																<label for="data-2" class="form__data-icons">
-																	<img src="img/icons/pensil.svg" alt="">
-																	<img src="img/icons/check2.svg" alt="">
-																</label>
-															</div>
-															<div class="form__data form__data-row">
-																<input id="data-3" autocomplete="off" type="text" name="form[]" data-error="" value="" placeholder="Пол не указано" class="data-input">
-																<label for="data-3" class="form__data-icons">
-																	<img src="img/icons/pensil.svg" alt="">
-																	<img src="img/icons/check2.svg" alt="">
-																</label>
-															</div>
-														</div>
-													</div>
-													<button type="submit" class="profile-sticker__button btn-purple">изменить</button>
-												</form>
-											</div>
-										</div>
-										<div class="account__profile-sticker profile-sticker">
-											<h3 class="profile-sticker__title">Адрес доставки</h3>
-											<div class="profile-sticker__body">
-												<form action="" class="profile-sticker__form form">
-													<div class="form__inputs">
-														<div class="form__input-wrap">
-															<div class="form__data">
-																<input id="data-4" autocomplete="off" type="text" name="form[]" data-error="" value="" placeholder="Не указано" class="data-input">
-																<label for="data-4" class="form__data-icons">
-																	<img src="img/icons/pensil.svg" alt="">
-																	<img src="img/icons/check2.svg" alt="">
-																</label>
-															</div>
-														</div>
-													</div>
-													<button type="submit" class="profile-sticker__button btn-purple">изменить</button>
-												</form>
-											</div>
-										</div>
-									</div>
-									<div class="account__profile-col">
-										<div class="account__profile-sticker profile-sticker">
-											<h3 class="profile-sticker__title">Номер мобильного телефона</h3>
-											<div class="profile-sticker__body">
-												<form action="" class="profile-sticker__form form">
-													<div class="form__inputs">
-														<div class="form__input-wrap">
-															<div class="form__data">
-																<input id="data-5" autocomplete="off" type="tel" name="form[]" data-error="" value="8 953 948 23 85" placeholder="Не указано" class="data-input">
-																<label for="data-5" class="form__data-icons _active">
-																	<img src="img/icons/pensil.svg" alt="">
-																	<img src="img/icons/check2.svg" alt="">
-																</label>
-															</div>
-														</div>
-													</div>
-													<button type="submit" class="profile-sticker__button btn-purple">изменить</button>
-												</form>
-											</div>
-										</div>
-										<div class="account__profile-sticker profile-sticker">
-											<h3 class="profile-sticker__title">Адрес электронной почты</h3>
-											<div class="profile-sticker__body">
-												<form action="" class="profile-sticker__form form">
-													<div class="form__inputs">
-														<div class="form__input-wrap">
-															<div class="form__data">
-																<input autocomplete="off" type="email" name="form[]" data-error="" value="rustle_92@yandex.ru" placeholder="Не указано" class="data-input">
-																<div class="form__data-icons">
-																	<span>Не подтверждён</span>
-																	<span>Подтверждён</span>
-																</div>
-															</div>
-														</div>
-													</div>
-													<button type="submit" class="profile-sticker__button btn-purple">изменить</button>
-												</form>
-											</div>
-										</div>
-									</div>
-									<div class="account__profile-col">
-										<div class="account__profile-sticker profile-sticker">
-											<h3 class="profile-sticker__title">Пароль</h3>
-											<div class="profile-sticker__body">
-												<form data-dev action="" class="profile-sticker__form form">
-													<div class="form__inputs">
-														<div class="form__input-wrap">
-															<div class="form__data-label">Введите старый пароль</div>
-															<div class="form__data">
-																<div>
-																	<input id="data-6" data-required autocomplete="off" type="password" name="form[]" data-error="" value="12345" placeholder="" class="input">
-																	<button type="button" class="form__viewpass">
-																		<svg>
-																			<use xlink:href="img/icons/icons.svg#svg-viewer-1"></use>
-																		</svg>
-																		<svg>
-																			<use xlink:href="img/icons/icons.svg#svg-viewer-2"></use>
-																		</svg>
-																	</button>
-																</div>
-																<label for="data-6" class="form__data-icons _active">
-																	<img src="img/icons/pensil.svg" alt="">
-																	<img src="img/icons/check2.svg" alt="">
-																</label>
-															</div>
-														</div>
-														<div class="form__input-wrap">
-															<div class="form__data-label">Введите новый пароль</div>
-															<div class="form__data">
-																<div>
-																	<input id="data-7" data-required autocomplete="off" type="password" name="form[]" data-error="" value="12345" placeholder="" class="input">
-																	<button type="button" class="form__viewpass">
-																		<svg>
-																			<use xlink:href="img/icons/icons.svg#svg-viewer-1"></use>
-																		</svg>
-																		<svg>
-																			<use xlink:href="img/icons/icons.svg#svg-viewer-2"></use>
-																		</svg>
-																	</button>
-																</div>
+							<div class="article__text">
+								<img data-src="img/product-description/1.png" data-srcset="img/product-description/1@2x.png 2x" alt="">
+								<p>Adipiscing tristique risus nec feugiat in fermentum. Facilisi etiam dignissim diam quis enim lobortis scelerisque. Amet venenatis urna cursus eget nunc.
+									Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum. Risus pretium quam vulputate dignissim. Augue neque gravida in fermentum. Massa eget egestas
+									purus viverra accumsan in nisl. In dictum non consectetur a erat nam at lectus. Volutpat sed cras ornare arcu dui vivamus arcu felis bibendum. Adipiscing
+									elit ut aliquam purus sit amet. Dolor sit amet consectetur adipiscing elit duis tristique. Consectetur purus ut faucibus pulvinar elementum. Ac turpis
+									egestas integer eget aliquet nibh praesent. Amet porttitor eget dolor morbi. Id cursus metus aliquam eleifend mi in.
+									<br><br>
+									Scelerisque eleifend donec pretium vulputate sapien. Molestie a iaculis at erat pellentesque adipiscing commodo. Tristique magna sit amet purus. Morbi
+									enim nunc faucibus a pellentesque sit amet porttitor. Interdum varius sit amet mattis vulputate enim. Massa enim nec dui nunc mattis enim ut. Egestas
+									pretium aenean pharetra magna ac placerat vestibulum lectus. Eget arcu dictum varius duis at consectetur lorem donec massa. Bibendum at varius vel
+									pharetra vel turpis nunc. Ornare suspendisse sed nisi lacus sed viverra. Magnis dis parturient montes nascetur ridiculus.
+								</p>
+								<img data-src="img/product-description/2.png" data-srcset="img/product-description/2@2x.png 2x" alt="">
+								<p>Adipiscing tristique risus nec feugiat in fermentum. Facilisi etiam dignissim diam quis enim lobortis scelerisque. Amet venenatis urna cursus eget nunc.
+									Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum. Risus pretium quam vulputate dignissim. Augue neque gravida in fermentum. Massa eget egestas
+									purus viverra accumsan in nisl. In dictum non consectetur a erat nam at lectus. Volutpat sed cras ornare arcu dui vivamus arcu felis bibendum. Adipiscing
+									elit ut aliquam purus sit amet. Dolor sit amet consectetur adipiscing elit duis tristique. Consectetur purus ut faucibus pulvinar elementum. Ac turpis
+									egestas integer eget aliquet nibh praesent. Amet porttitor eget dolor morbi. Id cursus metus aliquam eleifend mi in.
+									<br><br>
+									Scelerisque eleifend donec pretium vulputate sapien. Molestie a iaculis at erat pellentesque adipiscing commodo. Tristique magna sit amet purus. Morbi
+									enim nunc faucibus a pellentesque sit amet porttitor. Interdum varius sit amet mattis vulputate enim. Massa enim nec dui nunc mattis enim ut. Egestas
+									pretium aenean pharetra magna ac placerat vestibulum lectus. Eget arcu dictum varius duis at consectetur lorem donec massa. Bibendum at varius vel
+									pharetra vel turpis nunc. Ornare suspendisse sed nisi lacus sed viverra. Magnis dis parturient montes nascetur ridiculus.
+								</p>
+							</div>
+							<div class="article__navigation">
+								<a href="#" class="article__prev">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-arrow-left"></use>
+									</svg>
+									<span>Предыдущая статья</span>
+								</a>
+								<a href="#" class="article__all btn-purple">Все статьи</a>
+								<a href="#" class="article__next">
+									<span>Следующая статья</span>
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-arrow-right"></use>
+									</svg>
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- article end -->
 
-																<label for="data-7" class="form__data-icons _active">
-																	<img src="img/icons/pensil.svg" alt="">
-																	<img src="img/icons/check2.svg" alt="">
-																</label>
-															</div>
-														</div>
-													</div>
-													<button type="submit" class="profile-sticker__button btn-purple">изменить</button>
-												</form>
+				<!-- like-products -->
+				<section class="like-products">
+					<div class="like-products__container">
+						<div class="like-products__title section-title">
+							<h2>Вам понравятся</h2>
+						</div>
+						<div class="products-collection__items">
+							<article class="products-collection__item product-item">
+								<div class="product-item__body">
+									<div class="product-item__top">
+										<button type="button" class="product-item__favorite-add favorite-add">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
+											</svg>
+										</button>
+										<div class="product-item__labels">
+											<div class="product-item__label new">Новинка</div>
+											<div class="product-item__label hit">ХИТ</div>
+											<div class="product-item__label sale">Акция</div>
+										</div>
+										<a href="#" class="product-item__image">
+											<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
+											и масло макадамии NATURE 150 мл">
+										</a>
+									</div>
+									<div class="product-item__info">
+										<div class="product-item__info-wrap">
+											<div class="product-item__info-top">
+												<div class="product-item__vendor-code">Арт: KT009BU</div>
+												<div class="product-item__rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<a href="#" class="product-item__review-link">
+													<svg>
+														<use xlink:href="img/icons/icons.svg#svg-review"></use>
+													</svg>
+													<span>1352</span>
+												</a>
+											</div>
+											<div class="product-item__description">
+												<a href="#" class="product-item__name">
+													Пенка очищающая с алоэ <br>
+													и масло макадамии NATURE 150 мл
+												</a>
+												<div class="product-item__brand">
+													<span>Бренд: </span><a href="#">PURE GREEN</a>
+												</div>
+											</div>
+
+											<div class="product-item__price">
+												<span class="product-item__price-new">2950 ₽</span>
+												<span class="product-item__price-old">2150 ₽</span>
+												<div class="product-item__discount">-1100₽</div>
+											</div>
+										</div>
+										<div class="product-item__info-buttons">
+											<button type="button" class="product-item__buy btn-purple">В корзину</button>
+											<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
+												</svg>
+											</button>
+										</div>
+									</div>
+								</div>
+							</article>
+							<article class="products-collection__item product-item">
+								<div class="product-item__body">
+									<div class="product-item__top">
+										<button type="button" class="product-item__favorite-add favorite-add">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
+											</svg>
+										</button>
+										<div class="product-item__labels">
+											<div class="product-item__label hit">ХИТ</div>
+										</div>
+										<a href="#" class="product-item__image">
+											<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
+											и масло макадамии NATURE 150 мл">
+										</a>
+									</div>
+									<div class="product-item__info">
+										<div class="product-item__info-wrap">
+											<div class="product-item__info-top">
+												<div class="product-item__vendor-code">Арт: KT009BU</div>
+												<div class="product-item__rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<a href="#" class="product-item__review-link">
+													<svg>
+														<use xlink:href="img/icons/icons.svg#svg-review"></use>
+													</svg>
+													<span>1352</span>
+												</a>
+											</div>
+											<div class="product-item__description">
+												<a href="#" class="product-item__name">
+													Пенка очищающая с алоэ <br>
+													и масло макадамии NATURE 150 мл
+												</a>
+												<div class="product-item__brand">
+													<span>Бренд: </span><a href="#">PURE GREEN</a>
+												</div>
+											</div>
+
+											<div class="product-item__price">
+												<span class="product-item__price-new">2950 ₽</span>
+												<span class="product-item__price-old">2150 ₽</span>
+												<div class="product-item__discount">-1100₽</div>
+											</div>
+										</div>
+										<div class="product-item__info-buttons">
+											<button type="button" class="product-item__buy btn-purple">В корзину</button>
+											<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
+												</svg>
+											</button>
+										</div>
+									</div>
+								</div>
+							</article>
+							<article class="products-collection__item product-item">
+								<div class="product-item__body">
+									<div class="product-item__top">
+										<button type="button" class="product-item__favorite-add favorite-add">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
+											</svg>
+										</button>
+										<div class="product-item__labels">
+											<div class="product-item__label new">Новинка</div>
+											<div class="product-item__label hit">ХИТ</div>
+											<div class="product-item__label sale">Акция</div>
+										</div>
+										<a href="#" class="product-item__image">
+											<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
+											и масло макадамии NATURE 150 мл">
+										</a>
+									</div>
+									<div class="product-item__info">
+										<div class="product-item__info-wrap">
+											<div class="product-item__info-top">
+												<div class="product-item__vendor-code">Арт: KT009BU</div>
+												<div class="product-item__rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<a href="#" class="product-item__review-link">
+													<svg>
+														<use xlink:href="img/icons/icons.svg#svg-review"></use>
+													</svg>
+													<span>1352</span>
+												</a>
+											</div>
+											<div class="product-item__description">
+												<a href="#" class="product-item__name">
+													Пенка очищающая с алоэ <br>
+													и масло макадамии NATURE 150 мл
+												</a>
+												<div class="product-item__brand">
+													<span>Бренд: </span><a href="#">PURE GREEN</a>
+												</div>
+											</div>
+
+											<div class="product-item__price">
+												<span class="product-item__price-new">2950 ₽</span>
+												<span class="product-item__price-old">2150 ₽</span>
+												<div class="product-item__discount">-1100₽</div>
+											</div>
+										</div>
+										<div class="product-item__info-buttons">
+											<button type="button" class="product-item__buy btn-purple">В корзину</button>
+											<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
+												</svg>
+											</button>
+										</div>
+									</div>
+								</div>
+							</article>
+							<article class="products-collection__item product-item">
+								<div class="product-item__body">
+									<div class="product-item__top">
+										<button type="button" class="product-item__favorite-add favorite-add">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#svg-favorite-fill"></use>
+											</svg>
+										</button>
+										<div class="product-item__labels">
+											<div class="product-item__label hit">ХИТ</div>
+										</div>
+										<a href="#" class="product-item__image">
+											<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="Пенка очищающая с алоэ
+											и масло макадамии NATURE 150 мл">
+										</a>
+									</div>
+									<div class="product-item__info">
+										<div class="product-item__info-wrap">
+											<div class="product-item__info-top">
+												<div class="product-item__vendor-code">Арт: KT009BU</div>
+												<div class="product-item__rating rating">
+													<fieldset class="rating__row">
+														<input type="radio" value="5" disabled="">
+														<label title="Прекрасно - 5 звезд">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" checked="" value="4" disabled="">
+														<label title="Хорошо - 4 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="3" disabled="">
+														<label title="Так себе - 3 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="2" disabled="">
+														<label title="Плохо - 2 звезды">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+														<input type="radio" value="1" disabled="">
+														<label title="Ужасно - 1 звезда">
+															<svg class="icon">
+																<use xlink:href="img/icons/icons.svg#svg-star"></use>
+															</svg>
+														</label>
+													</fieldset>
+												</div>
+												<a href="#" class="product-item__review-link">
+													<svg>
+														<use xlink:href="img/icons/icons.svg#svg-review"></use>
+													</svg>
+													<span>1352</span>
+												</a>
+											</div>
+											<div class="product-item__description">
+												<a href="#" class="product-item__name">
+													Пенка очищающая с алоэ <br>
+													и масло макадамии NATURE 150 мл
+												</a>
+												<div class="product-item__brand">
+													<span>Бренд: </span><a href="#">PURE GREEN</a>
+												</div>
+											</div>
+
+											<div class="product-item__price">
+												<span class="product-item__price-new">2950 ₽</span>
+												<span class="product-item__price-old">2150 ₽</span>
+												<div class="product-item__discount">-1100₽</div>
+											</div>
+										</div>
+										<div class="product-item__info-buttons">
+											<button type="button" class="product-item__buy btn-purple">В корзину</button>
+											<button type="button" data-popup="#popup-one-click" class="product-item__one-click btn-one-click">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-one-click"></use>
+												</svg>
+											</button>
+										</div>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+				</section>
+				<!-- like-products end -->
+
+				<!-- like-news -->
+				<section class="like-news">
+					<div class="like-news__container">
+						<div class="like-news__title section-title">
+							<h2>Так вам может быть интересно</h2>
+						</div>
+						<div class="like-news__body">
+							<div class="like-news__list">
+								<div class="like-news__item">
+									<div class="like-news__item-img">
+										<img data-src="img/news/1.png" data-srcset="img/news/1@2x.png 2x" alt="">
+									</div>
+									<div class="like-news__item-body">
+										<div class="like-news__item-date">08 апреля 2020</div>
+										<a href="#" class="like-news__item-title">Планы на август</a>
+										<div class="like-news__item-text">Consequat ac felis donec et odio pellentesque diam volutpat commodo. Arcu dictum varius duis at consectetur lorem
+											donec massa.</div>
+									</div>
+								</div>
+								<div class="like-news__item">
+									<div class="like-news__item-img">
+										<img data-src="img/news/2.png" data-srcset="img/news/2@2x.png 2x" alt="">
+									</div>
+									<div class="like-news__item-body">
+										<div class="like-news__item-date">08 апреля 2020</div>
+										<a href="#" class="like-news__item-title">Идеальный уход за кожей лица в жару</a>
+										<div class="like-news__item-text">Consequat ac felis donec et odio pellentesque diam volutpat commodo. Arcu dictum varius duis at consectetur lorem
+											donec massa.</div>
+									</div>
+								</div>
+								<div class="like-news__item">
+									<div class="like-news__item-img">
+										<img data-src="img/news/3.png" data-srcset="img/news/3@2x.png 2x" alt="">
+									</div>
+									<div class="like-news__item-body">
+										<div class="like-news__item-date">08 апреля 2020</div>
+										<a href="#" class="like-news__item-title">Ингредиент с эффектом матовой кожи</a>
+										<div class="like-news__item-text">Consequat ac felis donec et odio pellentesque diam volutpat commodo. Arcu dictum varius duis at consectetur lorem
+											donec massa.</div>
+									</div>
+								</div>
+							</div>
+							<div class="like-news__tags">
+								<button type="button" class="like-news__tags-arrow like-news__tags-arrow-prev">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-arrow-left"></use>
+									</svg>
+								</button>
+								<div class="like-news__tags-list swiper">
+									<div class="like-news__tags-wrapper swiper-wrapper">
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_1" data-error="" class="tags-item__input" type="checkbox" value="1" name="form[]">
+												<label for="tag_1" class="tags-item__label"><span class="tags-item__text">Увлажнение</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_2" data-error="" class="tags-item__input" type="checkbox" value="2" name="form[]">
+												<label for="tag_2" class="tags-item__label"><span class="tags-item__text">Очищение</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_3" data-error="" class="tags-item__input" type="checkbox" value="3" name="form[]">
+												<label for="tag_3" class="tags-item__label"><span class="tags-item__text">Питание</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_4" data-error="" class="tags-item__input" type="checkbox" value="4" name="form[]">
+												<label for="tag_4" class="tags-item__label"><span class="tags-item__text">Для тела</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_5" data-error="" class="tags-item__input" type="checkbox" value="5" name="form[]">
+												<label for="tag_5" class="tags-item__label"><span class="tags-item__text">Для лица</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_6" data-error="" class="tags-item__input" type="checkbox" value="6" name="form[]">
+												<label for="tag_6" class="tags-item__label"><span class="tags-item__text">Пилинги</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_7" data-error="" class="tags-item__input" type="checkbox" value="7" name="form[]">
+												<label for="tag_7" class="tags-item__label"><span class="tags-item__text">Увлажнение</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_8" data-error="" class="tags-item__input" type="checkbox" value="8" name="form[]">
+												<label for="tag_8" class="tags-item__label"><span class="tags-item__text">Очищение</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_9" data-error="" class="tags-item__input" type="checkbox" value="9" name="form[]">
+												<label for="tag_9" class="tags-item__label"><span class="tags-item__text">Питание</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_10" data-error="" class="tags-item__input" type="checkbox" value="10" name="form[]">
+												<label for="tag_10" class="tags-item__label"><span class="tags-item__text">Для тела</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_11" data-error="" class="tags-item__input" type="checkbox" value="11" name="form[]">
+												<label for="tag_11" class="tags-item__label"><span class="tags-item__text">Для лица</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_12" data-error="" class="tags-item__input" type="checkbox" value="12" name="form[]">
+												<label for="tag_12" class="tags-item__label"><span class="tags-item__text">Пилинги</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_12" data-error="" class="tags-item__input" type="checkbox" value="12" name="form[]">
+												<label for="tag_12" class="tags-item__label"><span class="tags-item__text">Увлажнение</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_13" data-error="" class="tags-item__input" type="checkbox" value="13" name="form[]">
+												<label for="tag_13" class="tags-item__label"><span class="tags-item__text">Очищение</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_14" data-error="" class="tags-item__input" type="checkbox" value="14" name="form[]">
+												<label for="tag_14" class="tags-item__label"><span class="tags-item__text">Питание</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_15" data-error="" class="tags-item__input" type="checkbox" value="15" name="form[]">
+												<label for="tag_15" class="tags-item__label"><span class="tags-item__text">Для тела</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_16" data-error="" class="tags-item__input" type="checkbox" value="16" name="form[]">
+												<label for="tag_16" class="tags-item__label"><span class="tags-item__text">Для лица</span></label>
+											</div>
+										</div>
+										<div class="like-news__tags-item tags-item swiper-slide">
+											<div class="tags-item__checkbox">
+												<input id="tag_17" data-error="" class="tags-item__input" type="checkbox" value="17" name="form[]">
+												<label for="tag_17" class="tags-item__label"><span class="tags-item__text">Пилинги</span></label>
 											</div>
 										</div>
 									</div>
 								</div>
+								<button type="button" class="like-news__tags-arrow like-news__tags-arrow-next">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-arrow-right"></use>
+									</svg>
+								</button>
 							</div>
 						</div>
-
 					</div>
 				</section>
-				<!-- account-enter end -->
+				<!-- like-news end -->
 
 			</div>
 			<footer class="footer" data-bg-set="url('img/green-bg.png') 1x, url('img/green-bg@2x.png') 2x">
