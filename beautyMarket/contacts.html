@@ -5,7 +5,7 @@
 	<title>Контакты</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.css?_v=20221104020545">
+	<link rel="stylesheet" href="css/style.css?_v=20221105020554">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
@@ -29,7 +29,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
+<body class="transition_disabled">
 	<div class="wrapper">
 		<header class="header">
 			<div class="header__wrapper">
@@ -209,11 +209,12 @@
 								<use xlink:href="img/icons/icons.svg#svg-favorite"></use>
 							</svg>
 						</a>
-						<a href="#" class="header__actions-icon header__cart">
+						<button type="button" data-popup="#popup-cart" class="header__actions-icon header__cart">
 							<svg>
 								<use xlink:href="img/icons/icons.svg#svg-cart"></use>
 							</svg>
-						</a>
+							<span>1</span>
+						</button>
 						<a href="#" class="header__actions-icon header__account">
 							<svg>
 								<use xlink:href="img/icons/icons.svg#svg-user"></use>
@@ -693,7 +694,7 @@
 						</div>
 					</form>
 					<div class="popup__form-success">
-						<p>Наш менеджер свяжется с вами</p>
+						<p>Спасибо за Ваш отзыв</p>
 					</div>
 				</div>
 			</div>
@@ -810,19 +811,19 @@
 							<div class="popup__product-img">
 								<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
 							</div>
-							<div class="popup__product-body">
-								<a href="#" class="popup__product-name">Пенка очищающая с алоэ и масло макадамии NATURE 150 мл</a>
-								<div class="popup__product-bot">
-									<div data-quantity class="popup__product-quantity quantity">
-										<button data-quantity-minus type="button" class="quantity__button quantity__button_minus"></button>
-										<div class="quantity__input">
-											<input readonly data-quantity-value autocomplete="off" type="text" name="form[]" value="1">
-										</div>
-										<button data-quantity-plus type="button" class="quantity__button quantity__button_plus"></button>
+
+							<a href="#" class="popup__product-name">Пенка очищающая с алоэ и масло макадамии NATURE 150 мл</a>
+							<div class="popup__product-bot">
+								<div data-quantity class="popup__product-quantity quantity">
+									<button data-quantity-minus type="button" class="quantity__button quantity__button_minus"></button>
+									<div class="quantity__input">
+										<input readonly data-quantity-value autocomplete="off" type="text" name="form[]" value="1">
 									</div>
-									<div class="popup__product-price">2950 ₽</div>
+									<button data-quantity-plus type="button" class="quantity__button quantity__button_plus"></button>
 								</div>
+								<div class="popup__product-price">2950 ₽</div>
 							</div>
+
 						</div>
 					</div>
 					<form action="" data-dev class="popup__form form">
@@ -848,8 +849,86 @@
 		</div>
 	</div>
 	<!-- popup one click end -->
-	<script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ&_v=20221104020545>&lang=ru_RU"></script>
-	<script src="js/app.min.js?_v=20221104020545"></script>
+
+	<!-- popup cart -->
+	<div id="popup-cart" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__body">
+					<div class="popup__product-list">
+						<div class="popup__product-item">
+							<div class="popup__product-img">
+								<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+							</div>
+							<a href="#" class="popup__product-name">Пенка очищающая с алоэ и масло макадамии NATURE 150 мл</a>
+							<div class="popup__product-bot">
+								<div data-quantity class="popup__product-quantity quantity">
+									<button data-quantity-minus type="button" class="quantity__button quantity__button_minus"></button>
+									<div class="quantity__input">
+										<input readonly data-quantity-value autocomplete="off" type="text" name="form[]" value="1">
+									</div>
+									<button data-quantity-plus type="button" class="quantity__button quantity__button_plus"></button>
+								</div>
+								<div class="popup__product-price">2950 ₽</div>
+							</div>
+						</div>
+						<div class="popup__product-item">
+							<div class="popup__product-img">
+								<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+							</div>
+							<a href="#" class="popup__product-name">Пенка очищающая с алоэ и масло макадамии NATURE 150 мл</a>
+							<div class="popup__product-bot">
+								<div data-quantity class="popup__product-quantity quantity">
+									<button data-quantity-minus type="button" class="quantity__button quantity__button_minus"></button>
+									<div class="quantity__input">
+										<input readonly data-quantity-value autocomplete="off" type="text" name="form[]" value="1">
+									</div>
+									<button data-quantity-plus type="button" class="quantity__button quantity__button_plus"></button>
+								</div>
+								<div class="popup__product-price">2950 ₽</div>
+							</div>
+						</div>
+						<div class="popup__product-item">
+							<div class="popup__product-img">
+								<img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt="">
+							</div>
+							<a href="#" class="popup__product-name">Пенка очищающая с алоэ и масло макадамии NATURE 150 мл</a>
+							<div class="popup__product-bot">
+								<div data-quantity class="popup__product-quantity quantity">
+									<button data-quantity-minus type="button" class="quantity__button quantity__button_minus"></button>
+									<div class="quantity__input">
+										<input readonly data-quantity-value autocomplete="off" type="text" name="form[]" value="1">
+									</div>
+									<button data-quantity-plus type="button" class="quantity__button quantity__button_plus"></button>
+								</div>
+								<div class="popup__product-price">2950 ₽</div>
+							</div>
+						</div>
+						<div class="popup__product-total">
+							<span>ИТОГО</span>
+							<span>0000 ₽</span>
+						</div>
+					</div>
+					<div class="form__actions">
+						<a href="#" class="form__button btn-purple">оформить заказ</a>
+					</div>
+					<div class="form__checkbox">
+						<input data-required id="one-click_155" data-error="" checked readonly class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+						<label for="one-click_155" class="form__checkbox-label"><span class="form__checkbox-text">Я согласен на обработку персональных данных при нажатии кнопки “Заказать
+								звонок”</span></label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup cart end -->
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ&_v=20221105020554>&lang=ru_RU"></script>
+	<script src="js/app.min.js?_v=20221105020554"></script>
 </body>
 
 </html>

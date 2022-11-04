@@ -8555,18 +8555,31 @@
                 }));
             }
         }), 0);
+        window.onload = function() {
+            if (document.body.classList.contains("transition_disabled")) document.body.classList.remove("transition_disabled");
+        };
         document.addEventListener("click", clickDocument);
         function clickDocument(e) {
             const el = e.target;
             if (el.classList.contains("icon-menu")) document.documentElement.classList.toggle("menu-open");
             if (el.closest(".menu__close")) document.documentElement.classList.remove("menu-open");
+            if (!el.closest(".search-header")) {
+                if (document.querySelector(".search-header").classList.contains("_active")) document.querySelector(".search-header").classList.remove("_active");
+                if (document.documentElement.classList.contains("search-open")) document.documentElement.classList.remove("search-open");
+            }
             if (el.closest(".header__search-icon")) {
                 const search = document.querySelector(".search-header");
-                if (search) search.classList.add("_active");
+                if (search) {
+                    search.classList.add("_active");
+                    document.documentElement.classList.add("search-open");
+                }
             }
             if (el.closest(".search-header__close")) {
                 const search = document.querySelector(".search-header");
-                if (search) search.classList.remove("_active");
+                if (search) {
+                    search.classList.remove("_active");
+                    document.documentElement.classList.remove("search-open");
+                }
             }
             if (el.closest(".favorite-add")) el.closest(".favorite-add").classList.toggle("_active");
             if (el.classList.contains("products-collection__tabs-btn")) {
@@ -8683,14 +8696,44 @@
                 });
                 var glyphIcon = new ymaps.Placemark([ 58.594344, 49.677814 ], {
                     iconCaption: "улица Свободы, 110",
-                    balloonContent: "<div class='icon-content'><div class='icon-content__image' style='background-image: url(img/balloon-img.png)'></div><div class='icon-content__wrap'><div class='icon-content__title'>ПРИХОДИТЕ – <br>НАС ОЧЕНЬ ЛЕГКО НАЙТИ!</div><div class='icon-content__address'>Киров, Свободы, 110</div><div class='icon-content__contacts'><div class='icon-content__phone'>+7 (8332) 22-00-40</div><div class='icon-content__mail'>info@profbeautymarket.com</div></div><div class='icon-content__work-time'>Пн-Пт с 9.00 - 19.00, <br> Сб с 10.00 - 14.00</div></div></div>"
+                    balloonContent: `\n         <div class='icon-content'>\n            <div class='icon-content__image' style='background-image: url(img/balloon-img.png)'></div>\n            <div class='icon-content__wrap'>\n               <div class='icon-content__title'>ПРИХОДИТЕ – <br>НАС ОЧЕНЬ ЛЕГКО НАЙТИ!</div>\n               <div class='icon-content__address'>Киров, Свободы, 110</div>\n               <div class='icon-content__contacts'>\n                  <div class='icon-content__phone'>+7 (8332) 22-00-40</div>\n                  <div class='icon-content__mail'>info@profbeautymarket.com</div>\n               </div>\n               <div class='icon-content__work-time'>Пн-Пт с 9.00 - 19.00, <br> Сб с 10.00 - 14.00</div>\n            </div>\n         </div>`
                 }, {
                     preset: "islands#greenIcon",
-                    hasCloseButton: false,
+                    balloonCloseButton: false,
                     hideIconOnBalloonOpen: false,
                     openBalloonOnClick: false,
-                    balloonOffset: [ -270, 276 ]
+                    balloonOffset: [ -270, 276 ],
+                    balloonMaxWidth: 280,
+                    balloonMaxHeight: 546
                 });
+                if (window.innerWidth < 768) {
+                    glyphIcon.options.set("balloonOffset", [ -120, 200 ]);
+                    glyphIcon.options.set("balloonMaxWidth", 345);
+                    glyphIcon.options.set("balloonMaxHeight", 150);
+                } else if (window.innerWidth < 1024) {
+                    glyphIcon.options.set("balloonOffset", [ -200, 200 ]);
+                    glyphIcon.options.set("balloonMaxWidth", 232);
+                    glyphIcon.options.set("balloonMaxHeight", 400);
+                } else if (window.innerWidth >= 1024) {
+                    glyphIcon.options.set("balloonOffset", [ -270, 276 ]);
+                    glyphIcon.options.set("balloonMaxWidth", 280);
+                    glyphIcon.options.set("balloonMaxHeight", 546);
+                }
+                window.addEventListener("resize", (event => {
+                    if (window.innerWidth < 768) {
+                        glyphIcon.options.set("balloonOffset", [ -120, 200 ]);
+                        glyphIcon.options.set("balloonMaxWidth", 345);
+                        glyphIcon.options.set("balloonMaxHeight", 150);
+                    } else if (window.innerWidth < 1024) {
+                        glyphIcon.options.set("balloonOffset", [ -200, 200 ]);
+                        glyphIcon.options.set("balloonMaxWidth", 232);
+                        glyphIcon.options.set("balloonMaxHeight", 400);
+                    } else if (window.innerWidth >= 1024) {
+                        glyphIcon.options.set("balloonOffset", [ -270, 276 ]);
+                        glyphIcon.options.set("balloonMaxWidth", 280);
+                        glyphIcon.options.set("balloonMaxHeight", 546);
+                    }
+                }));
                 myMap.geoObjects.add(glyphIcon);
                 glyphIcon.balloon.open();
                 myMap.behaviors.disable("scrollZoom");
