@@ -1,0 +1,29 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="path-1-inside-1_1305_50245" fill="white">
+<rect x="6" y="70" width="108" height="12" rx="2"/>
+</mask>
+<rect x="6" y="70" width="108" height="12" rx="2" fill="#FFA800" stroke="black" stroke-width="6" mask="url(#path-1-inside-1_1305_50245)"/>
+<path d="M90 95H102.799C103.253 95 103.693 94.8456 104.048 94.5622L117.249 84.0096C117.724 83.6301 118 83.0552 118 82.4474V12C118 10.8954 117.105 10 116 10H4C2.89543 10 2 10.8954 2 12V82.4474C2 83.0552 2.27642 83.6301 2.75121 84.0096L15.9523 94.5622C16.3069 94.8456 16.7473 95 17.2011 95H30M58 95H60H62" stroke="black" stroke-width="3"/>
+<mask id="path-3-inside-2_1305_50245" fill="white">
+<rect x="31" y="16" width="28" height="51" rx="2"/>
+</mask>
+<rect x="31" y="16" width="28" height="51" rx="2" fill="#FFA800" stroke="black" stroke-width="6" mask="url(#path-3-inside-2_1305_50245)"/>
+<rect x="51.75" y="41.75" width="1.5" height="8.5" rx="0.75" stroke="black" stroke-width="1.5"/>
+<rect x="8.75" y="18.25" width="1.5" height="16.5" rx="0.75" transform="rotate(-90 8.75 18.25)" stroke="black" stroke-width="1.5"/>
+<rect x="94.75" y="18.25" width="1.5" height="16.5" rx="0.75" transform="rotate(-90 94.75 18.25)" stroke="black" stroke-width="1.5"/>
+<rect x="8.75" y="24.25" width="1.5" height="16.5" rx="0.75" transform="rotate(-90 8.75 24.25)" stroke="black" stroke-width="1.5"/>
+<rect x="94.75" y="24.25" width="1.5" height="16.5" rx="0.75" transform="rotate(-90 94.75 24.25)" stroke="black" stroke-width="1.5"/>
+<rect x="8.75" y="30.25" width="1.5" height="16.5" rx="0.75" transform="rotate(-90 8.75 30.25)" stroke="black" stroke-width="1.5"/>
+<rect x="94.75" y="30.25" width="1.5" height="16.5" rx="0.75" transform="rotate(-90 94.75 30.25)" stroke="black" stroke-width="1.5"/>
+<rect x="8.75" y="36.25" width="1.5" height="16.5" rx="0.75" transform="rotate(-90 8.75 36.25)" stroke="black" stroke-width="1.5"/>
+<rect x="94.75" y="36.25" width="1.5" height="16.5" rx="0.75" transform="rotate(-90 94.75 36.25)" stroke="black" stroke-width="1.5"/>
+<mask id="path-13-inside-3_1305_50245" fill="white">
+<rect x="61" y="16" width="28" height="51" rx="2"/>
+</mask>
+<rect x="61" y="16" width="28" height="51" rx="2" fill="#FFA800" stroke="black" stroke-width="6" mask="url(#path-13-inside-3_1305_50245)"/>
+<rect x="66.75" y="41.75" width="1.5" height="8.5" rx="0.75" stroke="black" stroke-width="1.5"/>
+<circle cx="76" cy="98" r="10.5" stroke="black" stroke-width="3"/>
+<circle cx="44" cy="98" r="10.5" stroke="black" stroke-width="3"/>
+<circle cx="44" cy="98" r="4.5" stroke="black" stroke-width="3"/>
+<circle cx="76" cy="98" r="4.5" stroke="black" stroke-width="3"/>
+</svg>

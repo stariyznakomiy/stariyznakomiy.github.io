@@ -1,0 +1,56 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="path-1-inside-1_1303_50121" fill="white">
+<rect x="3" y="38" width="102" height="64" rx="2"/>
+</mask>
+<rect x="3" y="38" width="102" height="64" rx="2" fill="#FFA800" stroke="black" stroke-width="6" mask="url(#path-1-inside-1_1303_50121)"/>
+<mask id="path-2-inside-2_1303_50121" fill="white">
+<rect x="3" y="22" width="24" height="10" rx="2"/>
+</mask>
+<rect x="3" y="22" width="24" height="10" rx="2" stroke="black" stroke-width="6" mask="url(#path-2-inside-2_1303_50121)"/>
+<mask id="path-3-inside-3_1303_50121" fill="white">
+<rect x="24" y="19" width="24" height="16" rx="2"/>
+</mask>
+<rect x="24" y="19" width="24" height="16" rx="2" stroke="black" stroke-width="6" mask="url(#path-3-inside-3_1303_50121)"/>
+<mask id="path-4-inside-4_1303_50121" fill="white">
+<rect x="85" y="28" width="20" height="13" rx="2"/>
+</mask>
+<rect x="85" y="28" width="20" height="13" rx="2" stroke="black" stroke-width="6" mask="url(#path-4-inside-4_1303_50121)"/>
+<path d="M103.5 14C103.5 13.7239 103.724 13.5 104 13.5H114.535C114.853 13.5 115.09 13.7922 115.024 14.103L111.866 29.103C111.818 29.3344 111.614 29.5 111.377 29.5H104C103.724 29.5 103.5 29.2761 103.5 29V14Z" stroke="black" stroke-width="3"/>
+<mask id="path-6-inside-5_1303_50121" fill="white">
+<path d="M45 21C45 19.8954 45.8954 19 47 19H53C61.8366 19 69 26.1634 69 35V39C69 40.1046 68.1046 41 67 41H47C45.8954 41 45 40.1046 45 39V21Z"/>
+</mask>
+<path d="M45 21C45 19.8954 45.8954 19 47 19H53C61.8366 19 69 26.1634 69 35V39C69 40.1046 68.1046 41 67 41H47C45.8954 41 45 40.1046 45 39V21Z" stroke="black" stroke-width="6" mask="url(#path-6-inside-5_1303_50121)"/>
+<mask id="path-7-inside-6_1303_50121" fill="white">
+<path d="M105 14C105 12.8954 104.105 12 103 12H101C92.1634 12 85 19.1634 85 28V29C85 30.1046 85.8954 31 87 31H103C104.105 31 105 30.1046 105 29V14Z"/>
+</mask>
+<path d="M105 14C105 12.8954 104.105 12 103 12H101C92.1634 12 85 19.1634 85 28V29C85 30.1046 85.8954 31 87 31H103C104.105 31 105 30.1046 105 29V14Z" stroke="black" stroke-width="6" mask="url(#path-7-inside-6_1303_50121)"/>
+<mask id="path-8-inside-7_1303_50121" fill="white">
+<rect x="18" y="50" width="40" height="41" rx="2"/>
+</mask>
+<rect x="18" y="50" width="40" height="41" rx="2" fill="white" stroke="black" stroke-width="6" mask="url(#path-8-inside-7_1303_50121)"/>
+<mask id="path-9-inside-8_1303_50121" fill="white">
+<rect x="62" y="50" width="36" height="17" rx="2"/>
+</mask>
+<rect x="62" y="50" width="36" height="17" rx="2" fill="white" stroke="black" stroke-width="6" mask="url(#path-9-inside-8_1303_50121)"/>
+<mask id="path-10-inside-9_1303_50121" fill="white">
+<rect x="62" y="71" width="36" height="20" rx="2"/>
+</mask>
+<rect x="62" y="71" width="36" height="20" rx="2" fill="white" stroke="black" stroke-width="6" mask="url(#path-10-inside-9_1303_50121)"/>
+<mask id="path-11-inside-10_1303_50121" fill="white">
+<rect x="11" y="53" width="10" height="12" rx="2"/>
+</mask>
+<rect x="11" y="53" width="10" height="12" rx="2" fill="white" stroke="black" stroke-width="6" mask="url(#path-11-inside-10_1303_50121)"/>
+<mask id="path-12-inside-11_1303_50121" fill="white">
+<rect x="11" y="76" width="10" height="12" rx="2"/>
+</mask>
+<rect x="11" y="76" width="10" height="12" rx="2" fill="white" stroke="black" stroke-width="6" mask="url(#path-12-inside-11_1303_50121)"/>
+<rect x="0.75" y="-0.75" width="10.5" height="1.5" rx="0.75" transform="matrix(1 0 0 -1 25 75.5)" stroke="black" stroke-width="1.5"/>
+<rect x="0.75" y="-0.75" width="10.5" height="1.5" rx="0.75" transform="matrix(1 0 0 -1 74 78.5)" stroke="black" stroke-width="1.5"/>
+<rect x="0.75" y="0.75" width="8.5" height="1.5" rx="0.75" transform="matrix(-4.37114e-08 1 1 4.37114e-08 47 65)" stroke="black" stroke-width="1.5"/>
+<rect x="0.75" y="0.75" width="8.5" height="1.5" rx="0.75" transform="matrix(-4.37114e-08 1 1 4.37114e-08 11 30)" stroke="black" stroke-width="1.5"/>
+<rect x="25.75" y="80.75" width="10.5" height="1.5" rx="0.75" stroke="black" stroke-width="1.5"/>
+<mask id="path-18-inside-12_1303_50121" fill="white">
+<rect x="12" y="99" width="88" height="11" rx="2"/>
+</mask>
+<rect x="12" y="99" width="88" height="11" rx="2" stroke="black" stroke-width="6" mask="url(#path-18-inside-12_1303_50121)"/>
+</svg>
