@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-	<title>Корзина</title>
+	<title>Оформление заказа</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
@@ -1802,139 +1802,193 @@
 							</svg>
 						</a>
 					</li>
-					<li class="breadcrumbs__item"><span>Корзина</span></li>
+					<li class="breadcrumbs__item"><span>Оформление заказа</span></li>
 				</ul>
 			</div>
 		</div>
 		<!-- breadcrumbs end -->
 		<main class="page">
 			<!-- cart -->
-			<section class="cart">
-				<div class="cart__container">
-					<h1 class="cart__title page-title"> Корзина </h1>
-					<div class="cart__body">
-						<table class="cart__table cart-table">
-							<tbody>
-								<tr class="cart-table__item">
-									<td class="cart-table__item-img">
-										<a href="#"><img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt=""></a>
-									</td>
-									<td class="cart-table__info">
-										<a href="#" class="cart-table__title">Дизельный электрогенератор Onis Visa P9</a>
-										<div class="cart-table__icons">
-											<span>
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-factory2"></use>
-												</svg>
-											</span>
-											<span>
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-engine2"></use>
-												</svg>
-											</span>
-											<span>
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
-												</svg>
-											</span>
-										</div>
-										<div class="cart-table__availability">На складе 10 шт</div>
-									</td>
-									<td class="cart-table__item-quantity">
-										<span>Кол-во</span>
-										<div data-quantity class="cart-quantity">
-											<button data-quantity-minus type="button" class="cart-quantity__button cart-quantity__button_minus">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-angle-left"></use>
-												</svg>
-											</button>
-											<div class="cart-quantity__input">
-												<input readonly data-quantity-value autocomplete="off" type="text" name="form[]" value="1">
+			<section class="checkout">
+				<div class="checkout__container">
+					<h1 class="checkout__title page-title">Оформление заказа</h1>
+					<div class="checkout__body">
+						<form action="" data-dev class="checkout__form checkout-form">
+							<div data-tabs class="checkout-form__tabs">
+								<nav data-tabs-titles class="checkout-form__tab-navigation">
+									<button type="button" class="checkout-form__tab-title _tab-active" data-text="Физическое лицо">Физическое лицо</button>
+									<button type="button" class="checkout-form__tab-title" data-text="Юридическое лицо">Юридическое лицо</button>
+								</nav>
+								<div data-tabs-body class="checkout-form__tabs-content">
+									<div class="checkout-form__tabs-body">
+										<div class="checkout-form__label">Информация о покупателе</div>
+										<div class="checkout-form__row">
+											<div class="checkout-form__input-wrap">
+												<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Фамилия Имя Отчество" class="checkout-form__input input">
+												<span>Фамилия, имя, отчество</span>
 											</div>
-											<button data-quantity-plus type="button" class="cart-quantity__button quantity__button_plus">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-angle-right"></use>
-												</svg>
-											</button>
-										</div>
-									</td>
-									<td class="cart-table__item-price">
-										<div class="cart-table__item-price-new">999 999 ₽</div>
-										<div class="cart-table__item-price-old">1 388 999 ₽</div>
-									</td>
-								</tr>
-								<tr class="cart-table__item">
-									<td class="cart-table__item-img">
-										<a href="#"><img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt=""></a>
-									</td>
-									<td class="cart-table__info">
-										<a href="#" class="cart-table__title">Дизельный электрогенератор Onis Visa P9</a>
-										<div class="cart-table__icons">
-											<span>
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-factory2"></use>
-												</svg>
-											</span>
-											<span>
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-engine2"></use>
-												</svg>
-											</span>
-											<span>
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
-												</svg>
-											</span>
-										</div>
-										<div class="cart-table__availability">На складе 10 шт</div>
-									</td>
-									<td class="cart-table__item-quantity">
-										<span>Кол-во</span>
-										<div data-quantity class="cart-quantity">
-											<button data-quantity-minus type="button" class="cart-quantity__button cart-quantity__button_minus">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-angle-left"></use>
-												</svg>
-											</button>
-											<div class="cart-quantity__input">
-												<input readonly data-quantity-value autocomplete="off" type="text" name="form[]" value="1">
+											<div class="checkout-form__input-wrap">
+												<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Телефон" class="checkout-form__input input">
+												<span>Мобильный номер телефона*</span>
 											</div>
-											<button data-quantity-plus type="button" class="cart-quantity__button quantity__button_plus">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-angle-right"></use>
-												</svg>
-											</button>
+											<div class="checkout-form__input-wrap">
+												<input data-required autocomplete="off" type="email" name="form[]" data-error="" placeholder="Email" class="checkout-form__input input">
+												<span>Для получения чека и уведомлений</span>
+											</div>
 										</div>
-									</td>
-									<td class="cart-table__item-price">
-										<div class="cart-table__item-price-new">999 999 ₽</div>
-										<div class="cart-table__item-price-old">1 388 999 ₽</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<div class="cart__total total-cart">
-							<div class="total-cart__promo">
-								<div class="total-cart__promo-title">Есть промо-код? </div>
-								<div class="total-cart__promo-subtitle">введите его здесь</div>
-								<form data-dev action="" class="total-cart__promo-form">
-									<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Промокод" class="total-cart__promo-input">
-									<button type="submit" class="total-cart__promo-button btn-orange">ЕСТЬ</button>
-								</form>
-							</div>
-							<div class="total-cart__title">Ваш заказ <span>(2)</span></div>
-							<div class="total-cart__row">
-								<div class="total-cart__item">
-									<div class="total-cart__name">Товаров на:</div>
-									<div class="total-cart__value">999 999 ₽</div>
-								</div>
-								<div class="total-cart__item">
-									<div class="total-cart__name">ИТОГО:</div>
-									<div class="total-cart__value">999 999 ₽</div>
+									</div>
+									<div class="checkout-form__tabs-body">
+										<div class="checkout-form__tabs-body">
+											<div class="checkout-form__label">Информация о покупателе</div>
+											<div class="checkout-form__row">
+												<div class="checkout-form__input-wrap">
+													<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Название компании" class="checkout-form__input input">
+													<span>Название компании</span>
+												</div>
+												<div class="checkout-form__input-wrap">
+													<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Телефон" class="checkout-form__input input">
+													<span>Мобильный номер телефона*</span>
+												</div>
+												<div class="checkout-form__input-wrap">
+													<input data-required autocomplete="off" type="email" name="form[]" data-error="" placeholder="Email" class="checkout-form__input input">
+													<span>Для получения чека и уведомлений</span>
+												</div>
+												<div class="checkout-form__input-wrap">
+													<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Юридический адрес" class="checkout-form__input input">
+													<span>Юридический адрес</span>
+												</div>
+												<div class="checkout-form__input-wrap">
+													<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="ИНН" class="checkout-form__input input">
+													<span>ИНН</span>
+												</div>
+												<div class="checkout-form__input-wrap">
+													<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="КПП" class="checkout-form__input input">
+													<span>КПП</span>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-							<a href="#" class="total-cart__button btn-black">оформить заказ</a>
-						</div>
+							<div class="checkout-form__label">Доставка</div>
+							<div class="checkout-form__row checkout-form__row-delivery">
+								<div class="checkout-form__input-wrap">
+									<select name="form[]" class="form">
+										<option value="1" selected>Москва, Московская область</option>
+										<option value="2">Москва, Московская область</option>
+										<option value="3">Москва, Московская область</option>
+										<option value="4">Москва, Московская область</option>
+									</select>
+									<span>Выберите область/регион для вычисления стоимости доставки</span>
+								</div>
+
+								<div class="checkout-form__input-wrap">
+									<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Город, улица, дом" class="checkout-form__input input">
+									<span>Укажите адрес доставки</span>
+								</div>
+							</div>
+							<div class="checkout-form__delivery">
+								<div class="options">
+									<div class="options__item">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-post-stamp"></use>
+										</svg>
+										<input hidden id="del_1" class="options__input" checked type="radio" value="1" name="delivery">
+										<label for="del_1" class="options__label"><span class="options__text">Почтой России - <b> 459 ₽</b></span></label>
+									</div>
+									<div class="options__item">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-delivery2"></use>
+										</svg>
+										<input hidden id="del_3" class="options__input" checked type="radio" value="3" name="delivery">
+										<label for="del_3" class="options__label"><span class="options__text">Курьер СДЭК - <b>849 ₽</b> </span></label>
+									</div>
+								</div>
+								<div class="options">
+									<div class="options__item">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-delivery"></use>
+										</svg>
+										<input hidden id="del_2" class="options__input" type="radio" value="2" name="delivery">
+										<label for="del_2" class="options__label"><span class="options__text">Курьером Почты России (EMS) - <b> 349 ₽</b></span></label>
+									</div>
+									<div class="options__item">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-marker2"></use>
+										</svg>
+										<input hidden id="del_4" class="options__input" type="radio" value="4" name="delivery">
+										<label for="del_4" class="options__label"><span class="options__text"><b>Самовывоз</b></span></label>
+									</div>
+								</div>
+							</div>
+							<div class="checkout-form__label">Оплата</div>
+							<div class="checkout-form__payment">
+								<div class="options">
+									<div class="options__item">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-credit-card"></use>
+										</svg>
+										<input hidden id="pay_1" class="options__input" checked type="radio" value="1" name="payment">
+										<label for="pay_1" class="options__label"><span class="options__text">Банковской картой онлайн</span></label>
+									</div>
+									<div class="options__item">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-credit-card"></use>
+										</svg>
+										<input hidden id="pay_2" class="options__input" checked type="radio" value="2" name="payment">
+										<label for="pay_2" class="options__label"><span class="options__text">Картой при получении</span></label>
+									</div>
+									<div class="options__item">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-money"></use>
+										</svg>
+										<input hidden id="pay_3" class="options__input" checked type="radio" value="3" name="payment">
+										<label for="pay_3" class="options__label"><span class="options__text">Наличными</span></label>
+									</div>
+								</div>
+							</div>
+							<div class="checkout-form__label">Комментарии к заказу</div>
+							<textarea placeholder="Текст комментария" class="checkout-form__textarea input"></textarea>
+							<div class="checkout-form__total">
+								<div class="checkout-form__total-row">
+									<div class="checkout-form__total-label">Сумма товаров</div>
+									<div class="checkout-form__price">
+										<div class="checkout-form__price-old">1 299 998 ₽</div><span>999 999 ₽</span>
+									</div>
+								</div>
+								<div class="checkout-form__total-row">
+									<div class="checkout-form__total-label">Доставка</div>
+									<div class="checkout-form__price">+660 ₽</div>
+								</div>
+								<div class="checkout-form__total-row">
+									<div class="checkout-form__total-label">Итоговая скидка</div>
+									<div class="checkout-form__price">-66 ₽</div>
+								</div>
+								<div class="checkout-form__total-row">
+									<div class="checkout-form__total-label"><b>ИТОГО</b></div>
+									<div class="checkout-form__price checkout-form__price-total"><b>999 999 ₽</b> </div>
+								</div>
+								<div class="checkout-form__total-bot">
+									<div class="checkout-form__total-sale">Онлайн оплата 5%: ВЫГОДА 77 руб.</div>
+									<div class="checkout-form__total-del">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-post-stamp"></use>
+										</svg>
+										<span>Ближайшая доставка<br>
+											17.09.2020 - 19.09.2020</span>
+									</div>
+								</div>
+							</div>
+							<div class="checkout-form__actions">
+								<button type="submit" class="checkout-form__button btn-black">ОФОРМИТЬ ЗАКАЗ</button>
+								<div class="checkout-form__checkbox form-checkbox">
+									<input data-error="" checked class="form-checkbox__input" type="checkbox" value="1" name="form[]">
+									<div class="form-checkbox__label"><span class="form-checkbox__text">Я согласен с условиями предоставления услуг
+											и обработкой моих персональных данных
+											при нажатии "Оформить заказ"</span></div>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</section>
