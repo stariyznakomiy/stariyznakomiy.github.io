@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-	<title>Корзина</title>
+	<title>Услуги</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
@@ -1802,143 +1802,238 @@
 							</svg>
 						</a>
 					</li>
-					<li class="breadcrumbs__item"><span>Корзина</span></li>
+					<li class="breadcrumbs__item"><span>Услуги</span></li>
 				</ul>
 			</div>
 		</div>
 		<!-- breadcrumbs end -->
+
 		<main class="page">
-			<!-- cart -->
-			<section class="cart">
-				<div class="cart__container">
-					<h1 class="cart__title page-title"> Корзина </h1>
-					<div class="cart__body">
-						<table class="cart__table cart-table">
-							<tbody>
-								<tr class="cart-table__item">
-									<td class="cart-table__item-img">
-										<a href="#"><img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt=""></a>
-									</td>
-									<td class="cart-table__info">
-										<a href="#" class="cart-table__title">Дизельный электрогенератор Onis Visa P9</a>
-										<div class="cart-table__icons">
-											<span>
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-factory2"></use>
-												</svg>
-											</span>
-											<span>
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-engine2"></use>
-												</svg>
-											</span>
-											<span>
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
-												</svg>
-											</span>
-										</div>
-										<div class="cart-table__availability">На складе 10 шт</div>
-									</td>
-									<td class="cart-table__item-quantity">
-										<span>Кол-во</span>
-										<div data-quantity class="cart-quantity">
-											<button data-quantity-minus type="button" class="cart-quantity__button cart-quantity__button_minus">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-angle-left"></use>
-												</svg>
-											</button>
-											<div class="cart-quantity__input">
-												<input readonly data-quantity-value autocomplete="off" type="text" name="form[]" value="1">
-											</div>
-											<button data-quantity-plus type="button" class="cart-quantity__button quantity__button_plus">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-angle-right"></use>
-												</svg>
-											</button>
-										</div>
-									</td>
-									<td class="cart-table__item-price">
-										<div class="cart-table__item-price-new">999 999 ₽</div>
-										<div class="cart-table__item-price-old">1 388 999 ₽</div>
-									</td>
-								</tr>
-								<tr class="cart-table__item">
-									<td class="cart-table__item-img">
-										<a href="#"><img data-src="img/products/1.png" data-srcset="img/products/1@2x.png 2x" alt=""></a>
-									</td>
-									<td class="cart-table__info">
-										<a href="#" class="cart-table__title">Дизельный электрогенератор Onis Visa P9</a>
-										<div class="cart-table__icons">
-											<span>
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-factory2"></use>
-												</svg>
-											</span>
-											<span>
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-engine2"></use>
-												</svg>
-											</span>
-											<span>
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
-												</svg>
-											</span>
-										</div>
-										<div class="cart-table__availability">На складе 10 шт</div>
-									</td>
-									<td class="cart-table__item-quantity">
-										<span>Кол-во</span>
-										<div data-quantity class="cart-quantity">
-											<button data-quantity-minus type="button" class="cart-quantity__button cart-quantity__button_minus">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-angle-left"></use>
-												</svg>
-											</button>
-											<div class="cart-quantity__input">
-												<input readonly data-quantity-value autocomplete="off" type="text" name="form[]" value="1">
-											</div>
-											<button data-quantity-plus type="button" class="cart-quantity__button quantity__button_plus">
-												<svg>
-													<use xlink:href="img/icons/icons.svg#svg-angle-right"></use>
-												</svg>
-											</button>
-										</div>
-									</td>
-									<td class="cart-table__item-price">
-										<div class="cart-table__item-price-new">999 999 ₽</div>
-										<div class="cart-table__item-price-old">1 388 999 ₽</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<div class="cart__total total-cart">
-							<div class="total-cart__promo">
-								<div class="total-cart__promo-title">Есть промо-код? </div>
-								<div class="total-cart__promo-subtitle">введите его здесь</div>
-								<form data-dev action="" class="total-cart__promo-form">
-									<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Промокод" class="total-cart__promo-input">
-									<button type="submit" class="total-cart__promo-button btn-orange">ЕСТЬ</button>
+
+			<!-- services -->
+			<section class="page-service">
+				<div class="page-service__container">
+					<div class="page-service__body">
+						<div class="page-service__top">
+							<div class="page-service__icon" data-da=".service-banner__content, 767.98,0">
+								<img data-src="img/lightning.svg" alt="">
+							</div>
+							<div class="page-service__banner service-banner" data-bg-set="url('img/service/1.png') 1x, url('img/service/1@2x.png') 2x">
+								<div class="service-banner__content">
+									<h1 class="service-banner__title">ЛИЗИНГ ОБОРУДОВАНИЯ</h1>
+									<div class="service-banner__text">
+										<p>Оставте свой номер телефона и наш инженер перезвонит вам через 15 минут
+										</p>
+									</div>
+								</div>
+								<form action="" class="service-banner__form">
+									<div class="service-banner__form-wrap">
+										<input data-required="" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="" class="service-banner__input" inputmode="text">
+										<button type="submit" class="service-banner__button btn-black">ОСТАВИТЬ ЗАЯВКУ</button>
+									</div>
 								</form>
 							</div>
-							<div class="total-cart__title">Ваш заказ <span>(2)</span></div>
-							<div class="total-cart__row">
-								<div class="total-cart__item">
-									<div class="total-cart__name">Товаров на:</div>
-									<div class="total-cart__value">999 999 ₽</div>
-								</div>
-								<div class="total-cart__item">
-									<div class="total-cart__name">ИТОГО:</div>
-									<div class="total-cart__value">999 999 ₽</div>
+							<div class="page-service__info service-info">
+								<div class="service-info__title">ЧТО ТАКОЕ
+									ЛИЗИНГ?</div>
+								<div class="service-info__text">
+									<p>Лизинг — это инвестиционный инструмент, позволяющий предприятию, не привлекая собственные ресурсы, произвести модернизацию основных фондов и получить
+										новое необходимое оборудование или другие непотребляемые предметы.
+									</p>
+									<p>Лизинг — это способ получения средств на развитие, совмещенный с оптимизацией налогообложения предприятия.</p>
 								</div>
 							</div>
-							<a href="#" class="total-cart__button btn-black">оформить заказ</a>
+						</div>
+						<div class="page-service__content">
+							<h2 class="page-service__title sect-title">Преимущества лизинга</h2>
+							<div class="page-service__row">
+								<div class="page-service__col">
+									<div class="page-service__text">
+										<p>Являясь официальным представителем производителя дизельных электростанций AKSA Power Generation и WEICHAI HOLDING GROUP CO., LTD, компания
+											предоставляет российским заказчикам отличную возможность получения в лизинг дизель-генераторов премиум-класса, минуя посредников. Приобрести
+											оборудование можно по любой устраивающей схеме финансирования, которые порекомендуют надежные, ответственные лизинговые компании – проверенные
+											партнеры Завода "Генмоторс".
+										</p>
+										<p>
+											Благодаря такой услуге, как лизинг, Вы можете купить дорогостоящее современное оборудование без необходимости разового вложения крупных денежных
+											сумм. Ваше предприятие сможет совершенно полно реализовать свой производственный ресурс и развиваться еще более быстрее.
+										</p>
+										<p>Налог на прибыль: Лизинговые платежи относят к расходам, что дает возможность уменьшить налогооблагаемую базу налога на прибыль.
+										</p>
+										<p>НДС: Ввиду того, что лизинговые платежи включают НДС, в дальнейшем компания может зачесть их из бюджета. Налог на имущество: Обычно предмет лизинга
+											находится на балансе у лизингодателя, что дает возможность избежать уплаты налога на имущество
+										</p>
+										<p>За счет ускоренной амортизации (коэффициент 3) к моменту перехода права собственности на оборудование лизингополучателю его стоимость существенно
+											снижается, что опять же уменьшает базу налога на имущество.
+										</p>
+									</div>
+								</div>
+								<div class="page-service__col">
+									<div class="page-service__text">
+										<p>Операция оформления и согласования лизинговой сделки значительно проще и быстрее, чем получение кредита в банке. В случае лизинга, например, не
+											требуется залог и поручительство, а первоначальный взнос согласуется с учетом Ваших финансовых возможностей. Кроме того, срок лизингового договора
+											может составлять до 5 лет, что несравненно дольше стандартного срока банковского кредитования, который обычно не превышает 3 лет.
+										</p>
+										<p>Возможность выбора платежей по принципу аннуитетных, регрессивных (ускоренных), равноубывающих или сезонных по заранее спланированному графику, что
+											облегчает планирование финансовых оттоков предприятия.
+										</p>
+										<ul>
+											<li>Возможность быстрого обновления парка оборудования </li>
+											<li>Снижение налоговой нагрузки предприятия</li>
+											<li>Амортизация </li>
+											<li>Долгосрочное и доступное финансирование</li>
+											<li>Оптимизация планирования финансовых оттоков </li>
+											<li>Экономический эффект от покупки оборудования в лизинг только за счет сокращения налоговых отчислений в среднем составляет 11-15% от стоимости
+												приобретаемого в лизинг имущества. </li>
+											<li>Покупка в лизинг дизельных электростанций дает возможность начать эксплуатацию нового протестированного оборудования на гарантии производителя
+												с минимальными стартовыми капиталовложениями. Активы, необходимые для обеспечения текущей деятельности предприятия и его развития остаются
+												свободными.</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			</section>
+			<!-- services end -->
+
+
+
+			<!-- faq -->
+			<section class="main-faq faq">
+				<div class="faq__container">
+					<div class="faq__body">
+						<h2 class="faq__title sect-title">Часто задаваемые вопросы</h2>
+						<div data-spollers data-one-spoller class="faq__list">
+							<div class="faq__col">
+								<div class="faq__item faq-item">
+									<button type="button" data-spoller class="faq-item__title">
+										<span>Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.</span>
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-down"></use>
+										</svg>
+									</button>
+									<div class="faq-item__body" hidden>
+										<p>This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each
+											element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.</p>
+									</div>
+								</div>
+								<div class="faq__item faq-item">
+									<button type="button" data-spoller class="faq-item__title">
+										<span>Turpis nunc eget lorem dolor sed viverra ipsum. Fermentum leo vel orci porta non.</span>
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-down"></use>
+										</svg>
+									</button>
+									<div class="faq-item__body" hidden>
+										<p>This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each
+											element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.</p>
+									</div>
+								</div>
+								<div class="faq__item faq-item">
+									<button type="button" data-spoller class="faq-item__title">
+										<span>Arcu risus quis varius quam quisque id diam vel quam. Euismod elementum nisi quis eleifend quam adipiscing vitae proin sagittis. </span>
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-down"></use>
+										</svg>
+									</button>
+									<div class="faq-item__body" hidden>
+										<p>This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each
+											element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.</p>
+									</div>
+								</div>
+								<div class="faq__item faq-item">
+									<button type="button" data-spoller class="faq-item__title">
+										<span>Scelerisque felis imperdiet proin fermentum leo vel orci porta. </span>
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-down"></use>
+										</svg>
+									</button>
+									<div class="faq-item__body" hidden>
+										<p>This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each
+											element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.</p>
+									</div>
+								</div>
+								<div class="faq__item faq-item">
+									<button type="button" data-spoller class="faq-item__title">
+										<span>Turpis nunc eget lorem dolor sed viverra ipsum. Fermentum leo vel orci porta non.</span>
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-down"></use>
+										</svg>
+									</button>
+									<div class="faq-item__body" hidden>
+										<p>This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each
+											element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.</p>
+									</div>
+								</div>
+							</div>
+							<div class="faq__col">
+								<div class="faq__item faq-item">
+									<button type="button" data-spoller class="faq-item__title">
+										<span>Turpis nunc eget lorem dolor sed viverra ipsum. Fermentum leo vel orci porta non.</span>
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-down"></use>
+										</svg>
+									</button>
+									<div class="faq-item__body" hidden>
+										<p>This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each
+											element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.</p>
+									</div>
+								</div>
+								<div class="faq__item faq-item">
+									<button type="button" data-spoller class="faq-item__title">
+										<span>Arcu risus quis varius quam quisque id diam vel quam. Euismod elementum nisi quis eleifend quam adipiscing vitae proin sagittis. </span>
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-down"></use>
+										</svg>
+									</button>
+									<div class="faq-item__body" hidden>
+										<p>This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each
+											element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.</p>
+									</div>
+								</div>
+								<div class="faq__item faq-item">
+									<button type="button" data-spoller class="faq-item__title">
+										<span>Scelerisque felis imperdiet proin fermentum leo vel orci porta. </span>
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-down"></use>
+										</svg>
+									</button>
+									<div class="faq-item__body" hidden>
+										<p>This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each
+											element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.</p>
+									</div>
+								</div>
+								<div class="faq__item faq-item">
+									<button type="button" data-spoller class="faq-item__title">
+										<span>Turpis nunc eget lorem dolor sed viverra ipsum. Fermentum leo vel orci porta non.</span>
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-down"></use>
+										</svg>
+									</button>
+									<div class="faq-item__body" hidden>
+										<p>This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each
+											element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.</p>
+									</div>
+								</div>
+								<div class="faq__item faq-item">
+									<button type="button" data-spoller class="faq-item__title">
+										<span>Arcu risus quis varius quam quisque id diam vel quam. Euismod elementum nisi quis eleifend quam adipiscing vitae proin sagittis. </span>
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-down"></use>
+										</svg>
+									</button>
+									<div class="faq-item__body" hidden>
+										<p>This is the first item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each
+											element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.</p>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			<!-- cart end -->
+			<!-- faq end -->
 
 			<!-- has-question -->
 			<section class="has-question">

@@ -12411,6 +12411,46 @@
                     }
                 });
             }
+            if (document.querySelector(".about__slider")) new core(".about__slider", {
+                modules: [ Navigation, Pagination, Autoplay, Lazy ],
+                observer: true,
+                observeParents: true,
+                slidesPerView: 3,
+                centeredSlides: true,
+                spaceBetween: 30,
+                speed: 800,
+                autoplay: true,
+                loop: true,
+                preloadImages: false,
+                lazy: {
+                    loadPrevNext: true
+                },
+                navigation: {
+                    prevEl: ".about__arrow-prev",
+                    nextEl: ".about__arrow-next"
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1.2,
+                        spaceBetween: 10,
+                        autoHeight: true
+                    },
+                    480: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 10,
+                        autoHeight: true
+                    },
+                    992: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    },
+                    1268: {
+                        slidesPerView: 3,
+                        spaceBetween: 30
+                    }
+                },
+                on: {}
+            });
         }
         window.addEventListener("load", (function(e) {
             initSliders();
@@ -14317,6 +14357,23 @@ PERFORMANCE OF THIS SOFTWARE.
                 input.name = rand;
             }));
         }));
+        let map = document.querySelector("#map");
+        if (map) {
+            ymaps.ready(init);
+            function init() {
+                var myMap = new ymaps.Map("map", {
+                    center: [ 60.049087, 30.350624 ],
+                    zoom: 17
+                });
+                var glyphIcon = new ymaps.Placemark([ 60.049087, 30.350624 ], {
+                    iconCaption: "проспект Просвещения, 35"
+                }, {
+                    preset: "islands#redIcon"
+                });
+                myMap.geoObjects.add(glyphIcon);
+                myMap.behaviors.disable("scrollZoom");
+            }
+        }
         window["FLS"] = true;
         isWebp();
         addTouchClass();
