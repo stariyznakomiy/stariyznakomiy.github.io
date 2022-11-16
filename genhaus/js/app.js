@@ -14340,6 +14340,17 @@ PERFORMANCE OF THIS SOFTWARE.
                 button.classList.toggle("_active");
                 if (button.nextElementSibling) button.nextElementSibling.classList.toggle("_active");
             }
+            if (el.closest("[data-tab-news]")) {
+                const items = document.querySelectorAll("[data-news]");
+                const tabActive = document.querySelector(".news__tags-item._active");
+                if (tabActive && tabActive !== el) tabActive.classList.remove("_active");
+                el.classList.add("_active");
+                items.forEach((item => {
+                    if (item.classList.contains("_active")) item.classList.remove("_active");
+                    if (item.dataset.news === el.dataset.tabNews) item.classList.add("_active");
+                    if ("all" === el.dataset.tabNews) item.classList.add("_active");
+                }));
+            }
         }
         const optionsExecution = document.querySelectorAll(".products-list-item__execution");
         if (optionsExecution) optionsExecution.forEach((item => {
