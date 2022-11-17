@@ -4929,7 +4929,7 @@
                 }), 0);
             }));
         }
-        function functions_getHash() {
+        function getHash() {
             if (location.hash) return location.hash.replace("#", "");
         }
         function setHash(hash) {
@@ -5129,7 +5129,7 @@
             const tabs = document.querySelectorAll("[data-tabs]");
             let tabsActiveHash = [];
             if (tabs.length > 0) {
-                const hash = functions_getHash();
+                const hash = getHash();
                 if (hash && hash.startsWith("tab-")) tabsActiveHash = hash.replace("tab-", "").split("-");
                 tabs.forEach(((tabsBlock, index) => {
                     tabsBlock.classList.add("_tab-init");
@@ -5637,7 +5637,7 @@
             }
         }
         flsModules.popup = new Popup({});
-        let gotoblock_gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
+        let gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
             const targetBlockElement = document.querySelector(targetBlock);
             if (targetBlockElement) {
                 let headerItem = "";
@@ -5783,7 +5783,7 @@
                     e.preventDefault();
                     if (form.querySelector("._form-error") && form.hasAttribute("data-goto-error")) {
                         const formGoToErrorClass = form.dataset.gotoError ? form.dataset.gotoError : "._form-error";
-                        gotoblock_gotoBlock(formGoToErrorClass, true, 1e3);
+                        gotoBlock(formGoToErrorClass, true, 1e3);
                     }
                 }
             }
@@ -12462,6 +12462,44 @@
         });
         lazyMedia.update();
         let addWindowScrollEvent = false;
+        function pageNavigation() {
+            document.addEventListener("click", pageNavigationAction);
+            document.addEventListener("watcherCallback", pageNavigationAction);
+            function pageNavigationAction(e) {
+                if ("click" === e.type) {
+                    const targetElement = e.target;
+                    if (targetElement.closest("[data-goto]")) {
+                        const gotoLink = targetElement.closest("[data-goto]");
+                        const gotoLinkSelector = gotoLink.dataset.goto ? gotoLink.dataset.goto : "";
+                        const noHeader = gotoLink.hasAttribute("data-goto-header") ? true : false;
+                        const gotoSpeed = gotoLink.dataset.gotoSpeed ? gotoLink.dataset.gotoSpeed : 500;
+                        const offsetTop = gotoLink.dataset.gotoTop ? parseInt(gotoLink.dataset.gotoTop) : 0;
+                        gotoBlock(gotoLinkSelector, noHeader, gotoSpeed, offsetTop);
+                        e.preventDefault();
+                    }
+                } else if ("watcherCallback" === e.type && e.detail) {
+                    const entry = e.detail.entry;
+                    const targetElement = entry.target;
+                    if ("navigator" === targetElement.dataset.watch) {
+                        document.querySelector(`[data-goto]._navigator-active`);
+                        let navigatorCurrentItem;
+                        if (targetElement.id && document.querySelector(`[data-goto="#${targetElement.id}"]`)) navigatorCurrentItem = document.querySelector(`[data-goto="#${targetElement.id}"]`); else if (targetElement.classList.length) for (let index = 0; index < targetElement.classList.length; index++) {
+                            const element = targetElement.classList[index];
+                            if (document.querySelector(`[data-goto=".${element}"]`)) {
+                                navigatorCurrentItem = document.querySelector(`[data-goto=".${element}"]`);
+                                break;
+                            }
+                        }
+                        if (entry.isIntersecting) navigatorCurrentItem ? navigatorCurrentItem.classList.add("_navigator-active") : null; else navigatorCurrentItem ? navigatorCurrentItem.classList.remove("_navigator-active") : null;
+                    }
+                }
+            }
+            if (getHash()) {
+                let goToHash;
+                if (document.querySelector(`#${getHash()}`)) goToHash = `#${getHash()}`; else if (document.querySelector(`.${getHash()}`)) goToHash = `.${getHash()}`;
+                goToHash ? gotoBlock(goToHash, true, 500, 20) : null;
+            }
+        }
         setTimeout((() => {
             if (addWindowScrollEvent) {
                 let windowScroll = new Event("windowScroll");
@@ -14345,7 +14383,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 const tabActive = document.querySelector(".news__tags-item._active");
                 if (tabActive && tabActive !== el) tabActive.classList.remove("_active");
                 el.classList.add("_active");
-                items.forEach((item => {
+                if (items) items.forEach((item => {
                     if (item.classList.contains("_active")) item.classList.remove("_active");
                     if (item.dataset.news === el.dataset.tabNews) item.classList.add("_active");
                     if ("all" === el.dataset.tabNews) item.classList.add("_active");
@@ -14395,5 +14433,6 @@ PERFORMANCE OF THIS SOFTWARE.
         tabs();
         formSubmit();
         formQuantity();
+        pageNavigation();
     })();
 })();
