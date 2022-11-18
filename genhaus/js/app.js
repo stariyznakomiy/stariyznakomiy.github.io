@@ -14422,6 +14422,32 @@ PERFORMANCE OF THIS SOFTWARE.
                 input.name = rand;
             }));
         }));
+        const popupFile = document.querySelectorAll("[data-file-img]");
+        if (popupFile) popupFile.forEach((item => {
+            const popupImage = item.closest(".form").querySelector("[data-file-preview]");
+            item.addEventListener("change", (() => {
+                popupImage.innerHTML = "";
+                const files = item.files;
+                for (let i = 0; i < files.length; i++) uploadPopup(files[i]);
+            }));
+            function uploadPopup(file) {
+                console.log("sdasd");
+                if (![ "image/jpeg", "image/png" ].includes(file.type)) {
+                    alert("Разрешены только файлы с расширением jpg, png");
+                    formFile.value = "";
+                    return;
+                }
+                var reader = new FileReader;
+                reader.readAsDataURL(file);
+                reader.onload = function(e) {
+                    const template = `\n\t\t\t\t<div><img src="${e.target.result}" alt="Фото"></div>\n\t\t\t\t`;
+                    popupImage.insertAdjacentHTML("beforeend", template);
+                };
+                reader.onerror = function(e) {
+                    alert("Ошибка");
+                };
+            }
+        }));
         let map = document.querySelector("#map");
         if (map) {
             ymaps.ready(init);

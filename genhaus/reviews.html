@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-	<title>Новости</title>
+	<title>Отзывы</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
@@ -1808,287 +1808,269 @@
 							</svg>
 						</a>
 					</li>
-					<li class="breadcrumbs__item"><span>Новости</span></li>
+					<li class="breadcrumbs__item"><span>Отзывы</span></li>
 				</ul>
 			</div>
 		</div>
 		<!-- breadcrumbs end -->
 		<main class="page">
 
-			<!-- news -->
-			<section class="news">
-				<div class="news__container">
-					<h1 class="news__title page-title">Новости</h1>
-					<div class="news__body">
-						<div class="news__tags">
-							<button type="button" data-tab-news="all" class="news__tags-item _active">Все публикации</button>
-							<button type="button" data-tab-news="articles" class="news__tags-item">Статьи</button>
-							<button type="button" data-tab-news="news" class="news__tags-item">Новости</button>
-							<button type="button" data-tab-news="sales" class="news__tags-item">Акции</button>
-						</div>
-						<div class="news__list">
-							<div class="news__item item-news _active" data-news="articles">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
+			<!-- reviews -->
+			<section class="page-reviews reviews">
+				<div class="reviews__container">
+					<div class="reviews__body">
+						<h1 class="reviews__title page-title">Отзывы</h1>
+						<div class="reviews__body-wrap">
+							<div class="reviews__col">
+								<div data-tabs class="reviews__tabs reviews-tabs">
+									<nav data-tabs-titles class="reviews-tabs__navigation">
+										<button type="button" class="reviews-tabs__title btn-gray _tab-active">Отзывы</button>
+										<button type="button" class="reviews-tabs__title btn-gray">Видеотзывы</button>
+									</nav>
+									<div data-tabs-body class="reviews-tabs__content">
+										<div class="reviews-tabs__body">
+											<div class="reviews-tabs__list">
+												<div class="reviews-tabs__list-col">
+													<div class="reviews-tabs__item reviews-item">
+														<div class="reviews-item__content">
+															<div class="reviews-item__head">
+																<div class="reviews-item__avatar">
+																	<img data-src="img/avatars/1.png" data-srcset="img/avatars/1@2x.png 2x" alt="">
+																</div>
+																<div class="reviews-item__head-wrap">
+																	<div class="reviews-item__top">
+																		<div class="reviews-item__rating rating">
+																			<fieldset class="rating__row">
+																				<input type="radio" value="5" disabled="">
+																				<label title="Прекрасно - 5 звезд">
+																					<svg class="icon">
+																						<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+																					</svg>
+																				</label>
+																				<input type="radio" checked="" value="4" disabled="">
+																				<label title="Хорошо - 4 звезды">
+																					<svg class="icon">
+																						<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+																					</svg>
+																				</label>
+																				<input type="radio" value="3" disabled="">
+																				<label title="Так себе - 3 звезды">
+																					<svg class="icon">
+																						<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+																					</svg>
+																				</label>
+																				<input type="radio" value="2" disabled="">
+																				<label title="Плохо - 2 звезды">
+																					<svg class="icon">
+																						<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+																					</svg>
+																				</label>
+																				<input type="radio" value="1" disabled="">
+																				<label title="Ужасно - 1 звезда">
+																					<svg class="icon">
+																						<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+																					</svg>
+																				</label>
+																			</fieldset>
+																		</div>
+																		<div class="reviews-item__date">08.05.2020</div>
+																	</div>
+																	<div class="reviews-item__name">Андрей</div>
+																</div>
+															</div>
+															<div data-showmore class="reviews-item__text">
+																<div data-showmore-content="168">
+																	<p>Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
+																		mauris
+																		pellentesque pulvinar pellentesque habitant morbi tristique. Enim neque volutpat ac tincidunt vitae semper quis lectus.
+																		Suspendisse
+																		ultrices gravida dictum fusce ut placerat orci nulla. Lectus sit amet est placerat in egestas erat. Velit euismod in
+																		pellentesque
+																		massa
+																		placerat duis ultricies lacus sed. Sed risus ultricies tristique nulla aliquet enim tortor.</p>
+																</div>
+																<button hidden data-showmore-button type="button" class="reviews-item__text-more">
+																	<span><img src="img/lightning.svg" alt="">Читать полностью</span>
+																	<span></span>
+																</button>
+															</div>
+															<div data-gallery class="reviews-item__files">
+																<a href="img/review-file.png" class="reviews-item__file">
+																	<img data-src="img/review-file.png" data-srcset="img/review-file@2x.png 2x" class="reviews-item__img-preview" alt="превью">
+																</a>
+																<a href="img/review-file.png" class="reviews-item__file">
+																	<img data-src="img/review-file.png" data-srcset="img/review-file@2x.png 2x" class="reviews-item__img-preview" alt="превью">
+																</a>
+															</div>
+														</div>
+													</div>
+													<div class="reviews-tabs__item reviews-item">
+														<div class="reviews-item__content">
+															<div class="reviews-item__head">
+																<div class="reviews-item__avatar">
+																	<img data-src="img/avatars/2.png" data-srcset="img/avatars/2@2x.png 2x" alt="">
+																</div>
+																<div class="reviews-item__head-wrap">
+																	<div class="reviews-item__top">
+																		<div class="reviews-item__rating rating">
+																			<fieldset class="rating__row">
+																				<input type="radio" value="5" disabled="">
+																				<label title="Прекрасно - 5 звезд">
+																					<svg class="icon">
+																						<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+																					</svg>
+																				</label>
+																				<input type="radio" checked="" value="4" disabled="">
+																				<label title="Хорошо - 4 звезды">
+																					<svg class="icon">
+																						<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+																					</svg>
+																				</label>
+																				<input type="radio" value="3" disabled="">
+																				<label title="Так себе - 3 звезды">
+																					<svg class="icon">
+																						<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+																					</svg>
+																				</label>
+																				<input type="radio" value="2" disabled="">
+																				<label title="Плохо - 2 звезды">
+																					<svg class="icon">
+																						<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+																					</svg>
+																				</label>
+																				<input type="radio" value="1" disabled="">
+																				<label title="Ужасно - 1 звезда">
+																					<svg class="icon">
+																						<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+																					</svg>
+																				</label>
+																			</fieldset>
+																		</div>
+																		<div class="reviews-item__date">08.05.2020</div>
+																	</div>
+																	<div class="reviews-item__name">Константин</div>
+																</div>
+															</div>
+															<div data-showmore class="reviews-item__text">
+																<div data-showmore-content="168">
+																	<p>Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
+																		mauris
+																		pellentesque pulvinar pellentesque habitant morbi tristique. Enim neque volutpat ac tincidunt vitae semper quis lectus.
+																		Suspendisse
+																		ultrices gravida dictum fusce ut placerat orci nulla. Lectus sit amet est placerat in egestas erat. Velit euismod in
+																		pellentesque
+																		massa
+																		placerat duis ultricies lacus sed. Sed risus ultricies tristique nulla aliquet enim tortor.</p>
+																</div>
+																<button hidden data-showmore-button type="button" class="reviews-item__text-more">
+																	<span><img src="img/lightning.svg" alt="">Читать полностью</span>
+																	<span></span>
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="pagging">
+													<a href="#" class="pagging__arrow pagging__arrow-prev">
+														<svg>
+															<use xlink:href="img/icons/icons.svg#svg-angle-left"></use>
+														</svg>
+													</a>
+													<ul class="pagging__list">
+														<li class="pagging__item">
+															<a href="" class="pagging__link">1</a>
+														</li>
+														<li class="pagging__item">
+															<a href="" class="pagging__link">2</a>
+														</li>
+														<li class="pagging__item">
+															<a href="" class="pagging__link">...</a>
+														</li>
+														<li class="pagging__item">
+															<a href="" class="pagging__link _active">5</a>
+														</li>
+														<li class="pagging__item">
+															<a href="" class="pagging__link">6</a>
+														</li>
+														<li class="pagging__item">
+															<a href="" class="pagging__link">7</a>
+														</li>
+													</ul>
+													<a href="#" class="pagging__arrow pagging__arrow-next">
+														<svg>
+															<use xlink:href="img/icons/icons.svg#svg-angle-right"></use>
+														</svg>
+													</a>
+												</div>
+											</div>
+										</div>
+										<div class="reviews-tabs__body">
+											Содержимое второго таба
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="news__item item-news _active" data-news="articles">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
-								</div>
+							<div class="reviews__col">
+								<form data-dev action="" class="reviews__form form">
+									<div class="form__title">Оставить отзыв</div>
+									<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="form__input input">
+									<input data-required autocomplete="off" type="email" name="form[]" data-error="" placeholder="Ваш email" class="form__input input">
+									<textarea autocomplete="off" placeholder="Отзыв" class="form__textarea input"></textarea>
+									<div class="form__input-wrap">
+										<input multiple id="popup-file" data-file-img accept=".jpg, .png" type="file" class="form__input-file">
+										<label for="popup-file" class="form__file-label">Файл</label>
+									</div>
+									<div id="popup-preview" data-file-preview class="form__preview-images"></div>
+									<div class="form__rating rating">
+										<span>Ваша оценка</span>
+										<fieldset class="rating__row">
+											<input type="radio" id="rat-5" value="5" name="rating" checked="" required="">
+											<label for="rat-5" title="Прекрасно - 5 звезд">
+												<svg class="icon">
+													<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+												</svg>
+											</label>
+											<input type="radio" id="rat-4" checked="" value="4" name="rating">
+											<label for="rat-4" title="Хорошо - 4 звезды">
+												<svg class="icon">
+													<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+												</svg>
+											</label>
+											<input type="radio" id="rat-3" value="3" name="rating">
+											<label for="rat-3" title="Так себе - 3 звезды">
+												<svg class="icon">
+													<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+												</svg>
+											</label>
+											<input type="radio" id="rat-2" value="2" name="rating">
+											<label for="rat-2" title="Плохо - 2 звезды">
+												<svg class="icon">
+													<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+												</svg>
+											</label>
+											<input type="radio" id="rat-1" value="1" name="rating">
+											<label for="rat-1" title="Ужасно - 1 звезда">
+												<svg class="icon">
+													<use xlink:href="img/icons/icons.svg#svg-energy2"></use>
+												</svg>
+											</label>
+										</fieldset>
+									</div>
+									<button type="submit" class="form__button btn-black">Отправить</button>
+									<div class="form-checkbox">
+										<input data-error="Ошибка" checked="" class="form-checkbox__input" type="checkbox" value="1" name="form[]">
+										<div class="form-checkbox__label"><span class="form-checkbox__text">Я согласен условиями предоставления услуг
+												и обработкой моих персональных
+												данных при нажатии “Отправить”</span></div>
+									</div>
+								</form>
 							</div>
-							<div class="news__item item-news _active" data-news="articles">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
-								</div>
-							</div>
-							<div class="news__item item-news _active" data-news="articles">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
-								</div>
-							</div>
-							<div class="news__item item-news _active" data-news="articles">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
-								</div>
-							</div>
-							<div class="news__item item-news _active" data-news="news">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
-								</div>
-							</div>
-							<div class="news__item item-news _active" data-news="news">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
-								</div>
-							</div>
-							<div class="news__item item-news _active" data-news="news">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
-								</div>
-							</div>
-							<div class="news__item item-news _active" data-news="news">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
-								</div>
-							</div>
-							<div class="news__item item-news _active" data-news="news">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
-								</div>
-							</div>
-							<div class="news__item item-news _active" data-news="sales">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
-								</div>
-							</div>
-							<div class="news__item item-news _active" data-news="sales">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
-								</div>
-							</div>
-							<div class="news__item item-news _active" data-news="sales">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
-								</div>
-							</div>
-							<div class="news__item item-news _active" data-news="sales">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
-								</div>
-							</div>
-							<div class="news__item item-news _active" data-news="sales">
-								<a href="#" class="item-news__img">
-									<img data-src="img/articles/1.png" data-srcset="img/articles/1@2x.png 2x" alt="">
-								</a>
-								<div class="item-news__content">
-									<div class="item-news__date">08.05.2020</div>
-									<a href="#" class="item-news__title">Velit euismod in pellentesque massa placerat duis ultricies lacus sed</a>
-									<div class="item-news__text">Pharetra convallis posuere morbi leo urna molestie at. Justo nec ultrices dui sapien eget mi proin sed. Vel elit scelerisque
-										mauris pellentesque pulvinar pellentesque habitant morbi tristique.</div>
-									<a href="#" class="item-news__link">
-										<img src="img/lightning.svg" alt="">
-										<span>Читать полностью</span>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="pagging">
-							<a href="#" class="pagging__arrow pagging__arrow-prev">
-								<svg>
-									<use xlink:href="img/icons/icons.svg#svg-angle-left"></use>
-								</svg>
-							</a>
-							<ul class="pagging__list">
-								<li class="pagging__item">
-									<a href="" class="pagging__link">1</a>
-								</li>
-								<li class="pagging__item">
-									<a href="" class="pagging__link">2</a>
-								</li>
-								<li class="pagging__item">
-									<a href="" class="pagging__link">...</a>
-								</li>
-								<li class="pagging__item">
-									<a href="" class="pagging__link _active">5</a>
-								</li>
-								<li class="pagging__item">
-									<a href="" class="pagging__link">6</a>
-								</li>
-								<li class="pagging__item">
-									<a href="" class="pagging__link">7</a>
-								</li>
-							</ul>
-							<a href="#" class="pagging__arrow pagging__arrow-next">
-								<svg>
-									<use xlink:href="img/icons/icons.svg#svg-angle-right"></use>
-								</svg>
-							</a>
 						</div>
 					</div>
 				</div>
 			</section>
-			<!-- news end -->
+			<!-- reviews end -->
+
 
 			<!-- has-question -->
 			<section class="about-has-question has-question">
