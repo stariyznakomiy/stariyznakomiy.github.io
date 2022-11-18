@@ -7659,9 +7659,9 @@ body::after {
   -webkit-transition: 0.3s ease 0s;
   -o-transition: 0.3s ease 0s;
   transition: 0.3s ease 0s;
-  -webkit-transition-property: background-color, border-color;
-  -o-transition-property: background-color, border-color;
-  transition-property: background-color, border-color;
+  -webkit-transition-property: background-color, border-color, color;
+  -o-transition-property: background-color, border-color, color;
+  transition-property: background-color, border-color, color;
 }
 
 .news__tags-item:not(:last-child) {
@@ -7671,6 +7671,7 @@ body::after {
 .news__tags-item._active {
   background-color: #ffa800;
   border-color: #ffa800;
+  color: #ffffff;
 }
 
 .news__list {
@@ -11450,6 +11451,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .news__tags-item:hover {
     background-color: #ffa800;
     border-color: #ffa800;
+    color: #ffffff;
   }
 
   .item-news__title:hover {
