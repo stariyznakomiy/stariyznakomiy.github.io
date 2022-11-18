@@ -14363,6 +14363,16 @@ PERFORMANCE OF THIS SOFTWARE.
                 button.classList.toggle("_active");
                 if (button.nextElementSibling) button.nextElementSibling.classList.toggle("_active");
             }
+            if (!el.closest(".header-quiz__menu") && !el.closest(".header-quiz__form")) {
+                const submenu = document.querySelector(".header-quiz__menu._active");
+                const activeButton = document.querySelector(".header-quiz__form._active");
+                if (submenu) submenu.classList.remove("_active");
+                if (activeButton) activeButton.classList.remove("_active");
+            }
+            if (!el.closest(".search-header__results")) {
+                const searchResults = document.querySelector(".search-header__results._active");
+                if (searchResults) if (searchResults.classList.contains("_active")) searchResults.classList.remove("_active");
+            }
             if (el.classList.contains("header-quiz-form__manufacturers-all")) {
                 const inputs = el.nextElementSibling.querySelectorAll("input[type=checkbox]");
                 inputs.forEach((input => {
@@ -14390,6 +14400,12 @@ PERFORMANCE OF THIS SOFTWARE.
                 }));
             }
         }
+        const searchInput = document.querySelector(".search-header__input");
+        const searchResults = document.querySelector(".search-header__results");
+        if (searchInput) searchInput.addEventListener("input", (function() {
+            if ("" != this.value) searchResults.classList.add("_active");
+            if ("" === this.value) searchResults.classList.remove("_active");
+        }));
         const optionsExecution = document.querySelectorAll(".products-list-item__execution");
         if (optionsExecution) optionsExecution.forEach((item => {
             const inputs = item.querySelectorAll("input");
