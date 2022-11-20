@@ -4184,17 +4184,6 @@ body::after {
 
 .products-list__label:nth-child(2) {
   width: 25%;
-  position: relative;
-}
-
-.products-list__label:nth-child(2)::after {
-  content: "";
-  position: absolute;
-  bottom: -16px;
-  left: 0;
-  width: 90%;
-  height: 3px;
-  background-color: #000;
 }
 
 .products-list__label:nth-child(3) {
@@ -4223,6 +4212,28 @@ body::after {
 
 .products-list__label:nth-child(9) {
   width: 12%;
+}
+
+.products-list__sort {
+  position: relative;
+  cursor: pointer;
+}
+
+.products-list__sort._active::after {
+  width: 90%;
+}
+
+.products-list__sort::after {
+  content: "";
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: #000;
+  -webkit-transition: width 0.3s ease 0s;
+  -o-transition: width 0.3s ease 0s;
+  transition: width 0.3s ease 0s;
 }
 
 .products-list-item {
@@ -8068,6 +8079,8 @@ body::after {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .page-search__results:not(:last-child) {
@@ -8080,6 +8093,7 @@ body::after {
 
 .page-search__results span:first-child {
   font-weight: 300;
+  margin-right: 8px;
 }
 
 .page-search__results span:last-child {
@@ -11335,6 +11349,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .main-catalog-filters__link:hover {
     background-color: #ffa800;
     border-color: #ffa800;
+  }
+
+  .products-list__sort:hover::after {
+    width: 90%;
   }
 
   .products-list-item__title:hover {

@@ -14399,6 +14399,28 @@ PERFORMANCE OF THIS SOFTWARE.
                     if ("all" === el.dataset.tabNews) item.classList.add("_active");
                 }));
             }
+            if (el.closest("#productName")) {
+                const table = el.closest("table");
+                sortTable(1, table);
+            }
+            if (el.closest("#productFuel")) {
+                const table = el.closest("table");
+                sortTable(2, table);
+            }
+            if (el.closest("#productPower")) {
+                const table = el.closest("table");
+                sortTable(3, table);
+            }
+            if (el.closest("#productEngine")) {
+                const table = el.closest("table");
+                sortTable(4, table);
+            }
+            if (el.closest(".products-list__sort")) {
+                const table = el.closest("table");
+                const activeTh = table.querySelector(".products-list__sort._active");
+                if (activeTh && activeTh !== el) activeTh.classList.remove("_active");
+                el.classList.add("_active");
+            }
         }
         const searchInput = document.querySelector(".search-header__input");
         const searchResults = document.querySelector(".search-header__results");
@@ -14463,6 +14485,37 @@ PERFORMANCE OF THIS SOFTWARE.
                 });
                 myMap.geoObjects.add(glyphIcon);
                 myMap.behaviors.disable("scrollZoom");
+            }
+        }
+        function sortTable(n, table) {
+            var rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            switching = true;
+            dir = "asc";
+            while (switching) {
+                switching = false;
+                rows = table.getElementsByTagName("TR");
+                for (i = 1; i < rows.length - 1; i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    if ("asc" == dir) {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if ("desc" == dir) if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount++;
+                } else if (0 == switchcount && "asc" == dir) {
+                    dir = "desc";
+                    switching = true;
+                }
             }
         }
         window["FLS"] = true;
