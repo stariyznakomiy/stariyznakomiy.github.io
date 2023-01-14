@@ -1799,6 +1799,9 @@ textarea.input {
 
 .hero-banner__slide {
   pointer-events: none;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
 }
 
 .hero-banner__slide.swiper-slide-active {
