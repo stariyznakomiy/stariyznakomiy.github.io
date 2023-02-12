@@ -1,0 +1,54 @@
+{
+   "type": "FeatureCollection",
+   "metadata": {
+      "name": "Без названия",
+      "creator": "Yandex Map Constructor"
+   },
+   "features": [
+      {
+         "type": "Feature",
+         "id": 0,
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               37.582378153137135,
+               55.77714392152687
+            ]
+         },
+         "properties": {
+            "description": "кцукуцк",
+            "iconCaption": "цукуцк",
+            "marker-color": "#1e98ff"
+         }
+      },
+      {
+         "type": "Feature",
+         "id": 1,
+         "geometry": {
+            "coordinates": [
+               37.62443519049057,
+               55.752198480431076
+            ],
+            "type": "Point"
+         },
+         "properties": {
+            "marker-color": "#1e98ff"
+         }
+      },
+      {
+         "type": "Feature",
+         "id": 2,
+         "geometry": {
+            "coordinates": [
+               37.62649512701409,
+               55.75742601081462
+            ],
+            "type": "Point"
+         },
+         "properties": {
+            "description": "ewqewqeeqw fasasd das ",
+            "marker-color": "#1e98ff"
+         }
+      }
+   ]
+}

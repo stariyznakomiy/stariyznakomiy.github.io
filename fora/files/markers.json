@@ -1,0 +1,351 @@
+{
+   "type": "FeatureCollection",
+   "metadata": {
+      "name": "Без названия",
+      "creator": "Yandex Map Constructor"
+   },
+   "features": [
+      {
+         "type": "Feature",
+         "id": 0,
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               55.77714392152687,
+               37.582378153137135
+            ]
+         },
+         "properties": {
+            "metro": [
+               {
+                  "station": "Марьина роща",
+                  "code": "10"
+               }
+            ],
+            "address": "ул. Шереметьевская, д. 6 кор. 1, ТРЦ «Райкин Плаза»",
+            "phone": "8 800 100 98 89",
+            "email": "sheremetyevskiy@forabank.ru",
+            "working-hours": {
+               "individuals": "пн-пт: с 09:00 до 20:00; сб, вс: с 10:00 до 18:00",
+               "legal-entities": "пн-пт: с 12:00 до 20:00; сб, вс: с 12:00 до 18:00",
+               "safe-boxes": ""
+            },
+            "currency": [
+               "₽",
+               "$",
+               "€",
+               "£",
+               "₣"
+            ],
+            "description": "",
+            "iconCaption": "",
+            "marker-color": ""
+         }
+      },
+      {
+         "type": "Feature",
+         "id": 1,
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               55.766987,
+               37.381170
+            ]
+         },
+         "properties": {
+            "metro": [
+               {
+                  "station": "Крылатское",
+                  "code": "3"
+               }
+            ],
+            "address": "Рублевское ш., дом 62, ТЦ «ЕвроПарк»",
+            "phone": "8 800 100 98 89",
+            "email": "rublevsiy@forabank.ru",
+            "working-hours": {
+               "individuals": "пн-пт: с 09:00 до 20:00; сб, вс: с 10:00 до 18:00",
+               "legal-entities": "пн-пт: с 12:00 до 20:00; сб, вс: с 12:00 до 18:00",
+               "safe-boxes": ""
+            },
+            "currency": [
+               "₽",
+               "$",
+               "€",
+               "£",
+               "₣"
+            ],
+            "description": "",
+            "iconCaption": "",
+            "marker-color": ""
+         }
+      },
+      {
+         "type": "Feature",
+         "id": 2,
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               55.710692,
+               37.675109
+            ]
+         },
+         "properties": {
+            "metro": [
+               {
+                  "station": "Кожуховская",
+                  "code": "4"
+               },
+               {
+                  "station": "Дубровка",
+                  "code": "10"
+               }
+            ],
+            "address": "ул. 7-я Кожуховская, дом 9",
+            "phone": "8 800 100 98 89",
+            "email": "sheremetyevskiy@forabank.ru",
+            "working-hours": {
+               "individuals": "ежедневно с 10:00 до 22:00",
+               "legal-entities": "",
+               "safe-boxes": ""
+            },
+            "currency": [
+               "₽",
+               "$",
+               "€"
+            ],
+            "description": "",
+            "iconCaption": "",
+            "marker-color": ""
+         }
+      },
+      {
+         "type": "Feature",
+         "id": 3,
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               55.747368,
+               37.707107
+            ]
+         },
+         "properties": {
+            "metro": [
+               {
+                  "station": "Авиамоторная",
+                  "code": "8"
+               }
+            ],
+            "address": "Шоссе Энтузиастов, дом 12, корпус 2 (ТРЦ 'Город Лефортово')",
+            "phone": "8 800 100 98 89",
+            "email": "rublevsiy@forabank.ru",
+            "working-hours": {
+               "individuals": "пн-пт: с 09:00 до 20:00; сб, вс: с 10:00 до 18:00",
+               "legal-entities": "пн-пт: с 12:00 до 20:00; сб, вс: с 12:00 до 18:00",
+               "safe-boxes": ""
+            },
+            "currency": [
+               "₽",
+               "$",
+               "€",
+               "£",
+               "₣"
+            ],
+            "description": "",
+            "iconCaption": "",
+            "marker-color": ""
+         }
+      },
+      {
+         "type": "Feature",
+         "id": 4,
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               55.766131,
+               37.604205
+            ]
+         },
+         "properties": {
+            "metro": [
+               {
+                  "station": "Тверская",
+                  "code": "2"
+               },
+               {
+                  "station": "Пушкинская",
+                  "code": "1"
+               }
+            ],
+            "address": "ул. Тверская, дом 18, корпус 1",
+            "phone": "8 800 100 98 89",
+            "email": "pushkinskiy@forabank.ru",
+            "working-hours": {
+               "individuals": "пн-пт: с 09:00 до 21:00; сб, вс: с 10:00 до 19:00",
+               "legal-entities": "пн-пт: с 12:00 до 20:00; сб, вс: с 12:00 до 18:00",
+               "safe-boxes": "пн-пт: с 09:00 до 21:00; сб, вс: с 10:00 до 19:00"
+            },
+            "currency": [
+               "₽",
+               "$",
+               "€",
+               "£",
+               "₣"
+            ],
+            "description": "",
+            "iconCaption": "",
+            "marker-color": ""
+         }
+      },
+      {
+         "type": "Feature",
+         "id": 5,
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               55.710692,
+               37.775109
+            ]
+         },
+         "properties": {
+            "metro": [
+               {
+                  "station": "Кожуховская",
+                  "code": "10"
+               }
+            ],
+            "address": "Улица 7-я Кожуховская, дом 9",
+            "phone": "8 800 100 98 89",
+            "email": "sheremetyevskiy@forabank.ru",
+            "working-hours": {
+               "individuals": "пн-пт: с 09:00 до 20:00; сб, вс: с 10:00 до 18:00",
+               "legal-entities": "",
+               "safe-boxes": ""
+            },
+            "currency": [
+               "₽",
+               "$",
+               "€",
+               "£",
+               "₣"
+            ],
+            "description": "",
+            "iconCaption": "",
+            "marker-color": ""
+         }
+      },
+      {
+         "type": "Feature",
+         "id": 6,
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               55.693297,
+               37.533984
+            ]
+         },
+         "properties": {
+            "metro": [
+               {
+                  "station": "Университет",
+                  "code": "1"
+               }
+            ],
+            "address": "площадь Джавахарлала Неру, дом 1 (ТЦ «УниверСити»)",
+            "phone": "8 800 100 98 89",
+            "email": "sheremetyevskiy@forabank.ru",
+            "working-hours": {
+               "individuals": "пн-пт: с 10:00 до 20:45; сб, вс: с 10:00 до 18:00",
+               "legal-entities": "",
+               "safe-boxes": ""
+            },
+            "currency": [
+               "₽",
+               "$",
+               "€",
+               "£"
+            ],
+            "description": "",
+            "iconCaption": "",
+            "marker-color": ""
+         }
+      },
+      {
+         "type": "Feature",
+         "id": 7,
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               55.782861,
+               37.705850
+            ]
+         },
+         "properties": {
+            "metro": [
+               {
+                  "station": "Электрозаводская",
+                  "code": "3"
+               }
+            ],
+            "address": "ул. Б. Семеновская, дом 17а, ТЦ «Март»",
+            "phone": "8 800 100 98 89",
+            "email": "sheremetyevskiy@forabank.ru",
+            "working-hours": {
+               "individuals": "ежедневно с 08:00 до 21:45",
+               "legal-entities": "",
+               "safe-boxes": ""
+            },
+            "currency": [
+               "₽",
+               "$",
+               "€",
+               "£",
+               "₣"
+            ],
+            "description": "",
+            "iconCaption": "",
+            "marker-color": ""
+         }
+      },
+      {
+         "type": "Feature",
+         "id": 8,
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               55.768025,
+               37.623483
+            ]
+         },
+         "properties": {
+            "metro": [
+               {
+                  "station": "Трубная",
+                  "code": "9"
+               },
+               {
+                  "station": "Цветной бульвар",
+                  "code": "10"
+               }
+            ],
+            "address": "Цветной бульвар, дом 2",
+            "phone": "8 800 100 98 89",
+            "email": "oper_zb@forabank.ru",
+            "working-hours": {
+               "individuals": "пн-пт: с 09:00 до 20:00; сб, вс: с 10:00 до 18:00",
+               "legal-entities": "пн-пт: с 12:00 до 20:00; сб, вс: с 12:00 до 18:00",
+               "safe-boxes": "пн-пт: с 12:00 до 20:00; сб, вс: с 12:00 до 18:00"
+            },
+            "currency": [
+               "₽",
+               "$",
+               "€",
+               "£",
+               "₣"
+            ],
+            "description": "",
+            "iconCaption": "",
+            "marker-color": ""
+         }
+      }
+   ]
+}
