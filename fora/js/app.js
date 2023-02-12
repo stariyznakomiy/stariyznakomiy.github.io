@@ -43449,6 +43449,7 @@
                 observeParents: true,
                 slidesPerView: 1,
                 spaceBetween: 0,
+                autoHeight: true,
                 speed: 800,
                 loop: true,
                 effect: "fade",

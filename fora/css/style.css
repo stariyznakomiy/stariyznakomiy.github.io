@@ -3426,6 +3426,28 @@ body::after {
   }
 }
 
+[data-src],
+[data-srcset],
+[data-bg],
+[data-bg-hidpi] {
+  opacity: 0;
+  -webkit-transition: opacity 1s;
+  -o-transition: opacity 1s;
+  transition: opacity 1s;
+}
+
+._lazy-loaded,
+img.entered,
+img.initial,
+img.loaded,
+img.error {
+  opacity: 1;
+}
+
+img:not([src]) {
+  visibility: hidden;
+}
+
 [class*=-ibg] {
   position: relative;
 }
@@ -18958,7 +18980,6 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
 
   .hero-banner-slide__button {
     min-height: 2.5rem;
-    padding: 0.5rem 1.25rem;
     font-size: 0.875rem;
     margin-top: 0.75rem;
     margin-left: 0.75rem;
