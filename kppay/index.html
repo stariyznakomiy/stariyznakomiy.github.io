@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230311165949">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230315113344">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,10 +26,10 @@
 						<button type="button" class="menu__icon icon-menu"><span></span></button>
 						<nav class="menu__body">
 							<ul class="menu__list">
-								<li class="menu__item"><a href="#" data-goto=".second" class="menu__link">About</a></li>
-								<li class="menu__item"><a href="#" data-goto=".accounts" class="menu__link">Accounts</a></li>
-								<li class="menu__item"><a href="#" data-goto=".payments" class="menu__link">Payments</a></li>
-								<li class="menu__item"><a href="#" data-goto=".services" class="menu__link">Services</a></li>
+								<li class="menu__item"><a href="#" data-navigate-step="2" data-navigate=".second" class="menu__link">About</a></li>
+								<li class="menu__item"><a href="#" data-navigate-step="3" data-navigate=".accounts" class="menu__link">Accounts</a></li>
+								<li class="menu__item"><a href="#" data-navigate-step="8" data-navigate=".payments" class="menu__link">Payments</a></li>
+								<li class="menu__item"><a href="#" data-navigate-step="9" data-navigate=".services" class="menu__link">Services</a></li>
 								<li class="menu__item menu__item_overflow">
 									<span class="menu__link">
 										Company
@@ -39,13 +39,13 @@
 									</span>
 									<ul class="menu__sub-list">
 										<li class="menu__sub-item">
-											<a href="#" data-goto=".about" class="menu__sub-link">About us</a>
+											<a href="#" data-navigate-step="10" data-navigate=".about" class="menu__sub-link">About us</a>
 										</li>
 										<li class="menu__sub-item">
-											<a href="#" data-goto=".career" class="menu__sub-link">Careers</a>
+											<a href="#" data-navigate-step="11" data-navigate=".career" class="menu__sub-link">Careers</a>
 										</li>
 										<li class="menu__sub-item">
-											<a href="#" data-goto=".code" class="menu__sub-link">Code of Conduct</a>
+											<a href="#" data-navigate-step="12" data-navigate=".code" class="menu__sub-link">Code of Conduct</a>
 										</li>
 									</ul>
 								</li>
@@ -58,8 +58,11 @@
 		</header>
 		<main class="page">
 
-			<video autoplay muted loop preload="auto" class="video-bg">
+			<video autoplay muted loop preload="auto" class="video-bg video-bg_desktop">
 				<source type="video/mp4" src="files/video-bg.mp4">
+			</video>
+			<video autoplay muted loop preload="auto" class="video-bg video-bg_mobile">
+				<source type="video/mp4" src="files/video-bg-mob.mp4">
 			</video>
 
 			<div class="contact-sales">
@@ -116,18 +119,43 @@
 				</div>
 			</div>
 
+			<div data-step class="rounds _active--hero">
+				<div id="round-1" class="rounds__item rounds__item--1">
+					<div class="rounds__item-text">Dedicated manager</div>
+				</div>
+				<div id="round-2" class="rounds__item rounds__item--2">
+					<div class="rounds__item-text">Treasury services</div>
+				</div>
+				<div id="round-3" class="rounds__item rounds__item--3">
+					<div class="rounds__item-text">Cash-pooling with automated transfer pricing reports</div>
+				</div>
+				<div id="round-4" class="rounds__item rounds__item--4">
+					<div class="rounds__item-text">Digital company secretary</div>
+				</div>
+			</div>
 
 			<div class="sections-wrapper">
-				<div data-section-wrap data-scroll-speed="800" class="sections">
+				<div data-section-wrap data-scroll-speed="1500" class="sections">
 					<!-- first -->
-					<section class="first">
+					<section data-lag="1" class="first">
 						<div class="first__body">
 							<div class="first__content">
 								<h1 class="first__title h1">
-									<span>Corporate banking</span>
-									<span>re-angled</span>
+									<span class="first__title-word">
+										<span data-aos="title-up" data-aos-delay="500" data-aos-duration="1000" data-aos-anchor=".first__content">Corporate </span>
+									</span>
+									<span class="first__title-word">
+										<span data-aos="title-up" data-aos-delay="500" data-aos-duration="1000" data-aos-anchor=".first__content">banking</span>
+									</span>
+									<br>
+									<span class="first__title-word">
+										<span data-aos="title-up" data-aos-delay="500" data-aos-duration="1000" data-aos-anchor=".first__content">re-angled</span>
+									</span>
 								</h1>
-								<button class="first__button btn-solid">Get Started</button>
+								<div data-aos="fade-in" data-aos-delay="500" data-aos-duration="600" data-aos-anchor=".first__content">
+									<button class="first__button btn-solid">Get Started</button>
+								</div>
+
 							</div>
 						</div>
 					</section>
@@ -143,27 +171,30 @@
 									KP Pay is a new way of corporate banking.
 									We&nbsp;proceed, support and make your business stronger
 								</div>
-								<button class="second__button btn-solid">Get Started</button>
+								<div data-aos="fade-in" data-aos-delay="500" data-aos-duration="500" data-aos-anchor=".second__content">
+									<button class="second__button btn-solid">Get Started</button>
+								</div>
+
 							</div>
 						</div>
 					</section>
 					<!-- second end -->
 
 					<!-- accounts -->
-					<section data-accounts class="accounts">
+					<section data-section-slider class="accounts">
 						<div class="accounts__left accounts-left">
 							<div class="accounts-left__navigation">
-								<div class="accounts-left__navigation-wrapper">
-									<button type="button" class="accounts-left__navigation-item _active"><span>Instant FX</span></button>
-									<button type="button" class="accounts-left__navigation-item"><span>UK IBAN + EU IBAN</span></button>
-									<button type="button" class="accounts-left__navigation-item"><span>Cards</span></button>
-									<button type="button" class="accounts-left__navigation-item"><span>Business Currency</span></button>
+								<div data-section-slider-item class="accounts-left__navigation-wrapper">
+									<button data-navigate-step="3" type="button" class="accounts-left__navigation-item"><span>Instant FX</span></button>
+									<button data-navigate-step="4" type="button" class="accounts-left__navigation-item"><span>UK IBAN + EU IBAN</span></button>
+									<button data-navigate-step="5" type="button" class="accounts-left__navigation-item"><span>Cards</span></button>
+									<button data-navigate-step="6" type="button" class="accounts-left__navigation-item"><span>Business Currency</span></button>
 								</div>
 							</div>
 							<div class="accounts-left__body">
 								<div class="accounts-left__title h3">Accounts</div>
-								<div class="accounts-left__list">
-									<div class="accounts-left__slide _active">
+								<div data-section-slider-item class="accounts-left__list">
+									<div class="accounts-left__slide _slide-active">
 										<h2 class="accounts-left__slide-title h2">Instant FX</h2>
 										<div class="accounts-left__slide-text accounts-left__slide-text_short">Use the best exchange rates</div>
 									</div>
@@ -188,8 +219,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="accounts__right accounts-right">
-							<div class="accounts-right__slide _active">
+						<div data-section-slider-item class="accounts__right accounts-right">
+							<div class="accounts-right__slide _slide-active">
 								<div class="accounts-right__slide-img">
 									<picture><source data-srcset="img/slider/1.webp, img/slider/1@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/slider/1.jpg" data-srcset="img/slider/1@2x.jpg 2x" alt=""></picture>
 								</div>
@@ -197,7 +228,7 @@
 							<div class="accounts-right__slide">
 							</div>
 							<div class="accounts-right__slide">
-								<div class="accounts-right__slide-img accounts-right__slide-img_card">
+								<div class="accounts-right__slide-card">
 									<picture><source data-srcset="img/slider/2.webp, img/slider/2@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/slider/2.png" data-srcset="img/slider/2@2x.png 2x" alt=""></picture>
 								</div>
 							</div>
@@ -210,19 +241,26 @@
 					</section>
 					<!-- accounts end -->
 
-					<!-- first -->
-					<section class="first">
-						<div class="first__body">
-							<div class="first__content">
-								<h2 class="first__title h1">
-									<span>Your money </span>
-									<span>are safe with us</span>
+					<!-- third -->
+					<section class="third">
+						<div class="third__body">
+							<div class="third__content">
+								<h2 class="third__title h1">
+									<span class="third__title-word">
+										<span data-aos="title-up" data-aos-delay="300" data-aos-duration="600" data-aos-anchor=".third__content">Your money </span>
+									</span>
+									<br>
+									<span class="third__title-word">
+										<span data-aos="title-up" data-aos-delay="300" data-aos-duration="600" data-aos-anchor=".third__content">are safe with us</span>
+									</span>
 								</h2>
-								<button class="first__button btn-solid">Get Started</button>
+								<div data-aos="fade-in" data-aos-delay="500" data-aos-duration="600" data-aos-anchor=".third__content">
+									<button class="third__button btn-solid">Get Started</button>
+								</div>
 							</div>
 						</div>
 					</section>
-					<!-- first end -->
+					<!-- third end -->
 
 					<!-- Payments -->
 					<section class="payments section_light">
@@ -295,7 +333,10 @@
 										</div>
 									</div>
 								</div>
-								<button class="payments__button btn-solid">Get Started</button>
+								<div data-aos="fade-in" data-aos-delay="1000" data-aos-duration="500" data-aos-anchor=".payments__body">
+									<button class="payments__button btn-solid">Get Started</button>
+								</div>
+
 							</div>
 						</div>
 					</section>
@@ -366,7 +407,9 @@
 										</div>
 									</div>
 								</div>
-								<button class="services__button btn-solid">Get Started</button>
+								<div data-aos="fade-in" data-aos-offset="50" data-aos-duration="300">
+									<button class="services__button btn-solid">Get Started</button>
+								</div>
 							</div>
 						</div>
 					</section>
@@ -692,7 +735,7 @@
 		</div>
 	</div>
 </div> -->
-	<script src="js/app.min.js?_v=20230311165949"></script>
+	<script src="js/app.min.js?_v=20230315113344"></script>
 </body>
 
 </html>
