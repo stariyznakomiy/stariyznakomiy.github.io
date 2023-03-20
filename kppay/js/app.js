@@ -8218,239 +8218,210 @@
                 }));
             }
         }), 0);
-        /*!
- * swiped-events.js - v1.1.0
- * Pure JavaScript swipe events
- * https://github.com/john-doherty/swiped-events
- * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
- * @author John Doherty <www.johndoherty.info>
- * @license MIT
- */
-        !function(t, e) {
-            "use strict";
-            "function" != typeof t.CustomEvent && (t.CustomEvent = function(t, n) {
-                n = n || {
-                    bubbles: !1,
-                    cancelable: !1,
-                    detail: void 0
-                };
-                var u = e.createEvent("CustomEvent");
-                return u.initCustomEvent(t, n.bubbles, n.cancelable, n.detail), u;
-            }, t.CustomEvent.prototype = t.Event.prototype), e.addEventListener("touchstart", (function(t) {
-                if ("true" === t.target.getAttribute("data-swipe-ignore")) return;
-                o = t.target, l = Date.now(), n = t.touches[0].clientX, u = t.touches[0].clientY, 
-                a = 0, i = 0;
-            }), !1), e.addEventListener("touchmove", (function(t) {
-                if (!n || !u) return;
-                var e = t.touches[0].clientX, l = t.touches[0].clientY;
-                a = n - e, i = u - l;
-            }), !1), e.addEventListener("touchend", (function(t) {
-                if (o !== t.target) return;
-                var e = parseInt(o.getAttribute("data-swipe-threshold") || "20", 10), s = parseInt(o.getAttribute("data-swipe-timeout") || "500", 10), r = Date.now() - l, c = "";
-                Math.abs(a) > Math.abs(i) ? Math.abs(a) > e && r < s && (c = a > 0 ? "swiped-left" : "swiped-right") : Math.abs(i) > e && r < s && (c = i > 0 ? "swiped-up" : "swiped-down");
-                "" !== c && o.dispatchEvent(new CustomEvent(c, {
-                    bubbles: !0,
-                    cancelable: !0
+        const sectionSliders = document.querySelectorAll(".section-slider");
+        if (sectionSliders) sectionSliders.forEach((sectionSlider => {
+            const sectionSliderWrapper = sectionSlider.querySelector("[data-section-wrapper]");
+            const sectionSlides = Array.from(sectionSliderWrapper.children);
+            sectionSliderInit(sectionSliderWrapper, sectionSlides);
+            function sectionSliderInit(sectionSliderWrapper) {
+                let offsetHeight = window.innerHeight;
+                sectionSliderWrapper.style.transform = "translate3d(0px, 0px, 0px)";
+                if (sectionSliderWrapper.children) {
+                    sectionSliderWrapper.firstElementChild.classList.add("section-slide--active");
+                    if ("lock" == sectionSliderWrapper.firstElementChild.dataset.sectionSlide) sectionSliderWrapper.classList.add("_scrolling-lock");
+                    for (const slide of sectionSliderWrapper.children) slide.style.minHeight = offsetHeight + "px";
+                }
+                itemsInit(sectionSliderWrapper);
+                navigationInit(sectionSliderWrapper);
+                navigationItemInit(sectionSliderWrapper);
+                sectionLight(sectionSliderWrapper);
+            }
+            function itemsInit(sectionSliderWrapper) {
+                const sectionItems = sectionSliderWrapper.querySelectorAll("[data-section-item]");
+                if (sectionItems) sectionItems.forEach((sectionItem => {
+                    sectionItem.firstElementChild.classList.add("_slide-active");
                 }));
-                n = null, u = null, l = null;
-            }), !1);
-            var n = null, u = null, a = null, i = null, l = null, o = null;
-        }(window, document);
-        const sectionsWrapper = document.querySelector("[data-section-wrap]");
-        document.querySelector("[data-section-slider]");
-        const sectionsSliderItems = document.querySelectorAll("[data-section-slider-item]");
-        const scrollSpeed = sectionsWrapper.dataset.scrollSpeed ? sectionsWrapper.dataset.scrollSpeed : 1e3;
-        if (sectionsWrapper && sectionsWrapper.children) {
-            var sections = Array.from(sectionsWrapper.children);
-            sections.forEach((item => {
-                item.classList.add("section");
+            }
+            function navigationInit(sectionSliderWrapper) {
+                const navigateLinks = document.querySelectorAll("[data-section-navigate]");
+                if (navigateLinks) navigateLinks.forEach((navigateLink => {
+                    navigateLink.addEventListener("click", (e => {
+                        sectionsNavigation(e, sectionSliderWrapper);
+                        stepLink(e.target);
+                    }));
+                }));
+            }
+            function navigationItemInit(sectionSliderWrapper) {
+                const navigateLinks = sectionSliderWrapper.querySelectorAll("[data-section-item-navigate]");
+                if (navigateLinks) for (let index = 0; index < navigateLinks.length; index++) navigateLinks[index].addEventListener("click", (e => {
+                    itemsNavigation(e, index, sectionSliderWrapper);
+                    stepLink(e.target);
+                }));
+            }
+            function sectionLight(sectionSliderWrapper) {
+                const sectionActive = sectionSliderWrapper.querySelector(".section-slide--active");
+                if (sectionActive && sectionActive.classList.contains("section-slider__slide_light")) document.documentElement.classList.add("light_theme"); else document.documentElement.classList.remove("light_theme");
+            }
+            window.addEventListener("resize", (e => {
+                let offsetHeight = window.innerHeight;
+                for (const slide of sectionSliderWrapper.children) slide.style.minHeight = offsetHeight + "px";
             }));
-            sections[0].classList.add("section--active");
-        }
-        window.addEventListener("load", (event => {
-            gotoBlock(".section--active", false, 1);
-            const roundsWrap = document.querySelector(".rounds");
-            setTimeout((() => {
-                roundsWrap.setAttribute("data-step", "1");
-            }), 1);
-        }));
-        function sectionSliderInit(sectionsSliderItems) {
-            sectionsSliderItems.forEach((sectionsSliderItem => {
-                const children = Array.from(sectionsSliderItem.children);
-                children[0].classList.add("_slide-active");
+            window.addEventListener("wheel", (e => {
+                let direction = e.deltaY;
+                if (direction > 0) direction = "down"; else direction = "up";
+                sectionSliderAction(sectionSliderWrapper, direction);
+                sectionLight(sectionSliderWrapper);
             }));
-        }
-        if (sectionsSliderItems) sectionSliderInit(sectionsSliderItems);
-        let direction;
-        window.addEventListener("wheel", (e => {
-            direction = -e.deltaY;
-            if (direction) if (direction < 0) {
-                if (document.documentElement.classList.contains("slider-lock") && bodyLockStatus && !document.documentElement.classList.contains("lock")) sectionSliderNext(scrollSpeed);
-            } else if (direction > 0) if (document.documentElement.classList.contains("slider-lock") && bodyLockStatus && !document.documentElement.classList.contains("lock")) sectionSliderPrev(scrollSpeed);
-        }));
-        let directiontouch;
-        let y = null;
-        document.addEventListener("touchstart", (e => y = e.touches[0].clientY));
-        document.addEventListener("touchmove", (e => {
-            if (!y) return;
-            y -= e.touches[0].clientY;
-            directiontouch = -y;
-            if (directiontouch) if (directiontouch < 0) {
-                if (document.documentElement.classList.contains("slider-lock") && bodyLockStatus && !document.documentElement.classList.contains("lock")) sectionSliderNext(scrollSpeed);
-            } else if (directiontouch > 0) if (document.documentElement.classList.contains("slider-lock") && bodyLockStatus && !document.documentElement.classList.contains("lock")) sectionSliderPrev(scrollSpeed);
-            y = null;
-        }));
-        window.addEventListener("scroll", (e => {
-            sectionLight();
-            if (direction) if (direction < 0) {
-                if (!document.documentElement.classList.contains("lock") && bodyLockStatus || !document.documentElement.classList.contains("slider-lock") && bodyLockStatus) sectionNext(scrollSpeed);
-            } else if (direction > 0) if (!document.documentElement.classList.contains("lock") && bodyLockStatus || !document.documentElement.classList.contains("slider-lock") && bodyLockStatus) sectionPrev(scrollSpeed);
-            if (directiontouch) if (directiontouch < 0) {
-                if (!document.documentElement.classList.contains("lock") && bodyLockStatus || !document.documentElement.classList.contains("slider-lock") && bodyLockStatus) sectionNext(scrollSpeed);
-            } else if (directiontouch > 0) if (!document.documentElement.classList.contains("lock") && bodyLockStatus || !document.documentElement.classList.contains("slider-lock") && bodyLockStatus) sectionPrev(scrollSpeed);
-        }));
-        function sectionNext(scrollSpeed) {
-            const sectionActive = document.querySelector(".section--active");
-            const nextSection = sectionActive.nextElementSibling;
-            if (nextSection) {
-                sectionActive.offsetHeight, window.innerHeight;
-                let sectionBottom = sectionActive.offsetTop + sectionActive.offsetHeight;
-                let windowBottom = window.pageYOffset + window.innerHeight;
-                if (sectionBottom < windowBottom) {
-                    sectionActive.classList.remove("section--active");
-                    nextSection.classList.add("section--active");
-                    gotoBlock(".section--active", false, scrollSpeed);
-                    bodyLock(1);
-                    setTimeout((() => {
-                        bodyUnlock(1);
-                    }), scrollSpeed);
+            let directionTouch;
+            document.addEventListener("touchstart", (e => directionTouch = e.touches[0].clientY));
+            document.addEventListener("touchmove", (e => {
+                if ("mobile" == !sectionSlider.dataset.sliderDisabled) {
+                    directionTouch -= e.touches[0].clientY;
+                    if (directionTouch > 0) directionTouch = "down"; else directionTouch = "up";
+                    sectionSliderAction(sectionSliderWrapper, directionTouch);
+                    sectionLight(sectionSliderWrapper);
+                    directionTouch = null;
+                }
+            }));
+            function sectionSliderAction(sectionSliderWrapper, direction) {
+                if (direction && !sectionSliderWrapper.classList.contains("_scrolling") && !sectionSliderWrapper.classList.contains("_scrolling-lock")) {
+                    let wrapperStatus = checkWrapperPosition(sectionSliderWrapper, direction);
+                    if (!wrapperStatus) return;
+                    scrollSection(sectionSliderWrapper, direction);
+                } else if (direction && !sectionSliderWrapper.classList.contains("_scrolling") && sectionSliderWrapper.classList.contains("_scrolling-lock")) {
+                    changeActiveItem(sectionSliderWrapper, direction);
+                    if (sectionSliderWrapper.classList.contains("_scrolling-lock")) if ("down" == direction) stepNext(); else if ("up" == direction) stepPrev();
+                }
+            }
+            function checkWrapperPosition(sectionSliderWrapper, direction) {
+                if ("down" == direction && Math.round(sectionSliderWrapper.getBoundingClientRect().bottom) <= window.innerHeight) return false; else if ("up" == direction && Math.round(sectionSliderWrapper.getBoundingClientRect().top) >= window.pageYOffset) return false; else return true;
+            }
+            function scrollSection(sectionSliderWrapper, direction) {
+                if ("down" == direction) scrollSectionDown(sectionSliderWrapper, direction); else if ("up" == direction) scrollSectionUp(sectionSliderWrapper, direction);
+            }
+            function scrollSectionDown(sectionSliderWrapper, direction) {
+                const sectionActive = sectionSliderWrapper.querySelector(".section-slide--active");
+                if (Math.round(sectionActive.getBoundingClientRect().bottom - window.innerHeight <= 1)) {
+                    const sectionActiveNew = sectionActive.nextElementSibling;
+                    let offsetHeight = Math.round(sectionActiveNew.getBoundingClientRect().top) - Math.round(sectionSliderWrapper.getBoundingClientRect().top);
+                    transformWrapper(sectionSliderWrapper, -offsetHeight);
+                    changeActiveSlide(sectionSliderWrapper, sectionActive, sectionActiveNew);
                     stepNext();
-                    if (nextSection.hasAttribute("data-section-slider")) {
-                        document.documentElement.classList.add("slider-lock");
+                    transformWrapperLock(sectionSliderWrapper);
+                } else {
+                    let scrollSpeed = 300;
+                    if (Math.round(sectionActive.getBoundingClientRect().bottom) - scrollSpeed <= window.innerHeight) scrollSpeed = Math.round(sectionActive.getBoundingClientRect().bottom) - window.innerHeight;
+                    let offsetHeight = Math.round(getTranslate(sectionSliderWrapper, "y")) - scrollSpeed;
+                    transformWrapper(sectionSliderWrapper, offsetHeight);
+                    transformWrapperLock(sectionSliderWrapper, 300);
+                }
+            }
+            function scrollSectionUp(sectionSliderWrapper, direction) {
+                const sectionActive = sectionSliderWrapper.querySelector(".section-slide--active");
+                if (Math.round(sectionActive.getBoundingClientRect().top >= -1)) {
+                    const sectionActiveNew = sectionActive.previousElementSibling;
+                    let offsetHeight = Math.round(sectionActive.getBoundingClientRect().top) - Math.round(sectionSliderWrapper.getBoundingClientRect().top) - window.innerHeight;
+                    transformWrapper(sectionSliderWrapper, -offsetHeight);
+                    changeActiveSlide(sectionSliderWrapper, sectionActive, sectionActiveNew);
+                    stepPrev();
+                    transformWrapperLock(sectionSliderWrapper);
+                } else {
+                    let scrollSpeed = 300;
+                    if (Math.round(sectionActive.getBoundingClientRect().top) + scrollSpeed >= window.pageYOffset) scrollSpeed = -Math.round(sectionActive.getBoundingClientRect().top);
+                    let offsetHeight = Math.round(getTranslate(sectionSliderWrapper, "y")) + scrollSpeed;
+                    transformWrapper(sectionSliderWrapper, offsetHeight);
+                    transformWrapperLock(sectionSliderWrapper, 300);
+                }
+            }
+            function transformWrapper(sectionSliderWrapper, offsetHeight) {
+                sectionSliderWrapper.style.transform = `translate3d(0px, ${offsetHeight}px, 0px)`;
+            }
+            function transformWrapperLock(sectionSliderWrapper, time = 1e3) {
+                sectionSliderWrapper.classList.add("_scrolling");
+                setTimeout((() => {
+                    sectionSliderWrapper.classList.remove("_scrolling");
+                }), time);
+            }
+            function getTranslate(node, sty) {
+                var translates = document.defaultView.getComputedStyle(node, null).transform.substring(7);
+                var result = translates.match(/\(([^)]*)\)/);
+                var matrix = result ? result[1].split(",") : translates.split(",");
+                if ("x" == sty || void 0 == sty) return matrix.length > 6 ? parseFloat(matrix[12]) : parseFloat(matrix[4]); else if ("y" == sty) return matrix.length > 6 ? parseFloat(matrix[13]) : parseFloat(matrix[5]); else if ("z" == sty) return matrix.length > 6 ? parseFloat(matrix[14]) : 0; else if ("rotate" == sty) return matrix.length > 6 ? getRotate([ parseFloat(matrix[0]), parseFloat(matrix[1]), parseFloat(matrix[4]), parseFloat(matrix[5]) ]) : getRotate(matrix);
+            }
+            function changeActiveSlide(sectionSliderWrapper, sectionActive, sectionNew) {
+                sectionActive.classList.remove("section-slide--active");
+                sectionNew.classList.add("section-slide--active");
+                if ("lock" == sectionNew.dataset.sectionSlide) sectionSliderWrapper.classList.add("_scrolling-lock");
+            }
+            function changeActiveItem(sectionSliderWrapper, direction) {
+                const activeItems = sectionSliderWrapper.querySelectorAll("[data-section-item] ._slide-active");
+                if (activeItems && activeItems.length) activeItems.forEach((activeItem => {
+                    if ("down" == direction && activeItem.nextElementSibling) {
+                        activeItem.classList.remove("_slide-active");
+                        activeItem.nextElementSibling.classList.add("_slide-active");
+                        transformWrapperLock(sectionSliderWrapper);
+                    } else if ("up" == direction && activeItem.previousElementSibling) {
+                        activeItem.classList.remove("_slide-active");
+                        activeItem.previousElementSibling.classList.add("_slide-active");
+                        transformWrapperLock(sectionSliderWrapper);
+                    } else if ("down" == direction && !activeItem.nextElementSibling || "up" == direction && !activeItem.previousElementSibling) {
+                        sectionSliderWrapper.classList.remove("_scrolling-lock");
+                        sectionSliderAction(sectionSliderWrapper, direction);
                         return;
                     }
+                }));
+            }
+            function sectionsNavigation(e, sectionSliderWrapper) {
+                const link = e.target;
+                const sectionSlider = sectionSliderWrapper.closest("[data-section-slider]");
+                const sectionSelector = sectionSliderWrapper.querySelector(link.dataset.sectionNavigate);
+                if ("mobile" != !sectionSlider.dataset.sectionSliderDisabled && !isMobile.any()) {
+                    const sectionNew = sectionSelector.parentNode;
+                    const sectionActive = sectionSliderWrapper.querySelector(".section-slide--active");
+                    let offsetHeight = Math.round(getTranslate(sectionSliderWrapper, "y")) - Math.round(sectionNew.getBoundingClientRect().top);
+                    transformWrapper(sectionSliderWrapper, offsetHeight);
+                    changeActiveSlide(sectionSliderWrapper, sectionActive, sectionNew);
+                    if ("lock" != sectionNew.dataset.sectionSlide) sectionSliderWrapper.classList.remove("_scrolling-lock");
+                    transformWrapperLock(sectionSliderWrapper);
+                } else gotoBlock(link.dataset.sectionNavigate);
+            }
+            function itemsNavigation(e, index, sectionSliderWrapper) {
+                e.target;
+                const items = sectionSliderWrapper.querySelectorAll("[data-section-item]");
+                items.forEach((item => {
+                    const itemChildrens = Array.from(item.children);
+                    for (let i = 0; i < itemChildrens.length; i++) if (i !== index) itemChildrens[i].classList.remove("_slide-active"); else itemChildrens[i].classList.add("_slide-active");
+                }));
+            }
+            function stepNext() {
+                const roundsWrap = document.querySelector(".rounds");
+                if (roundsWrap) {
+                    let step = Number(roundsWrap.dataset.step);
+                    step += 1;
+                    roundsWrap.setAttribute("data-step", `${step}`);
                 }
             }
-        }
-        function sectionPrev(scrollSpeed) {
-            const sectionActive = document.querySelector(".section--active");
-            const prevSection = sectionActive.previousElementSibling;
-            if (prevSection) {
-                let flag = true;
-                let offsetTopPrev = prevSection.offsetHeight - window.innerHeight;
-                let sectionTop = sectionActive.offsetTop;
-                let windowTop = window.pageYOffset;
-                if (sectionTop > windowTop) if (flag) {
-                    sectionActive.classList.remove("section--active");
-                    prevSection.classList.add("section--active");
-                    gotoBlock(".section--active", false, scrollSpeed, -offsetTopPrev);
-                    bodyLock(1);
-                    flag = false;
-                    setTimeout((() => {
-                        flag = true;
-                        bodyUnlock(1);
-                    }), scrollSpeed);
-                    stepPrev();
-                    if (prevSection.hasAttribute("data-section-slider")) {
-                        document.documentElement.classList.add("slider-lock");
-                        return;
-                    }
+            function stepPrev() {
+                const roundsWrap = document.querySelector(".rounds");
+                if (roundsWrap) {
+                    let step = Number(roundsWrap.dataset.step);
+                    step -= 1;
+                    roundsWrap.setAttribute("data-step", `${step}`);
                 }
             }
-        }
-        function sectionSliderNext(scrollSpeed) {
-            const activeSlides = document.querySelectorAll("._slide-active");
-            let end = false;
-            activeSlides.forEach((activeSlide => {
-                const nextSlide = activeSlide.nextElementSibling;
-                if (nextSlide) {
-                    let flag = true;
-                    if (flag) {
-                        activeSlide.classList.remove("_slide-active");
-                        nextSlide.classList.add("_slide-active");
-                        bodyLock(1);
-                        flag = false;
-                        setTimeout((() => {
-                            bodyUnlock(1);
-                            flag = true;
-                        }), scrollSpeed);
-                    }
-                } else end = true;
-            }));
-            if (end) {
-                const sectionActive = document.querySelector(".section--active");
-                const nextSection = sectionActive.nextElementSibling;
-                if (nextSection) {
-                    sectionActive.classList.remove("section--active");
-                    nextSection.classList.add("section--active");
-                    gotoBlock(".section--active", false, scrollSpeed);
-                    bodyLock(1);
-                    setTimeout((() => {
-                        bodyUnlock(1);
-                        document.documentElement.classList.remove("slider-lock");
-                    }), scrollSpeed);
-                    stepNext();
-                    return;
-                }
+            function stepLink(e) {
+                const link = e.closest("[data-navigate-step]");
+                const rounds = document.querySelector(".rounds");
+                if (rounds) if ("item" == link.dataset.navigateStep) {
+                    const activeItem = document.querySelector("[data-navigate-step]._slide-active");
+                    rounds.dataset.step = activeItem.dataset.navigateStep;
+                } else rounds.dataset.step = link.dataset.navigateStep;
             }
-            stepNext();
-        }
-        function sectionSliderPrev(scrollSpeed) {
-            const activeSlides = document.querySelectorAll("._slide-active");
-            let end = false;
-            activeSlides.forEach((activeSlide => {
-                const prevSlide = activeSlide.previousElementSibling;
-                if (prevSlide) {
-                    let flag = true;
-                    if (flag) {
-                        activeSlide.classList.remove("_slide-active");
-                        prevSlide.classList.add("_slide-active");
-                        bodyLock(1);
-                        flag = false;
-                        setTimeout((() => {
-                            bodyUnlock(1);
-                            flag = true;
-                        }), scrollSpeed);
-                    }
-                } else end = true;
-            }));
-            if (end) {
-                const sectionActive = document.querySelector(".section--active");
-                const prevSection = sectionActive.previousElementSibling;
-                if (prevSection) {
-                    sectionActive.classList.remove("section--active");
-                    prevSection.classList.add("section--active");
-                    gotoBlock(".section--active", false, scrollSpeed);
-                    bodyLock(1);
-                    setTimeout((() => {
-                        bodyUnlock(1);
-                        document.documentElement.classList.remove("slider-lock");
-                    }), scrollSpeed);
-                    stepPrev();
-                    return;
-                }
-            }
-            stepPrev();
-        }
-        function stepNext() {
-            const roundsWrap = document.querySelector(".rounds");
-            let step = Number(roundsWrap.dataset.step);
-            step += 1;
-            roundsWrap.setAttribute("data-step", `${step}`);
-        }
-        function stepPrev() {
-            const roundsWrap = document.querySelector(".rounds");
-            let step = Number(roundsWrap.dataset.step);
-            step -= 1;
-            roundsWrap.setAttribute("data-step", `${step}`);
-        }
-        function sectionLight() {
-            const section = document.querySelector(".section--active");
-            if (section && section.classList.contains("section_light")) document.documentElement.classList.add("light_theme"); else document.documentElement.classList.remove("light_theme");
-        }
+        }));
         var aos = __webpack_require__(711);
         window.addEventListener("load", (function(e) {
             aos.init({
+                disable: "phone",
                 startEvent: "DOMContentLoaded",
                 initClassName: "aos-init",
                 animatedClassName: "aos-animate",
@@ -8470,6 +8441,12 @@
         window.onload = function() {
             if (document.body.classList.contains("transition_disabled")) document.body.classList.remove("transition_disabled");
         };
+        window.addEventListener("load", (event => {
+            const roundsWrap = document.querySelector(".rounds");
+            setTimeout((() => {
+                roundsWrap.setAttribute("data-step", "1");
+            }), 1);
+        }));
         window.addEventListener("resize", (e => {
             if (window.innerWidth > 1199.98) if (document.documentElement.classList.contains("menu-open")) {
                 bodyLockToggle();
@@ -8485,12 +8462,22 @@
                 if (codeActive) if (window.pageYOffset > codeActive.offsetTop) rounds.classList.add("section-scroll-2"); else rounds.classList.remove("section-scroll-2"); else rounds.classList.remove("section-scroll-2");
             }
         }));
+        window.addEventListener("wheel", (e => {}));
         document.addEventListener("click", documentActionsClick);
         function documentActionsClick(e) {
             const el = e.target;
             if (el.closest(".contact-sales-button")) {
                 const button = el.closest(".contact-sales-button");
                 const parent = el.closest(".contact-sales");
+                document.documentElement.classList.toggle("form-show");
+                button.classList.toggle("_active");
+                parent.classList.toggle("_show");
+                bodyLockToggle();
+                return;
+            }
+            if (el.closest("[data-popup-form]")) {
+                const parent = document.querySelector(".contact-sales");
+                const button = parent.querySelector(".contact-sales-button");
                 document.documentElement.classList.toggle("form-show");
                 button.classList.toggle("_active");
                 parent.classList.toggle("_show");
@@ -8504,38 +8491,6 @@
                 if (wrapper) wrapper.classList.toggle("_show");
                 document.documentElement.classList.toggle("form-show");
                 bodyUnlock();
-            }
-            if (el.closest("[data-navigate]")) {
-                const link = el.closest("[data-navigate]");
-                const activeSection = document.querySelector(".section--active");
-                const anchor = link.dataset.navigate;
-                const anchorSection = document.querySelector(anchor);
-                activeSection.classList.remove("section--active");
-                anchorSection.classList.add("section--active");
-                bodyLock();
-                if (anchorSection.hasAttribute("data-section-slider")) document.documentElement.classList.add("slider-lock"); else document.documentElement.classList.remove("slider-lock");
-                gotoBlock(anchor);
-                setTimeout((() => {
-                    bodyUnlock();
-                }), 1e3);
-            }
-            if (el.closest(".accounts-left__navigation-item")) {
-                const sliderNavigationButton = el.closest(".accounts-left__navigation-item");
-                var index = null;
-                const sliderNavigationWrap = el.closest("[data-section-slider-item]");
-                const sliderNavigationButtons = sliderNavigationWrap.querySelectorAll(".accounts-left__navigation-item");
-                for (let i = 0; i < sliderNavigationButtons.length; i++) if (sliderNavigationButtons[i] == sliderNavigationButton) index = i;
-                const sliderItems = document.querySelectorAll("[data-section-slider-item]");
-                sliderItems.forEach((sliderItem => {
-                    const sliderItemChildrens = Array.from(sliderItem.children);
-                    for (let i = 0; i < sliderItemChildrens.length; i++) if (i !== index) sliderItemChildrens[i].classList.remove("_slide-active"); else sliderItemChildrens[i].classList.add("_slide-active");
-                }));
-            }
-            if (el.closest("[data-navigate-step]")) {
-                const link = el.closest("[data-navigate-step]");
-                const step = link.dataset.navigateStep;
-                const rounds = document.querySelector(".rounds");
-                rounds.dataset.step = step;
             }
         }
         const paymentsItems = document.querySelectorAll(".item-card");
@@ -8569,17 +8524,8 @@
                 }
             }));
         }));
-        const script_button = document.querySelector("button");
-        const container = document.querySelector(".container");
-        script_button.addEventListener("click", (() => {
-            if (container.classList.contains(".container--active")) {
-                container.classList.remove("container--active");
-                container.style.maxHeight = 0;
-            } else {
-                container.classList.add("container--active");
-                container.style.maxHeight = container.scrollHeight + "px";
-            }
-        }));
+        document.querySelector("button");
+        document.querySelector(".container");
         window["FLS"] = true;
         isWebp();
         addTouchClass();
