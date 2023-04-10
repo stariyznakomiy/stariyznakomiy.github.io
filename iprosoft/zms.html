@@ -2,11 +2,11 @@
 <html lang="ru">
 
 <head>
-	<title>Адепт: Смета</title>
+	<title>Зарубежные и международные стандарты</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230406140717">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230411011856">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -157,7 +157,7 @@
 								<div class="block-doc__wrapper">
 									<div class="block-doc__body">
 										<div class="block-doc__img">
-											<img data-src="img/doc/1.png" data-srcset="img/doc/1@2x.png 2x" aria-hidden="true" alt="">
+											<picture><source data-srcset="img/doc/1.webp, img/doc/1@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/doc/1.png" data-srcset="img/doc/1@2x.png 2x" aria-hidden="true" alt=""></picture>
 										</div>
 										<div class="block-doc__content">
 											<div class="block-doc__text block-doc__text_small">
@@ -178,11 +178,12 @@
 		<main class="page">
 
 			<!-- page-top -->
-			<div class="page-top page-top_blue">
+			<div class="page-top page-top_blue mb-60">
 				<div class="page-top__wrapper">
 					<div class="page-top__container">
+						<div class="line-left line-left_bottom"></div>
 						<div class="page-top__body">
-							<nav class="page-top__breadcrumbs breadcrumbs">
+							<nav class="page-top__breadcrumbs breadcrumbs mb-60">
 								<ul class="breadcrumbs__list">
 									<li class="breadcrumbs__item">
 										<a href="#" class="breadcrumbs__link">Главная</a>
@@ -195,18 +196,28 @@
 									</li>
 								</ul>
 							</nav>
-							<h1 class="page-top__title h2">
-								Адепт: Смета
+							<h1 class="page-top__title h2 mb-40">
+								Зарубежные и <br> международные <br> стандарты
 							</h1>
-							<div class="page-top__text">
+							<div class="page-top__text page-top__text_wide regular-18 mb-48">
 								<p>
-									Профессиональная программа для составления смет на строительно-монтажные работы с
-									возможностью расчета смет на основе BIM модели. Включает в себя все способы расчета на
-									основе актуальных ГЭСН, ФЕР, ТЕР, ведомственных сборников, фирменных расценок и является
-									гарантией быстрых и верных расчетов.
+									предоставляем около 1 600 000 зарубежных и международных стандартов
+									более чем от 460 организаций-разработчиков
 								</p>
 							</div>
-							<button type="button" href="#" class="page-top__button btn btn-white-orange">Заказать презентацию</button>
+							<button type="button" data-popup="#popup-document" class="page-top__button btn-60 btn-white-orange mb-32">
+								<span class="bold-16">Заказать документ</span>
+							</button>
+							<div class="standarts-list">
+								<div class="standarts-list__item h5">ASTM</div>
+								<div class="standarts-list__item h5">IEC</div>
+								<div class="standarts-list__item h5">ISO</div>
+								<div class="standarts-list__item h5">ASME</div>
+								<div class="standarts-list__item h5">API</div>
+								<div class="standarts-list__item h5">DIN</div>
+								<div class="standarts-list__item h5">SAE</div>
+								<div class="standarts-list__item h5">EN</div>
+							</div>
 							<div class="page-top__search page-top-search">
 								<form action="" class="page-top-search__form">
 									<input autocomplete="off" type="text" name="form[]" data-error="" placeholder="Найти документ" class="page-top-search__input">
@@ -220,362 +231,120 @@
 						</div>
 					</div>
 					<div class="page-top__img page-top__img_right page-top__img_orange">
-						<img data-src="img/page-top/estimated-adept.png" data-srcset="img/page-top/estimated-adept@2x.png 2x" aria-hidden="true" alt="Адепт смета.">
+						<picture><source data-srcset="img/page-top/zms.webp, img/page-top/zms@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/page-top/zms.jpg" data-srcset="img/page-top/zms@2x.jpg 2x" aria-hidden="true" alt="ЗМС."></picture>
 					</div>
 				</div>
 			</div>
 			<!-- page-top end -->
 
-			<section class="page-section page-section_pt page-section_adept section">
+			<!-- page-section -->
+			<section class="page-section mb-120">
 				<div class="page-section__container">
-					<div class="line-left"></div>
 					<div class="page-section__body">
-						<div class="page-section__header section-header">
-							<h2 class="section-header__title h2">Программа «Адепт: Смета»</h2>
+						<div class="page-section__header section-header mb-40">
+							<h2 class="section-header__title h2">Наши услуги</h2>
 						</div>
-						<div class="page-section__text">
-							Является полностью российской разработкой, официально
-							зарегистрирована в Реестре отечественного программного обеспечения Минкомсвязи России
-							и имеет соответствующий сертификат.
-						</div>
-						<div class="page-section__subtext h4">Описание системы</div>
-						<div class="page-section__grid page-section__grid_2">
-							<div class="page-section__col">
-								<div class="page-section__item item-possibilities" style="background-image: url(img/icons/check.svg);">
-									<div class="item-possibilities__text">
-										Простой и интуитивно-понятный интерфейс.
-									</div>
+						<div class="page-section__grid page-section__grid_2 gap-48">
+							<div class="page-section__item item-card-zms">
+								<div class="item-card-zms__head">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-service"></use>
+									</svg>
+									<div class="item-card-zms__title h4">Поиск</div>
 								</div>
-								<div class="page-section__item item-possibilities" style="background-image: url(img/icons/check.svg);">
-									<div class="item-possibilities__text">
-										Составление смет по всем актуальным базам нормативов, включенных в
-										федеральный реестр сметных нормативов ФЕРы, ТЕРы). Большой выбор
-										отраслевых и ведомственных сборников (Минэнерго, РЖД, реставрационные
-										и прочие), базы НЦС/ НЦКР.
-									</div>
-								</div>
-								<div class="page-section__item item-possibilities" style="background-image: url(img/icons/check.svg);">
-									<div class="item-possibilities__text">
-										Полная база индексов Минстроя, Минэкономразвития, дополнительно
-										подгружаются региональные индексы по статьям затрат, ведомственные
-										индексы, сборники текущих цен.
-									</div>
-								</div>
-								<div class="page-section__item item-possibilities" style="background-image: url(img/icons/check.svg);">
-									<div class="item-possibilities__text">
-										Возможность составления смет и калькуляций, всеми возможными
-										методами.
-									</div>
+								<div class="item-card-zms__text regular-18">
+									Стандарты могут предоставляться
+									в электронном и печатном виде, в формате
+									коллекций, в виде индивидуальной базы
+									зарубежных и международных стандартов
+									на платформе «Техэксперт».
 								</div>
 							</div>
-							<div class="page-section__col">
-								<div class="page-section__item item-possibilities" style="background-image: url(img/icons/check.svg);">
-									<div class="item-possibilities__text">
-										Создание фирменных сборников баз данных для собственных расчетов.
-									</div>
+							<div class="page-section__item item-card-zms">
+								<div class="item-card-zms__head">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-service"></use>
+									</svg>
+									<div class="item-card-zms__title h4">Актуализация</div>
 								</div>
-								<div class="page-section__item item-possibilities" style="background-image: url(img/icons/check.svg);">
-									<div class="item-possibilities__text">
-										Широкий спектр возможностей работы с материалами и механизмами в
-										смете
-									</div>
-								</div>
-								<div class="page-section__item item-possibilities" style="background-image: url(img/icons/check.svg);">
-									<div class="item-possibilities__text">
-										Предоставляет возможность легко и быстро подготовить сопроводительную
-										документацию: акты КС-2 и КС-3, форма М29, журнал КС-6.
-									</div>
-								</div>
-								<div class="page-section__item item-possibilities" style="background-image: url(img/icons/check.svg);">
-									<div class="item-possibilities__text">
-										Дополнительные возможности автоматизированного расчета объемов работ
-										и перебазировки.
-									</div>
-								</div>
-								<div class="page-section__item item-possibilities" style="background-image: url(img/icons/check.svg);">
-									<div class="item-possibilities__text">
-										Возможность выгрузки сметы из BIM модели.
-									</div>
+								<div class="item-card-zms__text regular-18">
+									Мониторинг изменения зарубежных
+									и международных стандартов с возможностью
+									отслеживать статус используемых документов.
 								</div>
 							</div>
-						</div>
-						<div class="page-section__grid page-section__grid_4">
-							<div class="page-section__item item-have">
-								<svg>
-									<use xlink:href="img/icons/icons.svg#svg-service"></use>
-								</svg>
-								<div class="item-have__title h5">
-									Свидетельство
-									о&nbsp;государственной
-									регистрации
+							<div class="page-section__item item-card-zms">
+								<div class="item-card-zms__head">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-service"></use>
+									</svg>
+									<div class="item-card-zms__title h4">Перевод</div>
+								</div>
+								<div class="item-card-zms__text regular-18">
+									Перевод текстов зарубежных и международных
+									стандартов на русский язык, а также перевод
+									государственных стандартов России,
+									межгосударственных стандартов СНГ и других
+									нормативно-технических документов
+									на иностранные языки. Все переводы
+									осуществляются с привлечением специалистов
+									из отрасли.
 								</div>
 							</div>
-							<div class="page-section__item item-have">
-								<svg>
-									<use xlink:href="img/icons/icons.svg#svg-service"></use>
-								</svg>
-								<div class="item-have__title h5">
-									Сертификат
-									ЦЕНТРИНВЕСТ
-									проект
+							<div class="page-section__item item-card-zms">
+								<div class="item-card-zms__head">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-service"></use>
+									</svg>
+									<div class="item-card-zms__title h4">Единый фонд</div>
 								</div>
-							</div>
-							<div class="page-section__item item-have">
-								<svg>
-									<use xlink:href="img/icons/icons.svg#svg-service"></use>
-								</svg>
-								<div class="item-have__title h5">
-									Прейскурант
-									Адепт&nbsp;Проект
-								</div>
-							</div>
-							<div class="page-section__item item-have">
-								<svg>
-									<use xlink:href="img/icons/icons.svg#svg-service"></use>
-								</svg>
-								<div class="item-have__title h5">
-									Прейскурант
-									Адепт&nbsp;Проект
-									для&nbsp;вузов
-								</div>
-							</div>
-						</div>
-						<div class="page-section__button">
-							<a href="#" class="btn btn_80 btn-blue-fill">
-								<svg>
-									<use xlink:href="img/icons/icons.svg#svg-demo"></use>
-								</svg>
-								<span>Скачать демо-версию</span>
-							</a>
-						</div>
-
-					</div>
-				</div>
-			</section>
-
-			<!-- section carousel -->
-			<section class="carousel section">
-				<div class="carousel__container">
-					<div class="line-right"></div>
-					<div class="carousel__header section-header ">
-						<h2 class="section-header__title h2 ">Наши клиенты</h2>
-						<span></span>
-						<a href="#" class="section-header__link link-more">
-							<span>Подробнее</span>
-							<svg>
-								<use xlink:href="img/icons/icons.svg#svg-arrow-right"></use>
-							</svg>
-						</a>
-					</div>
-					<div class="carousel__content">
-						<div class="carousel__body">
-							<div class="carousel__slider carousel__slider--5">
-								<div class="carousel__arrows">
-									<button type="button" class="carousel__arrow carousel__arrow-left swiper-arrow-prev">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-slider-left"></use>
-										</svg>
-									</button>
-									<button type="button" class="carousel__arrow carousel__arrow-right swiper-arrow-next">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-slider-right"></use>
-										</svg>
-									</button>
-								</div>
-								<div class="carousel__slider-list swiper">
-									<div class="carousel__wrapper swiper-wrapper">
-										<div class="carousel__slide swiper-slide">
-											<div class="item-clients">
-												<img data-src="img/clients/1.png" data-srcset="img/clients/1@2x.png 2x" alt="Логотип Газпром.">
-											</div>
-											<div class="item-clients">
-												<img data-src="img/clients/11.png" data-srcset="img/clients/11@2x.png 2x" alt="Логотип БашкирЭнерго.">
-											</div>
-										</div>
-										<div class="carousel__slide swiper-slide">
-											<div class="item-clients">
-												<img data-src="img/clients/1.png" data-srcset="img/clients/1@2x.png 2x" alt="Логотип Газпром.">
-											</div>
-											<div class="item-clients">
-												<img data-src="img/clients/12.png" data-srcset="img/clients/12@2x.png 2x" alt="Логотип БелкамНефть.">
-											</div>
-										</div>
-										<div class="carousel__slide swiper-slide">
-											<div class="item-clients">
-												<img data-src="img/clients/1.png" data-srcset="img/clients/1@2x.png 2x" alt="Логотип Газпром.">
-											</div>
-											<div class="item-clients">
-												<img data-src="img/clients/13.png" data-srcset="img/clients/13@2x.png 2x" alt="Логотип ГипроВостокНефть.">
-											</div>
-										</div>
-										<div class="carousel__slide swiper-slide">
-											<div class="item-clients">
-												<img data-src="img/clients/16.png" data-srcset="img/clients/16@2x.png 2x" alt="Логотип ГСПИ РосАтом.">
-											</div>
-											<div class="item-clients">
-												<img data-src="img/clients/14.png" data-srcset="img/clients/14@2x.png 2x" alt="Логотип МетаФакс.">
-											</div>
-										</div>
-										<div class="carousel__slide swiper-slide">
-											<div class="item-clients">
-												<img data-src="img/clients/16.png" data-srcset="img/clients/16@2x.png 2x" alt="Логотип ГСПИ РосАтом.">
-											</div>
-											<div class="item-clients">
-												<img data-src="img/clients/15.png" data-srcset="img/clients/15@2x.png 2x" alt="Логотип БСК.">
-											</div>
-										</div>
-										<div class="carousel__slide swiper-slide">
-											<div class="item-clients">
-												<img data-src="img/clients/1.png" data-srcset="img/clients/1@2x.png 2x" alt="Логотип Газпром.">
-											</div>
-											<div class="item-clients">
-												<img data-src="img/clients/13.png" data-srcset="img/clients/13@2x.png 2x" alt="Логотип ГипроВостокНефть.">
-											</div>
-										</div>
-										<div class="carousel__slide swiper-slide">
-											<div class="item-clients">
-												<img data-src="img/clients/16.png" data-srcset="img/clients/16@2x.png 2x" alt="Логотип ГСПИ РосАтом.">
-											</div>
-											<div class="item-clients">
-												<img data-src="img/clients/14.png" data-srcset="img/clients/14@2x.png 2x" alt="Логотип МетаФакс.">
-											</div>
-										</div>
-										<div class="carousel__slide swiper-slide">
-											<div class="item-clients">
-												<img data-src="img/clients/16.png" data-srcset="img/clients/16@2x.png 2x" alt="Логотип ГСПИ РосАтом.">
-											</div>
-											<div class="item-clients">
-												<img data-src="img/clients/15.png" data-srcset="img/clients/15@2x.png 2x" alt="Логотип БСК.">
-											</div>
-										</div>
-									</div>
+								<div class="item-card-zms__text regular-18">
+									Создание индивидуального фонда
+									на платформе «Техэксперт» из приобретенных
+									ранее предприятием международных
+									и зарубежных стандартов, оригиналов в виде
+									скан-копий, переводов (при необходимости),
+									картотеки зарубежных и международных
+									стандартов.
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			<!-- section carousel end -->
-
-			<!-- section carousel -->
-			<section data-tabs class="carousel section">
-				<div class="carousel__container">
-					<div class="carousel__header section-header ">
-						<h2 class="section-header__title h2 ">Отзывы и рекомендации</h2>
-						<span></span>
-						<a href="#" class="section-header__link link-more">
-							<span>Подробнее</span>
-							<svg>
-								<use xlink:href="img/icons/icons.svg#svg-arrow-right"></use>
-							</svg>
-						</a>
-					</div>
-					<nav data-tabs-titles class="carousel__tabs tabs tabs_orange">
-						<button type="button" data-text="От компаний" class="tabs__title _tab-active">От компаний</button>
-						<button type="button" data-text="Оставить отзыв" class="tabs__title">Оставить отзыв</button>
-					</nav>
-					<div data-tabs-body class="carousel__content">
-						<div class="carousel__body">
-							<div class="carousel__slider carousel__slider--4">
-								<div class="carousel__arrows">
-									<button type="button" class="carousel__arrow carousel__arrow-left swiper-arrow-prev">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-slider-left"></use>
-										</svg>
-									</button>
-									<button type="button" class="carousel__arrow carousel__arrow-right swiper-arrow-next">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-slider-right"></use>
-										</svg>
-									</button>
-								</div>
-								<div class="carousel__slider-list swiper">
-									<div class="carousel__wrapper swiper-wrapper">
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/1.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/1.jpg" data-srcset="img/reviews/previews/1@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
-										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/2.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/2.jpg" data-srcset="img/reviews/previews/2@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
-										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/3.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/3.jpg" data-srcset="img/reviews/previews/3@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
-										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/4.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/4.jpg" data-srcset="img/reviews/previews/4@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
-										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/1.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/1.jpg" data-srcset="img/reviews/previews/1@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
-										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/2.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/2.jpg" data-srcset="img/reviews/previews/2@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
-										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/3.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/3.jpg" data-srcset="img/reviews/previews/3@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
-										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/4.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/4.jpg" data-srcset="img/reviews/previews/4@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="carousel__body">
-							Содержимое второго таба
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- section carousel end -->
+			<!-- page-section end -->
 
 			<!-- block-doc  -->
-			<div class="block-doc block-doc_bottom block-doc_right">
+			<div class="block-doc block-doc_right block-doc_right_2 mb-120">
 				<div class="block-doc__wrapper">
 					<div class="block-doc__container">
 						<div class="block-doc__body">
 							<div class="block-doc__img">
-								<img data-src="img/doc/5.png" data-srcset="img/doc/5@2x.png 2x" aria-hidden="true" alt="">
+								<picture><source data-srcset="img/doc/10.webp, img/doc/10@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/doc/10.png" data-srcset="img/doc/10@2x.png 2x" aria-hidden="true" alt=""></picture>
 							</div>
 							<div class="block-doc__info">
 								<div class="block-doc__left">
-									<div class="block-doc__name h3">Коковихин Иван</div>
-									<div class="block-doc__function">
-										Руководитель отдела продаж,
-										направление строительно-монтажные работы
+									<div class="block-doc__name h3">Мельникова Светлана</div>
+									<div class="block-doc__function body-16">
+										Эксперт по зарубежным и <br> международным стандартам
 									</div>
 								</div>
 								<div class="block-doc__right">
-									<div class="block-doc__subtext">
-										Узнать подробнее
-										о программе «Адепт: Смета»
+									<div class="block-doc__subtext caption-24">
+										Узнай подробнее об услугах:
 									</div>
 									<div class="block-doc__contacts">
-										<a href="mailto:ikokovikhin@iprosoft.ru" class="block-doc__contact">
+										<a href="mailto:mzs@iprosoft.ru" class="block-doc__contact bold-16">
 											<svg>
 												<use xlink:href="img/icons/icons.svg#svg-email-2"></use>
 											</svg>
-											ikokovikhin@iprosoft.ru
+											mzs@iprosoft.ru
 										</a>
-										<a href="tel:+79638889696" class="block-doc__contact">
+										<a href="tel:+79127075754" class="block-doc__contact bold-16">
 											<svg>
 												<use xlink:href="img/icons/icons.svg#svg-phone-3"></use>
 											</svg>
-											+7(963)888-96-96
+											8 (912)707-57-54
 										</a>
 									</div>
 								</div>
@@ -586,195 +355,89 @@
 			</div>
 			<!-- block-doc end  -->
 
-			<section class="page-section page-section_estimated-services section">
+			<!-- page-section -->
+			<section class="page-section mb-250">
 				<div class="page-section__container">
-					<div class="page-section__header section-header">
-						<h2 class="section-header__title h2 ">Услуги и сервисы</h2>
-					</div>
 					<div class="page-section__body">
-						<div class="page-section__grid page-section__grid_3">
-							<div class="page-section__item item-estimated-services">
-								<div class="item-estimated-services__head">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-service"></use>
-									</svg>
-									<div class="item-estimated-services__title h5">
-										Индивидуальное
-										обучение программе
+						<div class="page-section__header section-header mb-60">
+							<h2 class="section-header__title h2">Почему компании выбирают нас:</h2>
+						</div>
+						<div class="page-section__grid page-section__grid_3 cg-48 rg-80">
+							<div class="page-section__item item-zms-advantages">
+								<div class="item-zms-advantages__number">1</div>
+								<div class="item-zms-advantages__content">
+									<div class="item-zms-advantages__title caption-bold-24">УДОБНО</div>
+									<div class="item-zms-advantages__text regular-18">
+										Форма заказа стандартов
+										на основании одного договора
 									</div>
-								</div>
-								<div class="item-estimated-services__text item-estimated-services__text_small">
-									Мы продемонстрируем все возможности программ и расскажем об ее особенностях. Формат- дистанционно.
-									По окончанию обучения выдается именной сертификат уверенного пользователя программы.
 								</div>
 							</div>
-							<div class="page-section__item item-estimated-services">
-								<div class="item-estimated-services__head">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-service"></use>
-									</svg>
-									<div class="item-estimated-services__title h5">
-										Горячая линия <br> 8-800-1000-453
+							<div class="page-section__item item-zms-advantages">
+								<div class="item-zms-advantages__number">2</div>
+								<div class="item-zms-advantages__content">
+									<div class="item-zms-advantages__title caption-bold-24">ЭКОНОМНО</div>
+									<div class="item-zms-advantages__text regular-18">
+										Выгодные цены, благодаря мониторингу цен от разных поставщиков
 									</div>
-								</div>
-								<div class="item-estimated-services__text item-estimated-services__text_small">
-									Выделенный номер для действующих и потенциальных клиентов Сметного центра, обеспечивает
-									оперативность коммуникаций. Звонок по России бесплатный.
 								</div>
 							</div>
-							<div class="page-section__item item-estimated-services">
-								<div class="item-estimated-services__head">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-service"></use>
-									</svg>
-									<div class="item-estimated-services__title h5">
-										Заказ нормативных документов
+							<div class="page-section__item item-zms-advantages">
+								<div class="item-zms-advantages__number">3</div>
+								<div class="item-zms-advantages__content">
+									<div class="item-zms-advantages__title caption-bold-24">БЕЗОПАСНО</div>
+									<div class="item-zms-advantages__text regular-18">
+										Официальные источники предоставления стандартов
+										от разработчиков
 									</div>
-								</div>
-								<div class="item-estimated-services__text item-estimated-services__text_small">
-									Возможность заказать и получить бесплатно любой искомый нормативно-технический документ, с
-									описанием его статуса (действующий, отмененный и прочее).
 								</div>
 							</div>
-							<div class="page-section__item item-estimated-services">
-								<div class="item-estimated-services__head">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-service"></use>
-									</svg>
-									<div class="item-estimated-services__title h5">
-										Задай вопрос разработчику
-										справочников
+							<div class="page-section__item item-zms-advantages">
+								<div class="item-zms-advantages__number">4</div>
+								<div class="item-zms-advantages__content">
+									<div class="item-zms-advantages__title caption-bold-24">БЫСТРО</div>
+									<div class="item-zms-advantages__text regular-18">
+										Короткие сроки предоставления стандарта
 									</div>
-								</div>
-								<div class="item-estimated-services__text item-estimated-services__text_small">
-									Самые актуальные, горячие новости вашей профессиональной отрасли. Наши специалисты еженедельно
-									делятся полезной информацией, благодаря которой вы всегда будете в курсе касающихся вас изменений в
-									области ценообразования в проектировании и строительстве.
 								</div>
 							</div>
-							<div class="page-section__item item-estimated-services">
-								<div class="item-estimated-services__head">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-service"></use>
-									</svg>
-									<div class="item-estimated-services__title h5">
-										Курсы повышения квалификация в сметном ценообразовании
+							<div class="page-section__item item-zms-advantages">
+								<div class="item-zms-advantages__number">5</div>
+								<div class="item-zms-advantages__content">
+									<div class="item-zms-advantages__title caption-bold-24">ЭФФЕКТИВНО</div>
+									<div class="item-zms-advantages__text regular-18">
+										Интеграция базы переводов международных стандартов в единый фонд внешней и внутренней
+										документации предприятия
 									</div>
-								</div>
-								<div class="item-estimated-services__text item-estimated-services__text_small">
-									На базе нашего учебного центра, вы можете пройти курсы по различным направлениям строительной
-									отрасли (ценообразование в строительстве, проектно-изыскательские работы и т.д.). В течение обучения
-									помимо теоритических знаний, также отрабатываются практические навыки на ПО «Адепт».
 								</div>
 							</div>
-							<div class="page-section__item item-estimated-services">
-								<div class="item-estimated-services__head">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-service"></use>
-									</svg>
-									<div class="item-estimated-services__title h5">
-										Обновление версий программ
+							<div class="page-section__item item-zms-advantages">
+								<div class="item-zms-advantages__number">6</div>
+								<div class="item-zms-advantages__content">
+									<div class="item-zms-advantages__title caption-bold-24">КОМФОРТНО</div>
+									<div class="item-zms-advantages__text regular-18">
+										Единый поставщик стандартов со всего мира
 									</div>
-								</div>
-								<div class="item-estimated-services__text item-estimated-services__text_small">
-									С каждой новой версией функционал программ совершенствуется, а нормативная база пополняется новыми
-									документами. Своевременное обновление версии программы позволяет быть в курсе и оптимизировать
-									затраты организации.
-								</div>
-							</div>
-							<div class="page-section__item item-estimated-services">
-								<div class="item-estimated-services__head">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-service"></use>
-									</svg>
-									<div class="item-estimated-services__title h5">
-										Обновление версий программ
-									</div>
-								</div>
-								<div class="item-estimated-services__socials">
-									<a href="#" class="item-estimated-services__social ds-title">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-youtube2"></use>
-										</svg>
-										<span>YouTube–канал</span>
-									</a>
-								</div>
-								<div class="item-estimated-services__text item-estimated-services__text_small">
-									Видеоролики по расчетам смет на проектно-изыскательские работы, обзоры уникальных справочников и
-									методов расчета, обзоры новых версий.
-								</div>
-								<div class="item-estimated-services__socials">
-									<a href="#" class="item-estimated-services__social ds-title">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-tg2"></use>
-										</svg>
-										<span>Группа «Вконтакте»</span>
-									</a>
-									<a href="#" class="item-estimated-services__social ds-title">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-vk2"></use>
-										</svg>
-										<span>Телеграмм-канал</span>
-									</a>
-								</div>
-								<div class="item-estimated-services__text item-estimated-services__text_small">
-									Самые актуальные новости в области строительно-
-									монтажных работ, BIM моделирования
-								</div>
-							</div>
-							<div class="page-section__item item-estimated-services">
-								<div class="item-estimated-services__head">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-service"></use>
-									</svg>
-									<div class="item-estimated-services__title h5">
-										Проверка смет / экспертиза
-									</div>
-								</div>
-								<div class="item-estimated-services__text item-estimated-services__text_small">
-									Мы предоставляем услуги по негосударственной экспертизе сметной документации, помогаем в составлении
-									смет. Мы успешно консультируем наших клиентов уже более 19 лет. Большинство вопросов закрываются в
-									рамках одного звонка.
-								</div>
-							</div>
-							<div class="page-section__item item-estimated-services">
-								<div class="item-estimated-services__head">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-service"></use>
-									</svg>
-									<div class="item-estimated-services__title h5">
-										Техническая поддержка
-									</div>
-								</div>
-								<div class="item-estimated-services__text item-estimated-services__text_small">
-									При необходимости, оперативно восстановим работоспособность приобретенной программы, а также, по
-									запросу, организуем ее переустановку, в том числе на другой компьютер, без потери данных.
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
+			<!-- page-section end -->
 
-			<section class="page-form section">
+			<!-- page-form -->
+			<section class="page-form mb-120">
 				<div class="page-form__container">
-					<div class="line-left line-left_form"></div>
-					<div class="line-right line-right_form"></div>
 					<div class="page-form__body">
 						<h2 class="page-form__title h3">Выбери услугу</h2>
 						<form action="" class="page-form__form">
-							<select data-required name="form[]" data-class-modif="page-form" class="page-form__select">
-								<option value="" selected>Выбрать из 10 услуг</option>
+							<select data-required data-scroll name="form[]" data-class-modif="page-form" class="page-form__select">
+								<option value="" selected>Выбрать из 4 услуг</option>
 								<option value="1">Услуга 1</option>
 								<option value="2">Услуга 2</option>
 								<option value="3">Услуга 3</option>
 								<option value="3">Услуга 4</option>
-								<option value="3">Услуга 5</option>
-								<option value="3">Услуга 6</option>
-								<option value="3">Услуга 7</option>
-								<option value="3">Услуга 8</option>
-								<option value="3">Услуга 9</option>
-								<option value="3">Услуга 10</option>
 							</select>
 							<div class="page-form__input-wrap">
 								<input data-required autocomplete="off" type="text" name="form[]" data-error="Введите название компании" placeholder="Название компании*" class="page-form__input">
@@ -791,131 +454,31 @@
 							<div class="page-form__input-wrap">
 								<input data-required="email" autocomplete="off" type="email" name="form[]" data-error="Введите адресс електронной почты" placeholder="Почта*" class="page-form__input">
 							</div>
-							<button type="submit" class="page-form__button btn btn-white-blue">Отправить заявку</button>
+							<button type="submit" class="page-form__button btn btn-white-blue">
+								<span class="bold-16">Отправить заявку</span>
+							</button>
 						</form>
 					</div>
 				</div>
 				<div class="page-form__img">
-					<img data-src="img/page-form/estimated-programs.jpg" data-srcset="img/page-form/estimated-programs@2x.jpg 2x" aria-hidden="true" alt="">
+					<picture><source data-srcset="img/page-form/5.webp, img/page-form/5@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/page-form/5.jpg" data-srcset="img/page-form/5@2x.jpg 2x" aria-hidden="true" alt=""></picture>
 				</div>
 			</section>
-
-			<!-- section carousel -->
-			<section class="carousel section">
-				<div class="carousel__container">
-					<div class="carousel__header section-header ">
-						<h2 class="section-header__title h2 ">Фотогалерея</h2>
-					</div>
-					<div class="carousel__content">
-						<div class="carousel__body">
-							<div class="carousel__slider carousel__slider--3">
-								<div class="carousel__arrows">
-									<button type="button" class="carousel__arrow carousel__arrow-left swiper-arrow-prev">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-slider-left"></use>
-										</svg>
-									</button>
-									<button type="button" class="carousel__arrow carousel__arrow-right swiper-arrow-next">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-slider-right"></use>
-										</svg>
-									</button>
-								</div>
-								<div class="carousel__slider-list swiper">
-									<div class="carousel__wrapper swiper-wrapper">
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/gallery/4.jpg" class="carousel__slide-image">
-												<img alt="Школа сметчиков." data-src="img/gallery/previews/4.jpg" data-srcset="img/gallery/previews/4@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
-											<div class="carousel__slide-content">
-												<div class="carousel__slide-title">Школа сметчиков</div>
-												<div class="carousel__slide-text">
-													Обучающий курс «Ценообразование и сметное нормирование в строительстве»
-												</div>
-											</div>
-										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/gallery/4.jpg" class="carousel__slide-image">
-												<img alt="Отдел сбыта, направление проектно-изыскательских работ." data-src="img/gallery/previews/4.jpg" data-srcset="img/gallery/previews/4@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
-											<div class="carousel__slide-content">
-												<div class="carousel__slide-title">Отдел сбыта, направление проектно-изыскательских работ</div>
-												<div class="carousel__slide-text">
-													Отдел занимающийся демонстрациями программы Адепт: Проект и проведением
-													образовательных курсов на ПИР
-												</div>
-											</div>
-										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/gallery/4.jpg" class="carousel__slide-image">
-												<img alt="Рабочий визит." data-src="img/gallery/previews/4.jpg" data-srcset="img/gallery/previews/4@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
-											<div class="carousel__slide-content">
-												<div class="carousel__slide-title">Рабочий визит</div>
-												<div class="carousel__slide-text">
-													Рабочая встреча руководителей на территории разработчика сметных программ ГК
-													«Адепт» г. Нижний Новгород
-												</div>
-											</div>
-										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/gallery/4.jpg" class="carousel__slide-image">
-												<img alt="Школа сметчиков." data-src="img/gallery/previews/4.jpg" data-srcset="img/gallery/previews/4@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
-											<div class="carousel__slide-content">
-												<div class="carousel__slide-title">Школа сметчиков</div>
-												<div class="carousel__slide-text">
-													Обучающий курс «Ценообразование и сметное нормирование в строительстве»
-												</div>
-											</div>
-										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/gallery/4.jpg" class="carousel__slide-image">
-												<img alt="Отдел сбыта, направление проектно-изыскательских работ." data-src="img/gallery/previews/4.jpg" data-srcset="img/gallery/previews/4@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
-											<div class="carousel__slide-content">
-												<div class="carousel__slide-title">Отдел сбыта, направление проектно-изыскательских работ</div>
-												<div class="carousel__slide-text">
-													Отдел занимающийся демонстрациями программы Адепт: Проект и проведением
-													образовательных курсов на ПИР
-												</div>
-											</div>
-										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/gallery/4.jpg" class="carousel__slide-image">
-												<img alt="Рабочий визит." data-src="img/gallery/previews/4.jpg" data-srcset="img/gallery/previews/4@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
-											<div class="carousel__slide-content">
-												<div class="carousel__slide-title">Рабочий визит</div>
-												<div class="carousel__slide-text">
-													Рабочая встреча руководителей на территории разработчика сметных программ ГК
-													«Адепт» г. Нижний Новгород
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="carousel__button-wrap">
-								<a href="#" class="btn btn_80 btn-blue-fill">Узнать подробнее о Сметном центре</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- section carousel end -->
+			<!-- page-form end -->
 
 			<!-- block-doc  -->
-			<div class="block-doc block-doc_bottom block-doc_right">
+			<div class="block-doc block-doc_right mb-120">
 				<div class="block-doc__wrapper">
 					<div class="block-doc__container">
 						<div class="block-doc__body">
 							<div class="block-doc__img">
-								<img data-src="img/doc/2.png" data-srcset="img/doc/2@2x.png 2x" aria-hidden="true" alt="">
+								<picture><source data-srcset="img/doc/2.webp, img/doc/2@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/doc/2.png" data-srcset="img/doc/2@2x.png 2x" aria-hidden="true" alt=""></picture>
 							</div>
 							<div class="block-doc__content">
-								<div class="block-doc__text">Подписаться <br> на новостную рассылку</div>
-								<a href="#" class="block-doc__link btn btn-white-blue">Подписаться</a>
+								<div class="block-doc__text h3">Подписаться <br> на новостную рассылку</div>
+								<button type="button" data-popup="#popup-subscribe" class="block-doc__link btn-60 btn-white-blue">
+									<span class="bold-16">Подписаться</span>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -987,7 +550,7 @@
 						<div class="popup__left item-employees">
 							<div class="item-employees__body">
 								<div class="item-employees__img">
-									<img data-src="img/employees/11.jpg" data-srcset="img/employees/11@2x.jpg 2x" alt="Сотрудник.">
+									<picture><source data-srcset="img/employees/11.webp, img/employees/11@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/employees/11.jpg" data-srcset="img/employees/11@2x.jpg 2x" alt="Сотрудник."></picture>
 								</div>
 								<h3 class="item-employees__name bold-16 mb-16">Блинков <br> Игорь Евгеньевич</h3>
 								<div class="item-employees__function text-body">Директор ООО «Информпроект» </div>
@@ -1068,10 +631,10 @@
 							</button>
 						</div>
 						<div class="form__checkbox">
-							<input data-required data-validate id="vac_144" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
-							<label for="vac_144" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и обработкой моих
+							<input data-required id="popup-call-checkbox" checked data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="popup-call-checkbox" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и обработкой моих
 									персональных
-									данных при нажатии “ОТПРАВИТЬ”</span></label>
+									данных при нажатии “Заказать звонок”</span></label>
 						</div>
 					</form>
 				</div>
@@ -1079,6 +642,321 @@
 		</div>
 	</div>
 	<!-- popup call end -->
+
+	<!-- popup call -->
+	<div id="popup-call-2" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content ">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__body">
+					<div class="popup__head">
+						<div class="popup__title h4">Заинтересовались? Свяжитесь с нами.</div>
+						<div class="popup__text text-body">Заполните форму и мы Вам перезвоним</div>
+					</div>
+					<form action="" data-dev class="popup__form form">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Название компании*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="ФИО*" class="form__input input">
+						<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Должность*" class="form__input input">
+						<div class="form__actions">
+							<button type="submit" class="form__button btn-60 btn-blue-fill">
+								<span class="bold-16">Заказать звонок</span>
+							</button>
+						</div>
+						<div class="form__checkbox">
+							<input data-required id="popup-call-checkbox-2" checked data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="popup-call-checkbox-2" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и обработкой моих
+									персональных
+									данных при нажатии “Заказать звонок”</span></label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup call end -->
+
+	<!-- popup call -->
+	<div id="popup-document" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content ">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__body">
+					<div class="popup__head">
+						<div class="popup__title h4">Заказать международный и зарубежный стандарт</div>
+						<div class="popup__text text-body">
+							Наш менеджер свяжется с Вами и поможет получить стандарт. Каждый стандарт приобретается платно с учетом лицензионной политики Разработчика.
+						</div>
+					</div>
+					<form action="" data-dev class="popup__form form">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Наименование документа*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="ФИО*" class="form__input input">
+						<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон*" class="form__input input">
+						<input data-required="email" autocomplete="off" type="email" name="form[]" data-error="" placeholder="E-mail*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Город, область*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Компания*" class="form__input input">
+						<input autocomplete="off" type="text" name="form[]" data-error="" placeholder="ИНН" class="form__input input">
+						<div class="form__actions">
+							<button type="submit" class="form__button btn-60 btn-blue-fill">
+								<span class="bold-16">Заказать документ</span>
+							</button>
+						</div>
+						<div class="form__checkbox">
+							<input data-required id="popup-document-checkbox" checked data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="popup-document-checkbox" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и обработкой
+									моих
+									персональных
+									данных при нажатии “Заказать документ”</span></label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup call end -->
+
+	<!-- popup free -->
+	<div id="popup-free" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content ">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__body">
+					<div class="popup__head">
+						<div class="popup__title h4">Получить бесплатно документ</div>
+						<div class="popup__text text-body">
+							Наш менеджер свяжется с Вами и предоставим Вам запрашиваемый документ
+						</div>
+					</div>
+					<form action="" data-dev class="popup__form form">
+						<input autocomplete="off" type="text" name="form[]" data-error="" placeholder="Наименование документа" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="ФИО*" class="form__input input">
+						<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Телефон*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Город, область*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Компания*" class="form__input input">
+						<input autocomplete="off" type="text" name="form[]" data-error="" placeholder="ИНН" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Должность*" class="form__input input">
+						<input data-required="email" autocomplete="off" type="email" name="form[]" data-error="" placeholder="E-mail*" class="form__input input">
+						<div class="form__text text-body mb-16">Являетесь ли вы пользователем систем «Техэксперт»?</div>
+						<div class="form__options options mb-24">
+							<div class="options__item">
+								<input hidden id="o_1" class="options__input" checked type="radio" value="1" name="option">
+								<label for="o_1" class="options__label"><span class="options__text text-body">Да</span></label>
+							</div>
+							<div class="options__item">
+								<input hidden id="o_2" class="options__input" type="radio" value="2" name="option">
+								<label for="o_2" class="options__label"><span class="options__text text-body">Нет</span></label>
+							</div>
+							<div class="options__item">
+								<input hidden id="o_3" class="options__input" type="radio" value="3" name="option">
+								<label for="o_3" class="options__label"><span class="options__text text-body">Не знаю</span></label>
+							</div>
+						</div>
+						<div class="form__text text-body mb-24">
+							Международные и зарубежные стандарты ( ASTM, ISO, ASME, API, DIN EN, BS EN, AENOR и др.) не предоставляются в рамках данной услуги. Каждый стандарт приобретается
+							платно с учетом лицензионной политики Разработчика.
+						</div>
+						<div class="form__actions">
+							<button type="submit" class="form__button btn-60 btn-blue-fill">
+								<span class="bold-16">Получить бесплатно</span>
+							</button>
+						</div>
+						<div class="form__checkbox">
+							<input data-required id="popup-free-checkbox" checked data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="popup-free-checkbox" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и обработкой
+									моих
+									персональных
+									данных при нажатии “Получить бесплатно”</span></label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup free end -->
+
+	<!-- popup presentation -->
+	<div id="popup-presentation" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content ">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__body">
+					<div class="popup__head">
+						<div class="popup__title h4">Заказать презентацию</div>
+						<div class="popup__text text-body">Наш менеджер свяжется с Вами и ответит на все Ваши вопросы</div>
+					</div>
+					<form action="" data-dev class="popup__form form">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="ФИО*" class="form__input input">
+						<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Город, область*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Название компании*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Должность*" class="form__input input">
+						<input data-required="email" autocomplete="off" type="email" name="form[]" data-error="" placeholder="E-mail*" class="form__input input">
+						<div class="form__text text-body mb-16">Являетесь ли вы пользователем систем «Техэксперт»?</div>
+						<div class="form__options options mb-24">
+							<div class="options__item">
+								<input hidden id="o_1" class="options__input" checked type="radio" value="1" name="option">
+								<label for="o_1" class="options__label"><span class="options__text text-body">Да</span></label>
+							</div>
+							<div class="options__item">
+								<input hidden id="o_2" class="options__input" type="radio" value="2" name="option">
+								<label for="o_2" class="options__label"><span class="options__text text-body">Нет</span></label>
+							</div>
+							<div class="options__item">
+								<input hidden id="o_3" class="options__input" type="radio" value="3" name="option">
+								<label for="o_3" class="options__label"><span class="options__text text-body">Не знаю</span></label>
+							</div>
+						</div>
+						<div class="form__actions">
+							<button type="submit" class="form__button btn-60 btn-blue-fill">
+								<span class="bold-16">ЗАКАЗАТЬ</span>
+							</button>
+						</div>
+						<div class="form__checkbox">
+							<input data-required checked id="popup-presentation-checkbox" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="popup-presentation-checkbox" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и
+									обработкой моих
+									персональных
+									данных при нажатии “Заказать”</span></label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup presentation end -->
+
+	<!-- popup presentation -->
+	<div id="popup-presentation-2" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content ">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__body">
+					<div class="popup__head">
+						<div class="popup__title h4">Заказать презентацию</div>
+						<div class="popup__text text-body">Наш менеджер свяжется с Вами и ответит на все Ваши вопросы</div>
+					</div>
+					<form action="" data-dev class="popup__form form">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="ФИО*" class="form__input input">
+						<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Город, область*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Название компании*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Должность*" class="form__input input">
+						<input data-required="email" autocomplete="off" type="email" name="form[]" data-error="" placeholder="E-mail*" class="form__input input">
+						<div class="form__actions">
+							<button type="submit" class="form__button btn-60 btn-blue-fill">
+								<span class="bold-16">Заказать презентацию</span>
+							</button>
+						</div>
+						<div class="form__checkbox">
+							<input data-required checked id="popup-presentation-checkbox-2" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="popup-presentation-checkbox-2" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и
+									обработкой моих
+									персональных
+									данных при нажатии “Заказать презентацию”</span></label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup presentation end -->
+
+	<!-- popup presentation -->
+	<div id="popup-adept" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content ">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__body">
+					<div class="popup__head">
+						<div class="popup__title h4">Узнать стоимость</div>
+						<div class="popup__text text-body">Наш менеджер свяжется с Вами и ответит на все Ваши вопросы</div>
+					</div>
+					<form action="" data-dev class="popup__form form">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="ФИО*" class="form__input input">
+						<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Город, область*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Название компании*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Должность*" class="form__input input">
+						<div class="form__actions">
+							<button type="submit" class="form__button btn-60 btn-blue-fill">
+								<span class="bold-16">Узнать стоимость</span>
+							</button>
+						</div>
+						<div class="form__checkbox">
+							<input data-required checked id="popup-presentation-checkbox-2" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="popup-presentation-checkbox-2" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и
+									обработкой моих
+									персональных
+									данных при нажатии “Узнать стоимость”</span></label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup presentation end -->
+
+	<!-- popup price -->
+	<div id="popup-price" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content ">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__body">
+					<div class="popup__head">
+						<div class="popup__title h4">Узнать стоимость</div>
+						<div class="popup__text text-body">Наш менеджер свяжется с Вами и ответит на все Ваши вопросы</div>
+					</div>
+					<form action="" data-dev class="popup__form form">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="ФИО*" class="form__input input">
+						<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Город, область*" class="form__input input">
+						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Название компании*" class="form__input input">
+						<div class="form__actions">
+							<button type="submit" class="form__button btn-60 btn-blue-fill">
+								<span class="bold-16">УЗНАТЬ</span>
+							</button>
+						</div>
+						<div class="form__checkbox">
+							<input data-required checked id="popup-price-checkbox" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="popup-price-checkbox" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и
+									обработкой моих
+									персональных
+									данных при нажатии “Узнать”</span></label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup price end -->
 
 	<!-- popup subscribe -->
 	<div id="popup-subscribe" aria-hidden="true" class="popup">
@@ -1103,8 +981,9 @@
 							</button>
 						</div>
 						<div class="form__checkbox">
-							<input data-required data-validate id="vac_144" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
-							<label for="vac_144" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и обработкой моих
+							<input data-required checked id="popup-subscribe-checkbox" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="popup-subscribe-checkbox" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и обработкой
+									моих
 									персональных
 									данных при нажатии “Подписаться”</span></label>
 						</div>
@@ -1144,8 +1023,8 @@
 							</button>
 						</div>
 						<div class="form__checkbox">
-							<input data-required checked data-validate id="vac_144" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
-							<label for="vac_144" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и обработкой моих
+							<input data-required checked id="popup-job-checkbox" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="popup-job-checkbox" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и обработкой моих
 									персональных
 									данных при нажатии “Присоединиться”</span></label>
 						</div>
@@ -1196,8 +1075,9 @@
 							</button>
 						</div>
 						<div class="form__checkbox">
-							<input data-required checked data-validate id="vac_144" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
-							<label for="vac_144" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и обработкой моих
+							<input data-required checked id="popup-solution-checkbox" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="popup-solution-checkbox" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и обработкой
+									моих
 									персональных
 									данных при нажатии “Подобрать решение”</span></label>
 						</div>
@@ -1273,8 +1153,8 @@
 							</button>
 						</div>
 						<div class="form__checkbox">
-							<input data-required data-validate checked id="vac_144" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
-							<label for="vac_144" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и обработкой моих
+							<input data-required checked id="popup-review-checkbox" data-error="" class="form__checkbox-input" type="checkbox" value="1" name="form[]">
+							<label for="popup-review-checkbox" class="form__checkbox-label"><span class="form__checkbox-text subtitle-2">Я согласен условиями предоставления услуг и обработкой моих
 									персональных
 									данных при нажатии “Оставить отзыв”</span></label>
 						</div>
@@ -1456,7 +1336,7 @@
 		</div>
 	</div>
 	<!-- popup quiz end -->
-	<script src="js/app.min.js?_v=20230406140717"></script>
+	<script src="js/app.min.js?_v=20230411011856"></script>
 </body>
 
 </html>
