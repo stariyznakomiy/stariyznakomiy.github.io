@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230412015400">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230419161119">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,18 +27,17 @@
 									<div class="icon-menu__line icon-menu__line--3"></div>
 								</div>
 							</div>
-
 							<a href="" class="header__logo"><img src="img/logo.svg" alt="Логотип информ проект."></a>
 						</div>
-						<div data-da=".menu__body, 767.98, 0" class="header__search">
-							<form action="" class="header__search-form">
-								<input autocomplete="off" type="text" name="form[]" placeholder="Найти" class="header__search-input">
-								<a href="#" class="header__search-link">
+						<div data-da=".menu__body, 767.98, 0" class="header__menu-search">
+							<form action="" class="header__menu-search-form">
+								<input autocomplete="off" type="text" name="form[]" placeholder="Найти" class="header__menu-search-input">
+								<button type="submit" class="header__menu-search-button">
 									<svg>
 										<use xlink:href="img/icons/icons.svg#svg-search"></use>
 									</svg>
 									<span class="visually-hidden">Поиск.</span>
-								</a>
+								</button>
 							</form>
 						</div>
 						<div class="header__right">
@@ -51,12 +50,17 @@
 									<li class="main-menu__item"><a href="#" class="main-menu__link">КОНТАКТЫ</a></li>
 								</ul>
 							</div>
-							<a href="#" class="header__search-link">
-								<svg>
-									<use xlink:href="img/icons/icons.svg#svg-search"></use>
-								</svg>
-								<span class="visually-hidden">Поиск.</span>
-							</a>
+							<div class="header__search">
+								<button type="button" class="header__search-icon">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-search"></use>
+									</svg>
+									<span class="visually-hidden">Поиск.</span>
+								</button>
+								<form action="" class="header__search-form">
+									<input autocomplete="off" type="text" name="form[]" data-error="Ошибка" placeholder="Поиск по сайту" class="header__search-input">
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -164,7 +168,7 @@
 												Более 25 000 000 актуальных правовых <br>
 												и&nbspнормативно-технических документов
 											</div>
-											<a href="#" class="block-doc__link btn-menu btn-orange-fill">Найти документ</a>
+											<a href="#" class="block-doc__link btn-menu btn-orange-blue">Найти документ</a>
 										</div>
 									</div>
 								</div>
@@ -199,7 +203,7 @@
 							<h1 class="page-top__title h2 mb-60">
 								Продукты и решения
 							</h1>
-							<div class="page-top__text body-16 mb-32">
+							<div class="page-top__text medium-18 mb-32">
 								<p>
 									Специализированные продукты и решения от ведущих российских разработчиков программного
 									обеспечения создаются на основе собственных технологий и ориентированы исключительно на
@@ -610,7 +614,6 @@
 		</div>
 	</div>
 
-
 	<!-- popup call -->
 	<div id="popup-call" aria-hidden="true" class="popup">
 		<div class="popup__wrapper">
@@ -1015,8 +1018,9 @@
 						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="ФИО*" class="form__input input">
 						<input data-required="email" autocomplete="off" type="email" name="form[]" data-error="" placeholder="Ваш email*" class="form__input input">
 						<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон*" class="form__input input">
+						<div class="form__text text-body mb-16">Файл резюме должен быть размером не более 2мб. Разрешены только файлы с расширением doc, docx, txt, pdf</div>
 						<div class="form__input-wrap">
-							<input data-required id="popup-file-vac" data-file-img accept=".pdf, .docx" type="file" class="form__input-file">
+							<input data-required id="popup-file-vac" data-file-img accept=".pdf, .docx, .dox, .txt" type="file" class="form__input-file">
 							<label for="popup-file-vac" class="form__file-label">Прикрепить резюме*</label>
 						</div>
 						<div id="popup-preview-vac" data-file-preview class="form__preview-files">
@@ -1146,7 +1150,7 @@
 							</fieldset>
 						</div>
 						<div class="form__input-wrap">
-							<input id="popup-file-vac" data-file-img accept=".pdf, .docx, .jpg, .png" type="file" class="form__input-file">
+							<input id="popup-file-vac" data-file-img accept=".pdf, .docx, .dox, .txt" type="file" class="form__input-file">
 							<label for="popup-file-vac" class="form__file-label">Прикрепить документ</label>
 						</div>
 						<div id="popup-preview-vac" data-file-preview class="form__preview-files">
@@ -1340,7 +1344,7 @@
 		</div>
 	</div>
 	<!-- popup quiz end -->
-	<script src="js/app.min.js?_v=20230412015400"></script>
+	<script src="js/app.min.js?_v=20230419161119"></script>
 </body>
 
 </html>

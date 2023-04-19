@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230412015400">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230419161119">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,18 +27,17 @@
 									<div class="icon-menu__line icon-menu__line--3"></div>
 								</div>
 							</div>
-
 							<a href="" class="header__logo"><img src="img/logo.svg" alt="Логотип информ проект."></a>
 						</div>
-						<div data-da=".menu__body, 767.98, 0" class="header__search">
-							<form action="" class="header__search-form">
-								<input autocomplete="off" type="text" name="form[]" placeholder="Найти" class="header__search-input">
-								<a href="#" class="header__search-link">
+						<div data-da=".menu__body, 767.98, 0" class="header__menu-search">
+							<form action="" class="header__menu-search-form">
+								<input autocomplete="off" type="text" name="form[]" placeholder="Найти" class="header__menu-search-input">
+								<button type="submit" class="header__menu-search-button">
 									<svg>
 										<use xlink:href="img/icons/icons.svg#svg-search"></use>
 									</svg>
 									<span class="visually-hidden">Поиск.</span>
-								</a>
+								</button>
 							</form>
 						</div>
 						<div class="header__right">
@@ -51,12 +50,17 @@
 									<li class="main-menu__item"><a href="#" class="main-menu__link">КОНТАКТЫ</a></li>
 								</ul>
 							</div>
-							<a href="#" class="header__search-link">
-								<svg>
-									<use xlink:href="img/icons/icons.svg#svg-search"></use>
-								</svg>
-								<span class="visually-hidden">Поиск.</span>
-							</a>
+							<div class="header__search">
+								<button type="button" class="header__search-icon">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-search"></use>
+									</svg>
+									<span class="visually-hidden">Поиск.</span>
+								</button>
+								<form action="" class="header__search-form">
+									<input autocomplete="off" type="text" name="form[]" data-error="Ошибка" placeholder="Поиск по сайту" class="header__search-input">
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -164,7 +168,7 @@
 												Более 25 000 000 актуальных правовых <br>
 												и&nbspнормативно-технических документов
 											</div>
-											<a href="#" class="block-doc__link btn-menu btn-orange-fill">Найти документ</a>
+											<a href="#" class="block-doc__link btn-menu btn-orange-blue">Найти документ</a>
 										</div>
 									</div>
 								</div>
@@ -217,7 +221,7 @@
 			</div>
 
 			<!-- page-section -->
-			<div class="page-section mb-120">
+			<div class="page-section mb-120" data-aos="fade-right">
 				<div class="page-section__container">
 					<div class="page-section__body maw-1054">
 						<div class="page-section__text page-section__text_center h2">
@@ -234,7 +238,7 @@
 					<div class="line-right"></div>
 					<div class="page-section__body">
 						<div class="banners">
-							<div class="banners__item banners__item_1">
+							<div data-aos="fade-up" class="banners__item banners__item_1">
 								<div class="banners__item-img">
 									<img data-src="img/banners/1.png" data-srcset="img/banners/1@2x.png 2x" aria-hidden="true" alt="">
 								</div>
@@ -250,7 +254,7 @@
 									</span>
 								</a>
 							</div>
-							<div class="banners__item banners__item_2">
+							<div data-aos="fade-up" data-aos-delay="100" class="banners__item banners__item_2">
 								<div class="banners__item-img">
 									<img data-src="img/banners/2.png" data-srcset="img/banners/2@2x.png 2x" aria-hidden="true" alt="">
 								</div>
@@ -264,7 +268,7 @@
 									</span>
 								</a>
 							</div>
-							<div class="banners__item banners__item_3">
+							<div data-aos="fade-up" data-aos-delay="200" class="banners__item banners__item_3">
 								<div class="banners__item-img">
 									<img data-src="img/banners/3.png" data-srcset="img/banners/3@2x.png 2x" aria-hidden="true" alt="">
 								</div>
@@ -287,7 +291,7 @@
 			<section class="page-section mb-120">
 				<div class="page-section__container">
 					<div class="page-section__body">
-						<div class="page-section__header section-header mb-60">
+						<div data-aos="fade-right" class="page-section__header section-header mb-60">
 							<h2 class="section-header__title h2">Информпроект в цифрах</h2>
 							<span></span>
 							<a href="#" class="section-header__link link-more">
@@ -297,11 +301,11 @@
 								</svg>
 							</a>
 						</div>
-						<div class="page-section__text mb-60 h4">
+						<div data-aos="fade-right" class="page-section__text mb-60 h4">
 							Более 20 лет группа компаний "Информпроект" <br>
 							является одним из лидеров Информационной сети “Техэксперт”
 						</div>
-						<div class="page-section__numbers numbers">
+						<div data-aos="fade-up" class="page-section__numbers numbers">
 							<div class="numbers__row numbers__row_top">
 								<div class="numbers__item">
 									<div class="numbers__item-text">
@@ -453,7 +457,7 @@
 				<div class="block-doc__wrapper">
 					<div class="block-doc__container">
 						<div class="line-left"></div>
-						<div class="block-doc__body">
+						<div data-aos="fade-left" class="block-doc__body">
 							<div class="block-doc__img">
 								<img data-src="img/doc/1.png" data-srcset="img/doc/1@2x.png 2x" aria-hidden="true" alt="">
 							</div>
@@ -473,7 +477,7 @@
 			<section class="page-section mb-120">
 				<div class="page-section__container">
 					<div class="page-section__body">
-						<div class="page-section__header section-header mb-60">
+						<div data-aos="fade-right" class="page-section__header section-header mb-60">
 							<h2 class="section-header__title h2">Наши продукты</h2>
 							<span></span>
 							<a href="#" class="section-header__link link-more">
@@ -484,7 +488,7 @@
 							</a>
 						</div>
 						<div class="page-section__grid page-section__grid_3 gap-48">
-							<div class="page-section__item item-products">
+							<div data-aos="fade-up" class="page-section__item item-products">
 								<div class="item-products__img">
 									<img data-src="img/products/1.jpg" data-srcset="img/products/1@2x.jpg 2x" aria-hidden="true" alt="Декоративное изображение">
 								</div>
@@ -503,7 +507,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="page-section__item item-products">
+							<div data-aos="fade-up" data-aos-delay="100" class="page-section__item item-products">
 								<div class="item-products__img">
 									<img data-src="img/products/2.jpg" data-srcset="img/products/2@2x.jpg 2x" aria-hidden="true" alt="Декоративное изображение">
 								</div>
@@ -522,7 +526,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="page-section__item item-products">
+							<div data-aos="fade-up" data-aos-delay="200" class="page-section__item item-products">
 								<div class="item-products__img">
 									<img data-src="img/products/3.jpg" data-srcset="img/products/3@2x.jpg 2x" aria-hidden="true" alt="Декоративное изображение">
 								</div>
@@ -541,7 +545,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="page-section__item item-products">
+							<div data-aos="fade-up" class="page-section__item item-products">
 								<div class="item-products__img">
 									<img data-src="img/products/4.jpg" data-srcset="img/products/4@2x.jpg 2x" aria-hidden="true" alt="Декоративное изображение">
 								</div>
@@ -561,7 +565,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="page-section__item item-products">
+							<div data-aos="fade-up" data-aos-delay="100" class="page-section__item item-products">
 								<div class="item-products__img">
 									<img data-src="img/products/5.jpg" data-srcset="img/products/5@2x.jpg 2x" aria-hidden="true" alt="Декоративное изображение">
 								</div>
@@ -581,7 +585,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="page-section__item item-products">
+							<div data-aos="fade-up" data-aos-delay="200" class="page-section__item item-products">
 								<div class="item-products__img">
 									<img data-src="img/products/6.jpg" data-srcset="img/products/6@2x.jpg 2x" aria-hidden="true" alt="Декоративное изображение">
 								</div>
@@ -610,7 +614,7 @@
 			<section class="page-section mb-120">
 				<div class="page-section__container">
 					<div class="page-section__body">
-						<div class="page-section__header section-header mb-80">
+						<div data-aos="fade-right" class="page-section__header section-header mb-80">
 							<h2 class="section-header__title h2">Наши клиенты</h2>
 							<span></span>
 							<a href="#" class="section-header__link link-more">
@@ -620,7 +624,7 @@
 								</svg>
 							</a>
 						</div>
-						<div class="page-section__grid page-section__grid_auto">
+						<div data-aos="fade-up" class="page-section__grid page-section__grid_auto">
 							<div class="page-section__item item-clients">
 								<img data-src="img/clients/1.png" data-srcset="img/clients/1@2x.png 2x" alt="Логотип Газпром.">
 							</div>
@@ -662,7 +666,7 @@
 				<div class="block-doc__wrapper">
 					<div class="block-doc__container">
 						<div class="line-right"></div>
-						<div class="block-doc__body">
+						<div data-aos="fade-right" class="block-doc__body">
 							<div class="block-doc__img">
 								<img data-src="img/doc/3.png" data-srcset="img/doc/3@2x.png 2x" aria-hidden="true" alt="">
 							</div>
@@ -681,7 +685,7 @@
 			<!-- section carousel -->
 			<section data-tabs class="carousel mb-120">
 				<div class="carousel__container">
-					<div class="carousel__header section-header mb-60">
+					<div data-aos="fade-right" class="carousel__header section-header mb-60">
 						<h2 class="section-header__title h2">Отзывы и рекомендации</h2>
 						<span></span>
 						<a href="#" class="section-header__link link-more">
@@ -691,14 +695,14 @@
 							</svg>
 						</a>
 					</div>
-					<nav data-tabs-titles class="carousel__tabs tabs tabs_orange mb-40">
+					<nav data-aos="fade-up" data-tabs-titles class="carousel__tabs tabs tabs_orange mb-40">
 						<button type="button" data-text="От компаний" class="tabs__title _tab-active">От компаний</button>
 						<button type="button" data-text="Оставить отзыв" class="tabs__title">Оставить отзыв</button>
 					</nav>
 					<div data-tabs-body class="carousel__content">
 						<div class="carousel__body">
 							<div class="carousel__slider carousel__slider--4">
-								<div class="carousel__arrows mb-40">
+								<div data-aos="fade-up" class="carousel__arrows mb-40">
 									<button type="button" class="carousel__arrow carousel__arrow-left swiper-arrow-prev">
 										<svg>
 											<use xlink:href="img/icons/icons.svg#svg-slider-left"></use>
@@ -710,7 +714,7 @@
 										</svg>
 									</button>
 								</div>
-								<div class="carousel__slider-list swiper">
+								<div data-aos="fade-up" class="carousel__slider-list swiper">
 									<div class="carousel__wrapper swiper-wrapper">
 										<div data-gallery class="carousel__slide swiper-slide">
 											<a href="img/reviews/1.png" class="carousel__slide-image">
@@ -763,7 +767,6 @@
 								<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="ФИО*" class="form__input input">
 								<input data-required="email" autocomplete="off" type="email*" name="form[]" data-error="" placeholder="E-mail" class="form__input input">
 								<textarea data-required autocomplete="off" placeholder="Отзыв*" class="form__textarea"></textarea>
-
 								<div class="form__rating rating">
 									<span>Ваша оценка</span>
 									<fieldset class="rating__row">
@@ -801,7 +804,7 @@
 								</div>
 
 								<div class="form__input-wrap">
-									<input id="popup-file-vac" data-file-img accept=".pdf, .docx, .jpg, .png" type="file" class="form__input-file">
+									<input id="popup-file-vac" data-file-img accept=".pdf, .docx, .dox, .txt" type="file" class="form__input-file">
 									<label for="popup-file-vac" class="form__file-label">Прикрепить документ</label>
 								</div>
 								<div id="popup-preview-vac" data-file-preview class="form__preview-files">
@@ -827,7 +830,7 @@
 			<!-- section carousel -->
 			<section class="carousel mb-120">
 				<div class="carousel__container">
-					<div class="carousel__header section-header mb-60">
+					<div data-aos="fade-right" class="carousel__header section-header mb-60">
 						<h2 class="section-header__title h2">Залог качества</h2>
 						<span></span>
 						<a href="#" class="section-header__link link-more">
@@ -840,7 +843,7 @@
 					<div class="carousel__content">
 						<div class="carousel__body">
 							<div class="carousel__slider carousel__slider--4">
-								<div class="carousel__arrows mb-40">
+								<div data-aos="fade-up" class="carousel__arrows mb-40">
 									<button type="button" class="carousel__arrow carousel__arrow-left swiper-arrow-prev">
 										<svg>
 											<use xlink:href="img/icons/icons.svg#svg-slider-left"></use>
@@ -852,7 +855,7 @@
 										</svg>
 									</button>
 								</div>
-								<div class="carousel__slider-list swiper">
+								<div data-aos="fade-up" class="carousel__slider-list swiper">
 									<div class="line-left"></div>
 									<div class="carousel__wrapper swiper-wrapper">
 										<div data-gallery class="carousel__slide swiper-slide">
@@ -908,7 +911,7 @@
 			<section class="page-section mb-120">
 				<div class="page-section__container">
 					<div class="page-section__body">
-						<div class="page-section__header section-header mb-60">
+						<div data-aos="fade-right" class="page-section__header section-header mb-60">
 							<h2 class="section-header__title h2">Новости и статьи компании</h2>
 							<span></span>
 							<a href="#" class="section-header__link link-more">
@@ -919,7 +922,7 @@
 							</a>
 						</div>
 						<div class="page-section__grid page-section__grid_4 gap-48">
-							<div class="page-section__item item-news-block">
+							<div data-aos="fade-right" class="page-section__item item-news-block">
 								<ul class="item-news-block__list">
 									<li class="item-news-block__list-item">
 										<span class="item-news-block__list-item-date text-body">22.10.2021</span>
@@ -947,7 +950,7 @@
 									</li>
 								</ul>
 							</div>
-							<div class="page-section__item item-news-block">
+							<div data-aos="fade-up" data-aos-delay="100" class="page-section__item item-news-block">
 								<div class="item-news-block__single item-news-block__single_black">
 									<div class="item-news-block__single-img">
 										<img data-src="img/news-block/1.jpg" data-srcset="img/news-block/1@2x.jpg 2x" alt="Новость.">
@@ -963,7 +966,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="page-section__item item-news-block">
+							<div data-aos="fade-up" data-aos-delay="200" class="page-section__item item-news-block">
 								<div class="item-news-block__single item-news-block__single_blue">
 									<div class="item-news-block__single-img">
 										<img data-src="img/news-block/2.jpg" data-srcset="img/news-block/2@2x.jpg 2x" alt="Новость.">
@@ -978,7 +981,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="page-section__item item-news-block">
+							<div data-aos="fade-up" data-aos-delay="300" class="page-section__item item-news-block">
 								<div class="item-news-block__single item-news-block__single_orange">
 									<div class="item-news-block__single-img">
 										<img data-src="img/news-block/3.jpg" data-srcset="img/news-block/3@2x.jpg 2x" alt="Новость.">
@@ -1004,7 +1007,7 @@
 			<div class="block-doc block-doc_right mb-120">
 				<div class="block-doc__wrapper">
 					<div class="block-doc__container">
-						<div class="block-doc__body">
+						<div data-aos="fade-left" class="block-doc__body">
 							<div class="block-doc__img">
 								<img data-src="img/doc/2.png" data-srcset="img/doc/2@2x.png 2x" aria-hidden="true" alt="">
 							</div>
@@ -1139,7 +1142,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<!-- popup call -->
 	<div id="popup-call" aria-hidden="true" class="popup">
@@ -1545,8 +1547,9 @@
 						<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="ФИО*" class="form__input input">
 						<input data-required="email" autocomplete="off" type="email" name="form[]" data-error="" placeholder="Ваш email*" class="form__input input">
 						<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="Ваш телефон*" class="form__input input">
+						<div class="form__text text-body mb-16">Файл резюме должен быть размером не более 2мб. Разрешены только файлы с расширением doc, docx, txt, pdf</div>
 						<div class="form__input-wrap">
-							<input data-required id="popup-file-vac" data-file-img accept=".pdf, .docx" type="file" class="form__input-file">
+							<input data-required id="popup-file-vac" data-file-img accept=".pdf, .docx, .dox, .txt" type="file" class="form__input-file">
 							<label for="popup-file-vac" class="form__file-label">Прикрепить резюме*</label>
 						</div>
 						<div id="popup-preview-vac" data-file-preview class="form__preview-files">
@@ -1676,7 +1679,7 @@
 							</fieldset>
 						</div>
 						<div class="form__input-wrap">
-							<input id="popup-file-vac" data-file-img accept=".pdf, .docx, .jpg, .png" type="file" class="form__input-file">
+							<input id="popup-file-vac" data-file-img accept=".pdf, .docx, .dox, .txt" type="file" class="form__input-file">
 							<label for="popup-file-vac" class="form__file-label">Прикрепить документ</label>
 						</div>
 						<div id="popup-preview-vac" data-file-preview class="form__preview-files">
@@ -1870,7 +1873,7 @@
 		</div>
 	</div>
 	<!-- popup quiz end -->
-	<script src="js/app.min.js?_v=20230412015400"></script>
+	<script src="js/app.min.js?_v=20230419161119"></script>
 </body>
 
 </html>
