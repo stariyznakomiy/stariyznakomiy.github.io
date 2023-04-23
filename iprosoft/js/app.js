@@ -4092,7 +4092,7 @@
         function addTouchClass() {
             if (isMobile.any()) document.documentElement.classList.add("touch");
         }
-        function functions_getHash() {
+        function getHash() {
             if (location.hash) return location.hash.replace("#", "");
         }
         function setHash(hash) {
@@ -4222,7 +4222,7 @@
             const tabs = document.querySelectorAll("[data-tabs]");
             let tabsActiveHash = [];
             if (tabs.length > 0) {
-                const hash = functions_getHash();
+                const hash = getHash();
                 if (hash && hash.startsWith("tab-")) tabsActiveHash = hash.replace("tab-", "").split("-");
                 tabs.forEach(((tabsBlock, index) => {
                     tabsBlock.classList.add("_tab-init");
@@ -4651,7 +4651,7 @@
             }
         }
         flsModules.popup = new Popup({});
-        let gotoblock_gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
+        let gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
             const targetBlockElement = document.querySelector(targetBlock);
             if (targetBlockElement) {
                 let headerItem = "";
@@ -4828,7 +4828,7 @@
                     e.preventDefault();
                     if (form.querySelector("._form-error") && form.hasAttribute("data-goto-error")) {
                         const formGoToErrorClass = form.dataset.gotoError ? form.dataset.gotoError : "._form-error";
-                        gotoblock_gotoBlock(formGoToErrorClass, true, 1e3);
+                        gotoBlock(formGoToErrorClass, true, 1e3);
                     }
                 }
             }
@@ -5402,9 +5402,6 @@
                 swiper.cssModeFrameID = window.requestAnimationFrame(animate);
             };
             animate();
-        }
-        function utils_getSlideTransformEl(slideEl) {
-            return slideEl.querySelector(".swiper-slide-transform") || slideEl.shadowEl && slideEl.shadowEl.querySelector(".swiper-slide-transform") || slideEl;
         }
         function utils_elementChildren(element, selector = "") {
             return [ ...element.children ].filter((el => el.matches(selector)));
@@ -8210,244 +8207,6 @@
                 destroy
             });
         }
-        function Autoplay({swiper, extendParams, on, emit, params}) {
-            swiper.autoplay = {
-                running: false,
-                paused: false,
-                timeLeft: 0
-            };
-            extendParams({
-                autoplay: {
-                    enabled: false,
-                    delay: 3e3,
-                    waitForTransition: true,
-                    disableOnInteraction: true,
-                    stopOnLastSlide: false,
-                    reverseDirection: false,
-                    pauseOnMouseEnter: false
-                }
-            });
-            let timeout;
-            let raf;
-            let autoplayDelayTotal = params && params.autoplay ? params.autoplay.delay : 3e3;
-            let autoplayDelayCurrent = params && params.autoplay ? params.autoplay.delay : 3e3;
-            let autoplayTimeLeft;
-            let autoplayStartTime = (new Date).getTime;
-            let wasPaused;
-            let isTouched;
-            let pausedByTouch;
-            let touchStartTimeout;
-            let slideChanged;
-            let pausedByInteraction;
-            function onTransitionEnd(e) {
-                if (!swiper || swiper.destroyed || !swiper.wrapperEl) return;
-                if (e.target !== swiper.wrapperEl) return;
-                swiper.wrapperEl.removeEventListener("transitionend", onTransitionEnd);
-                resume();
-            }
-            const calcTimeLeft = () => {
-                if (swiper.destroyed || !swiper.autoplay.running) return;
-                if (swiper.autoplay.paused) wasPaused = true; else if (wasPaused) {
-                    autoplayDelayCurrent = autoplayTimeLeft;
-                    wasPaused = false;
-                }
-                const timeLeft = swiper.autoplay.paused ? autoplayTimeLeft : autoplayStartTime + autoplayDelayCurrent - (new Date).getTime();
-                swiper.autoplay.timeLeft = timeLeft;
-                emit("autoplayTimeLeft", timeLeft, timeLeft / autoplayDelayTotal);
-                raf = requestAnimationFrame((() => {
-                    calcTimeLeft();
-                }));
-            };
-            const getSlideDelay = () => {
-                let activeSlideEl;
-                if (swiper.virtual && swiper.params.virtual.enabled) activeSlideEl = swiper.slides.filter((slideEl => slideEl.classList.contains("swiper-slide-active")))[0]; else activeSlideEl = swiper.slides[swiper.activeIndex];
-                if (!activeSlideEl) return;
-                const currentSlideDelay = parseInt(activeSlideEl.getAttribute("data-swiper-autoplay"), 10);
-                return currentSlideDelay;
-            };
-            const run = delayForce => {
-                if (swiper.destroyed || !swiper.autoplay.running) return;
-                cancelAnimationFrame(raf);
-                calcTimeLeft();
-                let delay = "undefined" === typeof delayForce ? swiper.params.autoplay.delay : delayForce;
-                autoplayDelayTotal = swiper.params.autoplay.delay;
-                autoplayDelayCurrent = swiper.params.autoplay.delay;
-                const currentSlideDelay = getSlideDelay();
-                if (!Number.isNaN(currentSlideDelay) && currentSlideDelay > 0 && "undefined" === typeof delayForce) {
-                    delay = currentSlideDelay;
-                    autoplayDelayTotal = currentSlideDelay;
-                    autoplayDelayCurrent = currentSlideDelay;
-                }
-                autoplayTimeLeft = delay;
-                const speed = swiper.params.speed;
-                const proceed = () => {
-                    if (!swiper || swiper.destroyed) return;
-                    if (swiper.params.autoplay.reverseDirection) {
-                        if (!swiper.isBeginning || swiper.params.loop || swiper.params.rewind) {
-                            swiper.slidePrev(speed, true, true);
-                            emit("autoplay");
-                        } else if (!swiper.params.autoplay.stopOnLastSlide) {
-                            swiper.slideTo(swiper.slides.length - 1, speed, true, true);
-                            emit("autoplay");
-                        }
-                    } else if (!swiper.isEnd || swiper.params.loop || swiper.params.rewind) {
-                        swiper.slideNext(speed, true, true);
-                        emit("autoplay");
-                    } else if (!swiper.params.autoplay.stopOnLastSlide) {
-                        swiper.slideTo(0, speed, true, true);
-                        emit("autoplay");
-                    }
-                    if (swiper.params.cssMode) {
-                        autoplayStartTime = (new Date).getTime();
-                        requestAnimationFrame((() => {
-                            run();
-                        }));
-                    }
-                };
-                if (delay > 0) {
-                    clearTimeout(timeout);
-                    timeout = setTimeout((() => {
-                        proceed();
-                    }), delay);
-                } else requestAnimationFrame((() => {
-                    proceed();
-                }));
-                return delay;
-            };
-            const start = () => {
-                swiper.autoplay.running = true;
-                run();
-                emit("autoplayStart");
-            };
-            const stop = () => {
-                swiper.autoplay.running = false;
-                clearTimeout(timeout);
-                cancelAnimationFrame(raf);
-                emit("autoplayStop");
-            };
-            const pause = (internal, reset) => {
-                if (swiper.destroyed || !swiper.autoplay.running) return;
-                clearTimeout(timeout);
-                if (!internal) pausedByInteraction = true;
-                const proceed = () => {
-                    emit("autoplayPause");
-                    if (swiper.params.autoplay.waitForTransition) swiper.wrapperEl.addEventListener("transitionend", onTransitionEnd); else resume();
-                };
-                swiper.autoplay.paused = true;
-                if (reset) {
-                    if (slideChanged) autoplayTimeLeft = swiper.params.autoplay.delay;
-                    slideChanged = false;
-                    proceed();
-                    return;
-                }
-                const delay = autoplayTimeLeft || swiper.params.autoplay.delay;
-                autoplayTimeLeft = delay - ((new Date).getTime() - autoplayStartTime);
-                if (swiper.isEnd && autoplayTimeLeft < 0 && !swiper.params.loop) return;
-                if (autoplayTimeLeft < 0) autoplayTimeLeft = 0;
-                proceed();
-            };
-            const resume = () => {
-                if (swiper.isEnd && autoplayTimeLeft < 0 && !swiper.params.loop || swiper.destroyed || !swiper.autoplay.running) return;
-                autoplayStartTime = (new Date).getTime();
-                if (pausedByInteraction) {
-                    pausedByInteraction = false;
-                    run(autoplayTimeLeft);
-                } else run();
-                swiper.autoplay.paused = false;
-                emit("autoplayResume");
-            };
-            const onVisibilityChange = () => {
-                if (swiper.destroyed || !swiper.autoplay.running) return;
-                const document = ssr_window_esm_getDocument();
-                if ("hidden" === document.visibilityState) {
-                    pausedByInteraction = true;
-                    pause(true);
-                }
-                if ("visible" === document.visibilityState) resume();
-            };
-            const onPointerEnter = e => {
-                if ("mouse" !== e.pointerType) return;
-                pausedByInteraction = true;
-                pause(true);
-            };
-            const onPointerLeave = e => {
-                if ("mouse" !== e.pointerType) return;
-                if (swiper.autoplay.paused) resume();
-            };
-            const attachMouseEvents = () => {
-                if (swiper.params.autoplay.pauseOnMouseEnter) {
-                    swiper.el.addEventListener("pointerenter", onPointerEnter);
-                    swiper.el.addEventListener("pointerleave", onPointerLeave);
-                }
-            };
-            const detachMouseEvents = () => {
-                swiper.el.removeEventListener("pointerenter", onPointerEnter);
-                swiper.el.removeEventListener("pointerleave", onPointerLeave);
-            };
-            const attachDocumentEvents = () => {
-                const document = ssr_window_esm_getDocument();
-                document.addEventListener("visibilitychange", onVisibilityChange);
-            };
-            const detachDocumentEvents = () => {
-                const document = ssr_window_esm_getDocument();
-                document.removeEventListener("visibilitychange", onVisibilityChange);
-            };
-            on("init", (() => {
-                if (swiper.params.autoplay.enabled) {
-                    attachMouseEvents();
-                    attachDocumentEvents();
-                    autoplayStartTime = (new Date).getTime();
-                    start();
-                }
-            }));
-            on("destroy", (() => {
-                detachMouseEvents();
-                detachDocumentEvents();
-                if (swiper.autoplay.running) stop();
-            }));
-            on("beforeTransitionStart", ((_s, speed, internal) => {
-                if (swiper.destroyed || !swiper.autoplay.running) return;
-                if (internal || !swiper.params.autoplay.disableOnInteraction) pause(true, true); else stop();
-            }));
-            on("sliderFirstMove", (() => {
-                if (swiper.destroyed || !swiper.autoplay.running) return;
-                if (swiper.params.autoplay.disableOnInteraction) {
-                    stop();
-                    return;
-                }
-                isTouched = true;
-                pausedByTouch = false;
-                pausedByInteraction = false;
-                touchStartTimeout = setTimeout((() => {
-                    pausedByInteraction = true;
-                    pausedByTouch = true;
-                    pause(true);
-                }), 200);
-            }));
-            on("touchEnd", (() => {
-                if (swiper.destroyed || !swiper.autoplay.running || !isTouched) return;
-                clearTimeout(touchStartTimeout);
-                clearTimeout(timeout);
-                if (swiper.params.autoplay.disableOnInteraction) {
-                    pausedByTouch = false;
-                    isTouched = false;
-                    return;
-                }
-                if (pausedByTouch && swiper.params.cssMode) resume();
-                pausedByTouch = false;
-                isTouched = false;
-            }));
-            on("slideChange", (() => {
-                if (swiper.destroyed || !swiper.autoplay.running) return;
-                slideChanged = true;
-            }));
-            Object.assign(swiper.autoplay, {
-                start,
-                stop,
-                pause,
-                resume
-            });
-        }
         function freeMode({swiper, extendParams, emit, once}) {
             extendParams({
                 freeMode: {
@@ -8605,155 +8364,6 @@
                 }
             });
         }
-        function effect_init_effectInit(params) {
-            const {effect, swiper, on, setTranslate, setTransition, overwriteParams, perspective, recreateShadows, getEffectParams} = params;
-            on("beforeInit", (() => {
-                if (swiper.params.effect !== effect) return;
-                swiper.classNames.push(`${swiper.params.containerModifierClass}${effect}`);
-                if (perspective && perspective()) swiper.classNames.push(`${swiper.params.containerModifierClass}3d`);
-                const overwriteParamsResult = overwriteParams ? overwriteParams() : {};
-                Object.assign(swiper.params, overwriteParamsResult);
-                Object.assign(swiper.originalParams, overwriteParamsResult);
-            }));
-            on("setTranslate", (() => {
-                if (swiper.params.effect !== effect) return;
-                setTranslate();
-            }));
-            on("setTransition", ((_s, duration) => {
-                if (swiper.params.effect !== effect) return;
-                setTransition(duration);
-            }));
-            on("transitionEnd", (() => {
-                if (swiper.params.effect !== effect) return;
-                if (recreateShadows) {
-                    if (!getEffectParams || !getEffectParams().slideShadows) return;
-                    swiper.slides.forEach((slideEl => {
-                        slideEl.querySelectorAll(".swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left").forEach((shadowEl => shadowEl.remove()));
-                    }));
-                    recreateShadows();
-                }
-            }));
-            let requireUpdateOnVirtual;
-            on("virtualUpdate", (() => {
-                if (swiper.params.effect !== effect) return;
-                if (!swiper.slides.length) requireUpdateOnVirtual = true;
-                requestAnimationFrame((() => {
-                    if (requireUpdateOnVirtual && swiper.slides && swiper.slides.length) {
-                        setTranslate();
-                        requireUpdateOnVirtual = false;
-                    }
-                }));
-            }));
-        }
-        function effect_target_effectTarget(effectParams, slideEl) {
-            const transformEl = utils_getSlideTransformEl(slideEl);
-            if (transformEl !== slideEl) {
-                transformEl.style.backfaceVisibility = "hidden";
-                transformEl.style["-webkit-backface-visibility"] = "hidden";
-            }
-            return transformEl;
-        }
-        function effect_virtual_transition_end_effectVirtualTransitionEnd({swiper, duration, transformElements, allSlides}) {
-            const {activeIndex} = swiper;
-            const getSlide = el => {
-                if (!el.parentElement) {
-                    const slide = swiper.slides.filter((slideEl => slideEl.shadowEl && slideEl.shadowEl === el.parentNode))[0];
-                    return slide;
-                }
-                return el.parentElement;
-            };
-            if (swiper.params.virtualTranslate && 0 !== duration) {
-                let eventTriggered = false;
-                let transitionEndTarget;
-                if (allSlides) transitionEndTarget = transformElements; else transitionEndTarget = transformElements.filter((transformEl => {
-                    const el = transformEl.classList.contains("swiper-slide-transform") ? getSlide(transformEl) : transformEl;
-                    return utils_elementIndex(el) === activeIndex;
-                }));
-                transitionEndTarget.forEach((el => {
-                    utils_elementTransitionEnd(el, (() => {
-                        if (eventTriggered) return;
-                        if (!swiper || swiper.destroyed) return;
-                        eventTriggered = true;
-                        swiper.animating = false;
-                        const evt = new window.CustomEvent("transitionend", {
-                            bubbles: true,
-                            cancelable: true
-                        });
-                        swiper.wrapperEl.dispatchEvent(evt);
-                    }));
-                }));
-            }
-        }
-        function EffectFade({swiper, extendParams, on}) {
-            extendParams({
-                fadeEffect: {
-                    crossFade: false
-                }
-            });
-            const setTranslate = () => {
-                const {slides} = swiper;
-                const params = swiper.params.fadeEffect;
-                for (let i = 0; i < slides.length; i += 1) {
-                    const slideEl = swiper.slides[i];
-                    const offset = slideEl.swiperSlideOffset;
-                    let tx = -offset;
-                    if (!swiper.params.virtualTranslate) tx -= swiper.translate;
-                    let ty = 0;
-                    if (!swiper.isHorizontal()) {
-                        ty = tx;
-                        tx = 0;
-                    }
-                    const slideOpacity = swiper.params.fadeEffect.crossFade ? Math.max(1 - Math.abs(slideEl.progress), 0) : 1 + Math.min(Math.max(slideEl.progress, -1), 0);
-                    const targetEl = effect_target_effectTarget(params, slideEl);
-                    targetEl.style.opacity = slideOpacity;
-                    targetEl.style.transform = `translate3d(${tx}px, ${ty}px, 0px)`;
-                }
-            };
-            const setTransition = duration => {
-                const transformElements = swiper.slides.map((slideEl => utils_getSlideTransformEl(slideEl)));
-                transformElements.forEach((el => {
-                    el.style.transitionDuration = `${duration}ms`;
-                }));
-                effect_virtual_transition_end_effectVirtualTransitionEnd({
-                    swiper,
-                    duration,
-                    transformElements,
-                    allSlides: true
-                });
-            };
-            effect_init_effectInit({
-                effect: "fade",
-                swiper,
-                on,
-                setTranslate,
-                setTransition,
-                overwriteParams: () => ({
-                    slidesPerView: 1,
-                    slidesPerGroup: 1,
-                    watchSlidesProgress: true,
-                    spaceBetween: 0,
-                    virtualTranslate: !swiper.params.cssMode
-                })
-            });
-        }
-        const titles = document.querySelectorAll(".hero-top__slide-text p");
-        const splitText = el => {
-            el.innerHTML = el.textContent.replace(/(\S*)/g, (m => `<span class="word">` + m.replace(/(-|#|@)?\S(-|#|@)?/g, "<span class='letter'>$&</span>") + `</span>`));
-            return el;
-        };
-        titles.forEach((title => {
-            splitText(title);
-        }));
-        const textBlocks = document.querySelectorAll(".hero-top__slide-text");
-        let delayStep = .015;
-        textBlocks.forEach((textBlock => {
-            const letters = textBlock.querySelectorAll(".letter");
-            let delay = 0;
-            letters.forEach((letter => {
-                letter.style.transitionDelay = `${delay}s`;
-                delay += delayStep;
-            }));
-        }));
         function initSliders() {
             const carousels = document.querySelectorAll(".carousel");
             if (carousels) for (let index = 0; index < carousels.length; index++) {
@@ -8870,49 +8480,6 @@
                     on: {}
                 });
             }
-            new core(".hero-top__slider", {
-                modules: [ Navigation, Pagination, EffectFade, Autoplay ],
-                observer: true,
-                observeParents: true,
-                slidesPerView: 1,
-                spaceBetween: 0,
-                autoHeight: false,
-                speed: 800,
-                autoplay: {
-                    delay: 3e3
-                },
-                effect: "fade",
-                autoplay: {
-                    delay: 3e3,
-                    disableOnInteraction: false
-                },
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true
-                },
-                navigation: {
-                    prevEl: ".swiper-button-prev",
-                    nextEl: ".swiper-button-next"
-                },
-                on: {
-                    init: function(heroSlider) {
-                        const activeSlide = heroSlider.slides[heroSlider.realIndex];
-                        const text = activeSlide.querySelector(".hero-top__slide-text");
-                        text.classList.add("_active");
-                        setTimeout((() => {
-                            text.classList.remove("_active");
-                        }), 2900);
-                    },
-                    slideChange: function(heroSlider) {
-                        const activeSlide = heroSlider.slides[heroSlider.realIndex];
-                        const text = activeSlide.querySelector(".hero-top__slide-text");
-                        text.classList.add("_active");
-                        setTimeout((() => {
-                            text.classList.remove("_active");
-                        }), 2900);
-                    }
-                }
-            });
             new core(".slider-reviews__list", {
                 modules: [ Navigation, Pagination, freeMode ],
                 observer: true,
@@ -9044,6 +8611,44 @@
         }
         flsModules.watcher = new ScrollWatcher({});
         let addWindowScrollEvent = false;
+        function pageNavigation() {
+            document.addEventListener("click", pageNavigationAction);
+            document.addEventListener("watcherCallback", pageNavigationAction);
+            function pageNavigationAction(e) {
+                if ("click" === e.type) {
+                    const targetElement = e.target;
+                    if (targetElement.closest("[data-goto]")) {
+                        const gotoLink = targetElement.closest("[data-goto]");
+                        const gotoLinkSelector = gotoLink.dataset.goto ? gotoLink.dataset.goto : "";
+                        const noHeader = gotoLink.hasAttribute("data-goto-header") ? true : false;
+                        const gotoSpeed = gotoLink.dataset.gotoSpeed ? gotoLink.dataset.gotoSpeed : 500;
+                        const offsetTop = gotoLink.dataset.gotoTop ? parseInt(gotoLink.dataset.gotoTop) : 0;
+                        gotoBlock(gotoLinkSelector, noHeader, gotoSpeed, offsetTop);
+                        e.preventDefault();
+                    }
+                } else if ("watcherCallback" === e.type && e.detail) {
+                    const entry = e.detail.entry;
+                    const targetElement = entry.target;
+                    if ("navigator" === targetElement.dataset.watch) {
+                        document.querySelector(`[data-goto]._navigator-active`);
+                        let navigatorCurrentItem;
+                        if (targetElement.id && document.querySelector(`[data-goto="#${targetElement.id}"]`)) navigatorCurrentItem = document.querySelector(`[data-goto="#${targetElement.id}"]`); else if (targetElement.classList.length) for (let index = 0; index < targetElement.classList.length; index++) {
+                            const element = targetElement.classList[index];
+                            if (document.querySelector(`[data-goto=".${element}"]`)) {
+                                navigatorCurrentItem = document.querySelector(`[data-goto=".${element}"]`);
+                                break;
+                            }
+                        }
+                        if (entry.isIntersecting) navigatorCurrentItem ? navigatorCurrentItem.classList.add("_navigator-active") : null; else navigatorCurrentItem ? navigatorCurrentItem.classList.remove("_navigator-active") : null;
+                    }
+                }
+            }
+            if (getHash()) {
+                let goToHash;
+                if (document.querySelector(`#${getHash()}`)) goToHash = `#${getHash()}`; else if (document.querySelector(`.${getHash()}`)) goToHash = `.${getHash()}`;
+                goToHash ? gotoBlock(goToHash, true, 500, 20) : null;
+            }
+        }
         function headerScroll() {
             addWindowScrollEvent = true;
             const header = document.querySelector("header.header");
@@ -16147,48 +15752,165 @@ PERFORMANCE OF THIS SOFTWARE.
         };
         ScrollTrigger_getGSAP() && ScrollTrigger_gsap.registerPlugin(ScrollTrigger_ScrollTrigger);
         gsapWithCSS.registerPlugin(ScrollTrigger_ScrollTrigger);
-        let tl = gsapWithCSS.timeline({
-            repeat: -1
+        const nameText = document.querySelectorAll(".hero-top__name-text p");
+        const slideText = document.querySelectorAll(".hero-top__slide-text p");
+        const splitText = el => {
+            el.innerHTML = el.textContent.replace(/(\S*)/g, (m => `<span class="word">` + m.replace(/(-|#|@)?\S(-|#|@)?/g, "<span class='letter'>$&</span>") + `</span>`));
+            return el;
+        };
+        nameText.forEach((title => {
+            splitText(title);
+        }));
+        slideText.forEach((title => {
+            splitText(title);
+        }));
+        let tlImages = gsapWithCSS.timeline({
+            delay: 1,
+            repeatDelay: 0,
+            yoyo: false,
+            onComplete: function() {}
         });
+        let tl = gsapWithCSS.timeline({
+            delay: 1,
+            repeatDelay: 0,
+            yoyo: false,
+            onComplete: function() {
+                tl.restart();
+                tlImages.restart();
+            },
+            defaults: {
+                immediateRender: false
+            }
+        });
+        var vsOpts = {
+            $slides: document.querySelectorAll(".search-page__item"),
+            $list: document.querySelector(".search-page__list"),
+            duration: 5.5,
+            lineHeight: 40
+        };
         window.addEventListener("load", (function(e) {
-            tl.from(".hero-top__first", {
+            gsapWithCSS.from(".hero-top__name img", {
                 opacity: 0,
-                x: 200,
-                scale: .8,
-                duration: 1.5,
-                ease: "power1.out"
+                duration: .5
             });
-            tl.from(".hero-top__second", {
-                x: 100,
-                scale: 0,
-                delay: 2,
-                duration: 1.5,
-                ease: "power1.out"
+            gsapWithCSS.from(".hero-top__name-text .letter", {
+                x: -10,
+                y: 100,
+                stagger: .02,
+                delay: 1,
+                ease: "back.out(1.7)"
             });
-            tl.to(".hero-top__first", {
+            tl.fromTo(".hero-top__slide--1 .letter", {
+                opacity: 0
+            }, {
+                opacity: 1,
+                duration: .5,
+                stagger: .02,
+                ease: "steps(12)"
+            });
+            tl.fromTo(".hero-top__slide--1 .letter", {
+                opacity: 1
+            }, {
+                opacity: 1,
+                duration: 1,
+                stagger: .02,
+                ease: "steps(12)"
+            });
+            tl.fromTo(".hero-top__slide--1 .letter", {
+                opacity: 1
+            }, {
                 opacity: 0,
-                scale: 1.2,
-                delay: 2,
+                duration: .5,
+                stagger: .015,
+                ease: "steps(12)"
+            });
+            tl.fromTo(".hero-top__slide--2 .letter", {
+                opacity: 0
+            }, {
+                opacity: 1,
+                duration: .5,
+                stagger: .02,
+                ease: "steps(12)"
+            });
+            tl.fromTo(".hero-top__slide--2 .letter", {
+                opacity: 1
+            }, {
+                opacity: 1,
+                duration: 1,
+                stagger: .02,
+                ease: "steps(12)"
+            });
+            tl.fromTo(".hero-top__slide--2 .letter", {
+                opacity: 1
+            }, {
+                opacity: 0,
+                duration: .5,
+                stagger: .015,
+                ease: "steps(12)"
+            });
+            tl.fromTo(".hero-top__slide--3 .letter", {
+                opacity: 0
+            }, {
+                opacity: 1,
+                duration: .5,
+                stagger: .02,
+                ease: "steps(12)"
+            });
+            tl.fromTo(".hero-top__slide--3 .letter", {
+                opacity: 1
+            }, {
+                opacity: 1,
+                duration: 1,
+                stagger: .02,
+                ease: "steps(12)"
+            });
+            tl.fromTo(".hero-top__slide--3 .letter", {
+                opacity: 1
+            }, {
+                opacity: 0,
+                duration: .5,
+                stagger: .015,
+                ease: "steps(12)"
+            });
+            tlImages.from(".hero-top__first", {
+                opacity: 0,
+                scale: .9,
                 duration: 1,
                 ease: "power1.out"
             });
-            tl.to(".hero-top__second", {
+            tlImages.from(".hero-top__second", {
+                x: 100,
+                scale: 0,
+                duration: 2,
+                ease: "power4.out"
+            });
+            tlImages.to(".hero-top__first", {
+                opacity: 0,
+                scale: 1.2,
+                delay: 1,
+                duration: 1,
+                ease: "power1.out"
+            });
+            tlImages.to(".hero-top__second", {
                 opacity: 0,
                 scale: 1.2,
                 duration: 1,
                 ease: "power1.out"
             }, "-=1");
-            tl.from(".hero-top__third", {
+            tlImages.from(".search-page", {
                 opacity: 0,
                 scale: 1.2,
                 duration: 1,
                 ease: "power1.out"
             });
-            tl.to(".hero-top__third", {
+            for (let i = 0; i < vsOpts.$slides.length; i++) tlImages.to(vsOpts.$list, {
+                y: -1 * i * vsOpts.lineHeight,
+                ease: "elastic.out(1, 0.9)",
+                duration: vsOpts.duration / vsOpts.$slides.length
+            });
+            tlImages.to(".search-page", {
                 opacity: 0,
-                x: 200,
-                scale: .8,
-                delay: 1.4,
+                scale: 1.2,
                 duration: 1,
                 ease: "power1.out"
             });
@@ -16370,6 +16092,7 @@ PERFORMANCE OF THIS SOFTWARE.
         menuInit();
         tabs();
         formSubmit();
+        pageNavigation();
         headerScroll();
         stickyBlock();
     })();

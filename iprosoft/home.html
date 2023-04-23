@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230420025140">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230424005013">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -225,22 +225,30 @@
 				<div class="hero-top__wrapper">
 					<div class="hero-top__container">
 						<div class="hero-top__body">
-							<div class="hero-top__slider swiper">
-								<div class="hero-top__slider-wrapper swiper-wrapper">
-									<div class="hero-top__slide swiper-slide">
+							<div class="hero-top__name">
+								<img src="img/icons/p.svg" alt="">
+								<div class="hero-top__name-text">
+									<p>ИНФОРМПРОЕКТ</p>
+									<p>группа компаний</p>
+								</div>
+							</div>
+
+							<div class="hero-top__slider">
+								<div class="hero-top__slider-wrapper">
+									<div class="hero-top__slide hero-top__slide--1">
 										<div class="hero-top__slide-text">
 											<p>Мы лидеры продаж,</p>
 											<p>обслуживания и внедрения</p>
 											<p>систем "Техэксперт"</p>
 										</div>
 									</div>
-									<div class="hero-top__slide swiper-slide">
+									<div class="hero-top__slide hero-top__slide--2">
 										<div class="hero-top__slide-text">
 											<p>Нас выбрали</p>
 											<p>2 000 000 пользователей</p>
 										</div>
 									</div>
-									<div class="hero-top__slide swiper-slide">
+									<div class="hero-top__slide hero-top__slide--3">
 										<div class="hero-top__slide-text">
 											<p>Присоединяйся к нам!</p>
 											<p>Мы меняем будущее!</p>
@@ -256,7 +264,33 @@
 									<img data-src="img/hero-slider/second.png" data-srcset="img/hero-slider/second@2x.png 2x" aria-hidden="true" alt="">
 								</div>
 								<div class="hero-top__third">
-									<img data-src="img/hero-slider/third.png" aria-hidden="true" alt="">
+									<!-- <img data-src="img/hero-slider/third.png" aria-hidden="true" alt=""> -->
+									<div class="hero-top__search-page search-page">
+										<div class="search-page__body">
+											<div class="search-page__frame">
+												<ul class="search-page__list">
+													<li class="search-page__item h4">ISO</li>
+													<li class="search-page__item h4">ГОСТ</li>
+													<li class="search-page__item h4">СНиП</li>
+													<li class="search-page__item h4">ГО и ЧС</li>
+													<li class="search-page__item h4">Охрана труда</li>
+													<li class="search-page__item h4">Экология</li>
+													<li class="search-page__item h4">Добыча нефти</li>
+													<li class="search-page__item h4">Федеральные законы</li>
+													<li class="search-page__item h4">Стандартизация</li>
+													<li class="search-page__item h4">Сметные программы</li>
+													<li class="search-page__item h4">Управление требованиями</li>
+													<li class="search-page__item h4">Импортозамещение</li>
+													<li class="search-page__item h4">Менеджмент качества</li>
+													<li class="search-page__item h4">Руководяшие документы</li>
+													<li class="search-page__item h4">Электроэнергетика</li>
+													<li class="search-page__item h4">Метрология</li>
+													<li class="search-page__item h4">Закупки</li>
+													<li class="search-page__item h4">Медицина</li>
+												</ul>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -283,8 +317,8 @@
 				<div class="page-section__container">
 					<div class="line-right"></div>
 					<div class="page-section__body">
-						<div class="banners">
-							<div data-aos="fade-up" class="banners__item banners__item_1">
+						<div data-aos="fade-up" class="banners">
+							<div class="banners__item banners__item_1">
 								<div class="banners__item-img">
 									<img data-src="img/banners/1.png" data-srcset="img/banners/1@2x.png 2x" aria-hidden="true" alt="">
 								</div>
@@ -300,7 +334,7 @@
 									</span>
 								</a>
 							</div>
-							<div data-aos="fade-up" data-aos-delay="100" class="banners__item banners__item_2">
+							<div class="banners__item banners__item_2">
 								<div class="banners__item-img">
 									<img data-src="img/banners/2.png" data-srcset="img/banners/2@2x.png 2x" aria-hidden="true" alt="">
 								</div>
@@ -314,7 +348,7 @@
 									</span>
 								</a>
 							</div>
-							<div data-aos="fade-up" data-aos-delay="200" class="banners__item banners__item_3">
+							<div class="banners__item banners__item_3">
 								<div class="banners__item-img">
 									<img data-src="img/banners/3.png" data-srcset="img/banners/3@2x.png 2x" aria-hidden="true" alt="">
 								</div>
@@ -334,10 +368,10 @@
 			<!-- page-section end  -->
 
 			<!-- page-section -->
-			<section class="page-section mb-120">
+			<section data-aos="fade-up" class="page-section mb-120">
 				<div class="page-section__container">
 					<div class="page-section__body">
-						<div data-aos="fade-right" class="page-section__header section-header mb-60">
+						<div class="page-section__header section-header mb-60">
 							<h2 class="section-header__title h2">Информпроект в цифрах</h2>
 							<span></span>
 							<a href="#" class="section-header__link link-more">
@@ -347,11 +381,11 @@
 								</svg>
 							</a>
 						</div>
-						<div data-aos="fade-right" class="page-section__text mb-60 h4">
+						<div class="page-section__text mb-60 h4">
 							Более 20 лет группа компаний "Информпроект" <br>
 							является одним из лидеров Информационной сети “Техэксперт”
 						</div>
-						<div data-aos="fade-up" class="page-section__numbers numbers">
+						<div class="page-section__numbers numbers">
 							<div class="numbers__row numbers__row_top">
 								<div class="numbers__item">
 									<div class="numbers__item-text">
@@ -503,7 +537,7 @@
 				<div class="block-doc__wrapper">
 					<div class="block-doc__container">
 						<div class="line-left"></div>
-						<div data-aos="fade-left" class="block-doc__body">
+						<div class="block-doc__body">
 							<div class="block-doc__img">
 								<img data-src="img/doc/1.png" data-srcset="img/doc/1@2x.png 2x" aria-hidden="true" alt="">
 							</div>
@@ -520,10 +554,10 @@
 			<!-- block-doc end  -->
 
 			<!-- page-section  -->
-			<section class="page-section mb-120">
+			<section data-aos="fade-up" class="page-section mb-120">
 				<div class="page-section__container">
 					<div class="page-section__body">
-						<div data-aos="fade-right" class="page-section__header section-header mb-60">
+						<div class="page-section__header section-header mb-60">
 							<h2 class="section-header__title h2">Наши продукты</h2>
 							<span></span>
 							<a href="#" class="section-header__link link-more">
@@ -534,7 +568,7 @@
 							</a>
 						</div>
 						<div class="page-section__grid page-section__grid_3 gap-48">
-							<div data-aos="fade-up" class="page-section__item item-products">
+							<div class="page-section__item item-products">
 								<div class="item-products__img">
 									<img data-src="img/products/1.jpg" data-srcset="img/products/1@2x.jpg 2x" aria-hidden="true" alt="Декоративное изображение">
 								</div>
@@ -553,7 +587,7 @@
 									</div>
 								</div>
 							</div>
-							<div data-aos="fade-up" data-aos-delay="100" class="page-section__item item-products">
+							<div class="page-section__item item-products">
 								<div class="item-products__img">
 									<img data-src="img/products/2.jpg" data-srcset="img/products/2@2x.jpg 2x" aria-hidden="true" alt="Декоративное изображение">
 								</div>
@@ -572,7 +606,7 @@
 									</div>
 								</div>
 							</div>
-							<div data-aos="fade-up" data-aos-delay="200" class="page-section__item item-products">
+							<div class="page-section__item item-products">
 								<div class="item-products__img">
 									<img data-src="img/products/3.jpg" data-srcset="img/products/3@2x.jpg 2x" aria-hidden="true" alt="Декоративное изображение">
 								</div>
@@ -591,7 +625,7 @@
 									</div>
 								</div>
 							</div>
-							<div data-aos="fade-up" class="page-section__item item-products">
+							<div class="page-section__item item-products">
 								<div class="item-products__img">
 									<img data-src="img/products/4.jpg" data-srcset="img/products/4@2x.jpg 2x" aria-hidden="true" alt="Декоративное изображение">
 								</div>
@@ -611,7 +645,7 @@
 									</div>
 								</div>
 							</div>
-							<div data-aos="fade-up" data-aos-delay="100" class="page-section__item item-products">
+							<div class="page-section__item item-products">
 								<div class="item-products__img">
 									<img data-src="img/products/5.jpg" data-srcset="img/products/5@2x.jpg 2x" aria-hidden="true" alt="Декоративное изображение">
 								</div>
@@ -631,7 +665,7 @@
 									</div>
 								</div>
 							</div>
-							<div data-aos="fade-up" data-aos-delay="200" class="page-section__item item-products">
+							<div class="page-section__item item-products">
 								<div class="item-products__img">
 									<img data-src="img/products/6.jpg" data-srcset="img/products/6@2x.jpg 2x" aria-hidden="true" alt="Декоративное изображение">
 								</div>
@@ -657,10 +691,10 @@
 			<!-- page-section end -->
 
 			<!-- page-section  -->
-			<section class="page-section mb-120">
+			<section data-aos="fade-up" class="page-section mb-120">
 				<div class="page-section__container">
 					<div class="page-section__body">
-						<div data-aos="fade-right" class="page-section__header section-header mb-80">
+						<div class="page-section__header section-header mb-80">
 							<h2 class="section-header__title h2">Наши клиенты</h2>
 							<span></span>
 							<a href="#" class="section-header__link link-more">
@@ -670,7 +704,7 @@
 								</svg>
 							</a>
 						</div>
-						<div data-aos="fade-up" class="page-section__grid page-section__grid_auto">
+						<div class="page-section__grid page-section__grid_auto">
 							<div class="page-section__item item-clients">
 								<img data-src="img/clients/1.png" data-srcset="img/clients/1@2x.png 2x" alt="Логотип Газпром.">
 							</div>
@@ -712,7 +746,7 @@
 				<div class="block-doc__wrapper">
 					<div class="block-doc__container">
 						<div class="line-right"></div>
-						<div data-aos="fade-right" class="block-doc__body">
+						<div class="block-doc__body">
 							<div class="block-doc__img">
 								<img data-src="img/doc/3.png" data-srcset="img/doc/3@2x.png 2x" aria-hidden="true" alt="">
 							</div>
@@ -729,9 +763,9 @@
 			<!-- block-doc end  -->
 
 			<!-- section carousel -->
-			<section data-tabs class="carousel mb-120">
+			<section data-aos="fade-up" data-tabs class="carousel mb-120">
 				<div class="carousel__container">
-					<div data-aos="fade-right" class="carousel__header section-header mb-60">
+					<div class="carousel__header section-header mb-60">
 						<h2 class="section-header__title h2">Отзывы и рекомендации</h2>
 						<span></span>
 						<a href="#" class="section-header__link link-more">
@@ -741,14 +775,14 @@
 							</svg>
 						</a>
 					</div>
-					<nav data-aos="fade-up" data-tabs-titles class="carousel__tabs tabs tabs_orange mb-40">
+					<nav data-tabs-titles class="carousel__tabs tabs tabs_orange mb-40">
 						<button type="button" data-text="От компаний" class="tabs__title _tab-active">От компаний</button>
 						<button type="button" data-text="Оставить отзыв" class="tabs__title">Оставить отзыв</button>
 					</nav>
 					<div data-tabs-body class="carousel__content">
 						<div class="carousel__body">
 							<div class="carousel__slider carousel__slider--4">
-								<div data-aos="fade-up" class="carousel__arrows mb-40">
+								<div class="carousel__arrows mb-40">
 									<button type="button" class="carousel__arrow carousel__arrow-left swiper-arrow-prev">
 										<svg>
 											<use xlink:href="img/icons/icons.svg#svg-slider-left"></use>
@@ -760,47 +794,63 @@
 										</svg>
 									</button>
 								</div>
-								<div data-aos="fade-up" class="carousel__slider-list swiper">
+								<div class="carousel__slider-list swiper">
 									<div class="carousel__wrapper swiper-wrapper">
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/1.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/1.jpg" data-srcset="img/reviews/previews/1@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/reviews/1.png">
+													<img alt="Отзыв." data-src="img/reviews/previews/1.jpg" data-srcset="img/reviews/previews/1@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/2.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/2.jpg" data-srcset="img/reviews/previews/2@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/reviews/2.png">
+													<img alt="Отзыв." data-src="img/reviews/previews/2.jpg" data-srcset="img/reviews/previews/2@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/3.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/3.jpg" data-srcset="img/reviews/previews/3@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/reviews/3.png">
+													<img alt="Отзыв." data-src="img/reviews/previews/3.jpg" data-srcset="img/reviews/previews/3@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/4.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/4.jpg" data-srcset="img/reviews/previews/4@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/reviews/4.png">
+													<img alt="Отзыв." data-src="img/reviews/previews/4.jpg" data-srcset="img/reviews/previews/4@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/1.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/1.jpg" data-srcset="img/reviews/previews/1@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/reviews/1.png">
+													<img alt="Отзыв." data-src="img/reviews/previews/1.jpg" data-srcset="img/reviews/previews/1@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/2.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/2.jpg" data-srcset="img/reviews/previews/2@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/reviews/2.png">
+													<img alt="Отзыв." data-src="img/reviews/previews/2.jpg" data-srcset="img/reviews/previews/2@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/3.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/3.jpg" data-srcset="img/reviews/previews/3@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/reviews/3.png">
+													<img alt="Отзыв." data-src="img/reviews/previews/3.jpg" data-srcset="img/reviews/previews/3@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/reviews/4.png" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/reviews/previews/4.jpg" data-srcset="img/reviews/previews/4@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/reviews/4.png">
+													<img alt="Отзыв." data-src="img/reviews/previews/4.jpg" data-srcset="img/reviews/previews/4@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -874,9 +924,9 @@
 			<!-- section carousel end -->
 
 			<!-- section carousel -->
-			<section class="carousel mb-120">
+			<section data-aos="fade-up" class="carousel mb-120">
 				<div class="carousel__container">
-					<div data-aos="fade-right" class="carousel__header section-header mb-60">
+					<div class="carousel__header section-header mb-60">
 						<h2 class="section-header__title h2">Залог качества</h2>
 						<span></span>
 						<a href="#" class="section-header__link link-more">
@@ -889,7 +939,7 @@
 					<div class="carousel__content">
 						<div class="carousel__body">
 							<div class="carousel__slider carousel__slider--4">
-								<div data-aos="fade-up" class="carousel__arrows mb-40">
+								<div class="carousel__arrows mb-40">
 									<button type="button" class="carousel__arrow carousel__arrow-left swiper-arrow-prev">
 										<svg>
 											<use xlink:href="img/icons/icons.svg#svg-slider-left"></use>
@@ -901,48 +951,64 @@
 										</svg>
 									</button>
 								</div>
-								<div data-aos="fade-up" class="carousel__slider-list swiper">
+								<div class="carousel__slider-list swiper">
 									<div class="line-left"></div>
 									<div class="carousel__wrapper swiper-wrapper">
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/sertificates/1.jpg" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/sertificates/1.jpg">
+													<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/sertificates/1.jpg" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/sertificates/1.jpg">
+													<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/sertificates/1.jpg" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/sertificates/1.jpg">
+													<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/sertificates/1.jpg" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/sertificates/1.jpg">
+													<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/sertificates/1.jpg" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/sertificates/1.jpg">
+													<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/sertificates/1.jpg" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/sertificates/1.jpg">
+													<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/sertificates/1.jpg" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/sertificates/1.jpg">
+													<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
-										<div data-gallery class="carousel__slide swiper-slide">
-											<a href="img/sertificates/1.jpg" class="carousel__slide-image">
-												<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="carousel__slide-preview">
-											</a>
+										<div class="carousel__slide image-slide swiper-slide">
+											<div data-gallery class="image-slide__content">
+												<a href="img/sertificates/1.jpg">
+													<img alt="Отзыв." data-src="img/sertificates/previews/1.jpg" data-srcset="img/sertificates/previews/1@2x.jpg 2x" class="image-slide__preview">
+												</a>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -954,10 +1020,10 @@
 			<!-- section carousel end -->
 
 			<!-- page-section  -->
-			<section class="page-section mb-120">
+			<section data-aos="fade-up" class="page-section mb-120">
 				<div class="page-section__container">
 					<div class="page-section__body">
-						<div data-aos="fade-right" class="page-section__header section-header mb-60">
+						<div class="page-section__header section-header mb-60">
 							<h2 class="section-header__title h2">Новости и статьи компании</h2>
 							<span></span>
 							<a href="#" class="section-header__link link-more">
@@ -968,7 +1034,7 @@
 							</a>
 						</div>
 						<div class="page-section__grid page-section__grid_4 gap-48">
-							<div data-aos="fade-right" class="page-section__item item-news-block">
+							<div class="page-section__item item-news-block">
 								<ul class="item-news-block__list">
 									<li class="item-news-block__list-item">
 										<span class="item-news-block__list-item-date text-body">22.10.2021</span>
@@ -996,7 +1062,7 @@
 									</li>
 								</ul>
 							</div>
-							<div data-aos="fade-up" data-aos-delay="100" class="page-section__item item-news-block">
+							<div class="page-section__item item-news-block">
 								<div class="item-news-block__single item-news-block__single_black">
 									<div class="item-news-block__single-img">
 										<img data-src="img/news-block/1.jpg" data-srcset="img/news-block/1@2x.jpg 2x" alt="Новость.">
@@ -1012,7 +1078,7 @@
 									</div>
 								</div>
 							</div>
-							<div data-aos="fade-up" data-aos-delay="200" class="page-section__item item-news-block">
+							<div class="page-section__item item-news-block">
 								<div class="item-news-block__single item-news-block__single_blue">
 									<div class="item-news-block__single-img">
 										<img data-src="img/news-block/2.jpg" data-srcset="img/news-block/2@2x.jpg 2x" alt="Новость.">
@@ -1027,7 +1093,7 @@
 									</div>
 								</div>
 							</div>
-							<div data-aos="fade-up" data-aos-delay="300" class="page-section__item item-news-block">
+							<div class="page-section__item item-news-block">
 								<div class="item-news-block__single item-news-block__single_orange">
 									<div class="item-news-block__single-img">
 										<img data-src="img/news-block/3.jpg" data-srcset="img/news-block/3@2x.jpg 2x" alt="Новость.">
@@ -1053,7 +1119,7 @@
 			<div class="block-doc block-doc_right mb-120">
 				<div class="block-doc__wrapper">
 					<div class="block-doc__container">
-						<div data-aos="fade-left" class="block-doc__body">
+						<div class="block-doc__body">
 							<div class="block-doc__img">
 								<img data-src="img/doc/2.png" data-srcset="img/doc/2@2x.png 2x" aria-hidden="true" alt="">
 							</div>
@@ -1919,7 +1985,7 @@
 		</div>
 	</div>
 	<!-- popup quiz end -->
-	<script src="js/app.min.js?_v=20230420025140"></script>
+	<script src="js/app.min.js?_v=20230424005013"></script>
 </body>
 
 </html>
