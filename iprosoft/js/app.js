@@ -15915,6 +15915,19 @@ PERFORMANCE OF THIS SOFTWARE.
                 ease: "power1.out"
             });
         }));
+        ScrollTrigger_ScrollTrigger.create({
+            trigger: ".culture-hero__body",
+            start: "top top",
+            end: "100% bottom",
+            pin: ".culture-hero__content",
+            pinSpacing: false,
+            onEnterBack: () => {
+                document.querySelector(".culture-hero__content").classList.add("_active");
+            },
+            onLeave: () => {
+                document.querySelector(".culture-hero__content").classList.remove("_active");
+            }
+        });
         function DynamicAdapt(type) {
             this.type = type;
         }
