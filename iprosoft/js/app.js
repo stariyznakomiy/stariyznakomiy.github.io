@@ -15752,15 +15752,12 @@ PERFORMANCE OF THIS SOFTWARE.
         };
         ScrollTrigger_getGSAP() && ScrollTrigger_gsap.registerPlugin(ScrollTrigger_ScrollTrigger);
         gsapWithCSS.registerPlugin(ScrollTrigger_ScrollTrigger);
-        const nameText = document.querySelectorAll(".hero-top__name-text p");
+        document.querySelectorAll(".hero-top__name-text p");
         const slideText = document.querySelectorAll(".hero-top__slide-text p");
         const splitText = el => {
             el.innerHTML = el.textContent.replace(/(\S*)/g, (m => `<span class="word">` + m.replace(/(-|#|@)?\S(-|#|@)?/g, "<span class='letter'>$&</span>") + `</span>`));
             return el;
         };
-        nameText.forEach((title => {
-            splitText(title);
-        }));
         slideText.forEach((title => {
             splitText(title);
         }));
@@ -15785,7 +15782,7 @@ PERFORMANCE OF THIS SOFTWARE.
         var vsOpts = {
             $slides: document.querySelectorAll(".search-page__item"),
             $list: document.querySelector(".search-page__list"),
-            duration: 5.5,
+            duration: 4.5,
             lineHeight: 40
         };
         window.addEventListener("load", (function(e) {
@@ -15793,11 +15790,10 @@ PERFORMANCE OF THIS SOFTWARE.
                 opacity: 0,
                 duration: .5
             });
-            gsapWithCSS.from(".hero-top__name-text .letter", {
-                x: -10,
-                y: 100,
-                stagger: .02,
-                delay: 1,
+            gsapWithCSS.from(".hero-top__name-text", {
+                opacity: 0,
+                x: -30,
+                delay: .5,
                 ease: "back.out(1.7)"
             });
             tl.fromTo(".hero-top__slide--1 .letter", {
@@ -15875,6 +15871,7 @@ PERFORMANCE OF THIS SOFTWARE.
             tlImages.from(".hero-top__first", {
                 opacity: 0,
                 scale: .9,
+                delay: 1,
                 duration: 1,
                 ease: "power1.out"
             });
@@ -15890,7 +15887,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 delay: 1,
                 duration: 1,
                 ease: "power1.out"
-            });
+            }, "-=1");
             tlImages.to(".hero-top__second", {
                 opacity: 0,
                 scale: 1.2,
@@ -15900,6 +15897,7 @@ PERFORMANCE OF THIS SOFTWARE.
             tlImages.from(".search-page", {
                 opacity: 0,
                 scale: 1.2,
+                delay: 1,
                 duration: 1,
                 ease: "power1.out"
             });
@@ -15918,14 +15916,12 @@ PERFORMANCE OF THIS SOFTWARE.
         ScrollTrigger_ScrollTrigger.create({
             trigger: ".culture-hero__body",
             start: "top top",
-            end: "100% bottom",
-            pin: ".culture-hero__content",
-            pinSpacing: false,
+            end: "100%-=162 bottom",
             onEnterBack: () => {
-                document.querySelector(".culture-hero__content").classList.add("_active");
+                document.querySelector(".culture-hero__content-wrap").classList.add("_active");
             },
             onLeave: () => {
-                document.querySelector(".culture-hero__content").classList.remove("_active");
+                document.querySelector(".culture-hero__content-wrap").classList.remove("_active");
             }
         });
         function DynamicAdapt(type) {
@@ -16098,6 +16094,18 @@ PERFORMANCE OF THIS SOFTWARE.
                     if (item.checked) input.hidden = false; else input.hidden = true;
                 }
             }));
+        }));
+        let time = 2;
+        const numbers = document.querySelectorAll(".item-numbers__number");
+        if (numbers) numbers.forEach((number => {
+            let i = 1;
+            let num = number.dataset.num;
+            let step = 1e3 * time / num;
+            let that = number;
+            let int = setInterval((function() {
+                if (i <= num) that.innerHTML = i; else clearInterval(int);
+                i++;
+            }), step);
         }));
         window["FLS"] = true;
         isWebp();
