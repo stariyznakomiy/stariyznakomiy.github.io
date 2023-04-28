@@ -16095,17 +16095,31 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
             }));
         }));
-        let time = 2;
+        const options = {
+            root: null,
+            rootMargin: "0px",
+            threshold: .5
+        };
+        const observer = new IntersectionObserver(((entries, observer) => {
+            entries.forEach((entry => {
+                if (entry.isIntersecting) {
+                    const number = entry.target;
+                    let time = 2;
+                    let i = 1;
+                    let num = number.dataset.num;
+                    let step = 1e3 * time / num;
+                    let that = number;
+                    let int = setInterval((function() {
+                        if (i <= num) that.innerHTML = i; else clearInterval(int);
+                        i++;
+                    }), step);
+                    observer.unobserve(number);
+                }
+            }));
+        }), options);
         const numbers = document.querySelectorAll(".item-numbers__number");
         if (numbers) numbers.forEach((number => {
-            let i = 1;
-            let num = number.dataset.num;
-            let step = 1e3 * time / num;
-            let that = number;
-            let int = setInterval((function() {
-                if (i <= num) that.innerHTML = i; else clearInterval(int);
-                i++;
-            }), step);
+            observer.observe(number);
         }));
         window["FLS"] = true;
         isWebp();
