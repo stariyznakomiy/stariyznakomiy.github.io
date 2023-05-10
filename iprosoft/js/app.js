@@ -15783,7 +15783,7 @@ PERFORMANCE OF THIS SOFTWARE.
             $slides: document.querySelectorAll(".search-page__item"),
             $list: document.querySelector(".search-page__list"),
             duration: 4.5,
-            lineHeight: 40
+            lineHeight: 35
         };
         window.addEventListener("load", (function(e) {
             gsapWithCSS.from(".hero-top__name img", {
@@ -15914,9 +15914,9 @@ PERFORMANCE OF THIS SOFTWARE.
             });
         }));
         ScrollTrigger_ScrollTrigger.create({
-            trigger: ".culture-hero__body",
+            trigger: ".culture-hero__content",
             start: "top top",
-            end: "100%-=162 bottom",
+            end: "100% bottom",
             onEnterBack: () => {
                 document.querySelector(".culture-hero__content-wrap").classList.add("_active");
             },
