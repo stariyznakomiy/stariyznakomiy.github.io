@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Верстка «iprosoft»</title>
+</head>
+
+<body>
+	<div class="rootpage">
+		<h1>Верстка «iprosoft»</h1>
+		<div class="rootpage__info">
+			Особенности проекта
+		</div>
+		<h2>Готовые страницы:</h2>
+		<ol class="rootpage__list">
+			<li><a target="_blank" href="home.html">Главная</a></li>
+			<li><a target="_blank" href="about.html">О компании</a></li>
+			<li><a target="_blank" href="team.html">Наша команда</a></li>
+			<li><a target="_blank" href="history.html">История компании</a></li>
+			<li><a target="_blank" href="branch-network.html">Филиальная сеть</a></li>
+			<li><a target="_blank" href="vacancies.html">Вакансии</a></li>
+			<li><a target="_blank" href="сorporate-culture.html">Корпоративная культура</a></li>
+			<li><a target="_blank" href="reviews.html">Отзывы</a></li>
+			<li><a target="_blank" href="quality.html">Залог качества</a></li>
+			<li><a target="_blank" href="contacts.html">Контакты</a></li>
+			<li><a target="_blank" href="psste.html">ПСС ТЭ</a></li>
+			<li><a target="_blank" href="psstk.html">Профессиональные справочные системы «Техэксперт / Кодекс»</a></li>
+			<li><a target="_blank" href="сonstruction-and-design.html">Строительство и проектирование</a></li>
+			<li><a target="_blank" href="products-and-solutions.html">Продукты и решения</a></li>
+			<li><a target="_blank" href="OSaH.html">Техэксперт: Охрана труда</a></li>
+			<li><a target="_blank" href="bank-documents.html">Банк документов</a></li>
+			<li><a target="_blank" href="estimated-programs.html">Сметные программы</a></li>
+			<li><a target="_blank" href="adept-project.html">Адепт: Проект</a></li>
+			<li><a target="_blank" href="adept-estimate.html">Адепт: Смета</a></li>
+			<li><a target="_blank" href="zms.html">ЗМС</a></li>
+			<li><a target="_blank" href="integration.html">Интеграционные возможности</a></li>
+			<li><a target="_blank" href="services.html">Услуги и сервисы</a></li>
+			<li><a target="_blank" href="сard-file-document.html">Картотека документов</a></li>
+			<li><a target="_blank" href="сard-file.html">Картотека</a></li>
+			<li><a target="_blank" href="сard-file-search.html">Результат поиска документов</a></li>
+			<li><a target="_blank" href="crstd.html">СУ НТД</a></li>
+			<li><a target="_blank" href="csr.html">СУ ТР</a></li>
+			<li><a target="_blank" href="news.html">Новости</a></li>
+			<!-- <li><a target="_blank" href="news-single-1.html">Новость 1</a></li> -->
+			<li><a target="_blank" href="news-single-2.html">Новость 2</a></li>
+			<!-- <li><a target="_blank" href="news-single-3.html">Новость 3</a></li>
+			<li><a target="_blank" href="news-single-4.html">Новость 4</a></li>
+			<li><a target="_blank" href="news-single-5.html">Новость 5</a></li>
+			<li><a target="_blank" href="news-single-6.html">Новость 6</a></li>
+			<li><a target="_blank" href="news-single-7.html">Новость 7</a></li>
+			<li><a target="_blank" href="news-single-8.html">Новость 8</a></li>
+			<li><a target="_blank" href="news-single-9.html">Новость 9</a></li> -->
+			<li><a target="_blank" href="news-single-10.html">Новость 10</a></li>
+			<li><a target="_blank" href="downloads.html">Downloads</a></li>
+			<li><a target="_blank" href="electronic-newspapers.html">Электронные газеты</a></li>
+			<li></li>
+		</ol>
+	</div>
+</body>
+<style>
+	@charset "UTF-8";
+	@import url("https://fonts.googleapis.com/css?family=Montserrat:regular,700&display=swap");
+
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		min-width: 320px;
+		width: 100%;
+		color: #fff;
+
+	}
+
+	body {
+		font-family: Montserrat;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 1rem;
+	}
+
+	a {
+		text-decoration: underline;
+		color: #000000
+	}
+
+	a:visited {
+		text-decoration: underline;
+		color: #000000;
+	}
+
+	a:hover {
+		text-decoration: none;
+	}
+
+	ul li {
+		list-style: none;
+	}
+
+	img {
+		vertical-align: top;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: hidden;
+	}
+
+	.rootpage {
+		padding: 30px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	@media (max-width: 767px) {
+		.rootpage {
+			padding: 30px 15px;
+		}
+	}
+
+	h1 {
+		color: #000000;
+		font-size: 2.5rem;
+		margin: 0px 0px 1.25rem 0px;
+	}
+
+	@media (max-width: 767px) {
+		h1 {
+			font-size: 1.85rem;
+			margin: 0px 0px 1.25rem 0px;
+		}
+	}
+
+	h2 {
+		color: #000000;
+		font-size: 1.25rem;
+		margin: 0px 0px 1rem 0px;
+	}
+
+	@media (max-width: 767px) {
+		h2 {
+			font-size: 1.125rem;
+			margin: 0px 0px 1rem 0px;
+		}
+	}
+
+	.rootpage__info {
+		line-height: 140%;
+		margin: 0px 0px 1.5rem 0px;
+	}
+
+	.rootpage__list {
+		margin: 0px 0px 2.25rem 1.25rem;
+	}
+
+	.rootpage__list li:not(:last-child) {
+		margin: 0px 0px 15px 0px;
+	}
+
+	.rootpage__contacts,
+	.rootpage__tnx {
+		border-radius: 200px;
+		padding: 20px 65px;
+		line-height: 140%;
+	}
+
+	@media (max-width: 767px) {
+
+		.rootpage__contacts,
+		.rootpage__tnx {
+			border-radius: 40px;
+			padding: 20px;
+		}
+	}
+
+	.rootpage__contacts {
+		background: #32b5a4;
+
+	}
+
+	.rootpage__contacts a {
+		color: #000000;
+	}
+
+	.rootpage__tnx {
+		background: #c22d63;
+		margin: 0px 0px 1rem 0px;
+	}
+</style>
+
+</html>
