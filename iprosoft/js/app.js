@@ -16197,7 +16197,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (entry.isIntersecting) {
                     const number = entry.target;
                     let num = number.dataset.num;
-                    var numAnim = new countUp(number, 0, num, 0, 3, {
+                    var numAnim = new countUp(number, 0, num, 0, 1.5, {
                         useGrouping: false
                     });
                     numAnim.start();
