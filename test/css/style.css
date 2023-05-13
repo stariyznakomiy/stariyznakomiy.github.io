@@ -562,9 +562,6 @@ body::after {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  -webkit-transition: color 0.3s ease 0s;
-  -o-transition: color 0.3s ease 0s;
-  transition: color 0.3s ease 0s;
 }
 
 .main__cart svg {
@@ -3193,10 +3190,6 @@ body[data-aos-easing=ease-in-out-quart] [data-aos] {
   }
 
   .main__socials-item:hover {
-    color: #b4977b;
-  }
-
-  .main__cart:hover {
     color: #b4977b;
   }
 
