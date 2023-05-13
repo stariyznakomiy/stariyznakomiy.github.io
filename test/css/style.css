@@ -571,6 +571,9 @@ body::after {
   width: 1.5rem;
   height: 1.5rem;
   fill: currentColor;
+  -webkit-transition: color 0.3s ease 0s;
+  -o-transition: color 0.3s ease 0s;
+  transition: color 0.3s ease 0s;
 }
 
 .main__cart span {
@@ -3194,6 +3197,10 @@ body[data-aos-easing=ease-in-out-quart] [data-aos] {
   }
 
   .main__cart:hover {
+    color: #b4977b;
+  }
+
+  .main__cart:hover svg {
     color: #b4977b;
   }
 
