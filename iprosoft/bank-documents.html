@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230511134924">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230522105743">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -376,56 +376,90 @@
 			</div>
 			<!-- block-doc end  -->
 
-			<!-- page-section -->
-			<section class="page-section mb-120">
-				<div class="page-section__container">
-					<div class="page-section__body">
-						<div class="page-section__header section-header mb-80">
-							<h2 class="section-header__title h2 ">Наши клиенты</h2>
-							<span></span>
-							<a href="#" class="section-header__link link-more">
+			<!-- section carousel -->
+			<section class="carousel mb-120">
+				<div class="carousel__container">
+					<div class="carousel__header section-header mb-60">
+						<h2 class="section-header__title h2">Наши клиенты</h2>
+						<span></span>
+						<a href="#" class="section-header__link link-more">
+							<span class="bold-16">Подробнее</span>
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-arrow-right"></use>
+							</svg>
+						</a>
+					</div>
+					<div class="carousel__content">
+						<div class="carousel__body">
+							<a href="#" class="page-section__more-mob link-more mb-40">
 								<span class="bold-16">Подробнее</span>
 								<svg>
 									<use xlink:href="img/icons/icons.svg#svg-arrow-right"></use>
 								</svg>
 							</a>
-						</div>
-						<div class="page-section__grid page-section__grid_auto">
-							<div class="page-section__item item-clients">
-								<img data-src="img/clients/1.png" data-srcset="img/clients/1@2x.png 2x" alt="Логотип Газпром.">
-							</div>
-							<div class="page-section__item item-clients">
-								<img data-src="img/clients/2.png" data-srcset="img/clients/2@2x.png 2x" alt="Логотип Лукойл.">
-							</div>
-							<div class="page-section__item item-clients">
-								<img data-src="img/clients/3.png" data-srcset="img/clients/3@2x.png 2x" alt="Логотип РЖД.">
-							</div>
-							<div class="page-section__item item-clients">
-								<img data-src="img/clients/4.png" data-srcset="img/clients/4@2x.png 2x" alt="Логотип Роскосмос.">
-							</div>
-							<div class="page-section__item item-clients">
-								<img data-src="img/clients/5.png" data-srcset="img/clients/5@2x.png 2x" alt="Логотип Роснефть.">
-							</div>
-							<div class="page-section__item item-clients">
-								<img data-src="img/clients/6.png" data-srcset="img/clients/6@2x.png 2x" alt="Логотип Россети.">
-							</div>
-							<div class="page-section__item item-clients">
-								<img data-src="img/clients/7.png" data-srcset="img/clients/7@2x.png 2x" alt="Логотип Ростех.">
-							</div>
-							<div class="page-section__item item-clients">
-								<img data-src="img/clients/8.png" data-srcset="img/clients/8@2x.png 2x" alt="Логотип Уралхим.">
-							</div>
-							<div class="page-section__item item-clients">
-								<img data-src="img/clients/9.png" data-srcset="img/clients/9@2x.png 2x" alt="Логотип УАЗ.">
-							</div>
-							<div class="page-section__item item-clients">
-								<img data-src="img/clients/10.png" data-srcset="img/clients/10@2x.png 2x" alt="Логотип TatNeft.">
+							<div class="carousel__slider carousel__slider--5">
+								<div class="carousel__arrows">
+									<button type="button" class="carousel__arrow carousel__arrow-left swiper-arrow-prev mb-40">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-slider-left"></use>
+										</svg>
+									</button>
+									<button type="button" class="carousel__arrow carousel__arrow-right swiper-arrow-next mb-40">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-slider-right"></use>
+										</svg>
+									</button>
+								</div>
+								<div class="carousel__slider-list swiper">
+									<div class="carousel__wrapper swiper-wrapper">
+										<div class="carousel__slide swiper-slide">
+											<div class="item-clients">
+												<img data-src="img/clients/1.png" data-srcset="img/clients/1@2x.png 2x" alt="Логотип Газпром.">
+											</div>
+											<div class="item-clients">
+												<img data-src="img/clients/6.png" data-srcset="img/clients/6@2x.png 2x" alt="Логотип Россети.">
+											</div>
+										</div>
+										<div class="carousel__slide swiper-slide">
+											<div class="item-clients">
+												<img data-src="img/clients/2.png" data-srcset="img/clients/2@2x.png 2x" alt="Логотип Лукойл.">
+											</div>
+											<div class="item-clients">
+												<img data-src="img/clients/7.png" data-srcset="img/clients/7@2x.png 2x" alt="Логотип Ростех.">
+											</div>
+										</div>
+										<div class="carousel__slide swiper-slide">
+											<div class="item-clients">
+												<img data-src="img/clients/3.png" data-srcset="img/clients/3@2x.png 2x" alt="Логотип РЖД.">
+											</div>
+											<div class="item-clients">
+												<img data-src="img/clients/8.png" data-srcset="img/clients/8@2x.png 2x" alt="Логотип Уралхим.">
+											</div>
+										</div>
+										<div class="carousel__slide swiper-slide">
+											<div class="item-clients">
+												<img data-src="img/clients/4.png" data-srcset="img/clients/4@2x.png 2x" alt="Логотип Роскосмос.">
+											</div>
+											<div class="item-clients">
+												<img data-src="img/clients/9.png" data-srcset="img/clients/9@2x.png 2x" alt="Логотип УАЗ.">
+											</div>
+										</div>
+										<div class="carousel__slide swiper-slide">
+											<div class="item-clients">
+												<img data-src="img/clients/5.png" data-srcset="img/clients/5@2x.png 2x" alt="Логотип Роснефть.">
+											</div>
+											<div class="item-clients">
+												<img data-src="img/clients/10.png" data-srcset="img/clients/10@2x.png 2x" alt="Логотип TatNeft.">
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			<!-- page-section end -->
+			<!-- section carousel end -->
 
 			<!-- block-doc  -->
 			<div class="block-doc block-doc_right mb-120">
@@ -1619,7 +1653,7 @@
 		</div>
 	</div>
 	<!-- popup quiz end -->
-	<script src="js/app.min.js?_v=20230511134924"></script>
+	<script src="js/app.min.js?_v=20230522105743"></script>
 </body>
 
 </html>

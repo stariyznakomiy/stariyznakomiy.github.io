@@ -441,6 +441,10 @@
                 } ]);
             }));
         },
+        807: module => {
+            var canUseDOM = !!("undefined" !== typeof window && window.document && window.document.createElement);
+            module.exports = canUseDOM;
+        },
         125: module => {
             /*!
  * dist/inputmask.min
@@ -8207,6 +8211,244 @@
                 destroy
             });
         }
+        function Autoplay({swiper, extendParams, on, emit, params}) {
+            swiper.autoplay = {
+                running: false,
+                paused: false,
+                timeLeft: 0
+            };
+            extendParams({
+                autoplay: {
+                    enabled: false,
+                    delay: 3e3,
+                    waitForTransition: true,
+                    disableOnInteraction: true,
+                    stopOnLastSlide: false,
+                    reverseDirection: false,
+                    pauseOnMouseEnter: false
+                }
+            });
+            let timeout;
+            let raf;
+            let autoplayDelayTotal = params && params.autoplay ? params.autoplay.delay : 3e3;
+            let autoplayDelayCurrent = params && params.autoplay ? params.autoplay.delay : 3e3;
+            let autoplayTimeLeft;
+            let autoplayStartTime = (new Date).getTime;
+            let wasPaused;
+            let isTouched;
+            let pausedByTouch;
+            let touchStartTimeout;
+            let slideChanged;
+            let pausedByInteraction;
+            function onTransitionEnd(e) {
+                if (!swiper || swiper.destroyed || !swiper.wrapperEl) return;
+                if (e.target !== swiper.wrapperEl) return;
+                swiper.wrapperEl.removeEventListener("transitionend", onTransitionEnd);
+                resume();
+            }
+            const calcTimeLeft = () => {
+                if (swiper.destroyed || !swiper.autoplay.running) return;
+                if (swiper.autoplay.paused) wasPaused = true; else if (wasPaused) {
+                    autoplayDelayCurrent = autoplayTimeLeft;
+                    wasPaused = false;
+                }
+                const timeLeft = swiper.autoplay.paused ? autoplayTimeLeft : autoplayStartTime + autoplayDelayCurrent - (new Date).getTime();
+                swiper.autoplay.timeLeft = timeLeft;
+                emit("autoplayTimeLeft", timeLeft, timeLeft / autoplayDelayTotal);
+                raf = requestAnimationFrame((() => {
+                    calcTimeLeft();
+                }));
+            };
+            const getSlideDelay = () => {
+                let activeSlideEl;
+                if (swiper.virtual && swiper.params.virtual.enabled) activeSlideEl = swiper.slides.filter((slideEl => slideEl.classList.contains("swiper-slide-active")))[0]; else activeSlideEl = swiper.slides[swiper.activeIndex];
+                if (!activeSlideEl) return;
+                const currentSlideDelay = parseInt(activeSlideEl.getAttribute("data-swiper-autoplay"), 10);
+                return currentSlideDelay;
+            };
+            const run = delayForce => {
+                if (swiper.destroyed || !swiper.autoplay.running) return;
+                cancelAnimationFrame(raf);
+                calcTimeLeft();
+                let delay = "undefined" === typeof delayForce ? swiper.params.autoplay.delay : delayForce;
+                autoplayDelayTotal = swiper.params.autoplay.delay;
+                autoplayDelayCurrent = swiper.params.autoplay.delay;
+                const currentSlideDelay = getSlideDelay();
+                if (!Number.isNaN(currentSlideDelay) && currentSlideDelay > 0 && "undefined" === typeof delayForce) {
+                    delay = currentSlideDelay;
+                    autoplayDelayTotal = currentSlideDelay;
+                    autoplayDelayCurrent = currentSlideDelay;
+                }
+                autoplayTimeLeft = delay;
+                const speed = swiper.params.speed;
+                const proceed = () => {
+                    if (!swiper || swiper.destroyed) return;
+                    if (swiper.params.autoplay.reverseDirection) {
+                        if (!swiper.isBeginning || swiper.params.loop || swiper.params.rewind) {
+                            swiper.slidePrev(speed, true, true);
+                            emit("autoplay");
+                        } else if (!swiper.params.autoplay.stopOnLastSlide) {
+                            swiper.slideTo(swiper.slides.length - 1, speed, true, true);
+                            emit("autoplay");
+                        }
+                    } else if (!swiper.isEnd || swiper.params.loop || swiper.params.rewind) {
+                        swiper.slideNext(speed, true, true);
+                        emit("autoplay");
+                    } else if (!swiper.params.autoplay.stopOnLastSlide) {
+                        swiper.slideTo(0, speed, true, true);
+                        emit("autoplay");
+                    }
+                    if (swiper.params.cssMode) {
+                        autoplayStartTime = (new Date).getTime();
+                        requestAnimationFrame((() => {
+                            run();
+                        }));
+                    }
+                };
+                if (delay > 0) {
+                    clearTimeout(timeout);
+                    timeout = setTimeout((() => {
+                        proceed();
+                    }), delay);
+                } else requestAnimationFrame((() => {
+                    proceed();
+                }));
+                return delay;
+            };
+            const start = () => {
+                swiper.autoplay.running = true;
+                run();
+                emit("autoplayStart");
+            };
+            const stop = () => {
+                swiper.autoplay.running = false;
+                clearTimeout(timeout);
+                cancelAnimationFrame(raf);
+                emit("autoplayStop");
+            };
+            const pause = (internal, reset) => {
+                if (swiper.destroyed || !swiper.autoplay.running) return;
+                clearTimeout(timeout);
+                if (!internal) pausedByInteraction = true;
+                const proceed = () => {
+                    emit("autoplayPause");
+                    if (swiper.params.autoplay.waitForTransition) swiper.wrapperEl.addEventListener("transitionend", onTransitionEnd); else resume();
+                };
+                swiper.autoplay.paused = true;
+                if (reset) {
+                    if (slideChanged) autoplayTimeLeft = swiper.params.autoplay.delay;
+                    slideChanged = false;
+                    proceed();
+                    return;
+                }
+                const delay = autoplayTimeLeft || swiper.params.autoplay.delay;
+                autoplayTimeLeft = delay - ((new Date).getTime() - autoplayStartTime);
+                if (swiper.isEnd && autoplayTimeLeft < 0 && !swiper.params.loop) return;
+                if (autoplayTimeLeft < 0) autoplayTimeLeft = 0;
+                proceed();
+            };
+            const resume = () => {
+                if (swiper.isEnd && autoplayTimeLeft < 0 && !swiper.params.loop || swiper.destroyed || !swiper.autoplay.running) return;
+                autoplayStartTime = (new Date).getTime();
+                if (pausedByInteraction) {
+                    pausedByInteraction = false;
+                    run(autoplayTimeLeft);
+                } else run();
+                swiper.autoplay.paused = false;
+                emit("autoplayResume");
+            };
+            const onVisibilityChange = () => {
+                if (swiper.destroyed || !swiper.autoplay.running) return;
+                const document = ssr_window_esm_getDocument();
+                if ("hidden" === document.visibilityState) {
+                    pausedByInteraction = true;
+                    pause(true);
+                }
+                if ("visible" === document.visibilityState) resume();
+            };
+            const onPointerEnter = e => {
+                if ("mouse" !== e.pointerType) return;
+                pausedByInteraction = true;
+                pause(true);
+            };
+            const onPointerLeave = e => {
+                if ("mouse" !== e.pointerType) return;
+                if (swiper.autoplay.paused) resume();
+            };
+            const attachMouseEvents = () => {
+                if (swiper.params.autoplay.pauseOnMouseEnter) {
+                    swiper.el.addEventListener("pointerenter", onPointerEnter);
+                    swiper.el.addEventListener("pointerleave", onPointerLeave);
+                }
+            };
+            const detachMouseEvents = () => {
+                swiper.el.removeEventListener("pointerenter", onPointerEnter);
+                swiper.el.removeEventListener("pointerleave", onPointerLeave);
+            };
+            const attachDocumentEvents = () => {
+                const document = ssr_window_esm_getDocument();
+                document.addEventListener("visibilitychange", onVisibilityChange);
+            };
+            const detachDocumentEvents = () => {
+                const document = ssr_window_esm_getDocument();
+                document.removeEventListener("visibilitychange", onVisibilityChange);
+            };
+            on("init", (() => {
+                if (swiper.params.autoplay.enabled) {
+                    attachMouseEvents();
+                    attachDocumentEvents();
+                    autoplayStartTime = (new Date).getTime();
+                    start();
+                }
+            }));
+            on("destroy", (() => {
+                detachMouseEvents();
+                detachDocumentEvents();
+                if (swiper.autoplay.running) stop();
+            }));
+            on("beforeTransitionStart", ((_s, speed, internal) => {
+                if (swiper.destroyed || !swiper.autoplay.running) return;
+                if (internal || !swiper.params.autoplay.disableOnInteraction) pause(true, true); else stop();
+            }));
+            on("sliderFirstMove", (() => {
+                if (swiper.destroyed || !swiper.autoplay.running) return;
+                if (swiper.params.autoplay.disableOnInteraction) {
+                    stop();
+                    return;
+                }
+                isTouched = true;
+                pausedByTouch = false;
+                pausedByInteraction = false;
+                touchStartTimeout = setTimeout((() => {
+                    pausedByInteraction = true;
+                    pausedByTouch = true;
+                    pause(true);
+                }), 200);
+            }));
+            on("touchEnd", (() => {
+                if (swiper.destroyed || !swiper.autoplay.running || !isTouched) return;
+                clearTimeout(touchStartTimeout);
+                clearTimeout(timeout);
+                if (swiper.params.autoplay.disableOnInteraction) {
+                    pausedByTouch = false;
+                    isTouched = false;
+                    return;
+                }
+                if (pausedByTouch && swiper.params.cssMode) resume();
+                pausedByTouch = false;
+                isTouched = false;
+            }));
+            on("slideChange", (() => {
+                if (swiper.destroyed || !swiper.autoplay.running) return;
+                slideChanged = true;
+            }));
+            Object.assign(swiper.autoplay, {
+                start,
+                stop,
+                pause,
+                resume
+            });
+        }
         function freeMode({swiper, extendParams, emit, once}) {
             extendParams({
                 freeMode: {
@@ -8372,6 +8614,59 @@
                 sliderWrap.classList.add(`slider-id-${index}`);
                 sliderWrap.querySelector(".swiper-wrapper").classList.add(`slider-wrapper-id-${index}`);
                 if (sliderWrap.classList.contains("carousel__slider--5")) new core(`.slider-id-${index} .swiper`, {
+                    modules: [ Navigation, Pagination, freeMode, Autoplay ],
+                    observer: true,
+                    observeParents: true,
+                    slidesPerView: 4,
+                    spaceBetween: 48,
+                    speed: 800,
+                    watchSlidesProgress: true,
+                    autoplay: {
+                        delay: 2e3,
+                        disableOnInteraction: false
+                    },
+                    pagination: {
+                        el: `.carousel__slider.slider-id-${index} .swiper-pagination`,
+                        clickable: true
+                    },
+                    navigation: {
+                        prevEl: `.carousel__slider.slider-id-${index} .swiper-arrow-prev`,
+                        nextEl: `.carousel__slider.slider-id-${index} .swiper-arrow-next`
+                    },
+                    breakpoints: {
+                        320: {
+                            slidesPerView: 1,
+                            spaceBetween: 24,
+                            autoplay: {
+                                delay: 2e3,
+                                disableOnInteraction: false
+                            }
+                        },
+                        480: {
+                            slidesPerView: 2,
+                            spaceBetween: 24,
+                            autoplay: {
+                                delay: 2e3,
+                                disableOnInteraction: false
+                            }
+                        },
+                        768: {
+                            slidesPerView: 3,
+                            spaceBetween: 36,
+                            autoplay: {
+                                delay: 2e3,
+                                disableOnInteraction: false
+                            }
+                        },
+                        1200: {
+                            slidesPerView: 5,
+                            spaceBetween: 48,
+                            autoplay: false
+                        }
+                    },
+                    on: {}
+                });
+                if (sliderWrap.classList.contains("carousel__slider--4")) new core(`.slider-id-${index} .swiper`, {
                     modules: [ Navigation, Pagination, freeMode ],
                     observer: true,
                     observeParents: true,
@@ -8401,13 +8696,13 @@
                             spaceBetween: 36
                         },
                         1200: {
-                            slidesPerView: 5,
+                            slidesPerView: 4,
                             spaceBetween: 48
                         }
                     },
                     on: {}
                 });
-                if (sliderWrap.classList.contains("carousel__slider--4")) new core(`.slider-id-${index} .swiper`, {
+                if (sliderWrap.classList.contains("carousel__slider-mob--4")) new core(`.slider-id-${index} .swiper`, {
                     modules: [ Navigation, Pagination, freeMode ],
                     observer: true,
                     observeParents: true,
@@ -8425,7 +8720,7 @@
                     },
                     breakpoints: {
                         320: {
-                            slidesPerView: 1.3,
+                            slidesPerView: 1,
                             spaceBetween: 24
                         },
                         480: {
@@ -8441,7 +8736,17 @@
                             spaceBetween: 48
                         }
                     },
-                    on: {}
+                    on: {
+                        beforeInit: function() {
+                            if (window.innerWidth > 1199.98) this.disable(); else this.enable();
+                        },
+                        resize: function() {
+                            if (window.innerWidth > 1199.98) {
+                                this.slideTo(0);
+                                this.disable();
+                            } else this.enable();
+                        }
+                    }
                 });
                 if (sliderWrap.classList.contains("carousel__slider--3")) new core(`.slider-id-${index} .swiper`, {
                     modules: [ Navigation, Pagination, freeMode ],
@@ -8461,7 +8766,7 @@
                     },
                     breakpoints: {
                         320: {
-                            slidesPerView: 1.1,
+                            slidesPerView: 1,
                             spaceBetween: 24
                         },
                         650: {
@@ -8478,6 +8783,190 @@
                         }
                     },
                     on: {}
+                });
+                if (sliderWrap.classList.contains("carousel__slider-mob--3")) new core(`.slider-id-${index} .swiper`, {
+                    modules: [ Navigation, Pagination, freeMode ],
+                    observer: true,
+                    observeParents: true,
+                    slidesPerView: 3,
+                    spaceBetween: 48,
+                    speed: 800,
+                    watchSlidesProgress: true,
+                    pagination: {
+                        el: `.carousel__slider.slider-id-${index} .swiper-pagination`,
+                        clickable: true
+                    },
+                    navigation: {
+                        prevEl: `.carousel__slider.slider-id-${index} .swiper-arrow-prev`,
+                        nextEl: `.carousel__slider.slider-id-${index} .swiper-arrow-next`
+                    },
+                    breakpoints: {
+                        320: {
+                            slidesPerView: 1,
+                            spaceBetween: 24
+                        },
+                        650: {
+                            slidesPerView: 2,
+                            spaceBetween: 24
+                        },
+                        992: {
+                            slidesPerView: 3,
+                            spaceBetween: 36
+                        },
+                        1200: {
+                            slidesPerView: 3,
+                            spaceBetween: 48
+                        }
+                    },
+                    on: {
+                        beforeInit: function() {
+                            if (window.innerWidth > 1199.98) this.disable(); else this.enable();
+                        },
+                        resize: function() {
+                            if (window.innerWidth > 1199.98) {
+                                this.slideTo(0);
+                                this.disable();
+                            } else this.enable();
+                        }
+                    }
+                });
+                if (sliderWrap.classList.contains("carousel__slider-mob--2")) new core(`.slider-id-${index} .swiper`, {
+                    modules: [ Navigation, Pagination, freeMode ],
+                    observer: true,
+                    observeParents: true,
+                    slidesPerView: 2,
+                    spaceBetween: 48,
+                    speed: 800,
+                    watchSlidesProgress: true,
+                    pagination: {
+                        el: `.carousel__slider.slider-id-${index} .swiper-pagination`,
+                        clickable: true
+                    },
+                    navigation: {
+                        prevEl: `.carousel__slider.slider-id-${index} .swiper-arrow-prev`,
+                        nextEl: `.carousel__slider.slider-id-${index} .swiper-arrow-next`
+                    },
+                    breakpoints: {
+                        320: {
+                            slidesPerView: 1,
+                            spaceBetween: 24
+                        },
+                        650: {
+                            slidesPerView: 2,
+                            spaceBetween: 24
+                        },
+                        992: {
+                            slidesPerView: 2,
+                            spaceBetween: 36
+                        },
+                        1200: {
+                            slidesPerView: 2,
+                            spaceBetween: 48
+                        }
+                    },
+                    on: {
+                        beforeInit: function() {
+                            if (window.innerWidth > 1199.98) this.disable(); else this.enable();
+                        },
+                        resize: function() {
+                            if (window.innerWidth > 1199.98) {
+                                this.slideTo(0);
+                                this.disable();
+                            } else this.enable();
+                        }
+                    }
+                });
+                if (sliderWrap.classList.contains("carousel__slider-mob--2-numbers")) new core(`.slider-id-${index} .swiper`, {
+                    modules: [ Navigation, Pagination, freeMode ],
+                    observer: true,
+                    observeParents: true,
+                    slidesPerView: 2,
+                    spaceBetween: 48,
+                    speed: 800,
+                    watchSlidesProgress: true,
+                    pagination: {
+                        el: `.carousel__slider.slider-id-${index} .swiper-pagination`,
+                        clickable: true
+                    },
+                    navigation: {
+                        prevEl: `.carousel__slider.slider-id-${index} .swiper-arrow-prev`,
+                        nextEl: `.carousel__slider.slider-id-${index} .swiper-arrow-next`
+                    },
+                    breakpoints: {
+                        320: {
+                            slidesPerView: 2,
+                            spaceBetween: 24
+                        },
+                        650: {
+                            slidesPerView: 3,
+                            spaceBetween: 24
+                        },
+                        992: {
+                            slidesPerView: 4,
+                            spaceBetween: 36
+                        },
+                        1200: {
+                            slidesPerView: 2,
+                            spaceBetween: 48
+                        }
+                    },
+                    on: {
+                        beforeInit: function() {
+                            if (window.innerWidth > 1199.98) this.disable(); else this.enable();
+                        },
+                        resize: function() {
+                            if (window.innerWidth > 1199.98) {
+                                this.slideTo(0);
+                                this.disable();
+                            } else this.enable();
+                        }
+                    }
+                });
+                if (sliderWrap.classList.contains("carousel__slider--clients")) new core(`.slider-id-${index} .swiper`, {
+                    modules: [ Navigation, Pagination, freeMode, Autoplay ],
+                    observer: true,
+                    observeParents: true,
+                    slidesPerView: 5,
+                    spaceBetween: 0,
+                    speed: 800,
+                    watchSlidesProgress: true,
+                    autoplay: {
+                        delay: 2e3,
+                        disableOnInteraction: false
+                    },
+                    pagination: {
+                        el: `.carousel__slider.slider-id-${index} .swiper-pagination`,
+                        clickable: true
+                    },
+                    navigation: {
+                        prevEl: `.carousel__slider.slider-id-${index} .swiper-arrow-prev`,
+                        nextEl: `.carousel__slider.slider-id-${index} .swiper-arrow-next`
+                    },
+                    breakpoints: {
+                        320: {
+                            slidesPerView: 1
+                        },
+                        480: {
+                            slidesPerView: 2
+                        },
+                        768: {
+                            slidesPerView: 3
+                        },
+                        1200: {
+                            slidesPerView: 5
+                        }
+                    },
+                    on: {
+                        beforeInit: function() {
+                            if (window.innerWidth > 1199.98) this.disable(); else this.enable();
+                        },
+                        resize: function() {
+                            if (window.innerWidth > 1199.98) {
+                                this.slideTo(0);
+                                this.disable();
+                            } else this.enable();
+                        }
+                    }
                 });
             }
             new core(".slider-reviews__list", {
@@ -8496,6 +8985,965 @@
         }
         window.addEventListener("load", (function(e) {
             initSliders();
+        }));
+        var can_use_dom = __webpack_require__(807);
+        function isObject_isObject(value) {
+            var type = typeof value;
+            return null != value && ("object" == type || "function" == type);
+        }
+        const lodash_es_isObject = isObject_isObject;
+        var freeGlobal = "object" == typeof global && global && global.Object === Object && global;
+        const _freeGlobal = freeGlobal;
+        var freeSelf = "object" == typeof self && self && self.Object === Object && self;
+        var root = _freeGlobal || freeSelf || Function("return this")();
+        const _root = root;
+        var now_now = function() {
+            return _root.Date.now();
+        };
+        const lodash_es_now = now_now;
+        var reWhitespace = /\s/;
+        function trimmedEndIndex(string) {
+            var index = string.length;
+            while (index-- && reWhitespace.test(string.charAt(index))) ;
+            return index;
+        }
+        const _trimmedEndIndex = trimmedEndIndex;
+        var reTrimStart = /^\s+/;
+        function baseTrim(string) {
+            return string ? string.slice(0, _trimmedEndIndex(string) + 1).replace(reTrimStart, "") : string;
+        }
+        const _baseTrim = baseTrim;
+        var Symbol = _root.Symbol;
+        const _Symbol = Symbol;
+        var objectProto = Object.prototype;
+        var _getRawTag_hasOwnProperty = objectProto.hasOwnProperty;
+        var nativeObjectToString = objectProto.toString;
+        var symToStringTag = _Symbol ? _Symbol.toStringTag : void 0;
+        function getRawTag(value) {
+            var isOwn = _getRawTag_hasOwnProperty.call(value, symToStringTag), tag = value[symToStringTag];
+            try {
+                value[symToStringTag] = void 0;
+                var unmasked = true;
+            } catch (e) {}
+            var result = nativeObjectToString.call(value);
+            if (unmasked) if (isOwn) value[symToStringTag] = tag; else delete value[symToStringTag];
+            return result;
+        }
+        const _getRawTag = getRawTag;
+        var _objectToString_objectProto = Object.prototype;
+        var _objectToString_nativeObjectToString = _objectToString_objectProto.toString;
+        function objectToString(value) {
+            return _objectToString_nativeObjectToString.call(value);
+        }
+        const _objectToString = objectToString;
+        var nullTag = "[object Null]", undefinedTag = "[object Undefined]";
+        var _baseGetTag_symToStringTag = _Symbol ? _Symbol.toStringTag : void 0;
+        function baseGetTag(value) {
+            if (null == value) return void 0 === value ? undefinedTag : nullTag;
+            return _baseGetTag_symToStringTag && _baseGetTag_symToStringTag in Object(value) ? _getRawTag(value) : _objectToString(value);
+        }
+        const _baseGetTag = baseGetTag;
+        function isObjectLike(value) {
+            return null != value && "object" == typeof value;
+        }
+        const lodash_es_isObjectLike = isObjectLike;
+        var symbolTag = "[object Symbol]";
+        function isSymbol(value) {
+            return "symbol" == typeof value || lodash_es_isObjectLike(value) && _baseGetTag(value) == symbolTag;
+        }
+        const lodash_es_isSymbol = isSymbol;
+        var NAN = 0 / 0;
+        var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+        var reIsBinary = /^0b[01]+$/i;
+        var reIsOctal = /^0o[0-7]+$/i;
+        var freeParseInt = parseInt;
+        function toNumber(value) {
+            if ("number" == typeof value) return value;
+            if (lodash_es_isSymbol(value)) return NAN;
+            if (lodash_es_isObject(value)) {
+                var other = "function" == typeof value.valueOf ? value.valueOf() : value;
+                value = lodash_es_isObject(other) ? other + "" : other;
+            }
+            if ("string" != typeof value) return 0 === value ? value : +value;
+            value = _baseTrim(value);
+            var isBinary = reIsBinary.test(value);
+            return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
+        }
+        const lodash_es_toNumber = toNumber;
+        var FUNC_ERROR_TEXT = "Expected a function";
+        var nativeMax = Math.max, nativeMin = Math.min;
+        function debounce(func, wait, options) {
+            var lastArgs, lastThis, maxWait, result, timerId, lastCallTime, lastInvokeTime = 0, leading = false, maxing = false, trailing = true;
+            if ("function" != typeof func) throw new TypeError(FUNC_ERROR_TEXT);
+            wait = lodash_es_toNumber(wait) || 0;
+            if (lodash_es_isObject(options)) {
+                leading = !!options.leading;
+                maxing = "maxWait" in options;
+                maxWait = maxing ? nativeMax(lodash_es_toNumber(options.maxWait) || 0, wait) : maxWait;
+                trailing = "trailing" in options ? !!options.trailing : trailing;
+            }
+            function invokeFunc(time) {
+                var args = lastArgs, thisArg = lastThis;
+                lastArgs = lastThis = void 0;
+                lastInvokeTime = time;
+                result = func.apply(thisArg, args);
+                return result;
+            }
+            function leadingEdge(time) {
+                lastInvokeTime = time;
+                timerId = setTimeout(timerExpired, wait);
+                return leading ? invokeFunc(time) : result;
+            }
+            function remainingWait(time) {
+                var timeSinceLastCall = time - lastCallTime, timeSinceLastInvoke = time - lastInvokeTime, timeWaiting = wait - timeSinceLastCall;
+                return maxing ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke) : timeWaiting;
+            }
+            function shouldInvoke(time) {
+                var timeSinceLastCall = time - lastCallTime, timeSinceLastInvoke = time - lastInvokeTime;
+                return void 0 === lastCallTime || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
+            }
+            function timerExpired() {
+                var time = lodash_es_now();
+                if (shouldInvoke(time)) return trailingEdge(time);
+                timerId = setTimeout(timerExpired, remainingWait(time));
+            }
+            function trailingEdge(time) {
+                timerId = void 0;
+                if (trailing && lastArgs) return invokeFunc(time);
+                lastArgs = lastThis = void 0;
+                return result;
+            }
+            function cancel() {
+                if (void 0 !== timerId) clearTimeout(timerId);
+                lastInvokeTime = 0;
+                lastArgs = lastCallTime = lastThis = timerId = void 0;
+            }
+            function flush() {
+                return void 0 === timerId ? result : trailingEdge(lodash_es_now());
+            }
+            function debounced() {
+                var time = lodash_es_now(), isInvoking = shouldInvoke(time);
+                lastArgs = arguments;
+                lastThis = this;
+                lastCallTime = time;
+                if (isInvoking) {
+                    if (void 0 === timerId) return leadingEdge(lastCallTime);
+                    if (maxing) {
+                        clearTimeout(timerId);
+                        timerId = setTimeout(timerExpired, wait);
+                        return invokeFunc(lastCallTime);
+                    }
+                }
+                if (void 0 === timerId) timerId = setTimeout(timerExpired, wait);
+                return result;
+            }
+            debounced.cancel = cancel;
+            debounced.flush = flush;
+            return debounced;
+        }
+        const lodash_es_debounce = debounce;
+        var throttle_FUNC_ERROR_TEXT = "Expected a function";
+        function throttle(func, wait, options) {
+            var leading = true, trailing = true;
+            if ("function" != typeof func) throw new TypeError(throttle_FUNC_ERROR_TEXT);
+            if (lodash_es_isObject(options)) {
+                leading = "leading" in options ? !!options.leading : leading;
+                trailing = "trailing" in options ? !!options.trailing : trailing;
+            }
+            return lodash_es_debounce(func, wait, {
+                leading,
+                maxWait: wait,
+                trailing
+            });
+        }
+        const lodash_es_throttle = throttle;
+        var __assign = function() {
+            __assign = Object.assign || function __assign(t) {
+                for (var s, i = 1, n = arguments.length; i < n; i++) {
+                    s = arguments[i];
+                    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                }
+                return t;
+            };
+            return __assign.apply(this, arguments);
+        };
+        var cachedScrollbarWidth = null;
+        var cachedDevicePixelRatio = null;
+        if (can_use_dom) window.addEventListener("resize", (function() {
+            if (cachedDevicePixelRatio !== window.devicePixelRatio) {
+                cachedDevicePixelRatio = window.devicePixelRatio;
+                cachedScrollbarWidth = null;
+            }
+        }));
+        function scrollbarWidth() {
+            if (null === cachedScrollbarWidth) {
+                if ("undefined" === typeof document) {
+                    cachedScrollbarWidth = 0;
+                    return cachedScrollbarWidth;
+                }
+                var body = document.body;
+                var box = document.createElement("div");
+                box.classList.add("simplebar-hide-scrollbar");
+                body.appendChild(box);
+                var width = box.getBoundingClientRect().right;
+                body.removeChild(box);
+                cachedScrollbarWidth = width;
+            }
+            return cachedScrollbarWidth;
+        }
+        function getElementWindow$1(element) {
+            if (!element || !element.ownerDocument || !element.ownerDocument.defaultView) return window;
+            return element.ownerDocument.defaultView;
+        }
+        function getElementDocument$1(element) {
+            if (!element || !element.ownerDocument) return document;
+            return element.ownerDocument;
+        }
+        var getOptions$1 = function(obj) {
+            var initialObj = {};
+            var options = Array.prototype.reduce.call(obj, (function(acc, attribute) {
+                var option = attribute.name.match(/data-simplebar-(.+)/);
+                if (option) {
+                    var key = option[1].replace(/\W+(.)/g, (function(_, chr) {
+                        return chr.toUpperCase();
+                    }));
+                    switch (attribute.value) {
+                      case "true":
+                        acc[key] = true;
+                        break;
+
+                      case "false":
+                        acc[key] = false;
+                        break;
+
+                      case void 0:
+                        acc[key] = true;
+                        break;
+
+                      default:
+                        acc[key] = attribute.value;
+                    }
+                }
+                return acc;
+            }), initialObj);
+            return options;
+        };
+        function addClasses$1(el, classes) {
+            var _a;
+            if (!el) return;
+            (_a = el.classList).add.apply(_a, classes.split(" "));
+        }
+        function removeClasses$1(el, classes) {
+            if (!el) return;
+            classes.split(" ").forEach((function(className) {
+                el.classList.remove(className);
+            }));
+        }
+        function classNamesToQuery$1(classNames) {
+            return ".".concat(classNames.split(" ").join("."));
+        }
+        var helpers = Object.freeze({
+            __proto__: null,
+            addClasses: addClasses$1,
+            classNamesToQuery: classNamesToQuery$1,
+            getElementDocument: getElementDocument$1,
+            getElementWindow: getElementWindow$1,
+            getOptions: getOptions$1,
+            removeClasses: removeClasses$1
+        });
+        var getElementWindow = getElementWindow$1, getElementDocument = getElementDocument$1, getOptions = getOptions$1, dist_addClasses = addClasses$1, dist_removeClasses = removeClasses$1, classNamesToQuery = classNamesToQuery$1;
+        var SimpleBarCore = function() {
+            function SimpleBarCore(element, options) {
+                if (void 0 === options) options = {};
+                var _this = this;
+                this.removePreventClickId = null;
+                this.minScrollbarWidth = 20;
+                this.stopScrollDelay = 175;
+                this.isScrolling = false;
+                this.isMouseEntering = false;
+                this.scrollXTicking = false;
+                this.scrollYTicking = false;
+                this.wrapperEl = null;
+                this.contentWrapperEl = null;
+                this.contentEl = null;
+                this.offsetEl = null;
+                this.maskEl = null;
+                this.placeholderEl = null;
+                this.heightAutoObserverWrapperEl = null;
+                this.heightAutoObserverEl = null;
+                this.rtlHelpers = null;
+                this.scrollbarWidth = 0;
+                this.resizeObserver = null;
+                this.mutationObserver = null;
+                this.elStyles = null;
+                this.isRtl = null;
+                this.mouseX = 0;
+                this.mouseY = 0;
+                this.onMouseMove = function() {};
+                this.onWindowResize = function() {};
+                this.onStopScrolling = function() {};
+                this.onMouseEntered = function() {};
+                this.onScroll = function() {
+                    var elWindow = getElementWindow(_this.el);
+                    if (!_this.scrollXTicking) {
+                        elWindow.requestAnimationFrame(_this.scrollX);
+                        _this.scrollXTicking = true;
+                    }
+                    if (!_this.scrollYTicking) {
+                        elWindow.requestAnimationFrame(_this.scrollY);
+                        _this.scrollYTicking = true;
+                    }
+                    if (!_this.isScrolling) {
+                        _this.isScrolling = true;
+                        dist_addClasses(_this.el, _this.classNames.scrolling);
+                    }
+                    _this.showScrollbar("x");
+                    _this.showScrollbar("y");
+                    _this.onStopScrolling();
+                };
+                this.scrollX = function() {
+                    if (_this.axis.x.isOverflowing) _this.positionScrollbar("x");
+                    _this.scrollXTicking = false;
+                };
+                this.scrollY = function() {
+                    if (_this.axis.y.isOverflowing) _this.positionScrollbar("y");
+                    _this.scrollYTicking = false;
+                };
+                this._onStopScrolling = function() {
+                    dist_removeClasses(_this.el, _this.classNames.scrolling);
+                    if (_this.options.autoHide) {
+                        _this.hideScrollbar("x");
+                        _this.hideScrollbar("y");
+                    }
+                    _this.isScrolling = false;
+                };
+                this.onMouseEnter = function() {
+                    if (!_this.isMouseEntering) {
+                        dist_addClasses(_this.el, _this.classNames.mouseEntered);
+                        _this.showScrollbar("x");
+                        _this.showScrollbar("y");
+                        _this.isMouseEntering = true;
+                    }
+                    _this.onMouseEntered();
+                };
+                this._onMouseEntered = function() {
+                    dist_removeClasses(_this.el, _this.classNames.mouseEntered);
+                    if (_this.options.autoHide) {
+                        _this.hideScrollbar("x");
+                        _this.hideScrollbar("y");
+                    }
+                    _this.isMouseEntering = false;
+                };
+                this._onMouseMove = function(e) {
+                    _this.mouseX = e.clientX;
+                    _this.mouseY = e.clientY;
+                    if (_this.axis.x.isOverflowing || _this.axis.x.forceVisible) _this.onMouseMoveForAxis("x");
+                    if (_this.axis.y.isOverflowing || _this.axis.y.forceVisible) _this.onMouseMoveForAxis("y");
+                };
+                this.onMouseLeave = function() {
+                    _this.onMouseMove.cancel();
+                    if (_this.axis.x.isOverflowing || _this.axis.x.forceVisible) _this.onMouseLeaveForAxis("x");
+                    if (_this.axis.y.isOverflowing || _this.axis.y.forceVisible) _this.onMouseLeaveForAxis("y");
+                    _this.mouseX = -1;
+                    _this.mouseY = -1;
+                };
+                this._onWindowResize = function() {
+                    _this.scrollbarWidth = _this.getScrollbarWidth();
+                    _this.hideNativeScrollbar();
+                };
+                this.onPointerEvent = function(e) {
+                    if (!_this.axis.x.track.el || !_this.axis.y.track.el || !_this.axis.x.scrollbar.el || !_this.axis.y.scrollbar.el) return;
+                    var isWithinTrackXBounds, isWithinTrackYBounds;
+                    _this.axis.x.track.rect = _this.axis.x.track.el.getBoundingClientRect();
+                    _this.axis.y.track.rect = _this.axis.y.track.el.getBoundingClientRect();
+                    if (_this.axis.x.isOverflowing || _this.axis.x.forceVisible) isWithinTrackXBounds = _this.isWithinBounds(_this.axis.x.track.rect);
+                    if (_this.axis.y.isOverflowing || _this.axis.y.forceVisible) isWithinTrackYBounds = _this.isWithinBounds(_this.axis.y.track.rect);
+                    if (isWithinTrackXBounds || isWithinTrackYBounds) {
+                        e.stopPropagation();
+                        if ("pointerdown" === e.type && "touch" !== e.pointerType) {
+                            if (isWithinTrackXBounds) {
+                                _this.axis.x.scrollbar.rect = _this.axis.x.scrollbar.el.getBoundingClientRect();
+                                if (_this.isWithinBounds(_this.axis.x.scrollbar.rect)) _this.onDragStart(e, "x"); else _this.onTrackClick(e, "x");
+                            }
+                            if (isWithinTrackYBounds) {
+                                _this.axis.y.scrollbar.rect = _this.axis.y.scrollbar.el.getBoundingClientRect();
+                                if (_this.isWithinBounds(_this.axis.y.scrollbar.rect)) _this.onDragStart(e, "y"); else _this.onTrackClick(e, "y");
+                            }
+                        }
+                    }
+                };
+                this.drag = function(e) {
+                    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
+                    if (!_this.draggedAxis || !_this.contentWrapperEl) return;
+                    var eventOffset;
+                    var track = _this.axis[_this.draggedAxis].track;
+                    var trackSize = null !== (_b = null === (_a = track.rect) || void 0 === _a ? void 0 : _a[_this.axis[_this.draggedAxis].sizeAttr]) && void 0 !== _b ? _b : 0;
+                    var scrollbar = _this.axis[_this.draggedAxis].scrollbar;
+                    var contentSize = null !== (_d = null === (_c = _this.contentWrapperEl) || void 0 === _c ? void 0 : _c[_this.axis[_this.draggedAxis].scrollSizeAttr]) && void 0 !== _d ? _d : 0;
+                    var hostSize = parseInt(null !== (_f = null === (_e = _this.elStyles) || void 0 === _e ? void 0 : _e[_this.axis[_this.draggedAxis].sizeAttr]) && void 0 !== _f ? _f : "0px", 10);
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if ("y" === _this.draggedAxis) eventOffset = e.pageY; else eventOffset = e.pageX;
+                    var dragPos = eventOffset - (null !== (_h = null === (_g = track.rect) || void 0 === _g ? void 0 : _g[_this.axis[_this.draggedAxis].offsetAttr]) && void 0 !== _h ? _h : 0) - _this.axis[_this.draggedAxis].dragOffset;
+                    dragPos = _this.isRtl ? (null !== (_k = null === (_j = track.rect) || void 0 === _j ? void 0 : _j[_this.axis[_this.draggedAxis].sizeAttr]) && void 0 !== _k ? _k : 0) - scrollbar.size - dragPos : dragPos;
+                    var dragPerc = dragPos / (trackSize - scrollbar.size);
+                    var scrollPos = dragPerc * (contentSize - hostSize);
+                    if ("x" === _this.draggedAxis && _this.isRtl) scrollPos = (null === (_l = SimpleBarCore.getRtlHelpers()) || void 0 === _l ? void 0 : _l.isScrollingToNegative) ? -scrollPos : scrollPos;
+                    _this.contentWrapperEl[_this.axis[_this.draggedAxis].scrollOffsetAttr] = scrollPos;
+                };
+                this.onEndDrag = function(e) {
+                    var elDocument = getElementDocument(_this.el);
+                    var elWindow = getElementWindow(_this.el);
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dist_removeClasses(_this.el, _this.classNames.dragging);
+                    elDocument.removeEventListener("mousemove", _this.drag, true);
+                    elDocument.removeEventListener("mouseup", _this.onEndDrag, true);
+                    _this.removePreventClickId = elWindow.setTimeout((function() {
+                        elDocument.removeEventListener("click", _this.preventClick, true);
+                        elDocument.removeEventListener("dblclick", _this.preventClick, true);
+                        _this.removePreventClickId = null;
+                    }));
+                };
+                this.preventClick = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                };
+                this.el = element;
+                this.options = __assign(__assign({}, SimpleBarCore.defaultOptions), options);
+                this.classNames = __assign(__assign({}, SimpleBarCore.defaultOptions.classNames), options.classNames);
+                this.axis = {
+                    x: {
+                        scrollOffsetAttr: "scrollLeft",
+                        sizeAttr: "width",
+                        scrollSizeAttr: "scrollWidth",
+                        offsetSizeAttr: "offsetWidth",
+                        offsetAttr: "left",
+                        overflowAttr: "overflowX",
+                        dragOffset: 0,
+                        isOverflowing: true,
+                        forceVisible: false,
+                        track: {
+                            size: null,
+                            el: null,
+                            rect: null,
+                            isVisible: false
+                        },
+                        scrollbar: {
+                            size: null,
+                            el: null,
+                            rect: null,
+                            isVisible: false
+                        }
+                    },
+                    y: {
+                        scrollOffsetAttr: "scrollTop",
+                        sizeAttr: "height",
+                        scrollSizeAttr: "scrollHeight",
+                        offsetSizeAttr: "offsetHeight",
+                        offsetAttr: "top",
+                        overflowAttr: "overflowY",
+                        dragOffset: 0,
+                        isOverflowing: true,
+                        forceVisible: false,
+                        track: {
+                            size: null,
+                            el: null,
+                            rect: null,
+                            isVisible: false
+                        },
+                        scrollbar: {
+                            size: null,
+                            el: null,
+                            rect: null,
+                            isVisible: false
+                        }
+                    }
+                };
+                if ("object" !== typeof this.el || !this.el.nodeName) throw new Error("Argument passed to SimpleBar must be an HTML element instead of ".concat(this.el));
+                this.onMouseMove = lodash_es_throttle(this._onMouseMove, 64);
+                this.onWindowResize = lodash_es_debounce(this._onWindowResize, 64, {
+                    leading: true
+                });
+                this.onStopScrolling = lodash_es_debounce(this._onStopScrolling, this.stopScrollDelay);
+                this.onMouseEntered = lodash_es_debounce(this._onMouseEntered, this.stopScrollDelay);
+                this.init();
+            }
+            SimpleBarCore.getRtlHelpers = function() {
+                if (SimpleBarCore.rtlHelpers) return SimpleBarCore.rtlHelpers;
+                var dummyDiv = document.createElement("div");
+                dummyDiv.innerHTML = '<div class="simplebar-dummy-scrollbar-size"><div></div></div>';
+                var scrollbarDummyEl = dummyDiv.firstElementChild;
+                var dummyChild = null === scrollbarDummyEl || void 0 === scrollbarDummyEl ? void 0 : scrollbarDummyEl.firstElementChild;
+                if (!dummyChild) return null;
+                document.body.appendChild(scrollbarDummyEl);
+                scrollbarDummyEl.scrollLeft = 0;
+                var dummyContainerOffset = SimpleBarCore.getOffset(scrollbarDummyEl);
+                var dummyChildOffset = SimpleBarCore.getOffset(dummyChild);
+                scrollbarDummyEl.scrollLeft = -999;
+                var dummyChildOffsetAfterScroll = SimpleBarCore.getOffset(dummyChild);
+                document.body.removeChild(scrollbarDummyEl);
+                SimpleBarCore.rtlHelpers = {
+                    isScrollOriginAtZero: dummyContainerOffset.left !== dummyChildOffset.left,
+                    isScrollingToNegative: dummyChildOffset.left !== dummyChildOffsetAfterScroll.left
+                };
+                return SimpleBarCore.rtlHelpers;
+            };
+            SimpleBarCore.prototype.getScrollbarWidth = function() {
+                try {
+                    if (this.contentWrapperEl && "none" === getComputedStyle(this.contentWrapperEl, "::-webkit-scrollbar").display || "scrollbarWidth" in document.documentElement.style || "-ms-overflow-style" in document.documentElement.style) return 0; else return scrollbarWidth();
+                } catch (e) {
+                    return scrollbarWidth();
+                }
+            };
+            SimpleBarCore.getOffset = function(el) {
+                var rect = el.getBoundingClientRect();
+                var elDocument = getElementDocument(el);
+                var elWindow = getElementWindow(el);
+                return {
+                    top: rect.top + (elWindow.pageYOffset || elDocument.documentElement.scrollTop),
+                    left: rect.left + (elWindow.pageXOffset || elDocument.documentElement.scrollLeft)
+                };
+            };
+            SimpleBarCore.prototype.init = function() {
+                if (can_use_dom) {
+                    this.initDOM();
+                    this.rtlHelpers = SimpleBarCore.getRtlHelpers();
+                    this.scrollbarWidth = this.getScrollbarWidth();
+                    this.recalculate();
+                    this.initListeners();
+                }
+            };
+            SimpleBarCore.prototype.initDOM = function() {
+                var _a, _b;
+                this.wrapperEl = this.el.querySelector(classNamesToQuery(this.classNames.wrapper));
+                this.contentWrapperEl = this.options.scrollableNode || this.el.querySelector(classNamesToQuery(this.classNames.contentWrapper));
+                this.contentEl = this.options.contentNode || this.el.querySelector(classNamesToQuery(this.classNames.contentEl));
+                this.offsetEl = this.el.querySelector(classNamesToQuery(this.classNames.offset));
+                this.maskEl = this.el.querySelector(classNamesToQuery(this.classNames.mask));
+                this.placeholderEl = this.findChild(this.wrapperEl, classNamesToQuery(this.classNames.placeholder));
+                this.heightAutoObserverWrapperEl = this.el.querySelector(classNamesToQuery(this.classNames.heightAutoObserverWrapperEl));
+                this.heightAutoObserverEl = this.el.querySelector(classNamesToQuery(this.classNames.heightAutoObserverEl));
+                this.axis.x.track.el = this.findChild(this.el, "".concat(classNamesToQuery(this.classNames.track)).concat(classNamesToQuery(this.classNames.horizontal)));
+                this.axis.y.track.el = this.findChild(this.el, "".concat(classNamesToQuery(this.classNames.track)).concat(classNamesToQuery(this.classNames.vertical)));
+                this.axis.x.scrollbar.el = (null === (_a = this.axis.x.track.el) || void 0 === _a ? void 0 : _a.querySelector(classNamesToQuery(this.classNames.scrollbar))) || null;
+                this.axis.y.scrollbar.el = (null === (_b = this.axis.y.track.el) || void 0 === _b ? void 0 : _b.querySelector(classNamesToQuery(this.classNames.scrollbar))) || null;
+                if (!this.options.autoHide) {
+                    dist_addClasses(this.axis.x.scrollbar.el, this.classNames.visible);
+                    dist_addClasses(this.axis.y.scrollbar.el, this.classNames.visible);
+                }
+            };
+            SimpleBarCore.prototype.initListeners = function() {
+                var _this = this;
+                var _a;
+                var elWindow = getElementWindow(this.el);
+                this.el.addEventListener("mouseenter", this.onMouseEnter);
+                this.el.addEventListener("pointerdown", this.onPointerEvent, true);
+                this.el.addEventListener("mousemove", this.onMouseMove);
+                this.el.addEventListener("mouseleave", this.onMouseLeave);
+                null === (_a = this.contentWrapperEl) || void 0 === _a ? void 0 : _a.addEventListener("scroll", this.onScroll);
+                elWindow.addEventListener("resize", this.onWindowResize);
+                if (!this.contentEl) return;
+                if (window.ResizeObserver) {
+                    var resizeObserverStarted_1 = false;
+                    var resizeObserver = elWindow.ResizeObserver || ResizeObserver;
+                    this.resizeObserver = new resizeObserver((function() {
+                        if (!resizeObserverStarted_1) return;
+                        elWindow.requestAnimationFrame((function() {
+                            _this.recalculate();
+                        }));
+                    }));
+                    this.resizeObserver.observe(this.el);
+                    this.resizeObserver.observe(this.contentEl);
+                    elWindow.requestAnimationFrame((function() {
+                        resizeObserverStarted_1 = true;
+                    }));
+                }
+                this.mutationObserver = new elWindow.MutationObserver((function() {
+                    elWindow.requestAnimationFrame((function() {
+                        _this.recalculate();
+                    }));
+                }));
+                this.mutationObserver.observe(this.contentEl, {
+                    childList: true,
+                    subtree: true,
+                    characterData: true
+                });
+            };
+            SimpleBarCore.prototype.recalculate = function() {
+                if (!this.heightAutoObserverEl || !this.contentEl || !this.contentWrapperEl || !this.wrapperEl || !this.placeholderEl) return;
+                var elWindow = getElementWindow(this.el);
+                this.elStyles = elWindow.getComputedStyle(this.el);
+                this.isRtl = "rtl" === this.elStyles.direction;
+                var contentElOffsetWidth = this.contentEl.offsetWidth;
+                var isHeightAuto = this.heightAutoObserverEl.offsetHeight <= 1;
+                var isWidthAuto = this.heightAutoObserverEl.offsetWidth <= 1 || contentElOffsetWidth > 0;
+                var contentWrapperElOffsetWidth = this.contentWrapperEl.offsetWidth;
+                var elOverflowX = this.elStyles.overflowX;
+                var elOverflowY = this.elStyles.overflowY;
+                this.contentEl.style.padding = "".concat(this.elStyles.paddingTop, " ").concat(this.elStyles.paddingRight, " ").concat(this.elStyles.paddingBottom, " ").concat(this.elStyles.paddingLeft);
+                this.wrapperEl.style.margin = "-".concat(this.elStyles.paddingTop, " -").concat(this.elStyles.paddingRight, " -").concat(this.elStyles.paddingBottom, " -").concat(this.elStyles.paddingLeft);
+                var contentElScrollHeight = this.contentEl.scrollHeight;
+                var contentElScrollWidth = this.contentEl.scrollWidth;
+                this.contentWrapperEl.style.height = isHeightAuto ? "auto" : "100%";
+                this.placeholderEl.style.width = isWidthAuto ? "".concat(contentElOffsetWidth || contentElScrollWidth, "px") : "auto";
+                this.placeholderEl.style.height = "".concat(contentElScrollHeight, "px");
+                var contentWrapperElOffsetHeight = this.contentWrapperEl.offsetHeight;
+                this.axis.x.isOverflowing = 0 !== contentElOffsetWidth && contentElScrollWidth > contentElOffsetWidth;
+                this.axis.y.isOverflowing = contentElScrollHeight > contentWrapperElOffsetHeight;
+                this.axis.x.isOverflowing = "hidden" === elOverflowX ? false : this.axis.x.isOverflowing;
+                this.axis.y.isOverflowing = "hidden" === elOverflowY ? false : this.axis.y.isOverflowing;
+                this.axis.x.forceVisible = "x" === this.options.forceVisible || true === this.options.forceVisible;
+                this.axis.y.forceVisible = "y" === this.options.forceVisible || true === this.options.forceVisible;
+                this.hideNativeScrollbar();
+                var offsetForXScrollbar = this.axis.x.isOverflowing ? this.scrollbarWidth : 0;
+                var offsetForYScrollbar = this.axis.y.isOverflowing ? this.scrollbarWidth : 0;
+                this.axis.x.isOverflowing = this.axis.x.isOverflowing && contentElScrollWidth > contentWrapperElOffsetWidth - offsetForYScrollbar;
+                this.axis.y.isOverflowing = this.axis.y.isOverflowing && contentElScrollHeight > contentWrapperElOffsetHeight - offsetForXScrollbar;
+                this.axis.x.scrollbar.size = this.getScrollbarSize("x");
+                this.axis.y.scrollbar.size = this.getScrollbarSize("y");
+                if (this.axis.x.scrollbar.el) this.axis.x.scrollbar.el.style.width = "".concat(this.axis.x.scrollbar.size, "px");
+                if (this.axis.y.scrollbar.el) this.axis.y.scrollbar.el.style.height = "".concat(this.axis.y.scrollbar.size, "px");
+                this.positionScrollbar("x");
+                this.positionScrollbar("y");
+                this.toggleTrackVisibility("x");
+                this.toggleTrackVisibility("y");
+            };
+            SimpleBarCore.prototype.getScrollbarSize = function(axis) {
+                var _a, _b;
+                if (void 0 === axis) axis = "y";
+                if (!this.axis[axis].isOverflowing || !this.contentEl) return 0;
+                var contentSize = this.contentEl[this.axis[axis].scrollSizeAttr];
+                var trackSize = null !== (_b = null === (_a = this.axis[axis].track.el) || void 0 === _a ? void 0 : _a[this.axis[axis].offsetSizeAttr]) && void 0 !== _b ? _b : 0;
+                var scrollbarRatio = trackSize / contentSize;
+                var scrollbarSize;
+                scrollbarSize = Math.max(~~(scrollbarRatio * trackSize), this.options.scrollbarMinSize);
+                if (this.options.scrollbarMaxSize) scrollbarSize = Math.min(scrollbarSize, this.options.scrollbarMaxSize);
+                return scrollbarSize;
+            };
+            SimpleBarCore.prototype.positionScrollbar = function(axis) {
+                var _a, _b, _c;
+                if (void 0 === axis) axis = "y";
+                var scrollbar = this.axis[axis].scrollbar;
+                if (!this.axis[axis].isOverflowing || !this.contentWrapperEl || !scrollbar.el || !this.elStyles) return;
+                var contentSize = this.contentWrapperEl[this.axis[axis].scrollSizeAttr];
+                var trackSize = (null === (_a = this.axis[axis].track.el) || void 0 === _a ? void 0 : _a[this.axis[axis].offsetSizeAttr]) || 0;
+                var hostSize = parseInt(this.elStyles[this.axis[axis].sizeAttr], 10);
+                var scrollOffset = this.contentWrapperEl[this.axis[axis].scrollOffsetAttr];
+                scrollOffset = "x" === axis && this.isRtl && (null === (_b = SimpleBarCore.getRtlHelpers()) || void 0 === _b ? void 0 : _b.isScrollOriginAtZero) ? -scrollOffset : scrollOffset;
+                if ("x" === axis && this.isRtl) scrollOffset = (null === (_c = SimpleBarCore.getRtlHelpers()) || void 0 === _c ? void 0 : _c.isScrollingToNegative) ? scrollOffset : -scrollOffset;
+                var scrollPourcent = scrollOffset / (contentSize - hostSize);
+                var handleOffset = ~~((trackSize - scrollbar.size) * scrollPourcent);
+                handleOffset = "x" === axis && this.isRtl ? -handleOffset + (trackSize - scrollbar.size) : handleOffset;
+                scrollbar.el.style.transform = "x" === axis ? "translate3d(".concat(handleOffset, "px, 0, 0)") : "translate3d(0, ".concat(handleOffset, "px, 0)");
+            };
+            SimpleBarCore.prototype.toggleTrackVisibility = function(axis) {
+                if (void 0 === axis) axis = "y";
+                var track = this.axis[axis].track.el;
+                var scrollbar = this.axis[axis].scrollbar.el;
+                if (!track || !scrollbar || !this.contentWrapperEl) return;
+                if (this.axis[axis].isOverflowing || this.axis[axis].forceVisible) {
+                    track.style.visibility = "visible";
+                    this.contentWrapperEl.style[this.axis[axis].overflowAttr] = "scroll";
+                    this.el.classList.add("".concat(this.classNames.scrollable, "-").concat(axis));
+                } else {
+                    track.style.visibility = "hidden";
+                    this.contentWrapperEl.style[this.axis[axis].overflowAttr] = "hidden";
+                    this.el.classList.remove("".concat(this.classNames.scrollable, "-").concat(axis));
+                }
+                if (this.axis[axis].isOverflowing) scrollbar.style.display = "block"; else scrollbar.style.display = "none";
+            };
+            SimpleBarCore.prototype.showScrollbar = function(axis) {
+                if (void 0 === axis) axis = "y";
+                if (this.axis[axis].isOverflowing && !this.axis[axis].scrollbar.isVisible) {
+                    dist_addClasses(this.axis[axis].scrollbar.el, this.classNames.visible);
+                    this.axis[axis].scrollbar.isVisible = true;
+                }
+            };
+            SimpleBarCore.prototype.hideScrollbar = function(axis) {
+                if (void 0 === axis) axis = "y";
+                if (this.axis[axis].isOverflowing && this.axis[axis].scrollbar.isVisible) {
+                    dist_removeClasses(this.axis[axis].scrollbar.el, this.classNames.visible);
+                    this.axis[axis].scrollbar.isVisible = false;
+                }
+            };
+            SimpleBarCore.prototype.hideNativeScrollbar = function() {
+                if (!this.offsetEl) return;
+                this.offsetEl.style[this.isRtl ? "left" : "right"] = this.axis.y.isOverflowing || this.axis.y.forceVisible ? "-".concat(this.scrollbarWidth, "px") : "0px";
+                this.offsetEl.style.bottom = this.axis.x.isOverflowing || this.axis.x.forceVisible ? "-".concat(this.scrollbarWidth, "px") : "0px";
+            };
+            SimpleBarCore.prototype.onMouseMoveForAxis = function(axis) {
+                if (void 0 === axis) axis = "y";
+                var currentAxis = this.axis[axis];
+                if (!currentAxis.track.el || !currentAxis.scrollbar.el) return;
+                currentAxis.track.rect = currentAxis.track.el.getBoundingClientRect();
+                currentAxis.scrollbar.rect = currentAxis.scrollbar.el.getBoundingClientRect();
+                if (this.isWithinBounds(currentAxis.track.rect)) {
+                    this.showScrollbar(axis);
+                    dist_addClasses(currentAxis.track.el, this.classNames.hover);
+                    if (this.isWithinBounds(currentAxis.scrollbar.rect)) dist_addClasses(currentAxis.scrollbar.el, this.classNames.hover); else dist_removeClasses(currentAxis.scrollbar.el, this.classNames.hover);
+                } else {
+                    dist_removeClasses(currentAxis.track.el, this.classNames.hover);
+                    if (this.options.autoHide) this.hideScrollbar(axis);
+                }
+            };
+            SimpleBarCore.prototype.onMouseLeaveForAxis = function(axis) {
+                if (void 0 === axis) axis = "y";
+                dist_removeClasses(this.axis[axis].track.el, this.classNames.hover);
+                dist_removeClasses(this.axis[axis].scrollbar.el, this.classNames.hover);
+                if (this.options.autoHide) this.hideScrollbar(axis);
+            };
+            SimpleBarCore.prototype.onDragStart = function(e, axis) {
+                var _a;
+                if (void 0 === axis) axis = "y";
+                var elDocument = getElementDocument(this.el);
+                var elWindow = getElementWindow(this.el);
+                var scrollbar = this.axis[axis].scrollbar;
+                var eventOffset = "y" === axis ? e.pageY : e.pageX;
+                this.axis[axis].dragOffset = eventOffset - ((null === (_a = scrollbar.rect) || void 0 === _a ? void 0 : _a[this.axis[axis].offsetAttr]) || 0);
+                this.draggedAxis = axis;
+                dist_addClasses(this.el, this.classNames.dragging);
+                elDocument.addEventListener("mousemove", this.drag, true);
+                elDocument.addEventListener("mouseup", this.onEndDrag, true);
+                if (null === this.removePreventClickId) {
+                    elDocument.addEventListener("click", this.preventClick, true);
+                    elDocument.addEventListener("dblclick", this.preventClick, true);
+                } else {
+                    elWindow.clearTimeout(this.removePreventClickId);
+                    this.removePreventClickId = null;
+                }
+            };
+            SimpleBarCore.prototype.onTrackClick = function(e, axis) {
+                var _this = this;
+                var _a, _b, _c, _d;
+                if (void 0 === axis) axis = "y";
+                var currentAxis = this.axis[axis];
+                if (!this.options.clickOnTrack || !currentAxis.scrollbar.el || !this.contentWrapperEl) return;
+                e.preventDefault();
+                var elWindow = getElementWindow(this.el);
+                this.axis[axis].scrollbar.rect = currentAxis.scrollbar.el.getBoundingClientRect();
+                var scrollbar = this.axis[axis].scrollbar;
+                var scrollbarOffset = null !== (_b = null === (_a = scrollbar.rect) || void 0 === _a ? void 0 : _a[this.axis[axis].offsetAttr]) && void 0 !== _b ? _b : 0;
+                var hostSize = parseInt(null !== (_d = null === (_c = this.elStyles) || void 0 === _c ? void 0 : _c[this.axis[axis].sizeAttr]) && void 0 !== _d ? _d : "0px", 10);
+                var scrolled = this.contentWrapperEl[this.axis[axis].scrollOffsetAttr];
+                var t = "y" === axis ? this.mouseY - scrollbarOffset : this.mouseX - scrollbarOffset;
+                var dir = t < 0 ? -1 : 1;
+                var scrollSize = -1 === dir ? scrolled - hostSize : scrolled + hostSize;
+                var speed = 40;
+                var scrollTo = function() {
+                    if (!_this.contentWrapperEl) return;
+                    if (-1 === dir) {
+                        if (scrolled > scrollSize) {
+                            scrolled -= speed;
+                            _this.contentWrapperEl[_this.axis[axis].scrollOffsetAttr] = scrolled;
+                            elWindow.requestAnimationFrame(scrollTo);
+                        }
+                    } else if (scrolled < scrollSize) {
+                        scrolled += speed;
+                        _this.contentWrapperEl[_this.axis[axis].scrollOffsetAttr] = scrolled;
+                        elWindow.requestAnimationFrame(scrollTo);
+                    }
+                };
+                scrollTo();
+            };
+            SimpleBarCore.prototype.getContentElement = function() {
+                return this.contentEl;
+            };
+            SimpleBarCore.prototype.getScrollElement = function() {
+                return this.contentWrapperEl;
+            };
+            SimpleBarCore.prototype.removeListeners = function() {
+                var elWindow = getElementWindow(this.el);
+                this.el.removeEventListener("mouseenter", this.onMouseEnter);
+                this.el.removeEventListener("pointerdown", this.onPointerEvent, true);
+                this.el.removeEventListener("mousemove", this.onMouseMove);
+                this.el.removeEventListener("mouseleave", this.onMouseLeave);
+                if (this.contentWrapperEl) this.contentWrapperEl.removeEventListener("scroll", this.onScroll);
+                elWindow.removeEventListener("resize", this.onWindowResize);
+                if (this.mutationObserver) this.mutationObserver.disconnect();
+                if (this.resizeObserver) this.resizeObserver.disconnect();
+                this.onMouseMove.cancel();
+                this.onWindowResize.cancel();
+                this.onStopScrolling.cancel();
+                this.onMouseEntered.cancel();
+            };
+            SimpleBarCore.prototype.unMount = function() {
+                this.removeListeners();
+            };
+            SimpleBarCore.prototype.isWithinBounds = function(bbox) {
+                return this.mouseX >= bbox.left && this.mouseX <= bbox.left + bbox.width && this.mouseY >= bbox.top && this.mouseY <= bbox.top + bbox.height;
+            };
+            SimpleBarCore.prototype.findChild = function(el, query) {
+                var matches = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+                return Array.prototype.filter.call(el.children, (function(child) {
+                    return matches.call(child, query);
+                }))[0];
+            };
+            SimpleBarCore.rtlHelpers = null;
+            SimpleBarCore.defaultOptions = {
+                forceVisible: false,
+                clickOnTrack: true,
+                scrollbarMinSize: 25,
+                scrollbarMaxSize: 0,
+                ariaLabel: "scrollable content",
+                classNames: {
+                    contentEl: "simplebar-content",
+                    contentWrapper: "simplebar-content-wrapper",
+                    offset: "simplebar-offset",
+                    mask: "simplebar-mask",
+                    wrapper: "simplebar-wrapper",
+                    placeholder: "simplebar-placeholder",
+                    scrollbar: "simplebar-scrollbar",
+                    track: "simplebar-track",
+                    heightAutoObserverWrapperEl: "simplebar-height-auto-observer-wrapper",
+                    heightAutoObserverEl: "simplebar-height-auto-observer",
+                    visible: "simplebar-visible",
+                    horizontal: "simplebar-horizontal",
+                    vertical: "simplebar-vertical",
+                    hover: "simplebar-hover",
+                    dragging: "simplebar-dragging",
+                    scrolling: "simplebar-scrolling",
+                    scrollable: "simplebar-scrollable",
+                    mouseEntered: "simplebar-mouse-entered"
+                },
+                scrollableNode: null,
+                contentNode: null,
+                autoHide: true
+            };
+            SimpleBarCore.getOptions = getOptions;
+            SimpleBarCore.helpers = helpers;
+            return SimpleBarCore;
+        }();
+        var extendStatics = function(d, b) {
+            extendStatics = Object.setPrototypeOf || {
+                __proto__: []
+            } instanceof Array && function(d, b) {
+                d.__proto__ = b;
+            } || function(d, b) {
+                for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];
+            };
+            return extendStatics(d, b);
+        };
+        function __extends(d, b) {
+            if ("function" !== typeof b && null !== b) throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+            extendStatics(d, b);
+            function __() {
+                this.constructor = d;
+            }
+            d.prototype = null === b ? Object.create(b) : (__.prototype = b.prototype, new __);
+        }
+        var _a = SimpleBarCore.helpers, dist_getOptions = _a.getOptions, simplebar_dist_addClasses = _a.addClasses;
+        var SimpleBar = function(_super) {
+            __extends(SimpleBar, _super);
+            function SimpleBar() {
+                var args = [];
+                for (var _i = 0; _i < arguments.length; _i++) args[_i] = arguments[_i];
+                var _this = _super.apply(this, args) || this;
+                SimpleBar.instances.set(args[0], _this);
+                return _this;
+            }
+            SimpleBar.initDOMLoadedElements = function() {
+                document.removeEventListener("DOMContentLoaded", this.initDOMLoadedElements);
+                window.removeEventListener("load", this.initDOMLoadedElements);
+                Array.prototype.forEach.call(document.querySelectorAll("[data-simplebar]"), (function(el) {
+                    if ("init" !== el.getAttribute("data-simplebar") && !SimpleBar.instances.has(el)) new SimpleBar(el, dist_getOptions(el.attributes));
+                }));
+            };
+            SimpleBar.removeObserver = function() {
+                var _a;
+                null === (_a = SimpleBar.globalObserver) || void 0 === _a ? void 0 : _a.disconnect();
+            };
+            SimpleBar.prototype.initDOM = function() {
+                var _this = this;
+                var _a, _b, _c;
+                if (!Array.prototype.filter.call(this.el.children, (function(child) {
+                    return child.classList.contains(_this.classNames.wrapper);
+                })).length) {
+                    this.wrapperEl = document.createElement("div");
+                    this.contentWrapperEl = document.createElement("div");
+                    this.offsetEl = document.createElement("div");
+                    this.maskEl = document.createElement("div");
+                    this.contentEl = document.createElement("div");
+                    this.placeholderEl = document.createElement("div");
+                    this.heightAutoObserverWrapperEl = document.createElement("div");
+                    this.heightAutoObserverEl = document.createElement("div");
+                    simplebar_dist_addClasses(this.wrapperEl, this.classNames.wrapper);
+                    simplebar_dist_addClasses(this.contentWrapperEl, this.classNames.contentWrapper);
+                    simplebar_dist_addClasses(this.offsetEl, this.classNames.offset);
+                    simplebar_dist_addClasses(this.maskEl, this.classNames.mask);
+                    simplebar_dist_addClasses(this.contentEl, this.classNames.contentEl);
+                    simplebar_dist_addClasses(this.placeholderEl, this.classNames.placeholder);
+                    simplebar_dist_addClasses(this.heightAutoObserverWrapperEl, this.classNames.heightAutoObserverWrapperEl);
+                    simplebar_dist_addClasses(this.heightAutoObserverEl, this.classNames.heightAutoObserverEl);
+                    while (this.el.firstChild) this.contentEl.appendChild(this.el.firstChild);
+                    this.contentWrapperEl.appendChild(this.contentEl);
+                    this.offsetEl.appendChild(this.contentWrapperEl);
+                    this.maskEl.appendChild(this.offsetEl);
+                    this.heightAutoObserverWrapperEl.appendChild(this.heightAutoObserverEl);
+                    this.wrapperEl.appendChild(this.heightAutoObserverWrapperEl);
+                    this.wrapperEl.appendChild(this.maskEl);
+                    this.wrapperEl.appendChild(this.placeholderEl);
+                    this.el.appendChild(this.wrapperEl);
+                    null === (_a = this.contentWrapperEl) || void 0 === _a ? void 0 : _a.setAttribute("tabindex", "0");
+                    null === (_b = this.contentWrapperEl) || void 0 === _b ? void 0 : _b.setAttribute("role", "region");
+                    null === (_c = this.contentWrapperEl) || void 0 === _c ? void 0 : _c.setAttribute("aria-label", this.options.ariaLabel);
+                }
+                if (!this.axis.x.track.el || !this.axis.y.track.el) {
+                    var track = document.createElement("div");
+                    var scrollbar = document.createElement("div");
+                    simplebar_dist_addClasses(track, this.classNames.track);
+                    simplebar_dist_addClasses(scrollbar, this.classNames.scrollbar);
+                    track.appendChild(scrollbar);
+                    this.axis.x.track.el = track.cloneNode(true);
+                    simplebar_dist_addClasses(this.axis.x.track.el, this.classNames.horizontal);
+                    this.axis.y.track.el = track.cloneNode(true);
+                    simplebar_dist_addClasses(this.axis.y.track.el, this.classNames.vertical);
+                    this.el.appendChild(this.axis.x.track.el);
+                    this.el.appendChild(this.axis.y.track.el);
+                }
+                SimpleBarCore.prototype.initDOM.call(this);
+                this.el.setAttribute("data-simplebar", "init");
+            };
+            SimpleBar.prototype.unMount = function() {
+                SimpleBarCore.prototype.unMount.call(this);
+                SimpleBar.instances["delete"](this.el);
+            };
+            SimpleBar.initHtmlApi = function() {
+                this.initDOMLoadedElements = this.initDOMLoadedElements.bind(this);
+                if ("undefined" !== typeof MutationObserver) {
+                    this.globalObserver = new MutationObserver(SimpleBar.handleMutations);
+                    this.globalObserver.observe(document, {
+                        childList: true,
+                        subtree: true
+                    });
+                }
+                if ("complete" === document.readyState || "loading" !== document.readyState && !document.documentElement.doScroll) window.setTimeout(this.initDOMLoadedElements); else {
+                    document.addEventListener("DOMContentLoaded", this.initDOMLoadedElements);
+                    window.addEventListener("load", this.initDOMLoadedElements);
+                }
+            };
+            SimpleBar.handleMutations = function(mutations) {
+                mutations.forEach((function(mutation) {
+                    mutation.addedNodes.forEach((function(addedNode) {
+                        if (1 === addedNode.nodeType) if (addedNode.hasAttribute("data-simplebar")) !SimpleBar.instances.has(addedNode) && document.documentElement.contains(addedNode) && new SimpleBar(addedNode, dist_getOptions(addedNode.attributes)); else addedNode.querySelectorAll("[data-simplebar]").forEach((function(el) {
+                            if ("init" !== el.getAttribute("data-simplebar") && !SimpleBar.instances.has(el) && document.documentElement.contains(el)) new SimpleBar(el, dist_getOptions(el.attributes));
+                        }));
+                    }));
+                    mutation.removedNodes.forEach((function(removedNode) {
+                        if (1 === removedNode.nodeType) if ("init" === removedNode.getAttribute("data-simplebar")) SimpleBar.instances.has(removedNode) && !document.documentElement.contains(removedNode) && SimpleBar.instances.get(removedNode).unMount(); else Array.prototype.forEach.call(removedNode.querySelectorAll('[data-simplebar="init"]'), (function(el) {
+                            SimpleBar.instances.has(el) && !document.documentElement.contains(el) && SimpleBar.instances.get(el).unMount();
+                        }));
+                    }));
+                }));
+            };
+            SimpleBar.instances = new WeakMap;
+            return SimpleBar;
+        }(SimpleBarCore);
+        if (can_use_dom) SimpleBar.initHtmlApi();
+        if (document.querySelectorAll("[data-simplebar]").length) document.querySelectorAll("[data-simplebar]").forEach((scrollBlock => {
+            new SimpleBar(scrollBlock, {
+                autoHide: false
+            });
         }));
         var lazyload_min = __webpack_require__(732);
         var aos = __webpack_require__(711);
@@ -8753,15 +10201,15 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
-        var __assign = function() {
-            __assign = Object.assign || function __assign(t) {
+        var lightgallery_es5_assign = function() {
+            lightgallery_es5_assign = Object.assign || function __assign(t) {
                 for (var s, i = 1, n = arguments.length; i < n; i++) {
                     s = arguments[i];
                     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
                 }
                 return t;
             };
-            return __assign.apply(this, arguments);
+            return lightgallery_es5_assign.apply(this, arguments);
         };
         function __spreadArrays() {
             for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
@@ -9345,10 +10793,10 @@ PERFORMANCE OF THIS SOFTWARE.
                 return this;
             }
             LightGallery.prototype.generateSettings = function(options) {
-                this.settings = __assign(__assign({}, lightGalleryCoreSettings), options);
+                this.settings = lightgallery_es5_assign(lightgallery_es5_assign({}, lightGalleryCoreSettings), options);
                 if (this.settings.isMobile && "function" === typeof this.settings.isMobile ? this.settings.isMobile() : utils.isMobile()) {
-                    var mobileSettings = __assign(__assign({}, this.settings.mobileSettings), this.settings.mobileSettings);
-                    this.settings = __assign(__assign({}, this.settings), mobileSettings);
+                    var mobileSettings = lightgallery_es5_assign(lightgallery_es5_assign({}, this.settings.mobileSettings), this.settings.mobileSettings);
+                    this.settings = lightgallery_es5_assign(lightgallery_es5_assign({}, this.settings), mobileSettings);
                 }
             };
             LightGallery.prototype.normalizeSettings = function() {
@@ -13912,7 +15360,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * Subject to the terms at https://greensock.com/standard-license or for
  * Club GreenSock members, the agreement issued with that membership.
  * @author: Jack Doyle, jack@greensock.com
-*/        var Observer_gsap, Observer_coreInitted, Observer_win, Observer_doc, _docEl, _body, _isTouch, _pointerType, ScrollTrigger, _root, _normalizer, _eventTypes, Observer_context, _getGSAP = function _getGSAP() {
+*/        var Observer_gsap, Observer_coreInitted, Observer_win, Observer_doc, _docEl, _body, _isTouch, _pointerType, ScrollTrigger, Observer_root, _normalizer, _eventTypes, Observer_context, _getGSAP = function _getGSAP() {
             return Observer_gsap || "undefined" !== typeof window && (Observer_gsap = window.gsap) && Observer_gsap.registerPlugin && Observer_gsap;
         }, _startup = 1, _observers = [], _scrollers = [], _proxies = [], _getTime = Date.now, _bridge = function _bridge(name, value) {
             return value;
@@ -13928,7 +15376,7 @@ PERFORMANCE OF THIS SOFTWARE.
         }, _getProxyProp = function _getProxyProp(element, property) {
             return ~_proxies.indexOf(element) && _proxies[_proxies.indexOf(element) + 1][property];
         }, _isViewport = function _isViewport(el) {
-            return !!~_root.indexOf(el);
+            return !!~Observer_root.indexOf(el);
         }, _addListener = function _addListener(element, type, func, nonPassive, capture) {
             return element.addEventListener(type, func, {
                 passive: !nonPassive,
@@ -14032,7 +15480,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 Observer_doc = document;
                 _docEl = Observer_doc.documentElement;
                 _body = Observer_doc.body;
-                _root = [ Observer_win, Observer_doc, _docEl, _body ];
+                Observer_root = [ Observer_win, Observer_doc, _docEl, _body ];
                 Observer_gsap.utils.clamp;
                 Observer_context = Observer_gsap.core.context || function() {};
                 _pointerType = "onpointerenter" in _body ? "pointer" : "mouse";
@@ -16194,7 +17642,7 @@ PERFORMANCE OF THIS SOFTWARE.
         };
         const observer = new IntersectionObserver(((entries, observer) => {
             entries.forEach((entry => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && window.innerWidth > 1199.98) {
                     const number = entry.target;
                     let num = number.dataset.num;
                     var numAnim = new countUp(number, 0, num, 0, 1.5, {
