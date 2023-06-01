@@ -1,7 +1,0 @@
-<svg width="299" height="222" viewBox="0 0 299 222" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 195.816V24C0 10.7452 10.7452 0 24 0H275C288.255 0 299 10.7452 299 24V173.928C299 186.375 289.485 196.756 277.085 197.837L26.085 219.725C12.0606 220.948 0 209.894 0 195.816Z" fill="#143952"/>
-<circle cx="232" cy="176" r="6" fill="#1A4663"/>
-<circle cx="248" cy="176" r="6" fill="#1A4663"/>
-<circle cx="39" cy="67" r="6" transform="rotate(-90 39 67)" fill="#1A4663"/>
-<circle cx="39" cy="51" r="6" transform="rotate(-90 39 51)" fill="#1A4663"/>
-</svg>
