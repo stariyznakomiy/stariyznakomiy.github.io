@@ -14123,6 +14123,40 @@
                 document.documentElement.classList.add(className);
             }));
         }
+        let isMobile = {
+            Android: function() {
+                return navigator.userAgent.match(/Android/i);
+            },
+            BlackBerry: function() {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            iOS: function() {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            Opera: function() {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            Windows: function() {
+                return navigator.userAgent.match(/IEMobile/i);
+            },
+            any: function() {
+                return isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows();
+            }
+        };
+        function addTouchClass() {
+            if (isMobile.any()) document.documentElement.classList.add("touch");
+        }
+        function fullVHfix() {
+            const fullScreens = document.querySelectorAll("[data-fullscreen]");
+            if (fullScreens.length && isMobile.any()) {
+                window.addEventListener("resize", fixHeight);
+                function fixHeight() {
+                    let vh = window.innerHeight * .01;
+                    document.documentElement.style.setProperty("--vh", `${vh}px`);
+                }
+                fixHeight();
+            }
+        }
         let bodyLockStatus = true;
         let bodyLockToggle = (delay = 500) => {
             if (document.documentElement.classList.contains("lock")) bodyUnlock(delay); else bodyLock(delay);
@@ -24269,6 +24303,7 @@
         };
         MotionPathPlugin_getGSAP() && MotionPathPlugin_gsap.registerPlugin(MotionPathPlugin);
         gsapWithCSS.registerPlugin(ScrollTrigger_ScrollTrigger, CustomEase, MotionPathPlugin);
+        if (ScrollTrigger_ScrollTrigger.isTouch) ScrollTrigger_ScrollTrigger.normalizeScroll(true);
         const mm = gsapWithCSS.matchMedia();
         mm.add("(max-width: 479.98px)", (() => {
             const sectionHeroMobTl = gsapWithCSS.timeline();
@@ -24276,13 +24311,14 @@
             sectionHeroMobTl.fromTo(".section-1__bg", {
                 maskSize: "100% 40vh"
             }, {
-                maskSize: "400% 200vh"
+                maskSize: "400% 200vh",
+                ease: "none"
             });
             sectionHeroMobTl.fromTo(".section-1__bg-main-mob", {
                 y: "-35%"
             }, {
                 y: 0,
-                ease: "power4.out"
+                ease: customEase
             }, "<");
             sectionHeroMobTl.fromTo(".section-1__bg-main", {
                 y: "-25%"
@@ -24293,34 +24329,45 @@
             sectionHeroMobTl.fromTo(".section-1__bg-water", {
                 opacity: -2
             }, {
-                opacity: 1
+                opacity: 1,
+                ease: "none"
             }, "<");
             sectionHeroMobTl.to(".section-1__logo", {
-                opacity: -2
+                opacity: -2,
+                ease: "none"
             }, "<");
             sectionHeroMobTl.to(".section-1__content", {
-                opacity: -2
+                opacity: -2,
+                ease: "none"
             }, "<");
             sectionHeroMobTl.to(".section-2__head", {
-                opacity: -2
+                opacity: -2,
+                ease: "none"
             }, "<");
             sectionHeroMobTl.fromTo(".section-2__content", {
                 top: "100%",
                 opacity: 0
             }, {
                 top: "90%",
-                opacity: 1
+                opacity: 1,
+                ease: "none"
             }, "<");
             sectionHeroMobTl.fromTo(".section-2__content", {
                 y: 0
             }, {
-                y: "-110%"
+                y: "-110%",
+                ease: "none"
             });
             ScrollTrigger_ScrollTrigger.create({
                 animation: sectionHeroMobTl,
                 trigger: ".section-1",
                 start: "bottom bottom",
-                end: "bottom -200%",
+                end: "bottom -300%",
+                end: () => {
+                    const block = document.querySelector(".section-2__content").clientHeight;
+                    const height = window.innerHeight + block;
+                    return `bottom -${height}px`;
+                },
                 scrub: true,
                 pin: true,
                 onUpdate: self => {
@@ -24354,7 +24401,7 @@
         }));
         const sectionAboutTl = gsapWithCSS.timeline();
         sectionAboutTl.to(".section-11-about", {
-            yPercent: -100,
+            y: "-100%",
             top: "100%",
             ease: "none"
         });
@@ -24362,7 +24409,10 @@
             animation: sectionAboutTl,
             trigger: ".section-11",
             start: "bottom bottom",
-            end: "bottom -100%",
+            end: () => {
+                const height = document.querySelector(".section-11-about").clientHeight;
+                return `bottom -${height}px`;
+            },
             scrub: true,
             pin: true,
             onEnter: () => {
@@ -24439,7 +24489,8 @@
             tl.fromTo(".progress-bar__connect", {
                 y: "-100%"
             }, {
-                y: 0
+                y: 0,
+                ease: "none"
             });
             const progressBarOrigin = document.querySelector(".progress-bar__origin");
             const progressBarTrigger = ScrollTrigger_ScrollTrigger.create({
@@ -24651,7 +24702,9 @@
         }));
         window["FLS"] = true;
         isWebp();
+        addTouchClass();
         menuInit();
+        fullVHfix();
         formFieldsInit({
             viewPass: false,
             autoHeight: false
