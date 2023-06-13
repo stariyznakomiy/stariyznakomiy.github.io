@@ -24466,106 +24466,133 @@
                 }
             });
         }
-        const section6 = document.querySelector(".section-6");
-        if (section6) {
-            let section6Trigger = ScrollTrigger_ScrollTrigger.create({
+        mm.add("(min-width: 991.98px)", (() => {
+            const section6 = document.querySelector(".section-6");
+            ScrollTrigger_ScrollTrigger.create({
                 trigger: section6,
                 start: "top bottom",
                 end: "center center",
                 onLeave: () => {
-                    section6.querySelectorAll(".section-6__img").forEach((item => {
+                    section6.querySelectorAll(".section-6-item__img").forEach((item => {
                         if (item) item.classList.add("_active");
                     }));
                     console.log("onLeave");
                 },
                 onLeaveBack: () => {
-                    section6.querySelectorAll(".section-6__img").forEach((item => {
+                    section6.querySelectorAll(".section-6-item__img").forEach((item => {
                         if (item) item.classList.remove("_active");
                     }));
                     console.log("onLeaveBack");
                 }
             });
-            const tl = gsapWithCSS.timeline();
-            tl.fromTo(".progress-bar__connect", {
+        }));
+        mm.add("(max-width: 991.98px)", (() => {
+            const section6 = document.querySelector(".section-6");
+            const progressBarTl = gsapWithCSS.timeline();
+            progressBarTl.fromTo(".progress-bar__connect", {
                 y: "-100%"
             }, {
                 y: 0,
                 ease: "none"
             });
             const progressBarOrigin = document.querySelector(".progress-bar__origin");
-            const progressBarTrigger = ScrollTrigger_ScrollTrigger.create({
-                animation: tl,
-                trigger: section6,
+            ScrollTrigger_ScrollTrigger.create({
+                animation: progressBarTl,
+                trigger: ".section-6__wrap",
                 start: "top top",
                 end: "bottom+=400%",
                 scrub: true,
                 pin: true,
+                markers: true,
                 onUpdate: self => {
                     let progress = self.progress.toFixed(2) * 100;
                     if (self.direction === 1) {
-                        if (progress > 15 && progress < 40) {
-                            const item1 = section6.querySelector(".section-6__item--1");
-                            const item2 = section6.querySelector(".section-6__item--2");
+                        if (progress > 18 && progress < 38) {
+                            const item1 = section6.querySelector(".section-6-item--1");
+                            const item2 = section6.querySelector(".section-6-item--2");
                             item2.classList.add("_active");
                             item1.classList.remove("_active");
                             item1.classList.add("_done");
-                            progressBarOrigin.style.transform = "translateY(-66.667%)";
+                            progressBarOrigin.style.transform = `translateY( -${100 / 5 * 4}%)`;
                         }
-                        if (progress > 40 && progress < 80) {
-                            const item2 = section6.querySelector(".section-6__item--2");
-                            const item3 = section6.querySelector(".section-6__item--3");
+                        if (progress > 38 && progress < 58) {
+                            const item2 = section6.querySelector(".section-6-item--2");
+                            const item3 = section6.querySelector(".section-6-item--3");
                             item3.classList.add("_active");
                             item2.classList.remove("_active");
                             item2.classList.add("_done");
-                            progressBarOrigin.style.transform = "translateY(-33.334%)";
+                            progressBarOrigin.style.transform = `translateY(-${100 / 5 * 3}%)`;
                         }
-                        if (progress > 80) {
-                            const item3 = section6.querySelector(".section-6__item--3");
-                            const item4 = section6.querySelector(".section-6__item--4");
+                        if (progress > 58 && progress < 78) {
+                            const item3 = section6.querySelector(".section-6-item--3");
+                            const item4 = section6.querySelector(".section-6-item--4");
                             item4.classList.add("_active");
                             item3.classList.remove("_active");
                             item3.classList.add("_done");
-                            progressBarOrigin.style.transform = "translateY(0)";
+                            progressBarOrigin.style.transform = `translateY(-${100 / 5 * 2}%)`;
+                        }
+                        if (progress > 78 && progress < 98) {
+                            const item3 = section6.querySelector(".section-6-item--4");
+                            const item4 = section6.querySelector(".section-6-item--5");
+                            item4.classList.add("_active");
+                            item3.classList.remove("_active");
+                            item3.classList.add("_done");
+                            progressBarOrigin.style.transform = `translateY(-${100 / 5}%)`;
+                        }
+                        if (progress > 98) {
+                            const item3 = section6.querySelector(".section-6-item--5");
+                            const item4 = section6.querySelector(".section-6-item--6");
+                            item4.classList.add("_active");
+                            item3.classList.remove("_active");
+                            item3.classList.add("_done");
+                            progressBarOrigin.style.transform = `translateY(0)`;
                         }
                     }
                     if (self.direction === -1) {
-                        if (progress < 20) {
-                            const item1 = section6.querySelector(".section-6__item--1");
-                            const item2 = section6.querySelector(".section-6__item--2");
+                        if (progress < 18) {
+                            const item1 = section6.querySelector(".section-6-item--1");
+                            const item2 = section6.querySelector(".section-6-item--2");
                             item2.classList.remove("_active");
                             item1.classList.remove("_done");
                             item1.classList.add("_active");
                             progressBarOrigin.style.transform = "translateY(-100%)";
                         }
-                        if (progress > 20 && progress < 45) {
-                            const item2 = section6.querySelector(".section-6__item--2");
-                            const item3 = section6.querySelector(".section-6__item--3");
+                        if (progress > 18 && progress < 38) {
+                            const item2 = section6.querySelector(".section-6-item--2");
+                            const item3 = section6.querySelector(".section-6-item--3");
                             item3.classList.remove("_active");
                             item2.classList.remove("_done");
                             item2.classList.add("_active");
-                            progressBarOrigin.style.transform = "translateY(-66.667%)";
+                            progressBarOrigin.style.transform = `translateY(-${100 / 5 * 4}%)`;
                         }
-                        if (progress > 45 && progress < 80) {
-                            const item3 = section6.querySelector(".section-6__item--3");
-                            const item4 = section6.querySelector(".section-6__item--4");
+                        if (progress > 38 && progress < 58) {
+                            const item2 = section6.querySelector(".section-6-item--3");
+                            const item3 = section6.querySelector(".section-6-item--4");
+                            item3.classList.remove("_active");
+                            item2.classList.remove("_done");
+                            item2.classList.add("_active");
+                            progressBarOrigin.style.transform = `translateY(-${100 / 5 * 3}%)`;
+                        }
+                        if (progress > 58 && progress < 78) {
+                            const item2 = section6.querySelector(".section-6-item--4");
+                            const item3 = section6.querySelector(".section-6-item--5");
+                            item3.classList.remove("_active");
+                            item2.classList.remove("_done");
+                            item2.classList.add("_active");
+                            progressBarOrigin.style.transform = `translateY(-${100 / 5 * 2}%)`;
+                        }
+                        if (progress > 78 && progress < 98) {
+                            const item3 = section6.querySelector(".section-6-item--5");
+                            const item4 = section6.querySelector(".section-6-item--6");
                             item4.classList.remove("_active");
                             item3.classList.remove("_done");
                             item3.classList.add("_active");
-                            progressBarOrigin.style.transform = "translateY(-33.334%)";
+                            progressBarOrigin.style.transform = `translateY(-${100 / 5}%)`;
                         }
                     }
                 }
             });
-            let section6Media = gsapWithCSS.matchMedia();
-            section6Media.add("(min-width: 991.98px)", (() => {
-                section6Trigger.enable();
-                progressBarTrigger.disable();
-            }));
-            section6Media.add("(max-width: 991.98px)", (() => {
-                section6Trigger.disable();
-                progressBarTrigger.enable();
-            }));
-        }
+        }));
         const section7 = document.querySelector(".section-7");
         const tlPuzzle = gsapWithCSS.timeline();
         if (section7) {
