@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Ui kit</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20230630170833">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="transition_disabled">
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+			</div>
+		</header>
+		<main class="page">
+			<div class="page__container">
+				<h1 style="font-size: 36px; margin-bottom: 40px; margin-top: 40px;">UI kit</h1>
+
+				<h2 style="font-size: 28px; margin-bottom: 40px;">Кнопки</h2>
+
+				<button type="button" class="btn">Обсудить проект</button>
+				<hr style="margin: 16px 0;">
+				<a href="#" class="social-link">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-vk"></use>
+					</svg>
+				</a>
+				<hr style="margin: 16px 0;">
+
+				<h2 style="font-size: 28px; margin-bottom: 40px;">Ссылки</h2>
+
+				<a href="#" class="footer-link">Результат</a>
+				<hr style="margin: 16px 0;">
+				<a href="#" class="menu-link">Результат</a>
+				<hr style="margin: 16px 0;">
+
+				<h2 style="font-size: 28px; margin-bottom: 40px;">Переключатели</h2>
+
+				<div class="slider-controls">
+					<button type="button" class="slider-controls__arrow slider-controls__arrow-left">
+						<svg>
+							<use xlink:href="img/icons/icons.svg#svg-angle-left"></use>
+						</svg>
+					</button>
+					<div class="slider-controls__pagination">
+						<button type="button" class="slider-controls__bullet slider-controls__bullet_active"></button>
+						<button type="button" class="slider-controls__bullet"></button>
+						<button type="button" class="slider-controls__bullet"></button>
+						<button type="button" class="slider-controls__bullet"></button>
+						<button type="button" class="slider-controls__bullet"></button>
+						<button type="button" class="slider-controls__bullet"></button>
+					</div>
+					<button type="button" class="slider-controls__arrow slider-controls__arrow-right">
+						<svg>
+							<use xlink:href="img/icons/icons.svg#svg-angle-right"></use>
+						</svg>
+					</button>
+				</div>
+
+				<hr style="margin: 16px 0;">
+
+				<div class="slider-controls">
+					<button type="button" class="slider-controls__arrow slider-controls__arrow-left">
+						<svg>
+							<use xlink:href="img/icons/icons.svg#svg-angle-left"></use>
+						</svg>
+					</button>
+					<hr>
+					<button type="button" class="slider-controls__arrow slider-controls__arrow-right">
+						<svg>
+							<use xlink:href="img/icons/icons.svg#svg-angle-right"></use>
+						</svg>
+					</button>
+				</div>
+
+				<hr style="margin: 16px 0;">
+
+				<h2 style="font-size: 28px; margin-bottom: 40px;">Формы</h2>
+
+				<form action="" data-dev class="form">
+					<div class="form__input-wrap">
+						<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="+7 (999) 999-99-99" class="form__input input">
+					</div>
+					<div class="form__input-wrap">
+						<input data-required="email" autocomplete="off" type="email" name="form[]" data-error="" placeholder="E-mail" class="form__input input">
+					</div>
+					<button type="submit" class="form__button btn">Записаться на консультацию</button>
+				</form>
+
+				<hr style="margin: 16px 0;">
+
+				<h2 style="font-size: 28px; margin-bottom: 40px;">Попап</h2>
+
+				<div class="modal">
+					<button type="button" class="modal__close">
+						<svg>
+							<use xlink:href="img/icons/icons.svg#svg-close"></use>
+						</svg>
+					</button>
+					<div class="modal__title">
+						Заполните форму,
+						и мы с вами свяжемся!
+					</div>
+					<form action="" data-dev class="modal__form form">
+						<div class="form__input-wrap">
+							<input data-required autocomplete="off" type="tel" name="form[]" data-error="" placeholder="+7 (999) 999-99-99" class="form__input input">
+						</div>
+						<div class="form__input-wrap">
+							<input data-required="email" autocomplete="off" type="email" name="form[]" data-error="" placeholder="E-mail" class="form__input input">
+						</div>
+						<button type="submit" class="form__button btn">Отправить</button>
+					</form>
+				</div>
+				<hr style="margin: 16px 0;">
+				<div class="modal modal__success">
+					<button type="button" class="modal__close">
+						<svg>
+							<use xlink:href="img/icons/icons.svg#svg-close"></use>
+						</svg>
+					</button>
+					<div class="modal__title">
+						Заявка успешно отправлена, мы скоро с вами свяжемся!
+					</div>
+				</div>
+
+			</div>
+
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+			</div>
+		</footer>
+	</div>
+	<!-- <div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<button data-close type="button" class="popup__close">Закрыть</button>
+			<div class="popup__text">
+				Text
+			</div>
+		</div>
+	</div>
+</div> -->
+	<script src="js/app.min.js?_v=20230630170833"></script>
+</body>
+
+</html>
