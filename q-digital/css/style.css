@@ -66,6 +66,8 @@ button {
   cursor: pointer;
   color: inherit;
   background-color: inherit;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
@@ -687,6 +689,11 @@ textarea.input {
   .btn {
     font-size: calc(0.75rem + 0.125 * (100vw - 48rem) / 27.25);
   }
+}
+
+.touch .btn:active {
+  background-color: #ca2406;
+  color: #ffffff;
 }
 
 @supports (min-height: clamp( 2.5rem , 0.7385321101rem  +  3.6697247706vw , 3.5rem )) {
@@ -3774,6 +3781,11 @@ img._lazy-loaded {
     color: #f84525;
   }
 
+  .touch .btn:hover {
+    background-color: #f84525;
+    color: #ffffff;
+  }
+
   .social-link:hover {
     background-color: #f84525;
     color: #ffffff;
@@ -3790,6 +3802,10 @@ img._lazy-loaded {
 
   .slider-controls__arrow:hover {
     color: #f84525;
+  }
+
+  .touch .slider-controls__arrow:hover {
+    color: #100e0d;
   }
 
   .slider-controls .swiper-pagination-bullet:hover::before {
