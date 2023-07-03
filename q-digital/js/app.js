@@ -7495,8 +7495,9 @@
                     observeParents: true,
                     slidesPerView: 1,
                     spaceBetween: 0,
-                    speed: 800,
+                    speed: 400,
                     simulateTouch: false,
+                    loop: true,
                     effect: "fade",
                     fadeEffect: {
                         crossFade: true
@@ -7529,6 +7530,7 @@
                     spaceBetween: 20,
                     speed: 800,
                     simulateTouch: false,
+                    loop: true,
                     effect: "fade",
                     fadeEffect: {
                         crossFade: true
@@ -7558,6 +7560,7 @@
                     spaceBetween: 20,
                     speed: 800,
                     simulateTouch: false,
+                    loop: true,
                     effect: "fade",
                     fadeEffect: {
                         crossFade: true
@@ -7587,6 +7590,7 @@
                     spaceBetween: 20,
                     speed: 800,
                     simulateTouch: false,
+                    loop: true,
                     effect: "fade",
                     fadeEffect: {
                         crossFade: true
