@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230630170833">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230703124221">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +14,71 @@
 
 <body class="transition_disabled">
 	<div class="wrapper">
-		<header class="header">
+		<header data-scroll data-lp class="header">
 			<div class="header__container">
+				<div class="header__body">
+					<div class="header__left">
+						<a href="" class="header__logo"><img src="img/logo.svg" alt="Логотип q-digital."></a>
+						<hr>
+						<div class="header__menu menu">
+							<button type="button" class="menu__icon icon-menu"><span></span></button>
+							<nav class="menu__body">
+								<div class="menu__close">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-close"></use>
+									</svg>
+								</div>
+								<div class="menu__body-wrap">
+									<ul class="menu__list">
+										<li class="menu__item"><a href="#" data-goto="#section-result" data-goto-header class="menu__link link-secondary">Результат</a></li>
+										<li class="menu__item"><a href="#" data-goto="#section-advantages" data-goto-header class="menu__link link-secondary">Преимущества</a></li>
+										<li class="menu__item"><a href="#" data-goto="#section-whyus" data-goto-header class="menu__link link-secondary">Почему мы</a></li>
+										<li class="menu__item"><a href="#" data-goto="#section-team" data-goto-header class="menu__link link-secondary">Команда</a></li>
+										<li class="menu__item"><a href="#" data-goto="#section-about" data-goto-header class="menu__link link-secondary">О компании</a></li>
+									</ul>
+									<div class="menu__actions">
+										<div class="menu__socials socials">
+											<a href="#" class="socials__item social-link">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-vk"></use>
+												</svg>
+											</a>
+											<a href="#" class="socials__item social-link">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-tg"></use>
+												</svg>
+											</a>
+											<a href="#" class="socials__item social-link">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-lin"></use>
+												</svg>
+											</a>
+										</div>
+										<button data-popup="#popup-request" type="button" class="menu__button btn">Обсудить проект</button>
+									</div>
+								</div>
+							</nav>
+						</div>
+					</div>
+					<div class="header__socials socials">
+						<a href="#" class="socials__item social-link">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-vk"></use>
+							</svg>
+						</a>
+						<a href="#" class="socials__item social-link">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-tg"></use>
+							</svg>
+						</a>
+						<a href="#" class="socials__item social-link">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-lin"></use>
+							</svg>
+						</a>
+					</div>
+					<button type="button" data-popup="#popup-request" class="header__button btn">Обсудить проект</button>
+				</div>
 			</div>
 		</header>
 		<main class="page">
@@ -35,9 +98,9 @@
 
 				<h2 style="font-size: 28px; margin-bottom: 40px;">Ссылки</h2>
 
-				<a href="#" class="footer-link">Результат</a>
+				<a href="#" class="link-primary">Результат</a>
 				<hr style="margin: 16px 0;">
-				<a href="#" class="menu-link">Результат</a>
+				<a href="#" class="link-secondary">Результат</a>
 				<hr style="margin: 16px 0;">
 
 				<h2 style="font-size: 28px; margin-bottom: 40px;">Переключатели</h2>
@@ -134,20 +197,103 @@
 		</main>
 		<footer class="footer">
 			<div class="footer__container">
+				<div class="footer__body">
+					<div class="footer__row">
+						<div class="footer__info">
+							<a href="#" class="footer__logo"><img src="img/logo-big.svg" alt="Логотип q-digital."></a>
+							<div data-da=".footer__main, 599.98" class="footer__address">Ул. Кирова 112 Ижевск, Россия</div>
+						</div>
+						<div class="footer__main">
+							<div class="footer__links">
+								<div class="footer__label">Навигация:</div>
+								<ul class="footer__links-list">
+									<li class="footer__links-item"><a href="#" data-goto="#section-result" data-goto-header class="link-primary">Результат</a></li>
+									<li class="footer__links-item"><a href="#" data-goto="#section-advantages" data-goto-header class="link-primary">Преимущества</a></li>
+									<li class="footer__links-item"><a href="#" data-goto="#section-whyus" data-goto-header class="link-primary">Почему мы</a></li>
+									<li class="footer__links-item"><a href="#" data-goto="#section-team" data-goto-header class="link-primary">Команда</a></li>
+									<li class="footer__links-item"><a href="#" data-goto="#section-about" data-goto-header class="link-primary">О компании</a></li>
+								</ul>
+							</div>
+							<div class="footer__links footer__links--contacts">
+								<div class="footer__label">Контакты:</div>
+								<ul class="footer__links-list">
+									<li class="footer__links-item"><a href="mailto:client@q-digital.org" class="link-primary">client@q-digital.org</a></li>
+									<li class="footer__links-item"><a href="mailto:hr@q-digital.org" class="link-primary">hr@q-digital.org</a></li>
+									<li class="footer__links-item"><a href="tel:+79018699719" class="link-primary">+7 (901) 86-99-719</a></li>
+								</ul>
+							</div>
+						</div>
+						<div data-da=".footer__info,991.98, 1" class="footer__socials socials">
+							<a href="#" class="socials__item social-link">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-vk"></use>
+								</svg>
+							</a>
+							<a href="#" class="socials__item social-link">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-tg"></use>
+								</svg>
+							</a>
+							<a href="#" class="socials__item social-link">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-lin"></use>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<hr>
+					<div class="footer__bottom">
+						<div class="footer__copyright">Q-Digital 2023©</div>
+						<a href="#" class="footer__policy">Политика конфиденциальности</a>
+					</div>
+				</div>
 			</div>
 		</footer>
 	</div>
-	<!-- <div id="popup" aria-hidden="true" class="popup">
-	<div class="popup__wrapper">
-		<div class="popup__content">
-			<button data-close type="button" class="popup__close">Закрыть</button>
-			<div class="popup__text">
-				Text
+	<div id="popup-request" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__title">
+					Заполните форму,<br>
+					и мы с вами свяжемся!
+				</div>
+				<form action="" data-dev data-popup-message="#popup-success" class="popup__form form">
+					<div class="form__input-wrap">
+						<input data-required="text" autocomplete="off" type="text" name="form[]" data-error="" placeholder="Имя" class="form__input input">
+					</div>
+					<div class="form__input-wrap">
+						<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="+7 (999) 999-99-99" class="form__input input">
+					</div>
+					<div class="form__input-wrap">
+						<input data-required="email" autocomplete="off" type="text" name="form[]" data-error="" placeholder="E-mail" class="form__input input">
+					</div>
+					<button type="submit" class="form__button btn">Отправить</button>
+				</form>
 			</div>
 		</div>
 	</div>
-</div> -->
-	<script src="js/app.min.js?_v=20230630170833"></script>
+
+
+	<div id="popup-success" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="modal__title">
+					Заявка успешно отправлена, мы скоро с вами свяжемся!
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js?_v=20230703124221"></script>
 </body>
 
 </html>

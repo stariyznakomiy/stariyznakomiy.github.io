@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230630170833">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230703124221">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,28 +14,794 @@
 
 <body class="transition_disabled">
 	<div class="wrapper">
-		<header class="header">
+		<header data-scroll data-lp class="header">
 			<div class="header__container">
+				<div class="header__body">
+					<div class="header__left">
+						<a href="" class="header__logo"><img src="img/logo.svg" alt="Логотип q-digital."></a>
+						<hr>
+						<div class="header__menu menu">
+							<button type="button" class="menu__icon icon-menu"><span></span></button>
+							<nav class="menu__body">
+								<div class="menu__close">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-close"></use>
+									</svg>
+								</div>
+								<div class="menu__body-wrap">
+									<ul class="menu__list">
+										<li class="menu__item"><a href="#" data-goto="#section-result" data-goto-header class="menu__link link-secondary">Результат</a></li>
+										<li class="menu__item"><a href="#" data-goto="#section-advantages" data-goto-header class="menu__link link-secondary">Преимущества</a></li>
+										<li class="menu__item"><a href="#" data-goto="#section-whyus" data-goto-header class="menu__link link-secondary">Почему мы</a></li>
+										<li class="menu__item"><a href="#" data-goto="#section-team" data-goto-header class="menu__link link-secondary">Команда</a></li>
+										<li class="menu__item"><a href="#" data-goto="#section-about" data-goto-header class="menu__link link-secondary">О компании</a></li>
+									</ul>
+									<div class="menu__actions">
+										<div class="menu__socials socials">
+											<a href="#" class="socials__item social-link">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-vk"></use>
+												</svg>
+											</a>
+											<a href="#" class="socials__item social-link">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-tg"></use>
+												</svg>
+											</a>
+											<a href="#" class="socials__item social-link">
+												<svg>
+													<use xlink:href="img/icons/icons.svg#svg-lin"></use>
+												</svg>
+											</a>
+										</div>
+										<button data-popup="#popup-request" type="button" class="menu__button btn">Обсудить проект</button>
+									</div>
+								</div>
+							</nav>
+						</div>
+					</div>
+					<div class="header__socials socials">
+						<a href="#" class="socials__item social-link">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-vk"></use>
+							</svg>
+						</a>
+						<a href="#" class="socials__item social-link">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-tg"></use>
+							</svg>
+						</a>
+						<a href="#" class="socials__item social-link">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#svg-lin"></use>
+							</svg>
+						</a>
+					</div>
+					<button type="button" data-popup="#popup-request" class="header__button btn">Обсудить проект</button>
+				</div>
 			</div>
 		</header>
 		<main class="page">
+			<!-- hero -->
+			<section class="hero">
+				<div class="hero__bg">
+					<picture><source data-srcset="img/hero/hero-bg.webp, img/hero/hero-bg@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/hero/hero-bg.png" data-srcset="img/hero/hero-bg@2x.png 2x" alt=""></picture>
+				</div>
+				<div class="hero__container">
+					<div class="hero__body">
+						<div class="hero__content">
+							<div class="hero__text-wrap">
+								<h1 class="hero__title main-title">
+									Разрабатываем
+									<span>
+										кроссплатформенные
+										<img src="img/line.svg" aria-hidden="true" alt="">
+									</span> мобильные приложения
+								</h1>
+								<div class="hero__subtext">
+									Мобильные приложения, которые увеличат доход Вашего бизнеса
+								</div>
+							</div>
+							<button type="button" data-popup="#popup-request" class="hero__button btn btn--big">Заказать разработку</button>
+						</div>
+						<div class="hero__img">
+							<picture><source data-srcset="img/hero/hero-phone.webp, img/hero/hero-phone@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/hero/hero-phone.png" data-srcset="img/hero/hero-phone@2x.png 2x" alt=""></picture>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- hero end -->
+
+			<!-- result -->
+			<section id="section-result" class="section">
+				<div class="section__container">
+					<div class="section__head">
+						<h2 class="section__title section-title">
+							Как мобильные приложения влияют на
+							<span>
+								бизнес-результаты?
+								<img src="img/line-2.svg" aria-hidden="true" alt="">
+							</span>
+						</h2>
+					</div>
+					<div class="section__body content-block content-block--result">
+						<div class="content-block__left">
+							<div class="content-block__slider swiper">
+								<div class="content-block__slider-wrapper swiper-wrapper">
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<div class="content-block-slide__icon" style="background-image: url(img/icons/chart.svg);"></div>
+										<div class="content-block-slide__title">
+											Рост LTV, суммы чека <br>
+											и сокращение оттока клиентов
+										</div>
+									</div>
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<div class="content-block-slide__icon" style="background-image: url(img/icons/cube.svg);"></div>
+										<div class="content-block-slide__title">
+											Дополнительный канал <br>
+											продаж и продвижения
+										</div>
+									</div>
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<div class="content-block-slide__icon" style="background-image: url(img/icons/forward-item.svg);"></div>
+										<div class="content-block-slide__title">
+											Удобный способ контроля<br>
+											бизнес-показателей
+										</div>
+									</div>
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<div class="content-block-slide__icon" style="background-image: url(img/icons/story.svg);"></div>
+										<div class="content-block-slide__title">
+											Улучшают клиентский сервис, <br>
+											что дает рост приверженности <br>
+											клиентов
+										</div>
+									</div>
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<div class="content-block-slide__icon" style="background-image: url(img/icons/bubble.svg);"></div>
+										<div class="content-block-slide__title">
+											Способ отличаться<br>
+											от конкурентов, у которых<br>
+											нет мобильного приложения<br>
+											или оно разработано формально
+										</div>
+									</div>
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<div class="content-block-slide__title">
+											7 признаков правильного мобильного <br>
+											приложения
+										</div>
+										<form action="" data-dev class="content-block-slide__form form">
+											<div class="form__input-wrap">
+												<input data-required="email" autocomplete="off" type="text" name="form[]" data-error="" placeholder="E-mail" class="form__input input input--hight">
+											</div>
+											<button type="submit" class="form__button btn btn--big">Скачать</button>
+										</form>
+									</div>
+								</div>
+								<div class="content-block__slider-controls slider-controls slider-controls--gray-mob">
+									<button type="button" class="slider-controls__arrow slider-controls__arrow-left swiper-button-prev">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-left"></use>
+										</svg>
+									</button>
+									<div class="slider-controls__pagination">
+										<div class="swiper-pagination"></div>
+									</div>
+									<button type="button" class="slider-controls__arrow slider-controls__arrow-right swiper-button-next">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-right"></use>
+										</svg>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="content-block__right">
+							<div class="content-block__right-bg">
+								<picture><source data-srcset="img/result/1.webp, img/result/1@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/result/1.jpg" data-srcset="img/result/1@2x.jpg 2x" alt=""></picture>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- result end -->
+
+			<!-- application -->
+			<section class="section">
+				<div class="section__container">
+					<div class="section__head">
+						<h2 class="section__title section-title">
+							За 8 лет работы разработали более
+							<span>
+								100 приложений.
+								<img src="img/line-application.svg" aria-hidden="true" alt="">
+							</span>
+						</h2>
+						<div class="section__slider-controls slider-controls slider-controls--gray-mob slider-controls--small">
+							<button type="button" class="slider-controls__arrow slider-controls__arrow-left swiper-button-prev">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-angle-left"></use>
+								</svg>
+							</button>
+							<div class="slider-controls__pagination">
+								<div class="swiper-pagination"></div>
+							</div>
+							<button type="button" class="slider-controls__arrow slider-controls__arrow-right swiper-button-next">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-angle-right"></use>
+								</svg>
+							</button>
+						</div>
+					</div>
+					<div class="section__body">
+						<div class="section__slider swiper">
+							<div class="section__slider-wrapper swiper-wrapper">
+								<div class="section__slide content-block content-block--application swiper-slide">
+									<div class="content-block__left">
+										<div class="content-block__left-wrap">
+											<div class="content-block__left-title">LILIANI</div>
+											<div class="content-block__left-subtitle">ЭРГОНОМИЧНЫЙ, ИНФОРМАТИВНО - НАПОЛНЕННЫЙ САЙТ</div>
+											<div class="content-block__left-text">
+												<p>LILIANI - российская компания, которая разрабатывает передовые решения в агрологистике, инновационные цифровые продукты и создает современную
+													сельскохозяйственную технику для оптимизации логистики сева, уборки и хранения зерна.</p>
+												<p>Сайт дает возможность пройти путь от знакомства с компанией и изучения предоставляемых услуг
+													до первого контакта.</p>
+											</div>
+										</div>
+										<div class="content-block__left-tags">
+											<div class="content-block__left-tags-item">#разработка</div>
+											<div class="content-block__left-tags-item">#сайт</div>
+											<div class="content-block__left-tags-item">#технологии</div>
+										</div>
+									</div>
+									<div class="content-block__right">
+										<div class="content-block__right-bg">
+											<picture><source data-srcset="img/application/1.webp, img/application/1@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/application/1.jpg" data-srcset="img/application/1@2x.jpg 2x" alt=""></picture>
+										</div>
+									</div>
+								</div>
+								<div class="section__slide content-block content-block--application swiper-slide">
+									<div class="content-block__left">
+										<div class="content-block__left-wrap">
+											<div class="content-block__left-title">LILIANI</div>
+											<div class="content-block__left-subtitle">ЭРГОНОМИЧНЫЙ, ИНФОРМАТИВНО - НАПОЛНЕННЫЙ САЙТ</div>
+											<div class="content-block__left-text">
+												<p>LILIANI - российская компания, которая разрабатывает передовые решения в агрологистике, инновационные цифровые продукты и создает современную
+													сельскохозяйственную технику для оптимизации логистики сева, уборки и хранения зерна.</p>
+												<p>Сайт дает возможность пройти путь от знакомства с компанией и изучения предоставляемых услуг
+													до первого контакта.</p>
+											</div>
+										</div>
+										<div class="content-block__left-tags">
+											<div class="content-block__left-tags-item">#разработка</div>
+											<div class="content-block__left-tags-item">#сайт</div>
+											<div class="content-block__left-tags-item">#технологии</div>
+										</div>
+									</div>
+									<div class="content-block__right">
+										<div class="content-block__right-bg">
+											<picture><source data-srcset="img/application/1.webp, img/application/1@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/application/1.jpg" data-srcset="img/application/1@2x.jpg 2x" alt=""></picture>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- application end -->
+
+			<!-- form-result -->
+			<section class="section section--mt">
+				<div class="section__container">
+					<div class="section__body content-block content-block--form-result">
+						<div class="content-block__bg">
+							<picture><source data-srcset="img/form-result/bg.webp, img/form-result/bg@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/form-result/bg.png" data-srcset="img/form-result/bg@2x.png 2x" aria-hidden="true" alt=""></picture>
+						</div>
+						<div class="content-block__left">
+							<div class="content-block__left-wrap">
+								<h2 class="content-block__title section-title-secondary">
+									Узнайте, какие результаты разработка мобильного приложения принесет
+									<span>
+										именно Вам
+										<img src="img/line-3.svg" aria-hidden="true" alt="">
+									</span>
+								</h2>
+							</div>
+							<form action="" data-dev data-popup-message="#popup-success" class="content-block__left-form form">
+								<div class="form__input-wrap">
+									<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="+7 (999) 999-99-99" class="form__input input">
+								</div>
+								<div class="form__input-wrap">
+									<input data-required="email" autocomplete="off" type="text" name="form[]" data-error="" placeholder="E-mail" class="form__input input">
+								</div>
+								<button type="submit" class="form__button btn btn--wide">Узнать результат</button>
+							</form>
+							<div class="content-block__left-img">
+								<picture><source data-srcset="img/form-result/1.webp, img/form-result/1@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/form-result/1.png" data-srcset="img/form-result/1@2x.png 2x" alt=""></picture>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- form-result end -->
+
+			<!-- advantages -->
+			<section id="section-advantages" class="section">
+				<div class="section__container">
+					<div class="section__head">
+						<h2 class="section__title section-title">
+							Преимущества наших
+							<span>
+								мобильных приложений
+								<img src="img/line-advantages.svg" aria-hidden="true" alt="">
+							</span>
+						</h2>
+					</div>
+					<div class="section__body content-block content-block--advantages">
+						<div class="content-block__left">
+							<div class="content-block__left-title">Что такое умные <br> мобильные приложения?</div>
+							<hr>
+							<div class="content-block__slider swiper">
+								<div class="content-block__slider-wrapper swiper-wrapper">
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<span class="content-block-slide__counter"></span>
+										<div class="content-block-slide__text">
+											Аналитика использования <br>
+											приложения: на какой странице <br>
+											находился пользователей, <br>
+											какие действия он совершал.
+										</div>
+									</div>
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<span class="content-block-slide__counter"></span>
+										<div class="content-block-slide__text">
+											Мониторинг стабильности <br>
+											работы приложения.
+										</div>
+									</div>
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<span class="content-block-slide__counter"></span>
+										<div class="content-block-slide__text">
+											Финансовые отчеты по платным услугам: какие
+											платежи совершались за период, по каким
+											продуктам, без привязки к другим инструментам
+											сбора статистики. Актуально для приложений
+											с функционалом покупок.
+										</div>
+									</div>
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<span class="content-block-slide__counter"></span>
+										<div class="content-block-slide__text">
+											Сбор клиентской базы <br>
+											пользователей приложения<br>
+											в базу для сервисов рассылок.
+										</div>
+									</div>
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<span class="content-block-slide__counter"></span>
+										<div class="content-block-slide__text">
+											Инструменты для рассылки push-уведомлений (отправка по расписанию, сбор статистики о доставке, мониторинг переходов по ссылке).
+										</div>
+									</div>
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<span class="content-block-slide__counter"></span>
+										<div class="content-block-slide__text">
+											Устойчивость к режиму высокой нагрузки (одновременно приложением может пользоваться от 1000 человек). Предоставляем протокол нагрузочных испытаний.
+										</div>
+									</div>
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<span class="content-block-slide__counter"></span>
+										<div class="content-block-slide__text">
+											Интеграция с AR и hardware-устройствами (например, RFID).
+										</div>
+									</div>
+								</div>
+								<div class="content-block__slider-controls slider-controls slider-controls--gray-mob">
+									<button type="button" class="slider-controls__arrow slider-controls__arrow-left swiper-button-prev">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-left"></use>
+										</svg>
+									</button>
+									<div class="slider-controls__pagination">
+										<div class="swiper-pagination"></div>
+									</div>
+									<button type="button" class="slider-controls__arrow slider-controls__arrow-right swiper-button-next">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-right"></use>
+										</svg>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="content-block__right">
+							<div class="content-block__right-bg">
+								<picture><source data-srcset="img/advantages/1.webp, img/advantages/1@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/advantages/1.jpg" data-srcset="img/advantages/1@2x.jpg 2x" alt=""></picture>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- advantages end -->
+
+			<!-- why-us -->
+			<section id="section-whyus" class="section">
+				<div class="section__container">
+					<div class="section__head">
+						<h2 class="section__title section-title">
+							<span>
+								Почему мы?
+								<img src="img/line-whyus.svg" aria-hidden="true" alt="">
+							</span>
+						</h2>
+					</div>
+					<div class="section__body content-block content-block--whyus">
+						<div class="content-block__right">
+							<div class="content-block__right-bg">
+								<picture><source data-srcset="img/whyus/1.webp, img/whyus/1@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/whyus/1.jpg" data-srcset="img/whyus/1@2x.jpg 2x" alt=""></picture>
+							</div>
+						</div>
+					</div>
+					<div class="section__slider section__slider--2 swiper">
+						<div class="section__slider-wrapper swiper-wrapper">
+							<div class="section__slide item-block swiper-slide">
+								<div class="item-block__icon" style="background-image: url(img/icons/code.svg);"></div>
+								<div class="item-block__text">
+									К нам обращаются с не типовыми
+									и нестандартными задачами, которые не смогли решить другие разработчики. “Расшибемся”,
+									но найдем решение.
+								</div>
+							</div>
+							<div class="section__slide item-block swiper-slide">
+								<div class="item-block__icon" style="background-image: url(img/icons/calendar.svg);"></div>
+								<div class="item-block__text">
+									Прозрачность и предсказуемость. Предоставляем поэтапный план реализации проекта и вы знаете что и в какие сроки
+									от нас ожидать.
+								</div>
+							</div>
+							<div class="section__slide item-block swiper-slide">
+								<div class="item-block__icon" style="background-image: url(img/icons/firstline.svg);"></div>
+								<div class="item-block__text">
+									Отлично умеем превращать
+									неформализованный запрос (потребность бизнеса) в стандартизованное ТЗ (переводим потребность клиента на язык разработчиков).
+								</div>
+							</div>
+							<div class="section__slide item-block swiper-slide">
+								<div class="item-block__icon" style="background-image: url(img/icons/data-2.svg);"></div>
+								<div class="item-block__text">
+									Детально прорабатываем архитектуру
+									на старте. Для сложных проектов разрабатываем MVP уже в течение трех месяцев, а затем его развиваем.
+								</div>
+							</div>
+							<div class="section__slide item-block swiper-slide">
+								<div class="item-block__icon" style="background-image: url(img/icons/programming-arrow.svg);"></div>
+								<div class="item-block__text">
+									Сопровождаем проект после релиза. Поддерживаем
+									и развиваем проект на протяжении всего жизненного цикла.
+								</div>
+							</div>
+							<div class="section__slide item-block swiper-slide">
+								<div class="item-block__icon" style="background-image: url(img/icons/timer-start.svg);"></div>
+								<div class="item-block__text">
+									Проактивность. Сами предлагаем улучшения, сами являемся инициаторами встреч. За нами не надо бегать
+									и переделывать.
+								</div>
+							</div>
+							<div class="section__slide item-block swiper-slide">
+								<div class="item-block__icon" style="background-image: url(img/icons/shield-tick.svg);"></div>
+								<div class="item-block__text">
+									Надежность. Не даем несбыточных обещаний. Но то, что пообещали, будет реализовано качественно
+									и вовремя.
+								</div>
+							</div>
+						</div>
+						<div class="section__slider-controls slider-controls slider-controls--small">
+							<button type="button" class="slider-controls__arrow slider-controls__arrow-left swiper-button-prev">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-angle-left"></use>
+								</svg>
+							</button>
+							<div class="slider-controls__pagination">
+								<div class="swiper-pagination"></div>
+							</div>
+							<button type="button" class="slider-controls__arrow slider-controls__arrow-right swiper-button-next">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-angle-right"></use>
+								</svg>
+							</button>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- why-us end -->
+
+			<!-- form-begin -->
+			<section class="section section--mt">
+				<div class="section__container">
+					<div class="section__body content-block content-block--form-begin">
+						<div class="content-block__bg">
+							<picture><source data-srcset="img/form-begin/bg.webp, img/form-begin/bg@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/form-begin/bg.png" data-srcset="img/form-begin/bg@2x.png 2x" aria-hidden="true" alt=""></picture>
+						</div>
+						<div class="content-block__left">
+							<div class="content-block__left-wrap">
+								<h2 class="content-block__title section-title-secondary">
+									Нужно мобильное приложение, но не знаете,
+									<span>
+										с чего начать?
+										<img src="img/line-begin.svg" aria-hidden="true" alt="">
+									</span>
+								</h2>
+								<div class="content-block__left-text">
+									Зададим правильные вопросы, поможем структурировать задачу и понять, какую пользу принесет бизнесу, а также цену, сроки реализации проекта.
+								</div>
+							</div>
+							<form action="" data-dev data-popup-message="#popup-success" class="content-block__left-form form">
+								<div class="form__input-wrap">
+									<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="+7 (999) 999-99-99" class="form__input input">
+								</div>
+								<div class="form__input-wrap">
+									<input data-required="email" autocomplete="off" type="text" name="form[]" data-error="" placeholder="E-mail" class="form__input input">
+								</div>
+								<button type="submit" class="form__button btn btn--wide">Записаться на консультацию</button>
+							</form>
+							<div class="content-block__left-img">
+								<picture><source data-srcset="img/form-begin/1.webp, img/form-begin/1@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/form-begin/1.png" data-srcset="img/form-begin/1@2x.png 2x" alt=""></picture>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- form-begin end -->
+
+			<!-- team -->
+			<section id="section-team" class="section">
+				<div class="section__container">
+					<div class="section__head">
+						<h2 class="section__title section-title">
+							<span>
+								Команда
+								<img src="img/line-team.svg" aria-hidden="true" alt="">
+							</span>
+						</h2>
+						<div class="section__slider-controls slider-controls slider-controls--gray-mob slider-controls--small">
+							<button type="button" class="slider-controls__arrow slider-controls__arrow-left swiper-button-prev">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-angle-left"></use>
+								</svg>
+							</button>
+							<div class="slider-controls__pagination">
+								<div class="swiper-pagination"></div>
+							</div>
+							<button type="button" class="slider-controls__arrow slider-controls__arrow-right swiper-button-next">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-angle-right"></use>
+								</svg>
+							</button>
+						</div>
+					</div>
+					<div class="section__body">
+						<div class="section__slider section__slider--3 swiper">
+							<div class="section__slider-wrapper swiper-wrapper">
+								<div class="section__slide item-team swiper-slide">
+									<div class="item-team__img">
+										<div class="item-team__img-wrap">
+											<picture><source data-srcset="img/team/1.webp, img/team/1@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/team/1.jpg" data-srcset="img/team/1@2x.jpg 2x" alt="Иван Иванов."></picture>
+										</div>
+									</div>
+									<div class="item-team__info">
+										<div class="item-team__name">Иван Иванов</div>
+										<div class="item-team__post">СЕО</div>
+									</div>
+								</div>
+								<div class="section__slide item-team swiper-slide">
+									<div class="item-team__img">
+										<div class="item-team__img-wrap">
+											<picture><source data-srcset="img/team/1.webp, img/team/1@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/team/1.jpg" data-srcset="img/team/1@2x.jpg 2x" alt="Иван Иванов."></picture>
+										</div>
+									</div>
+									<div class="item-team__info">
+										<div class="item-team__name">Иван Иванов</div>
+										<div class="item-team__post">СЕО</div>
+									</div>
+								</div>
+								<div class="section__slide item-team swiper-slide">
+									<div class="item-team__img">
+										<div class="item-team__img-wrap">
+											<picture><source data-srcset="img/team/1.webp, img/team/1@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/team/1.jpg" data-srcset="img/team/1@2x.jpg 2x" alt="Иван Иванов."></picture>
+										</div>
+									</div>
+									<div class="item-team__info">
+										<div class="item-team__name">Иван Иванов</div>
+										<div class="item-team__post">СЕО</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- team end -->
+
+			<!-- about -->
+			<section id="section-about" class="section">
+				<div class="section__container">
+					<div class="section__head">
+						<h2 class="section__title section-title">
+							<span>
+								О компании
+								<img src="img/line-about.svg" aria-hidden="true" alt="">
+							</span>
+						</h2>
+					</div>
+					<div class="section__body content-block content-block--about">
+						<div class="content-block__left">
+							<div class="content-block__left-bg">
+								<picture><source data-srcset="img/about/bg-about.webp, img/about/bg-about@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/about/bg-about.png" data-srcset="img/about/bg-about@2x.png 2x" aria-hidden="true" alt=""></picture>
+							</div>
+							<div class="content-block__slider swiper">
+								<div class="content-block__slider-wrapper swiper-wrapper">
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<div class="content-block-slide__title">
+											Кто мы?
+										</div>
+										<div class="content-block-slide__text">
+											Q-Digital - надежный разработчик <br>
+											цифровых решений из Ижевска.
+										</div>
+									</div>
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<div class="content-block-slide__title">
+											Что мы делаем?
+										</div>
+										<div class="content-block-slide__text">
+											Создаем удобные веб-проекты и мобильные <br>
+											приложения, которые легко интегрируются<br>
+											с востребованными платформами и сервисами. <br>
+											Специализируемся на сложных<br>
+											и высоконагруженных системах. <br>
+											Разрабатываем с нуля и развиваем <br>
+											существующие.
+										</div>
+									</div>
+									<div class="content-block__slide content-block-slide swiper-slide">
+										<div class="content-block-slide__title">
+											Для кого мы это делаем?
+										</div>
+										<div class="content-block-slide__text">
+											Работаем для предпринимателей и компаний, <br>
+											которые связывают свое развитие с диджитал-<br>
+											решениями и не хотят обжечься со сроками, <br>
+											бюджетом и результатом.
+										</div>
+									</div>
+								</div>
+								<div class="content-block__slider-controls slider-controls">
+									<button type="button" class="slider-controls__arrow slider-controls__arrow-left swiper-button-prev">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-left"></use>
+										</svg>
+									</button>
+									<div class="slider-controls__pagination">
+										<div class="swiper-pagination"></div>
+									</div>
+									<button type="button" class="slider-controls__arrow slider-controls__arrow-right swiper-button-next">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#svg-angle-right"></use>
+										</svg>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="content-block__right">
+							<div class="content-block__right-bg">
+								<picture><source data-srcset="img/about/1.webp, img/about/1@2x.webp 2x" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/about/1.jpg" data-srcset="img/about/1@2x.jpg 2x" alt=""></picture>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- about end -->
+
 		</main>
 		<footer class="footer">
 			<div class="footer__container">
+				<div class="footer__body">
+					<div class="footer__row">
+						<div class="footer__info">
+							<a href="#" class="footer__logo"><img src="img/logo-big.svg" alt="Логотип q-digital."></a>
+							<div data-da=".footer__main, 599.98" class="footer__address">Ул. Кирова 112 Ижевск, Россия</div>
+						</div>
+						<div class="footer__main">
+							<div class="footer__links">
+								<div class="footer__label">Навигация:</div>
+								<ul class="footer__links-list">
+									<li class="footer__links-item"><a href="#" data-goto="#section-result" data-goto-header class="link-primary">Результат</a></li>
+									<li class="footer__links-item"><a href="#" data-goto="#section-advantages" data-goto-header class="link-primary">Преимущества</a></li>
+									<li class="footer__links-item"><a href="#" data-goto="#section-whyus" data-goto-header class="link-primary">Почему мы</a></li>
+									<li class="footer__links-item"><a href="#" data-goto="#section-team" data-goto-header class="link-primary">Команда</a></li>
+									<li class="footer__links-item"><a href="#" data-goto="#section-about" data-goto-header class="link-primary">О компании</a></li>
+								</ul>
+							</div>
+							<div class="footer__links footer__links--contacts">
+								<div class="footer__label">Контакты:</div>
+								<ul class="footer__links-list">
+									<li class="footer__links-item"><a href="mailto:client@q-digital.org" class="link-primary">client@q-digital.org</a></li>
+									<li class="footer__links-item"><a href="mailto:hr@q-digital.org" class="link-primary">hr@q-digital.org</a></li>
+									<li class="footer__links-item"><a href="tel:+79018699719" class="link-primary">+7 (901) 86-99-719</a></li>
+								</ul>
+							</div>
+						</div>
+						<div data-da=".footer__info,991.98, 1" class="footer__socials socials">
+							<a href="#" class="socials__item social-link">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-vk"></use>
+								</svg>
+							</a>
+							<a href="#" class="socials__item social-link">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-tg"></use>
+								</svg>
+							</a>
+							<a href="#" class="socials__item social-link">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-lin"></use>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<hr>
+					<div class="footer__bottom">
+						<div class="footer__copyright">Q-Digital 2023©</div>
+						<a href="#" class="footer__policy">Политика конфиденциальности</a>
+					</div>
+				</div>
 			</div>
 		</footer>
 	</div>
-	<!-- <div id="popup" aria-hidden="true" class="popup">
-	<div class="popup__wrapper">
-		<div class="popup__content">
-			<button data-close type="button" class="popup__close">Закрыть</button>
-			<div class="popup__text">
-				Text
+	<div id="popup-request" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="popup__title">
+					Заполните форму,<br>
+					и мы с вами свяжемся!
+				</div>
+				<form action="" data-dev data-popup-message="#popup-success" class="popup__form form">
+					<div class="form__input-wrap">
+						<input data-required="text" autocomplete="off" type="text" name="form[]" data-error="" placeholder="Имя" class="form__input input">
+					</div>
+					<div class="form__input-wrap">
+						<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="+7 (999) 999-99-99" class="form__input input">
+					</div>
+					<div class="form__input-wrap">
+						<input data-required="email" autocomplete="off" type="text" name="form[]" data-error="" placeholder="E-mail" class="form__input input">
+					</div>
+					<button type="submit" class="form__button btn">Отправить</button>
+				</form>
 			</div>
 		</div>
 	</div>
-</div> -->
-	<script src="js/app.min.js?_v=20230630170833"></script>
+
+
+	<div id="popup-success" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#svg-close"></use>
+					</svg>
+				</button>
+				<div class="modal__title">
+					Заявка успешно отправлена, мы скоро с вами свяжемся!
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js?_v=20230703124221"></script>
 </body>
 
 </html>
