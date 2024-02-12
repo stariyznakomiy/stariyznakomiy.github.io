@@ -7908,7 +7908,6 @@
                     slidesPerView: 3,
                     spaceBetween: 24,
                     speed: 800,
-                    autoHeight: true,
                     navigation: {
                         prevEl: ".team__navigation-arrow_prev",
                         nextEl: ".team__navigation-arrow_next"

@@ -680,12 +680,20 @@ body::after {
   font-weight: 500;
   line-height: 150%;
   color: #f84525;
-  -webkit-transition: color 0.3s ease 0s;
-  transition: color 0.3s ease 0s;
+  -webkit-transition: 0.3s ease 0s;
+  transition: 0.3s ease 0s;
+  -webkit-transition-property: background-color, color;
+  transition-property: background-color, color;
 }
 
 .header__phone:not(:last-child) {
   margin-right: 2.3125rem;
+}
+
+.header__phone svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
 }
 
 .header__button {
@@ -1377,12 +1385,6 @@ body::after {
   background-color: #222222;
 }
 
-.advantages-item__top {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
-}
-
 .advantages-item__top:not(:last-child) {
   margin-bottom: 1rem;
 }
@@ -1894,6 +1896,10 @@ body::after {
     display: none;
   }
 
+  .header__phone svg {
+    display: none;
+  }
+
   .header__burger {
     display: none;
   }
@@ -2344,7 +2350,28 @@ body::after {
     margin: 0;
   }
 
+  .header__phone:not(:last-child) {
+    margin-right: 1rem;
+  }
+
   .header__phone {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background-color: #f84525;
+    color: #ffffff;
+  }
+
+  .header__phone span {
     display: none;
   }
 
@@ -2697,6 +2724,12 @@ body::after {
   .works-item__graphic {
     -ms-grid-row: 3;
     -ms-grid-column: 1;
+  }
+}
+
+@media (any-hover: hover) and (max-width: 59.99875em) {
+  .header__phone:hover {
+    background-color: #d53113;
   }
 }
 
