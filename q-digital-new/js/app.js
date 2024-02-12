@@ -7889,7 +7889,6 @@
                     slidesPerView: 1,
                     spaceBetween: 40,
                     speed: 800,
-                    autoHeight: true,
                     pagination: {
                         el: ".works__pagination",
                         clickable: true
