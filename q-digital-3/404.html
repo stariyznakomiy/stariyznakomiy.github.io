@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240331231930">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240405004303">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,9 +50,9 @@
 							<div class="menu__main">
 								<div class="menu__wrapper">
 									<ul class="menu__list">
-										<li class="menu__item"><a href="#" data-goto="#works" data-goto-header class="menu__link">Кейсы</a></li>
+										<li class="menu__item"><a href="/catalog.html" data-goto="#works" data-goto-header class="menu__link">Кейсы</a></li>
 										<li class="menu__item"><a href="#" data-goto="#services" data-goto-header class="menu__link">Услуги</a></li>
-										<li class="menu__item"><a href="#" data-goto="#tags" data-goto-header class="menu__link">Отрасли</a></li>
+										<li class="menu__item"><a href="#" data-goto="#tags" data-goto-top="50" data-goto-header class="menu__link">Отрасли</a></li>
 									</ul>
 									<div class="menu__socials socials">
 										<a href="https://vk.com/qdigitalagency" class="socials__item social-link">
@@ -72,7 +72,7 @@
 										</a>
 									</div>
 								</div>
-								<button type="button" data-popup="#popup-project" class="menu__button btn">
+								<button type="button" data-popup="#popup-request" class="menu__button btn">
 									<svg>
 										<use xlink:href="img/icons/icons.svg#svg-chat"></use>
 									</svg>
@@ -84,8 +84,13 @@
 					<a href="tel:+79018699719" class="header__phone">
 						<span>+7 (901) 86-99-719</span>
 					</a>
-					<button type="button" data-popup="#popup-project" class="header__button-link">Обсудить проект</button>
-					<button type="button" data-popup="#popup-project" class="header__button btn btn_small">
+					<a href="https://t.me/QDigitalAgency" class="header__tg">
+						<svg>
+							<use xlink:href="img/icons/icons.svg#svg-tg"></use>
+						</svg>
+					</a>
+					<button type="button" data-popup="#popup-request" class="header__button-link">Обсудить проект</button>
+					<button type="button" data-popup="#popup-request" class="header__button btn btn_small">
 						<svg>
 							<use xlink:href="img/icons/icons.svg#svg-chat"></use>
 						</svg>
@@ -160,7 +165,7 @@
 									<li class="footer__nav-item"><a href="#" data-goto="#services" data-goto-header class="footer__nav-link">Услуги</a></li>
 									<li class="footer__nav-item"><a href="#" data-goto="#tags" data-goto-header class="footer__nav-link">Отрасли</a></li>
 									<li class="footer__nav-item"><a href="#" class="footer__nav-link">Вакансии</a></li>
-									<li class="footer__nav-item"><button type="button" data-popup="#popup-project" class="footer__nav-link footer__nav-link_accent">Обсудить проект</button></li>
+									<li class="footer__nav-item"><button type="button" data-popup="#popup-request" class="footer__nav-link footer__nav-link_accent">Обсудить проект</button></li>
 								</ul>
 							</div>
 							<div class="footer__group">
@@ -213,7 +218,7 @@
 							Заполни форму и мы сделаем оценку проекта <span class="accent-text">в&nbsp;течение 2 дней</span>
 						</div>
 						<div class="popup__title popup__title_mob">
-							Заполните форму и&nbsp;<span class="accent-text">мы с вами свяжемся</span>
+							Заполните форму и&nbsp;<span class="accent-text">мы&nbsp;с&nbsp;вами свяжемся</span>
 						</div>
 						<div class="popup__subtitile">Обсудим ваш проект и предложим оптимальные решения для реализации ваших бизнес-целей</div>
 					</div>
@@ -255,11 +260,8 @@
 				</button>
 				<div class="popup__grid">
 					<div class="popup__text">
-						<div class="popup__title popup__title_desk">
-							Заполните форму и мы&nbsp;с&nbsp;вами свяжемся <span class="accent-text">в&nbsp;течение 2-х часов!</span>
-						</div>
-						<div class="popup__title popup__title_mob">
-							Заполните форму и мы с вами свяжемся <span class="accent-text">в&nbsp;течение 2-х часов!</span>
+						<div class="popup__title">
+							Заполните форму и&nbsp;мы&nbsp;с&nbsp;вами свяжемся <span class="accent-text">в&nbsp;течение 2-х часов!</span>
 						</div>
 						<div class="popup__subtitile">Обсудим ваш проект и предложим оптимальные решения для реализации ваших бизнес-целей</div>
 					</div>
@@ -516,7 +518,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20240331231930"></script>
+	<script src="js/app.min.js?_v=20240405004303"></script>
 </body>
 
 </html>

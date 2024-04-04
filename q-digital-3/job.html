@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-	<title>Главная</title>
+	<title>Вакансии</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
@@ -105,621 +105,67 @@
 			</div>
 		</header>
 		<main class="page">
-			<!-- hero -->
-			<section id="hero" class="hero">
-				<div class="hero__container">
-					<div class="hero__body">
-						<div class="hero__content">
-							<div class="hero__title-wrapper">
-								<h1 class="hero__title h1">Разрабатываем цифровые решения для бизнеса </h1>
-								<div class="hero__subtitle">Помогаем бизнесу развиваться в  IT-среде</div>
+
+			<!-- job -->
+			<section class="job">
+				<div class="job__container">
+					<div class="job__body">
+						<div class="job__head">
+							<h1 class="job__title h1">
+								Присоединяйся к нашей команде
+							</h1>
+							<div class="job__subtitle">
+								Мы создаем проекты, которыми гордимся
 							</div>
-							<button type="button" data-popup="#popup-request" class="hero__button btn btn_small btn_black">
+						</div>
+						<div class="job__wrapper">
+							<button type="button" class="job__navigation-arrow job__navigation-arrow_prev btn-arrow swiper-button-prev">
 								<svg>
-									<use xlink:href="img/icons/icons.svg#svg-chat"></use>
+									<use xlink:href="img/icons/icons.svg#svg-arrow-left"></use>
 								</svg>
-								<span>обсудить проект</span>
+							</button>
+							<div class="job__slider swiper">
+								<div class="job__slider-wrapper swiper-wrapper">
+									<div class="job__slide swiper-slide">
+										<a href="#">Менеджер проекта</a>
+									</div>
+									<div class="job__slide swiper-slide">
+										<a href="#">Frontend-разработчик</a>
+									</div>
+									<div class="job__slide swiper-slide">
+										<a href="#">PHP-разработчик</a>
+									</div>
+									<div class="job__slide swiper-slide">
+										<a href="#">Программист-стажер</a>
+									</div>
+								</div>
+							</div>
+							<button type="button" class="job__navigation-arrow job__navigation-arrow_next btn-arrow swiper-button-next">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#svg-arrow-right"></use>
+								</svg>
 							</button>
 						</div>
-						<div class="hero__counters-wrapper">
-							<div class="hero__counters">
-								<div class="hero__counters-item">
-									<span>+100</span>
-									реализованных<br>
-									проектов
-								</div>
-								<div class="hero__counters-item">
-									<span>8</span>
-									лет на рынке
-								</div>
-								<div class="hero__counters-item">
-									<span>13</span>
-									ниш в проектах
-								</div>
-							</div>
-						</div>
-						<div class="hero__link-wrapper">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#svg-adobe"></use>
-							</svg>
-							<a href="#" download="" class="hero__link">
-								Презентация компании
-							</a>
-						</div>
+						<div class="job__pagination"></div>
 					</div>
 				</div>
 			</section>
-			<!-- hero end -->
-
-			<!-- works -->
-			<section id="works" class="works">
-				<div class="works__container">
-					<div class="works__body">
-						<div class="works__slider swiper">
-							<div class="works__slider-wrapper swiper-wrapper"></div>
-						</div>
-						<div class="works__grid works__grid_main">
-							<div class="works__item works-item swiper-slide" data-da=".works__slider-wrapper, 959.98">
-								<div class="works-item__text">
-									<div class="works-item__title">Ели Млели</div>
-									<div class="works-item__subtitle">Сервис предзаказов для сети ресторанов быстрого питания </div>
-									<div class="works-item__descr">
-										<p>Позволяет снизить нагрузку на персонал в пиковые часы работы, путем сбора предзаказов. Оптимизировать закупки за счет сбора ретроспективных статистических
-											показателей в разные периоды времени.</p>
-									</div>
-								</div>
-								<div class="works-item__image-wrapper">
-									<img data-src="img/works/1.png" data-srcset="img/works/1@2x.png 2x" alt="Ели Млели.">
-									<div class="works-item__label">
-										Разработка мобильного приложения
-									</div>
-								</div>
-							</div>
-							<div class="works__item works-item swiper-slide" data-da=".works__slider-wrapper, 959.98">
-								<div class="works-item__text">
-									<div class="works-item__title">Океаника</div>
-									<div class="works-item__subtitle">Приложение для сети клубов плавания</div>
-									<div class="works-item__descr">
-										<p>Позволяет без труда купить или продлить абонемент для занятий спортом, отслеживать расписание занятий и получать обратную связь от тренера о своих
-											достижениях.</p>
-										<p>Приложение интегрировано с ERP-системой, позволяющей масштабировать бизнес, путем открытия филиалов. Поддерживает возможность работы в каждом филиале
-											отдельно.</p>
-									</div>
-								</div>
-								<div class="works-item__image-wrapper">
-									<img data-src="img/works/2.png" data-srcset="img/works/2@2x.png 2x" alt="Океаника.">
-									<div class="works-item__label">
-										Разработка мобильного приложения
-									</div>
-								</div>
-							</div>
-							<div class="works__item works-item swiper-slide" data-da=".works__slider-wrapper, 959.98">
-								<div class="works-item__text">
-									<div class="works-item__title">Franke</div>
-									<div class="works-item__subtitle">Сервис для дистрибьюторов швейцарского производителя кухонного оборудования и бытовой техники</div>
-									<div class="works-item__descr">
-										<p>Основное назначение продукта - организация процесса закупки больших объемов товарных позиций для ограниченного круга дистрибьюторов, ключевые функции:</p>
-										<ul>
-											<li>Вход по идентификационному номеру партнера</li>
-											<li>Оформление оптового заказа</li>
-											<li>Система лояльности с возможностью частичной оплаты бонусами</li>
-										</ul>
-									</div>
-								</div>
-								<div class="works-item__image-wrapper">
-									<img data-src="img/works/3.png" data-srcset="img/works/3@2x.png 2x" alt="Океаника.">
-									<div class="works-item__label">
-										Разработка мобильного приложения
-									</div>
-								</div>
-							</div>
-							<div class="works__item works-item swiper-slide" data-da=".works__slider-wrapper, 959.98">
-								<div class="works-item__text">
-									<div class="works-item__title">DimPoisk</div>
-									<div class="works-item__subtitle">Сервис для поиска фирм, специалистов и услуг</div>
-									<div class="works-item__descr">
-										<p>Позволяет пользователю просматривать расписание кинотеатров, театров и концертов, оставлять отзывы организациям, отправлять запросы в организации. Рубрикатор
-											работает в онлайн и оффлайн режиме.</p>
-										<p>Приложение позволяет скачать файл нужного города или нескольких, при необходимости.</p>
-									</div>
-								</div>
-								<div class="works-item__image-wrapper">
-									<img data-src="img/works/4.png" data-srcset="img/works/4@2x.png 2x" alt="DimPoisk.">
-									<div class="works-item__label">
-										Разработка мобильного приложения
-									</div>
-								</div>
-							</div>
-							<div class="works__item works-item swiper-slide" data-da=".works__slider-wrapper, 959.98">
-								<div class="works-item__text">
-									<div class="works-item__title">Kilo-Max</div>
-									<div class="works-item__subtitle">Приложение автоматизирует процесс продажи больших объемов продукции</div>
-									<div class="works-item__descr">
-										<p>Приложение разработано для сети second-hand магазинов, продающих одежду по весу. Позволяет быстро оформить заказ. Рассчитано на большую нагрузку во время
-											распродаж. Имеет функционал для автоматизации работы сотрудников склада.</p>
-									</div>
-								</div>
-								<div class="works-item__image-wrapper">
-									<img data-src="img/works/5.png" data-srcset="img/works/5@2x.png 2x" alt="DimPoisk.">
-									<div class="works-item__label">
-										Разработка мобильного приложения
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="works__actions">
-							<div class="works__pagination"></div>
-							<a href="/catalog.html" class="works__button-more btn btn_small">Показать еще</a>
-							<div class="works__navigation">
-								<button type="button" class="works__navigation-arrow works__navigation-arrow_prev btn-arrow swiper-button-prev">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-arrow-left"></use>
-									</svg>
-								</button>
-								<button type="button" class="works__navigation-arrow works__navigation-arrow_next btn-arrow swiper-button-next">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-arrow-right"></use>
-									</svg>
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- works end -->
-
-			<!-- tags -->
-			<section id="tags" class="tags">
-				<div class="tags__container">
-					<div class="tags__body">
-						<div class="tags__list">
-							<div class="tags__item">Ритейл/Е-commerce</div>
-							<div class="tags__item">HoReCa</div>
-							<div class="tags__item">Сервисы</div>
-							<div class="tags__item">Спорт</div>
-							<div class="tags__item">Образование</div>
-							<div class="tags__item">Сельское хозяйство</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- tags end -->
-
-			<!-- services -->
-			<section id="services" class="services">
-				<div class="services__bg">
-					<div class="services__bg-item"></div>
-					<div class="services__bg-item"></div>
-					<div class="services__bg-item"></div>
-				</div>
-				<div class="services__container">
-					<div class="services__body">
-						<h2 class="services__title h2">
-							<span class="accent-text">
-								Разрабатываем с&nbsp;нуля
-							</span>
-							и&nbsp;развиваем существующие проекты
-						</h2>
-						<div data-spollers class="services__spollers spollers">
-							<div class="spollers__item">
-								<button type="button" data-spoller class="spollers__title">
-									Мобильная разработка
-									<span class="spollers__title-arrow">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-arrow-down"></use>
-										</svg>
-									</span>
-								</button>
-								<div class="spollers__body">
-									Разрабатываем кроссплатформенные мобильные приложения со&nbsp;встроенным инструментарием измерения поведения пользователей. Это позволяет развивать приложения,
-									увеличивая их&nbsp;эффективность в&nbsp;решении бизнес-задач.
-								</div>
-							</div>
-							<div class="spollers__item">
-								<button type="button" data-spoller class="spollers__title">
-									Web-разработка и интеграции
-									<span class="spollers__title-arrow">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-arrow-down"></use>
-										</svg>
-									</span>
-								</button>
-								<div class="spollers__body">
-									Применяем комплексный подход: от&nbsp;разработки прототипа до&nbsp;внедрения в&nbsp;бизнес. Подключаем любые внешние сервисы , необходимые для бесперебойной
-									работы бизнеса.
-								</div>
-							</div>
-							<div class="spollers__item">
-								<button type="button" data-spoller class="spollers__title">
-									CRM/ERP-системы
-									<span class="spollers__title-arrow">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-arrow-down"></use>
-										</svg>
-									</span>
-								</button>
-								<div class="spollers__body">
-									Развиваем сервисы и&nbsp;адаптируем под требования бизнеса.
-								</div>
-							</div>
-							<div class="spollers__item">
-								<button type="button" data-spoller class="spollers__title">
-									Аутстаффинг
-									<span class="spollers__title-arrow">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-arrow-down"></use>
-										</svg>
-									</span>
-								</button>
-								<div class="spollers__body">
-									Подключимся к&nbsp;вашему проекту на&nbsp;любом этапе его реализации. Подберем состав удаленных специалистов от&nbsp;одного разработчика
-									до&nbsp;проектной команды.
-								</div>
-							</div>
-							<div class="spollers__item">
-								<button type="button" data-spoller class="spollers__title">
-									Нетиповое ПО на стыках различных платформ
-									<span class="spollers__title-arrow">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-arrow-down"></use>
-										</svg>
-									</span>
-								</button>
-								<div class="spollers__body">
-									Создаем ПО&nbsp;для ОС&nbsp;Mac, Windows. Интегрируем со&nbsp;всеми внешними устройствами: POS-терминалами, СКУД и&nbsp;др.
-								</div>
-							</div>
-							<div class="spollers__item">
-								<button type="button" data-spoller class="spollers__title">
-									Поддержка и доработка существующих решений
-									<span class="spollers__title-arrow">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#svg-arrow-down"></use>
-										</svg>
-									</span>
-								</button>
-								<div class="spollers__body">
-									Поможем реализовать проект, даже когда до&nbsp;нас с&nbsp;ними не&nbsp;справились другие разработчики.
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- services end -->
-
-			<!-- consultation -->
-			<section id="consultation" class="consultation">
-				<div class="consultation__container">
-					<div class="consultation__body">
-						<div class="consultation__technologies">
-							<div class="consultation__technologies-group">
-								<span>Backend:</span>
-								PHP, 1С-БИТРИКС, LARAVEL, NODE.JS, PYTHON
-							</div>
-							<div class="consultation__technologies-group">
-								<span>Frontend:</span>
-								JAVASCRIPT, TYPESCRIPT, REACTJS, NUXT, VUE, NEXT.JS, ELECTRON
-							</div>
-							<div class="consultation__technologies-group">
-								<span>Mobile:</span>
-								REACT NATIVE
-							</div>
-						</div>
-						<div class="consultation__content">
-							<div class="consultation__text">
-								<h2 class="consultation__title h2">
-									Запишитесь на&nbsp;<span class="accent-text">бесплатную консультацию</span>
-								</h2>
-								<div class="consultation__descr">
-									Разберем ваш проект<br>
-									Предложим решения<br>
-									Расскажем про этапы работы
-								</div>
-							</div>
-							<button type="button" data-popup="#popup-request" class="consultation__button btn">
-								<svg>
-									<use xlink:href="img/icons/icons.svg#svg-chat"></use>
-								</svg>
-								<span>Записаться</span>
-							</button>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- consultation end -->
-
-			<!-- partners -->
-			<section id="partners" class="partners">
-				<div class="partners__container">
-					<div class="partners__body">
-						<h2 class="partners__title h2">Наши партнеры</h2>
-						<div class="partners__slider swiper">
-							<div class="partners__wrapper swiper-wrapper">
-								<div data-da=".partners__list, 1199.98" class="partners__slide swiper-slide partners__item">
-									<img src="img/partners/1.svg" alt="Логотип партнера.">
-								</div>
-								<div data-da=".partners__list, 1199.98" class="partners__slide swiper-slide partners__item">
-									<img src="img/partners/2.svg" alt="Логотип партнера.">
-								</div>
-								<div data-da=".partners__list, 1199.98" class="partners__slide swiper-slide partners__item">
-									<img src="img/partners/3.svg" alt="Логотип партнера.">
-								</div>
-								<div data-da=".partners__list, 1199.98" class="partners__slide swiper-slide partners__item">
-									<img src="img/partners/4.svg" alt="Логотип партнера.">
-								</div>
-								<div data-da=".partners__list, 1199.98" class="partners__slide swiper-slide partners__item">
-									<img src="img/partners/5.svg" alt="Логотип партнера.">
-								</div>
-								<div data-da=".partners__list, 1199.98" class="partners__slide swiper-slide partners__item">
-									<img src="img/partners/6.svg" alt="Логотип партнера.">
-								</div>
-								<div data-da=".partners__list, 1199.98" class="partners__slide swiper-slide partners__item">
-									<img src="img/partners/7.svg" alt="Логотип партнера.">
-								</div>
-								<div data-da=".partners__list, 1199.98" class="partners__slide swiper-slide partners__item">
-									<img src="img/partners/8.svg" alt="Логотип партнера.">
-								</div>
-							</div>
-						</div>
-						<div class="partners__list">
-
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- partners end -->
-
-			<!-- cta -->
-			<section id="cta" class="cta">
-				<div class="cta__container">
-					<div class="cta__body">
-						<h2 class="cta__title h2">
-							Подготовим оценку проекта <span class="accent-text">в течение 2-х дней:</span>
-						</h2>
-						<div class="cta__content">
-							<ul class="cta__list">
-								<li class="cta__list-item">Сформулируем стоимость и сроки реализации</li>
-								<li class="cta__list-item">Расскажем про этапы процесса разработки</li>
-								<li class="cta__list-item">Составим карту структуры приложения</li>
-							</ul>
-							<button type="button" data-popup="#popup-project" class="cta__button btn">
-								<svg>
-									<use xlink:href="img/icons/icons.svg#svg-chat"></use>
-								</svg>
-								<span>Оценить проект</span>
-							</button>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- cta end -->
-
-			<!-- whyus -->
-			<section id="whyus" class="whyus">
-				<div class="whyus__bg">
-					<div class="whyus__bg-item"></div>
-					<div class="whyus__bg-item"></div>
-					<div class="whyus__bg-item"></div>
-				</div>
-				<div class="whyus__container">
-					<div class="whyus__body">
-						<h2 class="whyus__title h2">Почему мы</h2>
-						<div class="whyus__list">
-							<div class="whyus__item whyus-item">
-								<div class="whyus-item__bg">
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-								</div>
-								<div class="whyus-item__icon">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-task-check"></use>
-									</svg>
-								</div>
-								<div class="whyus-item__content">
-									<div class="whyus-item__title">
-										Решим нестандартную задачу
-									</div>
-									<div class="whyus-item__text">
-										Решаем нестандартные задачи, которые не&nbsp;смогли решить другие разработчики. “Расшибемся”, но&nbsp;найдем решение.
-									</div>
-								</div>
-							</div>
-							<div class="whyus__item whyus-item">
-								<div class="whyus-item__bg">
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-								</div>
-								<div class="whyus-item__icon">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-case"></use>
-									</svg>
-								</div>
-								<div class="whyus-item__content">
-									<div class="whyus-item__title">
-										Работаем с&nbsp;малым, средним&nbsp;и&nbsp;крупным бизнесом
-									</div>
-									<div class="whyus-item__text">
-										Создаем комфортные условия для сотрудничества с&nbsp;каждым клиентом.
-									</div>
-								</div>
-							</div>
-							<div class="whyus__item whyus-item">
-								<div class="whyus-item__bg">
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-								</div>
-								<div class="whyus-item__icon">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-check-list"></use>
-									</svg>
-								</div>
-								<div class="whyus-item__content">
-									<div class="whyus-item__title">
-										Сформулируем требования к&nbsp;проекту&nbsp;за&nbsp;вас
-									</div>
-									<div class="whyus-item__text">
-										Наши менеджеры помогут сформулировать требования и&nbsp;перевести его на&nbsp;язык разработчиков.
-									</div>
-								</div>
-							</div>
-							<div class="whyus__item whyus-item">
-								<div class="whyus-item__bg">
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-								</div>
-								<div class="whyus-item__icon">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-architecture"></use>
-									</svg>
-								</div>
-								<div class="whyus-item__content">
-									<div class="whyus-item__title">
-										Детально прорабатываем архитектуру на&nbsp;старте
-									</div>
-									<div class="whyus-item__text">
-										Для сложных проектов разрабатываем MVP уже в&nbsp;течение трех месяцев, а&nbsp;затем его развиваем.
-									</div>
-								</div>
-							</div>
-							<div class="whyus__item whyus-item">
-								<div class="whyus-item__bg">
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-								</div>
-								<div class="whyus-item__icon">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-pc"></use>
-									</svg>
-								</div>
-								<div class="whyus-item__content">
-									<div class="whyus-item__title">
-										Подберем команду разработчиков под вас
-									</div>
-									<div class="whyus-item__text">
-										Подберем команду таким образом, чтобы разработать проект в&nbsp;максимально сжатые сроки.
-									</div>
-								</div>
-							</div>
-							<div class="whyus__item whyus-item">
-								<div class="whyus-item__bg">
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-									<div class="whyus-item__bg-item"></div>
-								</div>
-								<div class="whyus-item__icon">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-code"></use>
-									</svg>
-								</div>
-								<div class="whyus-item__content">
-									<div class="whyus-item__title">
-										Разрабатываем сервисы с&nbsp;нуля и&nbsp;развиваем существующие
-									</div>
-									<div class="whyus-item__text">
-										Поможем с&nbsp;backend, frontend-разработкой и&nbsp;дизайном интерфейса.
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- whyus end -->
-
-			<!-- principles -->
-			<section id="principles" class="principles">
-				<div class="principles__container">
-					<div class="principles__body">
-						<h2 class="principles__title h2">
-							Наши принципы в&nbsp;работе
-						</h2>
-						<div class="principles__list">
-							<div class="principles__item principles-item">
-								<div class="principles-item__bg">
-									<div class="principles-item__bg-item"></div>
-									<div class="principles-item__bg-item"></div>
-									<div class="principles-item__bg-item"></div>
-									<div class="principles-item__bg-item"></div>
-								</div>
-								<div class="principles-item__content">
-									<div class="principles-item__title">
-										Прозрачность и&nbsp;предсказуемость
-									</div>
-									<div class="principles-item__text">
-										Предоставляем поэтапный план реализации проекта. Вы&nbsp;знаете что и&nbsp;в&nbsp;какие сроки от&nbsp;нас ожидать.
-									</div>
-								</div>
-							</div>
-							<div class="principles__item principles-item">
-								<div class="principles-item__bg">
-									<div class="principles-item__bg-item"></div>
-									<div class="principles-item__bg-item"></div>
-									<div class="principles-item__bg-item"></div>
-									<div class="principles-item__bg-item"></div>
-								</div>
-								<div class="principles-item__content">
-									<div class="principles-item__title">
-										Надежность
-									</div>
-									<div class="principles-item__text">
-										Не&nbsp;даем несбыточных обещаний. Но&nbsp;то, что пообещали, будет реализовано качественно и&nbsp;вовремя.
-									</div>
-								</div>
-							</div>
-							<div class="principles__item principles-item">
-								<div class="principles-item__bg">
-									<div class="principles-item__bg-item"></div>
-									<div class="principles-item__bg-item"></div>
-									<div class="principles-item__bg-item"></div>
-									<div class="principles-item__bg-item"></div>
-								</div>
-								<div class="principles-item__content">
-									<div class="principles-item__title">
-										Проактивность
-									</div>
-									<div class="principles-item__text">
-										Сами предлагаем улучшения, сами являемся инициаторами встреч. За&nbsp;нами не&nbsp;надо бегать и&nbsp;переделывать.
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- principles end -->
+			<!-- job end -->
 
 			<!-- form -->
-			<section id="form-wrapper" class="form-wrapper">
+			<section id="form-wrapper" class="form-wrapper form-wrapper_alt">
 				<div class="form-wrapper__container">
 					<div class="form-wrapper__body">
-						<div class="form-wrapper__bg">
-							<div class="form-wrapper__bg-item"></div>
-							<div class="form-wrapper__bg-item"></div>
-							<div class="form-wrapper__bg-item"></div>
-							<div class="form-wrapper__bg-item"></div>
-						</div>
 						<div class="form-wrapper__grid">
 							<div class="form-wrapper__content">
 								<h2 class="form-wrapper__title h2">
-									Заполните форму и&nbsp;<span class="accent-text">мы&nbsp;с&nbsp;вами свяжемся</span>
+									Стань частью команды <span class="accent-text">Q‑Digital</span>
 								</h2>
-								<div class="form-wrapper__subtitle">Обсудим ваш проект и предложим оптимальные решения для реализации ваших бизнес-целей</div>
+								<div class="form-wrapper__subtitle">Расскажи немного о себе и прикрепи ссылку на портфолио</div>
 							</div>
 							<form action="" data-dev data-popup-message="#popup-success" class="form-wrapper__form form">
 								<div class="form__input-wrap">
-									<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="form__input input">
+									<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Имя Фамилия" class="form__input input">
 								</div>
 								<div class="form__input-wrap">
 									<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="+7 (999) 999-99-99" class="form__input input">
@@ -728,193 +174,39 @@
 									<input data-required="email" autocomplete="off" type="text" name="form[]" data-error="" placeholder="E-mail" class="form__input input">
 								</div>
 								<div class="form__input-wrap">
-									<textarea data-required autocomplete="off" placeholder="Расскажите о проекте" class="form__input input"></textarea>
+									<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ссылка на резюме" class="form__input input">
+								</div>
+								<div class="form__input-wrap">
+									<select name="form[]" class="select">
+										<option value="" selected>Как вы узнали о нашей компании</option>
+										<option value="1">Менеджер проекта</option>
+										<option value="2">Frontend-разработчик</option>
+										<option value="3">PHP-разработчик</option>
+										<option value="4">Программист-стажер</option>
+									</select>
+								</div>
+								<div class="form__input-wrap">
+									<select name="form[]" class="select">
+										<option value="" selected>Выберите вакансию</option>
+										<option value="1">Группа ВК</option>
+										<option value="2">Сторонние сайты по поиску работы</option>
+										<option value="3">Рекомендации знакомых</option>
+										<option value="4">Свой вариант</option>
+									</select>
+								</div>
+								<div class="form__input-wrap">
+									<textarea data-required autocomplete="off" placeholder="Есть ли уже реализованные вами проекты или тестовые задания?" class="form__input input"></textarea>
 								</div>
 								<div class="form__policy">
 									Нажимая на кнопку, вы даете согласие на обработку <a href="#" data-popup="#popup-policy">персональных данных</a>
 								</div>
-								<button type="submit" class="form__button btn-form">Отправить</button>
+								<button type="submit" class="form__button btn-form">Отправить заявку</button>
 							</form>
 						</div>
 					</div>
 				</div>
 			</section>
 			<!-- form end -->
-
-			<!-- news -->
-			<section id="news" class="news">
-				<div class="news__container">
-					<div class="news__body">
-						<div class="news__head">
-							<h2 class="news__title h2">
-								Новые события
-							</h2>
-							<div class="news__navigation">
-								<button type="button" class="news__navigation-arrow news__navigation-arrow_prev swiper-button-prev">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-arrow-small-left"></use>
-									</svg>
-								</button>
-								<button type="button" class="news__navigation-arrow news__navigation-arrow_next swiper-button-next">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#svg-arrow-small-right"></use>
-									</svg>
-								</button>
-							</div>
-						</div>
-						<div class="news__slider swiper">
-							<div class="news__wrapper swiper-wrapper">
-								<div class="news__slide news-slide swiper-slide">
-									<div class="news-slide__img">
-										<a href="#">
-											<img src="img/news/1.jpg" srcset="img/news/1@2x.jpg 2x" alt="">
-										</a>
-									</div>
-									<div class="news-slide__content">
-										<a href="#" class="news-slide__link">
-											Дизайн мобильных приложений. UI UX дизайн
-										</a>
-									</div>
-								</div>
-								<div class="news__slide news-slide swiper-slide">
-									<div class="news-slide__img">
-										<a href="#">
-											<img src="img/news/2.jpg" srcset="img/news/2@2x.jpg 2x" alt="">
-										</a>
-									</div>
-									<div class="news-slide__content">
-										<a href="#" class="news-slide__link">
-											Разработка приложения на iOS в 2023 году: все, что вы хотели знать
-										</a>
-									</div>
-								</div>
-								<div class="news__slide news-slide swiper-slide">
-									<div class="news-slide__img">
-										<a href="#">
-											<img src="img/news/2.jpg" srcset="img/news/2@2x.jpg 2x" alt="">
-										</a>
-									</div>
-									<div class="news-slide__content">
-										<a href="#" class="news-slide__link">
-											ТЗ на разработку мобильного приложения: что это такое и какую информацию содержит
-										</a>
-									</div>
-								</div>
-								<div class="news__slide news-slide swiper-slide">
-									<div class="news-slide__img">
-										<a href="#">
-											<img src="img/news/1.jpg" srcset="img/news/1@2x.jpg 2x" alt="">
-										</a>
-									</div>
-									<div class="news-slide__content">
-										<a href="#" class="news-slide__link">
-											Дизайн мобильных приложений. UI UX дизайн
-										</a>
-									</div>
-								</div>
-								<div class="news__slide news-slide swiper-slide">
-									<div class="news-slide__img">
-										<a href="#">
-											<img src="img/news/2.jpg" srcset="img/news/2@2x.jpg 2x" alt="">
-										</a>
-									</div>
-									<div class="news-slide__content">
-										<a href="#" class="news-slide__link">
-											Разработка приложения на iOS в 2023 году: все, что вы хотели знать
-										</a>
-									</div>
-								</div>
-								<div class="news__slide news-slide swiper-slide">
-									<div class="news-slide__img">
-										<a href="#">
-											<img src="img/news/2.jpg" srcset="img/news/2@2x.jpg 2x" alt="">
-										</a>
-									</div>
-									<div class="news-slide__content">
-										<a href="#" class="news-slide__link">
-											ТЗ на разработку мобильного приложения: что это такое и какую информацию содержит
-										</a>
-									</div>
-								</div>
-								<div class="news__slide news-slide swiper-slide">
-									<div class="news-slide__img">
-										<a href="#">
-											<img src="img/news/1.jpg" srcset="img/news/1@2x.jpg 2x" alt="">
-										</a>
-									</div>
-									<div class="news-slide__content">
-										<a href="#" class="news-slide__link">
-											Дизайн мобильных приложений. UI UX дизайн
-										</a>
-									</div>
-								</div>
-								<div class="news__slide news-slide swiper-slide">
-									<div class="news-slide__img">
-										<a href="#">
-											<img src="img/news/2.jpg" srcset="img/news/2@2x.jpg 2x" alt="">
-										</a>
-									</div>
-									<div class="news-slide__content">
-										<a href="#" class="news-slide__link">
-											Разработка приложения на iOS в 2023 году: все, что вы хотели знать
-										</a>
-									</div>
-								</div>
-								<div class="news__slide news-slide swiper-slide">
-									<div class="news-slide__img">
-										<a href="#">
-											<img src="img/news/2.jpg" srcset="img/news/2@2x.jpg 2x" alt="">
-										</a>
-									</div>
-									<div class="news-slide__content">
-										<a href="#" class="news-slide__link">
-											ТЗ на разработку мобильного приложения: что это такое и какую информацию содержит
-										</a>
-									</div>
-								</div>
-								<div class="news__slide news-slide swiper-slide">
-									<div class="news-slide__img">
-										<a href="#">
-											<img src="img/news/1.jpg" srcset="img/news/1@2x.jpg 2x" alt="">
-										</a>
-									</div>
-									<div class="news-slide__content">
-										<a href="#" class="news-slide__link">
-											Дизайн мобильных приложений. UI UX дизайн
-										</a>
-									</div>
-								</div>
-								<div class="news__slide news-slide swiper-slide">
-									<div class="news-slide__img">
-										<a href="#">
-											<img src="img/news/2.jpg" srcset="img/news/2@2x.jpg 2x" alt="">
-										</a>
-									</div>
-									<div class="news-slide__content">
-										<a href="#" class="news-slide__link">
-											Разработка приложения на iOS в 2023 году: все, что вы хотели знать
-										</a>
-									</div>
-								</div>
-								<div class="news__slide news-slide swiper-slide">
-									<div class="news-slide__img">
-										<a href="#">
-											<img src="img/news/2.jpg" srcset="img/news/2@2x.jpg 2x" alt="">
-										</a>
-									</div>
-									<div class="news-slide__content">
-										<a href="#" class="news-slide__link">
-											ТЗ на разработку мобильного приложения: что это такое и какую информацию содержит
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="news__slider-pagination"></div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- news end -->
 
 		</main>
 		<footer class="footer">
