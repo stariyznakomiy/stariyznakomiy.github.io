@@ -2275,6 +2275,14 @@ body::after {
   margin-bottom: 0.125rem;
 }
 
+.form-wrapper_catalog {
+  margin-bottom: 4.5625rem;
+}
+
+.form-wrapper_catalog .form-wrapper__title:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
 .form-wrapper_alt .form-wrapper__body {
   background-color: #f8f8f8;
 }
@@ -3297,6 +3305,10 @@ body::after {
     margin-bottom: 2.75rem;
   }
 
+  .form-wrapper_catalog {
+    margin-bottom: 4.4375rem;
+  }
+
   .form-wrapper__title:not(:last-child) {
     margin-bottom: 3.375rem;
   }
@@ -3890,6 +3902,10 @@ body::after {
 
   .form-wrapper {
     margin-bottom: 2.1875rem;
+  }
+
+  .form-wrapper_catalog {
+    margin-bottom: 5.5625rem;
   }
 
   .news {
@@ -4789,6 +4805,10 @@ body::after {
 
   .cta__button {
     width: 100%;
+  }
+
+  .form-wrapper_catalog {
+    margin-bottom: 2.375rem;
   }
 
   .form-wrapper__title {

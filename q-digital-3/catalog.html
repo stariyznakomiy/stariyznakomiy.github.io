@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240405004303">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240405191825">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -280,6 +280,55 @@
 				</div>
 			</section>
 			<!-- works end -->
+			<!-- form -->
+			<section id="form-wrapper" class="form-wrapper form-wrapper_catalog">
+				<div class="form-wrapper__container">
+					<div class="form-wrapper__body">
+						<div class="form-wrapper__bg">
+							<div class="form-wrapper__bg-item"></div>
+							<div class="form-wrapper__bg-item"></div>
+							<div class="form-wrapper__bg-item"></div>
+							<div class="form-wrapper__bg-item"></div>
+						</div>
+						<div class="form-wrapper__grid">
+							<div class="form-wrapper__content">
+								<h2 class="form-wrapper__title h2">
+									Запишитесь на&nbsp;<span class="accent-text">бесплатную консультацию</span>
+								</h2>
+								<div class="form-wrapper__subtitle">
+									Разберем ваш проект<br>
+									Предложим решения<br>
+									Расскажем про этапы работы
+								</div>
+							</div>
+							<form action="" data-dev data-popup-message="#popup-success" class="form-wrapper__form form">
+								<div class="form__input-wrap">
+									<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="form__input input">
+								</div>
+								<div class="form__input-wrap">
+									<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="+7 (999) 999-99-99" class="form__input input">
+								</div>
+								<div class="form__input-wrap">
+									<input data-required="email" autocomplete="off" type="text" name="form[]" data-error="" placeholder="E-mail" class="form__input input">
+								</div>
+								<div class="form__input-wrap">
+									<textarea data-required autocomplete="off" placeholder="Расскажите о проекте" class="form__input input"></textarea>
+								</div>
+								<div class="form__policy">
+									Нажимая на кнопку, вы даете согласие на обработку <a href="#" data-popup="#popup-policy">персональных данных</a>
+								</div>
+								<button type="submit" class="form__button btn btn-form">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#svg-chat"></use>
+									</svg>
+									<span>Записаться</span>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- form end -->
 		</main>
 		<footer class="footer">
 			<div class="footer__container">
@@ -677,7 +726,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20240405004303"></script>
+	<script src="js/app.min.js?_v=20240405191825"></script>
 </body>
 
 </html>
