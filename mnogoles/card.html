@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Карточка товара</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20250524014202">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<div class="header__body">
+					<div class="header__top">
+						<nav class="header__nav">
+							<ul class="header__nav-list">
+								<li class="header__nav-item"><a href="#" class="header__nav-link">О нас</a></li>
+								<li class="header__nav-item"><a href="#" class="header__nav-link">Доставка и оплата</a></li>
+								<li class="header__nav-item"><a href="#" class="header__nav-link active">Контакты</a></li>
+								<li class="header__nav-item"><a href="#" class="header__nav-link">Полезные статьи</a></li>
+								<li class="header__nav-item"><a href="#" class="header__nav-link">Калькулятор пиломатериалов</a></li>
+							</ul>
+						</nav>
+						</nav>
+						<div class="header__panel">
+							<button type="button" class="header__panel-item header__panel-item_login">Войти в личный кабинет</button>
+							<button type="button" class="header__panel-item">г. Москва</button>
+							<a href="tel:+79014179616" class="header__panel-item header__panel-item_phone">+7 901 417-96-16</a>
+						</div>
+					</div>
+					<div class="header__grid">
+						<div class="header__burger-menu icon-menu">
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+						<a href="#" class="header__logo">
+							<img src="img/logo.svg" width="87" height="50" class="header__logo-img" alt="Логотип">
+						</a>
+						<a href="#" class="header__catalog-btn">Каталог</a>
+						<div class="header__search header-search">
+							<form action="" class="header-search__form">
+								<input autocomplete="off" type="text" name="form[]" data-error="" placeholder="Поиск" class="header-search__form-input">
+								<button type="submit" class="header-search__form-submit">Найти</button>
+							</form>
+							<div class="header-search__body">
+								<div class="header-search__list">
+									<div href="#" class="header-search__card">
+										<div class="header-search__card-img-wrapper">
+											<img class="header-search__card-img" data-src="img/header-search/header-search-link-image.png" data-srcset="img/header-search/header-search-link-image@2x.png 2x" alt="">
+										</div>
+										<a href="#" class="header-search__link">Доска обрезная, хвоя, ГОСТ, 1 сорт, 25-100-6000 мм</a>
+									</div>
+									<div href="#" class="header-search__card">
+										<div class="header-search__card-img-wrapper">
+											<img class="header-search__card-img" data-src="img/header-search/header-search-link-image.png" data-srcset="img/header-search/header-search-link-image@2x.png 2x" alt="">
+										</div>
+										<a href="#" class="header-search__link">Доска обрезная, хвоя, ГОСТ, 1 сорт, 25-100-6000 мм</a>
+									</div>
+									<div href="#" class="header-search__card">
+										<div class="header-search__card-img-wrapper">
+											<img class="header-search__card-img" data-src="img/header-search/header-search-link-image.png" data-srcset="img/header-search/header-search-link-image@2x.png 2x" alt="">
+										</div>
+										<a href="#" class="header-search__link">Доска обрезная, хвоя, ГОСТ, 1 сорт, 25-100-6000 мм</a>
+									</div>
+									<div href="#" class="header-search__card">
+										<div class="header-search__card-img-wrapper">
+											<img class="header-search__card-img" data-src="img/header-search/header-search-link-image.png" data-srcset="img/header-search/header-search-link-image@2x.png 2x" alt="">
+										</div>
+										<a href="#" class="header-search__link">Доска обрезная, хвоя, ГОСТ, 1 сорт, 25-100-6000 мм</a>
+									</div>
+								</div>
+								<a href="#" class="header-search__more btn btn_small">Посмотреть результаты <span>↗</span></a>
+							</div>
+						</div>
+						<div class=" header__action-wrapper header__action-wrapper_price">
+							<button type="button" class="header__action"><span>Опт. прайс</span></button>
+						</div>
+						<div class="header__action-wrapper header__action-wrapper_basket">
+							<button type="button" class="header__action"><span>Корзина</span></button>
+							<div class="header__action-price">1 000 ₽</div>
+						</div>
+						<div class="header__action-wrapper header__action-wrapper_login">
+							<button type="button" class="header__action"></button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="header__menu menu">
+				<div class="menu__head">
+					<button type="button" class="menu__close icon-menu"></button>
+					<div class="menu__head-row" data-js="menu-search-row">
+						<button type="button" class="menu__price"><span>Опт. прайс</span></button>
+						<button type="button" class="menu__search-icon" data-js="menu-search-icon"></button>
+						<div class="menu__search-wrapper">
+							<div class="menu__search header-search">
+								<form action="" class="header-search__form">
+									<input autocomplete="off" type="text" name="form[]" data-error="" placeholder="Поиск" class="header-search__form-input">
+									<button type="submit" class="header-search__form-submit">Найти</button>
+								</form>
+							</div>
+							<button type="button" class="menu__search-close" data-js="menu-search-icon"></button>
+						</div>
+					</div>
+				</div>
+				<div class="menu__body">
+					<div class="menu__list-wrapper">
+						<div class="menu__list-title">Каталог</div>
+						<div class="menu__list" data-spollers data-one-spoller>
+							<div class="menu__item">
+								<button data-spoller class="menu__item-title">Брус</button>
+								<div class="menu__item-body">
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+								</div>
+							</div>
+							<div class="menu__item">
+								<button data-spoller class="menu__item-title">Доска</button>
+								<div class="menu__item-body">
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+								</div>
+							</div>
+							<div class="menu__item">
+								<button data-spoller class="menu__item-title">Брус</button>
+								<div class="menu__item-body">
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+								</div>
+							</div>
+							<div class="menu__item">
+								<button data-spoller class="menu__item-title">Доска</button>
+								<div class="menu__item-body">
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+								</div>
+							</div>
+							<div class="menu__item">
+								<button data-spoller class="menu__item-title">Брус</button>
+								<div class="menu__item-body">
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+									<div class="menu__item-sub"><a href="#" class="menu__item-sub-link">Пункт</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="menu__bottom">
+						<ul class="menu__nav">
+							<li class="menu__nav-item"><a href="#" class="menu__nav-link">Главная</a></li>
+							<li class="menu__nav-item"><a href="#" class="menu__nav-link">О нас</a></li>
+							<li class="menu__nav-item"><a href="#" class="menu__nav-link">Доставка и оплата</a></li>
+							<li class="menu__nav-item"><a href="#" class="menu__nav-link">Контакты</a></li>
+							<li class="menu__nav-item"><a href="#" class="menu__nav-link">Полезные статьи</a></li>
+						</ul>
+						<div class="menu__contacts">
+							<div class="menu__contacts-address">г. Москва</div>
+							<a href="tel:+79014179616" class="menu__contacts-phone">+7 901 417-96-16</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main class="page">
+
+			<!-- card -->
+			<section class="card">
+				<div class="card__main">
+					<div class="card__container">
+						<div class="card__breadcrumbs breadcrumbs">
+							<a href="#" class="breadcrumbs__back">←</a>
+							<div class="breadcrumbs__list">
+								<a href="/" class="breadcrumbs__link">Главная</a>
+								<span>/</span>
+								<a href="/" class="breadcrumbs__link">Каталог товаров</a>
+								<span>/</span>
+								<a href="/" class="breadcrumbs__link">Обрезная доска</a>
+								<span>/</span>
+								<span class="breadcrumbs__key">Доска обрезная, хвоя, ГОСТ, 1 сорт, 25-100-6000 мм</span>
+							</div>
+						</div>
+						<div class="card__grid">
+							<div class="card__img-wrapper">
+								<img src="img/card/1.png" srcset="img/card/1@2x.png 2x" class="card__img" width="448" height="302" alt="">
+								<div class="card__img-panel">
+									<div class="card__img-label">В наличии</div>
+									<button type="button" class="card__img-favorite"></button>
+								</div>
+							</div>
+							<div class="card__content">
+								<h1 class="card__title h1">Доска обрезная, хвоя, ГОСТ, 1 сорт, 25-100-6000 мм</h1>
+								<div class="card__options-wrapper">
+									<div class="card__options-title">Объем</div>
+									<div class="card__options">
+										<div class="card__options-list">
+											<div class="card__options-item">
+												<input hidden id="s_11" class="card__options-input" checked type="radio" value="1" name="size_1">
+												<label for="s_11" class="card__options-label"><span class="card__options-text">Штука</span></label>
+											</div>
+											<div class="card__options-item">
+												<input hidden id="s_21" class="card__options-input" type="radio" value="2" name="size_1">
+												<label for="s_21" class="card__options-label"><span class="card__options-text">Куб</span></label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card__options-wrapper">
+									<div class="card__options-title">Количество</div>
+									<div class="card__options">
+										<div class="card__quantity">
+											<button type="button" class="card__quantity-btn card__quantity-btn_minus">-</button>
+											<div class="card__quantity-input-wrapper">
+												<input autocomplete="off" type="text" name="form[]" value="1" class="card__quantity-input" readonly>
+											</div>
+											<button type="button" class="card__quantity-btn card__quantity-btn_plus">+</button>
+										</div>
+										<div class="card__price">277 ₽</div>
+									</div>
+								</div>
+								<div class="card__actions">
+									<button type="button" class="card__actions-btn card__actions-btn_accent">В корзину <span>→</span></button>
+									<a href="#" class="card__actions-btn">Калькулятор пиломатериалов <span>↗</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div data-tabs class="card__descr">
+					<div class="card__container">
+						<nav data-tabs-titles class="card__descr-nav">
+							<button type="button" class="card__descr-nav-title _tab-active">Характеристики</button>
+							<button type="button" class="card__descr-nav-title">Описание</button>
+							<button type="button" class="card__descr-nav-title">Видеообзор</button>
+						</nav>
+					</div>
+					<div data-tabs-body class="card__descr-body">
+						<div class="card__descr-tab">
+							<div class="card__container">
+								<div class="card__descr-table">
+									<div class="card__descr-table-item">
+										<div class="card__descr-table-item-title">Древесина</div>
+										<div class="card__descr-table-item-text">Хвоя</div>
+									</div>
+									<div class="card__descr-table-item">
+										<div class="card__descr-table-item-title">Сорт</div>
+										<div class="card__descr-table-item-text">А</div>
+									</div>
+									<div class="card__descr-table-item">
+										<div class="card__descr-table-item-title">Толщина</div>
+										<div class="card__descr-table-item-text">20 мм</div>
+									</div>
+									<div class="card__descr-table-item">
+										<div class="card__descr-table-item-title">Ширина</div>
+										<div class="card__descr-table-item-text">190 мм</div>
+									</div>
+									<div class="card__descr-table-item">
+										<div class="card__descr-table-item-title">Длина</div>
+										<div class="card__descr-table-item-text">6000 мм</div>
+									</div>
+									<div class="card__descr-table-item">
+										<div class="card__descr-table-item-title">Влажность</div>
+										<div class="card__descr-table-item-text">10-12%</div>
+									</div>
+									<div class="card__descr-table-item">
+										<div class="card__descr-table-item-title">Производитель</div>
+										<div class="card__descr-table-item-text">ООО Многолеса</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card__descr-tab">
+							<div class="card__container">
+								<div class="card__descr-content">
+									<div class="card__descr-content-title">Обрезная доска</div>
+									<div class="card__descr-content-text">
+										Самый популярный вид материала для любых строительных проектов: от фундамента до крыш. Можно использовать для строительства деревянных домов и бань, изготовления мебели, создания каркасов для зданий, обшивки стен и потолков, производства опалубки, укладки полов,
+										изготовления заборов и ограждений, создания декоративных элементов интерьера и проч.
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card__descr-tab">
+							<div class="card__container">
+								<div class="card__descr-review">
+									<div class="card__descr-review-title">Видеообзор товара</div>
+									<div class="card__descr-review-grid">
+										<div class="card__descr-review-media-wrapper">
+											<img data-src="img/card/review.png" class="card__descr-review-media" alt="">
+											<button type="button" class="card__descr-review-media-btn"></button>
+										</div>
+										<div class="card__descr-review-info">
+											<div class="card__descr-review-info-title">
+												Смотрите другие видео
+												в нашем канале <span class="accent-text">МНОГОЛЕС</span>
+											</div>
+											<a href="#" class="card__descr-review-info-link"><span>Перейти в <span class="vk-link">VK видео</span></span><span>↗</span></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- card end -->
+
+			<!-- callback -->
+			<section class="callback callback_alt">
+				<div class="callback__container">
+					<div class="callback__grid">
+						<div class="callback__title-wrapper">
+							<h2 class="callback__title h2"><span class="accent-text">Возникли вопросы?</span><br> Оставьте заявку</h2>
+							<div class="callback__subtitle">И мы вам перезвоним в течении 15 минут!</div>
+						</div>
+						<div class="callback__contacts">
+							<div class="callback__contacts-col">
+								<div class="callback__contacts-title">Ответим на все ваши вопросы</div>
+								<div class="callback__socials socials">
+									<a href="#" class="socials__item socials__item_wa"></a>
+									<a href="#" class="socials__item socials__item_tg"></a>
+									<a href="#" class="socials__item socials__item_vk"></a>
+									<a href="#" class="socials__item socials__item_vb"></a>
+								</div>
+							</div>
+							<div class="callback__contacts-col">
+								<div class="callback__contacts-list">
+									<a href="tel:+79014179616" class="callback__contacts-item callback__contacts-item_phone">+7 901 417-96-16</a>
+									<a href="mailto:mnogolesa.official@gmail.com" class="callback__contacts-item callback__contacts-item_email">mnogolesa.official@gmail.com</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<form action="" data-dev class="callback__form">
+						<div class="callback__form-input-wrapper">
+							<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="callback__form-input">
+						</div>
+						<div class="callback__form-input-wrapper callback__form-input-wrapper_phone">
+							<select name="form[]" data-class-modif="country" class="callback__form-select">
+								<option value="1" data-asset="img/first-screen/flag.svg" data selected></option>
+								<option value="2" data-asset="img/first-screen/flag.svg"></option>
+								<option value="3" data-asset="img/first-screen/flag.svg"></option>
+								<option value="4" data-asset="img/first-screen/flag.svg"></option>
+							</select>
+							<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="+7 (999) 999-99-99" class="callback__form-input">
+						</div>
+						<button type="submit" class="callback__form-btn btn btn_small">Отправить заявку <span>↗</span></button>
+						<div class="callback__form-policy">
+							Нажимая кнопку, вы соглашаетесь<br> с <a href="#">Политикой обработки персональных данных</a>
+						</div>
+					</form>
+				</div>
+			</section>
+			<!-- callback end -->
+
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+				<div class="footer__body">
+					<div class="footer__logo-wrapper">
+						<a href="#" class="footer__logo">
+							<img src="img/logo_footer.svg" width="115" height="115" class="footer__logo-img" alt="Логотип">
+						</a>
+						<div class="footer__logo-text">ООО «МНОГО ЛЕСА»</div>
+					</div>
+					<div class="footer__contacts">
+						<div class="footer__contacts-group">
+							<div class="footer__socials socials">
+								<a href="#" class="socials__item socials__item_wa"></a>
+								<a href="#" class="socials__item socials__item_tg"></a>
+								<a href="#" class="socials__item socials__item_vk"></a>
+								<a href="#" class="socials__item socials__item_vb"></a>
+							</div>
+							<div class="footer__contacts-list">
+								<a href="tel:+79014179616" class="footer__contacts-item">+7 901 417-96-16</a>
+								<a href="mailto:mnogolesa.official@gmail.com" class="footer__contacts-item">mnogolesa.official@gmail.com</a>
+							</div>
+						</div>
+						<div class="footer__contacts-group">
+							<div class="footer__contacts-address">
+								<span class="accent-text">Адрес:</span> «Бизнес-парк Румянцево» г. Москва, 22 километр Киевское шоссе, 4 ст.1 кА , 8 под., 6 ЭТ.
+							</div>
+							<div class="footer__contacts-note">Позвоните нам заранее, чтобы мы оформили для вас гостевой пропуск.</div>
+						</div>
+					</div>
+					<nav class="footer__menu">
+						<ul class="footer__menu-list">
+							<li class="footer__menu-item"><a href="#" class="footer__menu-link">О нас</a></li>
+							<li class="footer__menu-item"><a href="#" class="footer__menu-link">Доставка и оплата</a></li>
+							<li class="footer__menu-item"><a href="#" class="footer__menu-link">Контакты</a></li>
+							<li class="footer__menu-item"><a href="#" class="footer__menu-link">Полезные статьи</a></li>
+							<li class="footer__menu-item"><a href="#" class="footer__menu-link">Калькулятор пиломатериалов</a></li>
+						</ul>
+					</nav>
+					<div class="footer__copyright">© Copyright МногоЛес.рф 2024</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+	<!-- <div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<button data-close type="button" class="popup__close">Закрыть</button>
+			<div class="popup__text">
+				Text
+			</div>
+		</div>
+	</div>
+</div> -->
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_API_ключ&lang=ru_RU&_v=20250524014202" type="text/javascript"></script>
+	<script src="js/app.min.js?_v=20250524014202"></script>
+</body>
+
+</html>
