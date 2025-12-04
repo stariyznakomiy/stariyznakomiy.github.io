@@ -11548,20 +11548,6 @@
                     setStep(element);
                 }));
             }));
-            const slider = document.querySelector("[data-slider]"), sliderItems = slider.querySelectorAll("[data-slider-item]");
-            if (1 !== ScrollTrigger_ScrollTrigger.isTouch) if (slider) Observer.create({
-                target: slider,
-                type: "wheel,touch,pointer",
-                wheelSpeed: -1,
-                onDown: () => {
-                    if (!document.documentElement.classList.contains("scroll-lock")) changeSlide(sliderItems, -1);
-                },
-                onUp: () => {
-                    if (!document.documentElement.classList.contains("scroll-lock")) changeSlide(sliderItems, 1);
-                },
-                tolerance: 10,
-                preventDefault: true
-            });
             let sliderButtons = gsapWithCSS.utils.toArray("[data-slider-navigate]");
             sliderButtons.forEach((sliderButton => {
                 sliderButton.addEventListener("click", (e => {
@@ -11597,52 +11583,6 @@
             }
             function scrollUnLock() {
                 document.documentElement.classList.remove("scroll-lock");
-            }
-            function changeSlide(sliderItems, direction) {
-                let scrollDirection;
-                sliderItems.forEach((sliderItem => {
-                    const elementActive = sliderItem.querySelector("._active");
-                    if (direction < 0) {
-                        const elementPrev = elementActive.previousElementSibling;
-                        if (elementPrev) {
-                            elementActive.classList.remove("_active");
-                            elementPrev.classList.add("_active");
-                            if (elementPrev.hasAttribute("data-section-step")) {
-                                const parent = elementPrev.closest("[data-slider]");
-                                parent.dataset.sectionStep = elementPrev.dataset.sectionStep;
-                                setStep(elementPrev);
-                            }
-                            scrollLock();
-                            setTimeout((() => {
-                                scrollUnLock();
-                            }), 1500);
-                        } else return scrollDirection = "up";
-                    } else if (direction > 0) {
-                        const elementNext = elementActive.nextElementSibling;
-                        if (elementNext) {
-                            elementActive.classList.remove("_active");
-                            elementNext.classList.add("_active");
-                            if (elementNext.hasAttribute("data-section-step")) {
-                                const parent = elementNext.closest("[data-slider]");
-                                parent.dataset.sectionStep = elementNext.dataset.sectionStep;
-                                setStep(elementNext);
-                            }
-                            scrollLock();
-                            setTimeout((() => {
-                                scrollUnLock();
-                            }), 1500);
-                        } else return scrollDirection = "down";
-                    }
-                }));
-                if ("up" == scrollDirection) {
-                    let offsetPrev = slider.previousElementSibling.offsetTop - (window.innerHeight - slider.previousElementSibling.offsetHeight);
-                    scrollPage(offsetPrev);
-                    setStep(slider.previousElementSibling);
-                } else if ("down" == scrollDirection) {
-                    let offsetNext = slider.nextElementSibling.offsetTop;
-                    scrollPage(offsetNext);
-                    setStep(slider.nextElementSibling);
-                }
             }
             if (1 !== ScrollTrigger_ScrollTrigger.isTouch) {
                 const animateBlocks = document.querySelectorAll(".animate-block");
