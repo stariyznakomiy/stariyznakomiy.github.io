@@ -14,7 +14,7 @@
 			<div class="basket__list-wrapper">
 				<div class="basket__list-head">
 					<h1 class="basket__list-title h1">Корзина</h1>
-					<button type="button" class="basket__list-btn">Очистить корзину</button>
+					<button type="button" class="basket__list-btn"><span class="basket__list-btn-text">Очистить корзину</span></button>
 				</div>
 				<div class="basket__list">
 					<div class="basket__list-item basket-product">
@@ -26,8 +26,8 @@
 							<div class="basket-product__descr">Объем: Штука</div>
 							<div class="basket-product__options">
 								<div class="basket-product__price">250 ₽</div>
-								<div class="basket-product__total">500 ₽</div>
 								<div class="basket-product__quantity-wrapper">
+									<div class="basket-product__total">500 ₽</div>
 									<button type="button" class="basket-product__delete"></button>
 									<div class="basket-product__quantity">
 										<button type="button" class="basket-product__quantity-btn basket-product__quantity-btn_minus">-</button>
@@ -37,14 +37,104 @@
 										<button type="button" class="basket-product__quantity-btn basket-product__quantity-btn_plus">+</button>
 									</div>
 								</div>
-
+							</div>
+						</div>
+					</div>
+					<div class="basket__list-item basket-product">
+						<div class="basket-product__img-wrapper">
+							<img src="img/basket/1.png" srcset="img/basket/1@2x.png 2x" class="basket-product__img" width="209" height="140" alt="">
+						</div>
+						<div class="basket-product__info">
+							<div class="basket-product__title">Доска обрезная, хвоя, ГОСТ, 1 сорт, 25-100-6000 мм</div>
+							<div class="basket-product__descr">Объем: Штука</div>
+							<div class="basket-product__options">
+								<div class="basket-product__price">250 ₽</div>
+								<div class="basket-product__quantity-wrapper">
+									<div class="basket-product__total">500 ₽</div>
+									<button type="button" class="basket-product__delete"></button>
+									<div class="basket-product__quantity">
+										<button type="button" class="basket-product__quantity-btn basket-product__quantity-btn_minus">-</button>
+										<div class="basket-product__quantity-input-wrapper">
+											<input autocomplete="off" type="text" name="form[]" value="1" class="basket-product__quantity-input" readonly>
+										</div>
+										<button type="button" class="basket-product__quantity-btn basket-product__quantity-btn_plus">+</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="basket__list-item basket-product">
+						<div class="basket-product__img-wrapper">
+							<img src="img/basket/1.png" srcset="img/basket/1@2x.png 2x" class="basket-product__img" width="209" height="140" alt="">
+						</div>
+						<div class="basket-product__info">
+							<div class="basket-product__title">Доска обрезная, хвоя, ГОСТ, 1 сорт, 25-100-6000 мм</div>
+							<div class="basket-product__descr">Объем: Штука</div>
+							<div class="basket-product__options">
+								<div class="basket-product__price">250 ₽</div>
+								<div class="basket-product__quantity-wrapper">
+									<div class="basket-product__total">500 ₽</div>
+									<button type="button" class="basket-product__delete"></button>
+									<div class="basket-product__quantity">
+										<button type="button" class="basket-product__quantity-btn basket-product__quantity-btn_minus">-</button>
+										<div class="basket-product__quantity-input-wrapper">
+											<input autocomplete="off" type="text" name="form[]" value="1" class="basket-product__quantity-input" readonly>
+										</div>
+										<button type="button" class="basket-product__quantity-btn basket-product__quantity-btn_plus">+</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="basket__sidebar basket-side">
-
+				<a href="#" class="basket-side__address">
+					<span class="basket-side__address-text">Улица Минеров, 2</span>
+				</a>
+				<div class="basket-side__options-wrapper">
+					<div class="basket-side__options">
+						<div class="basket-side__options-title">Способ доставки</div>
+						<div class="basket-side__options-list options">
+							<div class="options__item">
+								<input hidden id="o_11" class="options__input" checked type="radio" value="1" name="delivery">
+								<label for="o_11" class="options__label"><span class="options__text">От нашей компании</span></label>
+							</div>
+							<div class="options__item">
+								<input hidden id="o_21" class="options__input" type="radio" value="2" name="delivery">
+								<label for="o_21" class="options__label"><span class="options__text">Транспортной компанией</span></label>
+							</div>
+							<div class="options__item">
+								<input hidden id="o_31" class="options__input" type="radio" value="3" name="delivery">
+								<label for="o_31" class="options__label"><span class="options__text">Самовывоз со склада в Москве</span></label>
+							</div>
+						</div>
+					</div>
+					<div class="basket-side__options">
+						<div class="basket-side__options-title">Способ оплаты</div>
+						<div class="basket-side__options-list options">
+							<div class="options__item">
+								<input hidden id="o_12" class="options__input" checked type="radio" value="1" name="payment">
+								<label for="o_12" class="options__label"><span class="options__text">Оплата наличными</span></label>
+							</div>
+							<div class="options__item">
+								<input hidden id="o_22" class="options__input" type="radio" value="2" name="payment">
+								<label for="o_22" class="options__label"><span class="options__text">Безналичный расчёт (без НДС)</span></label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="basket-side__total">
+					<div class="basket-side__total-item">
+						<div class="basket-side__total-title">Доставка</div>
+						<div class="basket-side__total-price">1 000 ₽</div>
+					</div>
+					<div class="basket-side__total-item">
+						<div class="basket-side__total-title">Итого</div>
+						<div class="basket-side__total-price">1 945 ₽</div>
+					</div>
+				</div>
+				<button type="button" class="basket-side__btn btn btn_small" data-popup="#popup-order">Оформить заказ <span>↗</span></button>
 			</div>
 		</div>
 	</div>

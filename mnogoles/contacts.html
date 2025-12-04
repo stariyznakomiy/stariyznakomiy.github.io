@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20250524014202">
+	<link rel="stylesheet" href="css/style.min.css?_v=20251204154454">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -238,18 +238,156 @@
 			</div>
 		</footer>
 	</div>
-	<!-- <div id="popup" aria-hidden="true" class="popup">
-	<div class="popup__wrapper">
-		<div class="popup__content">
-			<button data-close type="button" class="popup__close">Закрыть</button>
-			<div class="popup__text">
-				Text
+	<div id="popup-order" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<div class="popup__close">
+					<button data-close type="button" class="popup__close-btn"></button>
+				</div>
+				<div class="popup__grid">
+					<div class="popup__title-wrapper">
+						<div class="popup__title">Оформление<br> заказа</div>
+						<div class="popup__subtitle">Заполните данные, что бы перейти к оплате</div>
+					</div>
+					<form action="" data-dev class="popup__form">
+						<div class="popup__form-input-wrapper">
+							<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="popup__form-input">
+						</div>
+						<div class="popup__form-input-wrapper popup__form-input-wrapper_phone">
+							<select name="form[]" data-class-modif="country" class="popup__form-select">
+								<option value="1" data-asset="img/first-screen/flag.svg" data selected></option>
+								<option value="2" data-asset="img/first-screen/flag.svg"></option>
+								<option value="3" data-asset="img/first-screen/flag.svg"></option>
+								<option value="4" data-asset="img/first-screen/flag.svg"></option>
+							</select>
+							<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="+7 (999) 999-99-99" class="popup__form-input">
+						</div>
+						<div class="popup__form-total">Сумма: 2 500 ₽</div>
+						<button type="submit" class="popup__form-btn btn">войти и Оплатить заказ</button>
+						<div class="popup__form-policy">
+							Нажимая кнопку, вы соглашаетесь<br> с <a href="#">Политикой обработки персональных данных</a>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
-</div> -->
-	<script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_API_ключ&lang=ru_RU&_v=20250524014202" type="text/javascript"></script>
-	<script src="js/app.min.js?_v=20250524014202"></script>
+
+	<!--  -->
+	<div id="popup-price" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<div class="popup__close">
+					<button data-close type="button" class="popup__close-btn"></button>
+				</div>
+				<div class="popup__grid">
+					<div class="popup__title-wrapper">
+						<div class="popup__title">Получить оптовый прайс</div>
+						<div class="popup__subtitle">Заполните данные, и мы отправим прайс на вашу почту</div>
+					</div>
+					<form action="" data-dev class="popup__form">
+						<div class="popup__form-input-wrapper">
+							<input data-required autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваше имя" class="popup__form-input">
+						</div>
+						<div class="popup__form-input-wrapper popup__form-input-wrapper_phone">
+							<select name="form[]" data-class-modif="country" class="popup__form-select">
+								<option value="1" data-asset="img/first-screen/flag.svg" data selected></option>
+								<option value="2" data-asset="img/first-screen/flag.svg"></option>
+								<option value="3" data-asset="img/first-screen/flag.svg"></option>
+								<option value="4" data-asset="img/first-screen/flag.svg"></option>
+							</select>
+							<input data-required="tel" autocomplete="off" type="tel" name="form[]" data-error="" placeholder="+7 (999) 999-99-99" class="popup__form-input">
+						</div>
+						<div class="popup__form-input-wrapper">
+							<input data-required="email" autocomplete="off" type="text" name="form[]" data-error="" placeholder="Ваша почта" class="popup__form-input">
+						</div>
+						<div class="popup__form-options">
+							<div class="popup__form-options-title">Предпочтительный способ связи</div>
+							<div class="popup__form-options-list options">
+								<div class="options__item">
+									<input hidden id="t_1" class="options__input" checked type="radio" value="1" name="type">
+									<label for="t_1" class="options__label"><span class="options__text">Звонок</span></label>
+								</div>
+								<div class="options__item">
+									<input hidden id="t_2" class="options__input" type="radio" value="2" name="type">
+									<label for="t_2" class="options__label"><span class="options__text">Сообщение</span></label>
+								</div>
+							</div>
+						</div>
+						<button type="submit" class="popup__form-btn btn">Получить прайс</button>
+						<div class="popup__form-policy">
+							Нажимая кнопку, вы соглашаетесь<br> с <a href="#">Политикой обработки персональных данных</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--  -->
+	<div id="popup-order-success" aria-hidden="true" class="popup popup_success">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<div class="popup__close">
+					<button data-close type="button" class="popup__close-btn"></button>
+				</div>
+				<div class="popup__grid">
+					<div class="popup__title-wrapper">
+						<div class="popup__title">Оплата прошла успешно!</div>
+						<div class="popup__subtitle">В ближайшее время с вами свяжется сотрудник&nbsp;для уточнения деталей</div>
+					</div>
+					<div class="popup__icon-wrapper">
+						<img src="img/modals/success.png" class="popup__icon" width="142" height="141" alt="">
+					</div>
+					<a href="#" class="popup__btn btn">← Вернуться к каталогу</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--  -->
+	<div id="popup-callback-success" aria-hidden="true" class="popup popup_success">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<div class="popup__close">
+					<button data-close type="button" class="popup__close-btn"></button>
+				</div>
+				<div class="popup__grid">
+					<div class="popup__title-wrapper">
+						<div class="popup__title">Ваша заявка успешно отправлена</div>
+						<div class="popup__subtitle">В ближайшее время с вами свяжется сотрудник&nbsp;для уточнения деталей</div>
+					</div>
+					<div class="popup__icon-wrapper">
+						<img src="img/modals/success.png" class="popup__icon" width="142" height="141" alt="">
+					</div>
+					<a href="#" class="popup__btn btn">← Вернуться на главную</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--  -->
+	<div id="popup-price-success" aria-hidden="true" class="popup popup_success">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<div class="popup__close">
+					<button data-close type="button" class="popup__close-btn"></button>
+				</div>
+				<div class="popup__grid">
+					<div class="popup__title-wrapper">
+						<div class="popup__title">ваши данные успешно отправлены</div>
+						<div class="popup__subtitle">В ближайшее время на вашу почту <span class="accent-text">mnogolesa.msk@gmail.com</span> придёт письмо с файлом</div>
+					</div>
+					<div class="popup__icon-wrapper">
+						<img src="img/modals/success.png" class="popup__icon" width="142" height="141" alt="">
+					</div>
+					<a href="#" class="popup__btn btn">← Вернуться на главную</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_API_ключ&lang=ru_RU&_v=20251204154454" type="text/javascript"></script>
+	<script src="js/app.min.js?_v=20251204154454"></script>
 </body>
 
 </html>
